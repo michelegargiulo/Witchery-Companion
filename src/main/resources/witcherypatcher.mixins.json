@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.smokeythebandicoot.witcherypatcher.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mixins.witcherypatcher.refmap.json",
+  "mixins": [
+    "brewing.action.effect.ErosionBrewEffectMixin",
+    "brewing.action.effect.FrogsTongueBrewEffectMixin",
+    "entity.EntityLordOfTormentMixin",
+    "util.EntityUtilMixin"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8"
+}
