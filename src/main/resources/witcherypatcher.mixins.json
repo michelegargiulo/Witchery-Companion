@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "mixins.witcherypatcher.refmap.json",
   "mixins": [
+    "block.BlockRemovedBlockMixin",
     "brewing.action.effect.ErosionBrewEffectMixin",
     "brewing.action.effect.FrogsTongueBrewEffectMixin",
     "entity.EntityLordOfTormentMixin",

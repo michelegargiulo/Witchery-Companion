@@ -1,6 +1,5 @@
 package com.smokeythebandicoot.witcherypatcher;
 
-import com.smokeythebandicoot.witcherypatcher.reflection.BlockRemovedBlock;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
