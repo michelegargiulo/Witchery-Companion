@@ -1,14 +1,14 @@
 package com.smokeythebandicoot.witcherypatcher;
 
+import com.smokeythebandicoot.witcherypatcher.config.ModConfig;
+import com.smokeythebandicoot.witcherypatcher.patches.infusion.symbol.SymbolEffectPatch;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.msrandom.witchery.registry.RegistryWrapper;
 import org.apache.logging.log4j.Logger;
-import zone.rong.mixinbooter.ILateMixinLoader;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Mod(
         modid = WitcheryPatcher.MODID,
@@ -16,7 +16,7 @@ import java.util.List;
         name = WitcheryPatcher.MODNAME,
         useMetadata = true
 )
-public class WitcheryPatcher implements ILateMixinLoader {
+public class WitcheryPatcher {
 
     public static final String MODID = "witcherypatcher";
     public static final String MODNAME = "Witchery Patcher";
@@ -45,14 +45,8 @@ public class WitcheryPatcher implements ILateMixinLoader {
         event.getModMetadata().url = MODURL;
         event.getModMetadata().logoFile = MODLOGO;
 
+        if (ModConfig.MixinConfig.MixinBugfixes.InfusionFixes.fixSoulBrewsPersistency)
+            MinecraftForge.EVENT_BUS.register(SymbolEffectPatch.getInstance());
 
     }
-
-    @Override
-    public List<String> getMixinConfigs() {
-        List<String> configs = new ArrayList<>();
-        configs.add("witcherypatcher.mixins.json");
-        return configs;
-    }
-
 }

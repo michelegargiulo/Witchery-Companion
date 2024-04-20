@@ -5,6 +5,7 @@
   "refmap": "mixins.witcherypatcher.refmap.json",
   "mixins": [
     "block.BlockRemovedBlockMixin",
+    "block.BlockSunCollectorMixin",
     "brewing.action.effect.ErosionBrewEffectMixin",
     "brewing.action.effect.FrogsTongueBrewEffectMixin",
     "entity.EntityLordOfTormentMixin",

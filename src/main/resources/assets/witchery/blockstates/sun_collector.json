@@ -1,0 +1,130 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "witchery:daylightcollector"
+      }
+    },
+    {
+      "when": {
+        "power": "1"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "2"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "3"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "4"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "5"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "6"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "7"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "8"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "9"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "10"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "11"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "12"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "13"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "14"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector1"
+      }
+    },
+    {
+      "when": {
+        "power": "15"
+      },
+      "apply": {
+        "model": "witchery:daylightcollector2"
+      }
+    }
+  ]
+}
+

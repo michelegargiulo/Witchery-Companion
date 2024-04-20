@@ -23,6 +23,7 @@ import net.msrandom.witchery.network.WitcheryNetworkChannel;
 import net.msrandom.witchery.util.BlockActionCircle;
 import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -50,10 +51,8 @@ public class ErosionBrewEffectMixin extends BrewActionEffect {
             }
 
             EntityEquipmentSlot[] var5 = EntityEquipmentSlot.values();
-            int var6 = var5.length;
 
-            for (int var7 = 0; var7 < var6; ++var7) {
-                EntityEquipmentSlot slot = var5[var7];
+            for (EntityEquipmentSlot slot : var5) {
                 ItemStack stack = targetEntity.getItemStackFromSlot(slot);
                 if (!stack.isEmpty() && stack.isItemStackDamageable()) {
                     stack.damageItem(MathHelper.ceil((50.0 + (double) world.rand.nextInt(25)) * modifiers.powerScalingFactor), modifiers.caster);
@@ -70,7 +69,7 @@ public class ErosionBrewEffectMixin extends BrewActionEffect {
             (new BlockActionCircle() {
                 public void onBlock(World world, BlockPos pos) {
                     IBlockState state = world.getBlockState(pos);
-                    if (WitcheryUtils.isBlockBreakable(world, pos, state) && WitcheryUtils.canBreak(state)) {
+                    if (WitcheryUtils.isBlockBreakable(world, pos, state) && WitcheryUtils.canBreak(state) && witchery_Patcher$canBeBroken(state)) {
                         world.setBlockToAir(pos);
                         WitcheryNetworkChannel.sendToAllAround(new PacketParticles(pos.getX(), pos.getY(), pos.getZ(), 0.5F, 0.5F, EnumParticleTypes.WATER_SPLASH), world, pos);
                         obsidianCount.addAndGet(state.getBlock() == Blocks.OBSIDIAN ? 1 : 0);
@@ -87,5 +86,10 @@ public class ErosionBrewEffectMixin extends BrewActionEffect {
         cbi.cancel();
     }
 
+    @Unique
+    protected boolean witchery_Patcher$canBeBroken(IBlockState state) {
+        return !(ModConfig.MixinConfig.GameplayMixins.BrewOfErosionMixins.stateBlacklist.contains(state) ||
+            state.getBlock().getHarvestLevel(state) > ModConfig.MixinConfig.GameplayMixins.BrewOfErosionMixins.maxBlockHarvestLevel);
+    }
 
 }

@@ -67,21 +67,42 @@ public class ModConfig {
                 @Config.Ignore
                 public static HashSet<IBlockState> stateBlacklist = new HashSet<>();
             }
+
         }
 
         public static class MixinBugfixes {
 
+            @Config.Comment("Configuration for fixes related to brews and brew effects")
             public static BrewsFixes brews;
+
+            @Config.Comment("Configuration for fixes related to infusions")
+            public static InfusionFixes infusions;
+
+            @Config.Comment("Configuration for common bugs")
             public static CommonFixes common;
 
             public static class BrewsFixes {
+
+                @Config.Comment("Fixes brew of erosion crash while attempting to generate a random int with a negative bound")
                 public static boolean fixBrewErosion = true;
 
+                @Config.Comment("Fixes crash if players accidentally drink the potion instead of throwing it")
                 public static boolean fixFrongsTongueBew = true;
+
+                @Config.Comment("Fixes entities suffocating while traversing blocks removed by Tidal Hold brew")
+                public static boolean fixTidalHoldBrew = true;
 
             }
 
+            public static class InfusionFixes {
+
+                @Config.Comment("Fix Soul Infusions progress reset when player dires")
+                public static boolean fixSoulBrewsPersistency = true;
+            }
+
             public static class CommonFixes {
+
+                @Config.Comment("Fix crash when trying to pull a null entity. Overshadows Frogs Tongue brew fix")
                 public static boolean fixPullEntityNullPointer = true;
 
             }
