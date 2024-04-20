@@ -81,6 +81,9 @@ public class ModConfig {
             @Config.Comment("Configuration for common bugs")
             public static CommonFixes common;
 
+            @Config.Comment("Configuration for bugs related to Blocks")
+            public static BlockFixes blocks;
+
             public static class BrewsFixes {
 
                 @Config.Comment("Fixes brew of erosion crash while attempting to generate a random int with a negative bound")
@@ -105,6 +108,14 @@ public class ModConfig {
                 @Config.Comment("Fix crash when trying to pull a null entity. Overshadows Frogs Tongue brew fix")
                 public static boolean fixPullEntityNullPointer = true;
 
+            }
+
+            public static class BlockFixes {
+
+                @Config.Comment("Fix Altar blocks requiring to get broken and re-placed to work properly again.\n" +
+                        "NOTE: it still does not fix all edge cases. Players might still have to interact with the altar" +
+                        "before crafting. Right-click should suffice for most cases")
+                public static boolean fixAltarPowerSourcePersistency = true;
             }
         }
     }

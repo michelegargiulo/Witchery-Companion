@@ -4,12 +4,12 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "mixins.witcherypatcher.refmap.json",
   "mixins": [
-    "block.BlockAltarMixin",
     "block.BlockRemovedBlockMixin",
     "block.BlockSunCollectorMixin",
     "block.entity.TileEntityAltarMixin",
     "brewing.action.effect.ErosionBrewEffectMixin",
     "brewing.action.effect.FrogsTongueBrewEffectMixin",
+    "common.RelativePowerSourceMixin",
     "entity.EntityLordOfTormentMixin",
     "util.EntityUtilMixin"
   ],
