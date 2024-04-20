@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherypatcher;
 
 import com.smokeythebandicoot.witcherypatcher.config.ModConfig;
+import com.smokeythebandicoot.witcherypatcher.core.PowerSourcesMixin;
 import com.smokeythebandicoot.witcherypatcher.patches.infusion.symbol.SymbolEffectPatch;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -48,5 +49,6 @@ public class WitcheryPatcher {
         if (ModConfig.MixinConfig.MixinBugfixes.InfusionFixes.fixSoulBrewsPersistency)
             MinecraftForge.EVENT_BUS.register(SymbolEffectPatch.getInstance());
 
+        MinecraftForge.EVENT_BUS.register(PowerSourcesMixin.getInstance());
     }
 }
