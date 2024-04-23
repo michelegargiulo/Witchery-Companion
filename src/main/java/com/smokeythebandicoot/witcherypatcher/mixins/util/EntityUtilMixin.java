@@ -18,7 +18,7 @@ public class EntityUtilMixin {
 
     @Inject(method = "pullTowards", at = @At("HEAD"), remap = false, cancellable = true)
     private static void WPpullTowards(Entity entity, Vec3d target, double dy, double yy, CallbackInfo cbi) {
-        if (ModConfig.MixinConfig.bugfixes.common.fixPullEntityNullPointer) {
+        if (ModConfig.PatchesConfiguration.CommonTweaks.entityUtils_fixNullPointer) {
             if (entity == null) cbi.cancel();
         }
     }

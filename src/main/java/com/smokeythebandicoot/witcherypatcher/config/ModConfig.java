@@ -3,7 +3,6 @@ package com.smokeythebandicoot.witcherypatcher.config;
 import com.smokeythebandicoot.witcherypatcher.WitcheryPatcher;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -12,111 +11,151 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import javax.annotation.Nonnull;
 import java.util.HashSet;
 
 @Config(modid = WitcheryPatcher.MODID, name = "witchery_patches")
 @Mod.EventBusSubscriber(modid = WitcheryPatcher.MODID)
 public class ModConfig {
 
-    @Config.Comment("General configuration")
-    public static GeneralConfig general;
+    @Config.Comment("Patches configuration.\n" +
+            "Bugfixes fix bugs and crashes, and are enabled by default.\n" +
+            "Tweaks alter the behaviour of Witchery, and are disabled by default")
+    @Config.Name("General Configuration")
+    public static PatchesConfiguration mixins;
 
-    @Config.Comment("Patches configuration")
-    public static MixinConfig mixins;
+    public static class PatchesConfiguration {
 
-    public static class GeneralConfig {
+        @Config.Comment("Configuration for common bugs")
+        @Config.Name("Common Tweaks")
+        public static CommonTweaks common;
 
-    }
+        @Config.Comment("Configuration for fixes related to brews and brew effects")
+        @Config.Name("Brews Tweaks")
+        public static BrewsTweaks brews;
 
-    public static class MixinConfig {
+        @Config.Comment("Configuration for fixes related to infusions")
+        @Config.Name("Infusion Tweaks")
+        public static InfusionTweaks infusions;
 
-        @Config.Comment("Bugfixes and performance improvements. All enabled by default")
-        public static MixinBugfixes bugfixes;
+        @Config.Comment("Configuration for bugs related to Blocks")
+        @Config.Name("Block Tweaks")
+        public static BlockTweaks blocks;
 
-        @Config.Comment("Gameplay changes and augmented customizability. By default, no Witchery behaviour is altered in any way")
-        public static GameplayMixins gameplay;
+        @Config.Comment("Configuration for bugs related to Items")
+        @Config.Name("Item Tweaks")
+        public static ItemTweaks items;
 
-        public static class GameplayMixins {
+        @Config.Comment("Configuration for bugs related to Rites")
+        @Config.Name("Rites Tweaks")
+        public static RitesTweaks rites;
 
-            @Config.Comment("Alter behaviour of Lord of Torment")
-            public static LordOfTormentMixins lordOfTorment;
-            @Config.Comment("Alter behaviour of Brew of Erosion")
-            public static BrewOfErosionMixins brewOfErosion;
 
-            public static class LordOfTormentMixins {
-                @Config.Comment("If true, Lord of Torment won't teleport players to the Torment Dimension")
-                public static boolean disableLordOfTormentTeleportation = false;
+        public static class BrewsTweaks {
 
-                @Config.Comment("If true, Lord of Torment won't drop loot. Loot is hardcoded and cannot be changed otherwise")
-                public static boolean disableLordOfTormentLoot = false;
+            @Config.Comment("Fixes brew of erosion crash while attempting to generate a random int with a negative bound")
+            @Config.Name("Brew of Erosion - Fix Random Integer Bound Crash")
+            public static boolean fixBrewErosion = true;
 
-            }
+            @Config.Comment("Fixes crash if players accidentally drink the potion instead of throwing it")
+            @Config.Name("Brew of Frogs Tongue - Fix Pull Null Entity Crash")
+            public static boolean fixFrongsTongueBew = true;
 
-            public static class BrewOfErosionMixins {
+            @Config.Comment("Fixes entities suffocating while traversing blocks removed by Tidal Hold brew")
+            @Config.Name("Brew of Tidal Hold - Fix Entity Suffocation")
+            public static boolean fixTidalHoldBrew = true;
 
-                @Config.Comment("Maximum harvest level that the brew is able to break. Harder blocks will be ignored. Set to -1 to disable (any block can be harvested)")
-                public static int maxBlockHarvestLevel = -1;
+            @Config.Comment("Maximum harvest level that the brew is able to break. Harder blocks will be ignored. Set to -1 to disable (any block can be harvested)")
+            @Config.Name("Brew of Erosion - Tweak Maximum Harvest Level")
+            public static int maxBlockHarvestLevel = -1;
 
-                @Config.Comment("If true, Obsidian will be broken and dropped in the world, otherwise it will just be destroyed as other blocks")
-                public static boolean dropObsidian = true;
+            @Config.Comment("If true, Obsidian will be broken and dropped in the world, otherwise it will just be destroyed as other blocks")
+            @Config.Name("Brew of Erosion - Tweak Obsidian Drop")
+            public static boolean dropObsidian = true;
 
-                @Config.Comment("List of blocks to never break, regardless of harvest level. NOTE: this can only LIMIT more blocks than Witchery already restricts. Format is domain:name@meta")
-                public static String[] blockBlacklist = new String[] { };
+            @Config.Comment("List of blocks to never break, regardless of harvest level. NOTE: this can only LIMIT more blocks than Witchery already restricts. Format is domain:name@meta")
+            @Config.Name("Brew of Erosion - Tweak BlockState Blacklist")
+            public static String[] blockBlacklist = new String[] { };
 
-                @Config.Ignore
-                public static HashSet<IBlockState> stateBlacklist = new HashSet<>();
-            }
+            @Config.Ignore
+            public static HashSet<IBlockState> stateBlacklist = new HashSet<>();
+        }
+
+        public static class InfusionTweaks {
+
+            @Config.Comment("Fix Soul Infusions progress reset when player dires")
+            @Config.Name("Soul Brews - Fix Persistency After Death")
+            public static boolean soulBrews_fixPersistency = true;
+        }
+
+        public static class CommonTweaks {
+
+            @Config.Comment("Fix crash when trying to pull a null entity. Overshadows Frogs Tongue brew fix")
+            @Config.Name("Entity Utils - Fix Null Pointer On Pull Entity")
+            public static boolean entityUtils_fixNullPointer = true;
 
         }
 
-        public static class MixinBugfixes {
+        public static class BlockTweaks {
 
-            @Config.Comment("Configuration for fixes related to brews and brew effects")
-            public static BrewsFixes brews;
+            @Config.Comment("Fix Altar blocks requiring to get broken and re-placed to work properly again.\n" +
+                    "NOTE: it still does not fix all edge cases. Players might still have to interact with the altar" +
+                    "before crafting. Right-click should suffice for most cases")
+            @Config.Name("Altar - Fix Power Source Persistency")
+            public static boolean altar_fixPowerSourcePersistency = true;
 
-            @Config.Comment("Configuration for fixes related to infusions")
-            public static InfusionFixes infusions;
+            @Config.Comment("Fix Arthana, Pentacle and other items placed on top of the altar not dropping when " +
+                    "the altar block below them is broken.")
+            @Config.Name("Placed Items - Fix No Drops")
+            public static boolean placedItems_fixNoDrops = true;
+        }
 
-            @Config.Comment("Configuration for common bugs")
-            public static CommonFixes common;
+        public static class ItemTweaks {
 
-            @Config.Comment("Configuration for bugs related to Blocks")
-            public static BlockFixes blocks;
+            @Config.Comment("If true, set maax stack size of all chalk items to 1, regardless of damage")
+            @Config.Name("Chalk - Tweak Unstackable Chalk")
+            public static boolean itemChalk_tweakUnstackableChalk = false;
 
-            public static class BrewsFixes {
+        }
 
-                @Config.Comment("Fixes brew of erosion crash while attempting to generate a random int with a negative bound")
-                public static boolean fixBrewErosion = true;
+        public static class RitesTweaks {
 
-                @Config.Comment("Fixes crash if players accidentally drink the potion instead of throwing it")
-                public static boolean fixFrongsTongueBew = true;
+            @Config.Comment("If true, the Rite of Moving Earth disables moving TileEntities, preventing crashes, bugs and dupes")
+            @Config.Name("Rite of Moving Earth - Fix Crash/Dupes while Moving TileEntities")
+            public static boolean movingEarth_disableMovingTEs = true;
 
-                @Config.Comment("Fixes entities suffocating while traversing blocks removed by Tidal Hold brew")
-                public static boolean fixTidalHoldBrew = true;
+            @Config.Comment("If true, the Rite of Moving Earth won't shift blocks upwards if there are obstructions. This will prevent voiding blocks")
+            @Config.Name("Rite of Moving Earth - Fix Destroying Blocks")
+            public static boolean movingEarth_disableVoidingBlocks = true;
 
-            }
+            @Config.Comment("Set the Ritual of Moving Earth refund policy. Below, the valid values:\n" +
+                    "0: never refound the player (default Witchery Behaviour)\n" +
+                    "1: if the ritual doesn't move the upwards by its full extent, refund the player\n" +
+                    "2: refund only if the rite has not moved any block")
+            @Config.Name("Rite of Moving Earth - Tweak Rite Refund Policy")
+            public static int movingEarth_refundPolicy = 0;
 
-            public static class InfusionFixes {
+            @Config.Comment("A list of blockstates that the Rite of Moving earth won't be able to move.\n" +
+                    "Can only restrict more blocks, so Altars, Bedrock and some others won't be moved regardless")
+            @Config.Name("Rite of Moving Earth - Tweak Block Blacklist")
+            public static String[] movingEarth_blockBlacklist = new String[] { };
 
-                @Config.Comment("Fix Soul Infusions progress reset when player dires")
-                public static boolean fixSoulBrewsPersistency = true;
-            }
+            @Config.Comment("If true, smoke particles and sounds will be played for blocks that won't be moved")
+            @Config.Name("Rite of Moving Earth - Tweak Show Particles On Failure")
+            public static boolean movingEarth_failIndicators = false;
 
-            public static class CommonFixes {
+            @Config.Ignore
+            public static HashSet<IBlockState> movingEarth_stateBlacklist = new HashSet<>();
+        }
 
-                @Config.Comment("Fix crash when trying to pull a null entity. Overshadows Frogs Tongue brew fix")
-                public static boolean fixPullEntityNullPointer = true;
+        public static class EntityTweaks {
 
-            }
+            @Config.Comment("If true, Lord of Torment won't teleport players to the Torment Dimension")
+            @Config.Name("Lord of Torment - Tweak Disable Teleportation to Torment")
+            public static boolean lordOfTorment_disableTeleportation = false;
 
-            public static class BlockFixes {
-
-                @Config.Comment("Fix Altar blocks requiring to get broken and re-placed to work properly again.\n" +
-                        "NOTE: it still does not fix all edge cases. Players might still have to interact with the altar" +
-                        "before crafting. Right-click should suffice for most cases")
-                public static boolean fixAltarPowerSourcePersistency = true;
-            }
+            @Config.Comment("If true, Lord of Torment won't drop loot. Loot is hardcoded and cannot be changed otherwise")
+            @Config.Name("Lord of Torment - Tweak Disable Hardcoded Loot")
+            public static boolean lordOfTorment_disableLoot = false;
         }
     }
 
@@ -126,16 +165,22 @@ public class ModConfig {
         @SubscribeEvent
         public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
             if(event.getModID().equals(WitcheryPatcher.MODID)) {
-                ConfigManager.sync(WitcheryPatcher.MODID, Config.Type.INSTANCE);
+                reloadConfig();
             }
         }
 
-        public static void reloadBrewOfErosionBlacklist() {
+        public static void reloadConfig() {
+            reloadBrewOfErosionBlacklist();
+            reloadRiteOfMovingEarthBlacklist();
+            ConfigManager.sync(WitcheryPatcher.MODID, Config.Type.INSTANCE);
+        }
+
+        private static void reloadBrewOfErosionBlacklist() {
             // Clear current configuration
-            MixinConfig.GameplayMixins.BrewOfErosionMixins.stateBlacklist = new HashSet<>();
+            PatchesConfiguration.BrewsTweaks.stateBlacklist = new HashSet<>();
 
             // Re-add configuration
-            for (String entry : MixinConfig.GameplayMixins.BrewOfErosionMixins.blockBlacklist) {
+            for (String entry : PatchesConfiguration.BrewsTweaks.blockBlacklist) {
                 String[] metaSplit = entry.split("@");
                 int meta = 0;
                 try {
@@ -150,8 +195,34 @@ public class ModConfig {
                 }
 
                 Block block = ForgeRegistries.BLOCKS.getValue(rl);
-                MixinConfig.GameplayMixins.BrewOfErosionMixins.stateBlacklist.add(block.getStateFromMeta(meta));
+                PatchesConfiguration.BrewsTweaks.stateBlacklist.add(block.getStateFromMeta(meta));
             }
         }
+
+        private static void reloadRiteOfMovingEarthBlacklist() {
+            // Clear current configuration
+            PatchesConfiguration.RitesTweaks.movingEarth_stateBlacklist = new HashSet<>();
+
+            // Re-add configuration
+            for (String entry : PatchesConfiguration.RitesTweaks.movingEarth_blockBlacklist) {
+                String[] metaSplit = entry.split("@");
+                int meta = 0;
+                try {
+                    meta = metaSplit.length > 1 ? Integer.parseInt(metaSplit[1]) : 0;
+                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                    WitcheryPatcher.logger.warn("Could not parse blockstate - Invalid meta for entry: " + entry + ". Please fix your configs");
+                }
+
+                ResourceLocation rl = new ResourceLocation(metaSplit[0]);
+                if (!ForgeRegistries.BLOCKS.containsKey(rl)) {
+                    WitcheryPatcher.logger.warn("Could not parse blockstate - Block not found: " + entry + ". Please fix your configs");
+                }
+
+                Block block = ForgeRegistries.BLOCKS.getValue(rl);
+                PatchesConfiguration.RitesTweaks.movingEarth_stateBlacklist.add(block.getStateFromMeta(meta));
+            }
+        }
+
+
     }
 }

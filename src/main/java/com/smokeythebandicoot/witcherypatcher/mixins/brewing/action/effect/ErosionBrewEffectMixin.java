@@ -32,9 +32,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  Mixins:
+ [Bugfix] Fixes brew of erosion crashing due to non-positive integer passed to world.random.nextInt()
  [Gameplay] Set maximum Harvest Level for the brew
  [Gameplay] Optional Block Blacklist
- [Bugfix] Fixes brew of erosion crashing due to non-positive integer passed to world.random.nextInt()
  */
 @Mixin(value = ErosionBrewEffect.class, remap = false)
 public class ErosionBrewEffectMixin extends BrewActionEffect {
@@ -44,7 +44,7 @@ public class ErosionBrewEffectMixin extends BrewActionEffect {
 
     @Inject(method = "doApplyToEntity", at = @At("HEAD"), remap = false)
     private void WPdoApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack, CallbackInfo cbi) {
-        if (ModConfig.MixinConfig.MixinBugfixes.BrewsFixes.fixBrewErosion) {
+        if (ModConfig.PatchesConfiguration.BrewsTweaks.fixBrewErosion) {
             int bound = MathHelper.ceil(5.0 / modifiers.powerScalingFactor);
             if (world.rand.nextInt(Math.max(bound, 1)) == 0) {
                 targetEntity.attackEntityFrom(DamageSource.causeThrownDamage(targetEntity, modifiers.caster), (float) MathHelper.ceil(8.0 * modifiers.powerScalingFactor));
@@ -80,7 +80,7 @@ public class ErosionBrewEffectMixin extends BrewActionEffect {
         }
 
         world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, modifiers.caster.getSoundCategory(), 1.0F, 2.0F);
-        if (ModConfig.MixinConfig.GameplayMixins.BrewOfErosionMixins.dropObsidian) {
+        if (ModConfig.PatchesConfiguration.BrewsTweaks.dropObsidian) {
             world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Blocks.OBSIDIAN, obsidianCount.get())));
         }
         cbi.cancel();
@@ -88,8 +88,8 @@ public class ErosionBrewEffectMixin extends BrewActionEffect {
 
     @Unique
     protected boolean witchery_Patcher$canBeBroken(IBlockState state) {
-        return !(ModConfig.MixinConfig.GameplayMixins.BrewOfErosionMixins.stateBlacklist.contains(state) ||
-            state.getBlock().getHarvestLevel(state) > ModConfig.MixinConfig.GameplayMixins.BrewOfErosionMixins.maxBlockHarvestLevel);
+        return !(ModConfig.PatchesConfiguration.BrewsTweaks.stateBlacklist.contains(state) ||
+            state.getBlock().getHarvestLevel(state) > ModConfig.PatchesConfiguration.BrewsTweaks.maxBlockHarvestLevel);
     }
 
 }

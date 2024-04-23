@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
+ Mixins:
  [Bugfix] Fixes PowerSources being lost upon chunk unload/dimension switch. World object changes, and
     for Witchery purposes it is sufficient to check if the dimension has the same ID
  */
@@ -24,7 +25,7 @@ public class RelativePowerSourceMixin {
 
     @Inject(method = "isInWorld", at = @At("HEAD"), remap = false, cancellable = true)
     private void WPisInWorld(World world, CallbackInfoReturnable<Boolean> cir) {
-        if (ModConfig.MixinConfig.MixinBugfixes.BlockFixes.fixAltarPowerSourcePersistency) {
+        if (ModConfig.PatchesConfiguration.BlockTweaks.altar_fixPowerSourcePersistency) {
             if (world == null || world.isRemote || this.powerSource.getCurrentWorld() == null)
                 cir.setReturnValue(false);
             cir.setReturnValue(world.getWorldType().getId() == this.powerSource.getCurrentWorld().getWorldType().getId());

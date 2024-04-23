@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import javax.annotation.Nullable;
 
 /**
+ Mixins:
  [Bugfix] Brew of Tidal Hold suffocates entities that pass inside of the hole
  */
 @Mixin(value = BlockRemovedBlock.class, remap = false)
