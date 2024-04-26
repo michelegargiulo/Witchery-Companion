@@ -24,7 +24,6 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     private void WPreadFromNBT(NBTTagCompound nbtTag, CallbackInfo ci) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.altar_fixPowerSourcePersistency)
             if (nbtTag.hasKey("Core")) {
-                WitcheryPatcher.logger.info("EVT READ FROM NBT");
                 PowerSources.instance().registerPowerSource(this);
             }
     }

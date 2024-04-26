@@ -12,7 +12,11 @@
     "brewing.action.effect.FrogsTongueBrewEffectMixin",
     "common.RelativePowerSourceMixin",
     "entity.EntityLordOfTormentMixin",
+    "entity.passive.coven.EntityCovenWitchMixin",
     "item.ItemChalkMixin",
+    "item.ItemHuntsmanSpearMixin",
+    "item.ItemSpectralStoneMixin",
+    "rite.effect.RiteEffectBindFamiliarMixin",
     "rite.effect.RiteEffectMovingEarthMixin",
     "util.EntityUtilMixin"
   ],

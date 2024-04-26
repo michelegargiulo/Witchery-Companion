@@ -109,11 +109,16 @@ repositories {
         name 'Curse Maven'
         url 'https://cursemaven.com'
     }
+    maven {
+        name = 'Mod Maven'
+        url = 'https://modmaven.dev'
+    }
 }
 
 dependencies {
 
     implementation rfg.deobf('curse.maven:hei-557549:5229422')
+    implementation rfg.deobf('CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.684')
     implementation rfg.deobf(files('libs/WitcheryResurrected-1.12.2-0.5.2.4-forge-all.jar'))
 
     if (propertyBool('use_modern_java_syntax')) {

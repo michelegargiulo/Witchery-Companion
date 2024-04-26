@@ -111,10 +111,13 @@ public class ModConfig {
 
         public static class ItemTweaks {
 
+            @Config.Comment("If true, Spectral Stones won't dupe the entity they contain")
+            @Config.Name("Spectral Stone - Fix Entity Dupe Exploit")
+            public static boolean spectralStone_fixEntityReleaseExploit = true;
+
             @Config.Comment("If true, set maax stack size of all chalk items to 1, regardless of damage")
             @Config.Name("Chalk - Tweak Unstackable Chalk")
             public static boolean itemChalk_tweakUnstackableChalk = false;
-
         }
 
         public static class RitesTweaks {
@@ -148,6 +151,11 @@ public class ModConfig {
         }
 
         public static class EntityTweaks {
+
+            @Config.Comment("If true, fixes the problem where Coven Witches require certain amount of items as a quest, but if" +
+                    "the player holds more items than needed, the quest goes into negative item amount requirement")
+            @Config.Name("Coven Witch - Fix Negative Request Amount")
+            public static boolean covenWitch_fixNegativeRequestAmount = true;
 
             @Config.Comment("If true, Lord of Torment won't teleport players to the Torment Dimension")
             @Config.Name("Lord of Torment - Tweak Disable Teleportation to Torment")
