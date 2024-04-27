@@ -103,6 +103,10 @@ public class ModConfig {
             @Config.Name("Altar - Fix Power Source Persistency")
             public static boolean altar_fixPowerSourcePersistency = true;
 
+            @Config.Comment("If true, fix player bottling skill increase, which won't happen otherwise.")
+            @Config.Name("Witch's Cauldron - Fix Bottling Skill Increase")
+            public static boolean witchsCauldron_fixBottlingSkillIncrease = true;
+
             @Config.Comment("Fix Arthana, Pentacle and other items placed on top of the altar not dropping when " +
                     "the altar block below them is broken.")
             @Config.Name("Placed Items - Fix No Drops")

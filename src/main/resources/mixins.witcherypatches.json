@@ -6,7 +6,9 @@
   "mixins": [
     "block.BlockPlacedItemMixin",
     "block.BlockRemovedBlockMixin",
+    "block.BlockStockadeMixin",
     "block.BlockSunCollectorMixin",
+    "block.BlockWitchCauldronMixin",
     "block.entity.TileEntityAltarMixin",
     "brewing.action.effect.ErosionBrewEffectMixin",
     "brewing.action.effect.FrogsTongueBrewEffectMixin",
