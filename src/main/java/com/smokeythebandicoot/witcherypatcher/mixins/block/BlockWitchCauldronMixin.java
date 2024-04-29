@@ -19,6 +19,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ Mixins:
+ [Bugfix] Fix Bottling level skill not increasing
+ */
 @Mixin(value = BlockWitchCauldron.class, remap = false)
 public class BlockWitchCauldronMixin {
 
@@ -40,7 +44,7 @@ public class BlockWitchCauldronMixin {
 
     // Uses wrap operation to direct the original call with the always-empty brewActionList to a fixed
     // call that uses the preserved brewActionList
-    @WrapOperation(method = "onBlockActivated", remap = true,
+    @WrapOperation(method = "onBlockActivated", remap = false,
     at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/block/BlockWitchCauldron;processSkillChanges(Lnet/minecraft/entity/player/EntityPlayer;Lnet/msrandom/witchery/brewing/action/BrewActionList;)V"))
     public void WPrestorePreservedActions(BlockWitchCauldron instance, EntityPlayer player, BrewActionList actionList, Operation<Void> original) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.witchsCauldron_fixBottlingSkillIncrease

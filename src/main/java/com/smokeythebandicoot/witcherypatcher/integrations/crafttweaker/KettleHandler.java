@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherypatcher.crafttweaker;
+package com.smokeythebandicoot.witcherypatcher.integrations.crafttweaker;
 
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;

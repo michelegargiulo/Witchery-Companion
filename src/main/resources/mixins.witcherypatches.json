@@ -10,6 +10,9 @@
     "block.BlockSunCollectorMixin",
     "block.BlockWitchCauldronMixin",
     "block.entity.TileEntityAltarMixin",
+    "block.entity.TileEntityCauldronMixin",
+    "block.entity.TileEntityCoffinMixin",
+    "block.entity.TileEntityCursedBlockMixin",
     "brewing.action.effect.ErosionBrewEffectMixin",
     "brewing.action.effect.FrogsTongueBrewEffectMixin",
     "common.RelativePowerSourceMixin",
@@ -18,6 +21,7 @@
     "item.ItemChalkMixin",
     "item.ItemHuntsmanSpearMixin",
     "item.ItemSpectralStoneMixin",
+    "potion.PotionFortuneMixin",
     "rite.effect.RiteEffectBindFamiliarMixin",
     "rite.effect.RiteEffectMovingEarthMixin",
     "util.EntityUtilMixin"

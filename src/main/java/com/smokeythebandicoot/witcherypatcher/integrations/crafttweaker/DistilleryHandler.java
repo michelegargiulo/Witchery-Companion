@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherypatcher.crafttweaker;
+package com.smokeythebandicoot.witcherypatcher.integrations.crafttweaker;
 
 
 import crafttweaker.api.item.IIngredient;

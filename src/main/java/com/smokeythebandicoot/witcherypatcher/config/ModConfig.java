@@ -49,6 +49,10 @@ public class ModConfig {
         @Config.Name("Rites Tweaks")
         public static RitesTweaks rites;
 
+        @Config.Comment("Configuration for bugs related to Potions")
+        @Config.Name("Potion Tweaks")
+        public static PotionTweaks potions;
+
 
         public static class BrewsTweaks {
 
@@ -111,6 +115,21 @@ public class ModConfig {
                     "the altar block below them is broken.")
             @Config.Name("Placed Items - Fix No Drops")
             public static boolean placedItems_fixNoDrops = true;
+
+            @Config.Comment("Workaround for Stockade blocks. When player head gets too close, the entire" +
+                    "screen is rendered as a stockade side texture. This patch enlarges the stockade bounding" +
+                    "box to make player head not get as close.")
+            @Config.Name("Stockade - Fix Bounding Box")
+            public static boolean stockade_fixBoundingBox = true;
+
+            @Config.Comment("Fix an edge case where the coffin would not have a color associated with it, causing a crash.")
+            @Config.Name("Coffin - Fix Edge Case Crash")
+            public static boolean coffin_fixEdgeCrash = true;
+
+            @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
+                    "at least they should not crash the game as often.")
+            @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")
+            public static boolean cursedBlock_fixNullActionListCrash = true;
         }
 
         public static class ItemTweaks {
@@ -152,6 +171,18 @@ public class ModConfig {
 
             @Config.Ignore
             public static HashSet<IBlockState> movingEarth_stateBlacklist = new HashSet<>();
+        }
+
+        public static class PotionTweaks {
+
+            @Config.Comment("Fixes Potion of Fortune not working because of wrong TileEntity check")
+            @Config.Name("Fortune Potion - Fix No Effect")
+            public static boolean fortunePotion_fixNoEffect = true;
+
+            @Config.Comment("Improves compatibility with additional mod's increase in fortune drops but " +
+                    "marginally decreases performance when player breaks blocks when the potion effect is active")
+            @Config.Name("Fortune Potion - Tweak Improve Drops Compat")
+            public static boolean fortunePotion_tweakImproveCompat = true;
         }
 
         public static class EntityTweaks {

@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherypatcher.mixins.block;
 
+import com.smokeythebandicoot.witcherypatcher.config.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -9,7 +10,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.msrandom.witchery.block.BlockStockade;
-import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -18,6 +18,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ Mixins:
+ [Workaround] Expands Stockade Bounding Box to avoid player head getting inside of the model
+ */
 @Mixin(value = BlockStockade.class, remap = false)
 public abstract class BlockStockadeMixin extends Block {
 
@@ -27,10 +31,9 @@ public abstract class BlockStockadeMixin extends Block {
     @Shadow @Final
     private static PropertyInteger CONNECTIONS;
 
-    private static final float H_SMALL = 0.20f;
+    private static final float H_SMALL = 0.045f;
     private static final float H_LARGE = 1.00f - H_SMALL;
     private static final float V_SHORT = 0.90f;
-    private static final float V_TALL  = 1.00f - H_SMALL;
 
     @Unique private static final AxisAlignedBB CONN_0 = new AxisAlignedBB(H_SMALL, 0.0, H_SMALL, H_LARGE, V_SHORT, H_LARGE);
     @Unique private static final AxisAlignedBB CONN_1 = new AxisAlignedBB(0.0, 0.0, H_SMALL, 1.0, V_SHORT, H_LARGE);
@@ -73,8 +76,10 @@ public abstract class BlockStockadeMixin extends Block {
 
     @Inject(method = "getBoundingBox", remap = true, at = @At("HEAD"), cancellable = true)
     public void WPfixBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos, CallbackInfoReturnable<AxisAlignedBB> cir) {
-        int connections = setConnections(state, world, pos).getValue(CONNECTIONS);
-        cir.setReturnValue(witchery_Patcher$SHAPES[connections]);
+        if (ModConfig.PatchesConfiguration.BlockTweaks.stockade_fixBoundingBox) {
+            int connections = setConnections(state, world, pos).getValue(CONNECTIONS);
+            cir.setReturnValue(witchery_Patcher$SHAPES[connections]);
+        }
     }
 
 }
