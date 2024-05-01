@@ -1,0 +1,77 @@
+{
+  "pattern": {
+    "bottom": [
+      "   ",
+      " L ",
+      "   "
+    ],
+    "middle": [
+      "GSG",
+      "SWS",
+      "GSG"
+    ]
+  },
+  "blocks": {
+    "G": {
+      "requires": ["C", "F", "M", "M"],
+      "replacement": {
+        "type": "witchery:block",
+        "block": "witchery:grassper"
+      }
+    },
+    "S": {
+      "block": "witchery:mandrake_seeds",
+      "properties": {
+        "age": 4
+      },
+      "replacement": {
+        "type": "witchery:block",
+        "block": "witchery:mindrake_seeds"
+      }
+    },
+    "W": {
+      "block": "minecraft:web"
+    },
+    "M": {
+      "block": "witchery:grassper",
+      "nbt": {
+        "Item": {
+          "id": "witchery:mutandis_extremis"
+        }
+      }
+    },
+    "C": {
+      "block": "witchery:grassper",
+      "nbt": {
+        "Item": {
+          "id": "witchery:charged_attuned_stone"
+        }
+      }
+    },
+    "F": {
+      "block": "witchery:grassper",
+      "nbt": {
+        "Item": {
+          "id": "witchery:focused_will"
+        }
+      }
+    },
+    "L": {
+      "block": "minecraft:water",
+      "properties": {
+        "level": 0
+      },
+      "replacement": {
+        "type": "witchery:preserve"
+      }
+    }
+  },
+  "entities": [
+    "minecraft:creeper",
+    "witchery:mandrake"
+  ],
+  "effect": {
+    "sound": "minecraft:entity.slime.jump",
+    "particle": "slime"
+  }
+}

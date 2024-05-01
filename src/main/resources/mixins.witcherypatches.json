@@ -13,10 +13,16 @@
     "block.entity.TileEntityCauldronMixin",
     "block.entity.TileEntityCoffinMixin",
     "block.entity.TileEntityCursedBlockMixin",
+    "brewing.LiquidDispersalMixin",
+    "brewing.action.effect.BlastBrewEffectMixin",
+    "brewing.action.effect.BrewActionEffectMixin",
     "brewing.action.effect.ErosionBrewEffectMixin",
     "brewing.action.effect.FrogsTongueBrewEffectMixin",
+    "brewing.action.effect.PotionBrewEffectMixin",
     "common.RelativePowerSourceMixin",
+    "entity.EntityBroomMixin",
     "entity.EntityLordOfTormentMixin",
+    "entity.EntityWingedMonkeyMixin",
     "entity.passive.coven.EntityCovenWitchMixin",
     "item.ItemChalkMixin",
     "item.ItemHuntsmanSpearMixin",
@@ -27,6 +33,7 @@
     "util.EntityUtilMixin"
   ],
   "client": [
+    "client.gui.book.GuiHerbologyBookMixin"
   ],
   "minVersion": "0.8"
 }

@@ -1,0 +1,20 @@
+{
+  "pattern": [
+    "   ",
+    " G ",
+    "   "
+  ],
+  "blocks": {
+    "G": {
+      "block": "minecraft:grass",
+      "replacement": {
+        "type": "witchery:block",
+        "block": "minecraft:mycelium"
+      }
+    }
+  },
+  "effect": {
+    "sound": "minecraft:entity.slime.jump",
+    "particle": "instantSpell"
+  }
+}

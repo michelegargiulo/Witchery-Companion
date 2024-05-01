@@ -44,7 +44,7 @@ public class EntityLordOfTormentMixin extends EntityFlyingMob {
 
     @Inject(method = "attackEntityFrom", at = @At("HEAD"), cancellable = true)
     private void WPattackEntityFrom(DamageSource source, float damage, CallbackInfoReturnable<Boolean> cir) {
-        if (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_disableTeleportation) {
+        if (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableTeleportation) {
             if (source.isExplosion()) {
                 cir.setReturnValue(false);
             } else {
@@ -62,7 +62,7 @@ public class EntityLordOfTormentMixin extends EntityFlyingMob {
 
     @Inject(method = "dropFewItems", at = @At("HEAD"), cancellable = true)
     private void WPdropFewItems(boolean par1, int par2, CallbackInfo ci) {
-        if (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_disableLoot) {
+        if (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableLoot) {
             ci.cancel();
         }
     }

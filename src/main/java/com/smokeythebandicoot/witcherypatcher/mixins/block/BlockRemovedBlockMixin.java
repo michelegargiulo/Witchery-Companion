@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherypatcher.mixins.block;
 
+import com.smokeythebandicoot.witcherypatcher.config.ModConfig;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -31,7 +32,9 @@ public class BlockRemovedBlockMixin extends BlockContainer {
 
     @Override
     public boolean isFullCube(IBlockState state) {
-        return false;
+        // Problem is here: if it is a full cube, the entity suffocates, depending on the material
+        // By setting this to false, the entity does not suffocate regardless of the material of the block
+        return !ModConfig.PatchesConfiguration.BrewsTweaks.tidalHold_fixEntitySuffocation;
     }
 
     @Nullable

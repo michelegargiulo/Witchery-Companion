@@ -1,0 +1,58 @@
+{
+  "pattern": {
+    "bottom": [
+      " L ",
+      "L L",
+      " L "
+    ],
+    "middle": [
+      "GSG",
+      "SRS",
+      "GSG"
+    ]
+  },
+  "blocks": {
+    "G": {
+      "block": "witchery:grassper",
+      "nbt": {
+        "Item": {
+          "id": "minecraft:ender_pearl"
+        }
+      },
+      "replacement": {
+        "type": "witchery:block",
+        "block": "witchery:grassper"
+      }
+    },
+    "S": {
+      "block": "witchery:spanish_moss"
+    },
+    "R": {
+      "block": "minecraft:reeds",
+      "replacement": {
+        "type": "witchery:preserve"
+      }
+    },
+    "L": {
+      "block": "minecraft:water",
+      "properties": {
+        "level": 0
+      },
+      "replacement": {
+        "type": "witchery:preserve"
+      }
+    }
+  },
+  "post_replacements": {
+    "to_height": 15,
+    "block": "minecraft:reeds",
+    "replacement": {
+      "type": "witchery:block",
+      "block": "witchery:ender_bramble"
+    }
+  },
+  "effect": {
+    "sound": "minecraft:entity.slime.jump",
+    "particle": "slime"
+  }
+}

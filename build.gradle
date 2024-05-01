@@ -120,6 +120,7 @@ dependencies {
     implementation rfg.deobf('curse.maven:hei-557549:5229422')
     implementation rfg.deobf('CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.684')
     implementation rfg.deobf(files('libs/WitcheryResurrected-1.12.2-0.5.2.4-forge-all.jar'))
+    //implementation rfg.deobf(files('libs/Patchouli-1.0-23.6.jar'))
 
     if (propertyBool('use_modern_java_syntax')) {
         annotationProcessor 'com.github.bsideup.jabel:jabel-javac-plugin:1.0.0'

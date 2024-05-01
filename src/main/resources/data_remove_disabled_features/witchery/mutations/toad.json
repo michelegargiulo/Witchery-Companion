@@ -1,0 +1,65 @@
+{
+  "pattern": {
+    "bottom": [
+      "   ",
+      " L ",
+      "   "
+    ],
+    "middle": [
+      "GSG",
+      "SWS",
+      "GSG"
+    ]
+  },
+  "blocks": {
+    "G": {
+      "requires": ["C", "M", "M", "M"],
+      "replacement": {
+        "type": "witchery:block",
+        "block": "witchery:grassper"
+      }
+    },
+    "S": {
+      "block": "witchery:slime_critter_snare",
+      "replacement": {
+        "type": "witchery:entity",
+        "entity": "witchery:toad"
+      }
+    },
+    "W": {
+      "block": "minecraft:web"
+    },
+    "M": {
+      "block": "witchery:grassper",
+      "nbt": {
+        "Item": {
+          "id": "witchery:mutandis_extremis"
+        }
+      }
+    },
+    "C": {
+      "block": "witchery:grassper",
+      "nbt": {
+        "Item": {
+          "id": "witchery:charged_attuned_stone"
+        }
+      }
+    },
+    "L": {
+      "block": "minecraft:water",
+      "properties": {
+        "level": 0
+      },
+      "replacement": {
+        "type": "witchery:preserve"
+      }
+    }
+  },
+  "entities": [
+    "minecraft:ocelot"
+  ],
+  "effect": {
+    "sound": "minecraft:entity.slime.jump",
+    "particle": "slime"
+  }
+}

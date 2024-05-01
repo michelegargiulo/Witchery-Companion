@@ -1,0 +1,42 @@
+{
+  "pattern": {
+    "bottom": [
+      "   ",
+      " W ",
+      "   "
+    ],
+    "middle": [
+      " G ",
+      "GCG",
+      " G "
+    ]
+  },
+  "blocks": {
+    "C": {
+      "block": "minecraft:chest",
+      "nbt": {
+        "Items": []
+      }
+    },
+    "G": {
+      "block": "minecraft:tallgrass",
+      "replacement": {
+        "type": "witchery:block",
+        "block": "witchery:grassper"
+      }
+    },
+    "W": {
+      "block": "minecraft:water",
+      "properties": {
+        "level": 0
+      },
+      "replacement": {
+        "type": "witchery:preserve"
+      }
+    }
+  },
+  "effect": {
+    "sound": "minecraft:entity.slime.jump",
+    "particle": "slime"
+  }
+}

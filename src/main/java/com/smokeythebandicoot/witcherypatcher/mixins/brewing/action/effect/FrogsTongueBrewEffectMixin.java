@@ -25,7 +25,7 @@ public class FrogsTongueBrewEffectMixin extends BrewActionEffect {
 
     @Inject(method = "doApplyToEntity", at = @At("HEAD"), remap = false, cancellable = true)
     private void WPdoApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack, CallbackInfo cbi) {
-        if (ModConfig.PatchesConfiguration.BrewsTweaks.fixFrongsTongueBew) {
+        if (ModConfig.PatchesConfiguration.BrewsTweaks.frogsTongue_fixPullNullEntity) {
             if (targetEntity == null) {
                 cbi.cancel();
             }

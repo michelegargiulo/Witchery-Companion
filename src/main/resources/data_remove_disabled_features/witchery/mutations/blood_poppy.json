@@ -1,0 +1,42 @@
+{
+  "pattern": {
+    "bottom": [
+      "   ",
+      " W ",
+      "   "
+    ],
+    "middle": [
+      " F ",
+      "FCF",
+      " F "
+    ]
+  },
+  "blocks": {
+    "C": {
+      "block": "witchery:leech_chest",
+      "nbt": {
+        "Items": []
+      }
+    },
+    "F": {
+      "block": "minecraft:red_flower",
+      "replacement": {
+        "type": "witchery:block",
+        "block": "witchery:blood_poppy"
+      }
+    },
+    "W": {
+      "block": "minecraft:water",
+      "properties": {
+        "level": 0
+      },
+      "replacement": {
+        "type": "witchery:preserve"
+      }
+    }
+  },
+  "effect": {
+    "sound": "minecraft:entity.slime.jump",
+    "particle": "slime"
+  }
+}

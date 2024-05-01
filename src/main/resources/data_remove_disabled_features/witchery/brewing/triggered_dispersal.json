@@ -1,0 +1,12 @@
+{
+  "type": "witchery:dispersal",
+  "item": "minecraft:knowledge_book,0",
+  "dispersal": "witchery:triggered",
+  "nullifiers": [
+    "minecraft:gunpowder",
+    "witchery:artichoke_globe",
+    "witchery:bat_wool",
+    "witchery:wormwood",
+    "minecraft:wheat"
+  ]
+}

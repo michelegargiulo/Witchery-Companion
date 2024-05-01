@@ -44,7 +44,7 @@ public class ErosionBrewEffectMixin extends BrewActionEffect {
 
     @Inject(method = "doApplyToEntity", at = @At("HEAD"), remap = false)
     private void WPdoApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack, CallbackInfo cbi) {
-        if (ModConfig.PatchesConfiguration.BrewsTweaks.fixBrewErosion) {
+        if (ModConfig.PatchesConfiguration.BrewsTweaks.erosion_fixRandomIntegerCrash) {
             int bound = MathHelper.ceil(5.0 / modifiers.powerScalingFactor);
             if (world.rand.nextInt(Math.max(bound, 1)) == 0) {
                 targetEntity.attackEntityFrom(DamageSource.causeThrownDamage(targetEntity, modifiers.caster), (float) MathHelper.ceil(8.0 * modifiers.powerScalingFactor));
@@ -80,7 +80,7 @@ public class ErosionBrewEffectMixin extends BrewActionEffect {
         }
 
         world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, modifiers.caster.getSoundCategory(), 1.0F, 2.0F);
-        if (ModConfig.PatchesConfiguration.BrewsTweaks.dropObsidian) {
+        if (ModConfig.PatchesConfiguration.BrewsTweaks.erosion_tweakObsidianDrop) {
             world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Blocks.OBSIDIAN, obsidianCount.get())));
         }
         cbi.cancel();
@@ -89,7 +89,7 @@ public class ErosionBrewEffectMixin extends BrewActionEffect {
     @Unique
     protected boolean witchery_Patcher$canBeBroken(IBlockState state) {
         return !(ModConfig.PatchesConfiguration.BrewsTweaks.stateBlacklist.contains(state) ||
-            state.getBlock().getHarvestLevel(state) > ModConfig.PatchesConfiguration.BrewsTweaks.maxBlockHarvestLevel);
+            state.getBlock().getHarvestLevel(state) > ModConfig.PatchesConfiguration.BrewsTweaks.erosion_tweakMaximumHL);
     }
 
 }

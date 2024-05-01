@@ -53,32 +53,59 @@ public class ModConfig {
         @Config.Name("Potion Tweaks")
         public static PotionTweaks potions;
 
+        @Config.Comment("Configuration for bugs related to Books")
+        @Config.Name("Book Tweaks")
+        public static BookTweaks books;
+
+        @Config.Comment("Configuration for bugs related to Entities")
+        @Config.Name("Entity Tweaks")
+        public static EntityTweaks entities;
+
 
         public static class BrewsTweaks {
 
+            @Config.Comment("Needs to be enabled for some Brew Patches to work. Enabled for extended flexibility on when certain" +
+                    "brews should be applied")
+            @Config.Name("Common - Extend Flexibility")
+            public static boolean common_tweakBrewApplications = true;
+
+            @Config.Comment("Disables Strength Ceiling. Fixes some 'non-bugs' related to Potion Brews not scaling their " +
+                    "effects despite their power increasing (Harm I deals same damage as Harm III)")
+            @Config.Name("Common - Disable Strength Ceiling")
+            public static boolean common_tweakDisableStrengthCeiling = true;
+
+            @Config.Comment("If true, fixes Cauldron rituals with Liquid Dispersal not having any effect. Also" +
+                    " should improve performance and memory usage by 0.00000001%")
+            @Config.Name("Liquid Dispersal - Fix Cauldron Ritual No Effect")
+            public static boolean common_fixCauldronRitualLiquidDispersalNoEffect = true;
+
+            @Config.Comment("If true, fixes the brew from breaking blocks even if the 'ignore blocks' modifier has been added")
+            @Config.Name("Brew of Blast - Fix Terrain Damage")
+            public static boolean brewBlast_fixExplosionBreakingBlocks = true;
+
             @Config.Comment("Fixes brew of erosion crash while attempting to generate a random int with a negative bound")
             @Config.Name("Brew of Erosion - Fix Random Integer Bound Crash")
-            public static boolean fixBrewErosion = true;
+            public static boolean erosion_fixRandomIntegerCrash = true;
 
             @Config.Comment("Fixes crash if players accidentally drink the potion instead of throwing it")
             @Config.Name("Brew of Frogs Tongue - Fix Pull Null Entity Crash")
-            public static boolean fixFrongsTongueBew = true;
+            public static boolean frogsTongue_fixPullNullEntity = true;
 
             @Config.Comment("Fixes entities suffocating while traversing blocks removed by Tidal Hold brew")
             @Config.Name("Brew of Tidal Hold - Fix Entity Suffocation")
-            public static boolean fixTidalHoldBrew = true;
+            public static boolean tidalHold_fixEntitySuffocation = true;
 
             @Config.Comment("Maximum harvest level that the brew is able to break. Harder blocks will be ignored. Set to -1 to disable (any block can be harvested)")
             @Config.Name("Brew of Erosion - Tweak Maximum Harvest Level")
-            public static int maxBlockHarvestLevel = -1;
+            public static int erosion_tweakMaximumHL = -1;
 
             @Config.Comment("If true, Obsidian will be broken and dropped in the world, otherwise it will just be destroyed as other blocks")
             @Config.Name("Brew of Erosion - Tweak Obsidian Drop")
-            public static boolean dropObsidian = true;
+            public static boolean erosion_tweakObsidianDrop = true;
 
             @Config.Comment("List of blocks to never break, regardless of harvest level. NOTE: this can only LIMIT more blocks than Witchery already restricts. Format is domain:name@meta")
             @Config.Name("Brew of Erosion - Tweak BlockState Blacklist")
-            public static String[] blockBlacklist = new String[] { };
+            public static String[] erosion_tweakBlockBlacklist = new String[] { };
 
             @Config.Ignore
             public static HashSet<IBlockState> stateBlacklist = new HashSet<>();
@@ -178,11 +205,6 @@ public class ModConfig {
             @Config.Comment("Fixes Potion of Fortune not working because of wrong TileEntity check")
             @Config.Name("Fortune Potion - Fix No Effect")
             public static boolean fortunePotion_fixNoEffect = true;
-
-            @Config.Comment("Improves compatibility with additional mod's increase in fortune drops but " +
-                    "marginally decreases performance when player breaks blocks when the potion effect is active")
-            @Config.Name("Fortune Potion - Tweak Improve Drops Compat")
-            public static boolean fortunePotion_tweakImproveCompat = true;
         }
 
         public static class EntityTweaks {
@@ -192,13 +214,28 @@ public class ModConfig {
             @Config.Name("Coven Witch - Fix Negative Request Amount")
             public static boolean covenWitch_fixNegativeRequestAmount = true;
 
+            @Config.Comment("If true, fixes a freeze when the Broom breaks due to not dismounting passengers")
+            @Config.Name("Enchanted Broom - Fix Freeze On Break")
+            public static boolean enchantedBroom_fixFreezeOnBreak = true;
+
+            @Config.Comment("Sets the maximum amount of damage that the broom can take before breaking")
+            @Config.Name("Enchanted Broom - Tweak Max Health")
+            public static float enchantedBroom_tweakMaxHealth = 40.0f;
+
             @Config.Comment("If true, Lord of Torment won't teleport players to the Torment Dimension")
             @Config.Name("Lord of Torment - Tweak Disable Teleportation to Torment")
-            public static boolean lordOfTorment_disableTeleportation = false;
+            public static boolean lordOfTorment_tweakDisableTeleportation = false;
 
             @Config.Comment("If true, Lord of Torment won't drop loot. Loot is hardcoded and cannot be changed otherwise")
             @Config.Name("Lord of Torment - Tweak Disable Hardcoded Loot")
-            public static boolean lordOfTorment_disableLoot = false;
+            public static boolean lordOfTorment_tweakDisableLoot = false;
+        }
+
+        public static class BookTweaks {
+
+            @Config.Comment("If true, tries to fix the placement of the plant rendering in the Herbology Book")
+            @Config.Name("Herbology Book - Fix Plant Rendering")
+            public static boolean herbologyBook_fixPlantRendering = true;
         }
     }
 
@@ -223,7 +260,7 @@ public class ModConfig {
             PatchesConfiguration.BrewsTweaks.stateBlacklist = new HashSet<>();
 
             // Re-add configuration
-            for (String entry : PatchesConfiguration.BrewsTweaks.blockBlacklist) {
+            for (String entry : PatchesConfiguration.BrewsTweaks.erosion_tweakBlockBlacklist) {
                 String[] metaSplit = entry.split("@");
                 int meta = 0;
                 try {

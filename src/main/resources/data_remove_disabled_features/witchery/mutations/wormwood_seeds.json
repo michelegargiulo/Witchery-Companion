@@ -1,0 +1,45 @@
+{
+  "pattern": {
+    "bottom": [
+      "W W",
+      "   ",
+      "W W"
+    ],
+    "middle": [
+      " C ",
+      "CSC",
+      " C "
+    ]
+  },
+  "blocks": {
+    "W": {
+      "block": "minecraft:water",
+      "properties": {
+        "level": 0
+      },
+      "replacement": {
+        "type": "witchery:preserve"
+      }
+    },
+    "S": {
+      "block": "minecraft:wheat",
+      "properties": {
+        "age": {
+          "min": 0,
+          "max": 6
+        }
+      },
+      "replacement": {
+        "type": "witchery:block",
+        "block": "witchery:wormwood_seeds"
+      }
+    },
+    "C": {
+      "block": "witchery:wispy_cotton"
+    }
+  },
+  "effect": {
+    "sound": "minecraft:entity.slime.jump",
+    "particle": "slime"
+  }
+}

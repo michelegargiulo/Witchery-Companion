@@ -2,7 +2,11 @@ package com.smokeythebandicoot.witcherypatcher;
 
 import com.smokeythebandicoot.witcherypatcher.config.ModConfig;
 import com.smokeythebandicoot.witcherypatcher.patches.infusion.symbol.SymbolEffectPatch;
+import com.smokeythebandicoot.witcherypatcher.utils.Utils;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;

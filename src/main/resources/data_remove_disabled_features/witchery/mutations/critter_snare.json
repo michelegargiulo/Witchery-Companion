@@ -1,0 +1,42 @@
+{
+  "pattern": {
+    "bottom": [
+      "   ",
+      " W ",
+      "   "
+    ],
+    "middle": [
+      " S ",
+      "SCS",
+      " S "
+    ]
+  },
+  "blocks": {
+    "C": {
+      "block": "minecraft:web"
+    },
+    "S": {
+      "block": "witchery:alder_sapling",
+      "replacement": {
+        "type": "witchery:block",
+        "block": "witchery:empty_critter_snare"
+      }
+    },
+    "W": {
+      "block": "minecraft:water",
+      "properties": {
+        "level": 0
+      },
+      "replacement": {
+        "type": "witchery:preserve"
+      }
+    }
+  },
+  "entities": [
+    "minecraft:zombie"
+  ],
+  "effect": {
+    "sound": "minecraft:entity.slime.jump",
+    "particle": "slime"
+  }
+}
