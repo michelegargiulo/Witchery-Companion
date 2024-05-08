@@ -23,6 +23,7 @@
     "entity.EntityBroomMixin",
     "entity.EntityLordOfTormentMixin",
     "entity.EntityWingedMonkeyMixin",
+    "entity.passive.EntityOwlMixin",
     "entity.passive.coven.EntityCovenWitchMixin",
     "item.ItemChalkMixin",
     "item.ItemHuntsmanSpearMixin",
@@ -33,7 +34,8 @@
     "util.EntityUtilMixin"
   ],
   "client": [
-    "client.gui.book.GuiHerbologyBookMixin"
+    "client.gui.book.GuiHerbologyBookMixin",
+    "client.renderer.entity.model.ModelOwlMixin"
   ],
   "minVersion": "0.8"
 }

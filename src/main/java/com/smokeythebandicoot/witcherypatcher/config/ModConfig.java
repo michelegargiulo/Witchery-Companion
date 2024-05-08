@@ -134,10 +134,6 @@ public class ModConfig {
             @Config.Name("Altar - Fix Power Source Persistency")
             public static boolean altar_fixPowerSourcePersistency = true;
 
-            @Config.Comment("If true, fix player bottling skill increase, which won't happen otherwise.")
-            @Config.Name("Witch's Cauldron - Fix Bottling Skill Increase")
-            public static boolean witchsCauldron_fixBottlingSkillIncrease = true;
-
             @Config.Comment("Fix Arthana, Pentacle and other items placed on top of the altar not dropping when " +
                     "the altar block below them is broken.")
             @Config.Name("Placed Items - Fix No Drops")
@@ -157,6 +153,14 @@ public class ModConfig {
                     "at least they should not crash the game as often.")
             @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")
             public static boolean cursedBlock_fixNullActionListCrash = true;
+
+            @Config.Comment("If true, fix player bottling skill increase, which won't happen otherwise.")
+            @Config.Name("Witch's Cauldron - Fix Bottling Skill Increase")
+            public static boolean witchsCauldron_fixBottlingSkillIncrease = true;
+
+            @Config.Comment("If true, fix right-clicking on the cauldron with a bucket voiding its contents.")
+            @Config.Name("Witch's Cauldron - Fix Bucket Voiding Brew")
+            public static boolean witchsCauldron_fixBucketVoidingBrew = true;
         }
 
         public static class ItemTweaks {
@@ -229,6 +233,22 @@ public class ModConfig {
             @Config.Comment("If true, Lord of Torment won't drop loot. Loot is hardcoded and cannot be changed otherwise")
             @Config.Name("Lord of Torment - Tweak Disable Hardcoded Loot")
             public static boolean lordOfTorment_tweakDisableLoot = false;
+
+            @Config.Comment("If true, allows Owls to sit. (No visual change, but the owl won't follow the owner)")
+            @Config.Name("Owl - Fix Sitting Behaviour")
+            public static boolean owl_fixSitting = true;
+
+            @Config.Comment("If true, Owls won't take items, except breeding items")
+            @Config.Name("Owl - Tweak Disable Taking Items")
+            public static boolean owl_tweakDisableTakeItems = true;
+
+            @Config.Comment("If true, Owls' model will change slightly when sitting")
+            @Config.Name("Owl - Tweak Sit Model Change")
+            public static boolean owl_tweakSitModelChange = false;
+
+            @Config.Comment("If true, Owls will look down when sitting, as if they're resting")
+            @Config.Name("Owl - Tweak Render Small Children")
+            public static boolean owl_tweakRenderChildSmaller = false;
         }
 
         public static class BookTweaks {
