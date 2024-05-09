@@ -13,6 +13,7 @@
     "block.entity.TileEntityCauldronMixin",
     "block.entity.TileEntityCoffinMixin",
     "block.entity.TileEntityCursedBlockMixin",
+    "block.entity.TileEntityPlacedItemMixin",
     "brewing.LiquidDispersalMixin",
     "brewing.action.effect.BlastBrewEffectMixin",
     "brewing.action.effect.BrewActionEffectMixin",

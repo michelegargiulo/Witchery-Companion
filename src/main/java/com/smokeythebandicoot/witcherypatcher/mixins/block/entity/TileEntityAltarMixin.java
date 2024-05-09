@@ -88,7 +88,7 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
      * Registers the power source and updates the power
      */
     public void onLoad() {
-        if (ModConfig.PatchesConfiguration.BlockTweaks.altar_fixPowerSourcePersistency) {
+        if (!world.isRemote && ModConfig.PatchesConfiguration.BlockTweaks.altar_fixPowerSourcePersistency) {
             PowerSources.instance().registerPowerSource((TileEntityAltar)(Object)this);
             updatePower();
         }

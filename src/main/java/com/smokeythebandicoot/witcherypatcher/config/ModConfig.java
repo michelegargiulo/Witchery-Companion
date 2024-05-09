@@ -10,7 +10,6 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import org.spongepowered.asm.mixin.Unique;
 
 import java.util.HashSet;
 
@@ -140,6 +139,11 @@ public class ModConfig {
                     "the altar block below them is broken.")
             @Config.Name("Placed Items - Fix No Drops")
             public static boolean placedItems_fixNoDrops = true;
+
+            @Config.Comment("If true, fixes a crash the player joins a world where an Altar with placed items on top are " +
+                    "in its view in the first rendered frame.")
+            @Config.Name("Placed Items - Fix Not Initialized Crash")
+            public static boolean placedItems_fixNotInitializedCrash = true;
 
             @Config.Comment("Workaround for Stockade blocks. When player head gets too close, the entire" +
                     "screen is rendered as a stockade side texture. This patch enlarges the stockade bounding" +
