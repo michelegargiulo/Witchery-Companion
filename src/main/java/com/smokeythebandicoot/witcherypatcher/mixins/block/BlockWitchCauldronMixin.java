@@ -3,10 +3,12 @@ package com.smokeythebandicoot.witcherypatcher.mixins.block;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import com.smokeythebandicoot.witcherypatcher.config.ModConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -31,15 +33,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /**
  Mixins:
  [Bugfix] Fix Bottling level skill not increasing
+ [Bugfix] Fix Right-click with Empty Bucket on cauldron filled with brew, just voiding the brew
  */
 @Mixin(value = BlockWitchCauldron.class, remap = false)
 public abstract class BlockWitchCauldronMixin {
-
-
-    @Shadow // For all shadow members, body is ignored. Cannot be abstract, since it's static
-    private static ItemStack consumeItem(ItemStack stack) {
-        return null;
-    }
 
     @Unique
     BrewActionList witchery_Patcher$preservedActions = null;
@@ -73,74 +70,34 @@ public abstract class BlockWitchCauldronMixin {
     /**
      * Injects before the cauldron.drain() call ONLY in the first instance (before the handler.fill() call, that is
      * unique in the method), to cancel the drain() call and return early if the held item is a bucket and the
-     * registry name of WitcheryGeneralItems.BREW_BUCKET is null (because the item itself is not yet implemented)
+     * registry name of WitcheryGeneralItems.BREW_BUCKET is null (because the item itself is not yet implemented).
+     * @Local are used to capture local variables in method (heldStack and cauldron)
+     * @Slide is used to only inject in the first cauldron.drain() call, that is from @At("HEAD") to @At("INVOKE", handler.fill())
      */
     @Inject(method = "onBlockActivated", remap = false, cancellable = true,
             slice = @Slice(to = @At(value = "INVOKE", target = "Lnet/minecraftforge/fluids/capability/IFluidHandlerItem;fill(Lnet/minecraftforge/fluids/FluidStack;Z)I")),
             at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/block/entity/TileEntityCauldron;drain(IZ)Lnet/minecraftforge/fluids/FluidStack;"))
     public void WPfixBucketPotionVoiding(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing,
                                          float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir,
-                                         @Local ItemStack heldStack, @Local FluidStack fluidStackInCauldron) {
+                                         @Local(ordinal = 0) TileEntityCauldron cauldron, @Local(ordinal = 0) ItemStack heldStack
+                                         ) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.witchsCauldron_fixBucketVoidingBrew) {
-            if (heldStack.getItem() == Items.BUCKET && fluidStackInCauldron.getFluid() == WitcheryFluids.BREW) {
+
+            // This is a local, but there are too many of this type to capture. More readable and maintainable
+            // to capture the TileEntityCauldron local and derive the contained fluid stack within
+            FluidStack fluidStackInCauldron = cauldron.getTankProperties()[0].getContents();
+
+            // If fluidStack in cauldron != null (Cauldron is filled with something
+            // And held item is a Bucket
+            // And the fluid in cauldron is a brew, then cancel the action returning early
+            if (heldStack.getItem() == Items.BUCKET &&
+                    fluidStackInCauldron != null &&
+                    fluidStackInCauldron.getFluid() == WitcheryFluids.BREW) {
+
                 cir.setReturnValue(true);
             }
         }
     }
 
-    /*
-    @Inject(method = "onBlockActivated", remap = false, cancellable = true,
-            slice = @Slice(to = @At(value = "INVOKE", target = "Lnet/minecraftforge/fluids/capability/IFluidHandlerItem;fill(Lnet/minecraftforge/fluids/FluidStack;Z)I")),
-            at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/block/entity/TileEntityCauldron;writeFluid(Lnet/minecraft/nbt/NBTTagCompound;)Lnet/minecraft/nbt/NBTTagCompound;"))
-    public void WPimplementBucketBrew(
-            World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
-            EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir,
-            @Local TileEntityCauldron cauldron, @Local ItemStack heldStack,
-            @Local IFluidHandlerItem handler, @Local FluidStack fluidStackInCauldron) {
-
-
-        if (ModConfig.PatchesConfiguration.BlockTweaks.witchsCauldron_fixBucketVoidingBrew) {
-            NBTTagCompound nbtFluid = cauldron.writeFluid(new NBTTagCompound());
-            FluidStack drain = cauldron.drain(1000, !player.capabilities.isCreativeMode);
-            if (!player.capabilities.isCreativeMode) {
-                handler.fill(drain, true);
-                if (heldStack.getItem() == Items.BUCKET) {
-                    ItemStack filledBucketStack;
-
-                    filledBucketStack = FluidUtil.getFilledBucket(fluidStackInCauldron);
-                    player.addStat(StatList.CAULDRON_USED);
-                    if (heldStack.getCount() > 1) {
-                        if (!player.inventory.addItemStackToInventory(filledBucketStack)) {
-                            cir.setReturnValue(false);
-                        }
-
-                        player.setHeldItem(hand, consumeItem(heldStack));
-                    } else {
-                        player.setHeldItem(hand, filledBucketStack);
-                    }
-
-                } else {
-                    heldStack.setTagCompound(nbtFluid.copy());
-                }
-            }
-
-            world.playSound(null, player.getPosition(), SoundEvents.ENTITY_PLAYER_SWIM, SoundCategory.BLOCKS, 0.5F, 0.4F / (world.rand.nextFloat() * 0.4F + 0.8F));
-            cauldron.notifyBlockUpdate(true);
-        }
-    }
-
-    @WrapOperation(method = "onBlockActivated",
-            slice = @Slice(
-                    from = @At(value = "INVOKE", target = "Lnet/minecraftforge/fluids/capability/IFluidHandlerItem;fill(Lnet/minecraftforge/fluids/FluidStack;Z)I"),
-                    to = @At("TAIL")),
-            at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fluids/FluidStack;getFluid()Lnet/minecraftforge/fluids/Fluid;"))
-    public Fluid WP_simulateNotBucket(FluidStack instance, Operation<Fluid> original) {
-        Fluid originalFluid = original.call(instance);
-        if (originalFluid == WitcheryFluids.BREW) {
-            return WitcheryFluids.BREW_LIQUID;
-        }
-        return originalFluid;
-    }
-     */
 }
 

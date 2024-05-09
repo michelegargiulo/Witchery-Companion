@@ -10,6 +10,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.HashSet;
 
@@ -22,6 +23,7 @@ public class ModConfig {
             "Tweaks alter the behaviour of Witchery, and are disabled by default")
     @Config.Name("General Configuration")
     public static PatchesConfiguration mixins;
+
 
     public static class PatchesConfiguration {
 
@@ -161,6 +163,10 @@ public class ModConfig {
             @Config.Comment("If true, fix right-clicking on the cauldron with a bucket voiding its contents.")
             @Config.Name("Witch's Cauldron - Fix Bucket Voiding Brew")
             public static boolean witchsCauldron_fixBucketVoidingBrew = true;
+
+            @Config.Comment("If true, fix popper rendering, displaying them the right way up+")
+            @Config.Name("Poppet Shelf - Fix Upside-down Poppets")
+            public static boolean poppetShelf_fixUpsideDownPoppetRendering = true;
         }
 
         public static class ItemTweaks {
@@ -169,9 +175,11 @@ public class ModConfig {
             @Config.Name("Spectral Stone - Fix Entity Dupe Exploit")
             public static boolean spectralStone_fixEntityReleaseExploit = true;
 
-            @Config.Comment("If true, set maax stack size of all chalk items to 1, regardless of damage")
+            @Config.Comment("If true, set max stack size of all chalk items to 1, regardless of damage. " +
+                    "Workaround for some chalk-stacking related bugs")
             @Config.Name("Chalk - Tweak Unstackable Chalk")
             public static boolean itemChalk_tweakUnstackableChalk = false;
+
         }
 
         public static class RitesTweaks {

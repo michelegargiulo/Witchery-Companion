@@ -35,6 +35,7 @@
   ],
   "client": [
     "client.gui.book.GuiHerbologyBookMixin",
+    "client.renderer.entity.block.RenderPoppetShelfMixin",
     "client.renderer.entity.model.ModelOwlMixin"
   ],
   "minVersion": "0.8"
