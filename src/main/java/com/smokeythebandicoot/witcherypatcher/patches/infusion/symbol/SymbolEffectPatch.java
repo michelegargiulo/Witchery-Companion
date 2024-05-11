@@ -24,6 +24,7 @@ public class SymbolEffectPatch {
         return INSTANCE;
     }
 
+    // NOTE: this event is subscribed only if soulBrews_fixPersistency is enabled in config
     @SubscribeEvent
     public void onPlayerCloneEvent(PlayerEvent.Clone event) {
         if (!event.isWasDeath()) {

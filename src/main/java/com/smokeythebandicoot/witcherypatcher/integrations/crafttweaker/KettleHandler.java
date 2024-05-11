@@ -9,6 +9,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.DimensionManager;
+import net.msrandom.witchery.init.data.recipes.WitcheryRecipes;
 import net.msrandom.witchery.recipe.KettleRecipe;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -52,6 +53,7 @@ public class KettleHandler {
         );
 
         //WitcheryRecipeSerializers.INSTANCE.register();
+        //WitcheryRecipes.
     }
 
 

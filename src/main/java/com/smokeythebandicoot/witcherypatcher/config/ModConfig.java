@@ -23,6 +23,8 @@ public class ModConfig {
     @Config.Name("General Configuration")
     public static PatchesConfiguration mixins;
 
+    public static IntegrationConfigurations integrations;
+
 
     public static class PatchesConfiguration {
 
@@ -125,13 +127,15 @@ public class ModConfig {
             @Config.Name("Entity Utils - Fix Null Pointer On Pull Entity")
             public static boolean entityUtils_fixNullPointer = true;
 
+            @Config.Comment("Fix crash when loot function is applied and a Null Random is passed to it (JER does this)")
+            @Config.Name("Loot Utils - Fix NPE on JER Integration")
+            public static boolean levelledRandomEnchant_fixCrashNullRandom = true;
+
         }
 
         public static class BlockTweaks {
 
-            @Config.Comment("Fix Altar blocks requiring to get broken and re-placed to work properly again.\n" +
-                    "NOTE: it still does not fix all edge cases. Players might still have to interact with the altar" +
-                    "before crafting. Right-click should suffice for most cases")
+            @Config.Comment("Fix Altar blocks requiring to get broken and re-placed to work properly again")
             @Config.Name("Altar - Fix Power Source Persistency")
             public static boolean altar_fixPowerSourcePersistency = true;
 
@@ -190,27 +194,27 @@ public class ModConfig {
 
             @Config.Comment("If true, the Rite of Moving Earth disables moving TileEntities, preventing crashes, bugs and dupes")
             @Config.Name("Rite of Moving Earth - Fix Crash/Dupes while Moving TileEntities")
-            public static boolean movingEarth_disableMovingTEs = true;
+            public static boolean movingEarth_tweakDisableMovingTEs = true;
 
             @Config.Comment("If true, the Rite of Moving Earth won't shift blocks upwards if there are obstructions. This will prevent voiding blocks")
             @Config.Name("Rite of Moving Earth - Fix Destroying Blocks")
-            public static boolean movingEarth_disableVoidingBlocks = true;
+            public static boolean movingEarth_tweakDisableVoidingBlocks = true;
 
             @Config.Comment("Set the Ritual of Moving Earth refund policy. Below, the valid values:\n" +
                     "0: never refound the player (default Witchery Behaviour)\n" +
                     "1: if the ritual doesn't move the upwards by its full extent, refund the player\n" +
                     "2: refund only if the rite has not moved any block")
             @Config.Name("Rite of Moving Earth - Tweak Rite Refund Policy")
-            public static int movingEarth_refundPolicy = 0;
+            public static int movingEarth_tweakRefundPolicy = 0;
 
             @Config.Comment("A list of blockstates that the Rite of Moving earth won't be able to move.\n" +
                     "Can only restrict more blocks, so Altars, Bedrock and some others won't be moved regardless")
             @Config.Name("Rite of Moving Earth - Tweak Block Blacklist")
-            public static String[] movingEarth_blockBlacklist = new String[] { };
+            public static String[] movingEarth_tweakBlockBlacklist = new String[] { };
 
             @Config.Comment("If true, smoke particles and sounds will be played for blocks that won't be moved")
             @Config.Name("Rite of Moving Earth - Tweak Show Particles On Failure")
-            public static boolean movingEarth_failIndicators = false;
+            public static boolean movingEarth_tweakFailIndicators = false;
 
             @Config.Ignore
             public static HashSet<IBlockState> movingEarth_stateBlacklist = new HashSet<>();
@@ -242,7 +246,7 @@ public class ModConfig {
             @Config.Name("Lord of Torment - Tweak Disable Teleportation to Torment")
             public static boolean lordOfTorment_tweakDisableTeleportation = false;
 
-            @Config.Comment("If true, Lord of Torment won't drop loot. Loot is hardcoded and cannot be changed otherwise")
+            @Config.Comment("If true, Lord of Torment won't drop hardcoded loot (Enchanted Books, Demon Heart and Soul of the Torment Brew)")
             @Config.Name("Lord of Torment - Tweak Disable Hardcoded Loot")
             public static boolean lordOfTorment_tweakDisableLoot = false;
 
@@ -269,8 +273,23 @@ public class ModConfig {
             @Config.Name("Herbology Book - Fix Plant Rendering")
             public static boolean herbologyBook_fixPlantRendering = true;
         }
+
+        public static class LootTweaks {
+
+            @Config.Comment("If true, Goblin Mog will drop loot according to its Loot Table (witchery:entities/goblin_mog)")
+            @Config.Name("Mog - Tweak Drop Loot by Table")
+            public static boolean goblinMob_tweakLootTable = true;
+
+            @Config.Comment("If true, Lord of Torment will drop loot according to its Loot Table (witchery:entities/lord_of_torment)")
+            @Config.Name("Lord of Torment - Tweak Drop Loot by Table")
+            public static boolean lordOfTorment_tweakLootTable = false;
+        }
     }
 
+    public static class IntegrationConfigurations {
+
+        public static boolean enableJerIntegration = true;
+    }
 
     @Mod.EventBusSubscriber(modid = WitcheryPatcher.MODID)
     public static class ConfigSyncHandler {
@@ -316,7 +335,7 @@ public class ModConfig {
             PatchesConfiguration.RitesTweaks.movingEarth_stateBlacklist = new HashSet<>();
 
             // Re-add configuration
-            for (String entry : PatchesConfiguration.RitesTweaks.movingEarth_blockBlacklist) {
+            for (String entry : PatchesConfiguration.RitesTweaks.movingEarth_tweakBlockBlacklist) {
                 String[] metaSplit = entry.split("@");
                 int meta = 0;
                 try {

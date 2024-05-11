@@ -55,14 +55,14 @@ public class RiteEffectMovingEarthMixin {
             return;
         }
 
-        if (ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_disableVoidingBlocks) {
+        if (ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_tweakDisableVoidingBlocks) {
             boolean canMoveTop = witchery_Patcher$theresEmptySpace(world, pos.up(height + 1), radius);
             boolean canMoveCur = witchery_Patcher$theresEmptySpace(world, pos.up(height), radius);
 
             if (!(canMoveTop || canMoveCur)) {
                 // If refund if partial or refund if initial and stage == 0, then refund player, else do nothing
-                if ((ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_refundPolicy == 1) ||
-                        (ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_refundPolicy == 2 && stage.get() == 0))
+                if ((ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_tweakRefundPolicy == 1) ||
+                        (ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_tweakRefundPolicy == 2 && stage.get() == 0))
                     cir.setReturnValue(RiteHandler.Result.ABORTED_REFUND);
                 else
                     cir.setReturnValue(RiteHandler.Result.COMPLETED);
@@ -196,7 +196,7 @@ public class RiteEffectMovingEarthMixin {
     private boolean witchery_Patcher$isBlockUnmovable(World world, Block block, BlockPos pos) {
         // Exclude moving TileEntities, if enabled. Must Exclude Circles, otherwise ritual would never work
         TileEntity tileEntity = world.getTileEntity(pos);
-        if (ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_disableMovingTEs &&
+        if (ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_tweakDisableMovingTEs &&
                 world.getTileEntity(pos) != null && (!(tileEntity instanceof TileEntityCircle))) {
             witchery_Patcher$failRitual(world, pos);
             return true;
@@ -219,7 +219,7 @@ public class RiteEffectMovingEarthMixin {
 
     @Unique
     private void witchery_Patcher$failRitual(World world, BlockPos pos) {
-        if (ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_failIndicators) {
+        if (ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_tweakFailIndicators) {
             world.playSound(null, pos, SoundEvents.BLOCK_SAND_STEP, SoundCategory.PLAYERS, 0.5F, 0.4F / (world.rand.nextFloat() * 0.4F + 0.8F));
             WitcheryNetworkChannel.sendToAllAround(new PacketParticles((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, 0.5F, 1.0F, EnumParticleTypes.SMOKE_NORMAL), world, pos);
         }

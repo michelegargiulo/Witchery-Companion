@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherypatcher.mixins.entity;
 
 import com.smokeythebandicoot.witcherypatcher.config.ModConfig;
+import com.smokeythebandicoot.witcherypatcher.utils.LootTables;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -9,9 +10,7 @@ import net.msrandom.witchery.entity.EntityFlyingMob;
 import net.msrandom.witchery.entity.EntityLordOfTorment;
 import net.msrandom.witchery.util.WitcheryUtils;
 import net.msrandom.witchery.util.damage.DemonicDamageSource;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -34,8 +33,8 @@ public class EntityLordOfTormentMixin extends EntityFlyingMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
-        return new ResourceLocation("witcherypatches:entities/lord_of_torment");
+    public ResourceLocation getLootTable() {
+        return LootTables.LORD_OF_TORMENT;
     }
 
     @Final
@@ -61,9 +60,15 @@ public class EntityLordOfTormentMixin extends EntityFlyingMob {
     }
 
     @Inject(method = "dropFewItems", at = @At("HEAD"), cancellable = true)
-    private void WPdropFewItems(boolean par1, int par2, CallbackInfo ci) {
+    private void WPdropFewItems(boolean wasRecentlyHit, int lootingModifier, CallbackInfo ci) {
+
+        if (ModConfig.PatchesConfiguration.LootTweaks.lordOfTorment_tweakLootTable) {
+            super.dropFewItems(wasRecentlyHit, lootingModifier);
+        }
+
         if (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableLoot) {
             ci.cancel();
         }
     }
+
 }

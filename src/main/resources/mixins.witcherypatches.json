@@ -22,6 +22,7 @@
     "brewing.action.effect.PotionBrewEffectMixin",
     "common.RelativePowerSourceMixin",
     "entity.EntityBroomMixin",
+    "entity.EntityGoblinMogMixin",
     "entity.EntityLordOfTormentMixin",
     "entity.EntityWingedMonkeyMixin",
     "entity.passive.EntityOwlMixin",
@@ -32,7 +33,8 @@
     "potion.PotionFortuneMixin",
     "rite.effect.RiteEffectBindFamiliarMixin",
     "rite.effect.RiteEffectMovingEarthMixin",
-    "util.EntityUtilMixin"
+    "util.EntityUtilMixin",
+    "world.loot.functions.LevelledRandomEnchantmentMixin"
   ],
   "client": [
     "client.gui.book.GuiHerbologyBookMixin",

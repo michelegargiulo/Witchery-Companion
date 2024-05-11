@@ -1,0 +1,23 @@
+package com.smokeythebandicoot.witcherypatcher.utils;
+
+import net.minecraft.util.ResourceLocation;
+
+public class LootTables {
+
+    // Default Witchery
+    public static ResourceLocation DEMON = new ResourceLocation("witchery", "entities/demon");
+    public static ResourceLocation HELLHOUND = new ResourceLocation("witchery", "entities/hellhound");
+    public static ResourceLocation HORNED_HUNTSMAN = new ResourceLocation("witchery", "entities/horned_huntsman");
+    public static ResourceLocation MANDRAKE = new ResourceLocation("witchery", "entities/mandrake");
+    public static ResourceLocation OWL = new ResourceLocation("witchery", "entities/owl");
+    public static ResourceLocation TOAD = new ResourceLocation("witchery", "entities/toad");
+    public static ResourceLocation TREEFYD = new ResourceLocation("witchery", "entities/treefyd");
+    public static ResourceLocation VILLAGE_GUARD = new ResourceLocation("witchery", "entities/village_guard");
+    public static ResourceLocation WEREWOLF = new ResourceLocation("witchery", "entities/werewolf");
+    public static ResourceLocation WITCH_HUNTER = new ResourceLocation("witchery", "entities/witch_hunter");
+
+    // Custom added
+    public static ResourceLocation LORD_OF_TORMENT = new ResourceLocation("witchery", "entities/lord_of_torment");
+    public static ResourceLocation GOBLIN_MOG = new ResourceLocation("witchery", "entities/goblin_mog");
+
+}
