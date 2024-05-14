@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ Mixins:
+ [Bugfix] Fix rendering crash when Placed Item are within players view within the first frame after world loading
+ */
 @Mixin(value = TileEntityPlacedItem.class, remap = false)
 public class TileEntityPlacedItemMixin {
 

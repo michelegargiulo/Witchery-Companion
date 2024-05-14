@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import net.msrandom.witchery.block.BlockRemovedBlock;
 import net.msrandom.witchery.init.WitcheryTileEntities;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
 import javax.annotation.Nullable;
 
@@ -19,7 +20,10 @@ import javax.annotation.Nullable;
  [Bugfix] Brew of Tidal Hold suffocates entities that pass inside of the hole
  */
 @Mixin(value = BlockRemovedBlock.class, remap = false)
-public class BlockRemovedBlockMixin extends BlockContainer {
+public abstract class BlockRemovedBlockMixin extends BlockContainer {
+
+    @Shadow
+    public abstract TileEntity createNewTileEntity(World worldIn, int meta);
 
     private BlockRemovedBlockMixin(Material materialIn) {
         super(materialIn);
@@ -35,11 +39,5 @@ public class BlockRemovedBlockMixin extends BlockContainer {
         // Problem is here: if it is a full cube, the entity suffocates, depending on the material
         // By setting this to false, the entity does not suffocate regardless of the material of the block
         return !ModConfig.PatchesConfiguration.BrewsTweaks.tidalHold_fixEntitySuffocation;
-    }
-
-    @Nullable
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return WitcheryTileEntities.REMOVED.create();
     }
 }

@@ -18,6 +18,7 @@ import net.msrandom.witchery.init.WitcheryTileEntities;
 import net.msrandom.witchery.init.items.WitcheryGeneralItems;
 import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -28,12 +29,14 @@ import java.util.Random;
  [Bugfix] Fix Placed Items not dropping when Altar block is broken below them
  */
 @Mixin(value = BlockPlacedItem.class, remap = false)
-public class BlockPlacedItemMixin extends BlockContainer {
-
+public abstract class BlockPlacedItemMixin extends BlockContainer {
 
     private BlockPlacedItemMixin(Material materialIn) {
         super(materialIn);
     }
+
+    @Shadow
+    public abstract TileEntity createNewTileEntity(World worldIn, int meta);
 
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.placedItems_fixNoDrops) {
@@ -48,10 +51,5 @@ public class BlockPlacedItemMixin extends BlockContainer {
         }
     }
 
-    @Nullable
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return WitcheryTileEntities.PLACED_ITEM.create();
-    }
 
 }

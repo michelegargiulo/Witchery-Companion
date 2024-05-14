@@ -9,7 +9,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.msrandom.witchery.block.BlockSunCollector;
-import net.msrandom.witchery.init.WitcheryContainers;
 import net.msrandom.witchery.init.items.WitcheryGeneralItems;
 import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +21,8 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(value = BlockSunCollector.class, remap = false)
 public abstract class BlockSunCollectorMixin extends Block {
 
-    @Shadow public abstract int getMetaFromState(IBlockState state);
+    @Shadow
+    public abstract int getMetaFromState(IBlockState state);
 
     private BlockSunCollectorMixin(Material materialIn) {
         super(materialIn);

@@ -1,8 +1,9 @@
 package com.smokeythebandicoot.witcherypatcher.mixins.entity;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.smokeythebandicoot.witcherypatcher.config.ModConfig;
 import com.smokeythebandicoot.witcherypatcher.utils.LootTables;
-import net.minecraft.entity.player.EntityPlayer;
+import com.smokeythebandicoot.witcherypatcher.utils.Utils;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -41,32 +42,26 @@ public class EntityLordOfTormentMixin extends EntityFlyingMob {
     @Shadow(remap = false)
     private final Set<UUID> attackers = new HashSet<>();
 
-    @Inject(method = "attackEntityFrom", at = @At("HEAD"), cancellable = true)
+    /*@Inject(method = "attackEntityFrom", cancellable = true, remap = true,
+            at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/entity/EntityFlyingMob;attackEntityFrom(Lnet/minecraft/util/DamageSource;F)Z"))
     private void WPattackEntityFrom(DamageSource source, float damage, CallbackInfoReturnable<Boolean> cir) {
         if (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableTeleportation) {
-            if (source.isExplosion()) {
-                cir.setReturnValue(false);
-            } else {
-                if (source.getImmediateSource() != null && source.getImmediateSource() instanceof EntityPlayer) {
-                    EntityPlayer attacker = (EntityPlayer) source.getImmediateSource();
-                    this.attackers.add(attacker.getUniqueID());
-                }
-
-                float damageCap = source instanceof DemonicDamageSource ? 8.0F : 5.0F;
-                boolean damaged = super.attackEntityFrom(source, WitcheryUtils.capAround(damage, damageCap));
-                cir.setReturnValue(damaged);
-            }
+            float damageCap = source instanceof DemonicDamageSource ? 8.0F : 5.0F;
+            boolean damaged = super.attackEntityFrom(source, WitcheryUtils.capAround(damage, damageCap));
+            cir.setReturnValue(damaged);
         }
+    }*/
+
+    @ModifyExpressionValue(method = "attackEntityFrom", remap = false,
+            at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/world/dimension/WitcheryDimension;isInDimension(Lnet/minecraft/entity/Entity;)Z"))
+    private boolean WPdisableTormentTP(boolean original) {
+        Utils.logChat("Disabling torment: " + original + " - " + ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableTeleportation);
+        return original && (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableTeleportation);
     }
 
-    @Inject(method = "dropFewItems", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "dropFewItems", at = @At("HEAD"), cancellable = true, remap = true)
     private void WPdropFewItems(boolean wasRecentlyHit, int lootingModifier, CallbackInfo ci) {
-
         if (ModConfig.PatchesConfiguration.LootTweaks.lordOfTorment_tweakLootTable) {
-            super.dropFewItems(wasRecentlyHit, lootingModifier);
-        }
-
-        if (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableLoot) {
             ci.cancel();
         }
     }

@@ -1,0 +1,109 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "witchery:koboldite_nugget",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "enchanted_armor",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:chainmail_helmet",
+          "conditions": [
+            {
+              "condition": "killed_by_player"
+            }
+          ],
+          "functions": [
+            {
+              "function": "witchery:levelled_random_enchantment",
+              "level": 5
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:chainmail_chestplate",
+          "conditions": [
+            {
+              "condition": "killed_by_player"
+            }
+          ],
+          "functions": [
+            {
+              "function": "witchery:levelled_random_enchantment",
+              "level": 5
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:chainmail_leggings",
+          "conditions": [
+            {
+              "condition": "killed_by_player"
+            }
+          ],
+          "functions": [
+            {
+              "function": "witchery:levelled_random_enchantment",
+              "level": 5
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:chainmail_boots",
+          "conditions": [
+            {
+              "condition": "killed_by_player"
+            }
+          ],
+          "functions": [
+            {
+              "function": "witchery:levelled_random_enchantment",
+              "level": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "gurdle",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "witchery:gulgs_grudle",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

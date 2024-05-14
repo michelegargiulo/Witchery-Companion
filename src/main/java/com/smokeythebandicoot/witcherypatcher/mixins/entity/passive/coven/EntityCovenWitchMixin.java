@@ -4,26 +4,14 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherypatcher.WitcheryPatcher;
 import com.smokeythebandicoot.witcherypatcher.config.ModConfig;
-import kotlin.jvm.internal.Intrinsics;
-import kotlin.ranges.RangesKt;
-import net.minecraft.entity.Entity;
+import com.smokeythebandicoot.witcherypatcher.utils.LootTables;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.msrandom.witchery.entity.familiar.Familiars;
 import net.msrandom.witchery.entity.passive.coven.CovenQuest;
 import net.msrandom.witchery.entity.passive.coven.EntityCovenWitch;
-import net.msrandom.witchery.init.WitcheryDimensions;
-import net.msrandom.witchery.registry.WitcheryRegistry;
-import net.msrandom.witchery.resources.CovenQuestManager;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -32,8 +20,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
-import java.util.Random;
-import java.util.UUID;
 
 @Mixin(value = EntityCovenWitch.class, remap = false)
 public abstract class EntityCovenWitchMixin extends EntityTameable {
@@ -86,5 +72,12 @@ public abstract class EntityCovenWitchMixin extends EntityTameable {
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
         return null;
+    }
+
+    @Inject(method = "getLootTable", at = @At("HEAD"), remap = false, cancellable = true)
+    public void getLootTable(CallbackInfoReturnable<ResourceLocation> cir) {
+        if (ModConfig.PatchesConfiguration.LootTweaks.covenWitch_tweakOwnLootTable) {
+            cir.setReturnValue(LootTables.COVEN_WITCH);
+        }
     }
 }

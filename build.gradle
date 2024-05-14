@@ -129,6 +129,7 @@ dependencies {
     // Witchery: Resurrected
     implementation rfg.deobf(files('libs/WitcheryResurrected-1.12.2-0.5.2.4-forge-all.jar'))
 
+
     if (propertyBool('use_modern_java_syntax')) {
         annotationProcessor 'com.github.bsideup.jabel:jabel-javac-plugin:1.0.0'
         // Workaround for https://github.com/bsideup/jabel/issues/174
@@ -328,6 +329,18 @@ tasks.register('prioritizeCoremods') {
             if (it.isFile() && it.name =~ '(mixinbooter|configanytime)(-)([0-9])+\\.+([0-9])+(.jar)') {
                 it.renameTo(new File(it.parentFile, "!${it.name}"))
             }
+        }
+
+        // Copy Witchery Resurrected from /libs to obfuscated environment
+        copy {
+            from("libs")
+            into("run/obfuscated/mods")
+        }
+
+        // Copy all mods to obfuscated environment
+        copy {
+            from("run/mods")
+            into("run/obfuscated/mods")
         }
     }
 }

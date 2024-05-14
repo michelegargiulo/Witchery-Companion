@@ -25,8 +25,7 @@ public class EntityGoblinMogMixin extends EntityMob {
 
     @Inject(method = "dropFewItems", remap = true, cancellable = true, at = @At("HEAD"))
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier, CallbackInfo ci) {
-        if (ModConfig.PatchesConfiguration.LootTweaks.goblinMob_tweakLootTable) {
-            super.dropFewItems(wasRecentlyHit, lootingModifier);
+        if (ModConfig.PatchesConfiguration.LootTweaks.goblinMog_tweakLootTable) {
             ci.cancel();
         }
     }

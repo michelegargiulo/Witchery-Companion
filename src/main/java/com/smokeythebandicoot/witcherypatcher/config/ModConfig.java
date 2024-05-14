@@ -276,9 +276,25 @@ public class ModConfig {
 
         public static class LootTweaks {
 
+            @Config.Comment("If true, Coven Witch will drop loot according to its own Loot Table, instead of " +
+                    "Vanilla Witch loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
+                    "mods to vanilla Witch loot table, will not reflect on Coven Witches")
+            @Config.Name("Coven Witch - Tweak Give Own Loot Table")
+            public static boolean covenWitch_tweakOwnLootTable = false;
+
+            @Config.Comment("If true, Cat Familiar will drop loot according to its own Loot Table, instead of " +
+                    "Vanilla Ocelot loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
+                    "mods to vanilla Ocelot loot table, will not reflect on Cat familiars")
+            @Config.Name("Cat Familiar - Tweak Give Own Loot Table")
+            public static boolean familiarCat_tweakOwnLootTable = false;
+
+            @Config.Comment("If true, Goblin Gulg will drop loot according to its Loot Table (witchery:entities/goblin_gulg)")
+            @Config.Name("Gulg - Tweak Drop Loot by Table")
+            public static boolean goblinGulg_tweakLootTable = false;
+
             @Config.Comment("If true, Goblin Mog will drop loot according to its Loot Table (witchery:entities/goblin_mog)")
             @Config.Name("Mog - Tweak Drop Loot by Table")
-            public static boolean goblinMob_tweakLootTable = true;
+            public static boolean goblinMog_tweakLootTable = true;
 
             @Config.Comment("If true, Lord of Torment will drop loot according to its Loot Table (witchery:entities/lord_of_torment)")
             @Config.Name("Lord of Torment - Tweak Drop Loot by Table")

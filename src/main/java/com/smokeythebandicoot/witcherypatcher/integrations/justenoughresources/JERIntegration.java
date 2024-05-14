@@ -1,21 +1,22 @@
 package com.smokeythebandicoot.witcherypatcher.integrations.justenoughresources;
 
-import com.smokeythebandicoot.witcherypatcher.mixins.entity.EntityGoblinMogMixin;
+import com.smokeythebandicoot.witcherypatcher.config.ModConfig;
 import com.smokeythebandicoot.witcherypatcher.utils.LootTables;
 import jeresources.api.IJERAPI;
 import jeresources.api.IMobRegistry;
-import jeresources.api.render.IMobRenderHook;
 import jeresources.compatibility.JERAPI;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.Mod;
 import net.msrandom.witchery.entity.*;
 import net.msrandom.witchery.entity.monster.EntityHellhound;
 import net.msrandom.witchery.entity.monster.EntityHornedHuntsman;
 import net.msrandom.witchery.entity.monster.EntityMandrake;
+import net.msrandom.witchery.entity.passive.EntityCatFamiliar;
 import net.msrandom.witchery.entity.passive.EntityOwl;
 import net.msrandom.witchery.entity.passive.EntityToad;
+import net.msrandom.witchery.entity.passive.coven.EntityCovenWitch;
 
 @Mod.EventBusSubscriber
 public class JERIntegration {
@@ -79,6 +80,20 @@ public class JERIntegration {
             GlStateManager.translate(0.0f, -0.35f, 0.0f);
             return renderInfo;
         });
+
+        jerMobRegistry.register(new EntityGoblinGulg(jerWorld), LootTables.GOBLIN_GULG);
+        jerMobRegistry.registerRenderHook(EntityGoblinGulg.class, (renderInfo, entityLivingBase) -> {
+            GlStateManager.translate(0.0f, -0.35f, 0.0f);
+            return renderInfo;
+        });
+
+        jerMobRegistry.register(new EntityCovenWitch(jerWorld),
+                ModConfig.PatchesConfiguration.LootTweaks.covenWitch_tweakOwnLootTable ?
+                        LootTables.COVEN_WITCH : LootTableList.ENTITIES_WITCH);
+
+        jerMobRegistry.register(new EntityCatFamiliar(jerWorld),
+                ModConfig.PatchesConfiguration.LootTweaks.familiarCat_tweakOwnLootTable ?
+                LootTables.FAMILIAR_CAT : LootTableList.ENTITIES_OCELOT);
 
     }
 

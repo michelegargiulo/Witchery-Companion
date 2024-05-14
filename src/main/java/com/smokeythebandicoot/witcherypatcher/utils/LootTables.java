@@ -19,5 +19,8 @@ public class LootTables {
     // Custom added
     public static ResourceLocation LORD_OF_TORMENT = new ResourceLocation("witchery", "entities/lord_of_torment");
     public static ResourceLocation GOBLIN_MOG = new ResourceLocation("witchery", "entities/goblin_mog");
+    public static ResourceLocation GOBLIN_GULG = new ResourceLocation("witchery", "entities/goblin_gulg");
+    public static ResourceLocation COVEN_WITCH = new ResourceLocation("witchery", "entities/coven_witch");
+    public static ResourceLocation FAMILIAR_CAT = new ResourceLocation("witchery", "entities/familiar_cat");
 
 }
