@@ -23,20 +23,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * [Bugfix] Fix Owl not sitting
  * [Tweak] Disable giving items to the Owl (bugged in Witchery)
  */
-@Mixin(value = EntityOwl.class, remap = false)
+@Mixin(value = EntityOwl.class)
 public abstract class EntityOwlMixin extends EntityFlyingTameable {
 
-    @Shadow
+    @Shadow(remap = false)
     protected abstract void setVariant(int i);
 
-    @Shadow
+    @Shadow(remap = true)
     public abstract boolean isBreedingItem(ItemStack itemstack);
 
     private EntityOwlMixin(World par1World) {
         super(par1World);
     }
 
-    @Inject(method = "processInteract", remap = false, at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/EntityAISit;setSitting(Z)V"))
+    @Inject(method = "processInteract", remap = true, at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/EntityAISit;setSitting(Z)V", remap = true))
     public void WPfixSitting(EntityPlayer player, EnumHand hand, CallbackInfoReturnable<Boolean> cir) {
         if (ModConfig.PatchesConfiguration.EntityTweaks.owl_fixSitting) {
             this.setVariant(this.isSitting() ? 1 : 0);
@@ -45,8 +45,8 @@ public abstract class EntityOwlMixin extends EntityFlyingTameable {
     }
 
 
-    @WrapOperation(method = "processInteract", remap = false,
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/EntityPlayer;getHeldItem(Lnet/minecraft/util/EnumHand;)Lnet/minecraft/item/ItemStack;"))
+    @WrapOperation(method = "processInteract", remap = true,
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/EntityPlayer;getHeldItem(Lnet/minecraft/util/EnumHand;)Lnet/minecraft/item/ItemStack;", remap = true))
     public ItemStack WPsimulateEmptyHand(EntityPlayer instance, EnumHand enumHand, Operation<ItemStack> original) {
         if (ModConfig.PatchesConfiguration.EntityTweaks.owl_tweakDisableTakeItems) {
 

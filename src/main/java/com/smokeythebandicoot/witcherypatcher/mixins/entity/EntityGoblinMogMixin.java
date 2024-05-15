@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ Mixins:
+ [Tweak] Introduct own loot table
+ */
 @Mixin(value = EntityGoblinMog.class, remap = false)
 public class EntityGoblinMogMixin extends EntityMob {
 
@@ -20,7 +24,7 @@ public class EntityGoblinMogMixin extends EntityMob {
 
     @Override
     public ResourceLocation getLootTable() {
-        return LootTables.GOBLIN_MOG;
+        return ModConfig.PatchesConfiguration.LootTweaks.goblinMog_tweakLootTable ? LootTables.GOBLIN_MOG : null;
     }
 
     @Inject(method = "dropFewItems", remap = true, cancellable = true, at = @At("HEAD"))

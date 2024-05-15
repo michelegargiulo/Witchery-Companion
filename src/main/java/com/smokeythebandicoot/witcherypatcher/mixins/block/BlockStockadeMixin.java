@@ -22,13 +22,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  Mixins:
  [Workaround] Expands Stockade Bounding Box to avoid player head getting inside of the model
  */
-@Mixin(value = BlockStockade.class, remap = false)
+@Mixin(value = BlockStockade.class)
 public abstract class BlockStockadeMixin extends Block {
 
-    @Shadow
+    @Shadow(remap = false)
     protected abstract IBlockState setConnections(IBlockState state, IBlockAccess world, BlockPos pos);
 
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     private static PropertyInteger CONNECTIONS;
 
     private static final float H_SMALL = 0.045f;

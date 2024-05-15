@@ -21,16 +21,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
 
-@Mixin(value = EntityCovenWitch.class, remap = false)
+/**
+ Mixins:
+ [Bugfix] Fix quest number of items needed going into negatives
+ [Tweak] Introduce own loot table
+ */
+@Mixin(value = EntityCovenWitch.class)
 public abstract class EntityCovenWitchMixin extends EntityTameable {
 
-    @Shadow
+    @Shadow(remap = false)
     private CovenQuest quest;
 
-    @Shadow
+    @Shadow(remap = false)
     protected abstract Integer getQuestItemsNeeded();
 
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     protected abstract void setQuestItemsNeeded(Integer var1);
 
     private EntityCovenWitchMixin(World worldIn) {
@@ -61,7 +66,6 @@ public abstract class EntityCovenWitchMixin extends EntityTameable {
             at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/entity/passive/coven/EntityCovenWitch;setQuestItemsNeeded(Ljava/lang/Integer;)V"))
     public void WPsetQuestItemsNeeded(EntityCovenWitch instance, Integer _set___, Operation<Void> original) {
         if (ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_fixNegativeRequestAmount && _set___ < 0) {
-            WitcheryPatcher.logger.warn("Redirecting SET QUEST to 0");
             original.call(instance, Integer.valueOf(0));
         } else {
             original.call(instance, _set___);

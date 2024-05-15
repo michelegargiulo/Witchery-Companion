@@ -7,7 +7,11 @@ import net.minecraft.world.storage.loot.LootTableList;
 import net.msrandom.witchery.entity.passive.EntityCatFamiliar;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(value = EntityCatFamiliar.class, remap = false)
+/**
+ Mixins:
+ [Tweak] Introduce own loot table
+ */
+@Mixin(value = EntityCatFamiliar.class)
 public class EntityCatFamiliarMixin {
 
     protected ResourceLocation getLootTable() {

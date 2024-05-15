@@ -23,10 +23,10 @@ import java.util.UUID;
 
 /**
  Mixins:
- [Gameplay] Prevents Lord of Torment to teleport players into the Torment Dimension
- [Gameplay] Prevents Lord of Torment to generate loot
+ [Tweak] Prevents Lord of Torment to teleport players into the Torment Dimension
+ [Tweak] Prevents Lord of Torment to generate loot
  */
-@Mixin(value = EntityLordOfTorment.class, remap = false)
+@Mixin(value = EntityLordOfTorment.class)
 public class EntityLordOfTormentMixin extends EntityFlyingMob {
 
     private EntityLordOfTormentMixin(World world) {
@@ -35,7 +35,7 @@ public class EntityLordOfTormentMixin extends EntityFlyingMob {
 
     @Override
     public ResourceLocation getLootTable() {
-        return LootTables.LORD_OF_TORMENT;
+        return ModConfig.PatchesConfiguration.LootTweaks.lordOfTorment_tweakLootTable ? LootTables.LORD_OF_TORMENT : null;
     }
 
     @Final
@@ -53,7 +53,7 @@ public class EntityLordOfTormentMixin extends EntityFlyingMob {
     }*/
 
     @ModifyExpressionValue(method = "attackEntityFrom", remap = false,
-            at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/world/dimension/WitcheryDimension;isInDimension(Lnet/minecraft/entity/Entity;)Z"))
+            at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/world/dimension/WitcheryDimension;isInDimension(Lnet/minecraft/entity/Entity;)Z", remap = false))
     private boolean WPdisableTormentTP(boolean original) {
         Utils.logChat("Disabling torment: " + original + " - " + ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableTeleportation);
         return original && (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableTeleportation);

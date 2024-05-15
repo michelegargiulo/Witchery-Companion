@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  Mixins:
- [Feature] Allows each brew to fine-tune its application behaviour, preserving existing behaviour
+ [Tweak] Allows each brew to fine-tune its application behaviour, preserving existing behaviour
  */
 @Mixin(value = BrewActionEffect.class, remap = false)
 public abstract class BrewActionEffectMixin {

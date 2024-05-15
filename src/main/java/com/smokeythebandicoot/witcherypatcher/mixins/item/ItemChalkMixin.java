@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  Mixins:
  [Tweak] Set Item Chalk stack size to 1, to prevent accidental stacking. Should also fix a bug
  */
-@Mixin(value = ItemChalk.class, remap = false)
+@Mixin(value = ItemChalk.class)
 public class ItemChalkMixin extends ItemBlock {
 
     private ItemChalkMixin(Block block) {

@@ -18,10 +18,10 @@ import org.spongepowered.asm.mixin.Shadow;
  Mixins:
  [Bugfix] Breaking Sun Collector while Quartz Sphere or Sun Granade won't void the item, but drop it
  */
-@Mixin(value = BlockSunCollector.class, remap = false)
+@Mixin(value = BlockSunCollector.class)
 public abstract class BlockSunCollectorMixin extends Block {
 
-    @Shadow
+    @Shadow(remap = true)
     public abstract int getMetaFromState(IBlockState state);
 
     private BlockSunCollectorMixin(Material materialIn) {

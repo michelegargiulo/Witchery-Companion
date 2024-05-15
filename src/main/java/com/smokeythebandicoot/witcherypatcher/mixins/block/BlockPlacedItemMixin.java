@@ -28,7 +28,7 @@ import java.util.Random;
  Mixins:
  [Bugfix] Fix Placed Items not dropping when Altar block is broken below them
  */
-@Mixin(value = BlockPlacedItem.class, remap = false)
+@Mixin(value = BlockPlacedItem.class)
 public abstract class BlockPlacedItemMixin extends BlockContainer {
 
     private BlockPlacedItemMixin(Material materialIn) {

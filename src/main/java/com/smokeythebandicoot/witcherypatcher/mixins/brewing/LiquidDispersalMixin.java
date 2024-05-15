@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  Mixins:
  [Bugfix] Fix Cauldron Rituals with Liquid Disperal not spawning droplets
  */
-@Mixin(value = LiquidDispersal.class, remap = false)
+@Mixin(value = LiquidDispersal.class)
 public class LiquidDispersalMixin {
 
     @Inject(method = "onUpdateRitual", remap = false, at = @At("HEAD"), cancellable = true)

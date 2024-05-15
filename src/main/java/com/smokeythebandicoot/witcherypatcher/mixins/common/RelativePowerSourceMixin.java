@@ -16,11 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  [Bugfix] Fixes PowerSources being lost upon chunk unload/dimension switch. World object changes, and
     for Witchery purposes it is sufficient to check if the dimension has the same ID
  */
-@Mixin(value = PowerSources.RelativePowerSource.class, remap = false)
+@Mixin(value = PowerSources.RelativePowerSource.class)
 public class RelativePowerSourceMixin {
 
     @Final
-    @Shadow
+    @Shadow(remap = false)
     private IPowerSource powerSource;
 
     @Inject(method = "isInWorld", at = @At("HEAD"), remap = false, cancellable = true)

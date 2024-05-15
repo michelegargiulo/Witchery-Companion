@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  Mixins:
  [Bugfix] Fix Poppet rendering upside-down
  */
-@Mixin(value = RenderPoppetShelf.class, remap = false)
+@Mixin(value = RenderPoppetShelf.class)
 public class RenderPoppetShelfMixin {
 
     /*@WrapOperation(method = "render(Lnet/msrandom/witchery/block/entity/TileEntityPoppetShelf;DDDFIF)V", remap = true,
@@ -45,7 +45,7 @@ public class RenderPoppetShelfMixin {
     }*/
 
     @Inject(method = "render(Lnet/msrandom/witchery/block/entity/TileEntityPoppetShelf;DDDFIF)V", remap = true,
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/RenderManager;renderEntity(Lnet/minecraft/entity/Entity;DDDFFZ)V"))
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/RenderManager;renderEntity(Lnet/minecraft/entity/Entity;DDDFFZ)V", remap = true))
     public void WPrenderPoppetsUpsideUp(TileEntityPoppetShelf te, double x, double y, double z, float partialTicks, int destroyStage, float alpha, CallbackInfo ci) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.poppetShelf_fixUpsideDownPoppetRendering) {
             GlStateManager.translate(0.0f, 1.0f, 0.0f);

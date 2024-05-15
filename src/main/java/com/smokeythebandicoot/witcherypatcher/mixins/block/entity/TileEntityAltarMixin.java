@@ -38,28 +38,28 @@ import java.util.Set;
     broken and re-placed to be registered correctly again
  [Tweak] Great performance gain by caching Altar PowerSourceTable
  */
-@Mixin(value = TileEntityAltar.class, remap = false)
+@Mixin(value = TileEntityAltar.class)
 public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements IPowerSource {
 
-    @Shadow
+    @Shadow(remap = false)
     private float power;
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract void updatePower();
 
-    @Shadow
+    @Shadow(remap = false)
     private long lastPowerUpdate;
 
-    @Shadow
+    @Shadow(remap = false)
     private int enhancementLevel;
 
-    @Shadow
+    @Shadow(remap = false)
     private Set<Block> extraNatureIDs;
 
-    @Shadow
+    @Shadow(remap = false)
     private float maxPower;
 
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     private static int SCAN_DISTANCE;
 
     @Unique

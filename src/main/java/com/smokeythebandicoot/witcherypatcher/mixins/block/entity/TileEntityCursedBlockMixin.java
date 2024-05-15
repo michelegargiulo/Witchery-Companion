@@ -19,22 +19,22 @@ import java.util.UUID;
  Mixins:
  [Bugfix] Fix crash when adding or updating a curse to a trigger block
  */
-@Mixin(value = TileEntityCursedBlock.class, remap = false)
+@Mixin(value = TileEntityCursedBlock.class)
 public class TileEntityCursedBlockMixin extends WitcheryTileEntity {
 
-    @Shadow
+    @Shadow(remap = false)
     public BrewActionList actionList;
 
-    @Shadow
+    @Shadow(remap = false)
     public int count;
 
-    @Shadow
+    @Shadow(remap = false)
     public int duration;
 
-    @Shadow
+    @Shadow(remap = false)
     public int expansion;
 
-    @Shadow
+    @Shadow(remap = false)
     public UUID thrower;
 
     @Inject(method = "writeToNBT", remap = true,

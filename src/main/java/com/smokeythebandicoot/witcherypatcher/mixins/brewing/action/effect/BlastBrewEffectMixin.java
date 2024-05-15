@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     Nether Brick is added, the "doApplyToBlock" function is not called, but when the entity is hit, the
     resulting explosion is still set to damage terrain
  */
-@Mixin(value = BlastBrewEffect.class, remap = false)
+@Mixin(value = BlastBrewEffect.class)
 public class BlastBrewEffectMixin extends BrewActionEffect {
 
     // Method overrides Injected method in BrewActionEffectMixin

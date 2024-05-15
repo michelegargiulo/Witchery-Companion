@@ -32,18 +32,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  Mixins:
  [Bugfix] Disable moving TileEntities with Rite Of Moving Earth due to dupes, bugs and crashes
- [Gameplay] Blacklist for blocks that should not be moved by the Rite of Moving Earth
+ [Tweak] Blacklist for blocks that should not be moved by the Rite of Moving Earth
  */
-@Mixin(value = RiteEffectMovingEarth.class, remap = false)
+@Mixin(value = RiteEffectMovingEarth.class)
 public class RiteEffectMovingEarthMixin {
 
-    @Final
-    @Shadow
+    @Final @Shadow(remap = false)
     private int radius;
 
-    @Mutable
-    @Final
-    @Shadow
+    @Mutable @Final @Shadow(remap = false)
     private int height;
 
 
@@ -105,6 +102,7 @@ public class RiteEffectMovingEarthMixin {
 
     }
 
+    //TODO: Use @Redirect or @WrapOperation to redirect method calls instead of rewriting code
     @Unique
     protected void witchery_Patcher$drawFilledCircle(World world, BlockPos pos, int radius, boolean topLayer) {
         int x = radius;

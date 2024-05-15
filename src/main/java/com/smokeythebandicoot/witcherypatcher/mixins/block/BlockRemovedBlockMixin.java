@@ -19,10 +19,10 @@ import javax.annotation.Nullable;
  Mixins:
  [Bugfix] Brew of Tidal Hold suffocates entities that pass inside of the hole
  */
-@Mixin(value = BlockRemovedBlock.class, remap = false)
+@Mixin(value = BlockRemovedBlock.class)
 public abstract class BlockRemovedBlockMixin extends BlockContainer {
 
-    @Shadow
+    @Shadow(remap = true)
     public abstract TileEntity createNewTileEntity(World worldIn, int meta);
 
     private BlockRemovedBlockMixin(Material materialIn) {

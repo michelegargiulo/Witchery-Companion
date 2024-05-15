@@ -16,13 +16,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  Mixins:
- [Tweak] Disable Strength Ceiling. Kinda also a bugfix, as disabling the ceiling will
+ [Tweak] Disable Strength Ceiling. Kinda also a bugfix, as disabling the ceiling will fix quite some bugs regarding potion scaling not working
  */
-@Mixin(value = PotionBrewEffect.class, remap = false)
+@Mixin(value = PotionBrewEffect.class)
 public class PotionBrewEffectMixin {
 
 
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     private int strengthCeiling;
 
     @Inject(method = "applyPotionEffect(Lnet/minecraft/entity/EntityLivingBase;Lnet/msrandom/witchery/brewing/ModifiersEffect;Lnet/minecraft/potion/Potion;IZLnet/minecraft/entity/player/EntityPlayer;I)V",

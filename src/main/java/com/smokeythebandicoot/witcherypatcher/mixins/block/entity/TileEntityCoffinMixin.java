@@ -15,10 +15,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  Mixins:
  [Bugfix] Fix edge case where the coffin might crash the game when placed
  */
-@Mixin(value = TileEntityCoffin.class, remap = false)
+@Mixin(value = TileEntityCoffin.class)
 public abstract class TileEntityCoffinMixin extends TileEntity {
 
-    @Shadow
+    @Shadow(remap = false)
     private EnumDyeColor color;
 
     @Inject(method = "getColor", remap = false, at = @At("HEAD"), cancellable = true)

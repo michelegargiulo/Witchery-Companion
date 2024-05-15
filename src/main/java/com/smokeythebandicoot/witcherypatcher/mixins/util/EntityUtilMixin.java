@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  Mixins:
  [Bugfix] Prevent crashing game when null entity is called in pullTowards() method
  */
-@Mixin(value = EntityUtil.class, remap = false)
+@Mixin(value = EntityUtil.class)
 public class EntityUtilMixin {
 
     @Inject(method = "pullTowards", at = @At("HEAD"), remap = false, cancellable = true)

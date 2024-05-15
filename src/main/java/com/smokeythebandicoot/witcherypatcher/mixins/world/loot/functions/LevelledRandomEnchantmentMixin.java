@@ -11,6 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
+/**
+ Mixins:
+ [Bugfix] Fix Loot Function being called with a Null random, by returning the same input item with a fake enchantment
+    (used for Just Enough Resources loot table display in JEI interface)
+ */
 @Mixin(value = LevelledRandomEnchantment.class)
 public class LevelledRandomEnchantmentMixin {
 
@@ -24,6 +29,5 @@ public class LevelledRandomEnchantmentMixin {
             }
         }
     }
-
 
 }

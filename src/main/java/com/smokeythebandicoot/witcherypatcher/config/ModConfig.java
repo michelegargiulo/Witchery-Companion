@@ -98,20 +98,10 @@ public class ModConfig {
             @Config.Name("Brew of Tidal Hold - Fix Entity Suffocation")
             public static boolean tidalHold_fixEntitySuffocation = true;
 
-            @Config.Comment("Maximum harvest level that the brew is able to break. Harder blocks will be ignored. Set to -1 to disable (any block can be harvested)")
-            @Config.Name("Brew of Erosion - Tweak Maximum Harvest Level")
-            public static int erosion_tweakMaximumHL = -1;
-
-            @Config.Comment("If true, Obsidian will be broken and dropped in the world, otherwise it will just be destroyed as other blocks")
-            @Config.Name("Brew of Erosion - Tweak Obsidian Drop")
-            public static boolean erosion_tweakObsidianDrop = true;
-
-            @Config.Comment("List of blocks to never break, regardless of harvest level. NOTE: this can only LIMIT more blocks than Witchery already restricts. Format is domain:name@meta")
-            @Config.Name("Brew of Erosion - Tweak BlockState Blacklist")
-            public static String[] erosion_tweakBlockBlacklist = new String[] { };
-
-            @Config.Ignore
-            public static HashSet<IBlockState> stateBlacklist = new HashSet<>();
+            @Config.Comment("If true, gives CraftTweaker integration total control about which blocks can be mined or destroyed, " +
+                    "enabling a much more in-depth customizability. If set to True, but no script changes it, behaviour is default Witchery")
+            @Config.Name("Brew of Erosion - Tweak Effect With Crafttweaker")
+            public static boolean erosion_tweakEnableCrafttweaker = true;
         }
 
         public static class InfusionTweaks {
@@ -317,33 +307,8 @@ public class ModConfig {
         }
 
         public static void reloadConfig() {
-            reloadBrewOfErosionBlacklist();
             reloadRiteOfMovingEarthBlacklist();
             ConfigManager.sync(WitcheryPatcher.MODID, Config.Type.INSTANCE);
-        }
-
-        private static void reloadBrewOfErosionBlacklist() {
-            // Clear current configuration
-            PatchesConfiguration.BrewsTweaks.stateBlacklist = new HashSet<>();
-
-            // Re-add configuration
-            for (String entry : PatchesConfiguration.BrewsTweaks.erosion_tweakBlockBlacklist) {
-                String[] metaSplit = entry.split("@");
-                int meta = 0;
-                try {
-                    meta = metaSplit.length > 1 ? Integer.parseInt(metaSplit[1]) : 0;
-                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                    WitcheryPatcher.logger.warn("Could not parse blockstate - Invalid meta for entry: " + entry + ". Please fix your configs");
-                }
-
-                ResourceLocation rl = new ResourceLocation(metaSplit[0]);
-                if (!ForgeRegistries.BLOCKS.containsKey(rl)) {
-                    WitcheryPatcher.logger.warn("Could not parse blockstate - Block not found: " + entry + ". Please fix your configs");
-                }
-
-                Block block = ForgeRegistries.BLOCKS.getValue(rl);
-                PatchesConfiguration.BrewsTweaks.stateBlacklist.add(block.getStateFromMeta(meta));
-            }
         }
 
         private static void reloadRiteOfMovingEarthBlacklist() {

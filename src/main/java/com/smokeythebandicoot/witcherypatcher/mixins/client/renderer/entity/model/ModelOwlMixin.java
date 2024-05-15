@@ -17,16 +17,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = ModelOwl.class, remap = false)
+@Mixin(value = ModelOwl.class)
 public abstract class ModelOwlMixin extends ModelBase {
 
-    @Shadow
+    @Shadow(remap = false)
     public ModelRenderer body;
 
-    @Shadow
+    @Shadow(remap = false)
     public ModelRenderer leftLeg;
 
-    @Shadow
+    @Shadow(remap = false)
     public ModelRenderer rightLeg;
 
     @Shadow

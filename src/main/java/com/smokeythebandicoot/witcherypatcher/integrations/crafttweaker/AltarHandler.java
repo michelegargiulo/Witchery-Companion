@@ -26,7 +26,7 @@ public class AltarHandler {
 
     public static HashMap<Block, AltarPowerSource> addingMap = new HashMap<>();
 
-    public static List<Block> removalList = new ArrayList();
+    public static List<Block> removalList = new ArrayList<>();
 
     @ZenMethod
     @ZenDoc(value="Registers a new custom Power Source")

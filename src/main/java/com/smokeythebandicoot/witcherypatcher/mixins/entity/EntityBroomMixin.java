@@ -22,37 +22,37 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  [Bugfix] Fix EntityBroom freezing the game when breaking
  [Tweak] Tweak Broom Maximum Health
  */
-@Mixin(value = EntityBroom.class, remap = false)
+@Mixin(value = EntityBroom.class)
 public abstract class EntityBroomMixin extends Entity {
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract void setForwardDirection(int par1);
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract int getForwardDirection();
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract void setTimeSinceHit(int par1);
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract void setDamageTaken(float par1);
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract float getDamageTaken();
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract EnumDyeColor getBrushColor();
 
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     private static DataParameter<Float> DAMAGE;
 
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     private static DataParameter<Integer> DIRECTION;
 
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     private static DataParameter<Integer> HIT;
 
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     private static DataParameter<Integer> BRUSH_COLOR;
 
     private EntityBroomMixin(World worldIn) {

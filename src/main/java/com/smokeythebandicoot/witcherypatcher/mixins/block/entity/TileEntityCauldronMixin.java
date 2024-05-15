@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
  Mixins:
  [Integration] Crafttweaker integration to add new Heat Sources to the Witch's Cauldron
  */
-@Mixin(value = TileEntityCauldron.class, remap = false)
+@Mixin(value = TileEntityCauldron.class)
 public class TileEntityCauldronMixin {
 
 
@@ -24,7 +24,7 @@ public class TileEntityCauldronMixin {
      * as the "true" return value for the method. Anything else is considered "false"
      */
     @WrapOperation(method = "update", remap = true,
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/block/state/IBlockState;getBlock()Lnet/minecraft/block/Block;"))
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/block/state/IBlockState;getBlock()Lnet/minecraft/block/Block;", remap = true))
     public Block WPallowOtherHeatSources(IBlockState instance, Operation<Block> original) {
         return CauldronHandler.isHeatSource(instance) ? Blocks.FIRE : Blocks.AIR;
     }

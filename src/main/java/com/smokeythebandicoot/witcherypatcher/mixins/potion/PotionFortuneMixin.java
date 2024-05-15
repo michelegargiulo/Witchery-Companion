@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * [Bugfix] Fix Fortune Brew not working because of a wrong (inverted) TileEntity == null check. Basically,
  * it would only have worked if the block had a TileEntity, instead of not having it
  */
-@Mixin(value = PotionFortune.class, remap = false)
+@Mixin(value = PotionFortune.class)
 public class PotionFortuneMixin {
 
     @Inject(method = "onHarvestDrops", remap = false, cancellable = true, at = @At("HEAD"))

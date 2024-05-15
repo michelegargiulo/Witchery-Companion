@@ -15,11 +15,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(value = GuiHerbologyBook.class, remap = false)
+@Mixin(value = GuiHerbologyBook.class)
 public abstract class GuiHerbologyBookMixin extends WitcheryGuiDynamicBook {
 
     @Final
-    @Shadow
+    @Shadow(remap = false)
     public static List PAGES;
 
     private GuiHerbologyBookMixin(ItemStack stack, EnumHand hand, boolean b) {
@@ -27,7 +27,7 @@ public abstract class GuiHerbologyBookMixin extends WitcheryGuiDynamicBook {
     }
 
     @Inject(method = "drawScreen", remap = false, cancellable = true,
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;scale(FFF)V"))
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;scale(FFF)V", remap = true))
     public void WPfixItemRendering(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
 
         if (ModConfig.PatchesConfiguration.BookTweaks.herbologyBook_fixPlantRendering) {
@@ -41,6 +41,6 @@ public abstract class GuiHerbologyBookMixin extends WitcheryGuiDynamicBook {
         }
     }
 
-    @Shadow
+    @Shadow(remap = false)
     protected abstract int getLastPage();
 }
