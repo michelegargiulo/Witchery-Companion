@@ -2,8 +2,9 @@
   "required": true,
   "package": "com.smokeythebandicoot.witcherypatcher.mixins",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "mixins.witcherypatcher.refmap.json",
+  "refmap": "${mixin_refmap}",
   "mixins": [
+    "block.BlockMandrakeCropMixin",
     "block.BlockPlacedItemMixin",
     "block.BlockRemovedBlockMixin",
     "block.BlockStockadeMixin",

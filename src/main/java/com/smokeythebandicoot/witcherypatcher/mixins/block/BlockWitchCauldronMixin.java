@@ -77,8 +77,6 @@ public abstract class BlockWitchCauldronMixin {
                                          float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir
                                          //, @Local(ordinal = 0) TileEntityCauldron cauldron, @Local(ordinal = 0) ItemStack heldStack
                                          ) {
-        Utils.logChat("Fix bucket void");
-
         if (ModConfig.PatchesConfiguration.BlockTweaks.witchsCauldron_fixBucketVoidingBrew) {
 
             TileEntityCauldron cauldron = WitcheryTileEntities.CAULDRON.getAt(world, pos);

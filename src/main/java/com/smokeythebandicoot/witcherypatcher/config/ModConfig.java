@@ -129,6 +129,19 @@ public class ModConfig {
             @Config.Name("Altar - Fix Power Source Persistency")
             public static boolean altar_fixPowerSourcePersistency = true;
 
+            @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
+                    "at least they should not crash the game as often.")
+            @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")
+            public static boolean cursedBlock_fixNullActionListCrash = true;
+
+            @Config.Comment("Fix an edge case where the coffin would not have a color associated with it, causing a crash.")
+            @Config.Name("Coffin - Fix Edge Case Crash")
+            public static boolean coffin_fixEdgeCrash = true;
+
+            @Config.Comment("Fix true, it will prevent Mandrake entities from spawning when harvesting non-mature mandrake crops.")
+            @Config.Name("Mandrake Crop - Fix Drop Even When Not Mature")
+            public static boolean mandrakeCrop_fixMandrakeSpawningNotMature = true;
+
             @Config.Comment("Fix Arthana, Pentacle and other items placed on top of the altar not dropping when " +
                     "the altar block below them is broken.")
             @Config.Name("Placed Items - Fix No Drops")
@@ -144,15 +157,6 @@ public class ModConfig {
                     "box to make player head not get as close.")
             @Config.Name("Stockade - Fix Bounding Box")
             public static boolean stockade_fixBoundingBox = true;
-
-            @Config.Comment("Fix an edge case where the coffin would not have a color associated with it, causing a crash.")
-            @Config.Name("Coffin - Fix Edge Case Crash")
-            public static boolean coffin_fixEdgeCrash = true;
-
-            @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
-                    "at least they should not crash the game as often.")
-            @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")
-            public static boolean cursedBlock_fixNullActionListCrash = true;
 
             @Config.Comment("If true, fix player bottling skill increase, which won't happen otherwise.")
             @Config.Name("Witch's Cauldron - Fix Bottling Skill Increase")

@@ -14,6 +14,7 @@ jar in the resource packs folder.
   - **[Altar]** Fix client crash when the player joins a world where Placed Items are within view in the first frame
   - **[Coffin]** Fix edge-case crash when placing the Coffin across chunk boundaries
   - **[Cursed Blocks]** Fix crash when using trigger dispersal. They still don't work, but they should not crash the game
+  - **[Mandrake Crop]** Fix Mandrake spawning when crop is not mature
   - **[Poppet Shelf]** Fix upside-down poppet rendering
   - **[Stockade]** Fix weird rendering when player head is too close to the stockade
   - **[Witch's Cauldron]** Fix bottling skill being impossible to increase
