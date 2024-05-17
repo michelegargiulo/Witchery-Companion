@@ -32,37 +32,41 @@ public class ModConfig {
         @Config.Name("Common Tweaks")
         public static CommonTweaks common;
 
-        @Config.Comment("Configuration for fixes related to brews and brew effects")
+        @Config.Comment("Configuration for patches related to brews and brew effects")
         @Config.Name("Brews Tweaks")
         public static BrewsTweaks brews;
 
-        @Config.Comment("Configuration for fixes related to infusions")
+        @Config.Comment("Configuration for patches related to infusions")
         @Config.Name("Infusion Tweaks")
         public static InfusionTweaks infusions;
 
-        @Config.Comment("Configuration for bugs related to Blocks")
+        @Config.Comment("Configuration for patches related to Blocks")
         @Config.Name("Block Tweaks")
         public static BlockTweaks blocks;
 
-        @Config.Comment("Configuration for bugs related to Items")
+        @Config.Comment("Configuration for patches related to Items")
         @Config.Name("Item Tweaks")
         public static ItemTweaks items;
 
-        @Config.Comment("Configuration for bugs related to Rites")
+        @Config.Comment("Configuration for patches related to Rites")
         @Config.Name("Rites Tweaks")
         public static RitesTweaks rites;
 
-        @Config.Comment("Configuration for bugs related to Potions")
+        @Config.Comment("Configuration for patches related to Potions")
         @Config.Name("Potion Tweaks")
         public static PotionTweaks potions;
 
-        @Config.Comment("Configuration for bugs related to Books")
+        @Config.Comment("Configuration for patches related to Books")
         @Config.Name("Book Tweaks")
         public static BookTweaks books;
 
-        @Config.Comment("Configuration for bugs related to Entities")
+        @Config.Comment("Configuration for patches related to Entities")
         @Config.Name("Entity Tweaks")
         public static EntityTweaks entities;
+
+        @Config.Comment("Configuration for patches related to Loot")
+        @Config.Name("Loot Tweaks")
+        public static LootTweaks loot;
 
 
         public static class BrewsTweaks {
@@ -137,6 +141,10 @@ public class ModConfig {
             @Config.Comment("Fix an edge case where the coffin would not have a color associated with it, causing a crash.")
             @Config.Name("Coffin - Fix Edge Case Crash")
             public static boolean coffin_fixEdgeCrash = true;
+
+            @Config.Comment("Fix crash when one of the coffin pieces is moved by a piston.")
+            @Config.Name("Coffin - Fix Crash When Moved By Piston")
+            public static boolean coffin_fixPistonMoveCrash = true;
 
             @Config.Comment("Fix true, it will prevent Mandrake entities from spawning when harvesting non-mature mandrake crops.")
             @Config.Name("Mandrake Crop - Fix Drop Even When Not Mature")
@@ -223,6 +231,25 @@ public class ModConfig {
 
         public static class EntityTweaks {
 
+            @Config.Comment("If true, enables all the Baba Yaga tweaks")
+            @Config.Name("Baba Yaga - Tweak Enable Custom Behaviour")
+            public static boolean babaYaga_enableTweaks = false;
+
+            @Config.RangeDouble(min = 1.0, max = 256.0)
+            @Config.Comment("Sets the max distance within Baba Yaga will give items to their owner")
+            @Config.Name("Baba Yaga - Tweak Give Loot Max Distance")
+            public static double babaYaga_tweakLivingDropMaxDistance = 64.0;
+
+            @Config.RangeInt(min = 1, max = 10000)
+            @Config.Comment("Baba Yaga will give loot to its owner every N ticks. Set here the interval")
+            @Config.Name("Baba Yaga - Tweak Give Loot Interval")
+            public static int babaYaga_tweakGiveLootTickInterval = 100;
+
+            @Config.RangeInt(min = 1, max = 10000)
+            @Config.Comment("Baba Yaga will give loot up until this amount of ticks, then they'll vanish")
+            @Config.Name("Baba Yaga - Tweak Give Loot Lifespan")
+            public static int babaYaga_tweakMaxGiveTicks = 600;
+
             @Config.Comment("If true, fixes the problem where Coven Witches require certain amount of items as a quest, but if" +
                     "the player holds more items than needed, the quest goes into negative item amount requirement")
             @Config.Name("Coven Witch - Fix Negative Request Amount")
@@ -240,9 +267,11 @@ public class ModConfig {
             @Config.Name("Lord of Torment - Tweak Disable Teleportation to Torment")
             public static boolean lordOfTorment_tweakDisableTeleportation = false;
 
-            @Config.Comment("If true, Lord of Torment won't drop hardcoded loot (Enchanted Books, Demon Heart and Soul of the Torment Brew)")
-            @Config.Name("Lord of Torment - Tweak Disable Hardcoded Loot")
-            public static boolean lordOfTorment_tweakDisableLoot = false;
+            @Config.Comment("If true, when interacting with Lilith with an Enchantable item they will act as if with an " +
+                    "empty hand. Hint: it's possible to use a resource pack to change the message that lilith says to " +
+                    "the player that right-clicks with an enchantable item, to avoid confusing players.")
+            @Config.Name("Lilith - Tweak Disable Enchanting")
+            public static boolean lilith_tweakDisableEnchanting = false;
 
             @Config.Comment("If true, allows Owls to sit. (No visual change, but the owl won't follow the owner)")
             @Config.Name("Owl - Fix Sitting Behaviour")
@@ -270,17 +299,33 @@ public class ModConfig {
 
         public static class LootTweaks {
 
+            @Config.Comment("Baba Yaga will drop loot according to its Loot Table (witchery:entities/baba_yaga_death)")
+            @Config.Name("Baba Yaga - Tweak Drop Loot by Table")
+            public static boolean babaYaga_tweakLootTable = false;
+
+            @Config.Comment("Baba Yaga will give loot to its owner based on a Loot Table (witchery:entities/baba_yaga_owner)")
+            @Config.Name("Baba Yaga - Tweak Give By Loot Table")
+            public static boolean babaYaga_tweakGiveDropLootTable = false;
+
             @Config.Comment("If true, Coven Witch will drop loot according to its own Loot Table, instead of " +
                     "Vanilla Witch loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
                     "mods to vanilla Witch loot table, will not reflect on Coven Witches")
             @Config.Name("Coven Witch - Tweak Give Own Loot Table")
             public static boolean covenWitch_tweakOwnLootTable = false;
 
+            @Config.Comment("If true, Demon will drop loot according to its Loot Table (witchery:entities/demon)")
+            @Config.Name("Demon - Tweak Drop Loot by Table")
+            public static boolean demon_tweakLootTable = false;
+
             @Config.Comment("If true, Cat Familiar will drop loot according to its own Loot Table, instead of " +
                     "Vanilla Ocelot loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
                     "mods to vanilla Ocelot loot table, will not reflect on Cat familiars")
             @Config.Name("Cat Familiar - Tweak Give Own Loot Table")
             public static boolean familiarCat_tweakOwnLootTable = false;
+
+            @Config.Comment("If true, Death will drop loot according to its Loot Table (witchery:entities/death)")
+            @Config.Name("Death - Tweak Drop Loot by Table")
+            public static boolean death_tweakLootTable = false;
 
             @Config.Comment("If true, Goblin Gulg will drop loot according to its Loot Table (witchery:entities/goblin_gulg)")
             @Config.Name("Gulg - Tweak Drop Loot by Table")

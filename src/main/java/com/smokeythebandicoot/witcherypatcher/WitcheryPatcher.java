@@ -23,7 +23,7 @@ import java.util.List;
 public class WitcheryPatcher implements ILateMixinLoader {
 
     public static final String MODID = "witcherypatcher";
-    public static final String MODNAME = "Witchery Patcher";
+    public static final String MODNAME = "Witchery Companion";
     public static final String MODVERSION = "1.0";
     public static final String MODDESCRIPTION = "A mod to fix bugs and performance issues in Witchery:Resurrected";
     public static final String MODAUTHOR = "SmokeyTheBandicoot";

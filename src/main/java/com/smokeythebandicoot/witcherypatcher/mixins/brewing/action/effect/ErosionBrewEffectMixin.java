@@ -36,7 +36,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  [Tweak] Complete CraftTweaker integration for behavious customization
  */
 @Mixin(value = ErosionBrewEffect.class)
-public class ErosionBrewEffectMixin extends BrewActionEffect {
+public abstract class ErosionBrewEffectMixin extends BrewActionEffect {
     private ErosionBrewEffectMixin(BrewEffectSerializer<?> serializer, boolean invertible) {
         super(serializer, invertible);
     }

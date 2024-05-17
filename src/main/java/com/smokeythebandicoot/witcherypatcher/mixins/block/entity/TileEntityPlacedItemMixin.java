@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  [Bugfix] Fix rendering crash when Placed Item are within players view within the first frame after world loading
  */
 @Mixin(value = TileEntityPlacedItem.class)
-public class TileEntityPlacedItemMixin {
+public abstract class TileEntityPlacedItemMixin {
 
 
     @Shadow(remap = false)

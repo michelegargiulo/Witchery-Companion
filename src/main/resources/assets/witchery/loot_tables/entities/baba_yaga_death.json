@@ -1,0 +1,77 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "witchery:spectral_dust"
+        },
+        {
+          "type": "item",
+          "name": "witchery:bat_wool"
+        },
+        {
+          "type": "item",
+          "name": "witchery:frogs_toe"
+        },
+        {
+          "type": "item",
+          "name": "witchery:owlets_wing"
+        },
+        {
+          "type": "item",
+          "name": "witchery:dog_tongue"
+        },
+        {
+          "type": "item",
+          "name": "witchery:vines_brew"
+        },
+        {
+          "type": "item",
+          "name": "witchery:sprouting_brew"
+        },
+        {
+          "type": "item",
+          "name": "witchery:hitchcock_brew"
+        },
+        {
+          "type": "item",
+          "name": "witchery:cursed_leaping_brew"
+        },
+        {
+          "type": "item",
+          "name": "witchery:frogs_tongue_brew"
+        }
+      ]
+    },
+    {
+      "name": "babas_hat",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "witchery:babas_hat"
+        }
+      ]
+    },
+    {
+      "name": "book",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:book",
+          "functions": [
+            {
+              "function": "witchery:levelled_random_enchantment",
+              "level": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

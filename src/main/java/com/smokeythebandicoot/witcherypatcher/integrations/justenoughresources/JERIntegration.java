@@ -28,7 +28,11 @@ public class JERIntegration {
         IMobRegistry jerMobRegistry = jerApi.getMobRegistry();
         World jerWorld = jerApi.getWorld();
 
-        // Default Witchery
+
+        // ==================================================================================
+        // ================================ Default Witchery ================================
+        // ==================================================================================
+
         jerMobRegistry.register(new EntityHellhound(jerWorld), LootTables.HELLHOUND);
 
         jerMobRegistry.register(new EntityDemon(jerWorld), LootTables.DEMON);
@@ -67,13 +71,27 @@ public class JERIntegration {
         jerMobRegistry.register(new EntityWitchHunter(jerWorld), LootTables.WITCH_HUNTER);
 
 
-        // Custom registers
-        jerMobRegistry.register(new EntityLordOfTorment(jerWorld), LootTables.LORD_OF_TORMENT);
-        jerMobRegistry.registerRenderHook(EntityLordOfTorment.class, (renderInfo, entityLivingBase) -> {
-            GlStateManager.scale(0.7f, 0.7f, 0.7f);
+
+        // ==================================================================================
+        // ================================ Custom registers ================================
+        // ==================================================================================
+
+        jerMobRegistry.register(new EntityBabaYaga(jerWorld), LootTables.BABA_YAGA_DEATH);
+        jerMobRegistry.registerRenderHook(EntityBabaYaga.class, (renderInfo, entityLivingBase) -> {
             GlStateManager.translate(0.0f, -0.35f, 0.0f);
+            GlStateManager.scale(0.75f, 0.75f, 0.75f);
             return renderInfo;
         });
+
+        jerMobRegistry.register(new EntityCatFamiliar(jerWorld),
+                ModConfig.PatchesConfiguration.LootTweaks.familiarCat_tweakOwnLootTable ?
+                        LootTables.FAMILIAR_CAT : LootTableList.ENTITIES_OCELOT);
+
+        jerMobRegistry.register(new EntityCovenWitch(jerWorld),
+                ModConfig.PatchesConfiguration.LootTweaks.covenWitch_tweakOwnLootTable ?
+                        LootTables.COVEN_WITCH : LootTableList.ENTITIES_WITCH);
+
+        jerMobRegistry.register(new EntityDeath(jerWorld), LootTables.DEATH);
 
         jerMobRegistry.register(new EntityGoblinMog(jerWorld), LootTables.GOBLIN_MOG);
         jerMobRegistry.registerRenderHook(EntityGoblinMog.class, (renderInfo, entityLivingBase) -> {
@@ -86,14 +104,6 @@ public class JERIntegration {
             GlStateManager.translate(0.0f, -0.35f, 0.0f);
             return renderInfo;
         });
-
-        jerMobRegistry.register(new EntityCovenWitch(jerWorld),
-                ModConfig.PatchesConfiguration.LootTweaks.covenWitch_tweakOwnLootTable ?
-                        LootTables.COVEN_WITCH : LootTableList.ENTITIES_WITCH);
-
-        jerMobRegistry.register(new EntityCatFamiliar(jerWorld),
-                ModConfig.PatchesConfiguration.LootTweaks.familiarCat_tweakOwnLootTable ?
-                LootTables.FAMILIAR_CAT : LootTableList.ENTITIES_OCELOT);
 
     }
 

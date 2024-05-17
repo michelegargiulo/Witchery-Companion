@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * it would only have worked if the block had a TileEntity, instead of not having it
  */
 @Mixin(value = PotionFortune.class)
-public class PotionFortuneMixin {
+public abstract class PotionFortuneMixin {
 
     @Inject(method = "onHarvestDrops", remap = false, cancellable = true, at = @At("HEAD"))
     public void WPfixTileEntityInvertedCheck(World world, BlockEvent.HarvestDropsEvent event, int amplifier, CallbackInfo ci) {

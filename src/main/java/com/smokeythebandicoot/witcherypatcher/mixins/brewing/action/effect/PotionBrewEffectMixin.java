@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  [Tweak] Disable Strength Ceiling. Kinda also a bugfix, as disabling the ceiling will fix quite some bugs regarding potion scaling not working
  */
 @Mixin(value = PotionBrewEffect.class)
-public class PotionBrewEffectMixin {
+public abstract class PotionBrewEffectMixin {
 
 
     @Shadow(remap = false) @Final

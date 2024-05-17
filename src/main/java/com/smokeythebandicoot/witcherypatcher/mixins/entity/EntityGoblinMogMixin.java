@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  [Tweak] Introduct own loot table
  */
 @Mixin(value = EntityGoblinMog.class, remap = false)
-public class EntityGoblinMogMixin extends EntityMob {
+public abstract class EntityGoblinMogMixin extends EntityMob {
 
     private EntityGoblinMogMixin(World worldIn) {
         super(worldIn);

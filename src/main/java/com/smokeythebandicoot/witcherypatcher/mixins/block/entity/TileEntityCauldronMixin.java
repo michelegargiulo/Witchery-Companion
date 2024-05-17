@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
  [Integration] Crafttweaker integration to add new Heat Sources to the Witch's Cauldron
  */
 @Mixin(value = TileEntityCauldron.class)
-public class TileEntityCauldronMixin {
+public abstract class TileEntityCauldronMixin {
 
 
     /** Since Witchery has hardcoded check to if the block below is FIRE, we will use this

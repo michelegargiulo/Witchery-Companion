@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
  [Bugfix] Fix Spectral Stones exploit that trapped entities can be released indefinitely
  */
 @Mixin(value = ItemSpectralStone.class)
-public class ItemSpectralStoneMixin {
+public abstract class ItemSpectralStoneMixin {
 
     @WrapOperation(method = "onPlayerStoppedUsing", remap = true,
     at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;splitStack(I)Lnet/minecraft/item/ItemStack;", remap = true))

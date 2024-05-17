@@ -1,0 +1,81 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "name": "bone",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:bone",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 5,
+                "max": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "skull",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:skull"
+        }
+      ]
+    },
+    {
+      "name": "sword",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:diamond_sword",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "witchery:levelled_random_enchantment",
+              "level": 5
+            }
+          ]
+        },
+        {
+          "type": "empty",
+          "weight": 75
+        }
+      ]
+    },
+    {
+      "name": "other",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "loot_table",
+          "name": "witchery:entities/death_group_1"
+        },
+        {
+          "type": "item",
+          "name": "witchery:deaths_hood"
+        },
+        {
+          "type": "item",
+          "name": "witchery:deaths_robe"
+        },
+        {
+          "type": "item",
+          "name": "witchery:deaths_footwear"
+        },
+        {
+          "type": "item",
+          "name": "witchery:deaths_hand"
+        }
+      ]
+    }
+  ]
+}

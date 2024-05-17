@@ -58,11 +58,11 @@
       "entries": [
         {
           "type": "item",
-          "name": "minecraft:enchanted_book",
+          "name": "minecraft:book",
           "functions": [
             {
               "function": "witchery:levelled_random_enchantment",
-              "level": 5
+              "level": 1
             }
           ]
         }
@@ -74,11 +74,11 @@
       "entries": [
         {
         "type": "item",
-        "name": "minecraft:enchanted_book",
+        "name": "minecraft:book",
         "functions": [
             {
               "function": "witchery:levelled_random_enchantment",
-              "level": 5
+              "level": 2
             }
           ]
         }

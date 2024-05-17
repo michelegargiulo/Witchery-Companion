@@ -35,7 +35,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  [Tweak] Blacklist for blocks that should not be moved by the Rite of Moving Earth
  */
 @Mixin(value = RiteEffectMovingEarth.class)
-public class RiteEffectMovingEarthMixin {
+public abstract class RiteEffectMovingEarthMixin {
 
     @Final @Shadow(remap = false)
     private int radius;

@@ -27,7 +27,7 @@ import java.util.UUID;
  [Tweak] Prevents Lord of Torment to generate loot
  */
 @Mixin(value = EntityLordOfTorment.class)
-public class EntityLordOfTormentMixin extends EntityFlyingMob {
+public abstract class EntityLordOfTormentMixin extends EntityFlyingMob {
 
     private EntityLordOfTormentMixin(World world) {
         super(world);
@@ -38,24 +38,9 @@ public class EntityLordOfTormentMixin extends EntityFlyingMob {
         return ModConfig.PatchesConfiguration.LootTweaks.lordOfTorment_tweakLootTable ? LootTables.LORD_OF_TORMENT : null;
     }
 
-    @Final
-    @Shadow(remap = false)
-    private final Set<UUID> attackers = new HashSet<>();
-
-    /*@Inject(method = "attackEntityFrom", cancellable = true, remap = true,
-            at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/entity/EntityFlyingMob;attackEntityFrom(Lnet/minecraft/util/DamageSource;F)Z"))
-    private void WPattackEntityFrom(DamageSource source, float damage, CallbackInfoReturnable<Boolean> cir) {
-        if (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableTeleportation) {
-            float damageCap = source instanceof DemonicDamageSource ? 8.0F : 5.0F;
-            boolean damaged = super.attackEntityFrom(source, WitcheryUtils.capAround(damage, damageCap));
-            cir.setReturnValue(damaged);
-        }
-    }*/
-
     @ModifyExpressionValue(method = "attackEntityFrom", remap = false,
             at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/world/dimension/WitcheryDimension;isInDimension(Lnet/minecraft/entity/Entity;)Z", remap = false))
     private boolean WPdisableTormentTP(boolean original) {
-        Utils.logChat("Disabling torment: " + original + " - " + ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableTeleportation);
         return original && (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableTeleportation);
     }
 

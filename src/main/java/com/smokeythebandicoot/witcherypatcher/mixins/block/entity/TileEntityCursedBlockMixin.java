@@ -20,7 +20,7 @@ import java.util.UUID;
  [Bugfix] Fix crash when adding or updating a curse to a trigger block
  */
 @Mixin(value = TileEntityCursedBlock.class)
-public class TileEntityCursedBlockMixin extends WitcheryTileEntity {
+public abstract class TileEntityCursedBlockMixin extends WitcheryTileEntity {
 
     @Shadow(remap = false)
     public BrewActionList actionList;

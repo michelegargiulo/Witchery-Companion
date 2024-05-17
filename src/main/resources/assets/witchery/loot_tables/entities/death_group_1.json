@@ -1,0 +1,24 @@
+{
+  "pools": [
+    {
+      "name": "saddle",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:saddle"
+        }
+      ]
+    },
+    {
+      "name": "binkys_skull",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "witchery:binkys_skull"
+        }
+      ]
+    }
+  ]
+}

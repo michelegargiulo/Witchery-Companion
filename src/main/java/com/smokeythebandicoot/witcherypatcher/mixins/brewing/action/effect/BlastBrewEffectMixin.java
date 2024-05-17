@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     resulting explosion is still set to damage terrain
  */
 @Mixin(value = BlastBrewEffect.class)
-public class BlastBrewEffectMixin extends BrewActionEffect {
+public abstract class BlastBrewEffectMixin extends BrewActionEffect {
 
     // Method overrides Injected method in BrewActionEffectMixin
     protected boolean witchery_Patcher$hasForceApplyToBlocks() {

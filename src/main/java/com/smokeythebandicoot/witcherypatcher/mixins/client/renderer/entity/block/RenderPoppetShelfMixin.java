@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  [Bugfix] Fix Poppet rendering upside-down
  */
 @Mixin(value = RenderPoppetShelf.class)
-public class RenderPoppetShelfMixin {
+public abstract class RenderPoppetShelfMixin {
 
     /*@WrapOperation(method = "render(Lnet/msrandom/witchery/block/entity/TileEntityPoppetShelf;DDDFIF)V", remap = true,
         at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/RenderManager;renderEntity(Lnet/minecraft/entity/Entity;DDDFFZ)V"))

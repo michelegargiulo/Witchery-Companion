@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  [Bugfix] Fixes brew of frogs tongue crashing null entity being passed if player drinks the brew
  */
 @Mixin(value = FrogsTongueBrewEffect.class)
-public class FrogsTongueBrewEffectMixin extends BrewActionEffect {
+public abstract class FrogsTongueBrewEffectMixin extends BrewActionEffect {
     private FrogsTongueBrewEffectMixin(BrewEffectSerializer<?> serializer, boolean invertible) {
         super(serializer, invertible);
     }

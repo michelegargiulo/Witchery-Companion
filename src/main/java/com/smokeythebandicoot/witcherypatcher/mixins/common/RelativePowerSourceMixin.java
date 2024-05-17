@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
     for Witchery purposes it is sufficient to check if the dimension has the same ID
  */
 @Mixin(value = PowerSources.RelativePowerSource.class)
-public class RelativePowerSourceMixin {
+public abstract class RelativePowerSourceMixin {
 
     @Final
     @Shadow(remap = false)

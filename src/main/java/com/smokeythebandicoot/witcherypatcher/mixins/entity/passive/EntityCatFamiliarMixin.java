@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
  [Tweak] Introduce own loot table
  */
 @Mixin(value = EntityCatFamiliar.class)
-public class EntityCatFamiliarMixin {
+public abstract class EntityCatFamiliarMixin {
 
     protected ResourceLocation getLootTable() {
         if (ModConfig.PatchesConfiguration.LootTweaks.familiarCat_tweakOwnLootTable) {
