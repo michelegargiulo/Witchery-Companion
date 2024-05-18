@@ -317,6 +317,10 @@ public class ModConfig {
             @Config.Name("Demon - Tweak Drop Loot by Table")
             public static boolean demon_tweakLootTable = false;
 
+            @Config.Comment("If true, Ent will drop loot according to its Loot Table (witchery:entities/ent)")
+            @Config.Name("Ent - Tweak Drop Loot by Table")
+            public static boolean ent_tweakLootTable = false;
+
             @Config.Comment("If true, Cat Familiar will drop loot according to its own Loot Table, instead of " +
                     "Vanilla Ocelot loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
                     "mods to vanilla Ocelot loot table, will not reflect on Cat familiars")

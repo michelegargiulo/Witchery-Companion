@@ -91,6 +91,7 @@ jar in the resource packs folder.
 - Finish JER Integration
 - Squishing all bugs
 - Tinkers Construct / Construct Armory integration (Armor traits or tools that can be used in place of Witchery ones)
+- JEI Handlers for as many things as possible (Altar Power providers, Goblin trades, Baba Yaga drops, etc)
 
 ### Help Wanted
 - Owl AI

@@ -79,7 +79,7 @@ public class JERIntegration {
         jerMobRegistry.register(new EntityBabaYaga(jerWorld), LootTables.BABA_YAGA_DEATH);
         jerMobRegistry.registerRenderHook(EntityBabaYaga.class, (renderInfo, entityLivingBase) -> {
             GlStateManager.translate(0.0f, -0.35f, 0.0f);
-            GlStateManager.scale(0.75f, 0.75f, 0.75f);
+            GlStateManager.scale(0.7f, 0.7f, 0.7f);
             return renderInfo;
         });
 
@@ -92,6 +92,10 @@ public class JERIntegration {
                         LootTables.COVEN_WITCH : LootTableList.ENTITIES_WITCH);
 
         jerMobRegistry.register(new EntityDeath(jerWorld), LootTables.DEATH);
+        jerMobRegistry.registerRenderHook(EntityDeath.class, (renderInfo, entityLivingBase) -> {
+            GlStateManager.translate(0.0f, -0.35f, 0.0f);
+            return renderInfo;
+        });
 
         jerMobRegistry.register(new EntityGoblinMog(jerWorld), LootTables.GOBLIN_MOG);
         jerMobRegistry.registerRenderHook(EntityGoblinMog.class, (renderInfo, entityLivingBase) -> {
@@ -102,6 +106,13 @@ public class JERIntegration {
         jerMobRegistry.register(new EntityGoblinGulg(jerWorld), LootTables.GOBLIN_GULG);
         jerMobRegistry.registerRenderHook(EntityGoblinGulg.class, (renderInfo, entityLivingBase) -> {
             GlStateManager.translate(0.0f, -0.35f, 0.0f);
+            return renderInfo;
+        });
+
+        jerMobRegistry.register(new EntityEnt(jerWorld), LootTables.ENT);
+        jerMobRegistry.registerRenderHook(EntityEnt.class, (renderInfo, entityLivingBase) -> {
+            GlStateManager.translate(0.0f, -0.35f, 0.0f);
+            GlStateManager.scale(0.65f, 0.65f, 0.65f);
             return renderInfo;
         });
 
