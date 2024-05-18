@@ -27,6 +27,7 @@
     "entity.EntityDeathMixin",
     "entity.EntityDemonMixin",
     "entity.EntityGoblinGulgMixin",
+    "entity.EntityGoblinMixin",
     "entity.EntityGoblinMogMixin",
     "entity.EntityLordOfTormentMixin",
     "entity.monster.EntityLilithMixin",
