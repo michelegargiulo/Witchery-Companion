@@ -40,20 +40,10 @@ public class GoblinTradesHandler {
     }
 
     @ZenMethod
-    @ZenDoc("Sets the specified profession's fallback trade. The fallback trade is a trade that the profession gives when no trades " +
-            "have been generated for the goblin. This ensures that the Goblin has at least one valid trade. Returns true on success")
-    public static boolean setProfessionFallbackTrade(String profession, IItemStack buy1, IItemStack buy2, IItemStack sell) {
-        ItemStack b1 = CraftTweakerMC.getItemStack(buy1);
-        ItemStack b2 = CraftTweakerMC.getItemStack(buy2);
-        ItemStack s = CraftTweakerMC.getItemStack(sell);
-        return GoblinTradeApi.setProfessionFallbackTrade(profession, b1, b2, s);
-    }
-
-    @ZenMethod
     @ZenDoc("Removes the specified profession's fallback trade, meaning that the Hobgoblin won't have any trade if no trades are " +
             "generated for its profession. Returns true on success")
     public static boolean removeProfessionFallbackTrade(String profession) {
-        return GoblinTradeApi.setProfessionFallbackTrade(profession, b1, b2, s);
+        return GoblinTradeApi.removeProfessionFallbackTrade(profession);
     }
 
     @ZenMethod
@@ -90,9 +80,9 @@ public class GoblinTradesHandler {
     @ZenMethod
     @ZenDoc("")
     public static boolean removeTradesByInput(String profession, IItemStack buy, Float chance) {
-        ItemStack buy = CraftTweakerMC.getItemStack(buy1);
-        return GoblinTradeApi.removeTrade(profession, buy, null, null, chance == -1 ? null : chance) ||
-                GoblinTradeApi.removeTrade(profession, null, buy, null, chance == -1 ? null : chance);
+        ItemStack b = CraftTweakerMC.getItemStack(buy);
+        return GoblinTradeApi.removeTrade(profession, b, null, null, chance == -1 ? null : chance) ||
+                GoblinTradeApi.removeTrade(profession, null, b, null, chance == -1 ? null : chance);
     }
 
     @ZenMethod
@@ -106,9 +96,9 @@ public class GoblinTradesHandler {
 
     @ZenMethod
     @ZenDoc("")
-    public static boolean addTradesByOutput(String profession, IItemStack sell, Float chance, Integer level) {
+    public static boolean removeTradesByOutput(String profession, IItemStack sell, Float chance) {
         ItemStack s = CraftTweakerMC.getItemStack(sell);
-        return GoblinTradeApi.addTradeToProfession(profession, null, null, s, chance, level);
+        return GoblinTradeApi.addTradeToProfession(profession, null, null, s, chance);
     }
 
 

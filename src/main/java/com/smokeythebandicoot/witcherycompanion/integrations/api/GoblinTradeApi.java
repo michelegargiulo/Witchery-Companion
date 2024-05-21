@@ -20,12 +20,17 @@ public class GoblinTradeApi {
     /** =============================== TRADE GENERATION =============================== **/
     public static MerchantRecipeList getTrades(int professionId) {
         GoblinProfession profession = professions.get(professionId);
-        return profession.getAllTrades(Integer.MAX_VALUE);
+        return profession.generateActualTrades(null);
     }
 
-    public static MerchantRecipeList generateTrades(int professionId, int toLevel) {
+    public static MerchantRecipeList getTrades(World world, int professionId) {
         GoblinProfession profession = professions.get(professionId);
-        return profession.getAllTrades(toLevel);
+        return profession.generateActualTrades(world);
+    }
+
+    public static MerchantRecipeList generateTrades(int professionId) {
+        GoblinProfession profession = professions.get(professionId);
+        return profession.getAllTrades();
     }
 
     /** =============================== PROFESSION RETRIEVAL =============================== **/
@@ -85,7 +90,7 @@ public class GoblinTradeApi {
     public static boolean setProfessionFallbackTrade(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell) {
         GoblinProfession profession = getProfessionByName(professionName);
         if (profession == null) return false;
-        profession.fallBackTrade = new GoblinTrade(buy1, buy2, sell, 1.0f, 0);
+        profession.fallBackTrade = new GoblinTrade(buy1, buy2, sell, 1.0f);
         return true;
     }
 
@@ -100,35 +105,21 @@ public class GoblinTradeApi {
     public static boolean addTradeToProfession(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell) {
         GoblinProfession profession = getProfessionByName(professionName);
         if (profession == null) return false;
-        profession.addTrade(new GoblinTrade(buy1, buy2, sell, 1.0f, 0));
+        profession.addTrade(new GoblinTrade(buy1, buy2, sell, 1.0f));
         return true;
     }
 
     public static boolean addTradeToProfession(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell, float chance) {
         GoblinProfession profession = getProfessionByName(professionName);
         if (profession == null) return false;
-        profession.addTrade(new GoblinTrade(buy1, buy2, sell, chance, 0));
-        return true;
-    }
-
-    public static boolean addTradeToProfession(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell, int level) {
-        GoblinProfession profession = getProfessionByName(professionName);
-        if (profession == null) return false;
-        profession.addTrade(new GoblinTrade(buy1, buy2, sell, 1.0f, level));
-        return true;
-    }
-
-    public static boolean addTradeToProfession(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell, float chance, int level) {
-        GoblinProfession profession = getProfessionByName(professionName);
-        if (profession == null) return false;
-        profession.addTrade(new GoblinTrade(buy1, buy2, sell, chance, level));
+        profession.addTrade(new GoblinTrade(buy1, buy2, sell, chance));
         return true;
     }
 
     public static boolean removeTrade(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell, float chance) {
         GoblinProfession profession = getProfessionByName(professionName);
         if (profession == null) return false;
-        profession.removeTradeByMatching(buy1, buy2, sell, chance));
+        profession.removeTradeByMatching(buy1, buy2, sell, chance);
         return true;
     }
 

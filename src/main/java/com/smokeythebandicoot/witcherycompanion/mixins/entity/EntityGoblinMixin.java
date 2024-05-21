@@ -43,7 +43,7 @@ public abstract class EntityGoblinMixin {
     @Inject(method = "addDefaultEquipmentAndRecipies", remap = false, cancellable = true, at = @At("HEAD"))
     public void WPcustomGoblinTrades(CallbackInfo ci) {
         if (!ModConfig.PatchesConfiguration.EntityTweaks.goblin_tweakCustomTrades) return;
-        this.buyingList = GoblinTradeApi.generateTrades(this.getProfession(), Integer.MAX_VALUE);
+        this.buyingList = GoblinTradeApi.generateTrades(this.getProfession());
         Collections.shuffle(buyingList);
         ci.cancel();
     }
