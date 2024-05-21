@@ -125,17 +125,10 @@ public class GoblinTradeApi {
         return true;
     }
 
-    public static boolean removeTradesByInput(String professionName, ItemStack buy) {
+    public static boolean removeTrade(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell, float chance) {
         GoblinProfession profession = getProfessionByName(professionName);
         if (profession == null) return false;
-        profession.removeTradeByInput(buy);
-        return true;
-    }
-
-    public static boolean removeTradesByOutput(String professionName, ItemStack sell) {
-        GoblinProfession profession = getProfessionByName(professionName);
-        if (profession == null) return false;
-        profession.removeTradeByOutput(sell);
+        profession.removeTradeByMatching(buy1, buy2, sell, chance));
         return true;
     }
 
@@ -171,28 +164,23 @@ public class GoblinTradeApi {
             possibleTrades.remove(trade);
         }
 
-        /** Removes a trade if at least one Item of the trade matches the Item in the buy ItemStack*/
-        public void removeTradeByInput(ItemStack buy) {
-            List<GoblinTrade> toRemove = new ArrayList<>();
+        /** Removes a trade that matches the elements. Use null for wildcard, use Items.AIR for empty stack */
+        public void removeTradeByMatching(ItemStack buy1, ItemStack buy2, ItemStack sell, Float chance) {
+            List<GoblinTrade> toRemove = new ArrayList<GoblinTrade>();
             for (GoblinTrade trade : possibleTrades) {
-                if (trade.trade.getItemToBuy().getItem() == buy.getItem() ||
-                    trade.trade.getSecondItemToBuy().getItem() == buy.getItem()) {
-                    toRemove.add(trade);
-                }
-            }
-            for (GoblinTrade trade : toRemove) {
-                possibleTrades.remove(trade);
-            }
-        }
+                MerchantRecipe t = trade.trade;
 
-        /** Removes a trade if the Item to sell matches the Item in the sell ItemStack */
-        public void removeTradeByOutput(ItemStack sell) {
-            List<GoblinTrade> toRemove = new ArrayList<>();
-            for (GoblinTrade trade : possibleTrades) {
-                if (trade.trade.getItemToSell().getItem() == sell.getItem()) {
+                // If trade matches, add it to removal list. Null is considered a wildcard, while Empty itemstack
+                // matches an empty item in the trade (Buy 1 + Empty -> Sell)
+                if ((buy1 == null || buy1 == t.getItemToBuy()) &&
+                    (buy2 == null || buy2 == t.getSecondItemToBuy()) &&
+                    (sell == null || sell == t.getItemToSell()) &&
+                    (chance == null || chance == trade.probability)
+                ) {
                     toRemove.add(trade);
                 }
             }
+
             for (GoblinTrade trade : toRemove) {
                 possibleTrades.remove(trade);
             }
@@ -200,7 +188,7 @@ public class GoblinTradeApi {
 
         /** Generates a list of trades based on current random context and the list of current possible trades. Use
          Integer.MAX_VALUE to get all trades */
-        public MerchantRecipeList generateActualTrades(World world, int level) {
+        public MerchantRecipeList generateActualTrades(World world) {
             // Init random generator
             Random random;
             if (world == null) random = new Random();
@@ -210,7 +198,7 @@ public class GoblinTradeApi {
             MerchantRecipeList tradeList = new MerchantRecipeList();
 
             for (GoblinTrade trade : possibleTrades) {
-                if (level >= trade.minimumLevel && random.nextFloat() < trade.probability) {
+                if (random.nextFloat() < trade.probability) {
                     tradeList.add(trade.trade);
                 }
             }
@@ -224,10 +212,10 @@ public class GoblinTradeApi {
         }
 
         /** Returns all trades that are possible with this profession. Use Integer.MAX_VALUE to get all trades */
-        public MerchantRecipeList getAllTrades(int level) {
+        public MerchantRecipeList getAllTrades() {
             MerchantRecipeList tradeList = new MerchantRecipeList();
             for (GoblinTrade trade : possibleTrades) {
-                if (level >= trade.minimumLevel) tradeList.add(trade.trade);
+                tradeList.add(trade.trade);
             }
             if (fallBackTrade != null) tradeList.add(fallBackTrade.trade);
             return tradeList;
@@ -240,11 +228,9 @@ public class GoblinTradeApi {
 
         public final MerchantRecipe trade;
         public final float probability;
-        public final int minimumLevel;
 
-        public GoblinTrade(ItemStack buy1, ItemStack buy2, ItemStack sell, Float probability, Integer minimumLevel) {
+        public GoblinTrade(ItemStack buy1, ItemStack buy2, ItemStack sell, Float probability) {
 
-            this.minimumLevel = minimumLevel == null ? 0 : minimumLevel;
             this.probability = probability == null ? 1.0f : probability;
             if (buy1 == null) buy1 = new ItemStack(Items.AIR);
             if (buy2 == null) buy2 = new ItemStack(Items.AIR);
