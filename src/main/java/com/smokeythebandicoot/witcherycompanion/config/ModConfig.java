@@ -10,6 +10,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.msrandom.witchery.integration.JeiIntegration;
 
 import java.util.HashSet;
 
@@ -263,6 +264,12 @@ public class ModConfig {
             @Config.Name("Enchanted Broom - Tweak Max Health")
             public static float enchantedBroom_tweakMaxHealth = 40.0f;
 
+            @Config.Comment("If true, Goblin trades can be customized with CraftTweaker. False by default, because " +
+                    "when enabled it completely wipes the Witchery goblin trade tables, and if new trades are not added " +
+                    "with CrT, then Goblins won't show any trades")
+            @Config.Name("Goblin - Tweak Custom Trades")
+            public static boolean goblin_tweakCustomTrades = false;
+
             @Config.Comment("If true, Lord of Torment won't teleport players to the Torment Dimension")
             @Config.Name("Lord of Torment - Tweak Disable Teleportation to Torment")
             public static boolean lordOfTorment_tweakDisableTeleportation = false;
@@ -347,7 +354,31 @@ public class ModConfig {
 
     public static class IntegrationConfigurations {
 
-        public static boolean enableJerIntegration = true;
+        @Config.Comment("Configuration related to Just Enough Resources integration")
+        @Config.Name("JER Integration - Configuration")
+        public static JerIntegration jerIntegrationConfig;
+
+        @Config.Comment("Configuration related to Just Enough Items integration")
+        @Config.Name("JEI Integration - Configuration")
+        public static JeiIntegration jeiIntegrationConfig;
+
+        public static class JerIntegration {
+
+            @Config.Comment("Master switch for all JER integrations")
+            @Config.Name("JER Integration - Enabled")
+            public static boolean enableJerIntegration = true;
+        }
+
+        public static class JeiIntegration {
+
+            @Config.Comment("Master switch for all JEI integrations")
+            @Config.Name("JEI Integration - Enabled")
+            public static boolean enableJeiIntegration = true;
+
+            @Config.Comment("If true, enabled Goblin Trade JEI Integration")
+            @Config.Name("JEI Integration - Enable Goblin Trades")
+            public static boolean enableJeiGoblinTrades = true;
+        }
     }
 
     @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)

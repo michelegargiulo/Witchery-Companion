@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.bridge;
+package com.smokeythebandicoot.witcherycompanion.integrations.api;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -7,7 +7,7 @@ import net.msrandom.witchery.init.WitcheryBlocks;
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class ErosionBrewBridge {
+public class ErosionBrewApi {
 
     // Mine List: blocks that are here will be mined by the brew
     public static HashSet<net.minecraft.block.state.IBlockState> mineList = new HashSet<>(
@@ -37,7 +37,7 @@ public class ErosionBrewBridge {
     }
 
     public static void setDestroyWhitelist(boolean isWhitelist) {
-        ErosionBrewBridge.destroyWhiteList = isWhitelist;
+        ErosionBrewApi.destroyWhiteList = isWhitelist;
     }
 
     public static int setMaxHarvestLevel(int newLevel) {

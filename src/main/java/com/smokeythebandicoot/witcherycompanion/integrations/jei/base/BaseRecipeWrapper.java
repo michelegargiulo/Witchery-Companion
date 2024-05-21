@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherypatcher.integrations.justenoughresources.base;
+package com.smokeythebandicoot.witcherycompanion.integrations.jei.base;
 
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 
@@ -8,10 +8,10 @@ import java.util.List;
 
 public abstract class BaseRecipeWrapper extends BlankRecipeWrapper {
 
-    protected String uId;
+    protected String uid;
 
     public String getUid() {
-        return uId;
+        return uid;
     }
 
     @Nonnull

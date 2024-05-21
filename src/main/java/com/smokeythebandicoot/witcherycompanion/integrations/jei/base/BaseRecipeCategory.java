@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherypatcher.integrations.justenoughresources.base;
+package com.smokeythebandicoot.witcherycompanion.integrations.jei.base;
 
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableStatic;

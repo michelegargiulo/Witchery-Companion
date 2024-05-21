@@ -1,8 +1,9 @@
-package com.smokeythebandicoot.witcherypatcher.integrations.justenoughresources.goblin;
+package com.smokeythebandicoot.witcherycompanion.integrations.jei.goblin;
 
-import com.smokeythebandicoot.witcherypatcher.WitcheryPatcher;
-import com.smokeythebandicoot.witcherypatcher.config.ModConfig;
-import com.smokeythebandicoot.witcherypatcher.integrations.justenoughresources.base.BaseRecipeCategory;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import com.smokeythebandicoot.witcherycompanion.integrations.api.GoblinTradeApi;
+import com.smokeythebandicoot.witcherycompanion.integrations.jei.base.BaseRecipeCategory;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
@@ -11,6 +12,9 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.village.MerchantRecipe;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -19,10 +23,16 @@ import java.util.List;
 public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> {
 
     public static boolean enabled = true;
-    public static String UID;
+    public static String UID = "witchery.goblin_trade";
+    public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/goblin_trade.png");
+
+    public GoblinTradeCategory(IGuiHelper guiHelper) {
+        background = guiHelper.createDrawable(backgroundTexture, 0, 0, 124, 22, 124, 22);
+        localizedName = new TextComponentTranslation("witcherycompanion.gui.goblin_trade.name").getFormattedText();
+    }
 
     public  static void register(IRecipeCategoryRegistration registry) {
-        enabled = ModConfig.IntegrationConfigurations.enableJeiGoblinTrades;
+        enabled = ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiGoblinTrades;
         if (!enabled) return;
 
         IJeiHelpers jeiHelpers = registry.getJeiHelpers();
@@ -40,13 +50,17 @@ public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> 
 
             registry.addRecipes(getRecipes(guiHelper), UID);
         } catch (Throwable t) {
-            WitcheryPatcher.logger.error(t);
+            WitcheryCompanion.logger.error(t);
         }
     }
 
     public static List<GoblinTradeWrapper> getRecipes(IGuiHelper guiHelper) {
         List<GoblinTradeWrapper> recipes = new ArrayList<>();
-        recipes.add(new GoblinTradeWrapper(guiHelper, testRecipe));
+
+        for (MerchantRecipe goblinTrade : GoblinTradeApi.getTrades(0)) {
+            recipes.add(new GoblinTradeWrapper(guiHelper, goblinTrade));
+        }
+
         return recipes;
     }
 
@@ -62,9 +76,9 @@ public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> 
 
         IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 
-        guiItemStacks.init(0, true, 21, 14);
-        guiItemStacks.init(1, true, 45, 14);
-        guiItemStacks.init(2, false, 105, 14);
+        guiItemStacks.init(0, true, 21, 2);
+        guiItemStacks.init(1, true, 45, 2);
+        guiItemStacks.init(2, false, 100, 2);
 
         guiItemStacks.set(0, inputs.get(0));
         guiItemStacks.set(1, inputs.get(1));
