@@ -18,7 +18,7 @@ import net.msrandom.witchery.entity.passive.EntityOwl;
 import net.msrandom.witchery.entity.passive.EntityToad;
 import net.msrandom.witchery.entity.passive.coven.EntityCovenWitch;
 
-@Mod.EventBusSubscriber
+
 public class JERIntegration {
 
     public static void init() {
