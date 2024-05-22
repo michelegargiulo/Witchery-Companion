@@ -103,6 +103,7 @@ public class GoblinTradeApi {
         return true;
     }
 
+    /** Adds a new trade to the profession */
     public static boolean addTradeToProfession(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell) {
         GoblinProfession profession = getProfessionByName(professionName);
         if (profession == null) return false;
@@ -110,6 +111,7 @@ public class GoblinTradeApi {
         return true;
     }
 
+    /** Adds a new trade to the profession. Specifies the chance that the Goblin has to get the recipe */
     public static boolean addTradeToProfession(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell, Float chance) {
         GoblinProfession profession = getProfessionByName(professionName);
         if (profession == null) return false;
@@ -117,17 +119,13 @@ public class GoblinTradeApi {
         return true;
     }
 
+    /** Removes the trade from the profession. Use null as wildcards */
     public static boolean removeTrade(String professionName, Ingredient buy1, Ingredient buy2, Ingredient sell, Float chance) {
         GoblinProfession profession = getProfessionByName(professionName);
         if (profession == null) return false;
         profession.removeTradeByMatching(buy1, buy2, sell, chance);
         return true;
     }
-
-
-
-
-
 
     public static class GoblinProfession {
 
