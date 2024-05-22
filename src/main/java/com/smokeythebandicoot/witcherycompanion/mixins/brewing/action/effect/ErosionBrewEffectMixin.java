@@ -3,7 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.brewing.action.effect;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.bridge.ErosionBrewBridge;
+import com.smokeythebandicoot.witcherycompanion.integrations.api.ErosionBrewApi;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.SoundEvents;
@@ -60,7 +60,7 @@ public abstract class ErosionBrewEffectMixin extends BrewActionEffect {
                         IBlockState state = world.getBlockState(pos);
 
                         // If the brew should mine, then mine the blocks
-                        if (ErosionBrewBridge.canMine(state)) {
+                        if (ErosionBrewApi.canMine(state)) {
                             if (blockCount.containsKey(state)) {
                                 blockCount.get(state).addAndGet(1);
                             } else {
@@ -70,7 +70,7 @@ public abstract class ErosionBrewEffectMixin extends BrewActionEffect {
                             WitcheryNetworkChannel.sendToAllAround(new PacketParticles(pos.getX(), pos.getY(), pos.getZ(), 0.5F, 0.5F, EnumParticleTypes.WATER_SPLASH), world, pos);
 
                         // Otherwise, if the brew can destroy the block, destroy it:
-                        } else if (ErosionBrewBridge.canDestroy(state)) {
+                        } else if (ErosionBrewApi.canDestroy(state)) {
                             world.setBlockToAir(pos);
                             WitcheryNetworkChannel.sendToAllAround(new PacketParticles(pos.getX(), pos.getY(), pos.getZ(), 0.5F, 0.5F, EnumParticleTypes.WATER_SPLASH), world, pos);
                         }

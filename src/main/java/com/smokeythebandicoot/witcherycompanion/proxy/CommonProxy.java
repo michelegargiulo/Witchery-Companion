@@ -22,7 +22,7 @@ public class CommonProxy {
 
         // Init compats
         if (Loader.isModLoaded("jeresources") &&
-                ModConfig.IntegrationConfigurations.enableJerIntegration) {
+                ModConfig.IntegrationConfigurations.JerIntegration.enableJerIntegration) {
             JERIntegration.init();
         }
     }
