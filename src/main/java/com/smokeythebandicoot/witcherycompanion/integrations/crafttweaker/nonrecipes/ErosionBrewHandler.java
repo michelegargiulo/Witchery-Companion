@@ -39,7 +39,7 @@ public class ErosionBrewHandler {
     }
 
     @ZenMethod
-    @ZenDoc(value="Sets a maximum harvest level that the brew can mine/destroy")
+    @ZenDoc(value="Sets a maximum harvest level that the brew can mine/destroy. Returns the previous max harvest level value")
     public static int setMaxHarvestLevel(int newLevel) {
         return ErosionBrewApi.setMaxHarvestLevel(newLevel);
     }
@@ -58,7 +58,7 @@ public class ErosionBrewHandler {
     }
 
     @ZenMethod
-    @ZenDoc(value="Returns true if the blockstate can be destroyed by the brew")
+    @ZenDoc(value="Returns true if the blockstate can be mined by the brew")
     public static boolean canMine(IBlockState iBlockState) {
         net.minecraft.block.state.IBlockState state = CraftTweakerMC.getBlockState(iBlockState);
         return ErosionBrewApi.canMine(state);

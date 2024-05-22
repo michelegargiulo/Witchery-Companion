@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.api;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
@@ -18,29 +19,29 @@ public class GoblinTradeApi {
     private static final List<GoblinProfession> professions = new ArrayList<>();
 
     /** =============================== TRADE GENERATION =============================== **/
-    public static MerchantRecipeList getTrades(int professionId) {
+    public static MerchantRecipeList generateTrades(int professionId) {
         GoblinProfession profession = professions.get(professionId);
         return profession.generateActualTrades(null);
     }
 
-    public static MerchantRecipeList getTrades(World world, int professionId) {
+    public static MerchantRecipeList generateTrades(World world, int professionId) {
         GoblinProfession profession = professions.get(professionId);
         return profession.generateActualTrades(world);
     }
 
-    public static MerchantRecipeList generateTrades(int professionId) {
+    public static MerchantRecipeList getTrades(int professionId) {
         GoblinProfession profession = professions.get(professionId);
         return profession.getAllTrades();
     }
 
     /** =============================== PROFESSION RETRIEVAL =============================== **/
-    public static int getRandomProfessionID(World world) {
+    public static int getRandomProfessionID(Random random) {
         if (professions.isEmpty()) return -1;
-        return world.rand.nextInt(professions.size());
+        return random.nextInt(professions.size());
     }
 
-    public static GoblinProfession getRandomProfession(World world) {
-        return professions.get(getRandomProfessionID(world));
+    public static GoblinProfession getRandomProfession(Random random) {
+        return professions.get(getRandomProfessionID(random));
     }
 
     public static GoblinProfession getProfessionByName(String professionName) {
@@ -109,14 +110,14 @@ public class GoblinTradeApi {
         return true;
     }
 
-    public static boolean addTradeToProfession(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell, float chance) {
+    public static boolean addTradeToProfession(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell, Float chance) {
         GoblinProfession profession = getProfessionByName(professionName);
         if (profession == null) return false;
         profession.addTrade(new GoblinTrade(buy1, buy2, sell, chance));
         return true;
     }
 
-    public static boolean removeTrade(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell, float chance) {
+    public static boolean removeTrade(String professionName, Ingredient buy1, Ingredient buy2, Ingredient sell, Float chance) {
         GoblinProfession profession = getProfessionByName(professionName);
         if (profession == null) return false;
         profession.removeTradeByMatching(buy1, buy2, sell, chance);
@@ -156,17 +157,17 @@ public class GoblinTradeApi {
         }
 
         /** Removes a trade that matches the elements. Use null for wildcard, use Items.AIR for empty stack */
-        public void removeTradeByMatching(ItemStack buy1, ItemStack buy2, ItemStack sell, Float chance) {
+        public void removeTradeByMatching(Ingredient buy1, Ingredient buy2, Ingredient sell, Float chance) {
             List<GoblinTrade> toRemove = new ArrayList<GoblinTrade>();
             for (GoblinTrade trade : possibleTrades) {
-                MerchantRecipe t = trade.trade;
+                MerchantRecipe t = trade.getTrade();
 
                 // If trade matches, add it to removal list. Null is considered a wildcard, while Empty itemstack
                 // matches an empty item in the trade (Buy 1 + Empty -> Sell)
-                if ((buy1 == null || buy1 == t.getItemToBuy()) &&
-                    (buy2 == null || buy2 == t.getSecondItemToBuy()) &&
-                    (sell == null || sell == t.getItemToSell()) &&
-                    (chance == null || chance == trade.probability)
+                if ((buy1 == null || buy1.apply(t.getItemToBuy())) &&
+                    (buy2 == null || buy2.apply(t.getSecondItemToBuy())) &&
+                    (sell == null || sell.apply(t.getItemToSell())) &&
+                    (chance == null || chance == trade.getChance())
                 ) {
                     toRemove.add(trade);
                 }
@@ -189,14 +190,14 @@ public class GoblinTradeApi {
             MerchantRecipeList tradeList = new MerchantRecipeList();
 
             for (GoblinTrade trade : possibleTrades) {
-                if (random.nextFloat() < trade.probability) {
-                    tradeList.add(trade.trade);
+                if (random.nextFloat() < trade.getChance()) {
+                    tradeList.add(trade.genNewTrade());
                 }
             }
 
             // Check fallback
             if (tradeList.isEmpty() && fallBackTrade != null) {
-                tradeList.add(fallBackTrade.trade);
+                tradeList.add(fallBackTrade.genNewTrade());
             }
 
             return tradeList;
@@ -206,9 +207,9 @@ public class GoblinTradeApi {
         public MerchantRecipeList getAllTrades() {
             MerchantRecipeList tradeList = new MerchantRecipeList();
             for (GoblinTrade trade : possibleTrades) {
-                tradeList.add(trade.trade);
+                tradeList.add(trade.genNewTrade());
             }
-            if (fallBackTrade != null) tradeList.add(fallBackTrade.trade);
+            if (fallBackTrade != null) tradeList.add(fallBackTrade.genNewTrade());
             return tradeList;
         }
 
@@ -217,8 +218,8 @@ public class GoblinTradeApi {
 
     public static class GoblinTrade {
 
-        public final MerchantRecipe trade;
-        public final float probability;
+        private final MerchantRecipe trade;
+        private final float probability;
 
         public GoblinTrade(ItemStack buy1, ItemStack buy2, ItemStack sell, Float probability) {
 
@@ -228,6 +229,18 @@ public class GoblinTradeApi {
             if (sell == null) sell = new ItemStack(Items.AIR);
             this.trade = new MerchantRecipe(buy1, buy2, sell);
 
+        }
+
+        public MerchantRecipe getTrade() {
+            return trade;
+        }
+
+        public MerchantRecipe genNewTrade() {
+            return new MerchantRecipe(this.trade.getItemToBuy(), this.trade.getSecondItemToBuy(), this.trade.getItemToSell());
+        }
+
+        public float getChance() {
+            return probability;
         }
 
     }

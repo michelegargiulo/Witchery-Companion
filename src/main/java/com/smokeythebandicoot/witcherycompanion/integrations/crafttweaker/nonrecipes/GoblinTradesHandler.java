@@ -4,9 +4,11 @@ import com.smokeythebandicoot.witcherycompanion.integrations.api.GoblinTradeApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -70,35 +72,59 @@ public class GoblinTradesHandler {
 
     @ZenMethod
     @ZenDoc("")
-    public static boolean removeTrade(String profession, IItemStack buy1, IItemStack buy2, IItemStack sell, Float chance) {
-        ItemStack b1 = CraftTweakerMC.getItemStack(buy1);
-        ItemStack b2 = CraftTweakerMC.getItemStack(buy2);
-        ItemStack s = CraftTweakerMC.getItemStack(sell);
+    public static boolean removeTrade(String profession, IIngredient buy1, IIngredient buy2, IIngredient sell, Float chance) {
+        Ingredient b1 = CraftTweakerMC.getIngredient(buy1);
+        Ingredient b2 = CraftTweakerMC.getIngredient(buy2);
+        Ingredient s = CraftTweakerMC.getIngredient(sell);
         return GoblinTradeApi.removeTrade(profession, b1, b2, s, chance);
     }
 
     @ZenMethod
     @ZenDoc("")
-    public static boolean removeTradesByInput(String profession, IItemStack buy, Float chance) {
-        ItemStack b = CraftTweakerMC.getItemStack(buy);
-        return GoblinTradeApi.removeTrade(profession, b, null, null, chance == -1 ? null : chance) ||
-                GoblinTradeApi.removeTrade(profession, null, b, null, chance == -1 ? null : chance);
+    public static boolean removeTradesByInput(String profession, IIngredient buy) {
+        Ingredient b = CraftTweakerMC.getIngredient(buy);
+        return GoblinTradeApi.removeTrade(profession, b, null, null, null) ||
+                GoblinTradeApi.removeTrade(profession, null, b, null, null);
     }
 
     @ZenMethod
     @ZenDoc("")
-    public static boolean removeTradesByInputs(String profession, IItemStack buy1, IItemStack buy2, Float chance) {
-        ItemStack b1 = CraftTweakerMC.getItemStack(buy1);
-        ItemStack b2 = CraftTweakerMC.getItemStack(buy2);
+    public static boolean removeTradesByInput(String profession, IIngredient buy, float chance) {
+        Ingredient b = CraftTweakerMC.getIngredient(buy);
+        return GoblinTradeApi.removeTrade(profession, b, null, null, chance) ||
+                GoblinTradeApi.removeTrade(profession, null, b, null, chance);
+    }
+
+    @ZenMethod
+    @ZenDoc("")
+    public static boolean removeTradesByInputs(String profession, IIngredient buy1, IIngredient buy2) {
+        Ingredient b1 = CraftTweakerMC.getIngredient(buy1);
+        Ingredient b2 = CraftTweakerMC.getIngredient(buy2);
+        return GoblinTradeApi.removeTrade(profession, b1, b2, null, null) ||
+                GoblinTradeApi.removeTrade(profession, b2, b1, null, null);
+    }
+
+    @ZenMethod
+    @ZenDoc("")
+    public static boolean removeTradesByInputs(String profession, IIngredient buy1, IIngredient buy2, float chance) {
+        Ingredient b1 = CraftTweakerMC.getIngredient(buy1);
+        Ingredient b2 = CraftTweakerMC.getIngredient(buy2);
         return GoblinTradeApi.removeTrade(profession, b1, b2, null, chance == -1 ? null : chance) ||
                 GoblinTradeApi.removeTrade(profession, b2, b1, null, chance == -1 ? null : chance);
     }
 
     @ZenMethod
     @ZenDoc("")
-    public static boolean removeTradesByOutput(String profession, IItemStack sell, Float chance) {
-        ItemStack s = CraftTweakerMC.getItemStack(sell);
-        return GoblinTradeApi.addTradeToProfession(profession, null, null, s, chance);
+    public static boolean removeTradesByOutput(String profession, IIngredient sell) {
+        Ingredient s = CraftTweakerMC.getIngredient(sell);
+        return GoblinTradeApi.removeTrade(profession, null, null, s, null);
+    }
+
+    @ZenMethod
+    @ZenDoc("")
+    public static boolean removeTradesByOutput(String profession, IIngredient sell, float chance) {
+        Ingredient s = CraftTweakerMC.getIngredient(sell);
+        return GoblinTradeApi.removeTrade(profession, null, null, s, chance);
     }
 
 
