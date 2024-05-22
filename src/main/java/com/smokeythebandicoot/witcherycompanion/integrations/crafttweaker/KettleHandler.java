@@ -14,7 +14,7 @@ import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 
 @ModOnly(value = "witchery")
-@ZenClass(value = "mods.smokeythebandicoot.witcherypatcher.Kettle")
+@ZenClass(value = "mods.smokeythebandicoot.witcherycompanion.Kettle")
 @ZenRegister
 public class KettleHandler {
 

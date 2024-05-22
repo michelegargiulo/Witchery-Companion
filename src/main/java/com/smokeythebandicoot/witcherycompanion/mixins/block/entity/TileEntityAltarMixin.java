@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.AltarHandler;
+import com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes.AltarHandler;
 import com.smokeythebandicoot.witcherycompanion.utils.AltarPowerSource;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;

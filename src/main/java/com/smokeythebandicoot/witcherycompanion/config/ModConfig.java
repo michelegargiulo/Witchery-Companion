@@ -112,6 +112,7 @@ public class ModConfig {
 
             @Config.Comment("Fix Soul Infusions progress reset when player dires")
             @Config.Name("Soul Brews - Fix Persistency After Death")
+            @Config.RequiresMcRestart
             public static boolean soulBrews_fixPersistency = true;
         }
 
@@ -189,6 +190,11 @@ public class ModConfig {
                     "Workaround for some chalk-stacking related bugs")
             @Config.Name("Chalk - Tweak Unstackable Chalk")
             public static boolean itemChalk_tweakUnstackableChalk = false;
+
+            @Config.Comment("If true, the Brew of Erosion item crafted in the kettle will behave exactly like the " +
+                    "Brew of Erosion crafted into the Witch's Cauldron")
+            @Config.Name("Brew of Erosion Item - Tweak Emulate Erosion Brew")
+            public static boolean itemErosionBrew_tweakEmulateBrewEffects = false;
 
         }
 

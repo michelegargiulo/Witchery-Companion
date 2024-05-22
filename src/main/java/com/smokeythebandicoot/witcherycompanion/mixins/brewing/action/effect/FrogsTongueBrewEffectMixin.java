@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.brewing.action.effect;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -19,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  */
 @Mixin(value = FrogsTongueBrewEffect.class)
 public abstract class FrogsTongueBrewEffectMixin extends BrewActionEffect {
+
     private FrogsTongueBrewEffectMixin(BrewEffectSerializer<?> serializer, boolean invertible) {
         super(serializer, invertible);
     }
