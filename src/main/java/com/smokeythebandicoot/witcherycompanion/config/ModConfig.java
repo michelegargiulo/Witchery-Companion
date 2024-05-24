@@ -197,6 +197,11 @@ public class ModConfig {
             @Config.Name("Brew of Erosion Item - Tweak Emulate Erosion Brew")
             public static boolean itemErosionBrew_tweakEmulateBrewEffects = false;
 
+            @Config.Comment("If true, when the Seer Stone is shift-right-clicked Throwing Skills won't be printed, " +
+                    "as it is a mechanic not yet implemented in Witchery: Resurrected")
+            @Config.Name("Seer Stone - Tweak Emulate Erosion Brew")
+            public static boolean seerStone_tweakUnprintThrowingSkill = false;
+
         }
 
         public static class RitesTweaks {
@@ -298,7 +303,7 @@ public class ModConfig {
             @Config.Name("Owl - Tweak Sit Model Change")
             public static boolean owl_tweakSitModelChange = false;
 
-            @Config.Comment("If true, Owls will look down when sitting, as if they're resting")
+            @Config.Comment("If true, Owl children will be smaller than adult counterparts")
             @Config.Name("Owl - Tweak Render Small Children")
             public static boolean owl_tweakRenderChildSmaller = false;
         }

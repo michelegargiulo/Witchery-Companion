@@ -24,65 +24,78 @@ public class ErosionBrewApi {
     public static boolean mineWhiteList = true;
     public static boolean destroyWhiteList = false;
 
+    /** Returns true if the mineList is a whitelist */
     public static boolean isMineWhiteList() {
         return mineWhiteList;
     }
 
+    /** Sets the mineList as a whitelist or blacklist. true = whitelist, false = blacklist */
     public static void setMineWhiteList(boolean isWhitelist) {
         mineWhiteList = isWhitelist;
     }
 
+    /** Returns true if the destroyList is a whitelist */
     public static boolean isDestroyWhitelist() {
         return destroyWhiteList;
     }
 
+    /** Sets the destroyList as a whitelist or blacklist. true = whitelist, false = blacklist */
     public static void setDestroyWhitelist(boolean isWhitelist) {
         ErosionBrewApi.destroyWhiteList = isWhitelist;
     }
 
+    /** Sets the Brew maximum harvest level. Blocks with higher harvest levels will be ignored */
     public static int setMaxHarvestLevel(int newLevel) {
         int oldLevel = maximumHarvestLevel;
         maximumHarvestLevel = newLevel;
         return oldLevel;
     }
 
+    /** Returns the Brew maximum harvest level */
     public static int getMaximumHarvestLevel() {
         return maximumHarvestLevel;
     }
 
+    /** Returns true if the blockstate can be mined or destroyed, false if it is ignored */
     public static boolean canAffect(IBlockState state) {
         return canMine(state) || canDestroy(state);
     }
 
+    /** Returns true if the block can be mined by the brew */
     public static boolean canMine(IBlockState state) {
         return mineWhiteList == mineList.contains(state) &&      // Contained in mineList
                 (maximumHarvestLevel == -1 || state.getBlock().getHarvestLevel(state) <= maximumHarvestLevel);  // And has low harvest level
     }
 
+    /** Returns true if the block can be destroyed by the brew */
     public static boolean canDestroy(IBlockState state) {
         return  !(mineWhiteList == mineList.contains(state)) &&                                 // Not contained in mineList
                 (destroyWhiteList == destroyList.contains(state)) &&                            // But contained in destroyList
                 (maximumHarvestLevel == -1 || state.getBlock().getHarvestLevel(state) <= maximumHarvestLevel);   // Has low harvest level
     }
 
+    /** Adds a new blockstate to the list of mineable blocks */
     public static boolean registerMineable(IBlockState state) {
         boolean alreadyRegistered = mineList.contains(state);
         mineList.add(state);
         return !alreadyRegistered;
     }
 
+    /** Removes the blockstate from the list of mineable blocks */
     public static boolean unregisterMineable(IBlockState state) {
         boolean wasRegistered = mineList.contains(state);
         mineList.remove(state);
         return wasRegistered;
     }
 
+    /** Adds a new blockstate to the list of destroyable blocks */
     public static boolean registerDestroyable(IBlockState state) {
         boolean alreadyRegistered = destroyList.contains(state);
         destroyList.add(state);
         return !alreadyRegistered;
     }
 
+    /** Removes the blockstate from the list of destroyable blocks */
     public static boolean unregisterDestroyable(IBlockState state) {
         boolean wasRegistered = destroyList.contains(state);
         destroyList.remove(state);

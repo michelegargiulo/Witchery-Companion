@@ -35,6 +35,7 @@
     "entity.passive.EntityOwlMixin",
     "entity.passive.coven.EntityCovenWitchMixin",
     "item.ItemChalkMixin",
+    "item.ItemSeerStoneMixin",
     "item.ItemSpectralStoneMixin",
     "item.brews.ItemErosionBrewMixin",
     "potion.PotionFortuneMixin",

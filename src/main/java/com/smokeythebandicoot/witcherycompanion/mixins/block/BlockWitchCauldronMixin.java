@@ -1,5 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.block;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,8 +36,8 @@ public abstract class BlockWitchCauldronMixin {
     BrewActionList witchery_Patcher$preservedActions = null;
 
     // Save Cauldron actions before they get invalidated by the readNBT operation
-    /*@Inject(method = "onBlockActivated", remap = false,
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/EntityPlayer;addStat(Lnet/minecraft/stats/StatBase;)V", remap = false))
+    @Inject(method = "onBlockActivated", remap = true,
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/EntityPlayer;addStat(Lnet/minecraft/stats/StatBase;)V", remap = true))
     public void WPpreserveActionsBeforeEmptyingCauldron(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.witchsCauldron_fixBottlingSkillIncrease) {
             TileEntityCauldron cauldron = WitcheryTileEntities.CAULDRON.getAt(world, pos);
@@ -43,13 +45,13 @@ public abstract class BlockWitchCauldronMixin {
                 witchery_Patcher$preservedActions = cauldron.getActions();
             }
         }
-    }*/
+    }
 
 
     // Uses wrap operation to direct the original call with the always-empty brewActionList to a fixed
     // call that uses the preserved brewActionList
-    /*@WrapOperation(method = "onBlockActivated", remap = true,
-            at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/block/BlockWitchCauldron;processSkillChanges(Lnet/minecraft/entity/player/EntityPlayer;Lnet/msrandom/witchery/brewing/action/BrewActionList;)V", remap = false))
+    @WrapOperation(method = "onBlockActivated", remap = true, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/block/BlockWitchCauldron;processSkillChanges(Lnet/minecraft/entity/player/EntityPlayer;Lnet/msrandom/witchery/brewing/action/BrewActionList;)V"))
     public void WPrestorePreservedActions(BlockWitchCauldron instance, EntityPlayer player, BrewActionList actionList, Operation<Void> original) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.witchsCauldron_fixBottlingSkillIncrease
                 && witchery_Patcher$preservedActions != null) {
@@ -57,7 +59,7 @@ public abstract class BlockWitchCauldronMixin {
         } else {
             original.call(instance, player, actionList);
         }
-    }*/
+    }
 
     /**
      * Injects before the cauldron.drain() call ONLY in the first instance (before the handler.fill() call, that is
