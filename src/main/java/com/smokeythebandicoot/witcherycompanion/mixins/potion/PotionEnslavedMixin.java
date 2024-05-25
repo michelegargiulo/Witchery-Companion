@@ -11,15 +11,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PotionEnslaved.class)
 public class PotionEnslavedMixin {
-	@SuppressWarnings("ConstantValue")
-	@Inject(method = "setEnslaverForMob", remap = false, cancellable = true, at = @At("HEAD"))
-	private static void setEnslaverForMob(EntityLiving entity, EntityPlayer player, CallbackInfoReturnable<Boolean> cir) {
-		if (!ModConfig.PatchesConfiguration.BrewsTweaks.raising_fixNullPlayerName) {
-			return;
-		}
+    @SuppressWarnings("ConstantValue")
+    @Inject(method = "setEnslaverForMob", remap = false, cancellable = true, at = @At("HEAD"))
+    private static void setEnslaverForMob(EntityLiving entity, EntityPlayer player, CallbackInfoReturnable<Boolean> cir) {
+        if (!ModConfig.PatchesConfiguration.BrewsTweaks.raising_fixNullPlayerName) {
+            return;
+        }
 
-		if (player == null || player.getName() == null || player.getName().isEmpty()) {
-			cir.setReturnValue(false);
-		}
-	}
+        if (player == null || player.getName() == null || player.getName().isEmpty()) {
+            cir.setReturnValue(false);
+        }
+    }
 }
