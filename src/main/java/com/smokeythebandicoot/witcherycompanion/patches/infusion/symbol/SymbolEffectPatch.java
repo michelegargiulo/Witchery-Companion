@@ -36,5 +36,7 @@ public class SymbolEffectPatch {
 
         NBTTagCompound acquiredKnowledge = oldPlayer.getEntityData().getCompoundTag("WitcherySpellBook");
         newPlayer.getEntityData().setTag("WitcherySpellBook", acquiredKnowledge);
+
     }
+
 }
