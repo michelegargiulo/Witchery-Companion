@@ -1,11 +1,14 @@
 package com.smokeythebandicoot.witcherycompanion;
 
 import com.smokeybandicoot.witcherycompanion.Tags;
+import com.smokeythebandicoot.witcherycompanion.client.WitcheryJarDownloader;
 import com.smokeythebandicoot.witcherycompanion.proxy.CommonProxy;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
@@ -30,7 +33,7 @@ public class WitcheryCompanion implements ILateMixinLoader {
     public static final String MODCREDITS = "";
     public static final String MODURL = "";
     public static final String MODLOGO = "assets/witcherycompanion/logo.png";
-    public static final String MODDEPS = "required-after:witchery";
+    public static final String MODDEPS = "required-before:witchery";
     public static final String MODDESCRIPTION = "A Companion mod for Witchery Resurrected, patching bugs, adding " +
             "integrations and introducing modpack maker-oriented features";
 
@@ -42,6 +45,14 @@ public class WitcheryCompanion implements ILateMixinLoader {
     @SidedProxy(clientSide = "com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy",
                 serverSide = "com.smokeythebandicoot.witcherycompanion.proxy.CommonProxy")
     public static CommonProxy proxy;
+
+    // This is an internal event that is not supposed to be used, but since it's 1.12 and this doesn't need to exist on higher versions; it doesn't matter.
+    @EventHandler
+    public void onConstruction(FMLConstructionEvent event) {
+        if (FMLCommonHandler.instance().getSide().isClient()) {
+            WitcheryJarDownloader.downloadJar();
+        }
+    }
 
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event) {
