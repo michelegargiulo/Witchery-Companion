@@ -103,6 +103,10 @@ public class ModConfig {
             @Config.Name("Brew of Tidal Hold - Fix Entity Suffocation")
             public static boolean tidalHold_fixEntitySuffocation = true;
 
+            @Config.Comment("Fixes some dispersal methods of the brew of raising causing a crash")
+            @Config.Name("Brew of Raising - Fix NUll Player Name Crash")
+            public static boolean raising_fixNullPlayerName = true;
+
             @Config.Comment("If true, gives CraftTweaker integration total control about which blocks can be mined or destroyed, " +
                     "enabling a much more in-depth customizability. If set to True, but no script changes it, behaviour is default Witchery")
             @Config.Name("Brew of Erosion - Tweak Effect With Crafttweaker")

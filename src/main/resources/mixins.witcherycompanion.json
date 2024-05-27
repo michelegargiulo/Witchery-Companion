@@ -38,6 +38,7 @@
     "item.ItemSeerStoneMixin",
     "item.ItemSpectralStoneMixin",
     "item.brews.ItemErosionBrewMixin",
+    "potion.PotionEnslavedMixin",
     "potion.PotionFortuneMixin",
     "rite.effect.RiteEffectMovingEarthMixin",
     "util.EntityUtilMixin",
