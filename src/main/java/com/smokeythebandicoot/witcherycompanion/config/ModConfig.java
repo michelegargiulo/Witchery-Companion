@@ -27,9 +27,6 @@ public class ModConfig {
     @Config.Name("Integration Configuration")
     public static IntegrationConfigurations integrations;
 
-    @Config.Name("General Configuration")
-    public static GeneralConfigurations general;
-
 
     public static class PatchesConfiguration {
 
@@ -428,15 +425,6 @@ public class ModConfig {
             @Config.Name("JEI Integration - Enable Goblin Trades")
             public static boolean enableJeiGoblinTrades = true;
         }
-    }
-
-    public static class GeneralConfigurations {
-
-        @Config.Comment("If true, on startup tries to download the 1.7.10 Witchery mod jar, version 0.24.1, and puts " +
-                "it into the resourcepacks folder, as it is required for Witchery:Resurrected")
-        @Config.Name("Automatic Witchery Download")
-        public static boolean downloadWitcheryJar = true;
-
     }
 
     @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)
