@@ -21,10 +21,14 @@ public class ModConfig {
     @Config.Comment("Patches configuration.\n" +
             "Bugfixes fix bugs and crashes, and are enabled by default.\n" +
             "Tweaks alter the behaviour of Witchery, and are disabled by default")
-    @Config.Name("General Configuration")
+    @Config.Name("Patches Configuration")
     public static PatchesConfiguration mixins;
 
+    @Config.Name("Integration Configuration")
     public static IntegrationConfigurations integrations;
+
+    @Config.Name("General Configuration")
+    public static GeneralConfigurations general;
 
 
     public static class PatchesConfiguration {
@@ -104,7 +108,7 @@ public class ModConfig {
             public static boolean tidalHold_fixEntitySuffocation = true;
 
             @Config.Comment("Fixes some dispersal methods of the brew of raising causing a crash")
-            @Config.Name("Brew of Raising - Fix NUll Player Name Crash")
+            @Config.Name("Brew of Raising - Fix Null Player Name Crash")
             public static boolean raising_fixNullPlayerName = true;
 
             @Config.Comment("If true, gives CraftTweaker integration total control about which blocks can be mined or destroyed, " +
@@ -136,11 +140,16 @@ public class ModConfig {
         public static class BlockTweaks {
 
             @Config.Comment("Fix Altar blocks requiring to get broken and re-placed to work properly again")
-            @Config.Name("Altar - Fix Power Source Persistency")
+            @Config.Name("Altar - Fix Power Source Persistence")
             public static boolean altar_fixPowerSourcePersistency = true;
 
+            @Config.Comment("Fixes fetish blocks not dropping when they are harvested due to TileEntity being null " +
+                    "when the getDrops method is called")
+            @Config.Name("Block Fetish - Fix No Drops on Harvest")
+            public static boolean blockFetish_fixNoDropsOnHarvest = true;
+
             @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
-                    "at least they should not crash the game as often.")
+                    "at least they should not crash the game as often")
             @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")
             public static boolean cursedBlock_fixNullActionListCrash = true;
 
@@ -203,7 +212,7 @@ public class ModConfig {
 
             @Config.Comment("If true, when the Seer Stone is shift-right-clicked Throwing Skills won't be printed, " +
                     "as it is a mechanic not yet implemented in Witchery: Resurrected")
-            @Config.Name("Seer Stone - Tweak Emulate Erosion Brew")
+            @Config.Name("Seer Stone - Tweak Unprint Throwing Skills")
             public static boolean seerStone_tweakUnprintThrowingSkill = false;
 
         }
@@ -310,6 +319,31 @@ public class ModConfig {
             @Config.Comment("If true, Owl children will be smaller than adult counterparts")
             @Config.Name("Owl - Tweak Render Small Children")
             public static boolean owl_tweakRenderChildSmaller = false;
+
+            @Config.Comment("If true, Spectre Attributes will be modified according to this config file")
+            @Config.Name("Spectre - Tweak Modify Attributes")
+            public static boolean spectre_tweakAttributes = false;
+
+            @Config.Comment("If true, Owl children will be smaller than adult counterparts")
+            @Config.Name("Spectre - Tweak Attribute Follow range")
+            public static float spectre_tweakFollowRange = 40.0f;
+
+            @Config.Comment("If true, Owl children will be smaller than adult counterparts")
+            @Config.Name("Spectre - Tweak Attribute Movement Speed")
+            public static float spectre_tweakMovementSpeed = 0.4f;
+
+            @Config.Comment("If true, Owl children will be smaller than adult counterparts")
+            @Config.Name("Spectre - Tweak Attribute Attack Damage")
+            public static float spectre_tweakAttackDamage = 4.0f;
+
+            @Config.Comment("If true, Spectre will have a minimum lifetime, and won't despawn immediately")
+            @Config.Name("Spectre - Tweak Delay Before Despawn")
+            public static boolean spectre_tweakDelayBeforeDespawn = false;
+
+            @Config.Comment("When the Spectre has no attack target (or it's dead) the Spectre waits this amount " +
+                    "of ticks before despawning")
+            @Config.Name("Spectre - Tweak Tick Delay Before Despawn")
+            public static int spectre_tweakDelayTicksBeforeDespawn = 60;
         }
 
         public static class BookTweaks {
@@ -394,6 +428,15 @@ public class ModConfig {
             @Config.Name("JEI Integration - Enable Goblin Trades")
             public static boolean enableJeiGoblinTrades = true;
         }
+    }
+
+    public static class GeneralConfigurations {
+
+        @Config.Comment("If true, on startup tries to download the 1.7.10 Witchery mod jar, version 0.24.1, and puts " +
+                "it into the resourcepacks folder, as it is required for Witchery:Resurrected")
+        @Config.Name("Automatic Witchery Download")
+        public static boolean downloadWitcheryJar = true;
+
     }
 
     @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)

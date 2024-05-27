@@ -30,11 +30,11 @@ public class WitcheryCompanion implements ILateMixinLoader {
     public static final String MODNAME = Tags.MOD_NAME;
     public static final String MODVERSION = Tags.VERSION;
     public static final String MODAUTHOR = "SmokeyTheBandicoot";
-    public static final String MODCREDITS = "";
+    public static final String MODCREDITS = "Ashley for Witchery: Resurrected and various contributions";
     public static final String MODURL = "";
     public static final String MODLOGO = "assets/witcherycompanion/logo.png";
     public static final String MODDEPS = "required-before:witchery";
-    public static final String MODDESCRIPTION = "A Companion mod for Witchery Resurrected, patching bugs, adding " +
+    public static final String MODDESCRIPTION = "A Companion mod for Witchery: Resurrected, patching bugs, adding " +
             "integrations and introducing modpack maker-oriented features";
 
     public static Logger logger;
@@ -46,7 +46,8 @@ public class WitcheryCompanion implements ILateMixinLoader {
                 serverSide = "com.smokeythebandicoot.witcherycompanion.proxy.CommonProxy")
     public static CommonProxy proxy;
 
-    // This is an internal event that is not supposed to be used, but since it's 1.12 and this doesn't need to exist on higher versions; it doesn't matter.
+    // This is an internal event that is not supposed to be used, but since it's 1.12 and this doesn't need to exist on
+    // higher versions; it doesn't matter.
     @EventHandler
     public void onConstruction(FMLConstructionEvent event) {
         if (FMLCommonHandler.instance().getSide().isClient()) {

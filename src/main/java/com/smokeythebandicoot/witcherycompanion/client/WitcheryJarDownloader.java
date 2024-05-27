@@ -1,8 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.client;
 
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +14,9 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+
 public class WitcheryJarDownloader {
+
     private static final String FILE_NAME = "witchery-1.7.10-0.24.1.jar";
     private static final String WITCHERY_1_7_10_DOWNLOAD_URL = "https://mediafilez.forgecdn.net/files/2234/410/" + FILE_NAME;
 
@@ -44,7 +45,6 @@ public class WitcheryJarDownloader {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     public static void downloadJar() {
         Path resourcePacksDirectory = Minecraft.getMinecraft().getResourcePackRepository().getDirResourcepacks().toPath();
         Path jarFile = resourcePacksDirectory.resolve(FILE_NAME);
