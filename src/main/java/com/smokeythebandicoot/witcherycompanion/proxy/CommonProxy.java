@@ -11,10 +11,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class CommonProxy {
 
-    public void onConstruction(FMLConstructionEvent event) {
-
-    }
-
     public void preInit(FMLPreInitializationEvent event) {
 
         if (ModConfig.PatchesConfiguration.InfusionTweaks.soulBrews_fixPersistency)
