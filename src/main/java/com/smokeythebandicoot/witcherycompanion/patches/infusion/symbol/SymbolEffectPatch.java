@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /**
  [Bugfix] Fixes persistency with NBT data being wiped on death. For example, infusions
  */
-@Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)
 public class SymbolEffectPatch {
 
     private static SymbolEffectPatch INSTANCE = null;
