@@ -1,7 +1,9 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.entity;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.msrandom.witchery.entity.EntitySpectre;
 import net.msrandom.witchery.entity.EntitySummonedUndead;
@@ -61,6 +63,9 @@ public abstract class EntitySpectreMixin extends EntitySummonedUndead {
 
     }
 
-
+    @Override
+    public ResourceLocation getLootTable() {
+        return ModConfig.PatchesConfiguration.LootTweaks.spectre_tweakLootTable ? LootTables.SPECTRE : null;
+    }
 
 }

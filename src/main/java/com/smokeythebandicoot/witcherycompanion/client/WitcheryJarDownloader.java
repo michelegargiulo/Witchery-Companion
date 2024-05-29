@@ -57,11 +57,15 @@ public class WitcheryJarDownloader implements IFMLLoadingPlugin {
     }
 
     public static void downloadJar() {
-        // Path resourcePacksDirectory = Minecraft.getMinecraft().getResourcePackRepository().getDirResourcepacks().toPath();
-        // Path jarFile = resourcePacksDirectory.resolve(FILE_NAME);
+
+        // This code should not run on the serverside
+        if (Launch.minecraftHome == null) return;
+
+        // Retrieve resourcePacks folder
         Path resourcePacksDirectory = Launch.minecraftHome.toPath();
         Path jarFile = resourcePacksDirectory.resolve("resourcepacks/" + FILE_NAME);
 
+        // Try to download the JAR
         try {
             downloadJar(jarFile);
         } catch (IOException exception) {

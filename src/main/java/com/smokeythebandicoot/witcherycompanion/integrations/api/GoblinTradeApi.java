@@ -154,19 +154,19 @@ public class GoblinTradeApi {
             possibleTrades.remove(trade);
         }
 
-        /** Removes a trade that matches the elements. Use null for wildcard, use Items.AIR for empty stack */
+        /** Removes a trade that matches the inputs, output and chance. Use null for wildcard, use Items.AIR for empty stack */
         public void removeTradeByMatching(Ingredient buy1, Ingredient buy2, Ingredient sell, Float chance) {
-            List<GoblinTrade> toRemove = new ArrayList<GoblinTrade>();
+            List<GoblinTrade> toRemove = new ArrayList<>();
             for (GoblinTrade trade : possibleTrades) {
-                MerchantRecipe t = trade.getTrade();
 
-                // If trade matches, add it to removal list. Null is considered a wildcard, while Empty itemstack
-                // matches an empty item in the trade (Buy 1 + Empty -> Sell)
+                MerchantRecipe t = trade.getTrade();
+                // If the trade matches, add it to removal list. Null is considered a wildcard, while Empty itemstack
+                // matches an empty item in the trade (Buy 1 + Empty -> Sell).
                 if ((buy1 == null || buy1.apply(t.getItemToBuy())) &&
                     (buy2 == null || buy2.apply(t.getSecondItemToBuy())) &&
                     (sell == null || sell.apply(t.getItemToSell())) &&
                     (chance == null || chance == trade.getChance())
-                ) {
+                ) { // Add to the list of trades to remove
                     toRemove.add(trade);
                 }
             }
@@ -178,11 +178,11 @@ public class GoblinTradeApi {
 
         /** Generates a list of trades based on current random context and the list of current possible trades. Use
          Integer.MAX_VALUE to get all trades */
-        public MerchantRecipeList generateActualTrades(World world) {
+        public MerchantRecipeList generateActualTrades(World worldIn) {
             // Init random generator
             Random random;
-            if (world == null) random = new Random();
-            else random = world.rand;
+            if (worldIn == null) random = new Random();
+            else random = worldIn.rand;
 
             // Init result list
             MerchantRecipeList tradeList = new MerchantRecipeList();
@@ -202,7 +202,7 @@ public class GoblinTradeApi {
         }
 
         /** Returns all trades that are possible with this profession. Use Integer.MAX_VALUE to get all trades */
-        public MerchantRecipeList getAllTrades() {
+        public MerchantRecipeList getAllTrades()  {
             MerchantRecipeList tradeList = new MerchantRecipeList();
             for (GoblinTrade trade : possibleTrades) {
                 tradeList.add(trade.genNewTrade());
@@ -219,13 +219,13 @@ public class GoblinTradeApi {
         private final MerchantRecipe trade;
         private final float probability;
 
-        public GoblinTrade(ItemStack buy1, ItemStack buy2, ItemStack sell, Float probability) {
+        public GoblinTrade(ItemStack buyStack1, ItemStack buyStack2, ItemStack sellStack, Float probability) {
 
             this.probability = probability == null ? 1.0f : probability;
-            if (buy1 == null) buy1 = new ItemStack(Items.AIR);
-            if (buy2 == null) buy2 = new ItemStack(Items.AIR);
-            if (sell == null) sell = new ItemStack(Items.AIR);
-            this.trade = new MerchantRecipe(buy1, buy2, sell);
+            if (buyStack1 == null) buyStack1 = new ItemStack(Items.AIR);
+            if (buyStack2 == null) buyStack2 = new ItemStack(Items.AIR);
+            if (sellStack == null) sellStack = new ItemStack(Items.AIR);
+            this.trade = new MerchantRecipe(buyStack1, buyStack2, sellStack);
 
         }
 

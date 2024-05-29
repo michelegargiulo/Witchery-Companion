@@ -70,6 +70,10 @@ public class ModConfig {
         @Config.Name("Loot Tweaks")
         public static LootTweaks loot;
 
+        @Config.Comment("Configuration for patches related to Dimensions")
+        @Config.Name("dimension Tweaks")
+        public static DimensionTweaks dimensions;
+
 
         public static class BrewsTweaks {
 
@@ -131,6 +135,12 @@ public class ModConfig {
             @Config.Comment("Fix crash when loot function is applied and a Null Random is passed to it (JER does this)")
             @Config.Name("Loot Utils - Fix NPE on JER Integration")
             public static boolean levelledRandomEnchant_fixCrashNullRandom = true;
+
+            @Config.Comment("Disables Recipe Syncing on World Load. User-made, per-world recipes won't be " +
+                    "synced between client and server. If there are no custom recipes, this will greatly speed up " +
+                    "world loading, with no side effects")
+            @Config.Name("Recipe Syncing - Tweak Disable Syncing")
+            public static boolean recipeSync_tweakDisableRecipeSyncing = false;
 
         }
 
@@ -395,6 +405,30 @@ public class ModConfig {
             @Config.Comment("If true, Lord of Torment will drop loot according to its Loot Table (witchery:entities/lord_of_torment)")
             @Config.Name("Lord of Torment - Tweak Drop Loot by Table")
             public static boolean lordOfTorment_tweakLootTable = false;
+
+            @Config.Comment("If true, Spectre will drop loot according to its Loot Table (witchery:entities/spectre)")
+            @Config.Name("Spectre - Tweak Drop Loot by Table")
+            public static boolean spectre_tweakLootTable = false;
+        }
+
+        public static class DimensionTweaks {
+
+            @Config.Comment("Sets the dimension ID for the Spirit World dimension")
+            @Config.Name("Spirit World - Tweak Dimension ID")
+            @Config.RequiresMcRestart
+            public static int spiritWorld_tweakID = 11;
+
+            @Config.Comment("Sets the dimension ID for the Torment dimension")
+            @Config.Name("Torment - Tweak Dimension ID")
+            @Config.RequiresMcRestart
+            public static int torment_tweakID = 12;
+
+            @Config.Comment("Sets the dimension ID for the Mirror dimension")
+            @Config.Name("Mirror - Tweak Dimension ID")
+            @Config.RequiresMcRestart
+            public static int mirror_tweakID = 13;
+
+
         }
     }
 
