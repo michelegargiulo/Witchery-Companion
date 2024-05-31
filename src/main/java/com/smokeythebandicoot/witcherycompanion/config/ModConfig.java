@@ -10,7 +10,6 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.msrandom.witchery.integration.JeiIntegration;
 
 import java.util.HashSet;
 
@@ -71,8 +70,12 @@ public class ModConfig {
         public static LootTweaks loot;
 
         @Config.Comment("Configuration for patches related to Dimensions")
-        @Config.Name("dimension Tweaks")
+        @Config.Name("Dimension Tweaks")
         public static DimensionTweaks dimensions;
+
+        @Config.Comment("Configuration for patches related to World Generation")
+        @Config.Name("Worldgen Tweaks")
+        public static WorldGenTweaks worldgen;
 
 
         public static class BrewsTweaks {
@@ -217,6 +220,24 @@ public class ModConfig {
             @Config.Name("Brew of Erosion Item - Tweak Emulate Erosion Brew")
             public static boolean itemErosionBrew_tweakEmulateBrewEffects = false;
 
+            @Config.Comment("If true, fixes a crash that happens when a Poppet Protection Poppet protects its owner")
+            @Config.Name("Poppet Protection Poppet - Fix Crash on Protect")
+            public static boolean poppetProtectionPoppet_fixCrashOnProtect = true;
+
+            @Config.Comment("Represents the amount of damage that the poppet takes when it protects its owner from a " +
+                    "curse. Default 350 (Vanilla Witchery value). Needs voodooProtectionPoppet_fixCrashOnCurseProtect=true to work")
+            @Config.Name("Poppet Protection Poppet - Tweak Damage Taken on Protect")
+            public static int poppetProtectionPoppet_tweakDamageTakenOnProtect = 350;
+
+            @Config.Comment("If true, fixes a crash that happens when a Voodoo Protection Poppet protects its owner")
+            @Config.Name("Voodoo Protection Poppet - Fix Crash on Protect")
+            public static boolean voodooProtectionPoppet_fixCrashOnCurseProtect = true;
+
+            @Config.Comment("Represents the amount of damage that the poppet takes when it protects its owner from a " +
+                    "curse. Default 350 (Vanilla Witchery value). Needs voodooProtectionPoppet_fixCrashOnCurseProtect=true to work")
+            @Config.Name("Voodoo Protection Poppet - Tweak Damage Taken on Protect")
+            public static int voodooProtectionPoppet_tweakDamageTaken = 350;
+
             @Config.Comment("If true, when the Seer Stone is shift-right-clicked Throwing Skills won't be printed, " +
                     "as it is a mechanic not yet implemented in Witchery: Resurrected")
             @Config.Name("Seer Stone - Tweak Unprint Throwing Skills")
@@ -249,6 +270,12 @@ public class ModConfig {
             @Config.Comment("If true, smoke particles and sounds will be played for blocks that won't be moved")
             @Config.Name("Rite of Moving Earth - Tweak Show Particles On Failure")
             public static boolean movingEarth_tweakFailIndicators = false;
+
+            @Config.Comment("If true, when player opens a container the Witchery-added NBT for rite of Prior " +
+                    "Incarnation is removed, as it wouldn't be of any use regardless")
+            @Config.Name("Rite of Prior Incarnation - Fix NBT Persisting After Pickup")
+            @Config.RequiresMcRestart
+            public static boolean ritePriorIncarnation_fixNbtNotRemoved = true;
 
             @Config.Ignore
             public static HashSet<IBlockState> movingEarth_stateBlacklist = new HashSet<>();
@@ -390,6 +417,14 @@ public class ModConfig {
             @Config.Name("Cat Familiar - Tweak Give Own Loot Table")
             public static boolean familiarCat_tweakOwnLootTable = false;
 
+            @Config.Comment("If true, Imp will drop loot according to its Loot Table (witchery:entities/imp_death)")
+            @Config.Name("Infernal Imp - Tweak Drop Loot By Table")
+            public static boolean infernalImp_tweakLootTable = false;
+
+            @Config.Comment("If true, Imp will drop loot according to its Loot Table (witchery:entities/imp_gift)")
+            @Config.Name("Infernal Imp - Tweak Gift Loot Table")
+            public static boolean infernalImp_tweakGiveGiftLootTable = false;
+
             @Config.Comment("If true, Death will drop loot according to its Loot Table (witchery:entities/death)")
             @Config.Name("Death - Tweak Drop Loot by Table")
             public static boolean death_tweakLootTable = false;
@@ -430,6 +465,15 @@ public class ModConfig {
 
 
         }
+
+        public static class WorldGenTweaks {
+
+            @Config.Comment("If true, fixes a crash that happens while trying to generate an Item Frame entity " +
+                    "with a book inside in the Witchery village piece")
+            @Config.Name("Item Frame - Fix Crash While Generating Book In Village")
+            public static boolean frameWithBook_fixCrashOnVillageGen = true;
+
+        }
     }
 
     public static class IntegrationConfigurations {
@@ -451,13 +495,14 @@ public class ModConfig {
 
         public static class JeiIntegration {
 
-            @Config.Comment("Master switch for all JEI integrations")
-            @Config.Name("JEI Integration - Enabled")
-            public static boolean enableJeiIntegration = true;
-
-            @Config.Comment("If true, enabled Goblin Trade JEI Integration")
+            @Config.Comment("If true, enables Goblin Trade JEI Integration")
             @Config.Name("JEI Integration - Enable Goblin Trades")
             public static boolean enableJeiGoblinTrades = true;
+
+            @Config.Comment("If true, enables Imp Gifts JEI Integration")
+            @Config.Name("JEI Integration - Enable Imp Gifts")
+            public static boolean enableJeiImpGifts = true;
+
         }
     }
 

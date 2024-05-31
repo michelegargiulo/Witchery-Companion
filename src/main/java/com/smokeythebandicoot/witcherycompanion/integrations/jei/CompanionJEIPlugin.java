@@ -5,7 +5,7 @@ import mezz.jei.api.*;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 
 @JEIPlugin
-public class WitcheryJEIPlugin implements IModPlugin {
+public class CompanionJEIPlugin implements IModPlugin {
 
     public static IJeiHelpers jeiHelpers;
     public static IGuiHelper guiHelper;
@@ -33,7 +33,7 @@ public class WitcheryJEIPlugin implements IModPlugin {
     @Override
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
 
-        WitcheryJEIPlugin.jeiRuntime = jeiRuntime;
+        CompanionJEIPlugin.jeiRuntime = jeiRuntime;
     }
 
 }

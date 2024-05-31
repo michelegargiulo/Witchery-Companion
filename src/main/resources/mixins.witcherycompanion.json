@@ -21,6 +21,7 @@
     "brewing.action.effect.ErosionBrewEffectMixin",
     "brewing.action.effect.FrogsTongueBrewEffectMixin",
     "brewing.action.effect.PotionBrewEffectMixin",
+    "common.CommonEventsMixin",
     "common.RelativePowerSourceMixin",
     "entity.EntityBabaYagaMixin",
     "entity.EntityBroomMixin",
@@ -29,6 +30,7 @@
     "entity.EntityGoblinGulgMixin",
     "entity.EntityGoblinMixin",
     "entity.EntityGoblinMogMixin",
+    "entity.EntityImpMixin",
     "entity.EntityLordOfTormentMixin",
     "entity.monster.EntityLilithMixin",
     "entity.passive.EntityCatFamiliarMixin",
@@ -37,6 +39,7 @@
     "item.ItemChalkMixin",
     "item.ItemSeerStoneMixin",
     "item.ItemSpectralStoneMixin",
+    "item.WitcheryPoppetItemMixin",
     "item.brews.ItemErosionBrewMixin",
     "potion.PotionEnslavedMixin",
     "potion.PotionFortuneMixin",
@@ -46,7 +49,6 @@
     "world.loot.functions.LevelledRandomEnchantmentMixin"
   ],
   "client": [
-    "_network.client.PacketUpdateRecipesMixin",
     "client.gui.book.GuiHerbologyBookMixin",
     "client.renderer.entity.block.RenderPoppetShelfMixin",
     "client.renderer.entity.model.ModelOwlMixin"

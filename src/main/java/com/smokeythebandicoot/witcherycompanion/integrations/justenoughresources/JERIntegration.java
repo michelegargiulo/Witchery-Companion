@@ -116,6 +116,10 @@ public class JERIntegration {
             return renderInfo;
         });
 
+        jerMobRegistry.register(new EntitySpectre(jerWorld), LootTables.SPECTRE);
+
+        jerMobRegistry.register(new EntityImp(jerWorld), LootTables.IMP_DEATH);
+
     }
 
 

@@ -19,7 +19,7 @@ public class GoblinTradesHandler {
 
     @ZenMethod
     @ZenDoc("Registers a new profession. At least on profession must exist in order for Hobgoblins to have trades. Takes in " +
-            "the name of the profession, returns true if the registration was successfull")
+            "the name of the profession, returns true if the registration was successful")
     public static boolean registerProfession(String name) {
         return GoblinTradeApi.registerProfession(name);
     }

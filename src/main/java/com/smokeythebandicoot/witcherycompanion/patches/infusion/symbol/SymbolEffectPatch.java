@@ -8,18 +8,17 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
+ Patches:
  [Bugfix] Fixes persistency with NBT data being wiped on death. For example, infusions
  */
 public class SymbolEffectPatch {
 
-    private static SymbolEffectPatch INSTANCE = null;
+    public static SymbolEffectPatch INSTANCE;
 
     private SymbolEffectPatch() { }
 
-    public static SymbolEffectPatch getInstance() {
-        if (INSTANCE == null)
-            INSTANCE = new SymbolEffectPatch();
-        return INSTANCE;
+    static {
+        INSTANCE = new SymbolEffectPatch();
     }
 
     // NOTE: this event is subscribed only if soulBrews_fixPersistency is enabled in config

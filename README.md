@@ -84,6 +84,7 @@ jar in the resource packs folder.
 ### Performance
 - **Blocks**
   - **[Altar]** Implement caching for the Power Source map
+  - **[JEI Integration]** Option to skip recipe syncing for user-made recipes to save world loading time
 
 ### Future Plans
 - Add CraftTweaker integration for main recipe categories (Cauldron, Distillery, Kettle, Oven)
