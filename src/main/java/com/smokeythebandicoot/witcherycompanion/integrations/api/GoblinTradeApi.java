@@ -158,7 +158,6 @@ public class GoblinTradeApi {
         public void removeTradeByMatching(Ingredient buy1, Ingredient buy2, Ingredient sell, Float chance) {
             List<GoblinTrade> toRemove = new ArrayList<>();
             for (GoblinTrade trade : possibleTrades) {
-
                 MerchantRecipe t = trade.getTrade();
                 // If the trade matches, add it to removal list. Null is considered a wildcard, while Empty itemstack
                 // matches an empty item in the trade (Buy 1 + Empty -> Sell).
@@ -202,7 +201,7 @@ public class GoblinTradeApi {
         }
 
         /** Returns all trades that are possible with this profession. Use Integer.MAX_VALUE to get all trades */
-        public MerchantRecipeList getAllTrades()  {
+        public MerchantRecipeList getAllTrades() {
             MerchantRecipeList tradeList = new MerchantRecipeList();
             for (GoblinTrade trade : possibleTrades) {
                 tradeList.add(trade.genNewTrade());

@@ -139,12 +139,6 @@ public class ModConfig {
             @Config.Name("Loot Utils - Fix NPE on JER Integration")
             public static boolean levelledRandomEnchant_fixCrashNullRandom = true;
 
-            @Config.Comment("Disables Recipe Syncing on World Load. User-made, per-world recipes won't be " +
-                    "synced between client and server. If there are no custom recipes, this will greatly speed up " +
-                    "world loading, with no side effects")
-            @Config.Name("Recipe Syncing - Tweak Disable Syncing")
-            public static boolean recipeSync_tweakDisableRecipeSyncing = false;
-
         }
 
         public static class BlockTweaks {

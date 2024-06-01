@@ -7,6 +7,7 @@ import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.common.DummyModContainer;
 import net.minecraftforge.fml.common.LoadController;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -44,9 +45,13 @@ public class WitcheryJarDownloader implements IFMLLoadingPlugin {
     }
 
     private static void downloadJar(Path jarFile) throws IOException {
-        if (!isValidFile(jarFile)) {
-            Files.deleteIfExists(jarFile);
+        if (isValidFile(jarFile)) {
+            LOGGER.info("Witchery jar found. Skipping download");
+            return;
         }
+
+        LOGGER.info("Could not find Witchery jar. Trying to download...");
+        Files.deleteIfExists(jarFile);
 
         try (
                 InputStream download = new URL(WITCHERY_1_7_10_DOWNLOAD_URL).openStream();
@@ -54,6 +59,8 @@ public class WitcheryJarDownloader implements IFMLLoadingPlugin {
         ) {
             ByteStreams.copy(download, output);
         }
+
+        LOGGER.info("Witchery Jar successfully downloaded");
     }
 
     public static void downloadJar() {
