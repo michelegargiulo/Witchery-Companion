@@ -322,6 +322,39 @@ public class ModConfig {
             @Config.Name("Goblin - Tweak Custom Trades")
             public static boolean goblin_tweakCustomTrades = false;
 
+            @Config.Comment("If true, Infernal Imp won't consume shiny items when it is on cooldown. Otherwise, items " +
+                    "given to it will be wasted, as they have no effect")
+            @Config.Name("Flame Imp - Tweak Item Consumption On Cooldown")
+            public static boolean flameImp_tweakItemConsumptionOnCooldown = true;
+
+            @Config.Comment("If true, Infernal Imp shinies list can be customized with CraftTweaker. Default true, as it " +
+                    "does not alter behaviour if not customized. Shinies are also ItemStacks instead of Items, thus " +
+                    "they will respect metadata and NBT")
+            @Config.Name("Flame Imp - Tweak Custom Shinies")
+            public static boolean flameImp_tweakCustomShinies = true;
+
+            @Config.Comment("If true, Infernal Imp gift list can be customized with CraftTweaker. Default true, as it " +
+                    "does not alter behaviour if not customized")
+            @Config.Name("Flame Imp - Tweak Custom Gifts")
+            public static boolean flameImp_tweakCustomGifts = true;
+
+            @Config.Comment("If true, when custom gifts are added by Crafttweaker, if a gift is not set in script it " +
+                    "generates a random one from the loot table. If even the loot table generates no gift, behaviour is " +
+                    "defined by flameinfernalImp_tweakCustomGiftFallback")
+            @Config.Name("Flame Imp - Tweak Custom Extra Items")
+            public static boolean flameImp_tweakCustomExtraItems = true;
+
+            @Config.Comment("If true, when custom gifts are added by Crafttweaker, if a gift is not set in script nor " +
+                    "in loot table, then fall back to the item that Witchery would have given. If false, the success " +
+                    "message will be written in chat, but no items will be given")
+            @Config.Name("Flame Imp - Tweak Custom Gifts Fallback")
+            public static boolean flameinfernalImp_tweakCustomGiftFallback = true;
+
+            @Config.RangeInt
+            @Config.Comment("Sets the minimum amount of time (in ticks) before Infernal Imps will give another gift")
+            @Config.Name("Flame Imp - Tweak Gift Delay")
+            public static int flameImp_tweakGiftDelayTicks = 3600;
+
             @Config.Comment("If true, Lord of Torment won't teleport players to the Torment Dimension")
             @Config.Name("Lord of Torment - Tweak Disable Teleportation to Torment")
             public static boolean lordOfTorment_tweakDisableTeleportation = false;

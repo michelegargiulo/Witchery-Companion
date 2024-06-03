@@ -1,6 +1,5 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes;
 
-import com.smokeythebandicoot.witcherycompanion.integrations.api.GoblinTradeApi;
 import com.smokeythebandicoot.witcherycompanion.integrations.api.InfernalImpApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
@@ -34,7 +33,8 @@ public class InfernalImpHandler {
     @ZenMethod
     @ZenDoc("Returns true if the given item is a shiny")
     public static boolean isShiny(IItemStack iItemStack) {
-        return getAffectionBoost(iItemStack) > 0;
+        ItemStack stack = CraftTweakerMC.getItemStack(iItemStack);
+        return InfernalImpApi.isShiny(stack);
     }
 
     @ZenMethod
@@ -42,6 +42,20 @@ public class InfernalImpHandler {
     public static int getAffectionBoost(IItemStack iItemStack) {
         ItemStack stack = CraftTweakerMC.getItemStack(iItemStack);
         return InfernalImpApi.getAffectionBoost(stack);
+    }
+
+    @ZenMethod
+    @ZenDoc("Returns the given item affection boost. Returns 0 if the item is not a shiny")
+    public static IItemStack getGift(int secretIndex) {
+        ItemStack stack = InfernalImpApi.getGift(secretIndex);
+        return CraftTweakerMC.getIItemStack(stack);
+    }
+
+    @ZenMethod
+    @ZenDoc("Returns the given item affection boost. Returns 0 if the item is not a shiny")
+    public static void setGift(IItemStack iItemStack, int secretIndex) {
+        ItemStack stack = CraftTweakerMC.getItemStack(iItemStack);
+        InfernalImpApi.setGift(stack, secretIndex);
     }
 
 }

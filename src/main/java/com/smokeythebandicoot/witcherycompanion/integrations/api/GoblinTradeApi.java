@@ -175,6 +175,16 @@ public class GoblinTradeApi {
             }
         }
 
+        /** Returns all trades that are possible with this profession. Use Integer.MAX_VALUE to get all trades */
+        public MerchantRecipeList getAllTrades() {
+            MerchantRecipeList tradeList = new MerchantRecipeList();
+            for (GoblinTrade trade : possibleTrades) {
+                tradeList.add(trade.genNewTrade());
+            }
+            if (fallBackTrade != null) tradeList.add(fallBackTrade.genNewTrade());
+            return tradeList;
+        }
+
         /** Generates a list of trades based on current random context and the list of current possible trades. Use
          Integer.MAX_VALUE to get all trades */
         public MerchantRecipeList generateActualTrades(World worldIn) {
@@ -197,16 +207,6 @@ public class GoblinTradeApi {
                 tradeList.add(fallBackTrade.genNewTrade());
             }
 
-            return tradeList;
-        }
-
-        /** Returns all trades that are possible with this profession. Use Integer.MAX_VALUE to get all trades */
-        public MerchantRecipeList getAllTrades() {
-            MerchantRecipeList tradeList = new MerchantRecipeList();
-            for (GoblinTrade trade : possibleTrades) {
-                tradeList.add(trade.genNewTrade());
-            }
-            if (fallBackTrade != null) tradeList.add(fallBackTrade.genNewTrade());
             return tradeList;
         }
 
