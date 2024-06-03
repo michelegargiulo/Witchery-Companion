@@ -15,9 +15,11 @@ import java.util.Objects;
 
 public class InfernalImpApi {
 
-    public static HashMap<SimpleItemStack, Integer> shinies = new HashMap<>();
-    public static HashMap<Integer, ItemStack> gifts = new HashMap<>();
+    protected static HashMap<SimpleItemStack, Integer> shinies = new HashMap<>();
+    protected static HashMap<Integer, ItemStack> gifts = new HashMap<>();
+    protected static int lastGiftIndex = -1;
 
+    // ============================== INITIALIZATION ==============================
     static {
         shinies.put(new SimpleItemStack(Items.DIAMOND), 8);
         shinies.put(new SimpleItemStack(Items.DIAMOND_AXE), 24);
@@ -47,6 +49,7 @@ public class InfernalImpApi {
         gifts.put(3, new ItemStack(WitcheryContractItems.TORMENT_CONTRACT));
     }
 
+
     // ============================== SHINIES ==============================
     /** Adds an itemstack to the shiny list. The stack will give the provided affection boost.
      * Affection boost must be positive. Returns true if operation was successful */
@@ -75,10 +78,11 @@ public class InfernalImpApi {
         return result == null ? 0 : result;
     }
 
-    // ============================== SHINIES ==============================
 
+    // ============================== SHINIES ==============================
     /** Returns the gift for the given index. Returns null if no gift has been set for the index */
     public static ItemStack getGift(int secretNumber) {
+        if (secretNumber > lastGiftIndex) return null;
         if (!gifts.containsKey(secretNumber)) return null;
         return gifts.get(secretNumber);
     }
@@ -88,7 +92,16 @@ public class InfernalImpApi {
     public static void setGift(ItemStack gift, int secretNumber) {
         if (secretNumber < 0) return;
         gifts.put(secretNumber, gift == null ? ItemStack.EMPTY : gift);
+        if (secretNumber > lastGiftIndex) {
+            lastGiftIndex = secretNumber;
+        }
     }
+
+    /** Returns the index of the last non-random gift */
+    public static int getLastGiftIndex() {
+        return lastGiftIndex;
+    }
+
 
     // ============================== UTILS ==============================
     private static class SimpleItemStack {

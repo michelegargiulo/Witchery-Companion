@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.jei.imp;
+package com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.gifts;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;

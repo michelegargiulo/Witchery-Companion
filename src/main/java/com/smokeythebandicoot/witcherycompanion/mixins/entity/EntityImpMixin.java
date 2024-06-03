@@ -60,7 +60,8 @@ public abstract class EntityImpMixin extends EntityTameable {
 
         if (ModConfig.PatchesConfiguration.EntityTweaks.flameImp_tweakCustomShinies) {
             ItemStack stack = player.getHeldItem(hand);
-            return InfernalImpApi.getAffectionBoost(stack);
+            int boost = InfernalImpApi.getAffectionBoost(stack);
+            return boost == 0 ? null : boost; // Must return null because EntityImp checks affectionBoost this way
         }
         return original.call(instance, o);
     }
@@ -98,7 +99,7 @@ public abstract class EntityImpMixin extends EntityTameable {
 
         // Witchery increments this variable up to 4, then it never increments it again.
         // If tweak is enabled, increase this variable as it is used to give more gifts
-        if (this.secretsShared > 3)
+        if (this.secretsShared > 3 && this.secretsShared < InfernalImpApi.getLastGiftIndex())
             this.secretsShared += 1;
 
         // If not gift are present for the given secret, then generate one using the loot table

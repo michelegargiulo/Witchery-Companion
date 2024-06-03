@@ -3,6 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.jei.goblin;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.base.BaseRecipeWrapper;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
@@ -11,9 +12,7 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This class is responsible
- */
+
 public class GoblinTradeWrapper extends BaseRecipeWrapper {
 
     protected List<ItemStack> inputs;
@@ -38,8 +37,8 @@ public class GoblinTradeWrapper extends BaseRecipeWrapper {
 
     @Override
     public void getIngredients(IIngredients ingredients) {
-        ingredients.setInputs(ItemStack.class, inputs);
-        ingredients.setOutputs(ItemStack.class, outputs);
+        ingredients.setInputs(VanillaTypes.ITEM, inputs);
+        ingredients.setOutputs(VanillaTypes.ITEM, outputs);
     }
 
     @Override

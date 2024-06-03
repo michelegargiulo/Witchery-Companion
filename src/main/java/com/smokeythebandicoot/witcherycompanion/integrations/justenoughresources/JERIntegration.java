@@ -50,7 +50,7 @@ public class JERIntegration {
         jerMobRegistry.register(new EntityToad(jerWorld), LootTables.TOAD);
         jerMobRegistry.registerRenderHook(EntityToad.class, (renderInfo, entityLivingBase) -> {
             GlStateManager.scale(2.0f, 2.0f, 2.0f);
-            GlStateManager.translate(0.0f, 0.5f, 0.0f);
+            GlStateManager.translate(0.0f, -0.5f, 0.0f);
             return renderInfo;
         });
 
