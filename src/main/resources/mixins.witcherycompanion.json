@@ -50,6 +50,7 @@
   ],
   "client": [
     "client.gui.book.GuiHerbologyBookMixin",
+    "client.renderer.entity.RenderSpellEffectMixin",
     "client.renderer.entity.block.RenderPoppetShelfMixin",
     "client.renderer.entity.model.ModelOwlMixin"
   ],

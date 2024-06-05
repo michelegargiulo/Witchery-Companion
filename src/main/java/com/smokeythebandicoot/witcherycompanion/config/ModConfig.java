@@ -139,6 +139,11 @@ public class ModConfig {
             @Config.Name("Loot Utils - Fix NPE on JER Integration")
             public static boolean levelledRandomEnchant_fixCrashNullRandom = true;
 
+            @Config.Comment("Fix crash an Entity (such as Lord of Torment, or Lilith) uses a Spell that has been disabled. " +
+                    "As a side effect of enabling this, spell projectiles will have a default size and a random color.")
+            @Config.Name("Spell Effect Render - Fix Crash On Disabled Spell Cast")
+            public static boolean renderSpellEffect_fixCrashOnDisabledSpell = true;
+
         }
 
         public static class BlockTweaks {
