@@ -9,6 +9,7 @@ jar in the resource packs folder.
 - **Common**
   - **[Common]** Fix crash when pulling null entity
   - **[Loot]** Fix crash with Levelled random enchant
+  - **[Spell Rendering]** Fix crash when bosses (Lord of Torment, Lilith) use spells that have been disabled in config
 - **Blocks**
   - **[Altar]** Fix Altar not providing power on world load/reload
   - **[Altar]** Fix Placed Items (Arthana, Pentacle, etc) not dropping anything when breaking Altar blocks below them
@@ -66,6 +67,10 @@ jar in the resource packs folder.
   - **[Coven Witch]** Separate their loot table from Vanilla witches loot table
   - **[Demon]** Tweak to give them their own loot table instead of hard-coded loot
   - **[Enchanted Broom]** Tweak Enchanted Broom max health
+  - **[Flame Imp]** Tweak to add CraftTweaker compat to manipulate items that can be given to him (shinies) and gifts that it gives in exchange
+  - **[Flame Imp]** Tweak to modify Shiny cooldown  
+  - **[Flame Imp]** Tweak to not consume shinies given to it while on cooldown  
+  - **[Flame Imp]** Tweak to give random gifts based on a loot table instead of being hardcoded  
   - **[Lilith]** Tweak to disable enchanting items given to her
   - **[Lord of Torment]** Tweak to disable mid-fight teleportation to Torment dimension
   - **[Lord of Torment]** Tweak to disable hardcoded loot drops (enchanted books)

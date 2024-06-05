@@ -2,7 +2,8 @@ package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes.CauldronHandler;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.integrations.api.CauldronApi;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -24,7 +25,10 @@ public abstract class TileEntityCauldronMixin {
     @WrapOperation(method = "update", remap = true,
         at = @At(value = "INVOKE", target = "Lnet/minecraft/block/state/IBlockState;getBlock()Lnet/minecraft/block/Block;", remap = true))
     public Block WPallowOtherHeatSources(IBlockState instance, Operation<Block> original) {
-        return CauldronHandler.isHeatSource(instance) ? Blocks.FIRE : Blocks.AIR;
+        if (ModConfig.PatchesConfiguration.BlockTweaks.witchsCauldron_tweakCustomHeatSources) {
+            return CauldronApi.isHeatSource(instance) ? CauldronApi.getFireBlock() : Blocks.AIR;
+        }
+        return original.call(instance);
     }
 
 }

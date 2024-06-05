@@ -198,6 +198,11 @@ public class ModConfig {
             @Config.Name("Witch's Cauldron - Fix Bucket Voiding Brew")
             public static boolean witchsCauldron_fixBucketVoidingBrew = true;
 
+            @Config.Comment("If true, enabled Crafttweaker integration for Witch's Cauldron. Defaults to true, " +
+                    "as if enabled and not used does not alter Witchery behaviour")
+            @Config.Name("Witch's Cauldron - Tweak Enable Crafttweaker Integration")
+            public static boolean witchsCauldron_tweakCustomHeatSources = true;
+
             @Config.Comment("If true, fix popper rendering, displaying them the right way up+")
             @Config.Name("Poppet Shelf - Fix Upside-down Poppets")
             public static boolean poppetShelf_fixUpsideDownPoppetRendering = true;
