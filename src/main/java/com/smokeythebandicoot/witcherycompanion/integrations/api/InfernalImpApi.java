@@ -10,8 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.msrandom.witchery.init.items.WitcheryBrewItems;
 import net.msrandom.witchery.init.items.WitcheryContractItems;
 
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
 
 public class InfernalImpApi {
 
@@ -104,6 +103,18 @@ public class InfernalImpApi {
 
 
     // ============================== UTILS ==============================
+    /** Returns a list of the Indices that will give a pre-defined item */
+    public static List<Integer> giftIndices(List<Integer> list) {
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        list.clear();
+        list.addAll(gifts.keySet());
+        list.sort(Integer::compare);
+        return list;
+    }
+
+
     private static class SimpleItemStack {
         public String regName;
         public int meta;

@@ -22,7 +22,6 @@ import java.util.List;
 
 public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> {
 
-    public static boolean enabled = true;
     public static String UID = "witchery.goblin_trade";
     public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/goblin_trade.png");
 
@@ -31,9 +30,12 @@ public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> 
         localizedName = new TextComponentTranslation("witcherycompanion.gui.goblin_trade.name").getFormattedText();
     }
 
-    public  static void register(IRecipeCategoryRegistration registry) {
-        enabled = ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiGoblinTrades;
-        if (!enabled) return;
+    public static boolean shouldRegister() {
+        return ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiGoblinTrades;
+    }
+
+    public static void register(IRecipeCategoryRegistration registry) {
+        if (!shouldRegister()) return;
 
         IJeiHelpers jeiHelpers = registry.getJeiHelpers();
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
@@ -42,7 +44,7 @@ public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> 
     }
 
     public static void initialize(IModRegistry registry) {
-        if (!enabled) return;
+        if (!shouldRegister()) return;
 
         try {
             IJeiHelpers jeiHelpers = registry.getJeiHelpers();
@@ -55,10 +57,17 @@ public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> 
     }
 
     public static List<GoblinTradeWrapper> getRecipes(IGuiHelper guiHelper) {
+
         List<GoblinTradeWrapper> recipes = new ArrayList<>();
 
-        for (MerchantRecipe goblinTrade : GoblinTradeApi.getTrades(0)) {
-            recipes.add(new GoblinTradeWrapper(guiHelper, goblinTrade));
+        for (int id = 0; id < GoblinTradeApi.getProfessionCount(); id++) {
+
+            GoblinTradeApi.GoblinProfession profession = GoblinTradeApi.getProfessionByID(id);
+            if (profession == null) continue;
+
+            for (MerchantRecipe goblinTrade : GoblinTradeApi.getTrades(id)) {
+                recipes.add(new GoblinTradeWrapper(guiHelper, goblinTrade, profession.professionName));
+            }
         }
 
         return recipes;

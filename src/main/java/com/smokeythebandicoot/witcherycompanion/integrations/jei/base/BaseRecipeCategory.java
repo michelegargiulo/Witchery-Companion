@@ -17,10 +17,13 @@ public abstract class BaseRecipeCategory<T extends IRecipeWrapper> implements IR
     protected IDrawableStatic icon;
     protected String localizedName;
 
-    public BaseRecipeCategory() {
+    public BaseRecipeCategory() { }
 
+    /** Child classes must override this method and return true only if all conditions
+     * are met in order to register the category. This includes Config options and Dependencies */
+    public static boolean shouldRegister() {
+        return true;
     }
-
 
     @Nonnull
     @Override

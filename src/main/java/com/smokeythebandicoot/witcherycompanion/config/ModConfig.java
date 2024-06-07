@@ -546,6 +546,10 @@ public class ModConfig {
             @Config.Name("JEI Integration - Enable Imp Gifts")
             public static boolean enableJeiImpGifts = true;
 
+            @Config.Comment("If true, enables Imp Shinies JEI Integration")
+            @Config.Name("JEI Integration - Enable Imp Shinies")
+            public static boolean enableJeiImpShinies = true;
+
         }
     }
 

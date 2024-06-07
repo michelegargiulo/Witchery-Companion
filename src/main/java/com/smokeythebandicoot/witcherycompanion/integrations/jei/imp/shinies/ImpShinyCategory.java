@@ -2,7 +2,6 @@ package com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.shinies;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.api.GoblinTradeApi;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.base.BaseRecipeCategory;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.goblin.GoblinTradeWrapper;
 import mezz.jei.api.IGuiHelper;
@@ -15,7 +14,6 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.village.MerchantRecipe;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -23,7 +21,6 @@ import java.util.List;
 
 public class ImpShinyCategory extends BaseRecipeCategory<ImpShinyWrapper> {
 
-    public static boolean enabled = true;
     public static String UID = "witchery.imp_gift";
     public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/imp_shiny.png");
 
@@ -32,9 +29,11 @@ public class ImpShinyCategory extends BaseRecipeCategory<ImpShinyWrapper> {
         localizedName = new TextComponentTranslation("witcherycompanion.gui.imp_shiny.name").getFormattedText();
     }
 
-    public  static void register(IRecipeCategoryRegistration registry) {
-        enabled = ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiImpGifts;
-        if (!enabled) return;
+    public static boolean shouldRegister() {
+        return ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiImpShinies;
+    }
+
+    public static void register(IRecipeCategoryRegistration registry) {
 
         IJeiHelpers jeiHelpers = registry.getJeiHelpers();
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
@@ -43,8 +42,6 @@ public class ImpShinyCategory extends BaseRecipeCategory<ImpShinyWrapper> {
     }
 
     public static void initialize(IModRegistry registry) {
-        if (!enabled) return;
-
         try {
             IJeiHelpers jeiHelpers = registry.getJeiHelpers();
             IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
@@ -58,9 +55,9 @@ public class ImpShinyCategory extends BaseRecipeCategory<ImpShinyWrapper> {
     public static List<GoblinTradeWrapper> getRecipes(IGuiHelper guiHelper) {
         List<GoblinTradeWrapper> recipes = new ArrayList<>();
 
-        for (MerchantRecipe goblinTrade : GoblinTradeApi.getTrades(0)) {
+        /*for (MerchantRecipe goblinTrade : GoblinTradeApi.getTrades(0)) {
             recipes.add(new GoblinTradeWrapper(guiHelper, goblinTrade));
-        }
+        }*/
 
         return recipes;
     }

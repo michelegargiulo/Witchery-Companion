@@ -8,6 +8,7 @@ import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * This class is responsible to Bridge between Witchery and Integrations (Crafttweaker, Groovy (eventually))
@@ -53,12 +54,18 @@ public class GoblinTradeApi {
         return null;
     }
 
+    public static GoblinProfession getProfessionByID(int ID) {
+        if (professions.size() > ID)
+            return professions.get(ID);
+        return null;
+    }
+
+    public static int getProfessionCount() {
+        return professions.size();
+    }
+
     public static List<String> listProfessions() {
-        List<String> list = new ArrayList<>();
-        for (GoblinProfession profession : professions) {
-            list.add(profession.professionName);
-        }
-        return list;
+        return professions.stream().map(profession -> profession.professionName).collect(Collectors.toList());
     }
 
     /** =============================== PROFESSION MANIP =============================== **/
