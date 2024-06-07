@@ -44,6 +44,7 @@
     "potion.PotionEnslavedMixin",
     "potion.PotionFortuneMixin",
     "registry.RegistryWrapper_DimensionsMixin",
+    "resources.SymbolEffectManagerMixin",
     "rite.effect.RiteEffectMovingEarthMixin",
     "util.EntityUtilMixin",
     "world.loot.functions.LevelledRandomEnchantmentMixin"

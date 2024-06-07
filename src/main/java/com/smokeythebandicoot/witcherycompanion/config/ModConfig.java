@@ -144,6 +144,12 @@ public class ModConfig {
             @Config.Name("Spell Effect Render - Fix Crash On Disabled Spell Cast")
             public static boolean renderSpellEffect_fixCrashOnDisabledSpell = true;
 
+            @Config.Comment("If true, reduces to a single line an exception logging occuring because a Spell Effect " +
+                    "has been disabled in config. As the log spam only happens at load-time, this option requires a MC restart")
+            @Config.Name("Spell Effect - Tweak Reduce Logging On Disabled Effects")
+            @Config.RequiresMcRestart
+            public static boolean spellEffect_tweakMuteLogSpamOnDisable = true;
+
         }
 
         public static class BlockTweaks {
