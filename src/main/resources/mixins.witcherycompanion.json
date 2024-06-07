@@ -47,6 +47,7 @@
     "resources.SymbolEffectManagerMixin",
     "rite.effect.RiteEffectMovingEarthMixin",
     "util.EntityUtilMixin",
+    "util.ResizingUtilsMixin",
     "world.loot.functions.LevelledRandomEnchantmentMixin"
   ],
   "client": [
