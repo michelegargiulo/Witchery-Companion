@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.entity.p
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -32,62 +33,34 @@ public abstract class EntityPlayerMixin extends EntityLivingBase {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/EntityPlayer;setSize(FF)V", remap = true))
     public void checkResizeWhenUpdatingSize(EntityPlayer instance, float width, float height, Operation<Void> original) {
 
-        original.call(instance, width * witchery_Patcher$resizeScaleWidth, height * witchery_Patcher$resizeScaleHeight);
-
-        // Before updating size, check if scale due to ResizingPotion needs to be applied
-        /*for (PotionEffect pEffect : instance.getActivePotionEffects()) {
-            if (pEffect.getPotion() instanceof PotionResizing) {
-
-                float reductionFactor = 0.03F * (float)(instance.world.isRemote ? 1 : 20);
-                EntitySizeInfo sizeInfo = new EntitySizeInfo(instance);
-                float scale = PotionResizing.getScaleFactor(pEffect.getAmplifier());
-                float requiredHeight = sizeInfo.defaultHeight * scale;
-                float requiredWidth = sizeInfo.defaultWidth * scale;
-                float currentHeight = instance.height;
-
-                if (requiredHeight != currentHeight) {
-                    if (!instance.world.isRemote) {
-                        instance.eyeHeight = currentHeight * 0.92F;
-                    }
-
-                    instance.stepHeight = scale < 1.0F ? 0.0F : scale - 1.0F;
-                    if (scale < 1.0F) {
-                        original.call(instance, Math.max(instance.width - reductionFactor, requiredWidth), Math.max(currentHeight - reductionFactor, requiredHeight));
-                    } else {
-                        original.call(instance, Math.max(instance.width + reductionFactor, requiredWidth), Math.max(currentHeight + reductionFactor, requiredHeight));
-                    }
-                    instance.sendMessage(new TextComponentString("found resize"));
-                    return;
-                }
-
-                // Found potion effect, but requiredHeight = currentHeight, so just call original
-                break;
-
-            }
+        if (ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers) {
+            original.call(instance, width * witchery_Patcher$resizeScaleWidth, height * witchery_Patcher$resizeScaleHeight);
+            return;
         }
-
-        // No ResizingPotion found or no size chance needed. Call original
         original.call(instance, width, height);
-        instance.sendMessage(new TextComponentString("resize not found"));*/
+
     }
 
     @Inject(method = "getEyeHeight", remap = true, at = @At(value = "HEAD"), cancellable = true)
     public void modifyEyeHeight(CallbackInfoReturnable<Float> cir) {
-        float f = getDefaultEyeHeight();
 
-        if (this.isPlayerSleeping()) {
-            f = 0.2F;
+        if (ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers) {
+            float f = getDefaultEyeHeight();
 
-        } else if (!this.isSneaking() && this.height != 1.65F) {
-            if (this.isElytraFlying() || this.height == 0.6F)
-            {
-                f = 0.4F;
+            if (this.isPlayerSleeping()) {
+                f = 0.2F;
+
+            } else if (!this.isSneaking() && this.height != 1.65F) {
+                if (this.isElytraFlying() || this.height == 0.6F) {
+                    f = 0.4F;
+                }
+
+            } else {
+                f -= 0.08F;
             }
 
-        } else {
-            f -= 0.08F;
+            cir.setReturnValue(f * witchery_Patcher$resizeScaleHeight);
         }
 
-        cir.setReturnValue(f * witchery_Patcher$resizeScaleHeight);
     }
 }

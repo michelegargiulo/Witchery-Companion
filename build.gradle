@@ -132,6 +132,9 @@ dependencies {
     // Witchery: Resurrected
     implementation rfg.deobf(files('libs/WitcheryResurrected-1.12.2-0.5.2.4-forge-all.jar'))
 
+    // Witchery: Resurrected
+    implementation rfg.deobf('curse.maven:aquaacrobatics-321792:5225456')
+
 
     if (propertyBool('use_modern_java_syntax')) {
         annotationProcessor 'com.github.bsideup.jabel:jabel-javac-plugin:1.0.0'

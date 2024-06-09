@@ -296,6 +296,10 @@ public class ModConfig {
             @Config.Comment("Fixes Potion of Fortune not working because of wrong TileEntity check")
             @Config.Name("Fortune Potion - Fix No Effect")
             public static boolean fortunePotion_fixNoEffect = true;
+
+            @Config.Comment("Fixes Potion of Resizing not working on players")
+            @Config.Name("Resizing Potion - Fix No Effect On Players")
+            public static boolean resizing_fixEffectOnPlayers = true;
         }
 
         public static class EntityTweaks {
