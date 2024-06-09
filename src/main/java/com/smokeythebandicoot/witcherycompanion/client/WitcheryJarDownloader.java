@@ -17,6 +17,7 @@ import org.spongepowered.include.com.google.common.io.ByteStreams;
 import zone.rong.mixinbooter.IEarlyMixinLoader;
 
 import javax.annotation.Nullable;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -72,8 +73,10 @@ public class WitcheryJarDownloader implements IFMLLoadingPlugin, IEarlyMixinLoad
         if (Launch.minecraftHome == null) return;
 
         // Retrieve resourcePacks folder
-        Path resourcePacksDirectory = Launch.minecraftHome.toPath();
-        Path jarFile = resourcePacksDirectory.resolve("resourcepacks/" + FILE_NAME);
+        String resourcePacksFolderPath = Launch.minecraftHome.getPath() + "/resourcepacks";
+        new File(resourcePacksFolderPath).mkdir();
+        Path resourcePacksDirectory = new File(resourcePacksFolderPath).toPath();
+        Path jarFile = resourcePacksDirectory.resolve(FILE_NAME);
 
         // Try to download the JAR
         try {
