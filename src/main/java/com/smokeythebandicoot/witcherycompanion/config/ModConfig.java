@@ -190,6 +190,15 @@ public class ModConfig {
             @Config.Name("Placed Items - Fix Not Initialized Crash")
             public static boolean placedItems_fixNotInitializedCrash = true;
 
+            @Config.Comment("If true, fix popper rendering, displaying them the right way up")
+            @Config.Name("Poppet Shelf - Fix Upside-down Poppets")
+            public static boolean poppetShelf_fixUpsideDownPoppetRendering = true;
+
+            @Config.Comment("If true, disables the chunkloading behaviour of Poppet Shelves, requiring external " +
+                    "chunkloading to be active when a Player is not nearby")
+            @Config.Name("Poppet Shelf - Tweak Disable Chunkloading")
+            public static boolean poppetShelf_tweakDisableChunkloading = false;
+
             @Config.Comment("Workaround for Stockade blocks. When player head gets too close, the entire" +
                     "screen is rendered as a stockade side texture. This patch enlarges the stockade bounding" +
                     "box to make player head not get as close.")
@@ -208,10 +217,6 @@ public class ModConfig {
                     "as if enabled and not used does not alter Witchery behaviour")
             @Config.Name("Witch's Cauldron - Tweak Enable Crafttweaker Integration")
             public static boolean witchsCauldron_tweakCustomHeatSources = true;
-
-            @Config.Comment("If true, fix popper rendering, displaying them the right way up+")
-            @Config.Name("Poppet Shelf - Fix Upside-down Poppets")
-            public static boolean poppetShelf_fixUpsideDownPoppetRendering = true;
         }
 
         public static class ItemTweaks {
