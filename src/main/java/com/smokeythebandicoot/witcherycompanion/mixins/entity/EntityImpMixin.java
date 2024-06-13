@@ -2,7 +2,6 @@ package com.smokeythebandicoot.witcherycompanion.mixins.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.llamalad7.mixinextras.sugar.Local;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.api.InfernalImpApi;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
@@ -12,6 +11,7 @@ import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -19,8 +19,13 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
 import net.msrandom.witchery.entity.EntityImp;
-import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
+import org.spongepowered.asm.mixin.injection.Slice;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,11 +40,17 @@ import java.util.List;
 @Mixin(EntityImp.class)
 public abstract class EntityImpMixin extends EntityTameable {
 
-    @Shadow (remap = false)
+    @Shadow(remap = false)
     private int secretsShared;
+
+    @Shadow(remap = false)
+    private long lastGiftTime;
 
     @Unique
     private static LootTable witchery_Patcher$impGiftTable;
+
+    @Unique
+    private ItemStack witchery_Patcher$capturedStack = null;
 
     private EntityImpMixin(World worldIn) {
         super(worldIn);
@@ -51,17 +62,33 @@ public abstract class EntityImpMixin extends EntityTameable {
         return ModConfig.PatchesConfiguration.LootTweaks.infernalImp_tweakLootTable ? LootTables.IMP_DEATH : null;
     }
 
-    /** This mixin captures player and hand Locals and overrides the affection boost that Witchery would have
+    /**
+     * This mixin captures player's held item for later use
+     */
+    @WrapOperation(method = "processInteract", remap = false, at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/entity/player/EntityPlayer;getHeldItem(Lnet/minecraft/util/EnumHand;)Lnet/minecraft/item/ItemStack;", remap = true))
+    public ItemStack captureHeldStack(EntityPlayer instance, EnumHand enumHand, Operation<ItemStack> original) {
+
+        if (ModConfig.PatchesConfiguration.EntityTweaks.flameImp_tweakCustomShinies) {
+            witchery_Patcher$capturedStack = original.call(instance, enumHand);
+            return witchery_Patcher$capturedStack;
+        }
+        return original.call(instance, enumHand);
+    }
+
+    /** This mixin overrides the affection boost that Witchery would have
      * returned by the shinies.get() call with a call to InfernalImpApi.getAffectionBoost() instead */
     @WrapOperation(method = "processInteract", remap = false, at = @At(value = "INVOKE",
             target = "Ljava/util/HashMap;get(Ljava/lang/Object;)Ljava/lang/Object;", remap = false))
-    public Object shiniesOverride(HashMap<Item, Integer> instance, Object o, Operation<Integer> original,
-                                  @Local(argsOnly = true) EntityPlayer player, @Local(argsOnly = true) EnumHand hand) {
+    public Object shiniesOverride(HashMap<Item, Integer> instance, Object o, Operation<Integer> original) {
 
-        if (ModConfig.PatchesConfiguration.EntityTweaks.flameImp_tweakCustomShinies) {
-            ItemStack stack = player.getHeldItem(hand);
-            int boost = InfernalImpApi.getAffectionBoost(stack);
-            return boost == 0 ? null : boost; // Must return null because EntityImp checks affectionBoost this way
+        if (ModConfig.PatchesConfiguration.EntityTweaks.flameImp_tweakCustomShinies && witchery_Patcher$capturedStack != null) {
+            // If the Imp is on cooldown, then affection boost should not be increased
+            if (witchery_Patcher$isOnCooldown())
+                return 0;
+            int boost = InfernalImpApi.getAffectionBoost(witchery_Patcher$capturedStack);
+            witchery_Patcher$capturedStack = null;               // Release capturedStack
+            return boost == 0 ? null : boost;   // Must return null because EntityImp checks affectionBoost this way
         }
         return original.call(instance, o);
     }
@@ -99,7 +126,7 @@ public abstract class EntityImpMixin extends EntityTameable {
 
         // Witchery increments this variable up to 4, then it never increments it again.
         // If tweak is enabled, increase this variable as it is used to give more gifts
-        if (this.secretsShared > 3 && this.secretsShared < InfernalImpApi.getLastGiftIndex())
+        if (this.secretsShared > 3 && actualSecret <= InfernalImpApi.getLastGiftIndex())
             this.secretsShared += 1;
 
         // If not gift are present for the given secret, then generate one using the loot table
@@ -164,8 +191,10 @@ public abstract class EntityImpMixin extends EntityTameable {
                     to = @At(value = "INVOKE", remap = true,
                             target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z")))
     public void dontShrinkStackIfOnCooldown(ItemStack instance, int i, Operation<Void> original) {
-        if (!ModConfig.PatchesConfiguration.EntityTweaks.flameImp_tweakItemConsumptionOnCooldown) {
-            original.call(instance, i);
+        if (ModConfig.PatchesConfiguration.EntityTweaks.flameImp_tweakItemConsumptionOnCooldown) {
+            if (!witchery_Patcher$isOnCooldown()) {
+                original.call(instance, i);
+            }
         }
     }
 
@@ -175,6 +204,13 @@ public abstract class EntityImpMixin extends EntityTameable {
     @ModifyConstant(method = "processInteract", remap = false, constant = @Constant(longValue = 3600L))
     public long modifyDelay(long constant) {
         return ModConfig.PatchesConfiguration.EntityTweaks.flameImp_tweakGiftDelayTicks;
+    }
+
+    /** Returns true if the Imp is on cooldown, that is, if the elapsed time in ticks is less then or equal to the
+     number of config-defined cooldown ticks */
+    @Unique
+    private boolean witchery_Patcher$isOnCooldown() {
+        return (MinecraftServer.getCurrentTimeMillis() / 50L) <= this.lastGiftTime + ModConfig.PatchesConfiguration.EntityTweaks.flameImp_tweakGiftDelayTicks;
     }
 
 }

@@ -1,10 +1,8 @@
 package com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol;
 
-import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**

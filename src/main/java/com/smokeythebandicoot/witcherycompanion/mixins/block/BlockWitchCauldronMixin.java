@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -22,12 +23,14 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Slice;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  Mixins:
  [Bugfix] Fix Bottling level skill not increasing
  [Bugfix] Fix Right-click with Empty Bucket on cauldron filled with brew, just voiding the brew
+ [Bugfix] Fix dupe when tossing an item that gets inserted into multiple adjacent cauldrons
  */
 @Mixin(value = BlockWitchCauldron.class)
 public abstract class BlockWitchCauldronMixin {
@@ -35,7 +38,7 @@ public abstract class BlockWitchCauldronMixin {
     @Unique
     BrewActionList witchery_Patcher$preservedActions = null;
 
-    // Save Cauldron actions before they get invalidated by the readNBT operation
+    /** Save Cauldron actions before they get invalidated by the readNBT operation */
     @Inject(method = "onBlockActivated", remap = true,
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/EntityPlayer;addStat(Lnet/minecraft/stats/StatBase;)V", remap = true))
     public void WPpreserveActionsBeforeEmptyingCauldron(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
@@ -48,8 +51,8 @@ public abstract class BlockWitchCauldronMixin {
     }
 
 
-    // Uses wrap operation to direct the original call with the always-empty brewActionList to a fixed
-    // call that uses the preserved brewActionList
+    /** Uses wrap operation to direct the original call with the always-empty brewActionList to a fixed
+     call that uses the preserved brewActionList */
     @WrapOperation(method = "onBlockActivated", remap = true, at = @At(value = "INVOKE", remap = false,
             target = "Lnet/msrandom/witchery/block/BlockWitchCauldron;processSkillChanges(Lnet/minecraft/entity/player/EntityPlayer;Lnet/msrandom/witchery/brewing/action/BrewActionList;)V"))
     public void WPrestorePreservedActions(BlockWitchCauldron instance, EntityPlayer player, BrewActionList actionList, Operation<Void> original) {
@@ -65,16 +68,13 @@ public abstract class BlockWitchCauldronMixin {
      * Injects before the cauldron.drain() call ONLY in the first instance (before the handler.fill() call, that is
      * unique in the method), to cancel the drain() call and return early if the held item is a bucket and the
      * registry name of WitcheryGeneralItems.BREW_BUCKET is null (because the item itself is not yet implemented).
-     * @Local are used to capture local variables in method (heldStack and cauldron)
-     * @Slide is used to only inject in the first cauldron.drain() call, that is from @At("HEAD") to @At("INVOKE", handler.fill())
+     * @Slice is used to only inject in the first cauldron.drain() call, that is from @At("HEAD") to @At("INVOKE", handler.fill())
      */
     @Inject(method = "onBlockActivated", cancellable = true,
             slice = @Slice(to = @At(value = "INVOKE", target = "Lnet/minecraftforge/fluids/capability/IFluidHandlerItem;fill(Lnet/minecraftforge/fluids/FluidStack;Z)I", remap = false)),
             at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/block/entity/TileEntityCauldron;drain(IZ)Lnet/minecraftforge/fluids/FluidStack;", remap = false))
     public void WPfixBucketPotionVoiding(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing,
-                                         float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir
-                                         //, @Local(ordinal = 0) TileEntityCauldron cauldron, @Local(ordinal = 0) ItemStack heldStack
-                                         ) {
+                                         float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.witchsCauldron_fixBucketVoidingBrew) {
 
             TileEntityCauldron cauldron = WitcheryTileEntities.CAULDRON.getAt(world, pos);
@@ -93,6 +93,16 @@ public abstract class BlockWitchCauldronMixin {
 
                 cir.setReturnValue(true);
             }
+        }
+    }
+
+    /** Returns early if the entity is dead, meaning one cauldron already has setDead() the entity, so that others do
+     not accept the item, despite still technically existing (dead items are removed the next tick) */
+    @Inject(method = "onEntityCollision", remap = true, at = @At("HEAD"), cancellable = true)
+    public void fixItemMultipleCauldrons(World world, BlockPos pos, IBlockState state, Entity entity, CallbackInfo ci) {
+        if (!ModConfig.PatchesConfiguration.BlockTweaks.witchsCauldron_fixMultipleCauldronDupe) return;
+        if (entity.isDead) {
+            ci.cancel();
         }
     }
 

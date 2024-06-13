@@ -213,6 +213,10 @@ public class ModConfig {
             @Config.Name("Witch's Cauldron - Fix Bucket Voiding Brew")
             public static boolean witchsCauldron_fixBucketVoidingBrew = true;
 
+            @Config.Comment("If true, fixes a dupe where the same item can be tossed into multiple adjacent cauldrons.")
+            @Config.Name("Witch's Cauldron - Fix Multiple Cauldron Dupe")
+            public static boolean witchsCauldron_fixMultipleCauldronDupe = true;
+
             @Config.Comment("If true, enabled Crafttweaker integration for Witch's Cauldron. Defaults to true, " +
                     "as if enabled and not used does not alter Witchery behaviour")
             @Config.Name("Witch's Cauldron - Tweak Enable Crafttweaker Integration")
@@ -261,6 +265,31 @@ public class ModConfig {
         }
 
         public static class RitesTweaks {
+
+            @Config.Comment("Multiplies the damage taken by a Voodoo Protection Poppet when the owner is protected by " +
+                    "this ritual. Default: 6")
+            @Config.Name("Rite of Blight - Tweak Strength")
+            @Config.RangeInt(min = 1, max = 16)
+            public static int blight_tweakStrength = 6;
+
+            @Config.Comment("Multiplies the damage taken by a Voodoo Protection Poppet when the owner is protected by " +
+                    "this ritual. Default: 6")
+            @Config.Name("Rite of Blindness - Tweak Strength")
+            @Config.RangeInt(min = 1, max = 16)
+            public static int blindness_tweakStrength = 6;
+
+            @Config.Comment("Multiplies the damage taken by a Voodoo Protection Poppet when the owner is protected by " +
+                    "this ritual. Default: 1. Witchery applies a strength of 1, if the levelBuff is zero, 3 otherwise. " +
+                    "This factor multiplies the value given by Witchery")
+            @Config.Name("Rite Curse Creature - Tweak Strength")
+            @Config.RangeInt(min = 1, max = 16)
+            public static int curseCreature_tweakStrength = 1;
+
+            @Config.Comment("Multiplies the damage taken by a Voodoo Protection Poppet when the owner is protected by " +
+                    "this ritual. Default: 3")
+            @Config.Name("Rite Curse of The Wolf - Tweak Strength")
+            @Config.RangeInt(min = 1, max = 16)
+            public static int curseOfTheWolf_tweakStrength = 3;
 
             @Config.Comment("If true, the Rite of Moving Earth disables moving TileEntities, preventing crashes, bugs and dupes")
             @Config.Name("Rite of Moving Earth - Fix Crash/Dupes while Moving TileEntities")
@@ -375,7 +404,7 @@ public class ModConfig {
             @Config.Name("Flame Imp - Tweak Custom Gifts Fallback")
             public static boolean flameinfernalImp_tweakCustomGiftFallback = true;
 
-            @Config.RangeInt
+            @Config.RangeInt(min = 1, max = 24000)
             @Config.Comment("Sets the minimum amount of time (in ticks) before Infernal Imps will give another gift")
             @Config.Name("Flame Imp - Tweak Gift Delay")
             public static int flameImp_tweakGiftDelayTicks = 3600;

@@ -1,13 +1,10 @@
 package com.smokeythebandicoot.witcherycompanion.client;
 
 import com.google.common.eventbus.EventBus;
-import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import net.minecraft.client.Minecraft;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.common.DummyModContainer;
 import net.minecraftforge.fml.common.LoadController;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -28,6 +25,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/** This Loading Plugin automatically downloads the original 1.7.10 Witchery jar (v0.24.1) from
+ CurseForge, creates a 'resourcepacks' directory in the Minecraft instance, if it does not exist,
+ and puts the jar into that directory. This avoids a very common crash in Witchery:Resurrected, as
+ the mod requires the Witchery jar to load */
 @IFMLLoadingPlugin.Name("Witchery Downloader Plugin")
 @IFMLLoadingPlugin.MCVersion(ForgeVersion.mcVersion)
 @IFMLLoadingPlugin.SortingIndex(Integer.MIN_VALUE)
@@ -72,7 +73,7 @@ public class WitcheryJarDownloader implements IFMLLoadingPlugin, IEarlyMixinLoad
         // This code should not run on the serverside
         if (Launch.minecraftHome == null) return;
 
-        // Retrieve resourcePacks folder
+        // Retrieve resourcePacks folder, or creates one if it does not exist
         String resourcePacksFolderPath = Launch.minecraftHome.getPath() + "/resourcepacks";
         new File(resourcePacksFolderPath).mkdir();
         Path resourcePacksDirectory = new File(resourcePacksFolderPath).toPath();
