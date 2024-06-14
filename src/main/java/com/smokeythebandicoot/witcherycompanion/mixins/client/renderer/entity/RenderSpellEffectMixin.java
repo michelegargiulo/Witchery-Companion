@@ -28,7 +28,7 @@ public class RenderSpellEffectMixin {
 
     @WrapOperation(method = "doRender(Lnet/msrandom/witchery/entity/EntitySpellEffect;DDDFF)V", remap = false,
             at = @At(value = "INVOKE", remap = false, target = "Lnet/msrandom/witchery/infusion/symbol/ProjectileSymbolEffect;getSize()F"))
-    public float genStandardSizeForDisabledSpell(ProjectileSymbolEffect instance, Operation<Integer> original) {
+    public float genStandardSizeForDisabledSpell(ProjectileSymbolEffect instance, Operation<Float> original) {
         if (ModConfig.PatchesConfiguration.CommonTweaks.renderSpellEffect_fixCrashOnDisabledSpell && instance == null) {
             return 1.0f;
         }
