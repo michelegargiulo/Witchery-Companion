@@ -24,6 +24,7 @@
     "brewing.action.effect.PotionBrewEffectMixin",
     "common.CommonEventsMixin",
     "common.RelativePowerSourceMixin",
+    "common.ShapeShiftMixin",
     "entity.EntityBabaYagaMixin",
     "entity.EntityBroomMixin",
     "entity.EntityDeathMixin",

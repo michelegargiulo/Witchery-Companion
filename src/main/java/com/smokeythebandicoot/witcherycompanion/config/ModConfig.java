@@ -150,6 +150,10 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean spellEffect_tweakMuteLogSpamOnDisable = true;
 
+            @Config.Comment("Fix 'ghost entities' being rendered in world when player changes dimension")
+            @Config.Name("Shape Shifting - Fix Floating Entities")
+            public static boolean shapeShift_fixFloatingEntities = true;
+
         }
 
         public static class BlockTweaks {
