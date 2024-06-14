@@ -4,6 +4,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.msrandom.witchery.network.PacketEyePosition;
+import net.msrandom.witchery.network.PacketSyncEntitySize;
+import net.msrandom.witchery.network.WitcheryNetworkChannel;
+import net.msrandom.witchery.util.ResizingUtils;
 
 /**
  Patches:

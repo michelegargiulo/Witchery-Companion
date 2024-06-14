@@ -1,7 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.util;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.entity.player.EntityPlayerMixin;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.msrandom.witchery.util.EntitySizeInfo;
@@ -73,6 +72,7 @@ public class ResizingUtilsMixin {
                         EntitySizeInfo sizeInfo = new EntitySizeInfo(player);
                         witchery_Patcher$targetScaleFieldWidth.set(player, targetWidth / sizeInfo.defaultWidth);
                         witchery_Patcher$targetScaleFieldHeight.set(player, targetHeight / sizeInfo.defaultHeight);
+                        player.eyeHeight = player.getDefaultEyeHeight() * (targetHeight / sizeInfo.defaultHeight);
                     } catch (IllegalAccessException e) {
                         witchery_Patcher$errored = true;
                         throw new RuntimeException(e);
