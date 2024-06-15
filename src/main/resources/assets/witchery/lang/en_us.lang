@@ -1,0 +1,15 @@
+description.absorb_magic=Turns magic damage into Infusion power
+description.attract_projectiles=Projectiles will hit the victim easier
+description.chilled=Reduces movement speed and fire damage taken. Also deals magic damage to blazes
+description.mortal_coil=When this effect runs out, the victim dies
+description.resizing=Modifies the size of the target depending on the amplifier level
+description.decanting=Increases brewing yield
+description.disease=Makes the victim ill, and the disease spreads to other entities, transforming them
+description.ender_inhibition=Prevents Endermen from teleporting
+description.floating=Makes the affected entity hover above the ground
+description.fortune=Has a chance to increase drops affected by Fortune
+description.frogs_leg=Allows to jump in mid-air
+description.gas_mask=Makes immune from bad effects of brew-based gas clouds
+description.grotesque=Mobs will be repelled from the grotesque look of the victim
+description.grues_prey=Makes the victim allergic to darkness
+description.unknown=The effect of this potion is unknown
