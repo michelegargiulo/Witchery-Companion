@@ -338,6 +338,30 @@ public class ModConfig {
             @Config.Comment("Fixes Potion of Resizing not working on players")
             @Config.Name("Resizing Potion - Fix No Effect On Players")
             public static boolean resizing_fixEffectOnPlayers = true;
+
+            @Config.Comment("If true, enables custom sizes for the Resizing Potion. Values are defined in this config. " +
+                    "NOTE 1: Enabling this will already chance Witchery default sizes, as they are determined by a formula." +
+                    "NOTE 2: If this value is set to below ~0.42f, the players can x-ray through blocks they are directly " +
+                    "touching and looking towards. Setting values to below this threshold is not recommended." +
+                    "NOTE 3: If this value is set to ~10.0f or higher, the camera will clip into the player's head")
+            @Config.Name("Resizing Potion - Tweak Custom Sizes")
+            public static boolean resizing_tweakCustomSizes = false;
+
+            @Config.Comment("Sets the custom scale for the Smallest size of the resizing potion")
+            @Config.Name("Resizing Potion - Tweak Size Smallest")
+            public static float resizing_tweakCustomSizeSmallest = 0.5f;
+
+            @Config.Comment("Sets the custom scale for the Smaller size of the resizing potion")
+            @Config.Name("Resizing Potion - Tweak Size Smaller")
+            public static float resizing_tweakCustomSizeSmaller = 0.75f;
+
+            @Config.Comment("Sets the custom scale for the Bigger size of the resizing potion")
+            @Config.Name("Resizing Potion - Tweak Size Bigger")
+            public static float resizing_tweakCustomSizeBigger = 1.5f;
+
+            @Config.Comment("Sets the custom scale for the Biggest size of the resizing potion")
+            @Config.Name("Resizing Potion - Tweak Size Biggest")
+            public static float resizing_tweakCustomSizeBiggest = 2.0f;
         }
 
         public static class EntityTweaks {

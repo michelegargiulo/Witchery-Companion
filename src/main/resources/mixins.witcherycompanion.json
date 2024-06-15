@@ -45,6 +45,7 @@
     "item.brews.ItemErosionBrewMixin",
     "potion.PotionEnslavedMixin",
     "potion.PotionFortuneMixin",
+    "potion.PotionResizingMixin",
     "registry.RegistryWrapper_DimensionsMixin",
     "resources.SymbolEffectManagerMixin",
     "rite.effect.RiteEffectBlightMixin",
