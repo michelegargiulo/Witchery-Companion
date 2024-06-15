@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.proxy;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.justenoughresources.JERIntegration;
+import com.smokeythebandicoot.witcherycompanion.integrations.quark.BlockMandrakeCropIntegration;
 import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
 import net.minecraft.client.Minecraft;
@@ -23,6 +24,9 @@ public class CommonProxy {
 
         if (ModConfig.PatchesConfiguration.RitesTweaks.ritePriorIncarnation_fixNbtNotRemoved)
             MinecraftForge.EVENT_BUS.register(CommonEventsPatch.INSTANCE);
+
+        if (ModConfig.IntegrationConfigurations.QuarkIntegration.fixMandrakesRightClickHarvest && Loader.isModLoaded("quark"))
+            MinecraftForge.EVENT_BUS.register(new BlockMandrakeCropIntegration());
     }
 
     public void init(FMLInitializationEvent event) {

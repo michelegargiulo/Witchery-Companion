@@ -578,6 +578,13 @@ public class ModConfig {
             public static boolean enableJerIntegration = true;
         }
 
+        public static class QuarkIntegration {
+
+            @Config.Comment("If true, fixes Mandrakes not spawning when Quark right-click harvest feature is enabled")
+            @Config.Name("Quark Integration - Fix Mandrakes Right-click Harvest")
+            public static boolean fixMandrakesRightClickHarvest = true;
+        }
+
         public static class JeiIntegration {
 
             @Config.Comment("If true, enables Goblin Trade JEI Integration")
