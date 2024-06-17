@@ -595,18 +595,14 @@ public class ModConfig {
         @Config.Name("JEI Integration - Configuration")
         public static JeiIntegration jeiIntegrationConfig;
 
+        @Config.Comment("Configuration related to Quark integration")
+        @Config.Name("Quark Integration - Configuration")
+        public static QuarkIntegration quarkIntegrationConfig;
         public static class JerIntegration {
 
             @Config.Comment("Master switch for all JER integrations")
             @Config.Name("JER Integration - Enabled")
             public static boolean enableJerIntegration = true;
-        }
-
-        public static class QuarkIntegration {
-
-            @Config.Comment("If true, fixes Mandrakes not spawning when Quark right-click harvest feature is enabled")
-            @Config.Name("Quark Integration - Fix Mandrakes Right-click Harvest")
-            public static boolean fixMandrakesRightClickHarvest = true;
         }
 
         public static class JeiIntegration {
@@ -623,6 +619,13 @@ public class ModConfig {
             @Config.Name("JEI Integration - Enable Imp Shinies")
             public static boolean enableJeiImpShinies = true;
 
+        }
+
+        public static class QuarkIntegration {
+
+            @Config.Comment("If true, fixes Mandrakes not spawning when Quark right-click harvest feature is enabled")
+            @Config.Name("Quark Integration - Fix Mandrakes Right-click Harvest")
+            public static boolean fixMandrakesRightClickHarvest = true;
         }
     }
 

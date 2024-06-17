@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.quark;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.integrations.morph.MorphIntegration;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,6 +27,10 @@ import java.util.List;
  */
 @Mod.EventBusSubscriber
 public class BlockMandrakeCropIntegration {
+
+    public static BlockMandrakeCropIntegration INSTANCE = new BlockMandrakeCropIntegration();
+
+    private BlockMandrakeCropIntegration() { }
 
     @SubscribeEvent
     public void onBlockHarvestDrops(BlockEvent.HarvestDropsEvent event) {
