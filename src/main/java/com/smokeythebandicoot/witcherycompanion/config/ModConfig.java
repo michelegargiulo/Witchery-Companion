@@ -139,6 +139,13 @@ public class ModConfig {
             @Config.Name("Loot Utils - Fix NPE on JER Integration")
             public static boolean levelledRandomEnchant_fixCrashNullRandom = true;
 
+            @Config.Comment("If true, Witchery:Resurrected won't disable flight when the player is not in a Creature " +
+                    "form  that is capable to fly (eg. Vampire in bat form) but is still capable to fly due to other " +
+                    "mods (Avaritia infinity armor, Morph flying mobs, etc) when certain events happen (dimension " +
+                    "change), player change form, etc")
+            @Config.Name("Flight - Preserve Flight Capability")
+            public static boolean flight_preserveFlightCapability = true;
+
             @Config.Comment("Fix crash an Entity (such as Lord of Torment, or Lilith) uses a Spell that has been disabled. " +
                     "As a side effect of enabling this, spell projectiles will have a default size and a random color.")
             @Config.Name("Spell Effect Render - Fix Crash On Disabled Spell Cast")
@@ -599,9 +606,14 @@ public class ModConfig {
         @Config.Name("JEI Integration - Configuration")
         public static JeiIntegration jeiIntegrationConfig;
 
+        @Config.Comment("Configuration related to Morph integration")
+        @Config.Name("Morph Integration - Configuration")
+        public static MorphIntegration morphIntegrationConfig;
+
         @Config.Comment("Configuration related to Quark integration")
         @Config.Name("Quark Integration - Configuration")
         public static QuarkIntegration quarkIntegrationConfig;
+
         public static class JerIntegration {
 
             @Config.Comment("Master switch for all JER integrations")
@@ -630,6 +642,14 @@ public class ModConfig {
             @Config.Comment("If true, fixes Mandrakes not spawning when Quark right-click harvest feature is enabled")
             @Config.Name("Quark Integration - Fix Mandrakes Right-click Harvest")
             public static boolean fixMandrakesRightClickHarvest = true;
+        }
+
+        public static class MorphIntegration {
+
+            @Config.Comment("If true, fixes an entity size desync between client and server when a morphed player " +
+                    "changes dimension")
+            @Config.Name("Morph Integration - Fix Entity Size On Dimension Change")
+            public static boolean fixSizeDesyncOnDimChange = true;
         }
     }
 

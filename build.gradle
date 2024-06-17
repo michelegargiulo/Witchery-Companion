@@ -126,6 +126,12 @@ dependencies {
     // Just Enough Resources
     compileOnly rfg.deobf('curse.maven:lucraft-230651:3775980')
 
+    // Morph
+    compileOnly rfg.deobf('curse.maven:morph-229080:2995522')
+
+    // iChunUtil
+    compileOnly rfg.deobf('curse.maven:ichunutil-229060:2801262')
+
     // Crafttweaker
     compileOnly rfg.deobf('CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.684')
 

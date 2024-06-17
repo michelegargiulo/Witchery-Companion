@@ -16,13 +16,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class CommonEventsPatch {
 
     private static final String targetNbt = "WitcheryPriIncUsr";
-    public static CommonEventsPatch INSTANCE;
+    public static CommonEventsPatch INSTANCE = new CommonEventsPatch();
 
     private CommonEventsPatch() { }
-
-    static {
-        INSTANCE = new CommonEventsPatch();
-    }
 
     // NOTE: this event is subscribed only if ritePriorIncarnation_fixNbtNotRemoved is enabled in config
     @SubscribeEvent(priority = EventPriority.LOWEST)

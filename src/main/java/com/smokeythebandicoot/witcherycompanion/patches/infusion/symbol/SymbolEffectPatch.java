@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol;
 
+import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -15,13 +16,10 @@ import net.msrandom.witchery.util.ResizingUtils;
  */
 public class SymbolEffectPatch {
 
-    public static SymbolEffectPatch INSTANCE;
+    public static final SymbolEffectPatch INSTANCE = new SymbolEffectPatch();
 
     private SymbolEffectPatch() { }
 
-    static {
-        INSTANCE = new SymbolEffectPatch();
-    }
 
     // NOTE: this event is subscribed only if soulBrews_fixPersistency is enabled in config
     @SubscribeEvent

@@ -7,15 +7,15 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
+/**
+ Mixins:
+ [Bugfix] Fix eyeHeight not scaling with Player height
+ */
 @Mixin(EntityPlayer.class)
 public abstract class EntityPlayerMixin extends EntityLivingBase {
-
-    @Shadow(remap = false)
-    public abstract float getDefaultEyeHeight();
 
     @Unique
     public float witchery_Patcher$resizeScaleWidth = 1.0f;
