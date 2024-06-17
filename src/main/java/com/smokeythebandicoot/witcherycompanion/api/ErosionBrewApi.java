@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.api;
+package com.smokeythebandicoot.witcherycompanion.api;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

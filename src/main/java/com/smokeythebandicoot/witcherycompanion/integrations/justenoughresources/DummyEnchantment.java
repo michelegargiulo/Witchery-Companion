@@ -5,6 +5,8 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 
+import javax.annotation.Nonnull;
+
 public class DummyEnchantment extends Enchantment {
 
     public DummyEnchantment() {
@@ -13,9 +15,9 @@ public class DummyEnchantment extends Enchantment {
         this.setName(WitcheryCompanion.MODID + "_dummy");
     }
 
-    @Override
+    @Nonnull @Override
     public String getName() {
-        return "enchantment.witcherypatches.dummy";
+        return "enchantment." + WitcheryCompanion.MODID + ".dummy";
     }
 
 }

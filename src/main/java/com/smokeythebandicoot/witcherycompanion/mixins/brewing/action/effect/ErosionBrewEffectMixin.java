@@ -3,7 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.brewing.action.effect;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.api.ErosionBrewApi;
+import com.smokeythebandicoot.witcherycompanion.api.ErosionBrewApi;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.SoundEvents;

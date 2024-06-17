@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.gifts;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.api.InfernalImpApi;
+import com.smokeythebandicoot.witcherycompanion.api.InfernalImpApi;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.base.BaseRecipeWrapper;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
 import jeresources.compatibility.CompatBase;

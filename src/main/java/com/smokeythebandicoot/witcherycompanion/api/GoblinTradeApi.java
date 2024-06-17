@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.api;
+package com.smokeythebandicoot.witcherycompanion.api;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

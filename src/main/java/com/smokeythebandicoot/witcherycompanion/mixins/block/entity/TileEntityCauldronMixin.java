@@ -3,7 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.api.CauldronApi;
+import com.smokeythebandicoot.witcherycompanion.api.CauldronApi;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

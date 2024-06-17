@@ -1,18 +1,12 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes;
 
-import com.smokeythebandicoot.witcherycompanion.integrations.api.CauldronApi;
+import com.smokeythebandicoot.witcherycompanion.api.CauldronApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-
-import java.util.Collections;
-import java.util.HashSet;
 
 @ModOnly(value = "witchery")
 @ZenClass("mods.smokeythebandicoot.witcherycompanion.Cauldron")

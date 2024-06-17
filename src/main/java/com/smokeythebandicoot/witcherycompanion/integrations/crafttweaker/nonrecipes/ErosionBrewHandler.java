@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes;
 
-import com.smokeythebandicoot.witcherycompanion.integrations.api.ErosionBrewApi;
+import com.smokeythebandicoot.witcherycompanion.api.ErosionBrewApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;

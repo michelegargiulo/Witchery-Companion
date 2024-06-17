@@ -3,7 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.entity;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.api.InfernalImpApi;
+import com.smokeythebandicoot.witcherycompanion.api.InfernalImpApi;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;

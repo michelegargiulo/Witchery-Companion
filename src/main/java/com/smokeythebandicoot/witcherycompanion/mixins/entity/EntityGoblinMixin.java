@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.entity;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.api.GoblinTradeApi;
+import com.smokeythebandicoot.witcherycompanion.api.GoblinTradeApi;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.village.MerchantRecipeList;

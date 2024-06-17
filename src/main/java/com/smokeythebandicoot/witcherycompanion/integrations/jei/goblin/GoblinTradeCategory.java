@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.jei.goblin;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.integrations.api.GoblinTradeApi;
+import com.smokeythebandicoot.witcherycompanion.api.GoblinTradeApi;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.base.BaseRecipeCategory;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
