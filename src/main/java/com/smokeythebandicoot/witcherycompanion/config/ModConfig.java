@@ -331,6 +331,10 @@ public class ModConfig {
 
         public static class PotionTweaks {
 
+            @Config.Comment("If true, fixes entities not moving after they have been spawned")
+            @Config.Name("Insanity Potion - Fix Ghost Entities")
+            public static boolean insanity_fixGhostEntities = true;
+
             @Config.Comment("Fixes Potion of Fortune not working because of wrong TileEntity check")
             @Config.Name("Fortune Potion - Fix No Effect")
             public static boolean fortunePotion_fixNoEffect = true;
