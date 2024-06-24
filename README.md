@@ -18,6 +18,7 @@ jar in the resource packs folder.
   - **[Coffin]** Fix crash when piston moves the top block of the coffin
   - **[Cursed Blocks]** Fix crash when using trigger dispersal. They still don't work, but they should not crash the game
   - **[Fetish]** Fix fetish blocks not having drops (Scarecrows, Trent Effiges, Vines)
+  - **[Fetish]** Fix fetishes forgetting data on world reload, including the players they are bound to
   - **[Mandrake Crop]** Fix spawning mandrakes even when not fully mature
   - **[Poppet Shelf]** Fix upside-down poppet rendering
   - **[Stockade]** Fix weird rendering when player head is too close to the stockade

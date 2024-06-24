@@ -14,6 +14,7 @@
     "block.entity.TileEntityCauldronMixin",
     "block.entity.TileEntityCoffinMixin",
     "block.entity.TileEntityCursedBlockMixin",
+    "block.entity.TileEntityFetishMixin",
     "block.entity.TileEntityPlacedItemMixin",
     "block.entity.TileEntityPoppetShelfMixin",
     "brewing.LiquidDispersalMixin",

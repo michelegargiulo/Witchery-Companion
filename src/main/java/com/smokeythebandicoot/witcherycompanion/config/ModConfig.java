@@ -174,6 +174,11 @@ public class ModConfig {
             @Config.Name("Block Fetish - Fix No Drops on Harvest")
             public static boolean blockFetish_fixNoDropsOnHarvest = true;
 
+            @Config.Comment("Fixes fetish blocks resetting their data on world reload or when many blocks are " +
+                    "updated at once, including Players bound to them")
+            @Config.Name("Block Fetish - Fix Data Loss on World Reload")
+            public static boolean blockFetish_fixMissingDataOnWorldReload = true;
+
             @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
                     "at least they should not crash the game as often")
             @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")
