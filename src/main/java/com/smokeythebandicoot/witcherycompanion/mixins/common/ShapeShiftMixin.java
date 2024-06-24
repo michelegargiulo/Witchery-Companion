@@ -32,8 +32,21 @@ public class ShapeShiftMixin {
      * to fly. */
     @WrapOperation(method = "initCurrentShift(Lnet/minecraft/entity/player/EntityPlayer;)V", remap = false, at = @At(
             value = "INVOKE", remap = false, target = "Lnet/minecraft/entity/player/EntityPlayer;sendPlayerAbilities()V"))
-    public void avoidUpdatingPlayerAbilities(EntityPlayer instance, Operation<Void> original) {
+    public void avoidUpdatingPlayerAbilitiesInit(EntityPlayer instance, Operation<Void> original) {
         // If config option is true, only sync ability to fly, do not update visibility
+        if (ModConfig.PatchesConfiguration.CommonTweaks.shapeShift_fixFloatingEntities) {
+            if (instance instanceof EntityPlayerMP) {
+                EntityPlayerMP playerMP = ((EntityPlayerMP)instance);
+                playerMP.connection.sendPacket(new SPacketPlayerAbilities(playerMP.capabilities));
+            }
+            return;
+        }
+        original.call(instance);
+    }
+
+    @WrapOperation(method = "updatePlayerState", remap = false, at = @At(value = "INVOKE", remap = true,
+            target = "Lnet/minecraft/entity/player/EntityPlayer;sendPlayerAbilities()V"))
+    public void avoidUpdatingPlayerAbilitiesUpdate(EntityPlayer instance, Operation<Void> original) {
         if (ModConfig.PatchesConfiguration.CommonTweaks.shapeShift_fixFloatingEntities) {
             if (instance instanceof EntityPlayerMP) {
                 EntityPlayerMP playerMP = ((EntityPlayerMP)instance);
