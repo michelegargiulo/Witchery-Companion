@@ -123,7 +123,7 @@ public class ModConfig {
 
         public static class InfusionTweaks {
 
-            @Config.Comment("Fix Soul Infusions progress reset when player dires")
+            @Config.Comment("Fix Soul Infusions progress reset when player dies")
             @Config.Name("Soul Brews - Fix Persistency After Death")
             @Config.RequiresMcRestart
             public static boolean soulBrews_fixPersistency = true;
