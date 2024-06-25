@@ -52,6 +52,8 @@ jar in the resource packs folder.
 - **World**
   - **[Apothecary] Fix crash when generating book in chests and item frames when Tinkers' Construct or Thaumcraft are 
   installed due to duplicate loot pool entries
+- **Dimensions**
+  - **[Spirit World] Fix endless spawn of Nightmares
 
 ### Tweaks
 - **Brews**
@@ -99,6 +101,8 @@ jar in the resource packs folder.
   - **[Moving Earth]** Tweak to configure indicators of failure (smoke paticles and sounds) will be generated near the
     unmovable block
 - **Dimensions**
+  - **[Spirit World]** Tweak to modify spawn cap of Nigthmare entities around each player
+  - **[Spirit World]** Tweak to modify spawn cooldown of Nightmares
   - **[Spirit World]** Tweak to modify default dimension ID to 11 (configurable)
   - **[Torment]** Tweak to modify default dimension ID to 12 (configurable)
   - **[Mirror World]** Tweak to modify default dimension ID to 13 (configurable)

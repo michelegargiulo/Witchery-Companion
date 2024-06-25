@@ -573,6 +573,23 @@ public class ModConfig {
 
         public static class DimensionTweaks {
 
+            @Config.Comment("Fixes endless Nightmares spawning around players in Spirit World")
+            @Config.Name("Spirit World - Fix Endless Nightmare Spawning")
+            public static boolean spiritWorld_fixNightmareSpawning = true;
+
+            @Config.Comment("Tweaks the maximum amount of Nightmares that can spawn around a player in the Spirit World. " +
+                    "The cap is computed per-player, so more players will actually make the cap increase proportionally." +
+                    "NOTE: requires spiritWorld_fixNightmareSpawning set to true, otherwise this does nothing")
+            @Config.Name("Spirit World - Tweak Nightmare Spawn Cap")
+            @Config.RangeInt(min = 0, max = 20)
+            public static int spiritWorld_tweakNightmareSpawnCap = 1;
+
+            @Config.Comment("By default, Witchery won't spawn Nightmares if the player has killed one recently. This " +
+                    "tweak allows customizing such delay, expressed in ticks. Default value is 600 ticks")
+            @Config.Name("Spirit World - Tweak Nightmare Spawn Cooldown")
+            @Config.RangeInt(min = 0, max = 6000)
+            public static int spiritWorld_tweakNightmareSpawnCooldown = 600;
+
             @Config.Comment("Sets the dimension ID for the Spirit World dimension")
             @Config.Name("Spirit World - Tweak Dimension ID")
             @Config.RequiresMcRestart

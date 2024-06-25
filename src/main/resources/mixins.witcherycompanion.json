@@ -57,6 +57,7 @@
     "rite.effect.RiteEffectMovingEarthMixin",
     "util.EntityUtilMixin",
     "util.ResizingUtilsMixin",
+    "world.dimension.spirit.WorldProviderSpiritWorldMixin",
     "world.loot.functions.LevelledRandomEnchantmentMixin"
   ],
   "client": [
