@@ -127,6 +127,15 @@ public class ModConfig {
             @Config.Name("Soul Brews - Fix Persistency After Death")
             @Config.RequiresMcRestart
             public static boolean soulBrews_fixPersistency = true;
+
+            @Config.Comment("Sets the amount of ticks between Sentinel effect activations")
+            @Config.Name("Sentinel Effect - Tweak Cooldown")
+            public static int infusedSpiritSentinel_tweakCooldown = 600;
+
+            @Config.Comment("Sets the amount of ticks between Twister effect activations")
+            @Config.Name("Twister Effect - Tweak Cooldown")
+            public static int infusedSpiritTwister_tweakCooldown = 10;
+
         }
 
         public static class CommonTweaks {

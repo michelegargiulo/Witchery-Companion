@@ -39,6 +39,8 @@
     "entity.passive.EntityCatFamiliarMixin",
     "entity.passive.EntityOwlMixin",
     "entity.passive.coven.EntityCovenWitchMixin",
+    "infusion.spirit.InfusedSpiritSentinelEffectMixin",
+    "infusion.spirit.InfusedSpiritTwisterEffectMixin",
     "item.ItemChalkMixin",
     "item.ItemSeerStoneMixin",
     "item.ItemSpectralStoneMixin",

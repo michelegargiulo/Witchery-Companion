@@ -63,6 +63,8 @@ jar in the resource packs folder.
     are applied. This is needed for example to make a Brew of Blast, with ignore blocks modifier, to make an explosion when
     hitting a block (but the explosion won't damage terrain). Each brew is then delegated to ignore the effects, depending
     on applied modifiers
+- **Blocks**
+  - **[Fetishes]** Tweak to customize cooldown of Sentinel and Twister spirit effects
 - **Entities**
   - **[Baba Yaga]** Tweak to modify gifts given to owners frequency, max distance and max items
   - **[Baba Yaga]** Tweak to give her own loot table instead of hard-coded loot, both on death and for gifted items
