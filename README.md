@@ -23,7 +23,9 @@ jar in the resource packs folder.
   - **[Poppet Shelf]** Fix upside-down poppet rendering
   - **[Stockade]** Fix weird rendering when player head is too close to the stockade
   - **[Witch's Cauldron]** Fix bottling skill being impossible to increase
-  - **[Witch's Cauldron]** Fix right-clicking with an Empty Bucket voiding the brew inside
+  - **[Witch's Cauldron]** Fix right-clicking with an empty Bucket voiding the brew inside
+  - **[Witch's Cauldron]** Fix right-clicking with an Empty Bucket on an empty Cauldron giving a water bucket
+  - **[Witch's Cauldron]** Fix right-clicking with a Forge fluid handler voiding the brew inside
 - **Books**
   - **[Herbology Book]** Fix plants being rendered above text
 - **Brews**
@@ -65,6 +67,7 @@ jar in the resource packs folder.
     on applied modifiers
 - **Blocks**
   - **[Fetishes]** Tweak to customize cooldown of Sentinel and Twister spirit effects
+  - **[Witch's Cauldron]** Tweak to set glass bottle size to 250mB instead of 333/334mB (depending if draining or filling)
 - **Entities**
   - **[Baba Yaga]** Tweak to modify gifts given to owners frequency, max distance and max items
   - **[Baba Yaga]** Tweak to give her own loot table instead of hard-coded loot, both on death and for gifted items

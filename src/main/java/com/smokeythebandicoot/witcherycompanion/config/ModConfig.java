@@ -242,10 +242,27 @@ public class ModConfig {
             @Config.Name("Witch's Cauldron - Fix Multiple Cauldron Dupe")
             public static boolean witchsCauldron_fixMultipleCauldronDupe = true;
 
+            @Config.Comment("If true, fixes an infinite water exploit that works by right-clicking with an empty " +
+                    "bucket an empty cauldron, filling the bucket with water.")
+            @Config.Name("Witch's Cauldron - Fix Unlimited Water")
+            public static boolean witchsCauldron_fixUnlimitedWaterWhenEmpty = true;
+
             @Config.Comment("If true, enabled Crafttweaker integration for Witch's Cauldron. Defaults to true, " +
                     "as if enabled and not used does not alter Witchery behaviour")
             @Config.Name("Witch's Cauldron - Tweak Enable Crafttweaker Integration")
             public static boolean witchsCauldron_tweakCustomHeatSources = true;
+
+            @Config.Comment("If true, disables Forge capability system that other mods might add to fluid containers " +
+                    "such as Glass Bottles, as they can create some incompatibilities. This disables such capability " +
+                    "only for Witch's Cauldron, causing it to ignore the capability, rather than disabling it")
+            @Config.Name("Witch's Cauldron - Tweak Disable Fluid Handler Capability")
+            public static boolean witchsCauldron_tweakIgnoreFluidHandlers = false;
+
+            @Config.Comment("If true, sets the glass bottle fluid size to 250 instead of the default 333/334 (depending " +
+                    "if the action is filling or draining the cauldron). This makes numbers cleaner, as now 4 bottles " +
+                    "make up a bucket. Recommended to set to true")
+            @Config.Name("Witch's Cauldron - Tweak Smaller Bottle")
+            public static boolean witchsCauldron_tweakSmallerBottle = false;
         }
 
         public static class ItemTweaks {
