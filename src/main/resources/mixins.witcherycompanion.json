@@ -45,6 +45,7 @@
     "item.ItemSeerStoneMixin",
     "item.ItemSpectralStoneMixin",
     "item.WitcheryPoppetItemMixin",
+    "item.WitcheryPoppetItems_ItemPoppetMixin",
     "item.brews.ItemErosionBrewMixin",
     "potion.PotionEnslavedMixin",
     "potion.PotionFortuneMixin",

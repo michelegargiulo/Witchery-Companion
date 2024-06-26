@@ -1,2 +1,5 @@
-enchantment.witcherypatches_dummy=Randomly Enchanted
-enchantment.witcherypatches_dummy.desc=This item might be enchanted with random Enchantments
+enchantment.witcherycompanion_dummy=Randomly Enchanted
+enchantment.witcherycompanion_dummy.desc=This item might be enchanted with random Enchantments
+
+witcherycompanion.poppetitem.restrictiontooltip.pve=This Poppet won't affect §4Players§r
+witcherycompanion.poppetitem.restrictiontooltip.pvp=This Poppet won't affect §4Creatures§r

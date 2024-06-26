@@ -12,7 +12,7 @@ jar in the resource packs folder.
   - **[Spell Rendering]** Fix crash when bosses (Lord of Torment, Lilith) use spells that have been disabled in config
 - **Blocks**
   - **[Altar]** Fix Altar not providing power on world load/reload
-  - **[Altar]** Fix Placed Items (Arthana, Pentacle, etc) not dropping anything when breaking Altar blocks below them
+  - **[Altar]** Fix Placed Items (Arthana, Pentacle, etc.) not dropping anything when breaking Altar blocks below them
   - **[Altar]** Fix client crash when the player joins a world where Placed Items are within view in the first frame
   - **[Coffin]** Fix edge-case crash when placing the Coffin across chunk boundaries
   - **[Coffin]** Fix crash when piston moves the top block of the coffin
@@ -35,7 +35,7 @@ jar in the resource packs folder.
   - **[Brew of Tidal Hold]** Fix entity suffocation in ghost blocks
 - **Entity**
   - **[Coven Witch]** Fix Brew of the Grotesque quest requiring a negative amount of items
-  - **[Enchanted Broom]** Fix server freeze when the player in on the broom and it breaks while flying
+  - **[Enchanted Broom]** Fix server freeze when the player is on the broom that breaks while flying
   - **[Rowan Boat]** Fix missing Rowan Boat entity model texture (not configurable)
   - **[Owl]** Fix Owls being unable to sit
   - **[Voodoo Protection Poppet]** Fix crash when trying to protect its owner from a curse
@@ -89,6 +89,8 @@ jar in the resource packs folder.
   - **[Chalk]** Tweak Chalk max stack size to 1, to avoid weird item loss due to stacking problems
   - **[Brew of Erosion]** Tweak behaviour to align with the Erosion Brew
   - **[Seer Stone]** Tweak to not print throwing skill (unimplemented feature by W:R)
+  - **[Voodoo Poppet]** Tweak to disable PvP and/or PvE effects (only usable on players/mobs) + optional tooltip that informs players
+  - **[Vampiric Poppet]** Tweak to disable PvP and/or PvE effects (only usable on players/mobs) + optional tooltip that informs players
   - **[Voodoo Protection Poppet]** Tweak amount of damage taken to protect its owner from a curse
   - **[Poppet Protection Poppet]** Tweak amount of damage taken to protect its owner from a poppet
 - **Rites**
@@ -96,14 +98,14 @@ jar in the resource packs folder.
   - **[Moving Earth]** Tweak to disable voiding blocks above the ritual. This will make the ritual stop (fail) when
     there is not enough space above to move the terrain upwards
   - **[Moving Earth]** Tweak refund policy to modify the cases in which the ritual refunds the player
-    - **0**: Never refound - even if the ritual fails to move terrain, even by 1 block, it won't refund the player
+    - **0**: Never refund - even if the ritual fails to move terrain, even by 1 block, it won't refund the player
     - **1**: Refund if partial - if the ritual does not move the blocks all the way up, it will refund the player
     - **2**: Refund on fail - only refund the player when the ritual could not move any block
   - **[Moving Earth]** Tweak to configure a blacklist of blockstates that the ritual should not move
-  - **[Moving Earth]** Tweak to configure indicators of failure (smoke paticles and sounds) will be generated near the
+  - **[Moving Earth]** Tweak to configure indicators of failure (smoke particles and sounds) will be generated near the
     unmovable block
 - **Dimensions**
-  - **[Spirit World]** Tweak to modify spawn cap of Nigthmare entities around each player
+  - **[Spirit World]** Tweak to modify spawn cap of Nightmare entities around each player
   - **[Spirit World]** Tweak to modify spawn cooldown of Nightmares
   - **[Spirit World]** Tweak to modify default dimension ID to 11 (configurable)
   - **[Torment]** Tweak to modify default dimension ID to 12 (configurable)
@@ -122,10 +124,11 @@ jar in the resource packs folder.
   - **[Entities]** Integration to register many entities and their loot in entity drops category
 
 ### Performance
-- **Blocks**
-  - **[Altar]** Implement caching for the Power Source map
-  - **[JEI Integration]** ~~Option to skip recipe syncing for user-made recipes to save world loading time~~.
-    Causes problems. Set compatibility_mode = true in Witchery general config
+- Implement caching for the Altar Power Source map
+
+### Misc.
+- Implement a Plugin that automatically downloads Witchery 1.7.10 jar and puts it in the resourcepacks folder, 
+  as it is a required dependency for Witchery: Resurrected
 
 ### Future Plans
 - Add CraftTweaker integration for main recipe categories (Cauldron, Distillery, Kettle, Oven)
@@ -138,7 +141,7 @@ jar in the resource packs folder.
   - Vampire clothing
   - Hunter clothing
   - Withes robes
-- JEI Handlers for as many things as possible (Altar Power providers, Goblin trades, Baba Yaga drops, etc)
+- JEI Handlers for as many things as possible (Altar Power providers, Goblin trades, Baba Yaga drops, etc.)
 - More Tweaks
   - Modify Rite/Curse strength, to fine-tune how much damage poppets take for the given Rite/Curse
   - Modify entity attributes, such as Max health, Damage, Speed, etc
@@ -147,6 +150,4 @@ jar in the resource packs folder.
 - Owl AI for transporting items
 - Winged Monkey AI
 - Brew Bucket item does not exist yet. Needs implementation. Will make possible to move brews between cauldrons
-- ~~Remove WitcheryLoadingPlugin and provide all missing models, textures and so on to remove dependency from OG 
-  Witchery JAR~~ Implemented a Loading Plugin that checks the file and downloads it automatically
 - Groovyscript Integration

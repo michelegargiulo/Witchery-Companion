@@ -264,6 +264,19 @@ public class ModConfig {
             @Config.Name("Brew of Erosion Item - Tweak Emulate Erosion Brew")
             public static boolean itemErosionBrew_tweakEmulateBrewEffects = false;
 
+            @Config.Comment("If true, this poppet won't be able to affect players")
+            @Config.Name("Poppet Item - Disable PVP")
+            public static boolean poppetItem_tweakDisablePvP = false;
+
+            @Config.Comment("If true, this poppet won't be able to affect non-player entities")
+            @Config.Name("Poppet Item - Disable PVE")
+            public static boolean poppetItem_tweakDisablePvE = false;
+
+            @Config.Comment("If true, a tooltip will be added to all Poppets informing the players about what entities " +
+                    "are affected by the poppet")
+            @Config.Name("Poppet Item - Disable PVE")
+            public static boolean poppetItem_tweakAddTargetRestrictionTooltip = false;
+
             @Config.Comment("If true, fixes a crash that happens when a Poppet Protection Poppet protects its owner")
             @Config.Name("Poppet Protection Poppet - Fix Crash on Protect")
             public static boolean poppetProtectionPoppet_fixCrashOnProtect = true;

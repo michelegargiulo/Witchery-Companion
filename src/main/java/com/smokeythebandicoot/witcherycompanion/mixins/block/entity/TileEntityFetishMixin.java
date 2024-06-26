@@ -57,5 +57,4 @@ public abstract class TileEntityFetishMixin extends WitcheryTileEntity {
         return original.call(instance, nbtKey, 10);
     }
 
-
 }

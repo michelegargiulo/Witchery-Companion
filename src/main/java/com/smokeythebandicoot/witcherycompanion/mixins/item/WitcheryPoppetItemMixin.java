@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.item;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
