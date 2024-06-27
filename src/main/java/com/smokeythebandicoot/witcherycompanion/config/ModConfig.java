@@ -188,14 +188,19 @@ public class ModConfig {
             @Config.Name("Block Fetish - Fix Data Loss on World Reload")
             public static boolean blockFetish_fixMissingDataOnWorldReload = true;
 
-            @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
-                    "at least they should not crash the game as often")
-            @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")
-            public static boolean cursedBlock_fixNullActionListCrash = true;
+            @Config.Comment("If true, fixes a crash involving mods trying to get the Circle Glyph blockstate from the " +
+                    "Chalk metadata (for example, FutureMC bees)")
+            @Config.Name("Circle Glyph - Fix Out Of Bounds Crash")
+            public static boolean circleGlyph_fixOutOfBoundsCrash = true;
 
             @Config.Comment("Fix an edge case where the coffin would not have a color associated with it, causing a crash.")
             @Config.Name("Coffin - Fix Edge Case Crash")
             public static boolean coffin_fixEdgeCrash = true;
+
+            @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
+                    "at least they should not crash the game as often")
+            @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")
+            public static boolean cursedBlock_fixNullActionListCrash = true;
 
             @Config.Comment("Fix crash when one of the coffin pieces is moved by a piston.")
             @Config.Name("Coffin - Fix Crash When Moved By Piston")
