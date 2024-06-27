@@ -9,6 +9,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.msrandom.witchery.item.WitcheryPoppetItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -52,6 +54,7 @@ public abstract class WitcheryPoppetItems_ItemPoppetMixin {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     @Inject(method = "addInformation", remap = true, at = @At("TAIL"))
     public void addDisabledPvXTooltip(ItemStack stack, World worldIn, List<String> list, ITooltipFlag advTooltips, CallbackInfo ci) {
         // If Poppet is not Vampiric or VooDoo, then it cannot damage other players/entities
