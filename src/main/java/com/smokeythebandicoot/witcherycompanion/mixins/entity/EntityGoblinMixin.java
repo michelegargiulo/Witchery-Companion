@@ -20,7 +20,6 @@ import java.util.Collections;
 /**
  Mixins:
  [Tweak] Crafttweaker Integration for trades
- [Tweak]
  */
 @Mixin(EntityGoblin.class)
 public abstract class EntityGoblinMixin extends EntityAgeable {
@@ -38,23 +37,23 @@ public abstract class EntityGoblinMixin extends EntityAgeable {
     @Shadow(remap = false)
     public abstract void setProfession(int par1);
 
-    // This method is responsible to assign custom professions to the Goblin, on init, in case the user adds or removes
-    // any profession. This simply sets again the profession of the Goblin, selecting one among the possible ones.
+    /** This method is responsible to assign custom professions to the Goblin, on init, in case the user adds or removes
+     any profession. This simply sets again the profession of the Goblin, selecting one among the possible ones */
     @Inject(method = "<init>", remap = false, at = @At("TAIL"))
     public void WPinjectCustomProfessionsOnInit(World world, CallbackInfo ci) {
         if (!ModConfig.PatchesConfiguration.EntityTweaks.goblin_tweakCustomTrades) return;
         this.setProfession(GoblinTradeApi.getRandomProfessionID(this.rand));
     }
 
-
+    /** Sets an initial random profession on Goblin spawn */
     @Inject(method = "onInitialSpawn", remap = false, at = @At("TAIL"))
     public void WPinjectCustomProfessionsOnSpawn(DifficultyInstance difficulty, IEntityLivingData livingData, CallbackInfoReturnable<IEntityLivingData> cir) {
         if (!ModConfig.PatchesConfiguration.EntityTweaks.goblin_tweakCustomTrades) return;
         this.setProfession(GoblinTradeApi.getRandomProfessionID(this.rand));
     }
 
-    // This method is responsible to inject custom trades into the buying list, that is the only variable that is read
-    // when the player right-clicks a Hobgoblin and the trade is generated. Modifying that variable, controls the trades
+    /** This method is responsible to inject custom trades into the buying list, that is the only variable that is read
+     when the player right-clicks a Hobgoblin and the trade is generated. Modifying that variable, controls the trades */
     @Inject(method = "addDefaultEquipmentAndRecipies", remap = false, cancellable = true, at = @At("HEAD"))
     public void WPcustomGoblinTrades(CallbackInfo ci) {
         if (!ModConfig.PatchesConfiguration.EntityTweaks.goblin_tweakCustomTrades) return;
