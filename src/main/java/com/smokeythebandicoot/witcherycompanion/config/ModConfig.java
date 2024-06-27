@@ -440,6 +440,11 @@ public class ModConfig {
             @Config.Name("Baba Yaga - Tweak Give Loot Lifespan")
             public static int babaYaga_tweakMaxGiveTicks = 600;
 
+            @Config.Comment("If true, prevents Banshees from attacking other Banshees, making the execution of some " +
+                    "rituals easier as they won't kill each other")
+            @Config.Name("Banshee - Tweak Ingore Other Banshees")
+            public static boolean banshee_tweakDoNotAttackOtherBanshees = false;
+
             @Config.Comment("If true, fixes the problem where Coven Witches require certain amount of items as a quest, but if" +
                     "the player holds more items than needed, the quest goes into negative item amount requirement")
             @Config.Name("Coven Witch - Fix Negative Request Amount")

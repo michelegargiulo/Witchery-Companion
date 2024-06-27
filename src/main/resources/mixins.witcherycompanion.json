@@ -27,6 +27,7 @@
     "common.RelativePowerSourceMixin",
     "common.ShapeShiftMixin",
     "entity.EntityBabaYagaMixin",
+    "entity.EntityBansheeMixin",
     "entity.EntityBroomMixin",
     "entity.EntityDeathMixin",
     "entity.EntityDemonMixin",

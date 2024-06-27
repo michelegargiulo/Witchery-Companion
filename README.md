@@ -71,6 +71,7 @@ jar in the resource packs folder.
 - **Entities**
   - **[Baba Yaga]** Tweak to modify gifts given to owners frequency, max distance and max items
   - **[Baba Yaga]** Tweak to give her own loot table instead of hard-coded loot, both on death and for gifted items
+  - **[Banshee]** Tweak to make them ignore each-other, to easy some rituals that require them nearby
   - **[Cat Familiar]** Separate their loot table from Vanilla ocelots loot table
   - **[Coven Witch]** Separate their loot table from Vanilla witches loot table
   - **[Demon]** Tweak to give them their own loot table instead of hard-coded loot
