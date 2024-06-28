@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.api;
 
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.msrandom.witchery.init.WitcheryBlocks;
@@ -10,12 +11,10 @@ import java.util.HashSet;
 public class ErosionBrewApi {
 
     // Mine List: blocks that are here will be mined by the brew
-    public static HashSet<net.minecraft.block.state.IBlockState> mineList = new HashSet<>(
-            Arrays.asList(Blocks.OBSIDIAN.getDefaultState()));
+    public static HashSet<IBlockState> mineList = initMiningList();
 
     // Destroy List: blocks that are here and not in mineList will be set to air by the brew
-    public static HashSet<IBlockState> destroyList = new HashSet<>(
-            Arrays.asList(Blocks.BEDROCK.getDefaultState(), WitcheryBlocks.BARRIER.getDefaultState()));
+    public static HashSet<IBlockState> destroyList = initDestroyList();
 
     // Maximum harvest level that the brew can destroy/mine
     public static int maximumHarvestLevel = -1;
@@ -100,5 +99,33 @@ public class ErosionBrewApi {
         boolean wasRegistered = destroyList.contains(state);
         destroyList.remove(state);
         return wasRegistered;
+    }
+
+    /** This function is private and is used as an helper to init Mining List */
+    private static HashSet<IBlockState> initMiningList() {
+        return new HashSet<>(
+                Arrays.asList(Blocks.OBSIDIAN.getDefaultState()));
+    }
+
+    /** This function is private and is used as an helper to init Destroy List */
+    private static HashSet<IBlockState> initDestroyList() {
+        HashSet<IBlockState> set = new HashSet<>(
+                Arrays.asList(
+                        Blocks.BEDROCK.getDefaultState(),
+                        WitcheryBlocks.BARRIER.getDefaultState()
+                )
+        );
+
+        // If destroy list is a BLACKLIST, then add more unbreakable blocks to it
+        if (ModConfig.PatchesConfiguration.BrewsTweaks.erosion_fixUnbreakables && !destroyWhiteList) {
+            set.add(WitcheryBlocks.TORMENT_STONE.getDefaultState());
+            set.add(WitcheryBlocks.TORMENT_PORTAL.getDefaultState());
+            set.add(WitcheryBlocks.MIRROR.getDefaultState());
+            set.add(WitcheryBlocks.MIRROR_WALL.getDefaultState());
+            set.add(WitcheryBlocks.FORCE.getDefaultState());
+            set.add(WitcheryBlocks.BARRIER.getDefaultState());
+        }
+
+        return set;
     }
 }

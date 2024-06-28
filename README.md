@@ -50,6 +50,7 @@ jar in the resource packs folder.
 - **Potions**
   - **[Fortune]** Fix Brew of Fortune having no effect
 - **Rites**
+  - **[Rite of Broken Earth]** Fix NPE when foci location could not be determined
   - **[Rite of Prior Incarnation]** Fix "WitcheryPriIncUsr" NBT data persisting after item pickup
 - **World**
   - **[Apothecary] Fix crash when generating book in chests and item frames when Tinkers' Construct or Thaumcraft are 
@@ -98,6 +99,7 @@ jar in the resource packs folder.
   - **[Voodoo Protection Poppet]** Tweak amount of damage taken to protect its owner from a curse
   - **[Poppet Protection Poppet]** Tweak amount of damage taken to protect its owner from a poppet
 - **Rites**
+  - **[Broken Earth]** Tweak to control what blocks can be destroyed using the same rules as the Brew of Erosion (including its Crafttweaker customization)
   - **[Moving Earth]** Tweak to disable moving TileEntity (for dupes)
   - **[Moving Earth]** Tweak to disable voiding blocks above the ritual. This will make the ritual stop (fail) when
     there is not enough space above to move the terrain upwards

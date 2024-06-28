@@ -60,6 +60,8 @@
     "rite.effect.RiteEffectCurseCreatureMixin",
     "rite.effect.RiteEffectCurseCreatureOfTheWolf",
     "rite.effect.RiteEffectMovingEarthMixin",
+    "rite.effect.RiteEffectPartEarth_DirectionMixin",
+    "rite.effect.RiteEffectPartEarthMixin",
     "util.EntityUtilMixin",
     "util.ResizingUtilsMixin",
     "world.dimension.spirit.WorldProviderSpiritWorldMixin",

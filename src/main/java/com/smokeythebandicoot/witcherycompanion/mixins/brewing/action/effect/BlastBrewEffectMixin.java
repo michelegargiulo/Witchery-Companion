@@ -42,7 +42,7 @@ public abstract class BlastBrewEffectMixin extends BrewActionEffect {
     // of brew's modifiers. If the terrain has to not be damaged, the check must be done here
     @Inject(method = "doApplyToEntity", remap = false, at = @At("HEAD"), cancellable = true)
     public void WPdoApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack, CallbackInfo ci) {
-        if (ModConfig.PatchesConfiguration.BrewsTweaks.brewBlast_fixExplosionBreakingBlocks) {
+        if (ModConfig.PatchesConfiguration.BrewsTweaks.blast_fixExplosionBreakingBlocks) {
             boolean damageTerrain = !modifiers.disableBlockTarget;
             if (modifiers.powerScalingFactor == 1.0 || world.rand.nextDouble() < modifiers.powerScalingFactor * 0.2) {
                 world.createExplosion(modifiers.caster, targetEntity.posX, targetEntity.posY, targetEntity.posZ, (float) modifiers.getStrength(), damageTerrain);
@@ -60,7 +60,7 @@ public abstract class BlastBrewEffectMixin extends BrewActionEffect {
     // of brew's modifiers. If the terrain has to not be damaged, the check must be done here
     @Inject(method = "doApplyToBlock", remap = false, at = @At("HEAD"), cancellable = true)
     public void WPdoApplyToEntity(World world, BlockPos pos, EnumFacing side, int radius, ModifiersEffect modifiers, ItemStack stack, CallbackInfo ci) {
-        if (ModConfig.PatchesConfiguration.BrewsTweaks.brewBlast_fixExplosionBreakingBlocks) {
+        if (ModConfig.PatchesConfiguration.BrewsTweaks.blast_fixExplosionBreakingBlocks) {
             boolean damageTerrain = !modifiers.disableBlockTarget;
             pos = pos.offset(side);
             world.createExplosion(modifiers.caster, (double) pos.getX() + 0.5, (double) pos.getY() + 0.5, (double) pos.getZ() + 0.5, (float) modifiers.getStrength(), damageTerrain);

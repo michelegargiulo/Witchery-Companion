@@ -97,11 +97,20 @@ public class ModConfig {
 
             @Config.Comment("If true, fixes the brew from breaking blocks even if the 'ignore blocks' modifier has been added")
             @Config.Name("Brew of Blast - Fix Terrain Damage")
-            public static boolean brewBlast_fixExplosionBreakingBlocks = true;
+            public static boolean blast_fixExplosionBreakingBlocks = true;
 
             @Config.Comment("Fixes brew of erosion crash while attempting to generate a random int with a negative bound")
             @Config.Name("Brew of Erosion - Fix Random Integer Bound Crash")
             public static boolean erosion_fixRandomIntegerCrash = true;
+
+            @Config.Comment("If true, it adds more blocks to the unbreakable blocks list (Torment floor and portal, Mirror walls, etc.)")
+            @Config.Name("Brew of Erosion - Fix Breaking Unbreakable Blocks")
+            public static boolean erosion_fixUnbreakables = true;
+
+            @Config.Comment("If true, gives CraftTweaker integration total control about which blocks can be mined or destroyed, " +
+                    "enabling a much more in-depth customizability. If set to True, but no script changes it, behaviour is default Witchery")
+            @Config.Name("Brew of Erosion - Tweak Effect With Crafttweaker")
+            public static boolean erosion_tweakEnableCrafttweaker = true;
 
             @Config.Comment("Fixes crash if players accidentally drink the potion instead of throwing it")
             @Config.Name("Brew of Frogs Tongue - Fix Pull Null Entity Crash")
@@ -114,11 +123,6 @@ public class ModConfig {
             @Config.Comment("Fixes some dispersal methods of the brew of raising causing a crash")
             @Config.Name("Brew of Raising - Fix Null Player Name Crash")
             public static boolean raising_fixNullPlayerName = true;
-
-            @Config.Comment("If true, gives CraftTweaker integration total control about which blocks can be mined or destroyed, " +
-                    "enabling a much more in-depth customizability. If set to True, but no script changes it, behaviour is default Witchery")
-            @Config.Name("Brew of Erosion - Tweak Effect With Crafttweaker")
-            public static boolean erosion_tweakEnableCrafttweaker = true;
         }
 
         public static class InfusionTweaks {
@@ -337,6 +341,15 @@ public class ModConfig {
             @Config.Name("Rite of Blindness - Tweak Strength")
             @Config.RangeInt(min = 1, max = 16)
             public static int blindness_tweakStrength = 6;
+
+            @Config.Comment("If true, fixes an edge case when it was not possible to determine the rite's foci's block location")
+            @Config.Name("Rite of Broken Earth - Fix NPE on Null Foci Location")
+            public static boolean brokenEarth_fixNPEOnNullFociLocation = true;
+
+            @Config.Comment("If true, Rite of Broken Earth will only break things that can be broken with a Brew of " +
+                    "Erosion, including (if enabled) CraftTweaker-defined blockstates")
+            @Config.Name("Rite of Broken Earth - Tweak Align Breakables With Erosion")
+            public static boolean brokenEarth_tweakAlignBreakablesWithErosion = false;
 
             @Config.Comment("Multiplies the damage taken by a Voodoo Protection Poppet when the owner is protected by " +
                     "this ritual. Default: 1. Witchery applies a strength of 1, if the levelBuff is zero, 3 otherwise. " +
