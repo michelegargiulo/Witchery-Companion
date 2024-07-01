@@ -44,6 +44,7 @@
     "infusion.spirit.InfusedSpiritSentinelEffectMixin",
     "infusion.spirit.InfusedSpiritTwisterEffectMixin",
     "item.ItemChalkMixin",
+    "item.ItemCreativeMedallionMixin",
     "item.ItemSeerStoneMixin",
     "item.ItemSpectralStoneMixin",
     "item.WitcheryPoppetItemMixin",

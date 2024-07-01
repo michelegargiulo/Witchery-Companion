@@ -276,6 +276,10 @@ public class ModConfig {
 
         public static class ItemTweaks {
 
+            @Config.Comment("If true, players will be able to use the Creative Medallion even if not in creative mode")
+            @Config.Name("Creative Medallion - Tweak Disable Creative Requirement")
+            public static boolean creativeMedallion_tweakDisableCreativeRequirement = false;
+
             @Config.Comment("If true, Spectral Stones won't dupe the entity they contain")
             @Config.Name("Spectral Stone - Fix Entity Dupe Exploit")
             public static boolean spectralStone_fixEntityReleaseExploit = true;

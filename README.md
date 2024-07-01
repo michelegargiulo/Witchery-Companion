@@ -92,6 +92,7 @@ jar in the resource packs folder.
   - **[Spectre]** Tweak to modify spectre attributes (Follow range, Movement speed, Attack damage)
 - **Items**
   - **[Chalk]** Tweak Chalk max stack size to 1, to avoid weird item loss due to stacking problems
+  - **[Creative Medallion]** Tweak to enable non-creative mode players to use the medallion
   - **[Brew of Erosion]** Tweak behaviour to align with the Erosion Brew
   - **[Seer Stone]** Tweak to not print throwing skill (unimplemented feature by W:R)
   - **[Voodoo Poppet]** Tweak to disable PvP and/or PvE effects (only usable on players/mobs) + optional tooltip that informs players
@@ -99,7 +100,7 @@ jar in the resource packs folder.
   - **[Voodoo Protection Poppet]** Tweak amount of damage taken to protect its owner from a curse
   - **[Poppet Protection Poppet]** Tweak amount of damage taken to protect its owner from a poppet
 - **Rites**
-  - **[Broken Earth]** Tweak to control what blocks can be destroyed using the same rules as the Brew of Erosion (including its Crafttweaker customization)
+  - **[Broken Earth]** Tweak to control what blocks can be destroyed using the same rules as the Brew of Erosion (including its CraftTweaker customization)
   - **[Moving Earth]** Tweak to disable moving TileEntity (for dupes)
   - **[Moving Earth]** Tweak to disable voiding blocks above the ritual. This will make the ritual stop (fail) when
     there is not enough space above to move the terrain upwards
@@ -118,7 +119,7 @@ jar in the resource packs folder.
   - **[Mirror World]** Tweak to modify default dimension ID to 13 (configurable)
 
 ### Integrations
-- **Crafttweaker**
+- **CraftTweaker**
   - **[Altar]** Integration to register or un-register Blocks nearby the altar that can power the Altar
   - **[Witch's Cauldron]** Integration to register or un-register Blocks underneath the cauldron that can act as a heat
     source. Supports fluids
