@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /**
  Mixins:
  [Bugfix] Fix edge case where the coffin might crash the game when placed
+ [Bugfix] Fix crash when Piston moves top-block of the coffin
  */
 @Mixin(value = TileEntityCoffin.class)
 public abstract class TileEntityCoffinMixin extends TileEntity {
@@ -25,6 +26,7 @@ public abstract class TileEntityCoffinMixin extends TileEntity {
     @Shadow(remap = false)
     private EnumDyeColor color;
 
+    /** Fix potential NPE when color is null */
     @Inject(method = "getColor", remap = false, at = @At("HEAD"), cancellable = true)
     public final void getColor(CallbackInfoReturnable<EnumDyeColor> cir) {
 
@@ -39,6 +41,7 @@ public abstract class TileEntityCoffinMixin extends TileEntity {
 
     }
 
+    /** Makes an additional null-check when the piston is updated */
     @Inject(method = "update", remap = true, cancellable = true, at = @At(value = "INVOKE", remap = false,
             target = "Lnet/minecraft/tileentity/TileEntityType;getAt(Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/tileentity/TileEntity;"))
     public void WPfixPistonCrash(CallbackInfo ci) {

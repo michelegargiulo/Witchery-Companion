@@ -31,6 +31,7 @@ public abstract class BlockPlacedItemMixin extends BlockContainer {
     @Shadow
     public abstract TileEntity createNewTileEntity(World worldIn, int meta);
 
+    /** Injects the getDrops() function into the target class */
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.placedItems_fixNoDrops) {
             Random rand = world instanceof World ? ((World) world).rand : new java.util.Random();

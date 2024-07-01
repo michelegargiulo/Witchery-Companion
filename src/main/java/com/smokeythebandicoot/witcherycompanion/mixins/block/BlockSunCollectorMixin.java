@@ -28,6 +28,7 @@ public abstract class BlockSunCollectorMixin extends Block {
         super(materialIn);
     }
 
+    /** Injects the getDrops() function into the target class */
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         int meta = this.getMetaFromState(state);

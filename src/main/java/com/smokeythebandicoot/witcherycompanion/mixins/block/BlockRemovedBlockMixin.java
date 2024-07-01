@@ -26,11 +26,13 @@ public abstract class BlockRemovedBlockMixin extends BlockContainer {
         super(materialIn);
     }
 
+    /** Injects the isPassable() function into the target class */
     @Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
         return true;
     }
 
+    /** Injects the isFullCube() function into the target class */
     @Override
     public boolean isFullCube(IBlockState state) {
         // Problem is here: if it is a full cube, the entity suffocates, depending on the material

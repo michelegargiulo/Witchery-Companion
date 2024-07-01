@@ -49,31 +49,11 @@ public abstract class BlockStockadeMixin extends Block {
             CONN_0, CONN_1, CONN_2, CONN_3, CONN_4, CONN_5, CONN_6, CONN_7
     };
 
-    /*
-        WitcheryUtils.getBlockShape(4.8, 0.0, 4.8, 11.2, 14.4, 11.2),
-        WitcheryUtils.getBlockShape(0.8, 0.0, 4.8, 15.2, 14.4, 11.2),
-        WitcheryUtils.getBlockShape(4.8, 0.0, 0.8, 11.2, 14.4, 15.2),
-        WitcheryUtils.getBlockShape(0.8, 0.0, 0.8, 15.2, 14.4, 15.2),
-        WitcheryUtils.getBlockShape(4.8, 0.0, 4.8, 11.2, 16.0, 11.2),
-        WitcheryUtils.getBlockShape(0.8, 0.0, 4.8, 15.2, 16.0, 11.2),
-        WitcheryUtils.getBlockShape(4.8, 0.0, 0.8, 11.2, 16.0, 15.2),
-        WitcheryUtils.getBlockShape(0.8, 0.0, 0.8, 15.2, 16.0, 15.2)
-
-
-            WitcheryUtils.getBlockShape(4.0, 0.0, 4.0, 12.0, 12.0, 12.0),
-            WitcheryUtils.getBlockShape(0.0, 0.0, 4.0, 16.0, 12.0, 12.0),
-            WitcheryUtils.getBlockShape(4.0, 0.0, 0.0, 12.0, 12.0, 16.0),
-            WitcheryUtils.getBlockShape(0.0, 0.0, 0.0, 16.0, 12.0, 16.0),
-            WitcheryUtils.getBlockShape(4.0, 0.0, 4.0, 12.0, 16.0, 12.0),
-            WitcheryUtils.getBlockShape(0.0, 0.0, 4.0, 16.0, 16.0, 12.0),
-            WitcheryUtils.getBlockShape(4.0, 0.0, 0.0, 12.0, 16.0, 16.0),
-            WitcheryUtils.getBlockShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0)
-     */
-
     private BlockStockadeMixin(Material blockMaterialIn, MapColor blockMapColorIn) {
         super(blockMaterialIn, blockMapColorIn);
     }
 
+    /** Overwrites default Witchery bounding box to avoid player head getting inside of stockade model */
     @Inject(method = "getBoundingBox", remap = true, at = @At("HEAD"), cancellable = true)
     public void WPfixBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos, CallbackInfoReturnable<AxisAlignedBB> cir) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.stockade_fixBoundingBox) {

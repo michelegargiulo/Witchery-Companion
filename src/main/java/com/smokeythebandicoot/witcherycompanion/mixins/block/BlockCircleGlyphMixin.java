@@ -22,6 +22,8 @@ public abstract class BlockCircleGlyphMixin extends Block {
         super(blockMaterialIn, blockMapColorIn);
     }
 
+    /** This Mixin checks if the meta param is within the bounds of the possible values. If it is, it does nothing,
+     otherwise it returns the getDefaultState() */
     @Inject(method = "getStateFromMeta", remap = true, cancellable = true, at = @At("HEAD"))
     public void fixOutOfBoundsMeta(int meta, CallbackInfoReturnable<IBlockState> cir) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.circleGlyph_fixOutOfBoundsCrash) {
