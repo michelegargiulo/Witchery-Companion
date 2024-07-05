@@ -132,6 +132,11 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean soulBrews_fixPersistency = true;
 
+            @Config.Comment("Fixes crashes due to bosses using disabled spells")
+            @Config.Name("Symbol Effects - Fix Bosses Using Disabled Spells")
+            @Config.RequiresMcRestart
+            public static boolean symbolEffects_fixBossesUsingDisabledSpells = true;
+
             @Config.Comment("Sets the amount of ticks between Sentinel effect activations")
             @Config.Name("Sentinel Effect - Tweak Cooldown")
             public static int infusedSpiritSentinel_tweakCooldown = 600;

@@ -37,7 +37,8 @@ public class ShapeShiftMixin {
         if (ModConfig.PatchesConfiguration.CommonTweaks.shapeShift_fixFloatingEntities) {
             if (instance instanceof EntityPlayerMP) {
                 EntityPlayerMP playerMP = ((EntityPlayerMP)instance);
-                playerMP.connection.sendPacket(new SPacketPlayerAbilities(playerMP.capabilities));
+                if (playerMP.connection != null)
+                    playerMP.connection.sendPacket(new SPacketPlayerAbilities(playerMP.capabilities));
             }
             return;
         }

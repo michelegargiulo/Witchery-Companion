@@ -36,6 +36,7 @@
     "entity.EntityGoblinMixin",
     "entity.EntityGoblinMogMixin",
     "entity.EntityImpMixin",
+    "entity.EntityLeonardMixin",
     "entity.EntityLordOfTormentMixin",
     "entity.familiar.FamiliarMixin",
     "entity.familiar.FamiliarsMixin",
