@@ -62,41 +62,51 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     @Shadow(remap = false) @Final
     private static int SCAN_DISTANCE;
 
+    @Shadow(remap = false)
+    private boolean core;
+
+    @Shadow(remap = false)
+    public abstract void updateArtifacts();
+
+    @Shadow(remap = false)
+    protected abstract void updatePower(boolean throttle);
+
     @Unique
     private static HashMap<Block, AltarPowerSource> witchery_Patcher$powerObjectTable = null;
 
 
-    /**
-     * Skips a world.isRemote check that makes the Altar not give power sometimes
-     * @param power
-     * @param cir
-     */
-    @Inject(method = "consumePower", at = @At("HEAD"), remap = false, cancellable = true)
+    /** Triggers a TileEntity sync when power is consumed, as Witchery only updated it when the power increases.
+     * This causes a desync in what appears in the Altar GUI and the actual power levels */
+    @Inject(method = "consumePower", at = @At("RETURN"), remap = false)
     public void WPconsumePower(float power, CallbackInfoReturnable<Boolean> cir) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.altar_fixPowerSourcePersistency) {
-            if (this.power >= power) {
-                this.power -= power;
-                cir.setReturnValue(true);
-            } else {
-                cir.setReturnValue(false);
-            }
+            BlockUtil.notifyBlockUpdate(this.world, this.getPos());
         }
     }
 
-    /**
-     * Injected method that gets run when the TileEntity is first loaded in the world
-     * Registers the power source and updates the power
-     */
+    /** Injected method that gets run when the TileEntity is first loaded in the world.
+     * Registers the power source and updates the power */
     public void onLoad() {
         if (!world.isRemote && ModConfig.PatchesConfiguration.BlockTweaks.altar_fixPowerSourcePersistency) {
-            PowerSources.instance().registerPowerSource((TileEntityAltar)(Object)this);
             updatePower();
         }
     }
 
-    /**
-     * Rewrites the Power updating logic to factor in CraftTweaker integration and caching to improve performance by caching
-     */
+    /** This method fixes an inverse condition, as only "core" AltarTEs should update their power */
+    @Inject(method = "updatePower()V", remap = false, cancellable = true, at = @At("HEAD"))
+    public void updatePowerCheckValid(CallbackInfo ci) {
+        if (!this.core) return;
+        PowerSources.instance().registerPowerSource(this);
+        this.updateArtifacts();
+        this.updatePower(true);
+        ci.cancel();
+    }
+
+    /** This Mixin injects the "setCore" method inside the class, called by BlockAltarMixin by means of Reflection */
+    private void witcheryPatcher_setCore(boolean isCore) {
+        this.core = isCore;
+    }
+
     /** Rewrites the Power updating logic to factor in CraftTweaker integration and caching to improve performance by caching */
     @Inject(method = "updatePower(Z)V", remap = false, cancellable = true, at = @At("HEAD"))
     private void WPupdatePowerCached(boolean throttle, CallbackInfo ci) {

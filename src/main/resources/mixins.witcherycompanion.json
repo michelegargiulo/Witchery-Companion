@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "${mixin_refmap}",
   "mixins": [
+    "block.BlockAltarMixin",
     "block.BlockCircleGlyphMixin",
     "block.BlockMandrakeCropMixin",
     "block.BlockPlacedItemMixin",
