@@ -707,6 +707,10 @@ public class ModConfig {
         @Config.Name("Quark Integration - Configuration")
         public static QuarkIntegration quarkIntegrationConfig;
 
+        @Config.Comment("Configuration related to The One Probe integration")
+        @Config.Name("TOP Integration - Configuration")
+        public static TopIntegration TOPIntegration;
+
         public static class JerIntegration {
 
             @Config.Comment("Master switch for all JER integrations")
@@ -743,6 +747,18 @@ public class ModConfig {
                     "changes dimension")
             @Config.Name("Morph Integration - Fix Entity Size On Dimension Change")
             public static boolean fixSizeDesyncOnDimChange = true;
+        }
+
+        public static class TopIntegration {
+
+            @Config.Comment("Master switch for all TOP integrations")
+            @Config.Name("TOP Integration - Enabled")
+            public static boolean enableTopIntegration = true;
+
+            @Config.Comment("If true, enabled TOP integration for Altar")
+            @Config.Name("TOP Integration - Altar")
+            public static boolean enableAltar = true;
+
         }
     }
 
