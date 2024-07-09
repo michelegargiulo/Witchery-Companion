@@ -187,6 +187,11 @@ public class ModConfig {
             @Config.Name("Altar - Fix Power Source Persistence")
             public static boolean altar_fixPowerSourcePersistency = true;
 
+            @Config.Comment("If true, implements caching for Altar Power Source map, improving TPS." +
+                    "NOTE: Required for CraftTweaker integration for Custom Power Sources")
+            @Config.Name("Altar - Tweak Cache Power Source Map")
+            public static boolean altar_tweakCachePowerMap = true;
+
             @Config.Comment("Fixes fetish blocks not dropping when they are harvested due to TileEntity being null " +
                     "when the getDrops method is called")
             @Config.Name("Block Fetish - Fix No Drops on Harvest")

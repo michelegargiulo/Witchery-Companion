@@ -97,14 +97,17 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     /**
      * Rewrites the Power updating logic to factor in CraftTweaker integration and caching to improve performance by caching
      */
+    /** Rewrites the Power updating logic to factor in CraftTweaker integration and caching to improve performance by caching */
     @Inject(method = "updatePower(Z)V", remap = false, cancellable = true, at = @At("HEAD"))
     private void WPupdatePowerCached(boolean throttle, CallbackInfo ci) {
-        if (!this.world.isRemote && (!throttle || this.ticks - this.lastPowerUpdate <= 0L || this.ticks - this.lastPowerUpdate > 100L)) {
-            this.lastPowerUpdate = this.ticks;
-            witchery_Patcher$powerObjectTable = witchery_Patcher$updatePowerMap();
-            witchery_Patcher$scanSurroundings();
+        if (ModConfig.PatchesConfiguration.BlockTweaks.altar_tweakCachePowerMap) {
+            if (!this.world.isRemote && (!throttle || this.ticks - this.lastPowerUpdate <= 0L || this.ticks - this.lastPowerUpdate > 100L)) {
+                this.lastPowerUpdate = this.ticks;
+                witchery_Patcher$powerObjectTable = witchery_Patcher$updatePowerMap();
+                witchery_Patcher$scanSurroundings();
+            }
+            ci.cancel();
         }
-        ci.cancel();
     }
 
     @Unique
@@ -265,6 +268,5 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
         AltarPowerSource source = new AltarPowerSource(factor, (int)(Math.max((double)this.enhancementLevel * 1.18, 1.0) * (double)limit));
         witchery_Patcher$powerObjectTable.put(block, source);
     }
-
 
 }
