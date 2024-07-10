@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes.AltarHandler;
 import com.smokeythebandicoot.witcherycompanion.utils.AltarPowerSource;
 import net.minecraft.block.Block;
@@ -8,6 +8,7 @@ import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
@@ -62,49 +63,76 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     @Shadow(remap = false) @Final
     private static int SCAN_DISTANCE;
 
+    @Shadow(remap = false)
+    private boolean core;
+
+    @Shadow(remap = false)
+    public abstract void updateArtifacts();
+
+    @Shadow(remap = false)
+    protected abstract void updatePower(boolean throttle);
+
+    @Shadow(remap = false)
+    public abstract void setInvalid();
+
+    @Shadow(remap = true)
+    public abstract void update();
+
+    @Shadow(remap = true)
+    public abstract void invalidate();
+
     @Unique
     private static HashMap<Block, AltarPowerSource> witchery_Patcher$powerObjectTable = null;
 
-
-    /**
-     * Skips a world.isRemote check that makes the Altar not give power sometimes
-     * @param power
-     * @param cir
-     */
-    @Inject(method = "consumePower", at = @At("HEAD"), remap = false, cancellable = true)
+    /** Triggers a TileEntity sync when power is consumed, as Witchery only updated it when the power increases.
+     * This causes a desync in what appears in the Altar GUI and the actual power levels */
+    @Inject(method = "consumePower", at = @At("RETURN"), remap = false)
     public void WPconsumePower(float power, CallbackInfoReturnable<Boolean> cir) {
-        if (ModConfig.PatchesConfiguration.BlockTweaks.altar_fixPowerSourcePersistency) {
-            if (this.power >= power) {
-                this.power -= power;
-                cir.setReturnValue(true);
-            } else {
-                cir.setReturnValue(false);
-            }
+        if (BlockTweaks.altar_fixPowerSourcePersistency) {
+            BlockUtil.notifyBlockUpdate(this.world, this.getPos());
         }
     }
 
-    /**
-     * Injected method that gets run when the TileEntity is first loaded in the world
-     * Registers the power source and updates the power
-     */
-    public void onLoad() {
-        if (!world.isRemote && ModConfig.PatchesConfiguration.BlockTweaks.altar_fixPowerSourcePersistency) {
-            PowerSources.instance().registerPowerSource((TileEntityAltar)(Object)this);
-            updatePower();
+
+
+    /** This method fixes an inverse condition, as only "core" AltarTEs should update their power */
+    @Inject(method = "updatePower()V", remap = false, cancellable = true, at = @At("HEAD"))
+    public void updatePowerCheckValid(CallbackInfo ci) {
+        if (BlockTweaks.altar_fixPowerSourcePersistency) {
+            if (!this.core) return;
+            PowerSources.instance().registerPowerSource(this);
+            this.updateArtifacts();
+            this.updatePower(true);
+            ci.cancel();
         }
     }
 
-    /**
-     * Rewrites the Power updating logic to factor in CraftTweaker integration and caching to improve performance by caching
-     */
+    /** Rewrites the Power updating logic to factor in CraftTweaker integration and caching to improve performance by caching */
     @Inject(method = "updatePower(Z)V", remap = false, cancellable = true, at = @At("HEAD"))
     private void WPupdatePowerCached(boolean throttle, CallbackInfo ci) {
-        if (!this.world.isRemote && (!throttle || this.ticks - this.lastPowerUpdate <= 0L || this.ticks - this.lastPowerUpdate > 100L)) {
-            this.lastPowerUpdate = this.ticks;
-            witchery_Patcher$powerObjectTable = witchery_Patcher$updatePowerMap();
-            witchery_Patcher$scanSurroundings();
+        if (BlockTweaks.altar_tweakCachePowerMap) {
+            if (!this.world.isRemote && (!throttle || this.ticks - this.lastPowerUpdate <= 0L || this.ticks - this.lastPowerUpdate > 100L)) {
+                this.lastPowerUpdate = this.ticks;
+                witchery_Patcher$powerObjectTable = witchery_Patcher$updatePowerMap();
+                witchery_Patcher$scanSurroundings();
+            }
+            ci.cancel();
         }
-        ci.cancel();
+    }
+
+    /** This Mixin sets the TileEntity as invalid if it is not a Core Altar  */
+    @Inject(method = "readFromNBT", remap = true, at = @At("TAIL"))
+    private void updateInvalidationOnReadFromNBT(NBTTagCompound nbtTag, CallbackInfo ci) {
+        if (BlockTweaks.altar_fixPowerSourcePersistency) {
+            if (!nbtTag.hasKey("Core")) return;
+            boolean newValue = nbtTag.getBoolean("Core");
+            if (this.core != newValue) {
+                // Not Core, but packet sets this to Core: Update Power
+                if (newValue) this.core = true;
+                    // Core, but packet sets this to not Core: Invalidate
+                else this.invalidate();
+            }
+        }
     }
 
     @Unique
@@ -265,6 +293,5 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
         AltarPowerSource source = new AltarPowerSource(factor, (int)(Math.max((double)this.enhancementLevel * 1.18, 1.0) * (double)limit));
         witchery_Patcher$powerObjectTable.put(block, source);
     }
-
 
 }

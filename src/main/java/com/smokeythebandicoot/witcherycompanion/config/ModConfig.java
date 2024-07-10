@@ -187,6 +187,11 @@ public class ModConfig {
             @Config.Name("Altar - Fix Power Source Persistence")
             public static boolean altar_fixPowerSourcePersistency = true;
 
+            @Config.Comment("If true, implements caching for Altar Power Source map, improving TPS." +
+                    "NOTE: Required for CraftTweaker integration for Custom Power Sources")
+            @Config.Name("Altar - Tweak Cache Power Source Map")
+            public static boolean altar_tweakCachePowerMap = true;
+
             @Config.Comment("Fixes fetish blocks not dropping when they are harvested due to TileEntity being null " +
                     "when the getDrops method is called")
             @Config.Name("Block Fetish - Fix No Drops on Harvest")
@@ -707,6 +712,10 @@ public class ModConfig {
         @Config.Name("Quark Integration - Configuration")
         public static QuarkIntegration quarkIntegrationConfig;
 
+        @Config.Comment("Configuration related to The One Probe integration")
+        @Config.Name("TOP Integration - Configuration")
+        public static TopIntegration TOPIntegration;
+
         public static class JerIntegration {
 
             @Config.Comment("Master switch for all JER integrations")
@@ -743,6 +752,36 @@ public class ModConfig {
                     "changes dimension")
             @Config.Name("Morph Integration - Fix Entity Size On Dimension Change")
             public static boolean fixSizeDesyncOnDimChange = true;
+        }
+
+        public static class TopIntegration {
+
+            @Config.Comment("Master switch for all TOP integrations")
+            @Config.Name("TOP Integration - Enabled")
+            public static boolean enableTopIntegration = true;
+
+            @Config.Comment("Integration")
+            @Config.Name("TOP Integration - Altar")
+            public static EProbeElementIntegrationConfig altar = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enabled TOP integration for Witch's Cauldron")
+            @Config.Name("TOP Integration - Witch's Cauldron")
+            public static EProbeElementIntegrationConfig cauldron = EProbeElementIntegrationConfig.DEFAULT;
+
+            public enum EProbeElementIntegrationConfig {
+                // Only enable basic information
+                BASIC_ONLY,
+
+                // Basic information will always be available, extended info only with extended probe
+                DEFAULT,
+
+                // All information will always be available
+                ALL_BASIC,
+
+                // Integration is disabled
+                DISABLED,
+            }
+
         }
     }
 

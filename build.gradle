@@ -126,6 +126,9 @@ dependencies {
     // Just Enough Resources
     compileOnly rfg.deobf('curse.maven:lucraft-230651:3775980')
 
+    // The One Probe
+    compileOnly rfg.deobf('curse.maven:theoneprobe-245211:2667280')
+
     // Morph
     compileOnly rfg.deobf('curse.maven:morph-229080:2995522')
 

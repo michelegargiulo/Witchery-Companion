@@ -2,8 +2,8 @@ package com.smokeythebandicoot.witcherycompanion.proxy;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.justenoughresources.JERIntegration;
-import com.smokeythebandicoot.witcherycompanion.integrations.morph.MorphIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.quark.BlockMandrakeCropIntegration;
+import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPPlugin;
 import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.FamiliarPatches;
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
@@ -11,6 +11,7 @@ import com.smokeythebandicoot.witcherycompanion.utils.FamiliarTest;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class CommonProxy {
@@ -27,6 +28,10 @@ public class CommonProxy {
 
         if (ModConfig.IntegrationConfigurations.QuarkIntegration.fixMandrakesRightClickHarvest && Loader.isModLoaded("quark"))
             MinecraftForge.EVENT_BUS.register(BlockMandrakeCropIntegration.INSTANCE);
+
+        if (ModConfig.IntegrationConfigurations.TopIntegration.enableTopIntegration && Loader.isModLoaded("theoneprobe")) {
+            FMLInterModComms.sendFunctionMessage("theoneprobe", "getTheOneProbe", TOPPlugin.class.getName());
+        }
 
 
         MinecraftForge.EVENT_BUS.register(new FamiliarTest());
