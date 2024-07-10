@@ -760,9 +760,27 @@ public class ModConfig {
             @Config.Name("TOP Integration - Enabled")
             public static boolean enableTopIntegration = true;
 
-            @Config.Comment("If true, enabled TOP integration for Altar")
+            @Config.Comment("Integration")
             @Config.Name("TOP Integration - Altar")
-            public static boolean enableAltar = true;
+            public static EProbeElementIntegrationConfig altar = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enabled TOP integration for Witch's Cauldron")
+            @Config.Name("TOP Integration - Witch's Cauldron")
+            public static EProbeElementIntegrationConfig cauldron = EProbeElementIntegrationConfig.DEFAULT;
+
+            public enum EProbeElementIntegrationConfig {
+                // Only enable basic information
+                BASIC_ONLY,
+
+                // Basic information will always be available, extended info only with extended probe
+                DEFAULT,
+
+                // All information will always be available
+                ALL_BASIC,
+
+                // Integration is disabled
+                DISABLED,
+            }
 
         }
     }
