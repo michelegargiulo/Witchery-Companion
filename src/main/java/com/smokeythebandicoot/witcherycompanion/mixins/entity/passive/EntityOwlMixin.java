@@ -3,27 +3,33 @@ package com.smokeythebandicoot.witcherycompanion.mixins.entity.passive;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.msrandom.witchery.entity.EntityFlyingTameable;
+import net.msrandom.witchery.entity.familiar.Familiar;
 import net.msrandom.witchery.entity.passive.EntityOwl;
 import net.msrandom.witchery.init.items.WitcheryGeneralItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.UUID;
 
 /**
  * Mixins:
- * [Bugfix] Fix Owl not sitting
- * [Tweak] Disable giving items to the Owl (bugged in Witchery)
+ [Bugfix] Fix Owl not sitting
+ [Bugfix] Fix Familiar having null owner after world reload
+ [Tweak] Disable giving items to the Owl (bugged in Witchery)
  */
 @Mixin(value = EntityOwl.class)
-public abstract class EntityOwlMixin extends EntityFlyingTameable {
+public abstract class EntityOwlMixin extends EntityFlyingTameable implements Familiar<EntityOwl> {
 
     @Shadow(remap = false)
     protected abstract void setVariant(int i);
@@ -65,4 +71,26 @@ public abstract class EntityOwlMixin extends EntityFlyingTameable {
         // Call original, do not modify the behaviour
         return original.call(instance, enumHand);
     }
+
+    @Inject(method = "getOwner()Lnet/minecraft/entity/Entity;", remap = true, cancellable = true, at = @At("HEAD"))
+    public void getOwnerEntity(CallbackInfoReturnable<EntityLivingBase> cir) {
+        UUID id = this.getOwnerId();
+        if (id == null) {
+            cir.setReturnValue(null);
+            return;
+        }
+        cir.setReturnValue(this.world.getPlayerEntityByUUID(id));
+    }
+
+    @Inject(method = "getOwner()Lnet/minecraft/entity/EntityLivingBase;", remap = true, cancellable = true, at = @At("HEAD"))
+    public void getOwnerEntityLivingBase(CallbackInfoReturnable<EntityLivingBase> cir) {
+        UUID id = this.getOwnerId();
+        if (id == null) {
+            cir.setReturnValue(null);
+            return;
+        }
+        cir.setReturnValue(this.world.getPlayerEntityByUUID(id));
+    }
+
+
 }

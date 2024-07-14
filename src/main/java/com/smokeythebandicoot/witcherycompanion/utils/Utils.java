@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.utils;
 
 
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
@@ -17,12 +18,14 @@ import java.util.List;
 public class Utils {
 
     public static void logChat(Object msg) {
+        WitcheryCompanion.logger.info(msg);
         MinecraftServer server = Minecraft.getMinecraft().getIntegratedServer().getServer();
         server.commandManager.executeCommand(server, "/say " + msg.toString());
     }
 
     public static void logChat(Collection<String> msgs) {
         for (String msg : msgs) {
+            WitcheryCompanion.logger.info(msg);
             Utils.logChat(msg);
         }
     }

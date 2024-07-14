@@ -1,14 +1,10 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.entity.passive;
 
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.msrandom.witchery.entity.familiar.Familiar;
-import net.msrandom.witchery.entity.passive.EntityCatFamiliar;
+import net.msrandom.witchery.entity.passive.EntityToad;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,20 +15,12 @@ import java.util.UUID;
 /**
  Mixins:
  [Bugfix] Fix Familiar having null owner after world reload
- [Tweak] Introduce own loot table
  */
-@Mixin(value = EntityCatFamiliar.class)
-public abstract class EntityCatFamiliarMixin extends EntityOcelot implements Familiar<EntityOcelot> {
+@Mixin(EntityToad.class)
+public abstract class EntityToadMixin extends EntityTameable implements Familiar<EntityToad> {
 
-    private EntityCatFamiliarMixin(World worldIn) {
+    private EntityToadMixin(World worldIn) {
         super(worldIn);
-    }
-
-    protected ResourceLocation getLootTable() {
-        if (ModConfig.PatchesConfiguration.LootTweaks.familiarCat_tweakOwnLootTable) {
-            return LootTables.FAMILIAR_CAT;
-        }
-        return LootTableList.ENTITIES_OCELOT;
     }
 
     @Inject(method = "getOwner()Lnet/minecraft/entity/Entity;", remap = true, cancellable = true, at = @At("HEAD"))
@@ -54,5 +42,4 @@ public abstract class EntityCatFamiliarMixin extends EntityOcelot implements Fam
         }
         cir.setReturnValue(this.world.getPlayerEntityByUUID(id));
     }
-
 }

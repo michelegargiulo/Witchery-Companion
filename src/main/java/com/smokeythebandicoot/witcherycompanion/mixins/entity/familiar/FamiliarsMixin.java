@@ -75,4 +75,23 @@ public abstract class FamiliarsMixin {
         return entity;
     }
 
+    @Inject(method = "getBoundFamiliar", remap = false, cancellable = true, at = @At("HEAD"))
+    private static void WPgetBoundFamiliar(EntityPlayer player, CallbackInfoReturnable<Familiar<?>> cir) {
+        if (player == null) {
+            cir.setReturnValue(null);
+            return;
+        }
+
+        for (Entity entity : player.world.getEntities(Entity.class, entity -> entity instanceof Familiar<?>)) {
+            Familiar<?> familiar = (Familiar<?>) entity;
+            if (familiar.getOwnerId() != null && familiar.getOwnerId().equals(player.getUniqueID())) {
+                cir.setReturnValue(familiar);
+                return;
+            }
+        }
+
+        cir.setReturnValue(null);
+
+    }
+
 }

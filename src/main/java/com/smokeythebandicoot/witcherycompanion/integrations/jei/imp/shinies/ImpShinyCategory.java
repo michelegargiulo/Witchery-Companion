@@ -48,7 +48,7 @@ public class ImpShinyCategory extends BaseRecipeCategory<ImpShinyWrapper> {
 
             registry.addRecipes(getRecipes(guiHelper), UID);
         } catch (Throwable t) {
-            WitcheryCompanion.logger.error(t);
+            WitcheryCompanion.logger.error(t.getStackTrace());
         }
     }
 
