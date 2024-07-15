@@ -23,15 +23,16 @@ public class CommonProxy {
         if (ModConfig.PatchesConfiguration.RitesTweaks.ritePriorIncarnation_fixNbtNotRemoved)
             MinecraftForge.EVENT_BUS.register(CommonEventsPatch.INSTANCE);
 
-        MinecraftForge.EVENT_BUS.register(FamiliarPatches.getInstance());
+        if (ModConfig.PatchesConfiguration.EntityTweaks.familiarCat_fixOwnerDisconnect ||
+            ModConfig.PatchesConfiguration.EntityTweaks.familiarOwl_fixOwnerDisconnect ||
+            ModConfig.PatchesConfiguration.EntityTweaks.familiarToad_fixOwnerDisconnect)
+            MinecraftForge.EVENT_BUS.register(FamiliarPatches.getInstance());
 
         if (ModConfig.IntegrationConfigurations.QuarkIntegration.fixMandrakesRightClickHarvest && Loader.isModLoaded("quark"))
             MinecraftForge.EVENT_BUS.register(BlockMandrakeCropIntegration.INSTANCE);
 
-        if (ModConfig.IntegrationConfigurations.TopIntegration.enableTopIntegration && Loader.isModLoaded("theoneprobe")) {
+        if (ModConfig.IntegrationConfigurations.TopIntegration.enableTopIntegration && Loader.isModLoaded("theoneprobe"))
             FMLInterModComms.sendFunctionMessage("theoneprobe", "getTheOneProbe", TOPPlugin.class.getName());
-        }
-
 
     }
 

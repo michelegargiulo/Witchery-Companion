@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.entity.passive;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -17,7 +17,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.UUID;
@@ -43,7 +42,7 @@ public abstract class EntityOwlMixin extends EntityFlyingTameable implements Fam
 
     @Inject(method = "processInteract", remap = true, at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/EntityAISit;setSitting(Z)V", remap = true))
     public void WPfixSitting(EntityPlayer player, EnumHand hand, CallbackInfoReturnable<Boolean> cir) {
-        if (ModConfig.PatchesConfiguration.EntityTweaks.owl_fixSitting) {
+        if (EntityTweaks.owl_fixSitting) {
             this.setVariant(this.isSitting() ? 1 : 0);
             this.setSitting(!this.isSitting());
         }
@@ -53,7 +52,7 @@ public abstract class EntityOwlMixin extends EntityFlyingTameable implements Fam
     @WrapOperation(method = "processInteract", remap = true,
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/EntityPlayer;getHeldItem(Lnet/minecraft/util/EnumHand;)Lnet/minecraft/item/ItemStack;", remap = true))
     public ItemStack WPsimulateEmptyHand(EntityPlayer instance, EnumHand enumHand, Operation<ItemStack> original) {
-        if (ModConfig.PatchesConfiguration.EntityTweaks.owl_tweakDisableTakeItems) {
+        if (EntityTweaks.owl_tweakDisableTakeItems) {
 
             // Get the original stack. If not special item, return empty stack to simulate right-click
             // with an empty hand, so that nothing happens
@@ -72,24 +71,29 @@ public abstract class EntityOwlMixin extends EntityFlyingTameable implements Fam
         return original.call(instance, enumHand);
     }
 
+    /** This Mixin overrides the getOwner(Entity) function inherited by IEntityOwnable */
     @Inject(method = "getOwner()Lnet/minecraft/entity/Entity;", remap = true, cancellable = true, at = @At("HEAD"))
     public void getOwnerEntity(CallbackInfoReturnable<EntityLivingBase> cir) {
-        UUID id = this.getOwnerId();
-        if (id == null) {
-            cir.setReturnValue(null);
-            return;
-        }
-        cir.setReturnValue(this.world.getPlayerEntityByUUID(id));
-    }
+        if (EntityTweaks.familiarOwl_fixOwnerDisconnect) {
+            UUID id = this.getOwnerId();
+            if (id == null) {
+                cir.setReturnValue(null);
+                return;
+            }
+            cir.setReturnValue(this.world.getPlayerEntityByUUID(id));
+        }}
 
+    /** This Mixin overrides the getOwner(Entity) function inherited by EntityTameable */
     @Inject(method = "getOwner()Lnet/minecraft/entity/EntityLivingBase;", remap = true, cancellable = true, at = @At("HEAD"))
     public void getOwnerEntityLivingBase(CallbackInfoReturnable<EntityLivingBase> cir) {
-        UUID id = this.getOwnerId();
-        if (id == null) {
-            cir.setReturnValue(null);
-            return;
+        if (EntityTweaks.familiarOwl_fixOwnerDisconnect) {
+            UUID id = this.getOwnerId();
+            if (id == null) {
+                cir.setReturnValue(null);
+                return;
+            }
+            cir.setReturnValue(this.world.getPlayerEntityByUUID(id));
         }
-        cir.setReturnValue(this.world.getPlayerEntityByUUID(id));
     }
 
 

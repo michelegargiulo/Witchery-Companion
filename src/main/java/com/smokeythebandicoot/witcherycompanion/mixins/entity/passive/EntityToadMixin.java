@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.entity.passive;
 
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.world.World;
@@ -23,23 +24,29 @@ public abstract class EntityToadMixin extends EntityTameable implements Familiar
         super(worldIn);
     }
 
+    /** This Mixin overrides the getOwner(Entity) function inherited by IEntityOwnable */
     @Inject(method = "getOwner()Lnet/minecraft/entity/Entity;", remap = true, cancellable = true, at = @At("HEAD"))
     public void getOwnerEntity(CallbackInfoReturnable<EntityLivingBase> cir) {
-        UUID id = this.getOwnerId();
-        if (id == null) {
-            cir.setReturnValue(null);
-            return;
+        if (EntityTweaks.familiarToad_fixOwnerDisconnect) {
+            UUID id = this.getOwnerId();
+            if (id == null) {
+                cir.setReturnValue(null);
+                return;
+            }
+            cir.setReturnValue(this.world.getPlayerEntityByUUID(id));
         }
-        cir.setReturnValue(this.world.getPlayerEntityByUUID(id));
     }
 
+    /** This Mixin overrides the getOwner(Entity) function inherited by EntityTameable */
     @Inject(method = "getOwner()Lnet/minecraft/entity/EntityLivingBase;", remap = true, cancellable = true, at = @At("HEAD"))
     public void getOwnerEntityLivingBase(CallbackInfoReturnable<EntityLivingBase> cir) {
-        UUID id = this.getOwnerId();
-        if (id == null) {
-            cir.setReturnValue(null);
-            return;
+        if (EntityTweaks.familiarToad_fixOwnerDisconnect) {
+            UUID id = this.getOwnerId();
+            if (id == null) {
+                cir.setReturnValue(null);
+                return;
+            }
+            cir.setReturnValue(this.world.getPlayerEntityByUUID(id));
         }
-        cir.setReturnValue(this.world.getPlayerEntityByUUID(id));
     }
 }

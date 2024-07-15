@@ -496,6 +496,21 @@ public class ModConfig {
             @Config.Name("Goblin - Tweak Custom Trades")
             public static boolean goblin_tweakCustomTrades = false;
 
+            @Config.Comment("Fix players losing Cat familiars on World reload")
+            @Config.Name("Cat Familiar - Fix Owner on World Reload")
+            @Config.RequiresMcRestart
+            public static boolean familiarCat_fixOwnerDisconnect = true;
+
+            @Config.Comment("Fix players losing Owl familiars on World reload")
+            @Config.Name("Owl Familiar - Fix Owner on World Reload")
+            @Config.RequiresMcRestart
+            public static boolean familiarOwl_fixOwnerDisconnect = true;
+
+            @Config.Comment("Fix players losing Toad familiars on World reload")
+            @Config.Name("Toad Familiar - Fix Owner on World Reload")
+            @Config.RequiresMcRestart
+            public static boolean familiarToad_fixOwnerDisconnect = true;
+
             @Config.Comment("If true, Infernal Imp won't consume shiny items when it is on cooldown. Otherwise, items " +
                     "given to it will be wasted, as they have no effect")
             @Config.Name("Flame Imp - Tweak Item Consumption On Cooldown")
