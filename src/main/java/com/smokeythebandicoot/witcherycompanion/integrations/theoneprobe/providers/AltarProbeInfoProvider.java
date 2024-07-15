@@ -45,11 +45,13 @@ public class AltarProbeInfoProvider extends BaseProbeInfoProvider<BlockAltar, Ti
 
     @Override
     public void addBasicInfo(BlockAltar block, TileEntityAltar tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
-        TileEntityAltar originalAltar = null; // Only needed for extended info
-        if (!tile.isValid()) {
-            originalAltar = tile;
+
+        // If TileEntityAltar does not exist, try to find the core
+        if (tile == null || !tile.isValid()) {
             BlockAltar blockAltar = (BlockAltar)iBlockState.getBlock();
             tile = findCoreAltar(world, iProbeHitData.getPos(), block);
+            // If still no Core Altar is found, return
+            if (tile == null) return;
         }
 
         // Add Altar information
@@ -71,6 +73,7 @@ public class AltarProbeInfoProvider extends BaseProbeInfoProvider<BlockAltar, Ti
     private TileEntityAltar findCoreAltar(World world, BlockPos pos, BlockAltar altarBlock) {
         BlockPos corePos = ReflectionHelper.invokeMethod(altarBlock, "getCore",
                 new Class<?>[]{IBlockAccess.class, BlockPos.class}, false, world, pos);
+        if (corePos == null) return null;
         TileEntity te = world.getTileEntity(corePos);
         if (!(te instanceof TileEntityAltar)) return null;
         return (TileEntityAltar) te;
