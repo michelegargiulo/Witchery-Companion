@@ -2,18 +2,13 @@ package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
-import mcjty.theoneprobe.api.IProbeHitData;
-import mcjty.theoneprobe.api.IProbeInfo;
-import mcjty.theoneprobe.api.IProbeInfoProvider;
-import mcjty.theoneprobe.api.ProbeMode;
-import mcjty.theoneprobe.items.Probe;
-import net.minecraft.block.Block;
+import mcjty.theoneprobe.api.*;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public abstract class BaseProbeInfoProvider<B extends Block, T extends TileEntity>  implements IProbeInfoProvider {
+public abstract class BaseEntityProbeInfoProvider<E extends Entity>  implements IProbeInfoEntityProvider {
 
     // ------ BASE METHODS ------ //
     public abstract String getProviderName();
@@ -21,13 +16,13 @@ public abstract class BaseProbeInfoProvider<B extends Block, T extends TileEntit
     // ------ HELPERS ------ //
     public abstract TopIntegration.EProbeElementIntegrationConfig getProbeConfig();
 
-    public abstract boolean isTarget(EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData);
+    public abstract boolean isTarget(EntityPlayer entityPlayer, World world, Entity entity, IProbeHitEntityData iProbeEntityHitData);
 
-    public void addBasicInfo(B block, T tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) { };
+    public void addBasicInfo(E entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) { };
 
-    public void addExtendedInfo(B block, T tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) { };
+    public void addExtendedInfo(E entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) { };
 
-    public void addDebugInfo(B block, T tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) { };
+    public void addDebugInfo(E entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) { };
 
     protected final boolean shouldAddBasic(ProbeMode probeMode) {
         return getProbeConfig() != TopIntegration.EProbeElementIntegrationConfig.DISABLED;
@@ -54,21 +49,20 @@ public abstract class BaseProbeInfoProvider<B extends Block, T extends TileEntit
 
     @SuppressWarnings("unchecked")
     @Override
-    public final void addProbeInfo(ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
+    public final void addProbeEntityInfo(ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, Entity entity, IProbeHitEntityData iProbeHitEntityData) {
 
-        if (!isTarget(entityPlayer, world, iBlockState, iProbeHitData)) return;
+        if (!isTarget(entityPlayer, world, entity, iProbeHitEntityData)) return;
 
         // This Cast will fail if Child classes fail to implement properly the "isTarget" function
-        B block = (B)iBlockState.getBlock();
-        T tile = (T)world.getTileEntity(iProbeHitData.getPos());
+        E targetEntity = (E)entity;
 
         if (shouldAddBasic(probeMode))
-            addBasicInfo(block, tile, probeMode, iProbeInfo, entityPlayer, world, iBlockState, iProbeHitData);
+            addBasicInfo(targetEntity, probeMode, iProbeInfo, entityPlayer, world, iProbeHitEntityData);
 
         if (shouldAddExtended(probeMode))
-            addExtendedInfo(block, tile, probeMode, iProbeInfo, entityPlayer, world, iBlockState, iProbeHitData);
+            addExtendedInfo(targetEntity, probeMode, iProbeInfo, entityPlayer, world, iProbeHitEntityData);
 
         if (shouldAddDebug(probeMode))
-            addDebugInfo(block, tile, probeMode, iProbeInfo, entityPlayer, world, iBlockState, iProbeHitData);
+            addDebugInfo(targetEntity, probeMode, iProbeInfo, entityPlayer, world, iProbeHitEntityData);
     }
 }

@@ -1,7 +1,7 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers;
+package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseProbeInfoProvider;
+import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
 import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import mcjty.theoneprobe.api.IProbeHitData;
@@ -17,13 +17,13 @@ import net.minecraft.world.World;
 import net.msrandom.witchery.block.BlockAltar;
 import net.msrandom.witchery.block.entity.TileEntityAltar;
 
-public class AltarProbeInfoProvider extends BaseProbeInfoProvider<BlockAltar, TileEntityAltar> {
+public class AltarBlockProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockAltar, TileEntityAltar> {
 
-    private AltarProbeInfoProvider() { }
-    private static AltarProbeInfoProvider INSTANCE = null;
-    public static AltarProbeInfoProvider getInstance() {
+    private AltarBlockProbeInfoProvider() { }
+    private static AltarBlockProbeInfoProvider INSTANCE = null;
+    public static AltarBlockProbeInfoProvider getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new AltarProbeInfoProvider();
+            INSTANCE = new AltarBlockProbeInfoProvider();
         }
         return INSTANCE;
     }

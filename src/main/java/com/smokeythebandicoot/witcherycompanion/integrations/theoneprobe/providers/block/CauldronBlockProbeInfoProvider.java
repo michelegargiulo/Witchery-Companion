@@ -1,7 +1,7 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers;
+package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
-import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseProbeInfoProvider;
+import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
 import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import mcjty.theoneprobe.api.IProbeHitData;
@@ -14,13 +14,13 @@ import net.minecraft.world.World;
 import net.msrandom.witchery.block.BlockWitchCauldron;
 import net.msrandom.witchery.block.entity.TileEntityCauldron;
 
-public class CauldronProbeInfoProvider extends BaseProbeInfoProvider<BlockWitchCauldron, TileEntityCauldron> {
+public class CauldronBlockProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockWitchCauldron, TileEntityCauldron> {
 
-    private CauldronProbeInfoProvider() { }
-    private static CauldronProbeInfoProvider INSTANCE = null;
-    public static CauldronProbeInfoProvider getInstance() {
+    private CauldronBlockProbeInfoProvider() { }
+    private static CauldronBlockProbeInfoProvider INSTANCE = null;
+    public static CauldronBlockProbeInfoProvider getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new CauldronProbeInfoProvider();
+            INSTANCE = new CauldronBlockProbeInfoProvider();
         }
         return INSTANCE;
     }
