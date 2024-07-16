@@ -22,11 +22,13 @@ import java.util.List;
 
 public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> {
 
-    public static String UID = "witchery.goblin_trade";
+    public static String UID = WitcheryCompanion.MODID + ":goblin_trade";
     public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/goblin_trade.png");
+    public static ResourceLocation iconTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/goblin_trade_icon.png");
 
     public GoblinTradeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(backgroundTexture, 0, 0, 124, 22, 124, 22);
+        icon = guiHelper.createDrawable(iconTexture, 0, 0, 32, 32, 32, 32);
         localizedName = new TextComponentTranslation("witcherycompanion.gui.goblin_trade.name").getFormattedText();
     }
 
@@ -52,7 +54,7 @@ public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> 
 
             registry.addRecipes(getRecipes(guiHelper), UID);
         } catch (Throwable t) {
-            WitcheryCompanion.logger.error(t);
+            WitcheryCompanion.logger.error(t.getStackTrace());
         }
     }
 

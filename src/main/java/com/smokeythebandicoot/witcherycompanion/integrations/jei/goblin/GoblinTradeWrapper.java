@@ -19,12 +19,8 @@ public class GoblinTradeWrapper extends BaseRecipeWrapper {
     protected List<ItemStack> outputs;
     protected String professionName;
 
-    public GoblinTradeWrapper(IGuiHelper guiHelper, MerchantRecipe recipe, String professionName) {
-        this(guiHelper, recipe, professionName, "witchery.goblin_trade");
-    }
 
-    public GoblinTradeWrapper(IGuiHelper guiHelper, MerchantRecipe recipe, String professionName, String uidIn) {
-        this.uid = uidIn;
+    public GoblinTradeWrapper(IGuiHelper guiHelper, MerchantRecipe recipe, String professionName) {
         this.professionName = professionName;
 
         inputs = new ArrayList<>();
@@ -46,6 +42,6 @@ public class GoblinTradeWrapper extends BaseRecipeWrapper {
 
     @Override
     public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-        minecraft.fontRenderer.drawString(professionName, 0, 0, 0xffffff);
+        minecraft.fontRenderer.drawString(professionName, 0, -12, 0x000000);
     }
 }
