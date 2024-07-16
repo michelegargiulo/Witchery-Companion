@@ -5,7 +5,6 @@ import com.smokeythebandicoot.witcherycompanion.api.InfernalImpApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.base.BaseRecipeCategory;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
-import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import jeresources.api.drop.LootDrop;
 import jeresources.util.LootTableHelper;
 import mezz.jei.api.IGuiHelper;
@@ -18,39 +17,46 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.msrandom.witchery.entity.EntityImp;
+import net.minecraftforge.fml.common.Loader;
+import net.msrandom.witchery.init.items.WitcheryFumeItems;
+import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ImpShinyCategoryk extends BaseRecipeCategory<ImpShinyWrapperk> {
+public class ImpGiftCategory extends BaseRecipeCategory<ImpGiftWrapper> {
 
-    public static String UID = WitcheryCompanion.MODID + ":imp_shiny";
-    public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/imp_shiny.png");
-    public static ResourceLocation iconTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/imp_shiny_icon.png");
+    public static String UID = WitcheryCompanion.MODID + ":imp_gift";
+    public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/imp_gift.png");
+    public static ResourceLocation iconTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/imp_gift_icon.png");
 
 
-    public ImpShinyCategoryk(IGuiHelper guiHelper) {
+    public ImpGiftCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(backgroundTexture, 0, 0, 124, 22, 124, 22);
-        icon = guiHelper.createDrawable(iconTexture, 0, 0, 32, 32, 32, 32);
+        icon = guiHelper.createDrawable(iconTexture, 0, 0, 16, 16, 16, 16);
         localizedName = new TextComponentTranslation("witcherycompanion.gui.imp_shiny.name").getFormattedText();
     }
 
     public static boolean shouldRegister() {
-        return ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiImpShinies;
+        return ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiImpGifts && Loader.isModLoaded("jeresources");
     }
 
     public static void register(IRecipeCategoryRegistration registry) {
 
+        if (!shouldRegister()) return;
+
         IJeiHelpers jeiHelpers = registry.getJeiHelpers();
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
-        registry.addRecipeCategories(new ImpShinyCategoryk(guiHelper));
+        registry.addRecipeCategories(new ImpGiftCategory(guiHelper));
     }
 
     public static void initialize(IModRegistry registry) {
+
+        if (!shouldRegister()) return;
+
         try {
             IJeiHelpers jeiHelpers = registry.getJeiHelpers();
             IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
@@ -61,8 +67,8 @@ public class ImpShinyCategoryk extends BaseRecipeCategory<ImpShinyWrapperk> {
         }
     }
 
-    public static List<ImpShinyWrapperk> getRecipes(IGuiHelper guiHelper) {
-        List<ImpShinyWrapperk> recipes = new ArrayList<>();
+    public static List<ImpGiftWrapper> getRecipes(IGuiHelper guiHelper) {
+        List<ImpGiftWrapper> recipes = new ArrayList<>();
 
         for (int index = 0; index <= InfernalImpApi.getLastGiftIndex(); index++) {
             ItemStack gift = InfernalImpApi.getGift(index);
@@ -81,14 +87,19 @@ public class ImpShinyCategoryk extends BaseRecipeCategory<ImpShinyWrapperk> {
 
                 // Case 2: Stacks are hard-coded by Witchery
                 } else {
-                    ItemStack[] extraItems = ReflectionHelper.getStaticField(EntityImp.class, "EXTRA_DROPS", false);
-                    if (extraItems != null) {
-                        lootStacks.addAll(Arrays.asList(extraItems));
-                    }
+                    // Since they're hard-coded, makes no sense to use reflection
+                    lootStacks.addAll(Arrays.asList(
+                            new ItemStack(WitcheryIngredientItems.BAT_WOOL, 5),
+                            new ItemStack(WitcheryIngredientItems.DOG_TONGUE, 5),
+                            new ItemStack(WitcheryIngredientItems.FROG_TOE, 2),
+                            new ItemStack(WitcheryIngredientItems.OWLETS_WING, 2),
+                            new ItemStack(WitcheryIngredientItems.ENT_TWIG, 1),
+                            new ItemStack(WitcheryFumeItems.DEMONIC_BLOOD, 2),
+                            new ItemStack(WitcheryIngredientItems.CREEPER_HEART, 2)));
                 }
-                recipes.add(new ImpShinyWrapperk(guiHelper, lootStacks, index));
+                recipes.add(new ImpGiftWrapper(guiHelper, lootStacks, index));
             } else {
-                recipes.add(new ImpShinyWrapperk(guiHelper, gift, index));
+                recipes.add(new ImpGiftWrapper(guiHelper, gift, index));
             }
         }
 
@@ -102,7 +113,7 @@ public class ImpShinyCategoryk extends BaseRecipeCategory<ImpShinyWrapperk> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, ImpShinyWrapperk impGiftWrapper, IIngredients iIngredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, ImpGiftWrapper impGiftWrapper, IIngredients iIngredients) {
         List<ItemStack> gifts = impGiftWrapper.giftsAtLevel;
 
         IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();

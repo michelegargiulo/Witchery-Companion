@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.api;
 
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -203,11 +204,20 @@ public class GoblinTradeApi {
             // Init result list
             MerchantRecipeList tradeList = new MerchantRecipeList();
 
-            for (GoblinTrade trade : possibleTrades) {
-                if (random.nextFloat() < trade.getChance()) {
+            // Copy and shuffle the trades
+            List<GoblinTrade> tradePool = new ArrayList<>(possibleTrades);
+            Collections.shuffle(tradePool);
+
+            // Add generated recipes depending on chance and configuration
+            for (GoblinTrade trade : tradePool) {
+                if (random.nextFloat() < trade.getChance() &&
+                        tradeList.size() < EntityTweaks.goblin_maxTradesPerLevel) {
                     tradeList.add(trade.genNewTrade());
                 }
             }
+
+            // Shuffle and trim the collection
+            Collections.shuffle(tradeList);
 
             // Check fallback
             if (tradeList.isEmpty() && fallBackTrade != null) {

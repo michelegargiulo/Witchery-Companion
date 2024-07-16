@@ -7,6 +7,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.msrandom.witchery.init.items.WitcheryBrewItems;
 import net.msrandom.witchery.init.items.WitcheryContractItems;
 
@@ -77,8 +79,17 @@ public class InfernalImpApi {
         return result == null ? 0 : result;
     }
 
+    /** Returns an Hashmap of all accepted gifts and their respective affection boost */
+    public static HashMap<ItemStack, Integer> getShinies() {
+        HashMap<ItemStack, Integer> result = new HashMap<>();
+        for (SimpleItemStack simpleStack : shinies.keySet()) {
+            result.put(simpleStack.toItemStack(), shinies.get(simpleStack));
+        }
+        return result;
+    }
 
-    // ============================== SHINIES ==============================
+
+    // ============================== GIFTS ==============================
     /** Returns the gift for the given index. Returns null if no gift has been set for the index */
     public static ItemStack getGift(int secretNumber) {
         if (secretNumber > lastGiftIndex) return null;
@@ -115,7 +126,7 @@ public class InfernalImpApi {
     }
 
 
-    private static class SimpleItemStack {
+    protected static class SimpleItemStack {
         public String regName;
         public int meta;
         public NBTTagCompound nbt;
@@ -160,6 +171,13 @@ public class InfernalImpApi {
                     ", meta=" + meta +
                     //", nbt=" + nbt +
                     '}';
+        }
+
+        public ItemStack toItemStack() {
+            ResourceLocation resourceLocation = new ResourceLocation(this.regName);
+            Item item = ForgeRegistries.ITEMS.getValue(resourceLocation);
+            if (item == null) return null;
+            return new ItemStack(item, 1, this.meta, this.nbt);
         }
     }
 

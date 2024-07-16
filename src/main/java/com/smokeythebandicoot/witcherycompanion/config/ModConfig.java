@@ -486,15 +486,21 @@ public class ModConfig {
             @Config.Name("Enchanted Broom - Fix Freeze On Break")
             public static boolean enchantedBroom_fixFreezeOnBreak = true;
 
-            @Config.Comment("Sets the maximum amount of damage that the broom can take before breaking")
-            @Config.Name("Enchanted Broom - Tweak Max Health")
-            public static float enchantedBroom_tweakMaxHealth = 40.0f;
+            @Config.Comment("Sets the max number of trades the Goblin can have per level. On initial spawn, and when " +
+                    "the player consumes all the Goblin trades, the Goblin will have this number of new merchant recipes")
+            @Config.Name("Goblin - Max Trades Per Level")
+            public static int goblin_maxTradesPerLevel = 1;
 
             @Config.Comment("If true, Goblin trades can be customized with CraftTweaker. False by default, because " +
                     "when enabled it completely wipes the Witchery goblin trade tables, and if new trades are not added " +
                     "with CrT, then Goblins won't show any trades")
             @Config.Name("Goblin - Tweak Custom Trades")
             public static boolean goblin_tweakCustomTrades = false;
+
+            @Config.Comment("If true, Goblins no longer have to be in a Village in order to have trades. " +
+                    "They spawn, they trade")
+            @Config.Name("Goblin - Remove Village Requirement")
+            public static boolean goblin_tweakRemoveTradingVillageRequirements = false;
 
             @Config.Comment("Fix players losing Cat familiars on World reload")
             @Config.Name("Cat Familiar - Fix Owner on World Reload")
@@ -782,6 +788,14 @@ public class ModConfig {
             @Config.Comment("If true, enabled TOP integration for Witch's Cauldron")
             @Config.Name("TOP Integration - Witch's Cauldron")
             public static EProbeElementIntegrationConfig cauldron = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enabled TOP integration for Hobgoblin")
+            @Config.Name("TOP Integration - Hobgoblin")
+            public static EProbeElementIntegrationConfig goblin = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enabled TOP integration for Flame Imp")
+            @Config.Name("TOP Integration - Flame Imp")
+            public static EProbeElementIntegrationConfig imp = EProbeElementIntegrationConfig.DEFAULT;
 
             public enum EProbeElementIntegrationConfig {
                 // Only enable basic information

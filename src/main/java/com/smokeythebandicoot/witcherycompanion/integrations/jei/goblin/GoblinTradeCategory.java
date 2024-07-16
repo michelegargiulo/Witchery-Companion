@@ -28,7 +28,7 @@ public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> 
 
     public GoblinTradeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(backgroundTexture, 0, 0, 124, 22, 124, 22);
-        icon = guiHelper.createDrawable(iconTexture, 0, 0, 32, 32, 32, 32);
+        icon = guiHelper.createDrawable(iconTexture, 0, 0, 16, 16, 16, 16);
         localizedName = new TextComponentTranslation("witcherycompanion.gui.goblin_trade.name").getFormattedText();
     }
 

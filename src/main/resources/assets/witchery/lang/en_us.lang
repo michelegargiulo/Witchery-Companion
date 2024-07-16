@@ -1,10 +1,11 @@
+# Potion descriptions
 description.absorb_magic=Turns magic damage into Infusion power
 description.attract_projectiles=Projectiles will hit the victim easier
 description.chilled=Reduces movement speed and fire damage taken. Also deals magic damage to blazes
 description.decanting=Increases brewing yield
 description.disease=Makes the victim ill, and the disease spreads to other entities, transforming them
 description.ender_inhibition=Prevents Endermen from teleporting
-description.enslave=
+description.enslave=Makes monsters target the enslaved creature instead of its enslaver
 description.floating=Makes the affected entity hover above the ground
 description.fortune=Has a chance to increase drops affected by Fortune
 description.frogs_leg=Allows to jump in mid-air
@@ -38,5 +39,4 @@ description.volatility=Chance to create an explosion when the victim is hit
 description.waking_nightmare=The victim is pursued by a Nightmare
 description.wolfsbane=Prevents a werewolf from shape shifting into or out of their forms
 
-
-description.aaaaaaaaa=
+item.witchery.lingering_brew_bottle.name=Lingering Brew Bottle

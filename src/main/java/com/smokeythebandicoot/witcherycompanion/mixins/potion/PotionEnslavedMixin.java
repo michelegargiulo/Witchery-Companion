@@ -9,8 +9,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ Mixins:
+ [Bugfix] Fix crash when Player name is null
+ */
 @Mixin(PotionEnslaved.class)
 public class PotionEnslavedMixin {
+
     @SuppressWarnings("ConstantValue")
     @Inject(method = "setEnslaverForMob", remap = false, cancellable = true, at = @At("HEAD"))
     private static void setEnslaverForMob(EntityLiving entity, EntityPlayer player, CallbackInfoReturnable<Boolean> cir) {

@@ -35,7 +35,7 @@ public class ImpProbeInfoProvider extends BaseEntityProbeInfoProvider<EntityImp>
 
     @Override
     public TopIntegration.EProbeElementIntegrationConfig getProbeConfig() {
-        return TopIntegration.goblin;
+        return TopIntegration.imp;
     }
 
     @Override
@@ -52,18 +52,15 @@ public class ImpProbeInfoProvider extends BaseEntityProbeInfoProvider<EntityImp>
     }
 
     @Override
-    public void addExtendedInfo(EntityImp entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) {
-        // Cooldown
-        Long lastGiftTime = ReflectionHelper.getField(entity, "lastGiftTime", false);
-        if (lastGiftTime != null && entity.isTamed()) {
-            long curTime = MinecraftServer.getCurrentTimeMillis() / 50L;
-            long cooldown = (lastGiftTime + EntityTweaks.flameImp_tweakGiftDelayTicks) - curTime;
-            TOPHelper.addText(iProbeInfo, "Cooldown", curTime >= 0 ? "Ready" : String.valueOf(cooldown), TextFormatting.RED);
-        }
-    }
-
-    @Override
     public void addDebugInfo(EntityImp entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) {
+        // Cooldown
+        if (entity.isTamed()) {
+            Long cooldown = ReflectionHelper.invokeMethod(entity, "witchery_Patcher$getCooldown", new Class<?>[]{ }, false);
+            if (cooldown != null) {
+                int seconds = (int)Math.ceil((double)cooldown / 20); // Cooldown in Seconds
+                TOPHelper.addText(iProbeInfo, "Cooldown", seconds <= 0 ? "Ready" : seconds + " s", TextFormatting.RED);
+            }
+        }
         // Level
         Integer level = ReflectionHelper.getField(entity, "secretsShared", false);
         if (level != null) {

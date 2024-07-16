@@ -3,3 +3,10 @@ enchantment.witcherycompanion_dummy.desc=This item might be enchanted with rando
 
 witcherycompanion.poppetitem.restrictiontooltip.pve=This Poppet won't affect §4Players§r
 witcherycompanion.poppetitem.restrictiontooltip.pvp=This Poppet won't affect §4Creatures§r
+
+witcherycompanion.gui.goblin_trade.name=Hobgoblin Trades
+witcherycompanion.gui.imp_shiny.name=Flame Imp Shinies
+witcherycompanion.gui.imp_gift.name=Flame Imp Gifts
+
+
+

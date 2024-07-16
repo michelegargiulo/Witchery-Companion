@@ -12,18 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ImpShinyWrapperk extends BaseRecipeWrapper {
+public class ImpGiftWrapper extends BaseRecipeWrapper {
 
     protected List<ItemStack> giftsAtLevel;
     protected int level;
 
 
-    public ImpShinyWrapperk(IGuiHelper guiHelper, List<ItemStack> gifts, int level) {
+    public ImpGiftWrapper(IGuiHelper guiHelper, List<ItemStack> gifts, int level) {
         this.giftsAtLevel = gifts;
         this.level = level;
     }
 
-    public ImpShinyWrapperk(IGuiHelper guiHelper, ItemStack gift, int level) {
+    public ImpGiftWrapper(IGuiHelper guiHelper, ItemStack gift, int level) {
         this.giftsAtLevel = new ArrayList<>();
         giftsAtLevel.add(gift);
         this.level = level;
@@ -37,7 +37,7 @@ public class ImpShinyWrapperk extends BaseRecipeWrapper {
 
     @Override
     public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-        minecraft.fontRenderer.drawString("Level: " + level, 20, (int)((float)recipeHeight * 0.5f), 0x000000);
+        minecraft.fontRenderer.drawString("Level: " + level, 20, 10, 0x000000);
     }
 
 }
