@@ -10,10 +10,12 @@ jar in the resource packs folder.
   - **[Common]** Fix crash when pulling null entity
   - **[Loot]** Fix crash with Levelled random enchant
   - **[Spell Rendering]** Fix crash when bosses (Lord of Torment, Lilith) use spells that have been disabled in config
+  - **[Spell Rendering]** Fix crash when client and server have mismatching spell configuration
 - **Blocks**
   - **[Altar]** Fix Altar not providing power on world load/reload
   - **[Altar]** Fix Placed Items (Arthana, Pentacle, etc.) not dropping anything when breaking Altar blocks below them
   - **[Altar]** Fix client crash when the player joins a world where Placed Items are within view in the first frame
+  - **[Altar]** Fix Altar multiblock not being assembled correctly, causing the Altar to provide multiple power sources
   - **[Coffin]** Fix edge-case crash when placing the Coffin across chunk boundaries
   - **[Coffin]** Fix crash when piston moves the top block of the coffin
   - **[Cursed Blocks]** Fix crash when using trigger dispersal. They still don't work, but they should not crash the game
@@ -36,6 +38,7 @@ jar in the resource packs folder.
   - **[Brew of Raising]** Fix crash on some dispersal methods (by @MsRandom)
   - **[Brew of Tidal Hold]** Fix entity suffocation in ghost blocks
 - **Entity**
+  - **[All Familiars]** Fix Familiars (Owl, Toad, Cat) losing their owner on world reload or on dimension change
   - **[Coven Witch]** Fix Brew of the Grotesque quest requiring a negative amount of items
   - **[Enchanted Broom]** Fix server freeze when the player is on the broom that breaks while flying
   - **[Rowan Boat]** Fix missing Rowan Boat entity model texture (not configurable)
@@ -47,6 +50,7 @@ jar in the resource packs folder.
 - **Items**
   - **[Rowan Boat]** Fix Rowan Boat not having texture (not configurable)
   - **[Spectral Stone]** Fix NBT being retained after entity is released, effectively duping it
+  - **[Lingering Potion]** Fix unlocalized name (not configurable)
 - **Potions**
   - **[Fortune]** Fix Brew of Fortune having no effect
 - **Rites**
@@ -81,6 +85,8 @@ jar in the resource packs folder.
   - **[Flame Imp]** Tweak to modify Shiny cooldown  
   - **[Flame Imp]** Tweak to not consume shinies given to it while on cooldown  
   - **[Flame Imp]** Tweak to give random gifts based on a loot table instead of being hardcoded  
+  - **[Hobgoblin]** Tweak to control the maximum number of trades per level (Witchery default is 1)
+  - **[Hobgoblin]** Tweak to allow the Hobgoblin to generate trades even when there are no villages nearby
   - **[Lilith]** Tweak to disable enchanting items given to her
   - **[Lord of Torment]** Tweak to disable mid-fight teleportation to Torment dimension
   - **[Lord of Torment]** Tweak to disable hardcoded loot drops (enchanted books)
@@ -127,8 +133,19 @@ jar in the resource packs folder.
     a maximum harvest level
   - **[Hobgoblin trades]** Integration to customize trades and various aspects related to them
 
+- **Just Enough Items**
+  - **[Goblin]** Show possible Goblin trades
+  - **[Flame Imp]** Show items that the Imp accepts as gifts and their respective affection boost
+  - **[Flame Imp]** show items that the Imp will gift to the player and the level required to have that item gifted
+
 - **Just Enough Resources**
   - **[Entities]** Integration to register many entities and their loot in entity drops category
+
+- **The One Probe**
+  - **[Altar]** Shows Available power, Max power and recharge rate
+  - **[Witch's Cauldron]** Shows whether the cauldron is boiling and has enough power for the current ingredients
+  - **[Hobgoblin]** Shows current profession name
+  - **[Flame Imp]** Shows whether the Imp has a contract and with who, it's trade level and cooldown status (extended information)
 
 ### Performance
 - Implement caching for the Altar Power Source map
@@ -158,3 +175,4 @@ jar in the resource packs folder.
 - Winged Monkey AI
 - Brew Bucket item does not exist yet. Needs implementation. Will make possible to move brews between cauldrons
 - Groovyscript Integration
+- Textures for new elements (JEI GUIs, potion icons)
