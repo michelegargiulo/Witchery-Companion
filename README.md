@@ -4,7 +4,7 @@ A Companion to Witchery: Resurrected fixing bugs, crashes, patching things and a
 configurability. Witchery: Resurrected is a required dependency, and is the original 1.7.10 Witchery
 jar in the resource packs folder.
 
-## Current Features (as of v0.21-beta):
+## Current Features (as of v0.28-beta):
 ### Bugfixes:
 - **Common**
   - **[Common]** Fix crash when pulling null entity
