@@ -11,6 +11,7 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -29,7 +30,7 @@ public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> 
     public GoblinTradeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(backgroundTexture, 0, 0, 124, 22, 124, 22);
         icon = guiHelper.createDrawable(iconTexture, 0, 0, 16, 16, 16, 16);
-        localizedName = new TextComponentTranslation("witcherycompanion.gui.goblin_trade.name").getFormattedText();
+        localizedName = I18n.format("witcherycompanion.gui.goblin_trade.name");
     }
 
     public static boolean shouldRegister() {
