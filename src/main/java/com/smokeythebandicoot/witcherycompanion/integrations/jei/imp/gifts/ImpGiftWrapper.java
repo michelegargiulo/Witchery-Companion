@@ -37,7 +37,7 @@ public class ImpGiftWrapper extends BaseRecipeWrapper {
 
     @Override
     public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-        minecraft.fontRenderer.drawString("Level: " + level, 20, 10, 0x000000);
+        minecraft.fontRenderer.drawString("Level: §6" + level, 24, 8, 0xffffff);
     }
 
 }

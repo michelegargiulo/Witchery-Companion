@@ -11,6 +11,7 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -33,7 +34,7 @@ public class ImpShinyCategory extends BaseRecipeCategory<ImpShinyWrapper> {
     public ImpShinyCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(backgroundTexture, 0, 0, 124, 144, 124, 144);
         icon = guiHelper.createDrawable(iconTexture, 0, 0, 16, 16, 16, 16);
-        localizedName = new TextComponentTranslation("witcherycompanion.gui.imp_shiny.name").getFormattedText();
+        localizedName = I18n.format("witcherycompanion.gui.imp_shiny.name");
     }
 
     public static void register(IRecipeCategoryRegistration registry) {

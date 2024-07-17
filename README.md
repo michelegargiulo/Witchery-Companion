@@ -4,7 +4,7 @@ A Companion to Witchery: Resurrected fixing bugs, crashes, patching things and a
 configurability. Witchery: Resurrected is a required dependency, and is the original 1.7.10 Witchery
 jar in the resource packs folder.
 
-## Current Features (as of v0.21-beta):
+## Current Features (as of v0.28-beta):
 ### Bugfixes:
 - **Common**
   - **[Common]** Fix crash when pulling null entity
@@ -80,7 +80,6 @@ jar in the resource packs folder.
   - **[Cat Familiar]** Separate their loot table from Vanilla ocelots loot table
   - **[Coven Witch]** Separate their loot table from Vanilla witches loot table
   - **[Demon]** Tweak to give them their own loot table instead of hard-coded loot
-  - **[Enchanted Broom]** Tweak Enchanted Broom max health
   - **[Flame Imp]** Tweak to add CraftTweaker compat to manipulate items that can be given to him (shinies) and gifts that it gives in exchange
   - **[Flame Imp]** Tweak to modify Shiny cooldown  
   - **[Flame Imp]** Tweak to not consume shinies given to it while on cooldown  
@@ -136,7 +135,7 @@ jar in the resource packs folder.
 - **Just Enough Items**
   - **[Goblin]** Show possible Goblin trades
   - **[Flame Imp]** Show items that the Imp accepts as gifts and their respective affection boost
-  - **[Flame Imp]** show items that the Imp will gift to the player and the level required to have that item gifted
+  - **[Flame Imp]** show items that the Imp will gift to the player and the level required to have that item gifted (requires Just Enough Resources)
 
 - **Just Enough Resources**
   - **[Entities]** Integration to register many entities and their loot in entity drops category
