@@ -27,7 +27,7 @@ public class TOPHelper {
         for (ItemStack stack : stacks) {
             probeInfo.item(stack);
             curRow++;
-            if (curRow == maxInRow) {
+            if (curRow >= maxInRow) {
                 curRow = 0;
                 probeInfo.vertical();
             } else {
