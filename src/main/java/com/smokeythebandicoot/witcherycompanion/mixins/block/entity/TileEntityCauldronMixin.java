@@ -39,8 +39,7 @@ public abstract class TileEntityCauldronMixin {
     public abstract int getLiquidQuantity();
 
     /** Since Witchery has hardcoded check to if the block below is FIRE, we will use this
-     * as the "true" return value for the method. Anything else is considered "false"
-     */
+     * as the "true" return value for the method. Anything else is considered "false" */
     @WrapOperation(method = "update", remap = true,
         at = @At(value = "INVOKE", target = "Lnet/minecraft/block/state/IBlockState;getBlock()Lnet/minecraft/block/Block;", remap = true))
     public Block WPallowOtherHeatSources(IBlockState instance, Operation<Block> original) {

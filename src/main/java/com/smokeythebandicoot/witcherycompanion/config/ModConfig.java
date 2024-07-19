@@ -286,6 +286,10 @@ public class ModConfig {
 
         public static class ItemTweaks {
 
+            @Config.Comment("If true, allows CraftTweaker integration with Bark Belt")
+            @Config.Name("Bark Belt - Tweak Enable Crafttweaker Integration")
+            public static boolean barkBelt_tweakCraftTweakerIntegration = true;
+
             @Config.Comment("If true, players will be able to use the Creative Medallion even if not in creative mode")
             @Config.Name("Creative Medallion - Tweak Disable Creative Requirement")
             public static boolean creativeMedallion_tweakDisableCreativeRequirement = false;
@@ -745,6 +749,10 @@ public class ModConfig {
         }
 
         public static class JeiIntegration {
+
+            @Config.Comment("If true, enables Bark Belt JEI Integration")
+            @Config.Name("JEI Integration - Enable Bark Belt")
+            public static boolean enableJeiBarkBelt = true;
 
             @Config.Comment("If true, enables Goblin Trade JEI Integration")
             @Config.Name("JEI Integration - Enable Goblin Trades")

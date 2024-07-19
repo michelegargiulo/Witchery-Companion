@@ -2,10 +2,15 @@ package com.smokeythebandicoot.witcherycompanion.mixins.common;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.api.BarkBeltApi;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.WorldGenTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.ItemTweaks;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -70,4 +75,17 @@ public abstract class CommonEventsMixin {
         return targetEntity;
     }
 
+    /** Since Witchery has hardcoded check to if the block below is GRASS or MYCELIUM, we will use this
+     * as the "true" return value for the method. Anything else is considered "false" */
+    @WrapOperation(method = "onLivingUpdate", remap = false, at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/block/state/IBlockState;getBlock()Lnet/minecraft/block/Block;"))
+    private static Block barkBeltCrafttweakerIntegration(IBlockState instance, Operation<Block> original) {
+        if (!ModConfig.PatchesConfiguration.ItemTweaks.barkBelt_tweakCraftTweakerIntegration) {
+            return original.call(instance);
+        }
+        if (BarkBeltApi.canRechargeBarkBelt(instance)) {
+            return Blocks.GRASS;
+        }
+        return Blocks.AIR;
+    }
 }
