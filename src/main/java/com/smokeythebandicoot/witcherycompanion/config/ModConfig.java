@@ -179,6 +179,14 @@ public class ModConfig {
             @Config.Name("Shape Shifting - Fix Floating Entities")
             public static boolean shapeShift_fixFloatingEntities = true;
 
+            @Config.Comment("If true, when player shapeshifts into a form that has more HP, its health percentage is perserved")
+            @Config.Name("Shape Shifting - Tweak Preserve HP Ratio on Trasform")
+            public static boolean shapeShift_tweakPreserveHpPercentOnTransform = false;
+
+            @Config.Comment("If true, when player transforms back into its normal form, its health percentage is perserved")
+            @Config.Name("Shape Shifting - Tweak Preserve HP Ratio on Detransform")
+            public static boolean shapeShift_tweakPreserveHpPercentOnDetransform = false;
+
         }
 
         public static class BlockTweaks {
@@ -847,12 +855,12 @@ public class ModConfig {
                 try {
                     meta = metaSplit.length > 1 ? Integer.parseInt(metaSplit[1]) : 0;
                 } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                    WitcheryCompanion.logger.warn("Could not parse blockstate - Invalid meta for entry: " + entry + ". Please fix your configs");
+                    WitcheryCompanion.logger.warn("Could not parse blockstate - Invalid meta for entry: {}. Please fix your configs", entry);
                 }
 
                 ResourceLocation rl = new ResourceLocation(metaSplit[0]);
                 if (!ForgeRegistries.BLOCKS.containsKey(rl)) {
-                    WitcheryCompanion.logger.warn("Could not parse blockstate - Block not found: " + entry + ". Please fix your configs");
+                    WitcheryCompanion.logger.warn("Could not parse blockstate - Block not found: {}. Please fix your configs", entry);
                 }
 
                 Block block = ForgeRegistries.BLOCKS.getValue(rl);
