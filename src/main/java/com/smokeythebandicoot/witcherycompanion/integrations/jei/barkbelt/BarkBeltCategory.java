@@ -22,14 +22,12 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
+import net.msrandom.witchery.init.items.WitcheryEquipmentItems;
 import net.msrandom.witchery.init.items.WitcheryFumeItems;
 import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class BarkBeltCategory extends BaseRecipeCategory<BarkBeltWrapper> {
@@ -42,8 +40,9 @@ public class BarkBeltCategory extends BaseRecipeCategory<BarkBeltWrapper> {
     private static final int PAGE_HEIGHT = 7;
 
     public BarkBeltCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createDrawable(backgroundTexture, 0, 0, 124, 22, 124, 22);
-        icon = guiHelper.createDrawable(iconTexture, 0, 0, 16, 16, 16, 16);
+        background = guiHelper.createDrawable(backgroundTexture, 0, 0, 124, 144, 124, 144);
+        //icon = guiHelper.createDrawable(iconTexture, 0, 0, 16, 16, 16, 16);
+        icon = null;
         localizedName = I18n.format("witcherycompanion.gui.bark_belt.name");
     }
 
@@ -70,6 +69,7 @@ public class BarkBeltCategory extends BaseRecipeCategory<BarkBeltWrapper> {
             IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
             registry.addRecipes(getRecipes(guiHelper), UID);
+            registry.addRecipeCatalyst(WitcheryEquipmentItems.BARK_BELT, UID);
         } catch (Throwable t) {
             WitcheryCompanion.logger.error(t);
         }
@@ -78,15 +78,15 @@ public class BarkBeltCategory extends BaseRecipeCategory<BarkBeltWrapper> {
     public static List<BarkBeltWrapper> getRecipes(IGuiHelper guiHelper) {
 
         List<BarkBeltWrapper> recipes = new ArrayList<>();
-        List<List<IBlockState>> rechargers = BarkBeltApi.getRechargers();
+        Set<Set<IBlockState>> rechargers = BarkBeltApi.getRechargers();
 
         int index = 0;
         boolean partialPage = false;
         BarkBeltWrapper page = new BarkBeltWrapper(guiHelper);
-        for (List<IBlockState> states : rechargers) {
+        for (Set<IBlockState> states : rechargers) {
             page.addItemsForSlot(states.stream()
                     .map(Utils::blockstateToStack)
-                    .collect(Collectors.toList()));
+                    .collect(Collectors.toSet()));
             partialPage = true;
             index++;
             if (index == PAGE_WIDTH * PAGE_HEIGHT) {
@@ -115,10 +115,10 @@ public class BarkBeltCategory extends BaseRecipeCategory<BarkBeltWrapper> {
         IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 
         int x = 0, y = 0;
-        for (List<ItemStack> stacks : barkBeltWrapper.itemsAtPage) {
+        for (Set<ItemStack> stacks : barkBeltWrapper.itemsAtPage) {
             int index = y * PAGE_HEIGHT + x;
             guiItemStacks.init(index, true, x * (20) + 2, y * (20) + 2);
-            guiItemStacks.set(index, stacks);
+            guiItemStacks.set(index, new ArrayList<>(stacks));
             x++;
             if (x == PAGE_WIDTH) {
                 x = 0;

@@ -7,14 +7,33 @@ import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.block.IBlock;
 import crafttweaker.api.block.IBlockState;
+import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.minecraft.CraftTweakerMC;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 @ModOnly(value = "witchery")
-@ZenClass("mods.smokeythebandicoot.witcherycompanion.BrewOfErosion")
+@ZenClass("mods.smokeythebandicoot.witcherycompanion.BarkBelt")
 @ZenRegister
 public class BarkBeltHandler {
+
+    @ZenMethod
+    @ZenDoc(value="Registers a new ingredient as a valid block that recharged Bark Belt. Returns true " +
+            "if at least one non-air block has been added")
+    public static boolean registerBlock(IIngredient ingredient) {
+        boolean added = false;
+        for (ItemStack stack : CraftTweakerMC.getIngredient(ingredient).getMatchingStacks()) {
+            Block block = Block.getBlockFromItem(stack.getItem());
+            if (block == Blocks.AIR) continue;
+            net.minecraft.block.state.IBlockState state = block.getStateFromMeta(stack.getMetadata());
+            BarkBeltApi.registerBlockstate(state);
+            added = true;
+        }
+        return added;
+    }
 
     @ZenMethod
     @ZenDoc(value="Registers a new Block as a valid block that recharged Bark Belt")

@@ -9,22 +9,19 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class BarkBeltWrapper extends BaseRecipeWrapper {
 
-    protected List<List<ItemStack>> itemsAtPage;
+    protected List<Set<ItemStack>> itemsAtPage;
 
     public BarkBeltWrapper(IGuiHelper guiHelper) {
         this.itemsAtPage = new ArrayList<>();
     }
 
-    public void addItemsForSlot(List<ItemStack> items) {
+    public void addItemsForSlot(Set<ItemStack> items) {
         itemsAtPage.add(items);
     }
 

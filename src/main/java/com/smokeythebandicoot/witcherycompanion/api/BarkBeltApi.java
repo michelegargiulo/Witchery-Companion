@@ -4,24 +4,24 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class BarkBeltApi {
 
-    public static HashSet<IBlockState> validStates;
-    public static HashSet<Block> validBlocks;
+    public static HashSet<IBlockState> validStates = initStateList();
+    public static HashSet<Block> validBlocks = initBlockList();
 
-    {
-        // By default, no blockstates are defined by Witchery
-        validStates = new HashSet<>();
+    // By default, Grass and Mycelium are valid blocks
+    private static HashSet<Block> initBlockList() {
+        HashSet<Block> blocks = new HashSet<>();
+        blocks.add(Blocks.GRASS);
+        blocks.add(Blocks.MYCELIUM);
+        return blocks;
+    }
 
-        // By default, GRASS and MYCELIUM are checked by Witchery
-        validBlocks = new HashSet<>();
-        validBlocks.add(Blocks.GRASS);
-        validBlocks.add(Blocks.MYCELIUM);
+    // By default, no blockstates are added by Witchery
+    private static HashSet<IBlockState> initStateList() {
+        return new HashSet<>();
     }
 
     /** Registers a new Block as a valid block that recharged Bark Belt */
@@ -54,14 +54,16 @@ public class BarkBeltApi {
         return validBlocks.contains(state.getBlock()) || validStates.contains(state);
     }
 
-    public static List<List<IBlockState>> getRechargers() {
-        List<List<IBlockState>> finalStates = new ArrayList<>();
+    public static Set<Set<IBlockState>> getRechargers() {
+        Set<Set<IBlockState>> finalStates = new HashSet<>();
         for (Block block : validBlocks) {
-            List<IBlockState> blockStates = new ArrayList<>(block.getBlockState().getValidStates());
+            Set<IBlockState> blockStates = new HashSet<>(block.getBlockState().getValidStates());
             finalStates.add(blockStates);
         }
         for (IBlockState state : validStates) {
-            finalStates.add(Collections.singletonList(state));
+            // Avoid duplicate entries when player specifies both block and blockstate
+            if (!validBlocks.contains(state.getBlock()))
+                finalStates.add(Collections.singleton(state));
         }
         return finalStates;
     }
