@@ -69,7 +69,7 @@ public class BarkBeltCategory extends BaseRecipeCategory<BarkBeltWrapper> {
             IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
             registry.addRecipes(getRecipes(guiHelper), UID);
-            registry.addRecipeCatalyst(WitcheryEquipmentItems.BARK_BELT, UID);
+            registry.addRecipeCatalyst(new ItemStack(WitcheryEquipmentItems.BARK_BELT), UID);
         } catch (Throwable t) {
             WitcheryCompanion.logger.error(t);
         }
