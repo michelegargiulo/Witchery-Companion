@@ -179,6 +179,14 @@ public class ModConfig {
             @Config.Name("Shape Shifting - Fix Floating Entities")
             public static boolean shapeShift_fixFloatingEntities = true;
 
+            @Config.Comment("If true, when player shapeshifts into a form that has more HP, its health percentage is perserved")
+            @Config.Name("Shape Shifting - Tweak Preserve HP Ratio on Trasform")
+            public static boolean shapeShift_tweakPreserveHpPercentOnTransform = false;
+
+            @Config.Comment("If true, when player transforms back into its normal form, its health percentage is perserved")
+            @Config.Name("Shape Shifting - Tweak Preserve HP Ratio on Detransform")
+            public static boolean shapeShift_tweakPreserveHpPercentOnDetransform = false;
+
         }
 
         public static class BlockTweaks {
@@ -285,6 +293,10 @@ public class ModConfig {
         }
 
         public static class ItemTweaks {
+
+            @Config.Comment("If true, allows CraftTweaker integration with Bark Belt")
+            @Config.Name("Bark Belt - Tweak Enable Crafttweaker Integration")
+            public static boolean barkBelt_tweakCraftTweakerIntegration = true;
 
             @Config.Comment("If true, players will be able to use the Creative Medallion even if not in creative mode")
             @Config.Name("Creative Medallion - Tweak Disable Creative Requirement")
@@ -746,6 +758,10 @@ public class ModConfig {
 
         public static class JeiIntegration {
 
+            @Config.Comment("If true, enables Bark Belt JEI Integration")
+            @Config.Name("JEI Integration - Enable Bark Belt")
+            public static boolean enableJeiBarkBelt = true;
+
             @Config.Comment("If true, enables Goblin Trade JEI Integration")
             @Config.Name("JEI Integration - Enable Goblin Trades")
             public static boolean enableJeiGoblinTrades = true;
@@ -839,12 +855,12 @@ public class ModConfig {
                 try {
                     meta = metaSplit.length > 1 ? Integer.parseInt(metaSplit[1]) : 0;
                 } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                    WitcheryCompanion.logger.warn("Could not parse blockstate - Invalid meta for entry: " + entry + ". Please fix your configs");
+                    WitcheryCompanion.logger.warn("Could not parse blockstate - Invalid meta for entry: {}. Please fix your configs", entry);
                 }
 
                 ResourceLocation rl = new ResourceLocation(metaSplit[0]);
                 if (!ForgeRegistries.BLOCKS.containsKey(rl)) {
-                    WitcheryCompanion.logger.warn("Could not parse blockstate - Block not found: " + entry + ". Please fix your configs");
+                    WitcheryCompanion.logger.warn("Could not parse blockstate - Block not found: {}. Please fix your configs", entry);
                 }
 
                 Block block = ForgeRegistries.BLOCKS.getValue(rl);

@@ -1,22 +1,15 @@
 package com.smokeythebandicoot.witcherycompanion.utils;
 
-
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.launchwrapper.Launch;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootEntry;
-import net.minecraft.world.storage.loot.LootEntryItem;
-import net.minecraft.world.storage.loot.LootPool;
-import net.minecraft.world.storage.loot.LootTable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 import net.msrandom.witchery.block.BlockAltar;
 import net.msrandom.witchery.block.entity.TileEntityAltar;
 
@@ -57,4 +50,20 @@ public class Utils {
         return result;
     }
 
+    public static ItemStack blockstateToStack(IBlockState state) {
+        return new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state));
+    }
+
+    public static ItemStack blockstateToStack(IBlockState state, int amount) {
+        return new ItemStack(state.getBlock(), amount, state.getBlock().getMetaFromState(state));
+    }
+
+    public static Block itemstackToBlock(ItemStack stack) {
+        return Block.getBlockFromItem(stack.getItem());
+    }
+
+    public static IBlockState itemstackToBlockstate(ItemStack stack, Integer meta) {
+        Block block = Block.getBlockFromItem(stack.getItem());
+        return block.getStateFromMeta(meta == null ? stack.getMetadata() : meta);
+    }
 }

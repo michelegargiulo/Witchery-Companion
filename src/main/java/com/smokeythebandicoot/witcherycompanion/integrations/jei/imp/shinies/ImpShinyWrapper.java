@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.shinies;
 
-import com.smokeythebandicoot.witcherycompanion.integrations.jei.base.BaseRecipeWrapper;
+import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeWrapper;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
@@ -10,8 +10,6 @@ import net.minecraft.item.ItemStack;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class ImpShinyWrapper extends BaseRecipeWrapper {
