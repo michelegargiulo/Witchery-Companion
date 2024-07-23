@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.utils;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -8,6 +9,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 import net.msrandom.witchery.block.BlockAltar;
 import net.msrandom.witchery.block.entity.TileEntityAltar;
 
@@ -54,5 +56,14 @@ public class Utils {
 
     public static ItemStack blockstateToStack(IBlockState state, int amount) {
         return new ItemStack(state.getBlock(), amount, state.getBlock().getMetaFromState(state));
+    }
+
+    public static Block itemstackToBlock(ItemStack stack) {
+        return Block.getBlockFromItem(stack.getItem());
+    }
+
+    public static IBlockState itemstackToBlockstate(ItemStack stack, Integer meta) {
+        Block block = Block.getBlockFromItem(stack.getItem());
+        return block.getStateFromMeta(meta == null ? stack.getMetadata() : meta);
     }
 }

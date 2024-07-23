@@ -1,12 +1,10 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.jei.base;
+package com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase;
 
 import mezz.jei.api.recipe.IRecipeWrapper;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class BaseRecipeWrapper implements IRecipeWrapper {
 

@@ -2,14 +2,9 @@ package com.smokeythebandicoot.witcherycompanion.integrations.jei.barkbelt;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.BarkBeltApi;
-import com.smokeythebandicoot.witcherycompanion.api.InfernalImpApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.jei.base.BaseRecipeCategory;
-import com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.shinies.ImpShinyWrapper;
-import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
+import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeCategory;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;
-import jeresources.api.drop.LootDrop;
-import jeresources.util.LootTableHelper;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
@@ -21,10 +16,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.Loader;
 import net.msrandom.witchery.init.items.WitcheryEquipmentItems;
-import net.msrandom.witchery.init.items.WitcheryFumeItems;
-import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 
 import javax.annotation.Nonnull;
 import java.util.*;
