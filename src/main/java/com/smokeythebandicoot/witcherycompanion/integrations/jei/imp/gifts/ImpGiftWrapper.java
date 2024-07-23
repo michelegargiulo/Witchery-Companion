@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.gifts;
 
-import com.smokeythebandicoot.witcherycompanion.integrations.jei.base.BaseRecipeWrapper;
+import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeWrapper;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
