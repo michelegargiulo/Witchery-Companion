@@ -46,6 +46,7 @@
     "entity.passive.EntityOwlMixin",
     "entity.passive.EntityToadMixin",
     "entity.passive.coven.EntityCovenWitchMixin",
+    "extensions.VillagerExtendedDataMixin",
     "infusion.spirit.InfusedSpiritSentinelEffectMixin",
     "infusion.spirit.InfusedSpiritTwisterEffectMixin",
     "item.ItemChalkMixin",

@@ -187,6 +187,10 @@ public class ModConfig {
             @Config.Name("Shape Shifting - Tweak Preserve HP Ratio on Detransform")
             public static boolean shapeShift_tweakPreserveHpPercentOnDetransform = false;
 
+            @Config.Comment("Fixes an edge-case crash that happens when villagers try to sleep")
+            @Config.Name("Villager - Fix Crash On Sleeping")
+            public static boolean villagerExtendedData_fixCrashOnSleeping = true;
+
         }
 
         public static class BlockTweaks {
