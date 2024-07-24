@@ -17,30 +17,41 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ Mixins:
+ [Bugfix] Fix crash when villagers try to set property Occupied to a block of Air instead of a Bed
+ */
 @Mixin(VillagerExtendedData.class)
 public abstract class VillagerExtendedDataMixin extends WitcheryExtendedData<EntityVillager> {
 
     @Shadow(remap = false)
     public abstract GlobalPos getHome();
 
+    /** This mixin replaces the setBedOccupied */
     @Inject(method = "setBedOccupied", remap = false, cancellable = true, at = @At("HEAD"))
     private void checkBothBedBlocks(boolean value, CallbackInfo ci) {
-        if (ModConfig.PatchesConfiguration.CommonTweaks.villagerExtendedData_fixCrashOnSleeping) {
-            GlobalPos home = this.getHome();
-            if (home != null) {
-                IBlockState state = this.entity.world.getBlockState(home.getPos());
-                if (WitcheryUtils.isOf(state, Blocks.BED)) {
-                    BlockPos pos = home.getPos().offset(state.getValue(BlockBed.FACING).getOpposite());
+        if (!ModConfig.PatchesConfiguration.CommonTweaks.villagerExtendedData_fixCrashOnSleeping) return;
 
-                    // Additional check: also the other block of the BED must be a BED block, otherwise will
-                    // crash in some edge cases
-                    if (WitcheryUtils.isOf(this.entity.world.getBlockState(pos), Blocks.BED)) {
-                        this.entity.world.setBlockState(home.getPos(), state.withProperty(BlockBed.OCCUPIED, value), 4);
-                        this.entity.world.setBlockState(pos, this.entity.world.getBlockState(pos).withProperty(BlockBed.OCCUPIED, value), 4);
-                    }
-                }
+        GlobalPos home = this.getHome();
+        if (home == null) {
+            ci.cancel();
+            return;
+        }
+
+        IBlockState state = this.entity.world.getBlockState(home.getPos());
+        if (WitcheryUtils.isOf(state, Blocks.BED)) {
+            BlockPos pos = home.getPos().offset(state.getValue(BlockBed.FACING).getOpposite());
+
+            // Additional check: also the other block of the BED must be a BED block, otherwise will
+            // crash in some edge cases
+            if (WitcheryUtils.isOf(this.entity.world.getBlockState(pos), Blocks.BED)) {
+                this.entity.world.setBlockState(home.getPos(), state.withProperty(BlockBed.OCCUPIED, value), 4);
+                this.entity.world.setBlockState(pos, this.entity.world.getBlockState(pos).withProperty(BlockBed.OCCUPIED, value), 4);
             }
         }
+
+        ci.cancel();
+
     }
 
 }
