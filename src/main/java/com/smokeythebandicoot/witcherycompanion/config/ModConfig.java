@@ -814,6 +814,10 @@ public class ModConfig {
             @Config.Name("TOP Integration - Witch's Cauldron")
             public static EProbeElementIntegrationConfig cauldron = EProbeElementIntegrationConfig.DEFAULT;
 
+            @Config.Comment("If true, enabled TOP integration for Grassper")
+            @Config.Name("TOP Integration - Grassper")
+            public static EProbeElementIntegrationConfig grassper = EProbeElementIntegrationConfig.DEFAULT;
+
             @Config.Comment("If true, enabled TOP integration for Hobgoblin")
             @Config.Name("TOP Integration - Hobgoblin")
             public static EProbeElementIntegrationConfig goblin = EProbeElementIntegrationConfig.DEFAULT;

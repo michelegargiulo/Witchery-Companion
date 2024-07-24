@@ -45,7 +45,7 @@ public class CauldronBlockProbeInfoProvider extends BaseBlockProbeInfoProvider<B
     public void addBasicInfo(BlockWitchCauldron block, TileEntityCauldron tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
         TOPHelper.addText(iProbeInfo, "Boiling", String.valueOf(tile.isBoiling()), TextFormatting.DARK_PURPLE);
         TOPHelper.addText(iProbeInfo, "Powered", String.valueOf(tile.isPowered()), TextFormatting.DARK_PURPLE);
-        TOPHelper.itemStacks(iProbeInfo, tile.getActions().items, 2);
+        TOPHelper.itemStacks(iProbeInfo, tile.getActions().items, 10);
     }
 
     @Override

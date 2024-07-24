@@ -23,15 +23,15 @@ public class TOPHelper {
 
     public static IProbeInfo itemStacks(IProbeInfo probeInfo, List<ItemStack> stacks, int maxInRow) {
         int curRow = 0;
-        probeInfo = probeInfo.horizontal();
+        IProbeInfo vertical = probeInfo.vertical();
+        IProbeInfo currentRow = vertical.horizontal();
+
         for (ItemStack stack : stacks) {
-            probeInfo.item(stack);
+            currentRow.item(stack);
             curRow++;
             if (curRow >= maxInRow) {
                 curRow = 0;
-                probeInfo.vertical();
-            } else {
-                probeInfo.horizontal();
+                currentRow = vertical.horizontal();
             }
         }
         return probeInfo;
