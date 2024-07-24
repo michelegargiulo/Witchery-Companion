@@ -95,6 +95,11 @@ public class ModConfig {
             @Config.Name("Liquid Dispersal - Fix Cauldron Ritual No Effect")
             public static boolean common_fixCauldronRitualLiquidDispersalNoEffect = true;
 
+            @Config.Comment("If true, fixes Nether Star ingredient increasing capacity but not disabling Power Ceiling, " +
+                    "severely limiting brews' potential")
+            @Config.Name("Common - Fix Nether Star Power Ceiling")
+            public static boolean common_fixNetherStarPowerScaling = true;
+
             @Config.Comment("If true, fixes the brew from breaking blocks even if the 'ignore blocks' modifier has been added")
             @Config.Name("Brew of Blast - Fix Terrain Damage")
             public static boolean blast_fixExplosionBreakingBlocks = true;
