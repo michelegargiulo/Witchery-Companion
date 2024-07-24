@@ -65,6 +65,10 @@ public class ModConfig {
         @Config.Name("Entity Tweaks")
         public static EntityTweaks entities;
 
+        @Config.Comment("Configuration for patches related to Mutations")
+        @Config.Name("Mutation Tweaks")
+        public static MutationTweaks mutations;
+
         @Config.Comment("Configuration for patches related to Loot")
         @Config.Name("Loot Tweaks")
         public static LootTweaks loot;
@@ -621,6 +625,15 @@ public class ModConfig {
                     "of ticks before despawning")
             @Config.Name("Spectre - Tweak Tick Delay Before Despawn")
             public static int spectre_tweakDelayTicksBeforeDespawn = 60;
+        }
+
+        public static class MutationTweaks {
+
+            @Config.Comment("If true, fixes a problem with the Mindrake mutation that makes them not replace Mandrake " +
+                    "crops. This makes Mindrakes unobtainable by this mean")
+            @Config.Name("Mindrake - Fix Transform To Air")
+            public static boolean mindrake_fixTransformToAir = true;
+
         }
 
         public static class BookTweaks {
