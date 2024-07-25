@@ -8,12 +8,13 @@ import jeresources.compatibility.JERAPI;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraftforge.fml.common.Mod;
 import net.msrandom.witchery.entity.*;
+import net.msrandom.witchery.entity.monster.EntityAttackBat;
 import net.msrandom.witchery.entity.monster.EntityHellhound;
 import net.msrandom.witchery.entity.monster.EntityHornedHuntsman;
 import net.msrandom.witchery.entity.monster.EntityMandrake;
 import net.msrandom.witchery.entity.passive.EntityCatFamiliar;
+import net.msrandom.witchery.entity.passive.EntityDuplicate;
 import net.msrandom.witchery.entity.passive.EntityOwl;
 import net.msrandom.witchery.entity.passive.EntityToad;
 import net.msrandom.witchery.entity.passive.coven.EntityCovenWitch;
@@ -75,6 +76,10 @@ public class JERIntegration {
         // ==================================================================================
         // ================================ Custom registers ================================
         // ==================================================================================
+
+        jerMobRegistry.register(new EntityAttackBat(jerWorld), LootTables.ATTACK_BAT);
+
+        jerMobRegistry.register(new EntityDuplicate(jerWorld), LootTables.DUPLICATE);
 
         jerMobRegistry.register(new EntityBabaYaga(jerWorld), LootTables.BABA_YAGA_DEATH);
         jerMobRegistry.registerRenderHook(EntityBabaYaga.class, (renderInfo, entityLivingBase) -> {

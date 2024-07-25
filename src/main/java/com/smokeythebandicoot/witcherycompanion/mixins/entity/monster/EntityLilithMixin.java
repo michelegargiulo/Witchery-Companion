@@ -20,7 +20,6 @@ import java.util.Random;
 @Mixin(EntityLilith.class)
 public abstract class EntityLilithMixin {
 
-
     @WrapOperation(method = "processInteract", remap = true, at = @At(value = "INVOKE", remap = true,
             target = "Lnet/minecraft/enchantment/EnchantmentHelper;buildEnchantmentList(Ljava/util/Random;Lnet/minecraft/item/ItemStack;IZ)Ljava/util/List;"))
     public List WPdisableLilithEnchanting(Random random, ItemStack itemStack, int i, boolean b, Operation<List> original) {
