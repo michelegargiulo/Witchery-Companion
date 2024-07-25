@@ -66,4 +66,14 @@ public class Utils {
         Block block = Block.getBlockFromItem(stack.getItem());
         return block.getStateFromMeta(meta == null ? stack.getMetadata() : meta);
     }
+
+    public static void logException(String message, Throwable t) {
+        WitcheryCompanion.logger.error(message);
+        WitcheryCompanion.logger.error(t.getMessage());
+        StringBuilder builder = new StringBuilder();
+        for (StackTraceElement stackTraceElem : t.getStackTrace()) {
+            builder.append("\t at ").append(stackTraceElem.toString()).append("\n");
+        }
+        WitcheryCompanion.logger.error(builder.toString());
+    }
 }

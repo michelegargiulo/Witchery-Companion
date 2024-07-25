@@ -1,0 +1,8 @@
+{
+  "type": "witchery:capacity",
+  "item": "minecraft:nether_star",
+  "power_cost": 150,
+  "increment": 4,
+  "ceiling": 10,
+  "remove_ceiling": true
+}
