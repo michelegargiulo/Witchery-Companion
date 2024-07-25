@@ -108,35 +108,6 @@ public abstract class ResourceManagerMixin {
 
         }
     }
-    
-    /** This Mixin fixes the same problem of findResources() that W:R assumes the modid to be 'witchery' */
-    @Inject(method = "getResource", remap = false, cancellable = true, at = @At("HEAD"))
-    private void fixGetResource(ResourceLocation id, CallbackInfoReturnable<Resource> cir) {
-        if (!ModConfig.PatchesConfiguration.CommonTweaks.customRecipes_fixResourceLoading) {
-            return;
-        }
-
-        int firstSeparator = id.getPath().indexOf("/");
-
-        String modifiedPath;
-        if (firstSeparator == -1) {
-            modifiedPath = "data/" + id.getNamespace() + "/" + id.getPath();
-        } else {
-            String resourceType = id.getPath().substring(0, firstSeparator);
-            String path = id.getPath().substring(firstSeparator + 1);
-            modifiedPath = "data/" + resourceType + "/" + id.getNamespace() + "/" + path;
-        }
-
-        File file = new File(this.world.getSaveHandler().getWorldDirectory(), modifiedPath);
-        if (file.isFile()) {
-            try {
-                cir.setReturnValue(new Resource(new FileInputStream(file)));
-            } catch (FileNotFoundException e) {
-                Utils.logException(e);
-            }
-        }
-        cir.setReturnValue(null);
-    }
 
     @Unique
     private void witchery_Patcher$useSource(File source, Consumer<Path> action) {
