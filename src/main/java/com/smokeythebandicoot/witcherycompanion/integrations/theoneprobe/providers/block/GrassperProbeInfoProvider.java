@@ -3,6 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.provid
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
+import mcjty.theoneprobe.api.ElementAlignment;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.ProbeMode;
@@ -47,7 +48,8 @@ public class GrassperProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockG
         if (tile != null) {
             ItemStack itemStack = tile.getStackInSlot(0);
             if (itemStack != null && !itemStack.isEmpty()) {
-                IProbeInfo horizontal = iProbeInfo.horizontal();
+                IProbeInfo horizontal = iProbeInfo.horizontal(iProbeInfo.defaultLayoutStyle()
+                        .alignment(ElementAlignment.ALIGN_CENTER).spacing(2));
                 TOPHelper.itemStacks(horizontal, Collections.singletonList(itemStack), 1);
                 TOPHelper.addText(horizontal, "Held item", itemStack.getDisplayName(), TextFormatting.WHITE);
             }

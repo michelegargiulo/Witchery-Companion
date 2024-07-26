@@ -23,7 +23,9 @@ public class LootTables {
     public static ResourceLocation COVEN_WITCH = new ResourceLocation("witchery", "entities/coven_witch");
     public static ResourceLocation DEATH = new ResourceLocation("witchery", "entities/death");
     public static ResourceLocation DUPLICATE = new ResourceLocation("witchery", "entities/duplicate");
+    public static ResourceLocation ELLE = new ResourceLocation("witchery", "entities/elle");
     public static ResourceLocation ENT = new ResourceLocation("witchery", "entities/ent");
+    public static ResourceLocation FAIREST = new ResourceLocation("witchery", "entities/fairest");
     public static ResourceLocation FAMILIAR_CAT = new ResourceLocation("witchery", "entities/familiar_cat");
     public static ResourceLocation GOBLIN_MOG = new ResourceLocation("witchery", "entities/goblin_mog");
     public static ResourceLocation GOBLIN_GULG = new ResourceLocation("witchery", "entities/goblin_gulg");

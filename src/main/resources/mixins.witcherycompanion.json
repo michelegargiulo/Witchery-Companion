@@ -45,6 +45,7 @@
     "entity.monster.EntityLilithMixin",
     "entity.passive.EntityCatFamiliarMixin",
     "entity.passive.EntityDuplicateMixin",
+    "entity.passive.EntityFairestMixin",
     "entity.passive.EntityOwlMixin",
     "entity.passive.EntityToadMixin",
     "entity.passive.coven.EntityCovenWitchMixin",

@@ -514,6 +514,10 @@ public class ModConfig {
             @Config.Name("Enchanted Broom - Fix Freeze On Break")
             public static boolean enchantedBroom_fixFreezeOnBreak = true;
 
+            @Config.Comment("If true, makes it so that when a Fairest is spawned, it always has a valid texture")
+            @Config.Name("Fairest - Fix Broken Textures")
+            public static boolean fairest_fixBrokenTextures = true;
+
             @Config.Comment("Sets the max number of trades the Goblin can have per level. On initial spawn, and when " +
                     "the player consumes all the Goblin trades, the Goblin will have this number of new merchant recipes")
             @Config.Name("Goblin - Max Trades Per Level")
@@ -639,6 +643,10 @@ public class ModConfig {
 
         public static class LootTweaks {
 
+            @Config.Comment("Attack Bat will drop loot according to its Loot Table (witchery:entities/attack_bat)")
+            @Config.Name("Attack Bat - Tweak Give Own Loot Table")
+            public static boolean attackBat_tweakOwnLootTable = false;
+
             @Config.Comment("Baba Yaga will drop loot according to its Loot Table (witchery:entities/baba_yaga_death)")
             @Config.Name("Baba Yaga - Tweak Drop Loot by Table")
             public static boolean babaYaga_tweakLootTable = false;
@@ -657,9 +665,21 @@ public class ModConfig {
             @Config.Name("Demon - Tweak Drop Loot by Table")
             public static boolean demon_tweakLootTable = false;
 
+            @Config.Comment("If true, Duplicate will drop loot according to its Loot Table (witchery:entities/demon)")
+            @Config.Name("Duplicate - Tweak Give Own Loot Table")
+            public static boolean duplicate_tweakOwnLootTable = false;
+
             @Config.Comment("If true, Ent will drop loot according to its Loot Table (witchery:entities/ent)")
             @Config.Name("Ent - Tweak Drop Loot by Table")
             public static boolean ent_tweakLootTable = false;
+
+            @Config.Comment("If true, Elle will drop loot according to its Loot Table (witchery:entities/elle)")
+            @Config.Name("Elle - Tweak Drop Loot by Table")
+            public static boolean elle_tweakLootTable = false;
+
+            @Config.Comment("If true, Fairest will drop loot according to its Loot Table (witchery:entities/fairest)")
+            @Config.Name("Fairest - Tweak Drop Loot by Table")
+            public static boolean fairest_tweakLootTable = false;
 
             @Config.Comment("If true, Cat Familiar will drop loot according to its own Loot Table, instead of " +
                     "Vanilla Ocelot loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
