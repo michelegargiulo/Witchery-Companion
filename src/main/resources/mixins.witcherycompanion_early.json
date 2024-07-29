@@ -5,6 +5,11 @@
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
   "mixins": [
+    "minecraft.block.BlockBasePressurePlateMixin",
+    "minecraft.block.BlockButtonMixin",
+    "minecraft.block.BlockDoorMixin",
+    "minecraft.block.BlockLeverMixin",
+    "minecraft.entity.ai.EntityAIOpenDoorMixin",
     "minecraft.entity.player.EntityPlayerMixin"
   ],
   "server": [

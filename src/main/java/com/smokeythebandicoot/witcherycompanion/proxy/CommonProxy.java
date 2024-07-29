@@ -7,15 +7,19 @@ import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPPlug
 import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.FamiliarPatches;
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
+import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
+
+        registerTileEntities();
 
         if (ModConfig.PatchesConfiguration.InfusionTweaks.soulBrews_fixPersistency)
             MinecraftForge.EVENT_BUS.register(SymbolEffectPatch.INSTANCE);
@@ -34,6 +38,7 @@ public class CommonProxy {
         if (ModConfig.IntegrationConfigurations.TopIntegration.enableTopIntegration && Loader.isModLoaded("theoneprobe"))
             FMLInterModComms.sendFunctionMessage("theoneprobe", "getTheOneProbe", TOPPlugin.class.getName());
 
+        MinecraftForge.EVENT_BUS.register(Test.class);
     }
 
     public void init(FMLInitializationEvent event) {
@@ -47,4 +52,7 @@ public class CommonProxy {
         }
     }
 
+    protected void registerTileEntities() {
+        GameRegistry.registerTileEntity(TileEntityCursedTrigger.class, TileEntityCursedTrigger.getRegistryName());
+    }
 }
