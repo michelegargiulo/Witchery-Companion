@@ -2,9 +2,9 @@ package com.smokeythebandicoot.witcherycompanion.mixins._minecraft.resources;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;
-import net.minecraft.resources.Resource;
 import net.minecraft.resources.ResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldServer;
@@ -19,8 +19,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.*;
@@ -132,29 +130,20 @@ public abstract class ResourceManagerMixin {
                     fs = FileSystems.getFileSystem(uri);
                     // Also insert in Map, to keep it and avoid using try-catch block next time
                     witchery_Patcher$fileSystems.put(source, fs);
-                } catch (Exception e) {
+                } catch (IOException e) {
                     // Something else went wrong, so log and do nothing. fs will be null
                     Utils.logException("Something went wrong while exploring resources inside jars", e);
                 }
             }
 
-            /*
-            FileSystem fs = witchery_Patcher$fileSystems.computeIfAbsent(source, key -> {
-                try {
-                    return FileSystems.newFileSystem(
-                            URI.create("jar:" + key.toURI() + "!/"),
-                            new HashMap<>()
-                    );
-                } catch (Exception e) {
-                    Utils.logException("Something went wrong while exploring resources inside jars", e);
-                    return null;
-                }
-            });
-            */
-
             // An error might occur while crating the Filesystem, so check for this
             if (fs != null) {
                 action.accept(fs.getPath("."));
+                try {
+                    fs.close();
+                } catch (IOException e) {
+                    Utils.logException("Error while closing FileSystem", e);
+                }
             }
         }
     }
