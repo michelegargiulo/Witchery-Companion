@@ -32,6 +32,8 @@ jar in the resource packs folder.
   - **[Herbology Book]** Fix plants being rendered above text
 - **Brews**
   - **[Common]** Fix Liquid Dispersal having no effect
+  - **[Common]** Completely overhaul the Triggered Dispersal system, fixing crashes, broken rendering, making it work on some modded blocks with possibility to add compats, both by mod authors and thirt parties
+  - **[Common]** Fix Nether Star not removing power ceiling (Brews that include Nether Stars can have an unlimited amount of effects with full strength and duration modifiers) (non configurable)
   - **[Brew of Blast]** Fix breaking terrain even if the 'ignore blocks' modifier was added
   - **[Brew of Erosion]** Fix random integer crash
   - **[Brew of Frog's Tongue]** Fix crash when the brew pulls a null entity
@@ -51,6 +53,8 @@ jar in the resource packs folder.
   - **[Rowan Boat]** Fix Rowan Boat not having texture (not configurable)
   - **[Spectral Stone]** Fix NBT being retained after entity is released, effectively duping it
   - **[Lingering Potion]** Fix unlocalized name (not configurable)
+- **Mutations**
+  - **[Mindrake Bulb]** Fix Mindrake bulb mutation happening but destroying crops instead of mutating them to mindrakes (non-configurable) 
 - **Potions**
   - **[Fortune]** Fix Brew of Fortune having no effect
 - **Rites**

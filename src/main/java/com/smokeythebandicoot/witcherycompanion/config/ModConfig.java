@@ -90,6 +90,11 @@ public class ModConfig {
             @Config.Name("Common - Disable Strength Ceiling")
             public static boolean common_tweakDisableStrengthCeiling = true;
 
+            @Config.Comment("If true, Companion will replace the entire logic and inner workings of the Triggered " +
+                    "Dispersal. This will make this dispersal work in the first place and improves several aspects")
+            @Config.Name("Common - Fix Broken Trigger Dispersal")
+            public static boolean common_fixTriggeredDispersal = true;
+
             @Config.Comment("If true, fixes Cauldron rituals with Liquid Dispersal not having any effect. Also" +
                     " should improve performance and memory usage by 0.00000001%")
             @Config.Name("Liquid Dispersal - Fix Cauldron Ritual No Effect")
