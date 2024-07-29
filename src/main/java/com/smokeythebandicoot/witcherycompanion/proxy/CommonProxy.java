@@ -38,7 +38,6 @@ public class CommonProxy {
         if (ModConfig.IntegrationConfigurations.TopIntegration.enableTopIntegration && Loader.isModLoaded("theoneprobe"))
             FMLInterModComms.sendFunctionMessage("theoneprobe", "getTheOneProbe", TOPPlugin.class.getName());
 
-        MinecraftForge.EVENT_BUS.register(Test.class);
     }
 
     public void init(FMLInitializationEvent event) {
