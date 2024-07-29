@@ -90,10 +90,20 @@ public class ModConfig {
             @Config.Name("Common - Disable Strength Ceiling")
             public static boolean common_tweakDisableStrengthCeiling = true;
 
+            @Config.Comment("If true, Companion will replace the entire logic and inner workings of the Triggered " +
+                    "Dispersal. This will make this dispersal work in the first place and improves several aspects")
+            @Config.Name("Common - Fix Broken Trigger Dispersal")
+            public static boolean common_fixTriggeredDispersal = true;
+
             @Config.Comment("If true, fixes Cauldron rituals with Liquid Dispersal not having any effect. Also" +
                     " should improve performance and memory usage by 0.00000001%")
             @Config.Name("Liquid Dispersal - Fix Cauldron Ritual No Effect")
             public static boolean common_fixCauldronRitualLiquidDispersalNoEffect = true;
+
+            @Config.Comment("If true, fixes Nether Star ingredient increasing capacity but not disabling Power Ceiling, " +
+                    "severely limiting brews' potential")
+            @Config.Name("Common - Fix Nether Star Power Ceiling")
+            public static boolean common_fixNetherStarPowerScaling = true;
 
             @Config.Comment("If true, fixes the brew from breaking blocks even if the 'ignore blocks' modifier has been added")
             @Config.Name("Brew of Blast - Fix Terrain Damage")
@@ -149,6 +159,13 @@ public class ModConfig {
 
         public static class CommonTweaks {
 
+            @Config.Comment("Custom Recipes in Mods' data folder is fundamentally broken in W:R. If true, this fixes " +
+                    "resource loading and allows Mod Authors to define custom .jsons and override custom ones in " +
+                    "resources/data/<modid>/brewing|mutations|... folders, creating custom recipes. This does not " +
+                    "touch data folders inside of the World save folder" )
+            @Config.Name("Custom Recipes - Fix Resource Loading")
+            public static boolean customRecipes_fixResourceLoading = true;
+
             @Config.Comment("Fix crash when trying to pull a null entity. Overshadows Frogs Tongue brew fix")
             @Config.Name("Entity Utils - Fix Null Pointer On Pull Entity")
             public static boolean entityUtils_fixNullPointer = true;
@@ -178,6 +195,18 @@ public class ModConfig {
             @Config.Comment("Fix 'ghost entities' being rendered in world when player changes dimension")
             @Config.Name("Shape Shifting - Fix Floating Entities")
             public static boolean shapeShift_fixFloatingEntities = true;
+
+            @Config.Comment("If true, when player shapeshifts into a form that has more HP, its health percentage is perserved")
+            @Config.Name("Shape Shifting - Tweak Preserve HP Ratio on Trasform")
+            public static boolean shapeShift_tweakPreserveHpPercentOnTransform = false;
+
+            @Config.Comment("If true, when player transforms back into its normal form, its health percentage is perserved")
+            @Config.Name("Shape Shifting - Tweak Preserve HP Ratio on Detransform")
+            public static boolean shapeShift_tweakPreserveHpPercentOnDetransform = false;
+
+            @Config.Comment("Fixes an edge-case crash that happens when villagers try to sleep")
+            @Config.Name("Villager - Fix Crash On Sleeping")
+            public static boolean villagerExtendedData_fixCrashOnSleeping = true;
 
         }
 
@@ -285,6 +314,10 @@ public class ModConfig {
         }
 
         public static class ItemTweaks {
+
+            @Config.Comment("If true, allows CraftTweaker integration with Bark Belt")
+            @Config.Name("Bark Belt - Tweak Enable Crafttweaker Integration")
+            public static boolean barkBelt_tweakCraftTweakerIntegration = true;
 
             @Config.Comment("If true, players will be able to use the Creative Medallion even if not in creative mode")
             @Config.Name("Creative Medallion - Tweak Disable Creative Requirement")
@@ -486,6 +519,10 @@ public class ModConfig {
             @Config.Name("Enchanted Broom - Fix Freeze On Break")
             public static boolean enchantedBroom_fixFreezeOnBreak = true;
 
+            @Config.Comment("If true, makes it so that when a Fairest is spawned, it always has a valid texture")
+            @Config.Name("Fairest - Fix Broken Textures")
+            public static boolean fairest_fixBrokenTextures = true;
+
             @Config.Comment("Sets the max number of trades the Goblin can have per level. On initial spawn, and when " +
                     "the player consumes all the Goblin trades, the Goblin will have this number of new merchant recipes")
             @Config.Name("Goblin - Max Trades Per Level")
@@ -611,6 +648,10 @@ public class ModConfig {
 
         public static class LootTweaks {
 
+            @Config.Comment("Attack Bat will drop loot according to its Loot Table (witchery:entities/attack_bat)")
+            @Config.Name("Attack Bat - Tweak Give Own Loot Table")
+            public static boolean attackBat_tweakOwnLootTable = false;
+
             @Config.Comment("Baba Yaga will drop loot according to its Loot Table (witchery:entities/baba_yaga_death)")
             @Config.Name("Baba Yaga - Tweak Drop Loot by Table")
             public static boolean babaYaga_tweakLootTable = false;
@@ -629,9 +670,21 @@ public class ModConfig {
             @Config.Name("Demon - Tweak Drop Loot by Table")
             public static boolean demon_tweakLootTable = false;
 
+            @Config.Comment("If true, Duplicate will drop loot according to its Loot Table (witchery:entities/demon)")
+            @Config.Name("Duplicate - Tweak Give Own Loot Table")
+            public static boolean duplicate_tweakOwnLootTable = false;
+
             @Config.Comment("If true, Ent will drop loot according to its Loot Table (witchery:entities/ent)")
             @Config.Name("Ent - Tweak Drop Loot by Table")
             public static boolean ent_tweakLootTable = false;
+
+            @Config.Comment("If true, Elle will drop loot according to its Loot Table (witchery:entities/elle)")
+            @Config.Name("Elle - Tweak Drop Loot by Table")
+            public static boolean elle_tweakLootTable = false;
+
+            @Config.Comment("If true, Fairest will drop loot according to its Loot Table (witchery:entities/fairest)")
+            @Config.Name("Fairest - Tweak Drop Loot by Table")
+            public static boolean fairest_tweakLootTable = false;
 
             @Config.Comment("If true, Cat Familiar will drop loot according to its own Loot Table, instead of " +
                     "Vanilla Ocelot loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
@@ -746,6 +799,10 @@ public class ModConfig {
 
         public static class JeiIntegration {
 
+            @Config.Comment("If true, enables Bark Belt JEI Integration")
+            @Config.Name("JEI Integration - Enable Bark Belt")
+            public static boolean enableJeiBarkBelt = true;
+
             @Config.Comment("If true, enables Goblin Trade JEI Integration")
             @Config.Name("JEI Integration - Enable Goblin Trades")
             public static boolean enableJeiGoblinTrades = true;
@@ -788,6 +845,10 @@ public class ModConfig {
             @Config.Comment("If true, enabled TOP integration for Witch's Cauldron")
             @Config.Name("TOP Integration - Witch's Cauldron")
             public static EProbeElementIntegrationConfig cauldron = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enabled TOP integration for Grassper")
+            @Config.Name("TOP Integration - Grassper")
+            public static EProbeElementIntegrationConfig grassper = EProbeElementIntegrationConfig.DEFAULT;
 
             @Config.Comment("If true, enabled TOP integration for Hobgoblin")
             @Config.Name("TOP Integration - Hobgoblin")
@@ -839,12 +900,12 @@ public class ModConfig {
                 try {
                     meta = metaSplit.length > 1 ? Integer.parseInt(metaSplit[1]) : 0;
                 } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                    WitcheryCompanion.logger.warn("Could not parse blockstate - Invalid meta for entry: " + entry + ". Please fix your configs");
+                    WitcheryCompanion.logger.warn("Could not parse blockstate - Invalid meta for entry: {}. Please fix your configs", entry);
                 }
 
                 ResourceLocation rl = new ResourceLocation(metaSplit[0]);
                 if (!ForgeRegistries.BLOCKS.containsKey(rl)) {
-                    WitcheryCompanion.logger.warn("Could not parse blockstate - Block not found: " + entry + ". Please fix your configs");
+                    WitcheryCompanion.logger.warn("Could not parse blockstate - Block not found: {}. Please fix your configs", entry);
                 }
 
                 Block block = ForgeRegistries.BLOCKS.getValue(rl);

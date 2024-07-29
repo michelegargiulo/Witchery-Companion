@@ -8,14 +8,12 @@ import jeresources.compatibility.JERAPI;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraftforge.fml.common.Mod;
 import net.msrandom.witchery.entity.*;
+import net.msrandom.witchery.entity.monster.EntityAttackBat;
 import net.msrandom.witchery.entity.monster.EntityHellhound;
 import net.msrandom.witchery.entity.monster.EntityHornedHuntsman;
 import net.msrandom.witchery.entity.monster.EntityMandrake;
-import net.msrandom.witchery.entity.passive.EntityCatFamiliar;
-import net.msrandom.witchery.entity.passive.EntityOwl;
-import net.msrandom.witchery.entity.passive.EntityToad;
+import net.msrandom.witchery.entity.passive.*;
 import net.msrandom.witchery.entity.passive.coven.EntityCovenWitch;
 
 
@@ -76,6 +74,8 @@ public class JERIntegration {
         // ================================ Custom registers ================================
         // ==================================================================================
 
+        jerMobRegistry.register(new EntityAttackBat(jerWorld), LootTables.ATTACK_BAT);
+
         jerMobRegistry.register(new EntityBabaYaga(jerWorld), LootTables.BABA_YAGA_DEATH);
         jerMobRegistry.registerRenderHook(EntityBabaYaga.class, (renderInfo, entityLivingBase) -> {
             GlStateManager.translate(0.0f, -0.35f, 0.0f);
@@ -97,6 +97,17 @@ public class JERIntegration {
             return renderInfo;
         });
 
+        jerMobRegistry.register(new EntityDuplicate(jerWorld), LootTables.DUPLICATE);
+
+        jerMobRegistry.register(new EntityEnt(jerWorld), LootTables.ENT);
+        jerMobRegistry.registerRenderHook(EntityEnt.class, (renderInfo, entityLivingBase) -> {
+            GlStateManager.translate(0.0f, -0.35f, 0.0f);
+            GlStateManager.scale(0.65f, 0.65f, 0.65f);
+            return renderInfo;
+        });
+
+        jerMobRegistry.register(new EntityElle(jerWorld), LootTables.ELLE);
+
         jerMobRegistry.register(new EntityGoblinMog(jerWorld), LootTables.GOBLIN_MOG);
         jerMobRegistry.registerRenderHook(EntityGoblinMog.class, (renderInfo, entityLivingBase) -> {
             GlStateManager.translate(0.0f, -0.35f, 0.0f);
@@ -106,13 +117,6 @@ public class JERIntegration {
         jerMobRegistry.register(new EntityGoblinGulg(jerWorld), LootTables.GOBLIN_GULG);
         jerMobRegistry.registerRenderHook(EntityGoblinGulg.class, (renderInfo, entityLivingBase) -> {
             GlStateManager.translate(0.0f, -0.35f, 0.0f);
-            return renderInfo;
-        });
-
-        jerMobRegistry.register(new EntityEnt(jerWorld), LootTables.ENT);
-        jerMobRegistry.registerRenderHook(EntityEnt.class, (renderInfo, entityLivingBase) -> {
-            GlStateManager.translate(0.0f, -0.35f, 0.0f);
-            GlStateManager.scale(0.65f, 0.65f, 0.65f);
             return renderInfo;
         });
 

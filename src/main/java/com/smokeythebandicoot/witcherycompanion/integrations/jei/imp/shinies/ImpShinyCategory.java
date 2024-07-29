@@ -3,7 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.shinies;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.InfernalImpApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.jei.base.BaseRecipeCategory;
+import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeCategory;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
@@ -14,8 +14,6 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraftforge.fml.common.Loader;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -65,7 +63,6 @@ public class ImpShinyCategory extends BaseRecipeCategory<ImpShinyWrapper> {
 
         HashMap<ItemStack, Integer> allShinies = InfernalImpApi.getShinies();
 
-        // Creates a new recipe (page) every 15 (3 x 5) items
         int index = 0;
         boolean partialPage = false;
         ImpShinyWrapper page = new ImpShinyWrapper(guiHelper);
@@ -116,6 +113,6 @@ public class ImpShinyCategory extends BaseRecipeCategory<ImpShinyWrapper> {
     }
 
     public static boolean shouldRegister() {
-        return ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiImpGifts;
+        return ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiImpShinies;
     }
 }

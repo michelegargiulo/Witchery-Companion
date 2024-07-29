@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes;
 
-import com.smokeythebandicoot.witcherycompanion.utils.AltarPowerSource;
+import com.smokeythebandicoot.witcherycompanion.api.AltarApi.AltarPowerSource;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;

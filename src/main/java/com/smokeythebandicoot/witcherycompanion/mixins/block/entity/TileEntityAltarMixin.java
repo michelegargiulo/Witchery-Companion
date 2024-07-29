@@ -1,11 +1,12 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 
+import com.smokeythebandicoot.witcherycompanion.api.AltarApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes.AltarHandler;
-import com.smokeythebandicoot.witcherycompanion.utils.AltarPowerSource;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -43,12 +44,6 @@ import java.util.Set;
 public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements IPowerSource {
 
     @Shadow(remap = false)
-    private float power;
-
-    @Shadow(remap = false)
-    public abstract void updatePower();
-
-    @Shadow(remap = false)
     private long lastPowerUpdate;
 
     @Shadow(remap = false)
@@ -72,9 +67,6 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     @Shadow(remap = false)
     protected abstract void updatePower(boolean throttle);
 
-    @Shadow(remap = false)
-    public abstract void setInvalid();
-
     @Shadow(remap = true)
     public abstract void update();
 
@@ -82,7 +74,7 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     public abstract void invalidate();
 
     @Unique
-    private static HashMap<Block, AltarPowerSource> witchery_Patcher$powerObjectTable = null;
+    private static HashMap<Block, AltarApi.AltarPowerSource> witchery_Patcher$powerObjectTable = null;
 
     /** Triggers a TileEntity sync when power is consumed, as Witchery only updated it when the power increases.
      * This causes a desync in what appears in the Altar GUI and the actual power levels */
@@ -113,7 +105,6 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
         if (BlockTweaks.altar_tweakCachePowerMap) {
             if (!this.world.isRemote && (!throttle || this.ticks - this.lastPowerUpdate <= 0L || this.ticks - this.lastPowerUpdate > 100L)) {
                 this.lastPowerUpdate = this.ticks;
-                witchery_Patcher$powerObjectTable = witchery_Patcher$updatePowerMap();
                 witchery_Patcher$scanSurroundings();
             }
             ci.cancel();
@@ -136,139 +127,19 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     }
 
     @Unique
-    private HashMap<Block, AltarPowerSource> witchery_Patcher$updatePowerMap() {
-        if (witchery_Patcher$powerObjectTable == null || witchery_Patcher$powerObjectTable.isEmpty()) {
-
-            witchery_Patcher$powerObjectTable = new HashMap<>();
-
-            // Add Custom Crafttweaker-defined registers
-            for (Block ctBlock : AltarHandler.addingMap.keySet()) {
-                AltarPowerSource powerSource = AltarHandler.addingMap.get(ctBlock);
-                witchery_Patcher$addToMap(ctBlock, powerSource.getFactor(), powerSource.getLimit());
-            }
-
-            // Add default Witchery blocks
-            Iterator var3 = OreDictionary.getOres("treeSapling").iterator();
-
-            ItemStack blockItem;
-            Block block;
-            while(var3.hasNext()) {
-                blockItem = (ItemStack)var3.next();
-                block = Block.getBlockFromItem(blockItem.getItem());
-                this.witchery_Patcher$addToMap(block, 4, 20);
-            }
-
-            var3 = OreDictionary.getOres("logWood").iterator();
-
-            while(var3.hasNext()) {
-                blockItem = (ItemStack)var3.next();
-                block = Block.getBlockFromItem(blockItem.getItem());
-                this.witchery_Patcher$addToMap(block, 2, 50);
-            }
-
-            var3 = OreDictionary.getOres("treeLeaves").iterator();
-
-            while(var3.hasNext()) {
-                blockItem = (ItemStack)var3.next();
-                block = Block.getBlockFromItem(blockItem.getItem());
-                this.witchery_Patcher$addToMap(block, 3, 100);
-            }
-
-            this.witchery_Patcher$addToMap(Blocks.GRASS, 2, 80);
-            this.witchery_Patcher$addToMap(Blocks.DIRT, 1, 80);
-            this.witchery_Patcher$addToMap(Blocks.FARMLAND, 1, 100);
-            this.witchery_Patcher$addToMap(Blocks.TALLGRASS, 3, 50);
-            this.witchery_Patcher$addToMap(Blocks.YELLOW_FLOWER, 4, 30);
-            this.witchery_Patcher$addToMap(Blocks.RED_FLOWER, 4, 30);
-            this.witchery_Patcher$addToMap(Blocks.WHEAT, 4, 20);
-            this.witchery_Patcher$addToMap(Blocks.WATER, 1, 50);
-            this.witchery_Patcher$addToMap(Blocks.RED_MUSHROOM, 3, 20);
-            this.witchery_Patcher$addToMap(Blocks.BROWN_MUSHROOM, 3, 20);
-            this.witchery_Patcher$addToMap(Blocks.CACTUS, 3, 50);
-            this.witchery_Patcher$addToMap(Blocks.REEDS, 3, 50);
-            this.witchery_Patcher$addToMap(Blocks.PUMPKIN, 4, 20);
-            this.witchery_Patcher$addToMap(Blocks.PUMPKIN_STEM, 3, 20);
-            this.witchery_Patcher$addToMap(Blocks.BROWN_MUSHROOM_BLOCK, 3, 20);
-            this.witchery_Patcher$addToMap(Blocks.RED_MUSHROOM_BLOCK, 3, 20);
-            this.witchery_Patcher$addToMap(Blocks.MELON_BLOCK, 4, 20);
-            this.witchery_Patcher$addToMap(Blocks.MELON_STEM, 3, 20);
-            this.witchery_Patcher$addToMap(Blocks.VINE, 2, 50);
-            this.witchery_Patcher$addToMap(Blocks.MYCELIUM, 1, 80);
-            this.witchery_Patcher$addToMap(Blocks.DRAGON_EGG, 250, 1);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.DEMON_HEART, 40, 2);
-            this.witchery_Patcher$addToMap(Blocks.COCOA, 3, 20);
-            this.witchery_Patcher$addToMap(Blocks.CARROTS, 4, 20);
-            this.witchery_Patcher$addToMap(Blocks.POTATOES, 4, 20);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.BELLADONNA_SEEDS, 4, 20);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.MANDRAKE_SEEDS, 4, 20);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.ARTICHOKE_SEEDS, 4, 20);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.SNOWBELL_SEEDS, 4, 20);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.EMBER_MOSS, 4, 20);
-            this.witchery_Patcher$addToMap(WitcheryWoodTypes.ROWAN.getLeaves(), 4, 50);
-            this.witchery_Patcher$addToMap(WitcheryWoodTypes.ALDER.getLeaves(), 4, 50);
-            this.witchery_Patcher$addToMap(WitcheryWoodTypes.HAWTHORN.getLeaves(), 4, 50);
-            this.witchery_Patcher$addToMap(WitcheryWoodTypes.ROWAN.getLog(), 3, 100);
-            this.witchery_Patcher$addToMap(WitcheryWoodTypes.ALDER.getLog(), 3, 100);
-            this.witchery_Patcher$addToMap(WitcheryWoodTypes.HAWTHORN.getLog(), 3, 100);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.SPANISH_MOSS, 3, 20);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.GLINT_WEED, 2, 20);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.EMPTY_CRITTER_SNARE, 2, 10);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.BLOOD_POPPY, 2, 10);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.GRASSPER, 2, 10);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.WISPY_COTTON, 3, 20);
-            this.witchery_Patcher$addToMap(WitcheryBlocks.INFINITY_EGG, 1000, 1);
-            Block block2;
-
-            if (this.extraNatureIDs == null) {
-                this.extraNatureIDs = new HashSet<>();
-                var3 = ForgeRegistries.BLOCKS.iterator();
-
-                label90:
-                while(true) {
-                    do {
-                        if (!var3.hasNext()) {
-                            break label90;
-                        }
-
-                        block2 = (Block)var3.next();
-                    } while(!(block2 instanceof BlockFlower) && !(block2 instanceof BlockCrops));
-
-                    if (!witchery_Patcher$powerObjectTable.containsKey(block2)) {
-                        this.extraNatureIDs.add(block2);
-                    }
-                }
-            }
-
-            var3 = this.extraNatureIDs.iterator();
-
-            while(var3.hasNext()) {
-                block2 = (Block)var3.next();
-                this.witchery_Patcher$addToMap(block2, 2, 4);
-            }
-
-            // Remove Crafttweaker-defined unregisters
-            for (Block ctBlock : AltarHandler.removalList) {
-                witchery_Patcher$powerObjectTable.remove(ctBlock);
-            }
-        }
-
-        return witchery_Patcher$powerObjectTable;
-    }
-
-    @Unique
     private void witchery_Patcher$scanSurroundings() {
 
-        HashMap<Block, Integer> sourceCount = new HashMap<>();
+        HashMap<IBlockState, Integer> sourceCount = new HashMap<>();
 
         for(int y = this.getPos().getY() - SCAN_DISTANCE; y <= this.getPos().getY() + SCAN_DISTANCE; ++y) {
             for(int z = this.getPos().getZ() + SCAN_DISTANCE; z >= this.getPos().getZ() - SCAN_DISTANCE; --z) {
                 for(int x = this.getPos().getX() - SCAN_DISTANCE; x <= this.getPos().getX() + SCAN_DISTANCE; ++x) {
 
-                    Block block3 = this.world.getBlockState(new BlockPos(x, y, z)).getBlock();
-                    AltarPowerSource source = witchery_Patcher$powerObjectTable.get(block3);
+                    IBlockState state = this.world.getBlockState(new BlockPos(x, y, z));
+                    AltarApi.AltarPowerSource source = AltarApi.getPowerSource(state);
 
                     if (source != null) {
-                        sourceCount.merge(block3, 1, (a, b) -> Math.min(a + b, source.getLimit()));
+                        sourceCount.merge(state, 1, (a, b) -> Math.min(a + b, source.getLimit()));
                     }
 
                 }
@@ -277,21 +148,15 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
 
         float newMax = 0.0F;
 
-        for (Block foundBlock : sourceCount.keySet()) {
-            AltarPowerSource altarPowerSource = witchery_Patcher$powerObjectTable.get(foundBlock);
-            newMax += Math.min(sourceCount.get(foundBlock), altarPowerSource.getLimit()) * altarPowerSource.getFactor();
+        for (IBlockState foundState : sourceCount.keySet()) {
+            AltarApi.AltarPowerSource altarPowerSource = AltarApi.getPowerSource(foundState);
+            newMax += Math.min(sourceCount.get(foundState), altarPowerSource.getLimit()) * altarPowerSource.getFactor();
         }
 
         if (newMax != this.maxPower) {
             this.maxPower = newMax;
             BlockUtil.notifyBlockUpdate(this.world, this.getPos());
         }
-    }
-
-    @Unique
-    private void witchery_Patcher$addToMap(Block block, int factor, int limit) {
-        AltarPowerSource source = new AltarPowerSource(factor, (int)(Math.max((double)this.enhancementLevel * 1.18, 1.0) * (double)limit));
-        witchery_Patcher$powerObjectTable.put(block, source);
     }
 
 }
