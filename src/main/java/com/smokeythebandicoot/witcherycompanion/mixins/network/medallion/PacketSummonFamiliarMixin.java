@@ -26,7 +26,6 @@ public abstract class PacketSummonFamiliarMixin extends PacketFamiliarCheat {
 
     @Inject(method = "affectPlayer", remap = false, cancellable = true, at = @At("HEAD"))
     public void injectPacket(EntityPlayer player, CallbackInfo ci) {
-        Utils.logChat("Received Summon Familiar Packet. World: " + (player.world.isRemote ? "REMOTE" : "LOCAL"));
         Familiar<?> familiar;
         String packetName;
         Entity entity;
