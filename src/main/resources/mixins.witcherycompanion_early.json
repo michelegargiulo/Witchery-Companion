@@ -7,10 +7,15 @@
   "mixins": [
     "minecraft.block.BlockBasePressurePlateMixin",
     "minecraft.block.BlockButtonMixin",
+    "minecraft.block.BlockChestMixin",
     "minecraft.block.BlockDoorMixin",
+    "minecraft.block.BlockFenceGateMixin",
     "minecraft.block.BlockLeverMixin",
+    "minecraft.block.BlockTrapDoorMixin",
+    "minecraft.block.BlockWorkbenchMixin",
     "minecraft.entity.ai.EntityAIOpenDoorMixin",
-    "minecraft.entity.player.EntityPlayerMixin"
+    "minecraft.entity.player.EntityPlayerMixin",
+    "minecraft.tileentity.TileEntityChestMixin"
   ],
   "server": [
   ],

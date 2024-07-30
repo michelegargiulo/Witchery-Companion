@@ -31,6 +31,10 @@ public interface ICursableTrigger {
                 world.removeTileEntity(effectivePos);
                 return true;
             }
+        } else if (tile instanceof IProxedCursedTrigger) {
+            // Tile is proxed, so before applying effects retrieve the inner trigger
+            IProxedCursedTrigger proxedTrigger = (IProxedCursedTrigger)tile;
+            return proxedTrigger.onTrigger(entity);
         }
 
         return false;

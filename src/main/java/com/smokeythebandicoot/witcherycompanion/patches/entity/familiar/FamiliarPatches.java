@@ -41,7 +41,6 @@ public class FamiliarPatches {
         UUID ownerId = familiar.getOwnerId();
         EntityPlayer player = familiar.getEntity().world.getPlayerEntityByUUID(ownerId);
         if (player == null) {
-            Utils.logChat("Familiar joined world but player is not online!");
             return;
         }
         familiar.bindTo(player);

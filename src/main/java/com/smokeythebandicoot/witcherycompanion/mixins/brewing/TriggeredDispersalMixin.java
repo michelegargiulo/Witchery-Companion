@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.brewing;
 
+import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.IProxedCursedTrigger;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
@@ -45,30 +46,36 @@ public abstract class TriggeredDispersalMixin {
         // For Blocks that occupy multible block spaces (doors, beds, etc)
         ICursableTrigger triggeredBlock = (ICursableTrigger)block;
         coord = triggeredBlock.getEffectivePos(world, coord);
-        // Also update block and state references
-        state = world.getBlockState(coord);
-        block = state.getBlock();
 
         // Check if the block has already a TileEntity associated and is not a TileEntityCursedBlock
         TileEntity tileEntity = world.getTileEntity(coord);
         TileEntityCursedTrigger cursedTileEntity = null;
 
         // No TileEntity: create one and assign to this block
-        // TileEntityCursedBlock already exists: call initialize to overwrite effect
-        // Else: nothing we can do (then why ITriggeredDispersal has been implemented on such class?)
         if (tileEntity == null) {
             cursedTileEntity = new TileEntityCursedTrigger();
             cursedTileEntity.setPos(coord);
             world.setTileEntity(coord, cursedTileEntity);
             cursedTileEntity.initialize(modifiers, actionList);
             WitcheryUtils.spawnParticlesAt(modifiers.thrower, EnumParticleTypes.PORTAL, coord.getX(), coord.getY(), coord.getZ(), 1.0, 10);
-            Utils.logChat("Curse CREATED");
+
+
+        // TileEntityCursedBlock already exists: call initialize to overwrite effect
         } else if (tileEntity instanceof TileEntityCursedTrigger) {
             cursedTileEntity = (TileEntityCursedTrigger) tileEntity;
             cursedTileEntity.updateCurse(modifiers, actionList);
             WitcheryUtils.spawnParticlesAt(modifiers.thrower, EnumParticleTypes.PORTAL, coord.getX(), coord.getY(), coord.getZ(), 1.0, 10);
-            Utils.logChat("Curse UPDATED");
+
+        // The Block already implements a different TileEntity, but the TE implements ICursableTrigger
+        // (usually this is implemented by the Block class)
+        } else if (tileEntity instanceof IProxedCursedTrigger) {
+            IProxedCursedTrigger proxedTrigger = (IProxedCursedTrigger) tileEntity;
+            proxedTrigger.absorbBrew(modifiers, actionList);
+            //WitcheryUtils.spawnParticlesAt(modifiers.thrower, EnumParticleTypes.PORTAL, coord.getX(), coord.getY(), coord.getZ(), 1.0, 10);
         }
+
+        // Else: nothing we can do (then why ICursableTrigger has been implemented the
+        // block class, but IProxedCursableTrigger was not implemented on the TE?)
 
         // TileEntity that is not TileEntityCursedTrigger already exists
         if (cursedTileEntity == null) {
