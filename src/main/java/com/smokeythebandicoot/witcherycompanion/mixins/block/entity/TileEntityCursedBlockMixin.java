@@ -129,7 +129,6 @@ public abstract class TileEntityCursedBlockMixin extends WitcheryTileEntity {
         }
 
         cir.setReturnValue(this.count <= 0);
-        Utils.logChat(count);
     }
 
 }

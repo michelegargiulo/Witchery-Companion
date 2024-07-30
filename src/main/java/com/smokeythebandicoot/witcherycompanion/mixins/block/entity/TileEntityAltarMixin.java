@@ -2,23 +2,14 @@ package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 
 import com.smokeythebandicoot.witcherycompanion.api.AltarApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
-import com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes.AltarHandler;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.oredict.OreDictionary;
 import net.msrandom.witchery.block.entity.TileEntityAltar;
 import net.msrandom.witchery.block.entity.WitcheryTileEntity;
 import net.msrandom.witchery.common.IPowerSource;
 import net.msrandom.witchery.common.PowerSources;
-import net.msrandom.witchery.init.WitcheryBlocks;
-import net.msrandom.witchery.init.WitcheryWoodTypes;
 import net.msrandom.witchery.util.BlockUtil;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,8 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
