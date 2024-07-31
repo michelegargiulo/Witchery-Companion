@@ -21,6 +21,7 @@ jar in the resource packs folder.
   - **[Cursed Blocks]** Fix crash when using trigger dispersal. They still don't work, but they should not crash the game
   - **[Fetish]** Fix fetish blocks not having drops (Scarecrows, Trent Effiges, Vines)
   - **[Fetish]** Fix fetishes forgetting data on world reload, including the players they are bound to
+  - **[Kettle]** Fix throwing splash brews immediately after brewing them
   - **[Mandrake Crop]** Fix spawning mandrakes even when not fully mature
   - **[Poppet Shelf]** Fix upside-down poppet rendering
   - **[Stockade]** Fix weird rendering when player head is too close to the stockade

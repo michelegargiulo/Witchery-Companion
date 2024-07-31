@@ -10,6 +10,7 @@
     "block.BlockCircleGlyphMixin",
     "block.BlockGrassperMixin",
     "block.BlockHawthornMixin",
+    "block.BlockKettleMixin",
     "block.BlockMandrakeCropMixin",
     "block.BlockPlacedItemMixin",
     "block.BlockRemovedBlockMixin",
