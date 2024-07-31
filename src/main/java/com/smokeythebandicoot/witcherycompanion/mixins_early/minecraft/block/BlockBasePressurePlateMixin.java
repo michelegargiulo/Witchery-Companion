@@ -1,8 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.block;
 
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.utils.Utils;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBasePressurePlate;
 import net.minecraft.block.material.Material;
@@ -33,7 +32,7 @@ public abstract class BlockBasePressurePlateMixin extends Block implements ICurs
     @Inject(method = "onEntityCollision", remap = true, at = @At(value = "INVOKE", remap = true, shift = At.Shift.AFTER,
             target = "Lnet/minecraft/block/BlockBasePressurePlate;updateState(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/state/IBlockState;I)V"))
     private void triggerEffect(World worldIn, BlockPos pos, IBlockState state, Entity entity, CallbackInfo ci) {
-        if (ModConfig.PatchesConfiguration.BrewsTweaks.common_fixTriggeredDispersal) {
+        if (!TriggeredDispersalTweaks.enable_dispersalRework || !TriggeredDispersalTweaks.enable_pressurePlate) {
             this.onTrigger(worldIn, pos, entity);
         }
     }

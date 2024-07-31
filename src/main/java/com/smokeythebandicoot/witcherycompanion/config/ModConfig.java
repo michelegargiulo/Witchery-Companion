@@ -80,6 +80,10 @@ public class ModConfig {
 
         public static class BrewsTweaks {
 
+            @Config.Comment("Configuration for patches related to Triggered Dispersal")
+            @Config.Name("Triggered Dispersal Tweaks")
+            public static TriggeredDispersalTweaks triggeredDispersal;
+
             @Config.Comment("Needs to be enabled for some Brew Patches to work. Enabled for extended flexibility on when certain" +
                     "brews should be applied")
             @Config.Name("Common - Extend Flexibility")
@@ -90,20 +94,10 @@ public class ModConfig {
             @Config.Name("Common - Disable Strength Ceiling")
             public static boolean common_tweakDisableStrengthCeiling = true;
 
-            @Config.Comment("If true, Companion will replace the entire logic and inner workings of the Triggered " +
-                    "Dispersal. This will make this dispersal work in the first place and improves several aspects")
-            @Config.Name("Common - Fix Broken Trigger Dispersal")
-            public static boolean common_fixTriggeredDispersal = true;
-
             @Config.Comment("If true, fixes Cauldron rituals with Liquid Dispersal not having any effect. Also" +
                     " should improve performance and memory usage by 0.00000001%")
             @Config.Name("Liquid Dispersal - Fix Cauldron Ritual No Effect")
             public static boolean common_fixCauldronRitualLiquidDispersalNoEffect = true;
-
-            @Config.Comment("If true, fixes Nether Star ingredient increasing capacity but not disabling Power Ceiling, " +
-                    "severely limiting brews' potential")
-            @Config.Name("Common - Fix Nether Star Power Ceiling")
-            public static boolean common_fixNetherStarPowerScaling = true;
 
             @Config.Comment("If true, fixes the brew from breaking blocks even if the 'ignore blocks' modifier has been added")
             @Config.Name("Brew of Blast - Fix Terrain Damage")
@@ -133,6 +127,63 @@ public class ModConfig {
             @Config.Comment("Fixes some dispersal methods of the brew of raising causing a crash")
             @Config.Name("Brew of Raising - Fix Null Player Name Crash")
             public static boolean raising_fixNullPlayerName = true;
+
+            public static class TriggeredDispersalTweaks {
+
+                @Config.Comment("If true, Companion will replace the entire logic and inner workings of the Triggered " +
+                        "Dispersal. This will make this dispersal work in the first place and improves several aspects")
+                @Config.Name("Common - Enable Trigger Dispersal Rework")
+                public static boolean enable_dispersalRework = true;
+
+                @Config.Comment("If true, Doors will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Door")
+                public static boolean enable_door = true;
+
+                @Config.Comment("If true, Trap Doors will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Trap Door")
+                public static boolean enable_trapdoor = true;
+
+                @Config.Comment("If true, Levers will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Lever")
+                public static boolean enable_lever = true;
+
+                @Config.Comment("If true, Buttons will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Button")
+                public static boolean enable_button = true;
+
+                @Config.Comment("If true, Pressure Plates will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Pressure Plate")
+                public static boolean enable_pressurePlate = true;
+
+                @Config.Comment("If true, Fence Gates will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Fence Gate")
+                public static boolean enable_fenceGate = true;
+
+                @Config.Comment("If true, Tripwire Hooks will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Tripwire Hook")
+                public static boolean enable_tripwireHook = true;
+
+                @Config.Comment("If true, Chests will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Chest")
+                public static boolean enable_chest = true;
+
+                @Config.Comment("If true, Ender Chests will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Ender Chest")
+                public static boolean enable_enderChest = true;
+
+                @Config.Comment("If true, Crafting Tables will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Crafting Table")
+                public static boolean enable_craftingTable = true;
+
+                @Config.Comment("If true, Beds will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Bed")
+                public static boolean enable_beds = true;
+
+                @Config.Comment("If true, Grasspers will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Grassper")
+                public static boolean enable_grasspers = true;
+
+            }
         }
 
         public static class InfusionTweaks {
@@ -248,6 +299,10 @@ public class ModConfig {
             @Config.Comment("Fix crash when one of the coffin pieces is moved by a piston.")
             @Config.Name("Coffin - Fix Crash When Moved By Piston")
             public static boolean coffin_fixPistonMoveCrash = true;
+
+            @Config.Comment("Fix brews getting thrown immediately upon right-clicking the Kettle with a single empty bottle.")
+            @Config.Name("Kettle - Fix Brews Thrown Upon Creation")
+            public static boolean kettle_fixThrowBrewsUponCreation = true;
 
             @Config.Comment("Fix true, it will prevent Mandrake entities from spawning when harvesting non-mature mandrake crops.")
             @Config.Name("Mandrake Crop - Fix Drop Even When Not Mature")

@@ -27,14 +27,14 @@ public abstract class TriggeredDispersalMixin {
 
     @Inject(method = "onImpactSplashPotion", remap = false, cancellable = true, at = @At("HEAD"))
     public void onImpactSplashPotion(World world, BrewActionList actionList, RayTraceResult mop, ModifiersImpact modifiers, CallbackInfo ci) {
-        if (!ModConfig.PatchesConfiguration.BrewsTweaks.common_fixTriggeredDispersal) {
+        if (!ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks.enable_dispersalRework) {
             return;
         }
 
         // Retrieve BlockPos and BlockState
         // TODO: look around for triggerable blocks. Look for impact block, then the mop.sideHit, then blocks around a + shape
-        BlockPos coord = witchery_Patcher$getImpactCoords(mop, modifiers);
-        IBlockState state = world.getBlockState(coord);
+        BlockPos impactPos = witchery_Patcher$getImpactCoords(mop, modifiers);
+        IBlockState state = world.getBlockState(impactPos);
         Block block = state.getBlock();
 
         // Check if block is 'Triggerable'. If not, nothing we can do
@@ -45,33 +45,39 @@ public abstract class TriggeredDispersalMixin {
 
         // For Blocks that occupy multible block spaces (doors, beds, etc)
         ICursableTrigger triggeredBlock = (ICursableTrigger)block;
-        coord = triggeredBlock.getEffectivePos(world, coord);
+        BlockPos effectivePos = triggeredBlock.getEffectivePos(world, impactPos);
+
+        // Check if the effective position is valid. If not, it means that the target block
+        // is not in a valid state to receive the trigger (for example, un-connected tripwires). Return
+        if (effectivePos == null) {
+            ci.cancel();
+            return;
+        }
 
         // Check if the block has already a TileEntity associated and is not a TileEntityCursedBlock
-        TileEntity tileEntity = world.getTileEntity(coord);
+        TileEntity tileEntity = world.getTileEntity(effectivePos);
         TileEntityCursedTrigger cursedTileEntity = null;
 
         // No TileEntity: create one and assign to this block
         if (tileEntity == null) {
             cursedTileEntity = new TileEntityCursedTrigger();
-            cursedTileEntity.setPos(coord);
-            world.setTileEntity(coord, cursedTileEntity);
+            cursedTileEntity.setPos(effectivePos);
+            world.setTileEntity(effectivePos, cursedTileEntity);
             cursedTileEntity.initialize(modifiers, actionList);
-            WitcheryUtils.spawnParticlesAt(modifiers.thrower, EnumParticleTypes.PORTAL, coord.getX(), coord.getY(), coord.getZ(), 1.0, 10);
-
+            //witchery_Patcher$spawnParticles(world, cursedTileEntity.getPos(), 25);
 
         // TileEntityCursedBlock already exists: call initialize to overwrite effect
         } else if (tileEntity instanceof TileEntityCursedTrigger) {
             cursedTileEntity = (TileEntityCursedTrigger) tileEntity;
             cursedTileEntity.updateCurse(modifiers, actionList);
-            WitcheryUtils.spawnParticlesAt(modifiers.thrower, EnumParticleTypes.PORTAL, coord.getX(), coord.getY(), coord.getZ(), 1.0, 10);
+            //witchery_Patcher$spawnParticles(world, cursedTileEntity.getPos(), 25);
 
         // The Block already implements a different TileEntity, but the TE implements ICursableTrigger
         // (usually this is implemented by the Block class)
         } else if (tileEntity instanceof IProxedCursedTrigger) {
             IProxedCursedTrigger proxedTrigger = (IProxedCursedTrigger) tileEntity;
             proxedTrigger.absorbBrew(modifiers, actionList);
-            //WitcheryUtils.spawnParticlesAt(modifiers.thrower, EnumParticleTypes.PORTAL, coord.getX(), coord.getY(), coord.getZ(), 1.0, 10);
+            //witchery_Patcher$spawnParticles(world, tileEntity.getPos(), 25);
         }
 
         // Else: nothing we can do (then why ICursableTrigger has been implemented the
@@ -83,6 +89,7 @@ public abstract class TriggeredDispersalMixin {
             return;
         }
 
+        triggeredBlock.spawnParticles(world, impactPos, effectivePos);
         ci.cancel();
     }
 
@@ -105,4 +112,20 @@ public abstract class TriggeredDispersalMixin {
 
     }
 
+    /*
+    @Unique
+    private void witchery_Patcher$spawnParticles(World world, BlockPos pos, int count) {
+        if (world == null || pos == null) return;
+        for (int x = 0; x < count; x++) {
+            world.spawnParticle(EnumParticleTypes.PORTAL, false,
+                    pos.getX() + world.rand.nextGaussian() * 0.5,
+                    pos.getY() + world.rand.nextGaussian() * 0.5,
+                    pos.getZ() + world.rand.nextGaussian() * 0.5,
+                    1.0f + world.rand.nextGaussian() * 0.5,
+                    1.0f + world.rand.nextGaussian() * 0.5,
+                    1.0f + world.rand.nextGaussian() * 0.5
+                    );
+        }
+    }
+    */
 }

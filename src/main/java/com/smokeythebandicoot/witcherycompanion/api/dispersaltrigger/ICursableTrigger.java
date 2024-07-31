@@ -1,14 +1,11 @@
 package com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger;
 
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
-import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import javax.annotation.Nonnull;
 
 public interface ICursableTrigger {
 
@@ -20,6 +17,10 @@ public interface ICursableTrigger {
 
         // Retrieve effectivePos for the specific implementation (Block-specific)
         BlockPos effectivePos = this.getEffectivePos(world, pos);
+
+        // This should not return null here, but just in case
+        if (effectivePos == null)
+            return false;
 
         // Retrieve TE and perform checks
         TileEntity tile = world.getTileEntity(effectivePos);
@@ -53,10 +54,27 @@ public interface ICursableTrigger {
     }
 
     /** This method should return the position where the TileEntity is effectively placed/retrieved
-     * for blocks that occupy multiple block spaces (doors for example) */
-    @Nonnull
+     * for blocks that occupy multiple block spaces (doors for example).
+     * If this function returns null, no trigger will be created */
     default BlockPos getEffectivePos(World world, BlockPos pos) {
         return pos;
+    }
+
+    /** This method spawns particles at the specified position. Blocks can override to customize particle
+     * spawning. This is useful if the effectivePos is far away from impact pos, etc */
+    default void spawnParticles(World world, BlockPos impactPos, BlockPos effectivePos) {
+        if (world == null || effectivePos == null)
+            return;
+        for (int x = 0; x < 25; x++) {
+            world.spawnParticle(EnumParticleTypes.PORTAL, false,
+                    effectivePos.getX() + world.rand.nextGaussian() * 0.5,
+                    effectivePos.getY() + world.rand.nextGaussian() * 0.5 + 1,
+                    effectivePos.getZ() + world.rand.nextGaussian() * 0.5,
+                    1.0f + world.rand.nextGaussian() * 0.5,
+                    1.0f + world.rand.nextGaussian() * 0.5,
+                    1.0f + world.rand.nextGaussian() * 0.5
+            );
+        }
     }
 
 }

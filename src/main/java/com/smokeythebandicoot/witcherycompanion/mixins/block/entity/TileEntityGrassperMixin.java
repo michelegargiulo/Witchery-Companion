@@ -1,10 +1,11 @@
-package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.tileentity;
+package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 
+import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.IProxedCursedTrigger;
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.tileentity.TileEntityLockableLoot;
+import net.minecraft.tileentity.TileEntity;
+import net.msrandom.witchery.block.entity.TileEntityGrassper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,12 +13,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-/**
- Mixins:
- [Feature] Add Triggered Dispersal compat
- */
-@Mixin(TileEntityChest.class)
-public abstract class TileEntityChestMixin extends TileEntityLockableLoot implements IProxedCursedTrigger {
+@Mixin(TileEntityGrassper.class)
+public class TileEntityGrassperMixin extends TileEntity implements IProxedCursedTrigger {
 
     @Unique
     protected TileEntityCursedTrigger witchery_Patcher$innerTrigger = null;
@@ -55,4 +52,5 @@ public abstract class TileEntityChestMixin extends TileEntityLockableLoot implem
     private void injectInnerTriggerWrite(NBTTagCompound tag, CallbackInfoReturnable<NBTTagCompound> cir) {
         this.writeTriggerToNBT(tag);
     }
+
 }

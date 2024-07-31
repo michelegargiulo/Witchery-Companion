@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.block;
 
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BrewsTweaks;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -53,7 +53,7 @@ public abstract class WitcheryBlockButtonMixin extends BlockContainer implements
      * and instead refers to the ICursableTrigger interface to trigger curse effects */
     @Inject(method = "onBlockActivated", remap = true, cancellable = true, at = @At("HEAD"))
     private void injectOnActivate(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        if (BrewsTweaks.common_fixTriggeredDispersal) {
+        if (!TriggeredDispersalTweaks.enable_dispersalRework || !TriggeredDispersalTweaks.enable_button) {
             return;
         }
         if (!(Boolean)state.getValue(POWERED)) {
@@ -75,7 +75,7 @@ public abstract class WitcheryBlockButtonMixin extends BlockContainer implements
     /** This Mixin prevents any TileEntity from being created when the 'createTileEntity' function is executed */
     @Inject(method = "createNewTileEntity", remap = true, cancellable = true, at = @At("HEAD"))
     private void preventCreateNewTileEntity(World worldIn, int meta, CallbackInfoReturnable<TileEntity> cir) {
-        if (BrewsTweaks.common_fixTriggeredDispersal) {
+        if (!TriggeredDispersalTweaks.enable_dispersalRework || !TriggeredDispersalTweaks.enable_button) {
             cir.setReturnValue(null);
         }
     }
@@ -83,7 +83,7 @@ public abstract class WitcheryBlockButtonMixin extends BlockContainer implements
     /** This Mixin prevents any code in the 'replaceButton' function from being executed */
     @Inject(method = "replaceButton", remap = false, cancellable = true, at = @At("HEAD"))
     private void preventReplaceButton(World world, BlockPos pos, ModifiersImpact impactModifiers, BrewActionList actionList, CallbackInfo ci) {
-        if (BrewsTweaks.common_fixTriggeredDispersal) {
+        if (!TriggeredDispersalTweaks.enable_dispersalRework || !TriggeredDispersalTweaks.enable_button) {
             ci.cancel();
         }
     }

@@ -6,15 +6,19 @@
   "minVersion": "0.8",
   "mixins": [
     "minecraft.block.BlockBasePressurePlateMixin",
+    "minecraft.block.BlockBedMixin",
     "minecraft.block.BlockButtonMixin",
     "minecraft.block.BlockChestMixin",
     "minecraft.block.BlockDoorMixin",
     "minecraft.block.BlockFenceGateMixin",
     "minecraft.block.BlockLeverMixin",
     "minecraft.block.BlockTrapDoorMixin",
+    "minecraft.block.BlockTripWireHookMixin",
+    "minecraft.block.BlockTripWireMixin",
     "minecraft.block.BlockWorkbenchMixin",
     "minecraft.entity.ai.EntityAIOpenDoorMixin",
     "minecraft.entity.player.EntityPlayerMixin",
+    "minecraft.tileentity.TileEntityBedMixin",
     "minecraft.tileentity.TileEntityChestMixin"
   ],
   "server": [
