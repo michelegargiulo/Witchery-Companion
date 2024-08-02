@@ -845,6 +845,10 @@ public class ModConfig {
         @Config.Name("TOP Integration - Configuration")
         public static TopIntegration TOPIntegration;
 
+        @Config.Comment("Configuration related to Thaumcraft integration")
+        @Config.Name("Thaumcraft Integration - Configuration")
+        public static ThaumcraftIntegration ThaumcraftIntegrationConfig;
+
         public static class JerIntegration {
 
             @Config.Comment("Master switch for all JER integrations")
@@ -926,6 +930,14 @@ public class ModConfig {
                 // Integration is disabled
                 DISABLED,
             }
+
+        }
+
+        public static class ThaumcraftIntegration {
+
+            @Config.Comment("Master switch for all Thaumcraft integrations")
+            @Config.Name("Thaumcraft Integration - Enabled")
+            public static boolean enableThaumcraftIntegration = true;
 
         }
     }

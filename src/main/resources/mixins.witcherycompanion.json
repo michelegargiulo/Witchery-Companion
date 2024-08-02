@@ -63,6 +63,7 @@
     "extensions.VillagerExtendedDataMixin",
     "infusion.spirit.InfusedSpiritSentinelEffectMixin",
     "infusion.spirit.InfusedSpiritTwisterEffectMixin",
+    "integration.ThaumcraftIntegration_IntegrateThaumcraftMixin",
     "item.ItemChalkMixin",
     "item.ItemCreativeMedallionMixin",
     "item.ItemSeerStoneMixin",

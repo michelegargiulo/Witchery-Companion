@@ -135,6 +135,12 @@ dependencies {
     // iChunUtil
     compileOnly rfg.deobf('curse.maven:ichunutil-229060:2801262')
 
+    // Baubles
+    compileOnly rfg.deobf('curse.maven:baubles-227083:2518667')
+
+    // Thaumcraft
+    compileOnly rfg.deobf('curse.maven:thaumcraft-223628:2629023')
+
     // Crafttweaker
     compileOnly rfg.deobf('CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.684')
 
