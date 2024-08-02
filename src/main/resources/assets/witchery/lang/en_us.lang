@@ -19,6 +19,7 @@ description.mortal_coil=When this effect runs out, the victim dies
 description.overheating=The victim catches fire in hot biomes
 description.paralysed=The victim is unable to move
 description.poison_weapons=Applies a Poison effect to weapons
+description.queasy=The victim entity receives Nausea or Blindness when being affected by Longevity brew
 description.reflect_damage=Reflects a portion of the incoming damage to the attacker
 description.reflect_projectiles=Reflects arrows away from the victim
 description.reincarnate=Dead animals will reincarnate into other creatures
@@ -38,5 +39,6 @@ description.vine_wrapped=Increases fire damage taken as vines cover the victim's
 description.volatility=Chance to create an explosion when the victim is hit
 description.waking_nightmare=The victim is pursued by a Nightmare
 description.wolfsbane=Prevents a werewolf from shape shifting into or out of their forms
+description.worship=Gives player bonuses if they are being worshipped by Hobgoblins
 
 item.witchery.lingering_brew_bottle.name=Lingering Brew Bottle
