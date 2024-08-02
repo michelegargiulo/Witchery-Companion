@@ -31,7 +31,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(BlockTripWire.class)
 public abstract class BlockTripWireMixin extends Block implements ICursableTrigger {
 
-    @Shadow(remap = false) @Final
+    @Shadow(remap = true) @Final
     public static PropertyBool ATTACHED;
 
     private BlockTripWireMixin(Material materialIn) {

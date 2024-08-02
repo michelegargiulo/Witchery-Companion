@@ -29,8 +29,8 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(BlockBed.class)
 public abstract class BlockBedMixin extends BlockHorizontal implements ICursableTrigger {
 
-    @Shadow(remap = false) @Final
-    public static  PropertyEnum<BlockBed.EnumPartType> PART;
+    @Shadow(remap = true) @Final
+    public static PropertyEnum<BlockBed.EnumPartType> PART;
 
     private BlockBedMixin(Material materialIn) {
         super(materialIn);
