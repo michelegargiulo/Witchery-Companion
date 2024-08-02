@@ -32,9 +32,7 @@ public abstract class BlockLeverMixin extends Block implements ICursableTrigger 
 
     @Inject(method = "onBlockActivated", remap = true, at = @At(value = "RETURN", ordinal = 1))
     private void triggerOnFlipOnBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        if (TriggeredDispersalTweaks.enable_dispersalRework && TriggeredDispersalTweaks.enable_lever) {
-            this.onTrigger(worldIn, pos, playerIn);
-        }
+        this.onTrigger(worldIn, pos, playerIn);
     }
 
     /** This Mixin is responsible for destroying the TE when the block is broken */
@@ -47,4 +45,11 @@ public abstract class BlockLeverMixin extends Block implements ICursableTrigger 
     public boolean hasTileEntity(@Nonnull IBlockState state) {
         return true;
     }
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_lever;
+    }
+
 }

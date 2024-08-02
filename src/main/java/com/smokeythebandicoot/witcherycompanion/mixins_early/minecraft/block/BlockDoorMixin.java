@@ -36,8 +36,7 @@ public class BlockDoorMixin extends Block implements ICursableTrigger {
      * check for whether the door is made of Iron */
     @Inject(method = "onBlockActivated", remap = true, at = @At(value = "RETURN", ordinal = 2))
     private void triggerEffect(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        if (TriggeredDispersalTweaks.enable_door)
-            this.onTrigger(worldIn, pos, playerIn);
+        this.onTrigger(worldIn, pos, playerIn);
     }
 
     @Override
@@ -72,7 +71,7 @@ public class BlockDoorMixin extends Block implements ICursableTrigger {
 
     @Override
     public void spawnParticles(World world, BlockPos impactPos, BlockPos effectivePos) {
-        if (effectivePos == null || (!(world instanceof WorldServer)))
+        if (effectivePos == null || !isTriggerEnabled() || (!(world instanceof WorldServer)))
             return;
 
         WorldServer worldServer = (WorldServer)world;
@@ -85,5 +84,11 @@ public class BlockDoorMixin extends Block implements ICursableTrigger {
         worldServer.spawnParticle(EnumParticleTypes.REDSTONE, false,
                 otherDoorPiecePos.getX() + 0.5, otherDoorPiecePos.getY() + 0.5,  otherDoorPiecePos.getZ() + 0.5,
                 25, 0.5, 0.5, 0.5, 0.5);
+    }
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_door;
     }
 }

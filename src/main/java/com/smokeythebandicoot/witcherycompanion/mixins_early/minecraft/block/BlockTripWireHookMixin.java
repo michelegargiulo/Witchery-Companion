@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.block;
 
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTripWireHook;
@@ -110,7 +111,7 @@ public abstract class BlockTripWireHookMixin extends Block implements ICursableT
 
     @Override
     public void spawnParticles(World world, BlockPos impactPos, BlockPos effectivePos) {
-        if (effectivePos == null || (!(world instanceof WorldServer)))
+        if (effectivePos == null || !isTriggerEnabled() || (!(world instanceof WorldServer)))
             return;
         WorldServer worldServer = (WorldServer)world;
         worldServer.spawnParticle(EnumParticleTypes.REDSTONE, false,
@@ -142,7 +143,12 @@ public abstract class BlockTripWireHookMixin extends Block implements ICursableT
                 return;
             }
         }
+    }
 
 
+    @Override
+    public boolean isTriggerEnabled() {
+        return ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks.enable_dispersalRework &&
+                ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks.enable_tripwireHook;
     }
 }

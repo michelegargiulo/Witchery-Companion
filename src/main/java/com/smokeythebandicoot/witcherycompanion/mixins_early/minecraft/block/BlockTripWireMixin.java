@@ -82,16 +82,14 @@ public abstract class BlockTripWireMixin extends Block implements ICursableTrigg
     @Inject(method = "onEntityCollision", remap = true, at = @At(value = "INVOKE", remap = true, shift = At.Shift.AFTER,
             target = "Lnet/minecraft/block/BlockTripWire;updateState(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
     private void triggerOnEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity, CallbackInfo ci) {
-        if (state.getValue(ATTACHED) &&
-            TriggeredDispersalTweaks.enable_dispersalRework &&
-            TriggeredDispersalTweaks.enable_tripwireHook) {
+        if (state.getValue(ATTACHED)) {
             this.onTrigger(world, pos, entity);
         }
     }
 
     @Override
     public void spawnParticles(World world, BlockPos impactPos, BlockPos effectivePos) {
-        if (effectivePos == null || (!(world instanceof WorldServer)))
+        if (effectivePos == null || !isTriggerEnabled() || (!(world instanceof WorldServer)))
             return;
         WorldServer worldServer = (WorldServer)world;
         worldServer.spawnParticle(EnumParticleTypes.REDSTONE, false,
@@ -123,8 +121,12 @@ public abstract class BlockTripWireMixin extends Block implements ICursableTrigg
                 return;
             }
         }
+    }
 
-
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_tripwireHook;
     }
 
 }

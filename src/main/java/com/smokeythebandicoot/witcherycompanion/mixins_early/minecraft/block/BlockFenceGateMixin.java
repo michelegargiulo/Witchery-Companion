@@ -31,13 +31,17 @@ public class BlockFenceGateMixin extends BlockHorizontal implements ICursableTri
 
     @Inject(method = "onBlockActivated", remap = true, at = @At("TAIL"))
     private void triggerEffect(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        if (TriggeredDispersalTweaks.enable_dispersalRework && TriggeredDispersalTweaks.enable_fenceGate) {
-            this.onTrigger(worldIn, pos, playerIn);
-        }
+        this.onTrigger(worldIn, pos, playerIn);
     }
 
     @Override
     public boolean hasTileEntity(@Nonnull IBlockState state) {
         return true;
+    }
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_fenceGate;
     }
 }

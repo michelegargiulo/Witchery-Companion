@@ -34,16 +34,17 @@ public abstract class BlockChestMixin extends BlockContainer implements ICursabl
                                           EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ,
                                           CallbackInfoReturnable<Boolean> cir) {
 
-        if (!TriggeredDispersalTweaks.enable_dispersalRework ||
-                !TriggeredDispersalTweaks.enable_chest) {
-            return;
-        }
-
         TileEntity tile = worldIn.getTileEntity(pos);
         if (!(tile instanceof IProxedCursedTrigger))
             return;
 
         IProxedCursedTrigger proxedTrigger = (IProxedCursedTrigger) tile;
         proxedTrigger.onTrigger(playerIn);
+    }
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_chest;
     }
 }

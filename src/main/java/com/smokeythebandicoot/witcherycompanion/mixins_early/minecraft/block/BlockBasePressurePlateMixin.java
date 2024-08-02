@@ -32,9 +32,7 @@ public abstract class BlockBasePressurePlateMixin extends Block implements ICurs
     @Inject(method = "onEntityCollision", remap = true, at = @At(value = "INVOKE", remap = true, shift = At.Shift.AFTER,
             target = "Lnet/minecraft/block/BlockBasePressurePlate;updateState(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/state/IBlockState;I)V"))
     private void triggerEffect(World worldIn, BlockPos pos, IBlockState state, Entity entity, CallbackInfo ci) {
-        if (TriggeredDispersalTweaks.enable_dispersalRework && TriggeredDispersalTweaks.enable_pressurePlate) {
-            this.onTrigger(worldIn, pos, entity);
-        }
+        this.onTrigger(worldIn, pos, entity);
     }
 
     /** This Mixin is responsible for destroying the TE when the block is broken */
@@ -46,6 +44,12 @@ public abstract class BlockBasePressurePlateMixin extends Block implements ICurs
     @Override
     public boolean hasTileEntity(@Nonnull IBlockState state) {
         return true;
+    }
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_pressurePlate;
     }
 
 }

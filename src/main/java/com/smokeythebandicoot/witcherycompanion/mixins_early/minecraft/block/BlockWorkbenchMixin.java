@@ -31,9 +31,7 @@ public abstract class BlockWorkbenchMixin extends Block implements ICursableTrig
 
     @Inject(method = "onBlockActivated", remap = true, at = @At(value = "HEAD"))
     private void triggerOnFlipOnBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        if (!worldIn.isRemote &&
-            TriggeredDispersalTweaks.enable_dispersalRework &&
-            TriggeredDispersalTweaks.enable_craftingTable) {
+        if (!worldIn.isRemote) {
             this.onTrigger(worldIn, pos, playerIn);
         }
     }
@@ -41,5 +39,12 @@ public abstract class BlockWorkbenchMixin extends Block implements ICursableTrig
     @Override
     public boolean hasTileEntity(@Nonnull IBlockState state) {
         return true;
+    }
+
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_craftingTable;
     }
 }

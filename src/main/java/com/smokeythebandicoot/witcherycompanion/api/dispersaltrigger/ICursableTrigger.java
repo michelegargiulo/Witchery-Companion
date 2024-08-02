@@ -18,6 +18,8 @@ public interface ICursableTrigger {
      * the trigger run out of curses. Returns true if the effect has been applied */
     default boolean onTrigger(World world, BlockPos pos, Entity entity) {
 
+        if (!isTriggerEnabled()) return false;
+
         // Retrieve effectivePos for the specific implementation (Block-specific)
         BlockPos effectivePos = this.getEffectivePos(world, pos);
 
@@ -60,12 +62,14 @@ public interface ICursableTrigger {
      * for blocks that occupy multiple block spaces (doors for example).
      * If this function returns null, no trigger will be created */
     default BlockPos getEffectivePos(World world, BlockPos pos) {
+        if (!isTriggerEnabled()) return null;
         return pos;
     }
 
     /** This method spawns particles at the specified position. Blocks can override to customize particle
      * spawning. This is useful if the effectivePos is far away from impact pos, etc */
     default void spawnParticles(World world, BlockPos impactPos, BlockPos effectivePos) {
+        if (!isTriggerEnabled()) return;
         if (effectivePos == null || (!(world instanceof WorldServer)))
             return;
         WorldServer worldServer = (WorldServer)world;
@@ -74,4 +78,5 @@ public interface ICursableTrigger {
                 25, 0.5, 0.5, 0.5, 0.5);
     }
 
+    boolean isTriggerEnabled();
 }

@@ -33,9 +33,7 @@ public class BlockButtonMixin extends BlockDirectional implements ICursableTrigg
     @Inject(method = "onBlockActivated", remap = true, at = @At(value = "RETURN", ordinal = 1))
             //target = "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/util/EnumHand;Lnet/minecraft/util/EnumFacing;FFF"))
     private void triggerEffect(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        if (TriggeredDispersalTweaks.enable_dispersalRework && TriggeredDispersalTweaks.enable_button) {
-            this.onTrigger(worldIn, pos, playerIn);
-        }
+        this.onTrigger(worldIn, pos, playerIn);
     }
 
     /** This Mixin is responsible for destroying the TE when the block is broken */
@@ -48,4 +46,11 @@ public class BlockButtonMixin extends BlockDirectional implements ICursableTrigg
     public boolean hasTileEntity(@Nonnull IBlockState state) {
         return true;
     }
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_button;
+    }
+
 }

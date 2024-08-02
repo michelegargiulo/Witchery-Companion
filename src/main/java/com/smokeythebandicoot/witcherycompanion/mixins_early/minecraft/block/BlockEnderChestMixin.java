@@ -31,16 +31,17 @@ public abstract class BlockEnderChestMixin extends BlockContainer implements ICu
                                           EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ,
                                           CallbackInfoReturnable<Boolean> cir) {
 
-        if (!ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks.enable_dispersalRework ||
-                !ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks.enable_enderChest) {
-            return;
-        }
-
         TileEntity tile = worldIn.getTileEntity(pos);
         if (!(tile instanceof IProxedCursedTrigger))
             return;
 
         IProxedCursedTrigger proxedTrigger = (IProxedCursedTrigger) tile;
         proxedTrigger.onTrigger(playerIn);
+    }
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks.enable_dispersalRework &&
+                ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks.enable_enderChest;
     }
 }

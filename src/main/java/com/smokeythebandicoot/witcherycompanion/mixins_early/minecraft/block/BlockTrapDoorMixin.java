@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
  [Feature] Implement ICursableTrigger to attach Curse Trigger behaviour on Button activation
  */
 @Mixin(BlockTrapDoor.class)
-public class BlockTrapDoorMixin extends Block implements ICursableTrigger {
+public abstract class BlockTrapDoorMixin extends Block implements ICursableTrigger {
 
     private BlockTrapDoorMixin(Material materialIn) {
         super(materialIn);
@@ -31,13 +31,18 @@ public class BlockTrapDoorMixin extends Block implements ICursableTrigger {
 
     @Inject(method = "onBlockActivated", remap = true, at = @At(value = "RETURN", ordinal = 1))
     private void triggerEffect(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        if (TriggeredDispersalTweaks.enable_dispersalRework && TriggeredDispersalTweaks.enable_trapdoor) {
-            this.onTrigger(worldIn, pos, playerIn);
-        }
+        this.onTrigger(worldIn, pos, playerIn);
     }
 
     @Override
     public boolean hasTileEntity(@Nonnull IBlockState state) {
         return true;
     }
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_trapdoor;
+    }
+
 }

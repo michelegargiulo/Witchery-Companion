@@ -40,9 +40,7 @@ public abstract class BlockBedMixin extends BlockHorizontal implements ICursable
           target = "Lnet/minecraft/entity/player/EntityPlayer;trySleep(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/entity/player/EntityPlayer$SleepResult;"))
     private EntityPlayer.SleepResult triggerOnPlayerSleep(EntityPlayer instance, BlockPos bedLocation, Operation<EntityPlayer.SleepResult> original) {
         EntityPlayer.SleepResult result = original.call(instance, bedLocation);
-        if (result == EntityPlayer.SleepResult.OK &&
-            TriggeredDispersalTweaks.enable_dispersalRework &&
-            TriggeredDispersalTweaks.enable_beds) {
+        if (result == EntityPlayer.SleepResult.OK) {
             this.onTrigger(instance.world, bedLocation, instance);
         }
         return result;
@@ -62,7 +60,7 @@ public abstract class BlockBedMixin extends BlockHorizontal implements ICursable
 
     @Override
     public void spawnParticles(World world, BlockPos impactPos, BlockPos effectivePos) {
-        if (effectivePos == null || (!(world instanceof WorldServer)))
+        if (effectivePos == null || !isTriggerEnabled() || (!(world instanceof WorldServer)))
             return;
         WorldServer worldServer = (WorldServer)world;
         worldServer.spawnParticle(EnumParticleTypes.REDSTONE, false,
@@ -77,5 +75,11 @@ public abstract class BlockBedMixin extends BlockHorizontal implements ICursable
         worldServer.spawnParticle(EnumParticleTypes.REDSTONE, false,
                 otherPos.getX() + 0.5, otherPos.getY() + 0.5,  otherPos.getZ() + 0.5,
                 25, 0.5, 0.5, 0.5, 0.5);
+    }
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_beds;
     }
 }
