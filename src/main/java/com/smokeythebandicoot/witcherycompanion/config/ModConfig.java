@@ -843,7 +843,7 @@ public class ModConfig {
 
         @Config.Comment("Configuration related to The One Probe integration")
         @Config.Name("TOP Integration - Configuration")
-        public static TopIntegration TOPIntegration;
+        public static TopIntegration TOPIntegrationConfig;
 
         @Config.Comment("Configuration related to Thaumcraft integration")
         @Config.Name("Thaumcraft Integration - Configuration")

@@ -70,7 +70,7 @@ public abstract class RiteEffectMovingEarthMixin {
         // Spawn particles and play sounds
         if (stage.incrementAndGet() == 1) {
             world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.PLAYERS, 0.5F, 0.4F / (world.rand.nextFloat() * 0.4F + 0.8F));
-            WitcheryNetworkChannel.sendToAllAround(new PacketParticles((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, 0.5F, 1.0F, EnumParticleTypes.PORTAL), world, pos);
+            WitcheryNetworkChannel.sendToAllAround(new PacketParticles((double) pos.getX() + 0.5, pos.getY(), (double) pos.getZ() + 0.5, 0.5F, 1.0F, EnumParticleTypes.PORTAL), world, pos);
         }
 
         int radius = this.radius + ritual.covenSize * 2;
@@ -219,7 +219,7 @@ public abstract class RiteEffectMovingEarthMixin {
     private void witchery_Patcher$failRitual(World world, BlockPos pos) {
         if (ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_tweakFailIndicators) {
             world.playSound(null, pos, SoundEvents.BLOCK_SAND_STEP, SoundCategory.PLAYERS, 0.5F, 0.4F / (world.rand.nextFloat() * 0.4F + 0.8F));
-            WitcheryNetworkChannel.sendToAllAround(new PacketParticles((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, 0.5F, 1.0F, EnumParticleTypes.SMOKE_NORMAL), world, pos);
+            WitcheryNetworkChannel.sendToAllAround(new PacketParticles((double) pos.getX() + 0.5, pos.getY(), (double) pos.getZ() + 0.5, 0.5F, 1.0F, EnumParticleTypes.SMOKE_NORMAL), world, pos);
         }
     }
 }

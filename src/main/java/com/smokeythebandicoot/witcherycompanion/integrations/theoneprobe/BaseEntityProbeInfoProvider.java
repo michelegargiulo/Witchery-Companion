@@ -18,11 +18,11 @@ public abstract class BaseEntityProbeInfoProvider<E extends Entity>  implements 
 
     public abstract boolean isTarget(EntityPlayer entityPlayer, World world, Entity entity, IProbeHitEntityData iProbeEntityHitData);
 
-    public void addBasicInfo(E entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) { };
+    public void addBasicInfo(E entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) { }
 
-    public void addExtendedInfo(E entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) { };
+    public void addExtendedInfo(E entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) { }
 
-    public void addDebugInfo(E entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) { };
+    public void addDebugInfo(E entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) { }
 
     protected final boolean shouldAddBasic(ProbeMode probeMode) {
         return getProbeConfig() != TopIntegration.EProbeElementIntegrationConfig.DISABLED;

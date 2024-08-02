@@ -43,9 +43,7 @@ public class Utils {
             if (te instanceof TileEntityAltar)
                 altar = (TileEntityAltar)te;
 
-            StringBuilder sb = new StringBuilder();
-            sb.append(part.getName()).append(" -> ").append(altar == null ? "NULL" : altar.isValid());
-            result.add(sb.toString());
+            result.add(part.getName() + " -> " + (altar == null ? "NULL" : altar.isValid()));
         }
         return result;
     }

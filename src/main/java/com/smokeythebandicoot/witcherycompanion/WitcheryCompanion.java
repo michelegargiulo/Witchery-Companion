@@ -2,7 +2,6 @@ package com.smokeythebandicoot.witcherycompanion;
 
 import com.smokeybandicoot.witcherycompanion.Tags;
 import com.smokeythebandicoot.witcherycompanion.proxy.CommonProxy;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -10,12 +9,9 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
-import zone.rong.mixinbooter.IEarlyMixinLoader;
 import zone.rong.mixinbooter.ILateMixinLoader;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 

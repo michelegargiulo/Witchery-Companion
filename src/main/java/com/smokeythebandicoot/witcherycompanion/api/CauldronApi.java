@@ -13,7 +13,7 @@ public class CauldronApi {
     private static final HashSet<IBlockState> heatSourceBlockStates = new HashSet<>();
 
     // Block heat sources. In default Witchery, FIRE is the only heat source
-    private static HashSet<Block> heatSourceBlocks = new HashSet<>(
+    private static final HashSet<Block> heatSourceBlocks = new HashSet<>(
             Collections.singletonList(Blocks.FIRE));
 
 

@@ -40,10 +40,10 @@ public class ShapeShiftMixin {
     private EntityPlayer witchery_Patcher$prevPlayerOnTransform = null;
 
     @Unique
-    private Float witchery_Patcher$prevHpPercentOnDetransform = null;
+    private final Float witchery_Patcher$prevHpPercentOnDetransform = null;
 
     @Unique
-    private EntityPlayer witchery_Patcher$prevPlayerOnDetransform = null;
+    private final EntityPlayer witchery_Patcher$prevPlayerOnDetransform = null;
 
 
     /** Wraps around the sendPlayerAbilities() call and cancels it. The shape-shifting only changes the ability to fly,

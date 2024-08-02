@@ -22,11 +22,11 @@ public abstract class BaseBlockProbeInfoProvider<B extends Block, T extends Tile
 
     public abstract boolean isTarget(EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData);
 
-    public void addBasicInfo(B block, T tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) { };
+    public void addBasicInfo(B block, T tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) { }
 
-    public void addExtendedInfo(B block, T tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) { };
+    public void addExtendedInfo(B block, T tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) { }
 
-    public void addDebugInfo(B block, T tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) { };
+    public void addDebugInfo(B block, T tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) { }
 
     protected final boolean shouldAddBasic(ProbeMode probeMode) {
         return getProbeConfig() != TopIntegration.EProbeElementIntegrationConfig.DISABLED;

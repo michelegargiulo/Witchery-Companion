@@ -33,7 +33,7 @@ public abstract class EntityBansheeMixin extends EntitySummonedUndead {
             this.targetTasks.taskEntries.clear();
 
             // Add back the "revenge" task
-            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
+            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
 
             // Add the LivingBase target, but ignore other banshees
             this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(

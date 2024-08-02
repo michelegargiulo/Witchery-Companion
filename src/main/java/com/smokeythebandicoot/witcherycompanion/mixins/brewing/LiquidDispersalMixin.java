@@ -29,7 +29,7 @@ public abstract class LiquidDispersalMixin {
             int maxQuantity;
             int radius = maxQuantity = 16 + 8 * impactModifiers.extent.get();
             int halfQuantity = maxQuantity / 4;
-            int y = pos.getY() + world.rand.nextInt(20);;
+            int y = pos.getY() + world.rand.nextInt(20);
             int i = 0;
 
             for (int quantity = halfQuantity + world.rand.nextInt(halfQuantity); i < quantity; ++i) {

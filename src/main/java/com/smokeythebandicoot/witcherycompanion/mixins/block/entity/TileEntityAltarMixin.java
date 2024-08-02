@@ -63,7 +63,7 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     public abstract void invalidate();
 
     @Unique
-    private static HashMap<Block, AltarApi.AltarPowerSource> witchery_Patcher$powerObjectTable = null;
+    private static final HashMap<Block, AltarApi.AltarPowerSource> witchery_Patcher$powerObjectTable = null;
 
     /** Triggers a TileEntity sync when power is consumed, as Witchery only updated it when the power increases.
      * This causes a desync in what appears in the Altar GUI and the actual power levels */

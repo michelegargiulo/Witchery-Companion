@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.msrandom.witchery.init.WitcheryBlocks;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 
 public class ErosionBrewApi {
@@ -104,7 +105,7 @@ public class ErosionBrewApi {
     /** This function is private and is used as an helper to init Mining List */
     private static HashSet<IBlockState> initMiningList() {
         return new HashSet<>(
-                Arrays.asList(Blocks.OBSIDIAN.getDefaultState()));
+                Collections.singletonList(Blocks.OBSIDIAN.getDefaultState()));
     }
 
     /** This function is private and is used as an helper to init Destroy List */
