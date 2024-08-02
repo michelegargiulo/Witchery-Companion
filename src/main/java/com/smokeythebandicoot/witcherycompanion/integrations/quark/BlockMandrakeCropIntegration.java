@@ -1,7 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.quark;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.morph.MorphIntegration;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -40,43 +39,54 @@ public class BlockMandrakeCropIntegration {
         if (state.getBlock() != WitcheryBlocks.MANDRAKE_SEEDS) return;
         if (event.getWorld().isRemote) return;
 
-        for (ItemStack drop : drops) {
-            if (drop.getItem() == WitcheryIngredientItems.MANDRAKE_ROOT) {
-                checkSpawnMandrake(
-                        state,
-                        event.getWorld(),
-                        event.getHarvester(),
-                        event.getPos()
-                );
-                return;
-            }
+        // If mandrake has been spawned, remove the mandrake seeds and mandrake root drops
+        // as the Mandrake Entity can drop them instead
+        if (checkSpawnMandrake(
+                state,
+                event.getWorld(),
+                event.getHarvester(),
+                event.getPos()
+        )) {
+            removeCropDrops(drops);
         }
     }
 
-    public static void checkSpawnMandrake(IBlockState state, World world, EntityPlayer player, BlockPos pos) {
+    private static void removeCropDrops(List<ItemStack> drops) {
+        drops.removeIf(stack ->
+                stack.getItem() == WitcheryIngredientItems.MANDRAKE_ROOT ||
+                stack.getItem() == WitcheryBlocks.MANDRAKE_SEEDS.getCrop());
+    }
+
+    public static boolean checkSpawnMandrake(IBlockState state, World world, EntityPlayer player, BlockPos pos) {
         // Check if it is a Mandrake Crop
-        if (!(state.getBlock() instanceof BlockMandrakeCrop)) return;
+        if (!(state.getBlock() instanceof BlockMandrakeCrop))
+            return false;
 
         // Check if it is at max age
         BlockMandrakeCrop cropBlock = (BlockMandrakeCrop) state.getBlock();
-        if (!cropBlock.isMaxAge(state) || !ModConfig.PatchesConfiguration.BlockTweaks.mandrakeCrop_fixMandrakeSpawningNotMature) return;
+        if (!cropBlock.isMaxAge(state) || !ModConfig.PatchesConfiguration.BlockTweaks.mandrakeCrop_fixMandrakeSpawningNotMature)
+            return false;
 
         // Check if world is remote or difficulty is peaceful
-        if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return;
+        if (world.getDifficulty() == EnumDifficulty.PEACEFUL)
+            return false;
 
         // Depending on daytime and chance, spawn the mandrake
-        if ((!world.provider.isDaytime() || (world.rand.nextDouble() <= 0.9)) || (world.provider.isDaytime() || (world.rand.nextDouble() <= 0.1))) {
-            spawnMandrake(world, pos, cropBlock, player);
+        if (world.rand.nextDouble() < (world.provider.isDaytime() ? 0.1 : 0.9)) {
+            return spawnMandrake(world, pos, cropBlock, player);
         }
+
+        return false;
     }
 
-    public static void spawnMandrake(World world, BlockPos pos, BlockMandrakeCrop cropBlock, EntityPlayer player) {
+    public static boolean spawnMandrake(World world, BlockPos pos, BlockMandrakeCrop cropBlock, EntityPlayer player) {
         EntityMandrake mandrake = new EntityMandrake(world);
         mandrake.setLocationAndAngles((double)pos.getX() + 0.5, (double)pos.getY() + 0.05, (double)pos.getZ() + 0.5, 0.0F, 0.0F);
-        world.spawnEntity(mandrake);
+        boolean result = world.spawnEntity(mandrake);
         WitcheryUtils.addNewParticles(world, EnumParticleTypes.EXPLOSION_NORMAL, mandrake.posX, mandrake.posY, mandrake.posZ, 0.0, 0, 0.5, 0.0);
         player.addStat(StatList.getBlockStats(cropBlock));
         player.addExhaustion(0.005F);
+        return result;
     }
 
 }
