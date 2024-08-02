@@ -10,6 +10,7 @@
     "minecraft.block.BlockButtonMixin",
     "minecraft.block.BlockChestMixin",
     "minecraft.block.BlockDoorMixin",
+    "minecraft.block.BlockEnderChestMixin",
     "minecraft.block.BlockFenceGateMixin",
     "minecraft.block.BlockLeverMixin",
     "minecraft.block.BlockTrapDoorMixin",
@@ -19,7 +20,8 @@
     "minecraft.entity.ai.EntityAIOpenDoorMixin",
     "minecraft.entity.player.EntityPlayerMixin",
     "minecraft.tileentity.TileEntityBedMixin",
-    "minecraft.tileentity.TileEntityChestMixin"
+    "minecraft.tileentity.TileEntityChestMixin",
+    "minecraft.tileentity.TileEntityEnderChestMixin"
   ],
   "server": [
   ],

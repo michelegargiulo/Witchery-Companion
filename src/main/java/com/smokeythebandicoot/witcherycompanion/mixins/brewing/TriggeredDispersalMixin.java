@@ -77,6 +77,9 @@ public abstract class TriggeredDispersalMixin {
         } else if (tileEntity instanceof IProxedCursedTrigger) {
             IProxedCursedTrigger proxedTrigger = (IProxedCursedTrigger) tileEntity;
             proxedTrigger.absorbBrew(modifiers, actionList);
+            triggeredBlock.spawnParticles(world, impactPos, effectivePos);
+            ci.cancel();
+            return;
             //witchery_Patcher$spawnParticles(world, tileEntity.getPos(), 25);
         }
 

@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.block;
 
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
@@ -33,10 +34,11 @@ public class BlockDoorMixin extends Block implements ICursableTrigger {
      * check for whether the door is made of Iron */
     @Inject(method = "onBlockActivated", remap = true, at = @At(value = "RETURN", ordinal = 2))
     private void triggerEffect(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        this.onTrigger(worldIn, pos, playerIn);
+        if (TriggeredDispersalTweaks.enable_door)
+            this.onTrigger(worldIn, pos, playerIn);
     }
 
-    @Override @Nonnull
+    @Override
     public BlockPos getEffectivePos(World world, BlockPos pos) {
         // When potion hits lower half
         IBlockState state = world.getBlockState(pos);
@@ -56,7 +58,7 @@ public class BlockDoorMixin extends Block implements ICursableTrigger {
 
     /** This Mixin is responsible for destroying the TE when the block is broken */
     @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+    public void breakBlock(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
         super.breakBlock(worldIn, pos, state);
         worldIn.removeTileEntity(this.getEffectivePos(worldIn, pos));
     }

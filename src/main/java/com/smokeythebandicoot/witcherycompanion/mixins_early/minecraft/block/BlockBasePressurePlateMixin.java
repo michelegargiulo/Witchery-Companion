@@ -32,7 +32,7 @@ public abstract class BlockBasePressurePlateMixin extends Block implements ICurs
     @Inject(method = "onEntityCollision", remap = true, at = @At(value = "INVOKE", remap = true, shift = At.Shift.AFTER,
             target = "Lnet/minecraft/block/BlockBasePressurePlate;updateState(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/state/IBlockState;I)V"))
     private void triggerEffect(World worldIn, BlockPos pos, IBlockState state, Entity entity, CallbackInfo ci) {
-        if (!TriggeredDispersalTweaks.enable_dispersalRework || !TriggeredDispersalTweaks.enable_pressurePlate) {
+        if (TriggeredDispersalTweaks.enable_dispersalRework && TriggeredDispersalTweaks.enable_pressurePlate) {
             this.onTrigger(worldIn, pos, entity);
         }
     }

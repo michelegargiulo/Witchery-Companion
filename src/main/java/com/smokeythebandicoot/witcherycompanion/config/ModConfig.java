@@ -159,8 +159,8 @@ public class ModConfig {
                 @Config.Name("Triggered Dispersal - Fence Gate")
                 public static boolean enable_fenceGate = true;
 
-                @Config.Comment("If true, Tripwire Hooks will be able to be cursed with Triggered Dispersal brews")
-                @Config.Name("Triggered Dispersal - Tripwire Hook")
+                @Config.Comment("If true, Tripwires will be able to be cursed with Triggered Dispersal brews")
+                @Config.Name("Triggered Dispersal - Tripwire")
                 public static boolean enable_tripwireHook = true;
 
                 @Config.Comment("If true, Chests will be able to be cursed with Triggered Dispersal brews")

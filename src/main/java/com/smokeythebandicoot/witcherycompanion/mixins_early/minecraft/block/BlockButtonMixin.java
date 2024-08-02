@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.block;
 
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
-import com.smokeythebandicoot.witcherycompanion.utils.Utils;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks;
 import net.minecraft.block.BlockButton;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
@@ -33,7 +33,9 @@ public class BlockButtonMixin extends BlockDirectional implements ICursableTrigg
     @Inject(method = "onBlockActivated", remap = true, at = @At(value = "RETURN", ordinal = 1))
             //target = "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/util/EnumHand;Lnet/minecraft/util/EnumFacing;FFF"))
     private void triggerEffect(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        this.onTrigger(worldIn, pos, playerIn);
+        if (TriggeredDispersalTweaks.enable_dispersalRework && TriggeredDispersalTweaks.enable_button) {
+            this.onTrigger(worldIn, pos, playerIn);
+        }
     }
 
     /** This Mixin is responsible for destroying the TE when the block is broken */

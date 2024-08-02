@@ -1,9 +1,8 @@
 package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.block;
 
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFenceGate;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -32,7 +31,9 @@ public class BlockTrapDoorMixin extends Block implements ICursableTrigger {
 
     @Inject(method = "onBlockActivated", remap = true, at = @At(value = "RETURN", ordinal = 1))
     private void triggerEffect(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        this.onTrigger(worldIn, pos, playerIn);
+        if (TriggeredDispersalTweaks.enable_dispersalRework && TriggeredDispersalTweaks.enable_trapdoor) {
+            this.onTrigger(worldIn, pos, playerIn);
+        }
     }
 
     @Override

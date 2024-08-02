@@ -6,6 +6,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.msrandom.witchery.network.PacketParticles;
+import net.msrandom.witchery.network.WitcheryNetworkChannel;
 
 public interface ICursableTrigger {
 
@@ -63,18 +66,12 @@ public interface ICursableTrigger {
     /** This method spawns particles at the specified position. Blocks can override to customize particle
      * spawning. This is useful if the effectivePos is far away from impact pos, etc */
     default void spawnParticles(World world, BlockPos impactPos, BlockPos effectivePos) {
-        if (world == null || effectivePos == null)
+        if (effectivePos == null || (!(world instanceof WorldServer)))
             return;
-        for (int x = 0; x < 25; x++) {
-            world.spawnParticle(EnumParticleTypes.PORTAL, false,
-                    effectivePos.getX() + world.rand.nextGaussian() * 0.5,
-                    effectivePos.getY() + world.rand.nextGaussian() * 0.5 + 1,
-                    effectivePos.getZ() + world.rand.nextGaussian() * 0.5,
-                    1.0f + world.rand.nextGaussian() * 0.5,
-                    1.0f + world.rand.nextGaussian() * 0.5,
-                    1.0f + world.rand.nextGaussian() * 0.5
-            );
-        }
+        WorldServer worldServer = (WorldServer)world;
+        worldServer.spawnParticle(EnumParticleTypes.REDSTONE, false,
+                effectivePos.getX() + 0.5, effectivePos.getY() + 0.5,  effectivePos.getZ() + 0.5,
+                25, 0.5, 0.5, 0.5, 0.5);
     }
 
 }

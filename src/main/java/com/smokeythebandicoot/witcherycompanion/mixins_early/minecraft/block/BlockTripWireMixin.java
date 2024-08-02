@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.block;
 
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTripWire;
 import net.minecraft.block.BlockTripWireHook;
@@ -73,8 +74,11 @@ public abstract class BlockTripWireMixin extends Block implements ICursableTrigg
     @Inject(method = "onEntityCollision", remap = true, at = @At(value = "INVOKE", remap = true, shift = At.Shift.AFTER,
             target = "Lnet/minecraft/block/BlockTripWire;updateState(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
     private void triggerOnEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity, CallbackInfo ci) {
-        if (state.getValue(ATTACHED))
+        if (state.getValue(ATTACHED) &&
+            TriggeredDispersalTweaks.enable_dispersalRework &&
+            TriggeredDispersalTweaks.enable_tripwireHook) {
             this.onTrigger(world, pos, entity);
+        }
     }
 
     /*

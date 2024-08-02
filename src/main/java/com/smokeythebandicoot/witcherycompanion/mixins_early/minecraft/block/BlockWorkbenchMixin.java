@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.block;
 
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWorkbench;
 import net.minecraft.block.material.Material;
@@ -30,7 +31,9 @@ public abstract class BlockWorkbenchMixin extends Block implements ICursableTrig
 
     @Inject(method = "onBlockActivated", remap = true, at = @At(value = "HEAD"))
     private void triggerOnFlipOnBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        if (!worldIn.isRemote) {
+        if (!worldIn.isRemote &&
+            TriggeredDispersalTweaks.enable_dispersalRework &&
+            TriggeredDispersalTweaks.enable_craftingTable) {
             this.onTrigger(worldIn, pos, playerIn);
         }
     }

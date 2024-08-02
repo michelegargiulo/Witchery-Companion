@@ -2,9 +2,9 @@ package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.block;
 
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.IProxedCursedTrigger;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks;
-import net.minecraft.block.BlockChest;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.BlockEnderChest;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,24 +18,21 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-/**
- Mixins:
- [Feature] Add Triggered Dispersal compat
- */
-@Mixin(BlockChest.class)
-public abstract class BlockChestMixin extends BlockContainer implements ICursableTrigger {
+@Mixin(BlockEnderChest.class)
+public abstract class BlockEnderChestMixin extends BlockContainer implements ICursableTrigger {
 
-    private BlockChestMixin(Material materialIn) {
+    private BlockEnderChestMixin(Material materialIn) {
         super(materialIn);
     }
 
-    @Inject(method = "onBlockActivated", remap = true, at = @At(value = "RETURN", ordinal = 1))
+    @Inject(method = "onBlockActivated", remap = true, at = @At(value = "INVOKE", remap = true, shift = At.Shift.AFTER,
+        target = "Lnet/minecraft/entity/player/EntityPlayer;displayGUIChest(Lnet/minecraft/inventory/IInventory;)V"))
     private void injectTriggerOnChestOpen(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
                                           EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ,
                                           CallbackInfoReturnable<Boolean> cir) {
 
-        if (!TriggeredDispersalTweaks.enable_dispersalRework ||
-                !TriggeredDispersalTweaks.enable_chest) {
+        if (!ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks.enable_dispersalRework ||
+                !ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks.enable_enderChest) {
             return;
         }
 
