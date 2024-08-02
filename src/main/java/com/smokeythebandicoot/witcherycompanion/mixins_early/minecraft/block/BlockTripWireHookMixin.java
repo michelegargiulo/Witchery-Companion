@@ -10,8 +10,10 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -104,5 +106,43 @@ public abstract class BlockTripWireHookMixin extends Block implements ICursableT
             }
         }
         return null;
+    }
+
+    @Override
+    public void spawnParticles(World world, BlockPos impactPos, BlockPos effectivePos) {
+        if (effectivePos == null || (!(world instanceof WorldServer)))
+            return;
+        WorldServer worldServer = (WorldServer)world;
+        worldServer.spawnParticle(EnumParticleTypes.REDSTONE, false,
+                effectivePos.getX() + 0.5, effectivePos.getY() + 0.5,  effectivePos.getZ() + 0.5,
+                25, 0.5, 0.5, 0.5, 0.5);
+
+        IBlockState thisHookState = world.getBlockState(effectivePos);
+        if (thisHookState.getBlock() != Blocks.TRIPWIRE_HOOK) {
+            return;
+        }
+        EnumFacing thisHookFacing = thisHookState.getValue(BlockTripWireHook.FACING);
+
+        for (int i = 1; i < 43; i++) {
+            BlockPos currentPos = effectivePos.offset(thisHookFacing, i);
+            IBlockState currentState = world.getBlockState(currentPos);
+
+            // If wire, spawn less particles
+            if (currentState.getBlock() == Blocks.TRIPWIRE) {
+                worldServer.spawnParticle(EnumParticleTypes.REDSTONE, false,
+                        currentPos.getX() + 0.5, currentPos.getY() + 0.05,  currentPos.getZ() + 0.5,
+                        5, 0.5, 0.1, 0.5, 0.5);
+            }
+
+            // If hook, spawn same amount of particles as first hook
+            if (currentState.getBlock() == Blocks.TRIPWIRE_HOOK) {
+                worldServer.spawnParticle(EnumParticleTypes.REDSTONE, false,
+                        currentPos.getX() + 0.5, currentPos.getY() + 0.5,  currentPos.getZ() + 0.5,
+                        25, 0.5, 0.5, 0.5, 0.5);
+                return;
+            }
+        }
+
+
     }
 }

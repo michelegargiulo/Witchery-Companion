@@ -9,8 +9,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -68,4 +70,20 @@ public class BlockDoorMixin extends Block implements ICursableTrigger {
         return true;
     }
 
+    @Override
+    public void spawnParticles(World world, BlockPos impactPos, BlockPos effectivePos) {
+        if (effectivePos == null || (!(world instanceof WorldServer)))
+            return;
+
+        WorldServer worldServer = (WorldServer)world;
+
+        worldServer.spawnParticle(EnumParticleTypes.REDSTONE, false,
+                effectivePos.getX() + 0.5, effectivePos.getY() + 0.5,  effectivePos.getZ() + 0.5,
+                25, 0.5, 0.5, 0.5, 0.5);
+
+        BlockPos otherDoorPiecePos = effectivePos.up().toImmutable();
+        worldServer.spawnParticle(EnumParticleTypes.REDSTONE, false,
+                otherDoorPiecePos.getX() + 0.5, otherDoorPiecePos.getY() + 0.5,  otherDoorPiecePos.getZ() + 0.5,
+                25, 0.5, 0.5, 0.5, 0.5);
+    }
 }
