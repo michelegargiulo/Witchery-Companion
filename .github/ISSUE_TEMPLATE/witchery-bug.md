@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **Description**
-Insert a brief description of the issue. Ideally, this section should contain a snippet that describes the issue, as to make it immediately recognizable. This template should be used for issues regarding  Witchery: Resurrected, not for Witchery: Companion bugs! Please assure that this bug still happens when Witchery: Companion is not install, and the issue is somewhat related to Witchery: Resurrected
+Insert a brief description of the issue. Ideally, this section should contain a snippet that describes the issue, as to make it immediately recognizable. This template should be used for issues regarding  Witchery: Resurrected, not for Witchery: Companion bugs! Please assure that this bug still happens when Witchery: Companion is not installed, and the issue is somewhat related to Witchery: Resurrected
 
 **Context**
 ***Environment***
@@ -19,7 +19,7 @@ Insert a brief description of the issue. Ideally, this section should contain a 
 [ ] The issue is present when the following mods are installed: (please list the **minimum amount of mods required to reproduce the issue**. The less mods, the quicker the issue can be reproduced and solved)
 
 **Steps to Reproduce**
-The more detailed is provided, the easier will be to reproduce and analyze the issue, thus more chances to solve it
+The more details are provided, the easier will be to reproduce and analyze the issue, thus more chances to solve it
 1. 
 2. 
 3. 

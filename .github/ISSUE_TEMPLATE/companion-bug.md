@@ -2,7 +2,7 @@
 name: Companion Bug
 about: 'Report a Bug in Witchery: Companion'
 title: "[Companion Bug]"
-labels: ''
+labels: 'Scope: COMPANION'
 assignees: ''
 
 ---
@@ -19,7 +19,7 @@ Insert a brief description of the issue. Ideally, this section should contain a 
 [ ] The issue is present when the following mods are installed: (please list the **minimum amount of mods required to reproduce the issue**. The less mods, the quicker the issue can be reproduced and solved)
 
 **Steps to Reproduce**
-The more detailed is provided, the easier will be to reproduce and analyze the issue, thus more chances to solve it
+The more details are provided, the easier will be to reproduce and analyze the issue, thus more chances to solve it
 1. 
 2. 
 3. 
