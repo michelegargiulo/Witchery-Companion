@@ -87,4 +87,10 @@ public abstract class WitcheryBlockButtonMixin extends BlockContainer implements
             ci.cancel();
         }
     }
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_button;
+    }
 }
