@@ -21,7 +21,7 @@ public abstract class BlockAlderDoorMixin extends WitcheryBlockDoor {
     }
 
     @Inject(method = "hasTileEntity", remap = false, cancellable = true, at = @At("HEAD"))
-    private void alwaysHasTileentity(IBlockState state, CallbackInfoReturnable<Boolean> cir) {
+    private void alwaysHasTileEntity(IBlockState state, CallbackInfoReturnable<Boolean> cir) {
         cir.setReturnValue(true);
     }
 }

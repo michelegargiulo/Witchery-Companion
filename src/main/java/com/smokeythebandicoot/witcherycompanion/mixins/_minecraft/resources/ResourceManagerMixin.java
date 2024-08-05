@@ -87,7 +87,7 @@ public abstract class ResourceManagerMixin {
                                             for (Path fPath : Files.walk(rootPath).collect(Collectors.toList())) {
                                                 if (!dataPath.endsWith(".mcmeta") && pathPredicate.test(fPath.toString())) {
                                                     String locationPath = witchery_Patcher$trimPath(domain.getFileName().toString(), "/");
-                                                    witchery_Patcher$resourceSet.add(new ResourceLocation(locationPath, resourceType + "/" + rootPath.relativize(fPath.toAbsolutePath())));
+                                                    witchery_Patcher$resourceSet.add(new ResourceLocation(locationPath, resourceType + "/" + rootPath.relativize(fPath)));
                                                 }
                                             }
                                         }

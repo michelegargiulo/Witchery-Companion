@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.block;
 
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BrewsTweaks.TriggeredDispersalTweaks;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -23,5 +24,11 @@ public abstract class WitcheryBlockDoorMixin extends BlockDoor implements ICursa
     @Override
     public boolean hasTileEntity(@Nonnull IBlockState state) {
         return true;
+    }
+
+    @Override
+    public boolean isTriggerEnabled() {
+        return TriggeredDispersalTweaks.enable_dispersalRework &&
+                TriggeredDispersalTweaks.enable_door;
     }
 }
