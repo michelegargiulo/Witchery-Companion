@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ReflectionHelper {
@@ -30,10 +31,10 @@ public class ReflectionHelper {
                     WitcheryCompanion.logger.warn(String.format("Could not find method %s in class %s and its superclasses", methodName, clazz.getName()));
                     return null;
                 }
+                target.setAccessible(true);
                 methodCache.put(cm, target);
             }
 
-            target.setAccessible(true);
             return (T)target.invoke(obj, params);
 
         } catch (IllegalAccessException | InvocationTargetException | ClassCastException e) {
@@ -62,10 +63,10 @@ public class ReflectionHelper {
                     WitcheryCompanion.logger.warn(String.format("Could not find field %s in class %s and its superclasses", fieldName, clazz.getName()));
                     return null;
                 }
+                target.setAccessible(true);
                 fieldCache.put(cm, target);
             }
 
-            target.setAccessible(true);
             return (T)target.get(obj);
 
         } catch (IllegalAccessException e) {
@@ -89,10 +90,10 @@ public class ReflectionHelper {
                     WitcheryCompanion.logger.warn(String.format("Could not find field %s in class %s and its superclasses", fieldName, clazz.getName()));
                     return null;
                 }
+                target.setAccessible(true);
                 fieldCache.put(cm, target);
             }
 
-            target.setAccessible(true);
             return (T)target.get(null);
 
         } catch (IllegalAccessException e) {
@@ -116,10 +117,10 @@ public class ReflectionHelper {
                     WitcheryCompanion.logger.warn(String.format("Could not find field %s in class %s and its superclasses", fieldName, clazz.getName()));
                     return;
                 }
+                target.setAccessible(true);
                 fieldCache.put(cm, target);
             }
 
-            target.setAccessible(true);
             target.set(obj, setValue);
 
         } catch ( IllegalAccessException e) {
@@ -205,6 +206,19 @@ public class ReflectionHelper {
             this.aClass = aClass;
             this.methodName = methodName;
             this.paramTypes = paramTypes;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ClassProp classProp = (ClassProp) o;
+            return Objects.equals(aClass, classProp.aClass) && Objects.equals(methodName, classProp.methodName) && Objects.deepEquals(paramTypes, classProp.paramTypes);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(aClass, methodName, Arrays.hashCode(paramTypes));
         }
     }
 
