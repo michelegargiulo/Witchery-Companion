@@ -44,11 +44,6 @@ public class ResizingUtilsMixin {
 
         // If field retrieval was successful, proceed
         EntitySizeInfo sizeInfo = new EntitySizeInfo(player);
-        ReflectionHelper.setField(player, "witchery_Patcher$resizeScaleWidth", false, targetWidth / sizeInfo.defaultWidth);
-        ReflectionHelper.setField(player, "witchery_Patcher$resizeScaleHeight", false, targetHeight / sizeInfo.defaultHeight);
-
-        Utils.logChat("TARGET" + targetHeight);
-        Utils.logChat("DEFAULT" + sizeInfo.defaultHeight);
         player.eyeHeight = player.getDefaultEyeHeight() * (targetHeight / sizeInfo.defaultHeight);
 
         // Since the potion is applied to a player, no need to check

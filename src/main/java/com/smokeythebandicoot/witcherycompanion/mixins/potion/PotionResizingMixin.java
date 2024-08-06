@@ -1,6 +1,8 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.potion;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.PotionTweaks;
+import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
+import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -54,26 +56,41 @@ public abstract class PotionResizingMixin {
             return;
         }
 
-        float reductionFactor = 0.03F * (float)(event.getEntity().world.isRemote ? 1 : 20);
+        float reductionFactor = 0.03F * (float)(entity.world.isRemote ? 1 : 20);
         if (world.isRemote || entity.ticksExisted % 20 == 0) {
+
             EntitySizeInfo sizeInfo = new EntitySizeInfo(entity);
-            float scale = getScaleFactor(amplifier);
-            float requiredHeight = sizeInfo.defaultHeight * scale;
-            float requiredWidth = sizeInfo.defaultWidth * scale;
-            float currentHeight = event.getEntityLiving().height;
-            if (requiredHeight != currentHeight) {
-                if (entity instanceof EntityPlayer) {
-                    EntityPlayer player = (EntityPlayer)entity;
-                    if (!world.isRemote) {
-                        player.eyeHeight = currentHeight * 0.92F;
+            float targetScale = getScaleFactor(amplifier);
+            //entity.stepHeight = Math.max(sizeInfo.stepSize * targetScale, 0.5f);
+            //Utils.logChat(entity.stepHeight);
+
+            if (entity instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer)entity;
+                Float currentScale = ReflectionHelper.<Float>getField(player, "witchery_Patcher$currentResizingScale", false);
+                if (currentScale == null) return;
+                // Current player height should be defaultHeight * currentScale;
+                // Update current scale, then update player size
+                if (currentScale != targetScale) {
+                    if (Math.abs(currentScale - targetScale) < reductionFactor) {
+                        currentScale = targetScale;
+                    } else if (currentScale > targetScale) {
+                        currentScale -= reductionFactor;
+                    } else {
+                        currentScale += reductionFactor;
                     }
                 }
+                ReflectionHelper.setField(player, "witchery_Patcher$currentResizingScale", false, currentScale);
 
-                entity.stepHeight = scale < 1.0F ? 0.0F : scale - 1.0F;
-                if (scale < 1.0F) {
-                    ResizingUtils.setSize(entity, Math.max(entity.width - reductionFactor, requiredWidth), Math.max(currentHeight - reductionFactor, requiredHeight));
-                } else {
-                    ResizingUtils.setSize(entity, Math.min(entity.width + reductionFactor, requiredWidth), Math.min(currentHeight + reductionFactor, requiredHeight));
+            } else {
+                float requiredHeight = sizeInfo.defaultHeight * targetScale;
+                float requiredWidth = sizeInfo.defaultWidth * targetScale;
+                float currentHeight = event.getEntityLiving().height;
+                if (requiredHeight != currentHeight) {
+                    if (targetScale < 1.0F) {
+                        ResizingUtils.setSize(entity, Math.max(entity.width - reductionFactor, requiredWidth), Math.max(currentHeight - reductionFactor, requiredHeight));
+                    } else {
+                        ResizingUtils.setSize(entity, Math.min(entity.width + reductionFactor, requiredWidth), Math.min(currentHeight + reductionFactor, requiredHeight));
+                    }
                 }
             }
         }

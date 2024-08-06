@@ -8,7 +8,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Loader;
+import net.msrandom.witchery.init.WitcheryPotionEffects;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -22,10 +25,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EntityPlayerMixin extends EntityLivingBase {
 
     @Unique
-    public float witchery_Patcher$resizeScaleWidth = 1.0f;
+    public float witchery_Patcher$currentResizingScale = 1.0f;
 
-    @Unique
-    public float witchery_Patcher$resizeScaleHeight = 1.0f;
+    @Shadow(remap = false)
+    public float eyeHeight;
 
 
     private EntityPlayerMixin(World worldIn) {
@@ -34,7 +37,10 @@ public abstract class EntityPlayerMixin extends EntityLivingBase {
 
     @Inject(method = "updateSize", remap = true, cancellable = true, at = @At(value = "HEAD"))
     private void injectBeforeWitcheryTransformer(CallbackInfo ci) {
-        if (!ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers) {
+        // If Aqua Acrobatics mod is loaded, then do not perform this. AA compat
+        // is handled on the AA side
+        if (!ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers ||
+                Loader.isModLoaded("aquaacrobatics")) {
             return;
         }
 
@@ -55,8 +61,15 @@ public abstract class EntityPlayerMixin extends EntityLivingBase {
             height = 1.8F;
         }
 
-        width *= witchery_Patcher$resizeScaleWidth;
-        height *= witchery_Patcher$resizeScaleHeight;
+        // Include this so that when effect wears off the player is forced into
+        // it's original size
+        if (this.isPotionActive(WitcheryPotionEffects.RESIZING)) {
+            width *= witchery_Patcher$currentResizingScale;
+            height *= witchery_Patcher$currentResizingScale;
+        } else {
+            witchery_Patcher$currentResizingScale = 1.0f;
+        }
+        this.eyeHeight = height * 0.92f;
 
         if (width != this.width || height != this.height) {
             AxisAlignedBB axisalignedbb = this.getEntityBoundingBox();
@@ -67,8 +80,8 @@ public abstract class EntityPlayerMixin extends EntityLivingBase {
             }
         }
 
-        net.minecraftforge.fml.common.FMLCommonHandler.instance().onPlayerPostTick((EntityPlayer)(Object)this);
         ci.cancel();
+        net.minecraftforge.fml.common.FMLCommonHandler.instance().onPlayerPostTick((EntityPlayer)(Object)this);
     }
 
 
