@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 
-import com.smokeythebandicoot.witcherycompanion.api.AltarApi;
+import com.smokeythebandicoot.witcherycompanion.api.altar.AltarApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

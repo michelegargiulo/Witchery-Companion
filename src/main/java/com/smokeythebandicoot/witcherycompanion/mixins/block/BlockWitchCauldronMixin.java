@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.block;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.api.cauldron.IBlockWitchCauldronAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -34,7 +35,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  [Tweak] Tweak to reduce bottle size to 250 (is only applied to water handling, as brews have custom amounts)
  */
 @Mixin(value = BlockWitchCauldron.class)
-public abstract class BlockWitchCauldronMixin {
+public abstract class BlockWitchCauldronMixin implements IBlockWitchCauldronAccessor {
 
     @Unique
     BrewActionList witchery_Patcher$preservedActions = null;

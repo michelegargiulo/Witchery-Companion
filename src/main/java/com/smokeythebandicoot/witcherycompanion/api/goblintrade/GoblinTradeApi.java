@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.api;
+package com.smokeythebandicoot.witcherycompanion.api.goblintrade;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import net.minecraft.init.Items;

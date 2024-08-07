@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.potion;
 
-import com.smokeythebandicoot.witcherycompanion.api.player.IPlayerResizingApi;
+import com.smokeythebandicoot.witcherycompanion.api.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.PotionTweaks;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -60,14 +60,11 @@ public abstract class PotionResizingMixin {
 
             EntitySizeInfo sizeInfo = new EntitySizeInfo(entity);
             float targetScale = getScaleFactor(amplifier);
-            //entity.stepHeight = Math.max(sizeInfo.stepSize * targetScale, 0.5f);
-            //Utils.logChat(entity.stepHeight);
 
             if (entity instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer)entity;
-                IPlayerResizingApi playerResizeInfo = (IPlayerResizingApi) player;
-                // Float currentScale = ReflectionHelper.<Float>getField(player, "witchery_Patcher$currentResizingScale", false);
-                float currentScale = playerResizeInfo.getCurrentResizingScale();
+                IEntityPlayerAccessor playerResizeInfo = (IEntityPlayerAccessor) player;
+                float currentScale = playerResizeInfo.accessor_getCurrentResizingScale();
                 // Current player height should be defaultHeight * currentScale;
                 // Update current scale, then update player size
                 if (currentScale != targetScale) {
@@ -79,8 +76,7 @@ public abstract class PotionResizingMixin {
                         currentScale += reductionFactor;
                     }
                 }
-                playerResizeInfo.setCurrentResizingScale(currentScale);
-                // ReflectionHelper.setField(player, "witchery_Patcher$currentResizingScale", false, currentScale);
+                playerResizeInfo.accessor_setCurrentResizingScale(currentScale);
 
             } else {
                 float requiredHeight = sizeInfo.defaultHeight * targetScale;

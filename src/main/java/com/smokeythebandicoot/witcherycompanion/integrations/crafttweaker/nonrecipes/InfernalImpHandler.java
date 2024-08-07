@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes;
 
-import com.smokeythebandicoot.witcherycompanion.api.InfernalImpApi;
+import com.smokeythebandicoot.witcherycompanion.api.infernalimp.InfernalImpApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;

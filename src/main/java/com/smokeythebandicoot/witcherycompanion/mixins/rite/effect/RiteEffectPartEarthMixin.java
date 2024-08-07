@@ -2,18 +2,14 @@ package com.smokeythebandicoot.witcherycompanion.mixins.rite.effect;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.ErosionBrewApi;
+import com.smokeythebandicoot.witcherycompanion.api.erosionbrew.ErosionBrewApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.RitesTweaks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.msrandom.witchery.rite.effect.RiteEffect;
 import net.msrandom.witchery.rite.effect.RiteEffectPartEarth;
-import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  Mixins:

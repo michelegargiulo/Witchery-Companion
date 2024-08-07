@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes;
 
 
-import com.smokeythebandicoot.witcherycompanion.api.BarkBeltApi;
+import com.smokeythebandicoot.witcherycompanion.api.barkbelt.BarkBeltApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;

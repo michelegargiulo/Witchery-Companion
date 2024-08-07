@@ -305,6 +305,11 @@ public class ModConfig {
             @Config.Name("Coffin - Fix Crash When Moved By Piston")
             public static boolean coffin_fixPistonMoveCrash = true;
 
+            @Config.Comment("If true, enables Crafttweaker integration for Kettle. Defaults to true, " +
+                    "as if enabled and not used does not alter Witchery behaviour")
+            @Config.Name("Kettle - Tweak Enable Crafttweaker Integration")
+            public static boolean kettle_tweakCustomHeatSources = true;
+
             @Config.Comment("Fix brews getting thrown immediately upon right-clicking the Kettle with a single empty bottle.")
             @Config.Name("Kettle - Fix Brews Thrown Upon Creation")
             public static boolean kettle_fixThrowBrewsUponCreation = true;
@@ -909,6 +914,10 @@ public class ModConfig {
             @Config.Comment("If true, enables TOP integration for Witch's Cauldron")
             @Config.Name("TOP Integration - Witch's Cauldron")
             public static EProbeElementIntegrationConfig cauldron = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Kettle")
+            @Config.Name("TOP Integration - Kettle")
+            public static EProbeElementIntegrationConfig kettle = EProbeElementIntegrationConfig.DEFAULT;
 
             @Config.Comment("If true, enables TOP integration for Grassper")
             @Config.Name("TOP Integration - Grassper")

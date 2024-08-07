@@ -28,6 +28,7 @@
     "block.entity.TileEntityCursedBlockMixin",
     "block.entity.TileEntityFetishMixin",
     "block.entity.TileEntityGrassperMixin",
+    "block.entity.TileEntityKettleMixin",
     "block.entity.TileEntityPlacedItemMixin",
     "block.entity.TileEntityPoppetShelfMixin",
     "brewing.LiquidDispersalMixin",

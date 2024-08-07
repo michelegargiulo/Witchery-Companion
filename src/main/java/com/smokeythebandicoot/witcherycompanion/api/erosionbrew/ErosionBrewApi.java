@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.api;
+package com.smokeythebandicoot.witcherycompanion.api.erosionbrew;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.block.state.IBlockState;

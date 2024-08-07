@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.api;
+package com.smokeythebandicoot.witcherycompanion.api.infernalimp;
 
 
 import net.minecraft.block.Block;

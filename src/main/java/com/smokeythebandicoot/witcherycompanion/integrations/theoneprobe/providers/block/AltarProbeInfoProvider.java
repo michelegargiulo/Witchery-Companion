@@ -1,9 +1,9 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
+import com.smokeythebandicoot.witcherycompanion.api.altar.IBlockAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
-import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.ProbeMode;
@@ -12,18 +12,17 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.msrandom.witchery.block.BlockAltar;
 import net.msrandom.witchery.block.entity.TileEntityAltar;
 
-public class AltarBlockProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockAltar, TileEntityAltar> {
+public class AltarProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockAltar, TileEntityAltar> {
 
-    private AltarBlockProbeInfoProvider() { }
-    private static AltarBlockProbeInfoProvider INSTANCE = null;
-    public static AltarBlockProbeInfoProvider getInstance() {
+    private AltarProbeInfoProvider() { }
+    private static AltarProbeInfoProvider INSTANCE = null;
+    public static AltarProbeInfoProvider getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new AltarBlockProbeInfoProvider();
+            INSTANCE = new AltarProbeInfoProvider();
         }
         return INSTANCE;
     }
@@ -62,17 +61,17 @@ public class AltarBlockProbeInfoProvider extends BaseBlockProbeInfoProvider<Bloc
 
     @Override
     public void addDebugInfo(BlockAltar block, TileEntityAltar tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
-        TOPHelper.addText(iProbeInfo, "Is Core: ", String.valueOf(tile.isValid()), TextFormatting.RED);
+        TOPHelper.addText(iProbeInfo, "Is Core", String.valueOf(tile.isValid()), TextFormatting.RED);
         if (!tile.isValid()) {
             TileEntityAltar coreAltar = findCoreAltar(world, iProbeHitData.getPos(), block);
             if (coreAltar == null) return;
-            TOPHelper.addText(iProbeInfo, "Core Pos: ", String.valueOf(coreAltar.getLocation()), TextFormatting.GOLD);
+            TOPHelper.addText(iProbeInfo, "Core Pos", String.valueOf(coreAltar.getLocation()), TextFormatting.GOLD);
         }
     }
 
     private TileEntityAltar findCoreAltar(World world, BlockPos pos, BlockAltar altarBlock) {
-        BlockPos corePos = ReflectionHelper.invokeMethod(altarBlock, "getCore",
-                new Class<?>[]{IBlockAccess.class, BlockPos.class}, false, world, pos);
+        IBlockAltarAccessor altarAccessor = (IBlockAltarAccessor)(Object)altarBlock;
+        BlockPos corePos = altarAccessor.accessor_getCore(world, pos);
         if (corePos == null) return null;
         TileEntity te = world.getTileEntity(corePos);
         if (!(te instanceof TileEntityAltar)) return null;

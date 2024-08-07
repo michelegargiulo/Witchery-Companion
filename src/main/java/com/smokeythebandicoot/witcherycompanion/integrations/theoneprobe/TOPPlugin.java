@@ -1,9 +1,10 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
-import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block.AltarBlockProbeInfoProvider;
-import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block.CauldronBlockProbeInfoProvider;
+import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block.AltarProbeInfoProvider;
+import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block.CauldronProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block.GrassperProbeInfoProvider;
+import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block.KettleProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.entity.HobgoblinProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.entity.ImpProbeInfoProvider;
 import mcjty.theoneprobe.api.ITheOneProbe;
@@ -26,13 +27,16 @@ public class TOPPlugin implements Function<ITheOneProbe, Void> {
 
                 // ---------- BLOCKS ---------- //
                 // Altar
-                probe.registerProvider(AltarBlockProbeInfoProvider.getInstance());
+                probe.registerProvider(AltarProbeInfoProvider.getInstance());
 
                 // Cauldron
-                probe.registerProvider(CauldronBlockProbeInfoProvider.getInstance());
+                probe.registerProvider(CauldronProbeInfoProvider.getInstance());
 
                 // Grassper
                 probe.registerProvider(GrassperProbeInfoProvider.getInstance());
+
+                // Kettle
+                probe.registerProvider(KettleProbeInfoProvider.getInstance());
 
                 // ---------- ENTITIES ---------- //
                 // Hobgoblin

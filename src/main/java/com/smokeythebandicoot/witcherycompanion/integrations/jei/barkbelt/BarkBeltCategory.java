@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.jei.barkbelt;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.BarkBeltApi;
+import com.smokeythebandicoot.witcherycompanion.api.barkbelt.BarkBeltApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeCategory;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;

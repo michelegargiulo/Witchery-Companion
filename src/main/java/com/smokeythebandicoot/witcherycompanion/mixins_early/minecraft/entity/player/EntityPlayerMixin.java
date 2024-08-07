@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.entity.player;
 
-import com.smokeythebandicoot.witcherycompanion.api.player.IPlayerResizingApi;
+import com.smokeythebandicoot.witcherycompanion.api.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     if AA is installed. AA compat is added in other ways
  */
 @Mixin(value = EntityPlayer.class, priority = 1001)
-public abstract class EntityPlayerMixin extends EntityLivingBase implements IPlayerResizingApi {
+public abstract class EntityPlayerMixin extends EntityLivingBase implements IEntityPlayerAccessor {
 
     @Unique
     public float witchery_Patcher$currentResizingScale = 1.0f;
@@ -85,12 +85,12 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IPla
     }
 
     @Override
-    public float getCurrentResizingScale() {
+    public float accessor_getCurrentResizingScale() {
         return witchery_Patcher$currentResizingScale;
     }
 
     @Override
-    public void setCurrentResizingScale(float scale) {
+    public void accessor_setCurrentResizingScale(float scale) {
         this.witchery_Patcher$currentResizingScale = scale;
     }
 

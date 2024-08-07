@@ -2,8 +2,9 @@ package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.api.cauldron.ITileEntityCauldronAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
-import com.smokeythebandicoot.witcherycompanion.api.CauldronApi;
+import com.smokeythebandicoot.witcherycompanion.api.cauldron.CauldronApi;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -16,27 +17,32 @@ import net.msrandom.witchery.brewing.CauldronBrewData;
 import net.msrandom.witchery.init.WitcheryFluids;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  Mixins:
- [Integration] Crafttweaker integration to add new Heat Sources to the Witch's Cauldron
+ [Integration] Crafttweaker integration for Cauldron (heat sources)
  [Bugfix] Fix exploit when right-clicking an empty bucket on an empty cauldron, producing a water bucket
  */
 @Mixin(value = TileEntityCauldron.class)
-public abstract class TileEntityCauldronMixin {
-
+public abstract class TileEntityCauldronMixin implements ITileEntityCauldronAccessor {
 
     @Shadow(remap = false)
     private CauldronBrewData brewData;
 
     @Shadow(remap = false)
-    private int fluid;
+    public abstract int getLiquidQuantity();
 
     @Shadow(remap = false)
-    public abstract int getLiquidQuantity();
+    protected abstract float getNeededPower(int currentPower, AtomicInteger risk);
+
+    @Unique
+    private float witchery_Patcher$currentPowerNeeded = -1.0f;
 
     /** Since Witchery has hardcoded check to if the block below is FIRE, we will use this
      * as the "true" return value for the method. Anything else is considered "false" */
@@ -64,6 +70,19 @@ public abstract class TileEntityCauldronMixin {
             }
             cir.setReturnValue(new IFluidTankProperties[]{new FluidTankProperties(fluidStack, 3000)});
         }
+    }
+
+    @WrapOperation(method = "update", remap = true, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/block/entity/TileEntityCauldron;getNeededPower(ILjava/util/concurrent/atomic/AtomicInteger;)F"))
+    private float saveCurrentPowerNeeded(TileEntityCauldron instance, int currentPower, AtomicInteger risk, Operation<Float> original) {
+        witchery_Patcher$currentPowerNeeded = original.call(instance, currentPower, risk);
+        return witchery_Patcher$currentPowerNeeded;
+    }
+
+    /** Accessor for 'getNeededPower'. Used by The One Probe */
+    @Override
+    public float accessor_getNeededPower() {
+        return witchery_Patcher$currentPowerNeeded;
     }
 
 }
