@@ -188,6 +188,11 @@ public class ModConfig {
 
         public static class InfusionTweaks {
 
+            @Config.Comment("Fixes doors having different hinge position and facing on transformation")
+            @Config.Name("Colloportus Symbol Effect - Fix Preserve Door Properties")
+            @Config.RequiresMcRestart
+            public static boolean colloportus_fixPreserveDoorProperties = true;
+
             @Config.Comment("Fix Soul Infusions progress reset when player dies")
             @Config.Name("Soul Brews - Fix Persistency After Death")
             @Config.RequiresMcRestart
