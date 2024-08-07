@@ -1,8 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.potion;
 
+import com.smokeythebandicoot.witcherycompanion.api.player.IPlayerResizingApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.PotionTweaks;
-import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
-import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -66,8 +65,9 @@ public abstract class PotionResizingMixin {
 
             if (entity instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer)entity;
-                Float currentScale = ReflectionHelper.<Float>getField(player, "witchery_Patcher$currentResizingScale", false);
-                if (currentScale == null) return;
+                IPlayerResizingApi playerResizeInfo = (IPlayerResizingApi) player;
+                // Float currentScale = ReflectionHelper.<Float>getField(player, "witchery_Patcher$currentResizingScale", false);
+                float currentScale = playerResizeInfo.getCurrentResizingScale();
                 // Current player height should be defaultHeight * currentScale;
                 // Update current scale, then update player size
                 if (currentScale != targetScale) {
@@ -79,7 +79,8 @@ public abstract class PotionResizingMixin {
                         currentScale += reductionFactor;
                     }
                 }
-                ReflectionHelper.setField(player, "witchery_Patcher$currentResizingScale", false, currentScale);
+                playerResizeInfo.setCurrentResizingScale(currentScale);
+                // ReflectionHelper.setField(player, "witchery_Patcher$currentResizingScale", false, currentScale);
 
             } else {
                 float requiredHeight = sizeInfo.defaultHeight * targetScale;
