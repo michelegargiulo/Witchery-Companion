@@ -355,7 +355,7 @@ public class ModConfig {
             @Config.Name("Witch's Cauldron - Fix Unlimited Water")
             public static boolean witchsCauldron_fixUnlimitedWaterWhenEmpty = true;
 
-            @Config.Comment("If true, enabled Crafttweaker integration for Witch's Cauldron. Defaults to true, " +
+            @Config.Comment("If true, enables Crafttweaker integration for Witch's Cauldron. Defaults to true, " +
                     "as if enabled and not used does not alter Witchery behaviour")
             @Config.Name("Witch's Cauldron - Tweak Enable Crafttweaker Integration")
             public static boolean witchsCauldron_tweakCustomHeatSources = true;
@@ -906,19 +906,19 @@ public class ModConfig {
             @Config.Name("TOP Integration - Altar")
             public static EProbeElementIntegrationConfig altar = EProbeElementIntegrationConfig.DEFAULT;
 
-            @Config.Comment("If true, enabled TOP integration for Witch's Cauldron")
+            @Config.Comment("If true, enables TOP integration for Witch's Cauldron")
             @Config.Name("TOP Integration - Witch's Cauldron")
             public static EProbeElementIntegrationConfig cauldron = EProbeElementIntegrationConfig.DEFAULT;
 
-            @Config.Comment("If true, enabled TOP integration for Grassper")
+            @Config.Comment("If true, enables TOP integration for Grassper")
             @Config.Name("TOP Integration - Grassper")
             public static EProbeElementIntegrationConfig grassper = EProbeElementIntegrationConfig.DEFAULT;
 
-            @Config.Comment("If true, enabled TOP integration for Hobgoblin")
+            @Config.Comment("If true, enables TOP integration for Hobgoblin")
             @Config.Name("TOP Integration - Hobgoblin")
             public static EProbeElementIntegrationConfig goblin = EProbeElementIntegrationConfig.DEFAULT;
 
-            @Config.Comment("If true, enabled TOP integration for Flame Imp")
+            @Config.Comment("If true, enables TOP integration for Flame Imp")
             @Config.Name("TOP Integration - Flame Imp")
             public static EProbeElementIntegrationConfig imp = EProbeElementIntegrationConfig.DEFAULT;
 
