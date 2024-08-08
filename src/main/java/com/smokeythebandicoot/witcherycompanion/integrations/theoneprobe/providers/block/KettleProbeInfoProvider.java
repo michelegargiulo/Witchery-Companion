@@ -68,9 +68,10 @@ public class KettleProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockKet
         // If there's output, display the output
         if (!output.get(0).isEmpty()) {
             IProbeInfo horizontal = iProbeInfo.horizontal(iProbeInfo.defaultLayoutStyle()
-                    .alignment(ElementAlignment.ALIGN_CENTER).spacing(2));
-            TOPHelper.addText(horizontal, "Result", "", TextFormatting.DARK_AQUA);
+                    .alignment(ElementAlignment.ALIGN_CENTER));
+            horizontal.text("§6Result: ");
             TOPHelper.itemStacks(horizontal, output, 1);
+            horizontal.text(output.get(0).getDisplayName());
         }
     }
 
@@ -81,7 +82,7 @@ public class KettleProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockKet
         float requiredPower = accessor.accessor_getCurrentPowerNeeded();
         // requiredPower does not update if the Cauldron is not boiling, so simply hide it
         // Different from the cauldron, there are recipes which require no power. So show power 0 as requirement
-        if (!accessor.accessor_getIsRuined())
+        if (!accessor.accessor_getIsRuined() && accessor.accessor_getCurrentPowerNeeded() > -1.0f)
             TOPHelper.addText(iProbeInfo, "Required Power", String.valueOf(requiredPower), TextFormatting.GOLD);
     }
 
