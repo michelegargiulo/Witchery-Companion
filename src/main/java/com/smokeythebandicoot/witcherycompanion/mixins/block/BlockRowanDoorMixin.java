@@ -6,6 +6,10 @@ import net.msrandom.witchery.block.BlockRowanDoor;
 import net.msrandom.witchery.block.WitcheryBlockDoor;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ Mixins:
+ [Bugfix] Add compat for Rowan Doors with Triggered Dispersal
+ */
 @Mixin(BlockRowanDoor.class)
 public abstract class BlockRowanDoorMixin extends WitcheryBlockDoor {
 
@@ -13,6 +17,7 @@ public abstract class BlockRowanDoorMixin extends WitcheryBlockDoor {
         super(material);
     }
 
+    /** This Mixin allows the Rowan Door block to contain a TileEntity */
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;

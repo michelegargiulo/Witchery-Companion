@@ -64,6 +64,7 @@
     "extensions.VillagerExtendedDataMixin",
     "infusion.spirit.InfusedSpiritSentinelEffectMixin",
     "infusion.spirit.InfusedSpiritTwisterEffectMixin",
+    "infusion.symbol.AlohomoraSymbolEffectMixin",
     "infusion.symbol.ColloportusSymbolEffectMixin",
     "integration.ThaumcraftIntegration_IntegrateThaumcraftMixin",
     "item.ItemChalkMixin",

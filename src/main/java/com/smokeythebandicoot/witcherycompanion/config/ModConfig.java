@@ -188,6 +188,11 @@ public class ModConfig {
 
         public static class InfusionTweaks {
 
+            @Config.Comment("Fixes weird behaviour when Alohomora is used on Rowan Doors")
+            @Config.Name("Alohomora Symbol Effect - Fix Effect On Rowan Doors")
+            @Config.RequiresMcRestart
+            public static boolean alohomora_fixOnRowanDoors = true;
+
             @Config.Comment("Fixes doors having different hinge position and facing on transformation")
             @Config.Name("Colloportus Symbol Effect - Fix Preserve Door Properties")
             @Config.RequiresMcRestart

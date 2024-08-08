@@ -49,6 +49,7 @@ jar in the resource packs folder.
   - **[Voodoo Protection Poppet]** Fix crash when trying to protect its owner from a curse
   - **[Poppet Protection Poppet]** Fix crash when trying to protect its owner from a poppet
 - **Infusions**
+  - **[Alohomora]** Fix blockstate glitching when using it on some door types
   - **[Colloportus]** Fix doors having different hinge and facing on transformation
   - **[Soul Brews]** Fix losing Soul brews (so the Mystic Branch knowledge) upon death
 - **Items**
