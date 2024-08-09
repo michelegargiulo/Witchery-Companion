@@ -29,7 +29,7 @@ public abstract class PotionResizingMixin {
 
     @Inject(method = "getScaleFactor", remap = false, cancellable = true, at = @At("HEAD"))
     private static void modifyResizingRates(int amplifier, CallbackInfoReturnable<Float> cir) {
-        if (PotionTweaks.resizing_tweakCustomSizes) return;
+        if (!PotionTweaks.resizing_tweakCustomSizes) return;
         float customValue = 1.0f;
         switch (amplifier) {
             case 0:
@@ -49,7 +49,9 @@ public abstract class PotionResizingMixin {
 
     }
 
-    @Inject(method = "onLivingUpdate", remap = false, at = @At(value = "HEAD"))
+    /** This Mixin replaces vanilla logic for updating player size, by accounting for the PotionResizing effect.
+     * Also modifies eyeHeight and stepHeight */
+    @Inject(method = "onLivingUpdate", remap = false, cancellable = true, at = @At(value = "HEAD"))
     private void accountCrouchHeightForResizing(World world, EntityLivingBase entity, LivingEvent.LivingUpdateEvent event, int amplifier, int duration, CallbackInfo ci) {
         if (!PotionTweaks.resizing_fixEffectOnPlayers) {
             return;
@@ -89,8 +91,11 @@ public abstract class PotionResizingMixin {
                         ResizingUtils.setSize(entity, Math.min(entity.width + reductionFactor, requiredWidth), Math.min(currentHeight + reductionFactor, requiredHeight));
                     }
                 }
+
             }
         }
+
+        ci.cancel();
     }
 
 

@@ -30,7 +30,6 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
     @Shadow(remap = false)
     public float eyeHeight;
 
-
     private EntityPlayerMixin(World worldIn) {
         super(worldIn);
     }
@@ -70,6 +69,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
             witchery_Patcher$currentResizingScale = 1.0f;
         }
         this.eyeHeight = height * 0.92f;
+        this.stepHeight = witchery_Patcher$currentResizingScale * 0.5f;
 
         if (width != this.width || height != this.height) {
             AxisAlignedBB axisalignedbb = this.getEntityBoundingBox();

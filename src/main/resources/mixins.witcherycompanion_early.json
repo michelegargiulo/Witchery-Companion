@@ -17,6 +17,7 @@
     "minecraft.block.BlockTripWireHookMixin",
     "minecraft.block.BlockTripWireMixin",
     "minecraft.block.BlockWorkbenchMixin",
+    "minecraft.entity.EntityLivingBaseMixin",
     "minecraft.entity.ai.EntityAIOpenDoorMixin",
     "minecraft.entity.player.EntityPlayerMixin",
     "minecraft.tileentity.TileEntityBedMixin",
