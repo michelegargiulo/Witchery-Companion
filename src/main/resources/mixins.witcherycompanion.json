@@ -66,6 +66,7 @@
     "infusion.spirit.InfusedSpiritTwisterEffectMixin",
     "infusion.symbol.AlohomoraSymbolEffectMixin",
     "infusion.symbol.ColloportusSymbolEffectMixin",
+    "infusion.symbol.SymbolEffectMixin",
     "integration.ThaumcraftIntegration_IntegrateThaumcraftMixin",
     "item.ItemChalkMixin",
     "item.ItemCreativeMedallionMixin",
