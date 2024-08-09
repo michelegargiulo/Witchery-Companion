@@ -44,7 +44,7 @@ public class HobgoblinProbeInfoProvider extends BaseEntityProbeInfoProvider<Enti
     public void addBasicInfo(EntityGoblin entity, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IProbeHitEntityData iProbeHitData) {
         GoblinTradeApi.GoblinProfession profession = GoblinTradeApi.getProfessionByID(entity.getProfession());
         if (profession != null)
-            TOPHelper.addText(iProbeInfo, "Profession", profession.professionName, TextFormatting.DARK_AQUA);
+            TOPHelper.addText(iProbeInfo, "Profession", profession.getName(), TextFormatting.DARK_AQUA);
     }
 
 }

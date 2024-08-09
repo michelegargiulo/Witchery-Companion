@@ -68,7 +68,7 @@ public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> 
             if (profession == null) continue;
 
             for (MerchantRecipe goblinTrade : GoblinTradeApi.getTrades(id)) {
-                recipes.add(new GoblinTradeWrapper(guiHelper, goblinTrade, profession.professionName));
+                recipes.add(new GoblinTradeWrapper(guiHelper, goblinTrade, profession.getName()));
             }
         }
 
