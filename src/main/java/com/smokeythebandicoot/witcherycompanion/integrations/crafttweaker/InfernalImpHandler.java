@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker.nonrecipes;
+package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker;
 
 import com.smokeythebandicoot.witcherycompanion.api.infernalimp.InfernalImpApi;
 import crafttweaker.annotations.ModOnly;
