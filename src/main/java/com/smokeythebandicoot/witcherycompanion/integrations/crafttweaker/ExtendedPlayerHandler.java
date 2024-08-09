@@ -134,7 +134,7 @@ public class ExtendedPlayerHandler {
 
         @ZenMethod
         public boolean hasKnowledge() {
-            return ((ISymbolEffectAccessor)this).accessor_getHasKnowledge();
+            return ((ISymbolEffectAccessor)symbolEffect).accessor_getHasKnowledge();
         }
 
         @ZenMethod
@@ -229,7 +229,7 @@ public class ExtendedPlayerHandler {
         }
 
         @ZenMethod
-        public float getInfusionPower() {
+        public float getCurrentPower() {
             return this.power.getCurrentPower();
         }
 
