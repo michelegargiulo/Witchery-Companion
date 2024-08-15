@@ -103,11 +103,6 @@ public abstract class PotionResizingMixin {
                 }
 
             }
-            
-            // Every second, send packet to update client entity size
-            if (!world.isRemote) {
-                WitcheryNetworkChannel.sendToAll(new PacketSyncEntitySize(entity));
-            }
         }
 
         ci.cancel();
