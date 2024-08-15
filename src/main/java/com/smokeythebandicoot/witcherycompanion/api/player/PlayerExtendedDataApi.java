@@ -9,6 +9,7 @@ import net.msrandom.witchery.common.CovenWitchData;
 import net.msrandom.witchery.common.InfusionPower;
 import net.msrandom.witchery.entity.familiar.Familiar;
 import net.msrandom.witchery.entity.familiar.FamiliarInstance;
+import net.msrandom.witchery.entity.familiar.FamiliarType;
 import net.msrandom.witchery.entity.familiar.Familiars;
 import net.msrandom.witchery.extensions.LivingExtendedData;
 import net.msrandom.witchery.extensions.PlayerExtendedData;
@@ -77,17 +78,21 @@ public class PlayerExtendedDataApi {
         FamiliarInstance familiar = extendedData.familiar;
 
         if (familiar == null) {
-            return new FamiliarInfo(null, "", null, false);
+            return new FamiliarInfo(null, null, "", null, false);
         }
 
         Familiar<?> boundFamiliar = Familiars.getBoundFamiliar(player);
         Entity familiarEntity = null;
+        FamiliarType<?, ?> type = null;
+
         if (boundFamiliar != null) {
             familiarEntity = boundFamiliar.getEntity();
+            type = boundFamiliar.getFamiliarType();
         }
 
         return new FamiliarInfo(
           familiarEntity,                       // Can be null
+          type,                                 // Can be null
           Familiars.getFamiliarName(player),    // Can be null
           familiar.getColor(),                  // Can be null
           familiar.isSummoned()                 // true if summoned, false if otherwise or familiar is null

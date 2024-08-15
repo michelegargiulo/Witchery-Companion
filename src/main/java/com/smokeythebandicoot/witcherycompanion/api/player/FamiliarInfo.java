@@ -2,10 +2,13 @@ package com.smokeythebandicoot.witcherycompanion.api.player;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.item.EnumDyeColor;
+import net.msrandom.witchery.entity.familiar.FamiliarType;
 
 public class FamiliarInfo {
 
     private Entity familiarEntity;
+
+    private FamiliarType<?, ?> familiarType;
 
     private String name;
 
@@ -15,6 +18,10 @@ public class FamiliarInfo {
 
     public Entity getFamiliarEntity() {
         return familiarEntity;
+    }
+
+    public FamiliarType<?, ?> getFamiliarType() {
+        return familiarType;
     }
 
     public String getName() {
@@ -29,8 +36,9 @@ public class FamiliarInfo {
         return isSummoned;
     }
 
-    public FamiliarInfo(Entity familiarEntity, String name, EnumDyeColor color, boolean isSummoned) {
+    public FamiliarInfo(Entity familiarEntity, FamiliarType<?, ?> type, String name, EnumDyeColor color, boolean isSummoned) {
         this.familiarEntity = familiarEntity;
+        this.familiarType = type;
         this.name = name;
         this.color = color;
         this.isSummoned = isSummoned;

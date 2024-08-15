@@ -11,9 +11,11 @@ import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.player.IPlayer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.common.InfusionPower;
+import net.msrandom.witchery.entity.familiar.FamiliarType;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 import net.msrandom.witchery.resources.CreatureFormStatManager;
 import net.msrandom.witchery.rite.curse.Curse;
@@ -190,6 +192,7 @@ public class ExtendedPlayerHandler {
         public FamiliarInfoWrapper(FamiliarInfo info) {
             this.familiarInfo = new FamiliarInfo(
                     info.getFamiliarEntity(),
+                    info.getFamiliarType(),
                     info.getName(),
                     info.getColor(),
                     info.isSummoned()
@@ -199,6 +202,16 @@ public class ExtendedPlayerHandler {
         @ZenMethod
         public IEntity getEntity() {
             return CraftTweakerMC.getIEntity(familiarInfo.getFamiliarEntity());
+        }
+
+        @ZenMethod
+        public String getFamiliarType() {
+            Class<? extends Entity> familiarClass = FamiliarType.REGISTRY.getKey(familiarInfo.getFamiliarType());
+            if (familiarClass != null) {
+                ResourceLocation entityRegistryName = EntityList.getKey(familiarClass);
+                return entityRegistryName == null ? "<unknown entity>" : entityRegistryName.toString();
+            }
+            return "<unknown familiar type>";
         }
 
         @ZenMethod
@@ -255,69 +268,70 @@ public class ExtendedPlayerHandler {
 
         public CreatureFormWrapper(CreatureForm form) {
             this.form = form;
-            this.stats = CreatureFormStatManager.INSTANCE.getStats(form);
+            this.stats = form == null ? null : CreatureFormStatManager.INSTANCE.getStats(form);
         }
 
         @ZenMethod
         public String getName() {
             ResourceLocation resourceLocation = CreatureForm.REGISTRY.getKey(form);
-            return resourceLocation == null ? "<null>" : resourceLocation.toString();
+            return resourceLocation == null ? null : resourceLocation.toString();
         }
 
         @ZenMethod
-        public float getWidth() {
-            return stats.getWidth();
+        public Float getWidth() {
+            return stats == null ? null : stats.getWidth();
         }
 
         @ZenMethod
-        public float getHeight() {
-            return stats.getHeight();
+        public Float getHeight() {
+            return stats == null ? null : stats.getHeight();
         }
 
         @ZenMethod
-        public float getEyeHeight() {
-            return stats.getEyeHeight();
+        public Float getEyeHeight() {
+            return stats == null ? null : stats.getEyeHeight();
         }
 
         @ZenMethod
-        public float getStepHeight() {
-            return stats.getStepHeight();
+        public Float getStepHeight() {
+            return stats == null ? null : stats.getStepHeight();
         }
 
         @ZenMethod
-        public boolean canFly() {
-            return stats.canFly();
+        public Boolean canFly() {
+            return stats == null ? null : stats.canFly();
         }
 
         @ZenMethod
-        public boolean canHowl() {
-            return stats.canHowl();
+        public Boolean canHowl() {
+            return stats == null ? null : stats.canHowl();
         }
 
         @ZenMethod
         public IIngredient getHoldableItem() {
-            return CraftTweakerMC.getIIngredient(stats.getHoldableItem());
+            return stats == null ? null : CraftTweakerMC.getIIngredient(stats.getHoldableItem());
         }
 
         @ZenMethod
-        public boolean wearsArmor() {
-            return stats.wearsArmor();
+        public Boolean wearsArmor() {
+            return stats == null ? null : stats.wearsArmor();
         }
 
         @ZenMethod
-        public double getReflectionDamage() {
-            return stats.getReflectionDamage();
+        public Double getReflectionDamage() {
+            return stats == null ? null : stats.getReflectionDamage();
         }
 
         @ZenMethod
         public String getCreatureTraitName() {
+            if (stats == null) return null;
             ResourceLocation resourceLocation = CreatureTraitType.REGISTRY.getKey(stats.getCreatureTraitType());
-            return resourceLocation == null ? "<null>" : resourceLocation.toString();
+            return resourceLocation == null ? null : resourceLocation.toString();
         }
 
         @ZenMethod
         public double getMaxLevel() {
-            if (stats.getCreatureTraitType() == null) {
+            if (stats == null || stats.getCreatureTraitType() == null) {
                 return -1;
             }
             return stats.getCreatureTraitType().getMaxLevel();
