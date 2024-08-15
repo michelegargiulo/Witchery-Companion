@@ -93,10 +93,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
         // Those params are set in ShapeShiftMixin class
         width *= witchery_Patcher$currentFormWidthScale;
         height *= witchery_Patcher$currentFormHeightScale;
-        this.eyeHeight = this.getDefaultEyeHeight()
-                * witchery_Patcher$currentResizingScale
-                * witchery_Patcher$currentFormHeightScale
-                * witchery_Patcher$currentFormEyeHeightScale;
+        this.eyeHeight = height * witchery_Patcher$currentFormEyeHeightScale;
         this.stepHeight *= witchery_Patcher$currentFormStepHeightScale;
 
         if (width != this.width || height != this.height) {
