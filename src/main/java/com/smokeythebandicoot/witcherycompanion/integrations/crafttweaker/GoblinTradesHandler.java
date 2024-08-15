@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ModOnly(value = "witchery")
-@ZenClass("mods.smokeythebandicoot.witcherycompanion.GoblinTrade")
+@ZenClass("mods.smokeythebandicoot.witcherycompanion.GoblinTrading")
 @ZenRegister
 public class GoblinTradesHandler {
 
