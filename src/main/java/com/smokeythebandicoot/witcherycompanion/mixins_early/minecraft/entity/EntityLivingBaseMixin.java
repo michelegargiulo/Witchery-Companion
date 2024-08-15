@@ -31,7 +31,7 @@ public abstract class EntityLivingBaseMixin {
     @WrapOperation(method = "updateElytra", remap = true, at = @At(value = "INVOKE",
             target = "Lnet/minecraft/entity/EntityLivingBase;getFlag(I)Z", remap = true))
     private boolean disableElytraWhenResized(EntityLivingBase instance, int flag, Operation<Boolean> original) {
-        if (this.ticksElytraFlying > 1 && ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers) {
+        if (this.ticksElytraFlying > 1 && ModConfig.PatchesConfiguration.CommonTweaks.tweak_disallowElytraWhenTransformedOrResized) {
             if ((Object)this instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) (Object) this;
 

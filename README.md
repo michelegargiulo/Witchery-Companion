@@ -129,6 +129,10 @@ jar in the resource packs folder.
   - **[Spirit World]** Tweak to modify default dimension ID to 11 (configurable)
   - **[Torment]** Tweak to modify default dimension ID to 12 (configurable)
   - **[Mirror World]** Tweak to modify default dimension ID to 13 (configurable)
+- **Potions**
+  - **[Common]** Elytra cannot be used while resized (enabled by default)
+- **Transformations**
+  - **[Common]** Elytra cannot be used while transformed (enabled by default)
 
 ### Integrations
 - **CraftTweaker**

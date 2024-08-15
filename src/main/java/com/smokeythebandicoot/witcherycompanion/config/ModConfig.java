@@ -269,6 +269,10 @@ public class ModConfig {
             @Config.Name("Villager - Fix Crash On Sleeping")
             public static boolean villagerExtendedData_fixCrashOnSleeping = true;
 
+            @Config.Comment("Disallow Elytra usage when the entity is Resized or Transformed")
+            @Config.Name("Elytra - Disallow When Resized Or Transformed")
+            public static boolean tweak_disallowElytraWhenTransformedOrResized = true;
+
         }
 
         public static class BlockTweaks {
