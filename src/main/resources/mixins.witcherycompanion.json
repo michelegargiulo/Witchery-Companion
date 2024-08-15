@@ -75,6 +75,7 @@
     "item.WitcheryPoppetItemMixin",
     "item.WitcheryPoppetItems_ItemPoppetMixin",
     "item.brews.ItemErosionBrewMixin",
+    "network.PacketSyncEntitySizeMixin",
     "network.medallion.PacketSummonFamiliarMixin",
     "potion.PotionEnslavedMixin",
     "potion.PotionFortuneMixin",

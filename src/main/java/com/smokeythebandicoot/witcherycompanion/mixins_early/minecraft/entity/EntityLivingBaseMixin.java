@@ -7,7 +7,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.msrandom.witchery.extensions.PlayerExtendedData;
 import net.msrandom.witchery.init.WitcheryPotionEffects;
+import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,18 +31,25 @@ public abstract class EntityLivingBaseMixin {
     @WrapOperation(method = "updateElytra", remap = true, at = @At(value = "INVOKE",
             target = "Lnet/minecraft/entity/EntityLivingBase;getFlag(I)Z", remap = true))
     private boolean disableElytraWhenResized(EntityLivingBase instance, int flag, Operation<Boolean> original) {
-        if (ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers &&
-                this.isPotionActive(WitcheryPotionEffects.RESIZING)) {
+        if (this.ticksElytraFlying > 1 && ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers) {
+            if ((Object)this instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) (Object) this;
 
-            // To avoid spamming the Status effect, disable elytra when ticks is > 1
-            if (this.ticksElytraFlying > 1 && ((Object)this instanceof EntityPlayer)) {
-                EntityPlayer player = (EntityPlayer) (Object)this;
-                player.sendStatusMessage(new TextComponentTranslation(
-                        "witcherycompanion.message.potion.resizing.elytra_disallow",
-                        new Object[0]), true);
-                return false;
+                if (this.isPotionActive(WitcheryPotionEffects.RESIZING)) {
+                    player.sendStatusMessage(new TextComponentTranslation(
+                            "witcherycompanion.message.potion.resizing.elytra_disallow",
+                            new Object[0]), true);
+                    return false;
+                }
+
+                PlayerExtendedData playerEx = WitcheryUtils.getExtension(player);
+                if (playerEx.getCurrentForm() != null) {
+                    player.sendStatusMessage(new TextComponentTranslation(
+                            "witcherycompanion.message.transform.elytra_disallow",
+                            new Object[0]), true);
+                    return false;
+                }
             }
-
         }
         return original.call(instance, flag);
     }

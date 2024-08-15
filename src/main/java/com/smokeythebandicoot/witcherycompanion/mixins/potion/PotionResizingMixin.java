@@ -6,9 +6,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.msrandom.witchery.network.PacketSyncEntitySize;
+import net.msrandom.witchery.network.WitcheryNetworkChannel;
 import net.msrandom.witchery.potion.PotionResizing;
+import net.msrandom.witchery.resources.CreatureFormStatManager;
+import net.msrandom.witchery.transformation.CreatureForm;
 import net.msrandom.witchery.util.EntitySizeInfo;
 import net.msrandom.witchery.util.ResizingUtils;
+import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,6 +32,7 @@ public abstract class PotionResizingMixin {
     @Shadow(remap = false)
     public static float getScaleFactor(int amplifier) { return 0; }
 
+    /** This Mixin reworks the scale factors of the Resizing Potion, so that they can be customized */
     @Inject(method = "getScaleFactor", remap = false, cancellable = true, at = @At("HEAD"))
     private static void modifyResizingRates(int amplifier, CallbackInfoReturnable<Float> cir) {
         if (!PotionTweaks.resizing_tweakCustomSizes) return;
@@ -57,11 +63,12 @@ public abstract class PotionResizingMixin {
             return;
         }
 
-        float reductionFactor = 0.03F * (float)(entity.world.isRemote ? 1 : 20);
+        // Client is updated every tick, server every second
         if (world.isRemote || entity.ticksExisted % 20 == 0) {
 
+            float reductionFactor = 0.03F * (float)(entity.world.isRemote ? 1 : 20);
             EntitySizeInfo sizeInfo = new EntitySizeInfo(entity);
-            float targetScale = getScaleFactor(amplifier);
+            float targetResizingScale = getScaleFactor(amplifier);
 
             if (entity instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer)entity;
@@ -69,29 +76,37 @@ public abstract class PotionResizingMixin {
                 float currentScale = playerResizeInfo.accessor_getCurrentResizingScale();
                 // Current player height should be defaultHeight * currentScale;
                 // Update current scale, then update player size
-                if (currentScale != targetScale) {
-                    if (Math.abs(currentScale - targetScale) < reductionFactor) {
-                        currentScale = targetScale;
-                    } else if (currentScale > targetScale) {
+                if (currentScale != targetResizingScale) {
+                    if (Math.abs(currentScale - targetResizingScale) < reductionFactor) {
+                        currentScale = targetResizingScale;
+                    } else if (currentScale > targetResizingScale) {
                         currentScale -= reductionFactor;
                     } else {
                         currentScale += reductionFactor;
                     }
                 }
+                // Set this parameter in EntityPlayer. This scale will be
+                // accounted for in EntityPlayer.updateSize()
                 playerResizeInfo.accessor_setCurrentResizingScale(currentScale);
 
-            } else {
-                float requiredHeight = sizeInfo.defaultHeight * targetScale;
-                float requiredWidth = sizeInfo.defaultWidth * targetScale;
+            }
+            else {
+                float requiredHeight = sizeInfo.defaultHeight * targetResizingScale;
+                float requiredWidth = sizeInfo.defaultWidth * targetResizingScale;
                 float currentHeight = event.getEntityLiving().height;
                 if (requiredHeight != currentHeight) {
-                    if (targetScale < 1.0F) {
+                    if (targetResizingScale < 1.0F) {
                         ResizingUtils.setSize(entity, Math.max(entity.width - reductionFactor, requiredWidth), Math.max(currentHeight - reductionFactor, requiredHeight));
                     } else {
                         ResizingUtils.setSize(entity, Math.min(entity.width + reductionFactor, requiredWidth), Math.min(currentHeight + reductionFactor, requiredHeight));
                     }
                 }
 
+            }
+            
+            // Every second, send packet to update client entity size
+            if (!world.isRemote) {
+                WitcheryNetworkChannel.sendToAll(new PacketSyncEntitySize(entity));
             }
         }
 

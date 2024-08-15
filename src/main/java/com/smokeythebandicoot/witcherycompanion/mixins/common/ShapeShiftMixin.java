@@ -2,9 +2,11 @@ package com.smokeythebandicoot.witcherycompanion.mixins.common;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.api.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.CommonTweaks;
 import com.smokeythebandicoot.witcherycompanion.integrations.morph.MorphIntegration;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -14,8 +16,14 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.play.server.SPacketPlayerAbilities;
 import net.minecraftforge.fml.common.Loader;
 import net.msrandom.witchery.common.ShapeShift;
+import net.msrandom.witchery.extensions.PlayerExtendedData;
+import net.msrandom.witchery.network.PacketSyncEntitySize;
+import net.msrandom.witchery.network.WitcheryNetworkChannel;
 import net.msrandom.witchery.transformation.CreatureForm;
+import net.msrandom.witchery.util.EntitySizeInfo;
+import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -28,7 +36,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  [Tweak] Current Health after a transformation will be set as the same percentage of HP as before the transformation
  */
 @Mixin(ShapeShift.class)
-public class ShapeShiftMixin {
+public abstract class ShapeShiftMixin {
+
+    @Shadow(remap = false)
+    public abstract CreatureForm.Stats getFormStats(PlayerExtendedData playerEx);
 
     @Unique
     private boolean witchery_Patcher$prevFlightCapability = false;
@@ -78,8 +89,8 @@ public class ShapeShiftMixin {
     }
 
     /** This mixin will sync the entity size when the player changes dimension, taking morph into account */
-    @Inject(method = "initCurrentShift(Lnet/minecraft/entity/player/EntityPlayer;)V", remap = false, at = @At(value = "INVOKE", remap = false, shift = At.Shift.AFTER,
-            target = "Lnet/msrandom/witchery/common/ShapeShift;initCurrentShift(Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/entity/player/EntityPlayer;Z)V"))
+    @Inject(method = "initCurrentShift(Lnet/minecraft/entity/player/EntityPlayer;)V", remap = false, at = @At(value = "INVOKE",
+            remap = false, shift = At.Shift.AFTER, target = "Lnet/msrandom/witchery/common/ShapeShift;initCurrentShift(Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/entity/player/EntityPlayer;Z)V"))
     public void handleMorphOnDimensionChange(EntityPlayer player, CallbackInfo ci) {
         if (Loader.isModLoaded("morph") && ModConfig.IntegrationConfigurations.MorphIntegration.fixSizeDesyncOnDimChange) {
             MorphIntegration.INSTANCE.handleMorphOnShapeShift(player);
@@ -159,6 +170,35 @@ public class ShapeShiftMixin {
             witchery_Patcher$prevPlayerOnTransform.setHealth(witchery_Patcher$prevPlayerOnTransform.getMaxHealth() * witchery_Patcher$prevHpPercentOnTransform);
             witchery_Patcher$prevPlayerOnTransform = null;
             witchery_Patcher$prevHpPercentOnTransform = null;
+        }
+    }
+
+    /** This Mixin enables compat between current form size and Resizing Potion size. Avoid call ResizingUtils.setSize,
+     * as the new method simply sets some injected variables inside the EntityPlayer class */
+    @WrapOperation(method = "initCurrentShift(Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/entity/player/EntityPlayer;Z)V", remap = false,
+        at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/util/ResizingUtils;setSize(Lnet/minecraft/entity/Entity;FF)V", remap = false))
+    private void setCurrentFormStats(Entity instance, float width, float height, Operation<Void> original) {
+        if (!ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers) {
+            original.call(instance, width, height);
+        }
+    }
+
+    /** This Mixin adds compat between ResizingPotion and ShapeShifting by setting some internal
+     * variables injected inside EntityPlayer class */
+    @Inject(method = "initCurrentShift(Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/entity/player/EntityPlayer;Z)V", remap = false,
+        at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/util/ResizingUtils;setSize(Lnet/minecraft/entity/Entity;FF)V", remap = false))
+    private void setCurrentFormStats(EntityLivingBase entity, EntityPlayer player, boolean applyDamage, CallbackInfo ci) {
+        if (player instanceof IEntityPlayerAccessor) {
+            IEntityPlayerAccessor accessor = (IEntityPlayerAccessor) player;
+            CreatureForm.Stats stats = this.getFormStats(WitcheryUtils.getExtension(player));
+            // Since we are computing just a scaling factor, we compare the creature target dimensions w.r.t.
+            // the default player's sizes. Even if other mods chance them, it shouldn't affect this computation
+            accessor.accessor_setCurrentFormWidthScale(stats.getWidth() / 0.6f);
+            accessor.accessor_setCurrentFormHeightScale(stats.getHeight() / 1.8f);
+            accessor.accessor_setCurrentFormEyeHeightScale(stats.getEyeHeight() / stats.getHeight());
+            accessor.accessor_setCurrentFormStepHeightScale(stats.getStepHeight() / 0.5f);
+            // Send the new size to all players
+            WitcheryNetworkChannel.sendToAll(new PacketSyncEntitySize(player));
         }
     }
 
