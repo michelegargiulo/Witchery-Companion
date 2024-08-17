@@ -142,14 +142,13 @@ public class GoblinTradeApi {
         }
 
         /** Sets the fallback trade for this profession */
-        public GoblinTrade setFallbackTrade(ItemStack buy1, ItemStack buy2, ItemStack sell, float chance) {
-            this.fallBackTrade = new GoblinTrade(buy1, buy2, sell, chance);
-            return this.fallBackTrade;
-        }
-
-        /** Sets the fallback trade for this profession */
         public GoblinTrade setFallbackTrade(GoblinTrade trade) {
-            this.fallBackTrade = trade;
+            MerchantRecipe merchantRecipe = trade.getTrade();
+            this.fallBackTrade = new GoblinTrade(
+                    merchantRecipe.getItemToBuy(),
+                    merchantRecipe.getSecondItemToBuy(),
+                    merchantRecipe.getItemToSell(),
+                    1.0f);
             return this.fallBackTrade;
         }
 

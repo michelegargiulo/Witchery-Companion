@@ -45,14 +45,15 @@ public class InfernalImpHandler {
     }
 
     @ZenMethod
-    @ZenDoc("Returns the given item affection boost. Returns 0 if the item is not a shiny")
+    @ZenDoc("Returns the set gift that has been set for the specified index. " +
+            "Returns null if no fixed gift is set for the index")
     public static IItemStack getGift(int secretIndex) {
         ItemStack stack = InfernalImpApi.getGift(secretIndex);
         return CraftTweakerMC.getIItemStack(stack);
     }
 
     @ZenMethod
-    @ZenDoc("Returns the given item affection boost. Returns 0 if the item is not a shiny")
+    @ZenDoc("Sets the provided IItemStack as the given item for the index")
     public static void setGift(IItemStack iItemStack, int secretIndex) {
         ItemStack stack = CraftTweakerMC.getItemStack(iItemStack);
         InfernalImpApi.setGift(stack, secretIndex);

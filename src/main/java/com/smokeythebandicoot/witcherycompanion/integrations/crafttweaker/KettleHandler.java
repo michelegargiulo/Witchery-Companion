@@ -14,13 +14,13 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class KettleHandler {
 
     @ZenMethod
-    @ZenDoc(value="Registers an heat source specified as an IBlockState. Must be placed immediately below the cauldron")
+    @ZenDoc(value="Registers an heat source specified as an IBlockState. Must be placed immediately below the kettle")
     public static void registerHeatSourceBlockstate(crafttweaker.api.block.IBlockState blockstate) {
         KettleApi.registerHeatSource(CraftTweakerMC.getBlockState(blockstate));
     }
 
     @ZenMethod
-    @ZenDoc(value="Registers an heat source specified as a Block. Must be placed immediately below the cauldron")
+    @ZenDoc(value="Registers an heat source specified as a Block. Must be placed immediately below the kettle")
     public static void registerHeatSourceBlock(crafttweaker.api.block.IBlock block) {
         KettleApi.registerHeatSource(CraftTweakerMC.getBlock(block));
     }

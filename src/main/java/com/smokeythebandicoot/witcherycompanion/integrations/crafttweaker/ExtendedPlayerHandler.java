@@ -330,7 +330,7 @@ public class ExtendedPlayerHandler {
         }
 
         @ZenMethod
-        public double getMaxLevel() {
+        public int getMaxLevel() {
             if (stats == null || stats.getCreatureTraitType() == null) {
                 return -1;
             }

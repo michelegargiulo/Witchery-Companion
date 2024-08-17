@@ -99,15 +99,6 @@ public class GoblinTradesHandler {
             return new GoblinTradeWrapper(profession.setFallbackTrade(b1, b2, s));
         }
 
-        @ZenMethod
-        @ZenDoc("Sets the fallback trade of the profession. Returns the added fallback trade")
-        public GoblinTradeWrapper setFallbackTrade(IItemStack buy1, IItemStack buy2, IItemStack sell, float chance) {
-            ItemStack b1 = CraftTweakerMC.getItemStack(buy1);
-            ItemStack b2 = CraftTweakerMC.getItemStack(buy2);
-            ItemStack s = CraftTweakerMC.getItemStack(sell);
-            return new GoblinTradeWrapper(profession.setFallbackTrade(b1, b2, s, chance));
-        }
-
 
         /** ================= TRADES ================= **/
         @ZenMethod
