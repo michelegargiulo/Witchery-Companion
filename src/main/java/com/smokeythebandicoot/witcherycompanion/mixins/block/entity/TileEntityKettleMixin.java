@@ -5,6 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.api.kettle.ITileEntityKettleAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.kettle.KettleApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -34,7 +35,7 @@ public abstract class TileEntityKettleMixin extends WitcheryTileEntity implement
     private float witchery_Patcher$currentPowerNeeded = -1.0f;
 
     /** This Mixin adds CraftTweaker compat for Kettle heat sources */
-    @WrapOperation(method = "update", remap = false, at = @At(value = "INVOKE", remap = false,
+    @WrapOperation(method = "update", remap = true, at = @At(value = "INVOKE", remap = true,
             target = "Lnet/minecraft/block/state/IBlockState;getMaterial()Lnet/minecraft/block/material/Material;"))
     private Material injectHeatSources(IBlockState instance, Operation<Material> original) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.kettle_tweakCustomHeatSources) {
