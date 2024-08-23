@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.config;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
@@ -860,6 +861,10 @@ public class ModConfig {
         @Config.Name("Quark Integration - Configuration")
         public static QuarkIntegration quarkIntegrationConfig;
 
+        @Config.Comment("Configuration related to Patchouli integration")
+        @Config.Name("Patchouli Integration - Configuration")
+        public static PatchouliIntegration patchouliIntegrationConfig;
+
         @Config.Comment("Configuration related to The One Probe integration")
         @Config.Name("TOP Integration - Configuration")
         public static TopIntegration TOPIntegrationConfig;
@@ -963,6 +968,48 @@ public class ModConfig {
             public static boolean enableThaumcraftIntegration = true;
 
         }
+
+        public static class PatchouliIntegration {
+
+            public static Flags flags;
+
+            public static class Flags {
+
+                @Config.Comment("If true, shows more info for Bottling Skill and Expertise")
+                @Config.Name("Patchouli Integration - Brewing Expertise Extension")
+                public static boolean brewing_enableExpertiseExtension = false;
+
+                @Config.Comment("If true, shows ritual details in the Brew book")
+                @Config.Name("Patchouli Integration - Ritual Details Extension")
+                public static boolean brewing_enableRitualsExtension = false;
+
+                @Config.Comment("If true, shows which Capacity ingredients also remove ceiling, allowing for more powerful potions")
+                @Config.Name("Patchouli Integration - Reveal Remove Ceiling")
+                public static boolean brewing_revealRemoveCeiling = false; // Not a flag, used by CauldronCapacityProcessor
+            }
+
+            @Config.Comment("Defines the rules for which secret Witchery content is shown in the Patchouli book.\n" +
+                    "ALWAYS_SHOW -> Secret content is always shown in the book.\n" +
+                    "PROGRESS (default) -> Secret content is locked behind advancements. Players will discover the " +
+                    "secret by themselves, gaining the advancement and permanently revealing the knowledge in the book.\n" +
+                    "DISABLED -> Secret content is always hidden.")
+            @Config.Name("TOP Integration - Enabled")
+            public static EPatchouliSecretPolicy common_showSecretsPolicy = EPatchouliSecretPolicy.PROGRESS;
+
+
+            public enum EPatchouliSecretPolicy {
+                ALWAYS_SHOW,
+                PROGRESS,
+                DISABLED
+            }
+
+            public static void reloadPatchouliFlags() {
+                // Flags are namespaced inside the updateFlag method
+                PatchouliApiIntegration.updateFlag("brewing/expertise", Flags.brewing_enableExpertiseExtension);
+                PatchouliApiIntegration.updateFlag("brewing/rituals", Flags.brewing_enableRitualsExtension);
+            }
+
+        }
     }
 
     @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)
@@ -976,6 +1023,7 @@ public class ModConfig {
 
         public static void reloadConfig() {
             reloadRiteOfMovingEarthBlacklist();
+            IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
             ConfigManager.sync(WitcheryCompanion.MODID, Config.Type.INSTANCE);
         }
 

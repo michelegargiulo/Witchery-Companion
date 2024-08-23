@@ -33,6 +33,7 @@
     "block.entity.TileEntityPoppetShelfMixin",
     "brewing.LiquidDispersalMixin",
     "brewing.TriggeredDispersalMixin",
+    "brewing.action.CapacityBrewActionMixin",
     "brewing.action.effect.BlastBrewEffectMixin",
     "brewing.action.effect.BrewActionEffectMixin",
     "brewing.action.effect.ErosionBrewEffectMixin",

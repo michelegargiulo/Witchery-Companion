@@ -2,8 +2,13 @@ package com.smokeythebandicoot.witcherycompanion.mixins.block;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.api.capability.CapabilityWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.capability.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.cauldron.IBlockWitchCauldronAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
+import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
+import com.smokeythebandicoot.witcherycompanion.utils.CapabilityUtils;
+import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,10 +18,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.msrandom.witchery.block.BlockWitchCauldron;
 import net.msrandom.witchery.block.entity.TileEntityCauldron;
+import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.brewing.action.BrewActionList;
 import net.msrandom.witchery.init.WitcheryFluids;
 import net.msrandom.witchery.init.WitcheryTileEntities;
@@ -25,6 +33,9 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import static com.smokeythebandicoot.witcherycompanion.api.capability.CapabilityWitcheryProgress.WITCHERY_PROGRESS_CAPABILITY;
+
 
 /**
  Mixins:
@@ -117,6 +128,23 @@ public abstract class BlockWitchCauldronMixin implements IBlockWitchCauldronAcce
             return null;
         else return original.call(itemStack);
     }
+
+    @Inject(method = "onBlockActivated", remap = true, at = @At(value = "INVOKE", remap = false, ordinal = 1, shift = At.Shift.BEFORE,
+            target = "Lnet/msrandom/witchery/block/entity/TileEntityCauldron;drain(IZ)Lnet/minecraftforge/fluids/FluidStack;"))
+    private void unlockSecrets(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
+        TileEntityCauldron cauldron = WitcheryTileEntities.CAULDRON.getAt(world, pos);
+        BrewActionList actionList = cauldron.getActions();
+        for (BrewAction action : actionList.actions) {
+            if (action.getHidden()) {
+                ItemStack stack = action.getKey().toStack();
+                IWitcheryProgress progress = player.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
+                progress.unlockProgress(CapabilityUtils.getBrewingCapacitySecret(stack));
+                Utils.logChat("Cauldron mixin - sending update from onBlockActivated");
+                ProgressSync.serverRequest(player);
+            }
+        }
+    }
+
 
     @ModifyConstant(method = "onBlockActivated", remap = true, constant = @Constant(intValue = 334))
     public int smallerWaterBottleOnActivatedFill(int constant) {

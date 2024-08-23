@@ -117,29 +117,29 @@ repositories {
 
 dependencies {
 
+    // Baubles
+    compileOnly rfg.deobf('curse.maven:baubles-227083:2518667')
+
     // Had Enough Items
     compileOnly rfg.deobf('curse.maven:hei-557549:5229422')
-
-    // Just Enough Resources
-    compileOnly rfg.deobf('curse.maven:jer-240630:4440935')
-
-    // Just Enough Resources
-    compileOnly rfg.deobf('curse.maven:lucraft-230651:3775980')
-
-    // The One Probe
-    compileOnly rfg.deobf('curse.maven:theoneprobe-245211:2667280')
-
-    // Morph
-    compileOnly rfg.deobf('curse.maven:morph-229080:2995522')
 
     // iChunUtil
     compileOnly rfg.deobf('curse.maven:ichunutil-229060:2801262')
 
-    // Baubles
-    compileOnly rfg.deobf('curse.maven:baubles-227083:2518667')
+    // Just Enough Resources
+    compileOnly rfg.deobf('curse.maven:jer-240630:4440935')
+
+    // Morph
+    compileOnly rfg.deobf('curse.maven:morph-229080:2995522')
+
+    // Patchouli
+    compileOnly rfg.deobf('curse.maven:patchouli-306770:3162874')
 
     // Thaumcraft
     compileOnly rfg.deobf('curse.maven:thaumcraft-223628:2629023')
+
+    // The One Probe
+    compileOnly rfg.deobf('curse.maven:theoneprobe-245211:2667280')
 
     // Crafttweaker
     compileOnly rfg.deobf('CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.684')
