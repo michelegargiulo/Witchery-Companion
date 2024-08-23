@@ -46,7 +46,7 @@ import static com.smokeythebandicoot.witcherycompanion.api.capability.Capability
  [Tweak] Tweak to reduce bottle size to 250 (is only applied to water handling, as brews have custom amounts)
  */
 @Mixin(value = BlockWitchCauldron.class)
-public abstract class BlockWitchCauldronMixin implements IBlockWitchCauldronAccessor {
+public abstract class BlockWitchCauldronMixin {
 
     @Unique
     BrewActionList witchery_Patcher$preservedActions = null;

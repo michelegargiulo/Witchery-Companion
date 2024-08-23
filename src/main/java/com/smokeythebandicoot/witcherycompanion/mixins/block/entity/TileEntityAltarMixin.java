@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 
 import com.smokeythebandicoot.witcherycompanion.api.altar.AltarApi;
+import com.smokeythebandicoot.witcherycompanion.api.altar.ITileEntityAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -30,7 +31,7 @@ import java.util.Set;
  [Tweak] Great performance gain by caching Altar PowerSourceTable
  */
 @Mixin(value = TileEntityAltar.class)
-public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements IPowerSource {
+public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements IPowerSource, ITileEntityAltarAccessor {
 
     @Shadow(remap = false)
     private long lastPowerUpdate;
@@ -65,6 +66,7 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     @Unique
     private static final HashMap<Block, AltarApi.AltarPowerSource> witchery_Patcher$powerObjectTable = null;
 
+
     /** Triggers a TileEntity sync when power is consumed, as Witchery only updated it when the power increases.
      * This causes a desync in what appears in the Altar GUI and the actual power levels */
     @Inject(method = "consumePower", at = @At("RETURN"), remap = false)
@@ -73,8 +75,6 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
             BlockUtil.notifyBlockUpdate(this.world, this.getPos());
         }
     }
-
-
 
     /** This method fixes an inverse condition, as only "core" AltarTEs should update their power */
     @Inject(method = "updatePower()V", remap = false, cancellable = true, at = @At("HEAD"))
@@ -113,6 +113,11 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
                 else this.invalidate();
             }
         }
+    }
+
+    @Override
+    public void accessor_setCore(boolean isCore) {
+        this.core = isCore;
     }
 
     @Unique
