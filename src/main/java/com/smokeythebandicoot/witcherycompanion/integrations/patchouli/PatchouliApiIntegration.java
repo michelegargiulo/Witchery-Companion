@@ -12,8 +12,7 @@ public class PatchouliApiIntegration {
 
     private PatchouliApiIntegration() { }
 
-    private static PatchouliAPI.IPatchouliAPI api;
-
+    /*
     @SubscribeEvent
     public static void onPlayerJoin(EntityJoinWorldEvent event) {
         if (event.getWorld().isRemote && event.getEntity() instanceof EntityPlayer) {
@@ -21,10 +20,11 @@ public class PatchouliApiIntegration {
             Utils.logChat("Reloaded book contents");
         }
     }
+    */
 
     // Called from Proxy
     public static void registerFlags() {
-        if (api == null) api = PatchouliAPI.instance;
+        PatchouliAPI.IPatchouliAPI api = PatchouliAPI.instance;
 
         api.setConfigFlag(WitcheryCompanion.MODID + ":brewing/expertise",
                 ModConfig.IntegrationConfigurations.PatchouliIntegration.Flags.brewing_enableExpertiseExtension);
@@ -34,11 +34,7 @@ public class PatchouliApiIntegration {
     }
 
     public static void updateFlag(String flag, boolean value) {
-        if (api == null) {
-            return;
-        }
-
-        api.setConfigFlag(WitcheryCompanion.MODID + ":" + flag, value);
+        PatchouliAPI.instance.setConfigFlag(WitcheryCompanion.MODID + ":" + flag, value);
     }
 
 }

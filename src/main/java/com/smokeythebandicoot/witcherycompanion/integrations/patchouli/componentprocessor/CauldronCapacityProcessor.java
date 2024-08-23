@@ -84,13 +84,13 @@ public class CauldronCapacityProcessor implements IComponentProcessor {
         return null;
     }
 
-    @Override
+    /* @Override
     public void refresh(GuiScreen parent, int left, int top) {
         IComponentProcessor.super.refresh(parent, left, top);
         updateCapacityMap();
         ProgressSync.clientRequest();
         Utils.logChat("Processor - requested update from refresh");
-    }
+    } */
 
     private static void updateCapacityMap() {
         SortedSet<CapacityBrewActionInfo> sortedBrews = new TreeSet<>();

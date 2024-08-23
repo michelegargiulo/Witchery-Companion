@@ -2,9 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.block;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.capability.CapabilityWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.capability.IWitcheryProgress;
-import com.smokeythebandicoot.witcherycompanion.api.cauldron.IBlockWitchCauldronAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import com.smokeythebandicoot.witcherycompanion.utils.CapabilityUtils;
@@ -18,8 +16,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.msrandom.witchery.block.BlockWitchCauldron;
