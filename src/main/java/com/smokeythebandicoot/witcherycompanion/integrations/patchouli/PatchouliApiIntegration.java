@@ -2,25 +2,19 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.utils.Utils;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.bookcomponents.ColorableImage;
 import vazkii.patchouli.api.PatchouliAPI;
+import vazkii.patchouli.client.book.template.BookTemplate;
+
+import java.util.Map;
 
 public class PatchouliApiIntegration {
 
     private PatchouliApiIntegration() { }
 
-    /*
-    @SubscribeEvent
-    public static void onPlayerJoin(EntityJoinWorldEvent event) {
-        if (event.getWorld().isRemote && event.getEntity() instanceof EntityPlayer) {
-            api.reloadBookContents();
-            Utils.logChat("Reloaded book contents");
-        }
+    public static void registerCustomComponents() {
+        BookTemplate.registerComponent("colored_image", ColorableImage.class);
     }
-    */
 
     // Called from Proxy
     public static void registerFlags() {
@@ -35,6 +29,14 @@ public class PatchouliApiIntegration {
 
     public static void updateFlag(String flag, boolean value) {
         PatchouliAPI.instance.setConfigFlag(WitcheryCompanion.MODID + ":" + flag, value);
+        PatchouliAPI.instance.reloadBookContents();
+    }
+
+    public static void updateFlags(Map<String, Boolean> flags) {
+        for (String flag : flags.keySet()) {
+            PatchouliAPI.instance.setConfigFlag(flag, flags.get(flag));
+        }
+        PatchouliAPI.instance.reloadBookContents();
     }
 
 }

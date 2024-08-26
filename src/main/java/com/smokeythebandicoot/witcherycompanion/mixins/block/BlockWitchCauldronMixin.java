@@ -129,14 +129,16 @@ public abstract class BlockWitchCauldronMixin {
             target = "Lnet/msrandom/witchery/block/entity/TileEntityCauldron;drain(IZ)Lnet/minecraftforge/fluids/FluidStack;"))
     private void unlockSecrets(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
         TileEntityCauldron cauldron = WitcheryTileEntities.CAULDRON.getAt(world, pos);
+        if (cauldron == null) return; // Should not happen
         BrewActionList actionList = cauldron.getActions();
         for (BrewAction action : actionList.actions) {
             if (action.getHidden()) {
                 ItemStack stack = action.getKey().toStack();
                 IWitcheryProgress progress = player.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
-                progress.unlockProgress(CapabilityUtils.getBrewingCapacitySecret(stack));
-                Utils.logChat("Cauldron mixin - sending update from onBlockActivated");
-                ProgressSync.serverRequest(player);
+                if (progress != null) {
+                    progress.unlockProgress(CapabilityUtils.getBrewingCapacitySecret(stack));
+                    ProgressSync.serverRequest(player);
+                }
             }
         }
     }

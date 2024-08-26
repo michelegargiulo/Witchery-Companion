@@ -56,6 +56,10 @@ public class CommonProxy {
         if (ModConfig.IntegrationConfigurations.TopIntegration.enableTopIntegration && Loader.isModLoaded("theoneprobe"))
             FMLInterModComms.sendFunctionMessage("theoneprobe", "getTheOneProbe", TOPPlugin.class.getName());
 
+        // Non-configurable, as it is required for Patchouli integration and does nothing if Patchouli is not used
+        if (Loader.isModLoaded("patchouli"))
+            PatchouliApiIntegration.registerCustomComponents();
+
     }
 
     public void init(FMLInitializationEvent event) {

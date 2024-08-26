@@ -140,7 +140,6 @@ public class CapabilityWitcheryProgress {
             //IWitcheryProgress progress = player.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
             if (!event.player.world.isRemote) {
                 ProgressSync.serverRequest(event.player);
-                Utils.logChat("Player joined. Sending progress from server");
             }
 
         }

@@ -64,7 +64,6 @@ public class PacketWitcheryProgressResponse {
             FMLCommonHandler.instance().getWorldThread(context.netHandler).addScheduledTask(() -> {
                 // Update local progress data. Client proxy performs null check and eventual reload
                 ClientProxy.updateLocalWitcheryProgress(message.clientProgress);
-                Utils.logChat("Updated client proxy capability from server packet");
             });
             return null;
         }

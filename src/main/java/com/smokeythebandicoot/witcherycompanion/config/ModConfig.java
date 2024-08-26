@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 @Config(modid = WitcheryCompanion.MODID, name = "witchery_patches")
@@ -980,12 +981,17 @@ public class ModConfig {
                 public static boolean brewing_enableExpertiseExtension = false;
 
                 @Config.Comment("If true, shows ritual details in the Brew book")
-                @Config.Name("Patchouli Integration - Ritual Details Extension")
+                @Config.Name("Patchouli Integration - Brewing Ritual Details Extension")
                 public static boolean brewing_enableRitualsExtension = false;
 
                 @Config.Comment("If true, shows which Capacity ingredients also remove ceiling, allowing for more powerful potions")
-                @Config.Name("Patchouli Integration - Reveal Remove Ceiling")
+                @Config.Name("Patchouli Integration - Brewing Reveal Remove Ceiling")
                 public static boolean brewing_revealRemoveCeiling = false; // Not a flag, used by CauldronCapacityProcessor
+
+                @Config.Comment("If true, shows more information about how to get into symbology and how it works in general")
+                @Config.Name("Patchouli Integration - Symbology Extended Intro")
+                public static boolean symbology_enableExtendedIntro = false;
+
             }
 
             @Config.Comment("Defines the rules for which secret Witchery content is shown in the Patchouli book.\n" +
@@ -1004,9 +1010,16 @@ public class ModConfig {
             }
 
             public static void reloadPatchouliFlags() {
-                // Flags are namespaced inside the updateFlag method
-                PatchouliApiIntegration.updateFlag("brewing/expertise", Flags.brewing_enableExpertiseExtension);
-                PatchouliApiIntegration.updateFlag("brewing/rituals", Flags.brewing_enableRitualsExtension);
+                // This method maps each flag's ID to the corresponding config value
+                // PatchouliApiIntegration is responsible for:
+                // - prefixing the flag ids with the namespace
+                // - checking if Patchouli is loaded before making calls to the API
+                // - reloading book contents once only, after all flags are set
+                HashMap<String, Boolean> flags = new HashMap<>();
+                flags.put("brewing/expertise", Flags.brewing_enableExpertiseExtension);
+                flags.put("brewing/rituals", Flags.brewing_enableRitualsExtension);
+                flags.put("symbology/extended_intro", Flags.symbology_enableExtendedIntro);
+                PatchouliApiIntegration.updateFlags(flags);
             }
 
         }

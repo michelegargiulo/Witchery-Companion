@@ -1,14 +1,15 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.componentprocessor;
+package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.brewing.ICapacityBrewActionAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.PatchouliIntegration;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy;
 import com.smokeythebandicoot.witcherycompanion.utils.CapabilityUtils;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.brewing.action.CapacityBrewAction;
 import net.msrandom.witchery.resources.BrewActionManager;
@@ -31,6 +32,7 @@ public class CauldronCapacityProcessor implements IComponentProcessor {
             "This item is secret. Does not show in this book for a Player which didn't use it in a brew before";
 
 
+    /** ========== OVERRIDES ========== **/
     @Override
     public void setup(IVariableProvider<String> iVariableProvider) {
         if (capacityBrews == null) {
@@ -49,19 +51,13 @@ public class CauldronCapacityProcessor implements IComponentProcessor {
         }
 
         // Convert the set into a sorted list accessible by index
-        int index = -1;
-        try {
-            index = Integer.parseInt(key.substring(4, 5));
-        } catch (Exception ex) {
-            WitcheryCompanion.logger.warn("Could not parse key for CauldronCapacityProcessor. Key: {}", key);
-        }
+        int index = ProcessorUtils.getIndexFromKey(key, "item");
 
         if (index > -1 && index < capacityBrews.size()) {
             CapacityBrewActionInfo info = capacityBrews.get(index);
 
             // Checks if it is secret and if player has knowledge about it
             ProgressSync.clientRequest();
-            Utils.logChat("Processor - requested update from process");
             if (!shouldShow(info))
                 return null;
 
@@ -84,14 +80,7 @@ public class CauldronCapacityProcessor implements IComponentProcessor {
         return null;
     }
 
-    /* @Override
-    public void refresh(GuiScreen parent, int left, int top) {
-        IComponentProcessor.super.refresh(parent, left, top);
-        updateCapacityMap();
-        ProgressSync.clientRequest();
-        Utils.logChat("Processor - requested update from refresh");
-    } */
-
+    /** ========== HELPER METHODS ========== **/
     private static void updateCapacityMap() {
         SortedSet<CapacityBrewActionInfo> sortedBrews = new TreeSet<>();
         for (BrewAction action : BrewActionManager.INSTANCE.getActions()) {
@@ -137,6 +126,30 @@ public class CauldronCapacityProcessor implements IComponentProcessor {
         return ClientProxy.getLocalWitcheryProgress().hasProgress(key);
     }
 
+    /** ========== EXPOSED METHODS ========== **/
+
+    /** Returns an ordered list of itemstacks to throw in the cauldron to have the required capacity */
+    public static List<Ingredient> getItemsForCapacity(int requiredCapacity) {
+        List<Ingredient> ingredients = new ArrayList<>();
+
+        // Too early, return empty list
+        if (capacityBrews == null || capacityBrews.isEmpty()) {
+            return ingredients;
+        }
+
+        // Build the list
+        int currentCapacity = 0;
+        for (CapacityBrewActionInfo capacityBrewInfo : capacityBrews) {
+            if (currentCapacity >= requiredCapacity) {
+                break;
+            }
+            currentCapacity += capacityBrewInfo.increment;
+            ingredients.add(Ingredient.fromStacks(capacityBrewInfo.stack));
+        }
+        return ingredients;
+    }
+
+    /** ========== INFO HOLDER CLASS ========== **/
     public static class CapacityBrewActionInfo implements Comparable<CapacityBrewActionInfo> {
 
         public final ItemStack stack;

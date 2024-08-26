@@ -13,8 +13,9 @@ public class ClientProxy extends CommonProxy {
     public static void updateLocalWitcheryProgress(IWitcheryProgress progress) {
         if (localWitcheryProgress == null) {
             localWitcheryProgress = new WitcheryProgress();
+            PatchouliAPI.instance.reloadBookContents();
         }
-        if (progress != null && !progress.equals(localWitcheryProgress)) {
+        if (progress != null && !progress.getUnlockedProgress().equals(localWitcheryProgress.getUnlockedProgress())) {
             localWitcheryProgress.setUnlockedProgress(progress.getUnlockedProgress());
             PatchouliAPI.instance.reloadBookContents();
         }
