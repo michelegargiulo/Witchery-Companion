@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.api.capability;
+package com.smokeythebandicoot.witcherycompanion.api.progress;
 
 import javax.annotation.Nonnull;
 import java.util.Set;

@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.config;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
+import com.smokeythebandicoot.witcherycompanion.utils.ContentUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
@@ -11,9 +12,12 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 
 @Config(modid = WitcheryCompanion.MODID, name = "witchery_patches")
 @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)
@@ -988,12 +992,37 @@ public class ModConfig {
                 @Config.Name("Patchouli Integration - Brewing Reveal Remove Ceiling")
                 public static boolean brewing_revealRemoveCeiling = false; // Not a flag, used by CauldronCapacityProcessor
 
+                @Config.Comment("If true, adds a few more pages about how Brazier works")
+                @Config.Name("Patchouli Integration - Conjuring Enable Extended Intro")
+                public static boolean conjuring_enableExtendedIntro = false;
+
+                @Config.Comment("Some Brazier Summoning Recipes can summon an extra entity. Set this to true to show this info in the manual")
+                @Config.Name("Patchouli Integration - Conjuring Show Extra Entity")
+                public static boolean conjuring_showExtraEntity = false;
+
+                @Config.Comment("If true, adds a few pages explaining what blocks are ideal to be bound to spectral entities and their recipes")
+                @Config.Name("Patchouli Integration - Fetish Details Extension")
+                public static boolean conjuring_enableFetishExtension = false;
+
                 @Config.Comment("If true, shows more information about how to get into symbology and how it works in general")
                 @Config.Name("Patchouli Integration - Symbology Extended Intro")
                 public static boolean symbology_enableExtendedIntro = false;
 
+                @Config.Comment("If true, shows the drawn symbol inside the book pages")
+                @Config.Name("Patchouli Integration - Symbology Stroke Visualization")
+                public static boolean symbology_enableStrokeVisualization = false;
+
+                @Config.Comment("If true, shows a small text indicating that the spell is secret")
+                @Config.Name("Patchouli Integration - Symbology Show Secret")
+                public static boolean symbology_showSecret = false;
+
+                @Config.Comment("If true, shows a small text indicating that the spell requires knowledge")
+                @Config.Name("Patchouli Integration - Symbology Show Knowledge")
+                public static boolean symbology_showKnowledge = false;
+
             }
 
+            @Config.RequiresWorldRestart
             @Config.Comment("Defines the rules for which secret Witchery content is shown in the Patchouli book.\n" +
                     "ALWAYS_SHOW -> Secret content is always shown in the book.\n" +
                     "PROGRESS (default) -> Secret content is locked behind advancements. Players will discover the " +
@@ -1001,7 +1030,6 @@ public class ModConfig {
                     "DISABLED -> Secret content is always hidden.")
             @Config.Name("TOP Integration - Enabled")
             public static EPatchouliSecretPolicy common_showSecretsPolicy = EPatchouliSecretPolicy.PROGRESS;
-
 
             public enum EPatchouliSecretPolicy {
                 ALWAYS_SHOW,
@@ -1016,10 +1044,21 @@ public class ModConfig {
                 // - checking if Patchouli is loaded before making calls to the API
                 // - reloading book contents once only, after all flags are set
                 HashMap<String, Boolean> flags = new HashMap<>();
+
+                // Companion Flags
                 flags.put("brewing/expertise", Flags.brewing_enableExpertiseExtension);
                 flags.put("brewing/rituals", Flags.brewing_enableRitualsExtension);
+                flags.put("brewing/show_ceiling", Flags.brewing_revealRemoveCeiling);
+                flags.put("conjuring/show_extra", Flags.conjuring_showExtraEntity);
+                flags.put("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
+                flags.put("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);
                 flags.put("symbology/extended_intro", Flags.symbology_enableExtendedIntro);
+                flags.put("symbology/stroke_visualization", Flags.symbology_enableExtendedIntro);
+                flags.put("symbology/show_secret", Flags.symbology_showSecret);
+                flags.put("symbology/show_knowledge", Flags.symbology_showKnowledge);
+
                 PatchouliApiIntegration.updateFlags(flags);
+
             }
 
         }

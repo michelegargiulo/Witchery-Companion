@@ -1,8 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.proxy;
 
-import com.smokeythebandicoot.witcherycompanion.api.capability.CapabilityWitcheryProgress;
-import com.smokeythebandicoot.witcherycompanion.api.capability.IWitcheryProgress;
-import com.smokeythebandicoot.witcherycompanion.api.capability.WitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.progress.CapabilityWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.commands.WitcheryProgressCommand;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.justenoughresources.JERIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
@@ -15,12 +14,13 @@ import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.Familiar
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
@@ -79,6 +79,10 @@ public class CommonProxy {
         }
     }
 
+    public void serverStarting(FMLServerStartingEvent event) {
+        registerCommands(event);
+    }
+
 
     protected void registerTileEntities() {
         GameRegistry.registerTileEntity(TileEntityCursedTrigger.class, TileEntityCursedTrigger.getRegistryName());
@@ -90,6 +94,10 @@ public class CommonProxy {
 
     protected void registerNetworkHandlers() {
         CompanionNetworkChannel.registerMessages();
+    }
+
+    protected void registerCommands(FMLServerStartingEvent event) {
+        event.registerServerCommand(new WitcheryProgressCommand());
     }
 
 }

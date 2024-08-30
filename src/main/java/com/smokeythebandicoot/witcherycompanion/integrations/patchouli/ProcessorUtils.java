@@ -7,7 +7,6 @@ import net.msrandom.witchery.infusion.symbol.StrokeArray;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
 import javax.annotation.Nonnull;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -31,6 +30,19 @@ public class ProcessorUtils {
             return null;
         return ItemStackUtil.serializeIngredient(ItemStackUtil.loadIngredientFromString(stack));
     }
+
+    /** Strips a string of any leading or trailing whitespaces, removes Minecraft formatting
+     * and converts line feeds to Patchouli line breaks **/
+    public static String reformatPatchouli(String formattedString, boolean stripFormatting) {
+        if (stripFormatting) {
+            formattedString = formattedString
+                .replaceAll("§[0-9a-fklmnor]", "");
+        }
+        return formattedString
+                .trim()
+                .replace("\n", "$(br)");
+    }
+
 
     /** Takes a collection of ingredients and serializes them in a string. Each element will be separated
      * by a comma (,) and serialized using Patchouli conventions **/

@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components;
 
 import com.google.gson.annotations.SerializedName;
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import net.minecraft.item.crafting.Ingredient;
 import vazkii.patchouli.api.IComponentRenderContext;
@@ -10,7 +11,7 @@ import vazkii.patchouli.common.util.ItemStackUtil;
 
 import java.util.*;
 
-public class CauldronRecipeComponent implements ICustomComponent {
+public class IngredientListComponent implements ICustomComponent {
 
     // Json variables have to have the @SerializedName annotation
     /** ========== JSON VARIABLES ========== **/
@@ -27,21 +28,29 @@ public class CauldronRecipeComponent implements ICustomComponent {
     @VariableHolder
     public String[] inputs = null;
 
-    // The brew ID
+    @SerializedName("input_spacing")
+    @VariableHolder
+    public String inputSpacing = null;
+
     @SerializedName("output")
     @VariableHolder
     public String output = null;
 
-    @SerializedName("x")
+    @SerializedName("output_offset_x")
     @VariableHolder
-    public int x = 0;
+    public String outputOffsetX = null;
 
-    @SerializedName("y")
+    @SerializedName("output_offset_y")
     @VariableHolder
-    public int y = 0;
+    public String outputOffsetY = null;
 
 
     /** ========== NON-JSON VARIABLES ========== **/
+    private transient int x = 0;
+    private transient int y = 0;
+    private transient int spacing = 2;
+    private transient int offsetX = 2;
+    private transient int offsetY = 0;
     private transient List<Ingredient> stacks = null;
     private transient Ingredient outputStack = null;
 
@@ -52,11 +61,19 @@ public class CauldronRecipeComponent implements ICustomComponent {
     @Override
     public void build(int componentX, int componentY, int pageNum) {
 
+        if (inputs == null || output == null) return;
+
         // Store position variables
         this.x = componentX;
         this.y = componentY;
 
-        if (inputs == null) return;
+        try {
+            if (inputSpacing != null) this.spacing = Integer.parseInt(inputSpacing);
+            if (outputOffsetX != null) this.offsetX = Integer.parseInt(outputOffsetX);
+            if (outputOffsetY != null) this.offsetY = Integer.parseInt(outputOffsetY);
+        } catch (Exception ex) {
+            WitcheryCompanion.logger.warn("Error parsing variables for component IngredientListComponent: ", ex);
+        }
 
         stacks = new ArrayList<>();
         ProcessorUtils.deserializeIngredientList(inputs, stacks);
@@ -70,16 +87,16 @@ public class CauldronRecipeComponent implements ICustomComponent {
      * for putting everything in the right place. */
     @Override
     public void render(IComponentRenderContext context, float pticks, int mouseX, int mouseY) {
-        if (stacks == null) return;
+        if (stacks == null || stacks.isEmpty()) return;
         int curX = this.x;
         int curY = this.y;
         for (Ingredient ingredient : stacks) {
             context.renderIngredient(curX, curY, mouseX, mouseY, ingredient);
-            curX += 18; // 16 for the item, 2 for the spacing
+            curX += 16 + this.spacing;
         }
 
         if (outputStack != null) {
-            context.renderIngredient(this.x + 70, this.y + 24, mouseX, mouseY, outputStack);
+            context.renderIngredient(this.x + offsetX, this.y + offsetY, mouseX, mouseY, outputStack);
         }
     }
 

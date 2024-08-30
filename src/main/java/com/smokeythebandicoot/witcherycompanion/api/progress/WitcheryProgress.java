@@ -1,6 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.api.capability;
-
-import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
+package com.smokeythebandicoot.witcherycompanion.api.progress;
 
 import javax.annotation.Nonnull;
 import java.util.HashSet;

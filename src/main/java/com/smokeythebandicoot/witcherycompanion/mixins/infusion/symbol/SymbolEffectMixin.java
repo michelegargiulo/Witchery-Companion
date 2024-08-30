@@ -17,7 +17,7 @@ public abstract class SymbolEffectMixin implements ISymbolEffectAccessor {
     private boolean hasKnowledge;
 
     @Override
-    public boolean accessor_getHasKnowledge() {
+    public boolean hasKnowledge() {
         return this.hasKnowledge;
     }
 

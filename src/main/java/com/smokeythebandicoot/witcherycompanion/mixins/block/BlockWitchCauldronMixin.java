@@ -2,11 +2,10 @@ package com.smokeythebandicoot.witcherycompanion.mixins.block;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.capability.IWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
-import com.smokeythebandicoot.witcherycompanion.utils.CapabilityUtils;
-import com.smokeythebandicoot.witcherycompanion.utils.Utils;
+import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static com.smokeythebandicoot.witcherycompanion.api.capability.CapabilityWitcheryProgress.WITCHERY_PROGRESS_CAPABILITY;
+import static com.smokeythebandicoot.witcherycompanion.api.progress.CapabilityWitcheryProgress.WITCHERY_PROGRESS_CAPABILITY;
 
 
 /**
@@ -136,7 +135,7 @@ public abstract class BlockWitchCauldronMixin {
                 ItemStack stack = action.getKey().toStack();
                 IWitcheryProgress progress = player.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
                 if (progress != null) {
-                    progress.unlockProgress(CapabilityUtils.getBrewingCapacitySecret(stack));
+                    progress.unlockProgress(ProgressUtils.getCapacityBrewAction(stack));
                     ProgressSync.serverRequest(player);
                 }
             }

@@ -4,10 +4,8 @@ import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.brewing.ICapacityBrewActionAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.PatchouliIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
-import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy;
-import com.smokeythebandicoot.witcherycompanion.utils.CapabilityUtils;
-import com.smokeythebandicoot.witcherycompanion.utils.Utils;
+import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.msrandom.witchery.brewing.action.BrewAction;
@@ -57,7 +55,7 @@ public class CauldronCapacityProcessor implements IComponentProcessor {
             CapacityBrewActionInfo info = capacityBrews.get(index);
 
             // Checks if it is secret and if player has knowledge about it
-            ProgressSync.clientRequest();
+            // ProgressSync.clientRequest();
             if (!shouldShow(info))
                 return null;
 
@@ -122,7 +120,7 @@ public class CauldronCapacityProcessor implements IComponentProcessor {
 
     private static boolean hasUnlockedProgress(CapacityBrewActionInfo info) {
         // Get secret key and return true if the corresponding element has been found
-        String key = CapabilityUtils.getBrewingCapacitySecret(info.stack);
+        String key = ProgressUtils.getCapacityBrewAction(info.stack);
         return ClientProxy.getLocalWitcheryProgress().hasProgress(key);
     }
 

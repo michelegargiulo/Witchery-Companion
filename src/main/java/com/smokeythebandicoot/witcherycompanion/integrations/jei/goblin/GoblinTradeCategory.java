@@ -22,7 +22,7 @@ import java.util.List;
 
 public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> {
 
-    public static String UID = WitcheryCompanion.MODID + ":goblin_trade";
+    public static String UID = WitcheryCompanion.prefix("goblin_trade");
     public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/goblin_trade.png");
     public static ResourceLocation iconTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/goblin_trade_icon.png");
 

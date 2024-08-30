@@ -54,7 +54,7 @@ public class PlayerExtendedDataApi {
                 Map.Entry<ResourceLocation, SymbolEffect> entry = iterator.next();
                 SymbolEffect effect = entry.getValue();
                 ISymbolEffectAccessor accessor = (ISymbolEffectAccessor) effect;
-                if (accessor.accessor_getHasKnowledge()) {
+                if (accessor.hasKnowledge()) {
                     if (effect.hasValidKnowledge(player, compound)) {
                         knownSymbolEffects.add(effect);
                     }

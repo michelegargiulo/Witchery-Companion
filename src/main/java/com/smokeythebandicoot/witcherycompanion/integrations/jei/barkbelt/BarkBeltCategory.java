@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 public class BarkBeltCategory extends BaseRecipeCategory<BarkBeltWrapper> {
 
-    public static String UID = WitcheryCompanion.MODID + ":bark_belt";
+    public static String UID = WitcheryCompanion.prefix("bark_belt");
     public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/bark_belt.png");
     public static ResourceLocation iconTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/bark_belt_icon.png");
 

@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.proxy;
 
-import com.smokeythebandicoot.witcherycompanion.api.capability.IWitcheryProgress;
-import com.smokeythebandicoot.witcherycompanion.api.capability.WitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgress;
 import vazkii.patchouli.api.PatchouliAPI;
 
 import javax.annotation.Nonnull;

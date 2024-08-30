@@ -21,7 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(EntitySpectre.class)
 public abstract class EntitySpectreMixin extends EntitySummonedUndead {
 
-
     @Shadow(remap = false)
     private int lifetime;
 

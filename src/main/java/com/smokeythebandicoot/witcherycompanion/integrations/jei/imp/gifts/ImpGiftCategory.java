@@ -28,7 +28,7 @@ import java.util.List;
 
 public class ImpGiftCategory extends BaseRecipeCategory<ImpGiftWrapper> {
 
-    public static String UID = WitcheryCompanion.MODID + ":imp_gift";
+    public static String UID = WitcheryCompanion.prefix("imp_gift");
     public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/imp_gift.png");
     public static ResourceLocation iconTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/imp_gift_icon.png");
 

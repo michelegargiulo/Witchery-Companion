@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.Logger;
 import zone.rong.mixinbooter.ILateMixinLoader;
 
@@ -43,6 +44,7 @@ public class WitcheryCompanion implements ILateMixinLoader {
                 serverSide = "com.smokeythebandicoot.witcherycompanion.proxy.CommonProxy")
     public static CommonProxy proxy;
 
+
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event) {
         // Init logger
@@ -68,10 +70,21 @@ public class WitcheryCompanion implements ILateMixinLoader {
         proxy.init(event);
     }
 
+    @EventHandler
+    public void onServerStarting(FMLServerStartingEvent event) {
+        proxy.serverStarting(event);
+    }
+
+
     @Override
     public List<String> getMixinConfigs() {
         List<String> configs = new ArrayList<>();
         configs.add("mixins.witcherycompanion.json");
         return configs;
     }
+
+    public static String prefix(String text) {
+        return WitcheryCompanion.MODID + ":" + (text == "<null>" ? "" : text);
+    }
+
 }

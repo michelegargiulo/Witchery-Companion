@@ -1,10 +1,10 @@
-package com.smokeythebandicoot.witcherycompanion.api.capability;
+package com.smokeythebandicoot.witcherycompanion.api.progress;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
-import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -102,7 +102,7 @@ public class CapabilityWitcheryProgress {
         public void readNBT(Capability<IWitcheryProgress> capability, IWitcheryProgress instance, EnumFacing side, NBTBase nbt) {
             instance.resetProgress();
             if (nbt instanceof NBTTagCompound) {
-                NBTTagList progress = ((NBTTagCompound) nbt).getTagList(PROGRESS_TAG, 9);
+                NBTTagList progress = ((NBTTagCompound) nbt).getTagList(PROGRESS_TAG, 8);
                 int index = 0;
                 String s = progress.getStringTagAt(index);
                 while (!s.isEmpty()) {
@@ -136,11 +136,9 @@ public class CapabilityWitcheryProgress {
 
         @SubscribeEvent
         public static void onPlayerLogsIn(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent event) {
-            //EntityPlayer player = event.player;
-            //IWitcheryProgress progress = player.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
-            if (!event.player.world.isRemote) {
-                ProgressSync.serverRequest(event.player);
-            }
+
+            EntityPlayerMP player = (EntityPlayerMP) event.player;
+            ProgressSync.serverRequest(player);
 
         }
 

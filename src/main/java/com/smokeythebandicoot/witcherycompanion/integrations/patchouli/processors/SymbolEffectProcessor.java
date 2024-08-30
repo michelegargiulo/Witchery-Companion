@@ -1,6 +1,11 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
+import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
+import com.smokeythebandicoot.witcherycompanion.api.symboleffect.ISymbolEffectAccessor;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
+import com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy;
+import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.infusion.symbol.BranchStroke;
 import net.msrandom.witchery.infusion.symbol.StrokeArray;
 import net.msrandom.witchery.infusion.symbol.StrokeSet;
@@ -10,14 +15,15 @@ import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariableProvider;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 
 /** This processor is responsible for generating a list of strokes for a SymbolStrokesComponent from a Symbol Effect **/
-public class SymbolProcessor implements IComponentProcessor {
+public class SymbolEffectProcessor implements IComponentProcessor {
 
     private String symbolId = null;
-
+    private boolean shouldShow = true;
     private SymbolEffectInfo currentSymbol = null;
 
     private static Map<String, SymbolEffectInfo> symbolMap = null;
@@ -43,6 +49,8 @@ public class SymbolProcessor implements IComponentProcessor {
 
         // Store current symbol variables
         this.currentSymbol = symbolMap.get(symbolId);
+
+        this.shouldShow = shouldShow(currentSymbol);
     }
 
     @Override
@@ -54,30 +62,66 @@ public class SymbolProcessor implements IComponentProcessor {
                 return this.currentSymbol.effectName;
             case "symbol_description":
                 return this.currentSymbol.effectDescription;
+            case "stroke_description":
+                return this.currentSymbol.strokeDescription;
+            case "guard":
+                return this.shouldShow ? "true" : "";
             case "strokes":
+                if (this.currentSymbol.drawInfo == null) return null;
                 return ProcessorUtils.serializeStrokeArray(this.currentSymbol.drawInfo.strokeArray);
             case "start_x":
+                if (this.currentSymbol.drawInfo == null) return null;
                 return String.valueOf(this.currentSymbol.drawInfo.startingX);
             case "start_y":
+                if (this.currentSymbol.drawInfo == null) return null;
                 return String.valueOf(this.currentSymbol.drawInfo.startingY);
         }
         return null;
     }
 
+    @Override
+    public boolean allowRender(String group) {
+        if (group.equals("secret_group"))
+            return this.currentSymbol == null || this.currentSymbol.secret;
+        else if (group.equals("knowledge_group"))
+            return this.currentSymbol == null || this.currentSymbol.hasKnowledge;
+        return true;
+    }
+
+
     private static void updateSymbolMap() {
         symbolMap = new HashMap<>();
-        for (StrokeArray strokes : SymbolEffectManager.INSTANCE.getEffects().keySet()) {
-            StrokeSet strokeSet = SymbolEffectManager.INSTANCE.getEffect(strokes);
-            if (strokeSet != null) {
-                SymbolEffect effect = strokeSet.getResult();
-                StrokeSet defaultStrokes = SymbolEffectManager.INSTANCE.getDefaultStrokes(effect);
-                SymbolEffectInfo symbolEffectInfo = new SymbolEffectInfo(effect,
-                        defaultStrokes == null ? strokes : defaultStrokes.getStrokes());
-                symbolMap.put(symbolEffectInfo.effectId, symbolEffectInfo);
-            }
+
+        Iterator<Map.Entry<ResourceLocation, SymbolEffect>> iterator = SymbolEffect.REGISTRY.iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<ResourceLocation, SymbolEffect> entry = iterator.next();
+            ResourceLocation location = entry.getKey();
+            String effectId = location.path;
+            SymbolEffect effect = entry.getValue();
+            SymbolEffectInfo info = new SymbolEffectInfo(effect);
+            symbolMap.put(effectId, info);
         }
     }
 
+    private boolean shouldShow(SymbolEffectInfo info) {
+        // If not secret, it means it is written in the manual, so show it
+        if (!info.secret)
+            return true;
+
+        // Otherwise, Check if secrets should always be shown
+        ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy policy = ModConfig.IntegrationConfigurations.PatchouliIntegration.common_showSecretsPolicy;
+        if (policy == ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy.ALWAYS_SHOW)
+            return true;
+
+        // If policy is not ALWAYS HIDDEN, then check progress to see if visible
+        return policy == ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy.PROGRESS && hasUnlockedProgress(info);
+    }
+
+    private static boolean hasUnlockedProgress(SymbolEffectInfo info) {
+        // Get secret key and return true if the corresponding element has been found
+        String key = ProgressUtils.getSymbolEffectSecret(info.effectId);
+        return ClientProxy.getLocalWitcheryProgress().hasProgress(key);
+    }
 
     /** This class holds information about symbol effects, such as name, description and its strokes **/
     public static class SymbolEffectInfo {
@@ -85,27 +129,46 @@ public class SymbolProcessor implements IComponentProcessor {
         public final String effectName;
         public final String effectId;
         public final String effectDescription;
+        public final String strokeDescription;
+        public final boolean hasKnowledge;
+        public final boolean secret;
         public final SymbolDrawInfo drawInfo;
 
-        public SymbolEffectInfo(SymbolEffect effect, StrokeArray strokes) {
+        public SymbolEffectInfo(SymbolEffect effect) {
             String name = "<no name>";
             String desc = "<no desc>";
+            String strokeDesc = "<no symbols>";
             if (effect != null) {
                 String[] splits = effect.getDescription().split("\n\n");
                 if (splits.length > 2) {
-                    name = splits[0]
-                            .replace("§n", "")
-                            .replace("§r", "")
-                            .trim();
+                    name = ProcessorUtils.reformatPatchouli(splits[0], true);
                     desc = splits[1];
-                    // strokes is splits[2], but we have StrokeArray anyway
+                    strokeDesc = ProcessorUtils.reformatPatchouli(splits[2], false);
                 }
             }
+
+            if (effect instanceof ISymbolEffectAccessor) {
+                ISymbolEffectAccessor accessor = (ISymbolEffectAccessor) effect;
+                this.hasKnowledge = accessor.hasKnowledge();
+            } else {
+                this.hasKnowledge = false;
+            }
+
+            this.secret = !effect.isVisible();
             this.effectId = name.toLowerCase().replace(" ", "_");
             this.effectName = name;
             this.effectDescription = desc;
-            this.drawInfo = new SymbolDrawInfo(strokes);
-            this.drawInfo.process();
+            this.strokeDescription = strokeDesc;
+
+            // Stroke info
+            StrokeSet strokes = SymbolEffectManager.INSTANCE.getDefaultStrokes(effect);
+
+            if (strokes != null) {
+                this.drawInfo = new SymbolDrawInfo(strokes.getStrokes());
+                this.drawInfo.process();
+            } else {
+                this.drawInfo = null;
+            }
         }
     }
 

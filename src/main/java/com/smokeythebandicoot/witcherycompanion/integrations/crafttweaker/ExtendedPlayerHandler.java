@@ -24,8 +24,6 @@ import net.msrandom.witchery.transformation.CreatureTraitType;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-import java.util.*;
-
 @ModOnly(value = "witchery")
 @ZenClass("mods.smokeythebandicoot.witcherycompanion.ExtendedPlayer")
 @ZenRegister
@@ -136,7 +134,7 @@ public class ExtendedPlayerHandler {
 
         @ZenMethod
         public boolean hasKnowledge() {
-            return ((ISymbolEffectAccessor)symbolEffect).accessor_getHasKnowledge();
+            return ((ISymbolEffectAccessor)symbolEffect).hasKnowledge();
         }
 
         @ZenMethod
