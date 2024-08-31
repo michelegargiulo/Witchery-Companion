@@ -138,6 +138,7 @@ public class SymbolEffectProcessor implements IComponentProcessor {
             String name = "<no name>";
             String desc = "<no desc>";
             String strokeDesc = "<no symbols>";
+            boolean secret = false;
             if (effect != null) {
                 String[] splits = effect.getDescription().split("\n\n");
                 if (splits.length > 2) {
@@ -145,6 +146,7 @@ public class SymbolEffectProcessor implements IComponentProcessor {
                     desc = splits[1];
                     strokeDesc = ProcessorUtils.reformatPatchouli(splits[2], false);
                 }
+                secret = !effect.isVisible();
             }
 
             if (effect instanceof ISymbolEffectAccessor) {
@@ -154,11 +156,11 @@ public class SymbolEffectProcessor implements IComponentProcessor {
                 this.hasKnowledge = false;
             }
 
-            this.secret = !effect.isVisible();
             this.effectId = name.toLowerCase().replace(" ", "_");
             this.effectName = name;
             this.effectDescription = desc;
             this.strokeDescription = strokeDesc;
+            this.secret = secret;
 
             // Stroke info
             StrokeSet strokes = SymbolEffectManager.INSTANCE.getDefaultStrokes(effect);

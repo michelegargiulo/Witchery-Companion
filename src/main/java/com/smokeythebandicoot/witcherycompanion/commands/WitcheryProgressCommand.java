@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.commands;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -70,14 +71,17 @@ public class WitcheryProgressCommand implements ICommand {
             case "unlock":
                 progress.unlockProgress(key);
                 sender.sendMessage(new TextComponentString("Unlocked progress " + key + " for " + player.getName()));
+                ProgressSync.serverRequest(player);
                 break;
             case "lock":
                 progress.lockProgress(key);
                 sender.sendMessage(new TextComponentString("Locked progress " + key + " for " + player.getName()));
+                ProgressSync.serverRequest(player);
                 break;
             case "reset":
                 sender.sendMessage(new TextComponentString("Reset progress for " + player.getName()));
                 progress.resetProgress();
+                ProgressSync.serverRequest(player);
                 break;
             case "has":
                 sender.sendMessage(new TextComponentString(args[0] + ((progress.hasProgress(key) ? " has " : " has not ") + key)));

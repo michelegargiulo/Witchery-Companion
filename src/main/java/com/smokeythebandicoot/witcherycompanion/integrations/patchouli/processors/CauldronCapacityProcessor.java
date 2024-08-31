@@ -55,7 +55,6 @@ public class CauldronCapacityProcessor implements IComponentProcessor {
             CapacityBrewActionInfo info = capacityBrews.get(index);
 
             // Checks if it is secret and if player has knowledge about it
-            // ProgressSync.clientRequest();
             if (!shouldShow(info))
                 return null;
 
