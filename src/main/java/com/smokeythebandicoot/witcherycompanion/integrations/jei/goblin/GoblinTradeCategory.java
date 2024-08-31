@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.jei.goblin;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.GoblinTradeApi;
+import com.smokeythebandicoot.witcherycompanion.api.goblintrade.GoblinTradeApi;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeCategory;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
@@ -68,7 +68,7 @@ public class GoblinTradeCategory extends BaseRecipeCategory<GoblinTradeWrapper> 
             if (profession == null) continue;
 
             for (MerchantRecipe goblinTrade : GoblinTradeApi.getTrades(id)) {
-                recipes.add(new GoblinTradeWrapper(guiHelper, goblinTrade, profession.professionName));
+                recipes.add(new GoblinTradeWrapper(guiHelper, goblinTrade, profession.getName()));
             }
         }
 

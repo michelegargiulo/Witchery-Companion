@@ -8,5 +8,7 @@ witcherycompanion.gui.goblin_trade.name=Hobgoblin Trades
 witcherycompanion.gui.imp_shiny.name=Flame Imp Shinies
 witcherycompanion.gui.imp_gift.name=Flame Imp Gifts
 
+witcherycompanion.message.potion.resizing.elytra_disallow=Due to your size the Elytra does not fit well enough to fly
+witcherycompanion.message.transform.elytra_disallow=Your current form prevents you from using your elytra
 
 

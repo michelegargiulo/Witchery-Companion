@@ -57,13 +57,6 @@ public class BlockDoorMixin extends Block implements ICursableTrigger {
         return pos;
     }
 
-    /** This Mixin is responsible for destroying the TE when the block is broken */
-    @Override
-    public void breakBlock(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
-        super.breakBlock(worldIn, pos, state);
-        worldIn.removeTileEntity(this.getEffectivePos(worldIn, pos));
-    }
-
     @Override
     public boolean hasTileEntity(@Nonnull IBlockState state) {
         return true;

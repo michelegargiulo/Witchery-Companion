@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.api;
+package com.smokeythebandicoot.witcherycompanion.api.goblintrade;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import net.minecraft.init.Items;
@@ -21,31 +21,37 @@ public class GoblinTradeApi {
     private static final List<GoblinProfession> professions = new ArrayList<>();
 
     /** =============================== TRADE GENERATION =============================== **/
+    /** Generates random trades for this profession. Creates a new instance of Random */
     public static MerchantRecipeList generateTrades(int professionId) {
         GoblinProfession profession = professions.get(professionId);
         return profession.generateActualTrades(null);
     }
 
+    /** Generates random trades for this profession. Uses world's random */
     public static MerchantRecipeList generateTrades(World world, int professionId) {
         GoblinProfession profession = professions.get(professionId);
         return profession.generateActualTrades(world);
     }
 
+    /** Returns a MerchantRecipeList that represents ALL trades (ignores chances) */
     public static MerchantRecipeList getTrades(int professionId) {
         GoblinProfession profession = professions.get(professionId);
         return profession.getAllTrades();
     }
 
     /** =============================== PROFESSION RETRIEVAL =============================== **/
+    /** Generates a random integer, valid as a profession ID */
     public static int getRandomProfessionID(Random random) {
         if (professions.isEmpty()) return -1;
         return random.nextInt(professions.size());
     }
 
+    /** Generates a random profession among the valid registered ones */
     public static GoblinProfession getRandomProfession(Random random) {
         return professions.get(getRandomProfessionID(random));
     }
 
+    /** Retrieves a GoblinProfession object by name */
     public static GoblinProfession getProfessionByName(String professionName) {
         for (GoblinProfession profession : professions) {
             if (profession.professionName.equals(professionName)) {
@@ -55,93 +61,61 @@ public class GoblinTradeApi {
         return null;
     }
 
+    /** Retrieves a GoblinProfession object by ID */
     public static GoblinProfession getProfessionByID(int ID) {
         if (professions.size() > ID)
             return professions.get(ID);
         return null;
     }
 
+    /** Returns the number of registered professions */
     public static int getProfessionCount() {
         return professions.size();
     }
 
-    public static List<String> listProfessions() {
+    /** Generates a list of profession names */
+    public static List<String> listProfessionsNames() {
         return professions.stream().map(profession -> profession.professionName).collect(Collectors.toList());
     }
 
-    /** =============================== PROFESSION MANIP =============================== **/
-    /** Registers a new profession with a name and no fallback trade. Returns false if a profession with that name
-     already exists */
-    public static boolean registerProfession(String professionName) {
+    /** Generates a list of GoblinProfession (copy, cannot modify registered professions) */
+    public static List<GoblinProfession> listProfessions() {
+        return new ArrayList<>(professions);
+    }
+
+    /** Registers a new profession with a name and no fallback trade. On success, returns
+     * the newly created profession. Returns null otherwise (for example, a profession with
+     * that name already exists) */
+    public static GoblinProfession registerProfession(String professionName) {
         for (GoblinProfession profession : professions) {
-            if (profession.professionName.equals(professionName)) return false;
+            if (profession.professionName.equals(professionName))
+                return null;
         }
         GoblinProfession newProfession = new GoblinProfession(professionName, null);
         professions.add(newProfession);
-        return true;
+        return newProfession;
     }
 
     /** Un-registers a previously-registered profession. Returns false if the profession did not exist */
-    public static boolean unregisterProfession(String professionName) {
+    public static GoblinProfession unregisterProfession(String professionName) {
         GoblinProfession toRemove = null;
         for (GoblinProfession profession : professions) {
             if (profession.professionName.equals(professionName)) {
                 toRemove = profession;
             }
         }
-        if (toRemove == null) return false;
+        if (toRemove == null) return null;
         professions.remove(toRemove);
-        return true;
-    }
-
-    /** =============================== TRADES MANIP =============================== **/
-    /** Sets the fallback trade for this profession. Returns false if the profession does not exist */
-    public static boolean setProfessionFallbackTrade(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell) {
-        GoblinProfession profession = getProfessionByName(professionName);
-        if (profession == null) return false;
-        profession.fallBackTrade = new GoblinTrade(buy1, buy2, sell, 1.0f);
-        return true;
-    }
-
-    /** Removes the fallback trade for this profession. Returns false if the profession does not exist */
-    public static boolean removeProfessionFallbackTrade(String professionName) {
-        GoblinProfession profession = getProfessionByName(professionName);
-        if (profession == null) return false;
-        profession.fallBackTrade = null;
-        return true;
-    }
-
-    /** Adds a new trade to the profession */
-    public static boolean addTradeToProfession(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell) {
-        GoblinProfession profession = getProfessionByName(professionName);
-        if (profession == null) return false;
-        profession.addTrade(new GoblinTrade(buy1, buy2, sell, 1.0f));
-        return true;
-    }
-
-    /** Adds a new trade to the profession. Specifies the chance that the Goblin has to get the recipe */
-    public static boolean addTradeToProfession(String professionName, ItemStack buy1, ItemStack buy2, ItemStack sell, Float chance) {
-        GoblinProfession profession = getProfessionByName(professionName);
-        if (profession == null) return false;
-        profession.addTrade(new GoblinTrade(buy1, buy2, sell, chance));
-        return true;
-    }
-
-    /** Removes the trade from the profession. Use null as wildcards */
-    public static boolean removeTrade(String professionName, Ingredient buy1, Ingredient buy2, Ingredient sell, Float chance) {
-        GoblinProfession profession = getProfessionByName(professionName);
-        if (profession == null) return false;
-        profession.removeTradeByMatching(buy1, buy2, sell, chance);
-        return true;
+        return toRemove;
     }
 
     public static class GoblinProfession {
 
         // The name of the profession
-        public String professionName;
+        private final String professionName;
 
         // In case no trades are available, this is the fallback one
-        public GoblinTrade fallBackTrade;
+        private GoblinTrade fallBackTrade;
 
         // A list of possible trades and the probability to select one of them
         private final List<GoblinTrade> possibleTrades;
@@ -152,18 +126,62 @@ public class GoblinTradeApi {
             possibleTrades = new ArrayList<>();
         }
 
+        public String getName() {
+            return professionName;
+        }
+
+        /** Returns the fallback trade for this profession */
+        public GoblinTrade getFallBackTrade() {
+            return this.fallBackTrade;
+        }
+
+        /** Sets the fallback trade for this profession */
+        public GoblinTrade setFallbackTrade(ItemStack buy1, ItemStack buy2, ItemStack sell) {
+            this.fallBackTrade = new GoblinTrade(buy1, buy2, sell, 1.0f);
+            return this.fallBackTrade;
+        }
+
+        /** Sets the fallback trade for this profession */
+        public GoblinTrade setFallbackTrade(GoblinTrade trade) {
+            MerchantRecipe merchantRecipe = trade.getTrade();
+            this.fallBackTrade = new GoblinTrade(
+                    merchantRecipe.getItemToBuy(),
+                    merchantRecipe.getSecondItemToBuy(),
+                    merchantRecipe.getItemToSell(),
+                    1.0f);
+            return this.fallBackTrade;
+        }
+
         /** Adds a new trade for this profession */
-        public void addTrade(GoblinTrade trade) {
+        public GoblinTrade addTrade(GoblinTrade trade) {
             possibleTrades.add(trade);
+            return trade;
+        }
+
+        /** Adds a new trade for this profession */
+        public GoblinTrade addTrade(ItemStack buy1, ItemStack buy2, ItemStack sell) {
+            GoblinTrade trade = new GoblinTrade(buy1, buy2, sell, 1.0f);
+            possibleTrades.add(trade);
+            return trade;
+        }
+
+        /** Adds a new trade for this profession */
+        public GoblinTrade addTrade(ItemStack buy1, ItemStack buy2, ItemStack sell, float chance) {
+            GoblinTrade trade = new GoblinTrade(buy1, buy2, sell, chance);
+            possibleTrades.add(trade);
+            return trade;
         }
 
         /** Removes a trade */
-        public void removeTrade(GoblinTrade trade) {
-            possibleTrades.remove(trade);
+        public GoblinTrade removeTrade(GoblinTrade trade) {
+            if (possibleTrades.remove(trade)) {
+                return trade;
+            }
+            return null;
         }
 
         /** Removes a trade that matches the inputs, output and chance. Use null for wildcard, use Items.AIR for empty stack */
-        public void removeTradeByMatching(Ingredient buy1, Ingredient buy2, Ingredient sell, Float chance) {
+        public List<GoblinTrade> removeTradeByMatching(Ingredient buy1, Ingredient buy2, Ingredient sell, Float chance) {
             List<GoblinTrade> toRemove = new ArrayList<>();
             for (GoblinTrade trade : possibleTrades) {
                 MerchantRecipe t = trade.getTrade();
@@ -181,6 +199,8 @@ public class GoblinTradeApi {
             for (GoblinTrade trade : toRemove) {
                 possibleTrades.remove(trade);
             }
+
+            return toRemove;
         }
 
         /** Returns all trades that are possible with this profession. Use Integer.MAX_VALUE to get all trades */
@@ -237,7 +257,7 @@ public class GoblinTradeApi {
 
         public GoblinTrade(ItemStack buyStack1, ItemStack buyStack2, ItemStack sellStack, Float probability) {
 
-            this.probability = probability == null ? 1.0f : probability;
+            this.probability = probability == null ? 1.0f : Math.min(Math.max(0.0f, probability), 1.0f);
             if (buyStack1 == null) buyStack1 = new ItemStack(Items.AIR);
             if (buyStack2 == null) buyStack2 = new ItemStack(Items.AIR);
             if (sellStack == null) sellStack = new ItemStack(Items.AIR);

@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.api;
+package com.smokeythebandicoot.witcherycompanion.api.cauldron;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

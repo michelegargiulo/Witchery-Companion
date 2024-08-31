@@ -1,9 +1,9 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
+import com.smokeythebandicoot.witcherycompanion.api.cauldron.ITileEntityCauldronAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
-import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.ProbeMode;
@@ -14,13 +14,13 @@ import net.minecraft.world.World;
 import net.msrandom.witchery.block.BlockWitchCauldron;
 import net.msrandom.witchery.block.entity.TileEntityCauldron;
 
-public class CauldronBlockProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockWitchCauldron, TileEntityCauldron> {
+public class CauldronProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockWitchCauldron, TileEntityCauldron> {
 
-    private CauldronBlockProbeInfoProvider() { }
-    private static CauldronBlockProbeInfoProvider INSTANCE = null;
-    public static CauldronBlockProbeInfoProvider getInstance() {
+    private CauldronProbeInfoProvider() { }
+    private static CauldronProbeInfoProvider INSTANCE = null;
+    public static CauldronProbeInfoProvider getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new CauldronBlockProbeInfoProvider();
+            INSTANCE = new CauldronProbeInfoProvider();
         }
         return INSTANCE;
     }
@@ -45,15 +45,18 @@ public class CauldronBlockProbeInfoProvider extends BaseBlockProbeInfoProvider<B
     public void addBasicInfo(BlockWitchCauldron block, TileEntityCauldron tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
         TOPHelper.addText(iProbeInfo, "Boiling", String.valueOf(tile.isBoiling()), TextFormatting.DARK_PURPLE);
         TOPHelper.addText(iProbeInfo, "Powered", String.valueOf(tile.isPowered()), TextFormatting.DARK_PURPLE);
-        TOPHelper.itemStacks(iProbeInfo, tile.getActions().items, 10);
+        if (tile.getActions() != null && tile.getActions().items != null && !tile.getActions().items.isEmpty())
+            TOPHelper.itemStacks(iProbeInfo, tile.getActions().items, 10);
     }
 
     @Override
     public void addExtendedInfo(BlockWitchCauldron block, TileEntityCauldron tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
 
-                Float requiredPower = ReflectionHelper.invokeMethod(block, "getPowerNeeded", null, false);
-                if (requiredPower != null && requiredPower > 0)
-                    TOPHelper.addText(iProbeInfo, "Required Power", String.valueOf(requiredPower), TextFormatting.GOLD);
+        ITileEntityCauldronAccessor cauldronTileAccessor = (ITileEntityCauldronAccessor) tile;
+        float requiredPower = cauldronTileAccessor.accessor_getNeededPower();
+        // requiredPower does not update if the Cauldron is not boiling, so simply hide it
+        if (requiredPower > 0 && tile.isBoiling())
+            TOPHelper.addText(iProbeInfo, "Required Power", String.valueOf(requiredPower), TextFormatting.GOLD);
     }
 
 }

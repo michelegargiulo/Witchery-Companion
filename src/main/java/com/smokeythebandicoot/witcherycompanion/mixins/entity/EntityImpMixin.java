@@ -2,9 +2,10 @@ package com.smokeythebandicoot.witcherycompanion.mixins.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.api.infernalimp.IEntityImpAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.LootTweaks;
-import com.smokeythebandicoot.witcherycompanion.api.InfernalImpApi;
+import com.smokeythebandicoot.witcherycompanion.api.infernalimp.InfernalImpApi;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -39,7 +40,7 @@ import java.util.List;
  [Tweak] Adds a tweak to avoid voiding items if the Imp is on gift cooldown
  */
 @Mixin(EntityImp.class)
-public abstract class EntityImpMixin extends EntityTameable {
+public abstract class EntityImpMixin extends EntityTameable implements IEntityImpAccessor {
 
     @Shadow(remap = false)
     private int secretsShared;
@@ -220,6 +221,16 @@ public abstract class EntityImpMixin extends EntityTameable {
     private long witchery_Patcher$getCooldown() {
         long coolDown = (this.lastGiftTime + EntityTweaks.flameImp_tweakGiftDelayTicks) - (MinecraftServer.getCurrentTimeMillis() / 50L);
         return coolDown < 0 ? -1 : coolDown;
+    }
+
+    @Override
+    public long accessor_getCooldown() {
+        return witchery_Patcher$getCooldown();
+    }
+
+    @Override
+    public int accessor_getSecretsShared() {
+        return secretsShared;
     }
 
 }

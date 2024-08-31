@@ -27,7 +27,7 @@ public abstract class BlockKettleMixin extends BlockContainer {
     }
 
     /** This Mixin avoids to return false at the end of the method */
-    @Inject(method = "onBlockActivated", remap = false, cancellable = true, at = @At(value = "HEAD"))
+    @Inject(method = "onBlockActivated", remap = true, cancellable = true, at = @At(value = "HEAD"))
     private void callSuperOnBlockActivation(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.kettle_fixThrowBrewsUponCreation) {
             if (world.isRemote) cir.setReturnValue(true);

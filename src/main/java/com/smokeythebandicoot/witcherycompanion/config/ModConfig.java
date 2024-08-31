@@ -188,6 +188,16 @@ public class ModConfig {
 
         public static class InfusionTweaks {
 
+            @Config.Comment("Fixes weird behaviour when Alohomora is used on Rowan Doors")
+            @Config.Name("Alohomora Symbol Effect - Fix Effect On Rowan Doors")
+            @Config.RequiresMcRestart
+            public static boolean alohomora_fixOnRowanDoors = true;
+
+            @Config.Comment("Fixes doors having different hinge position and facing on transformation")
+            @Config.Name("Colloportus Symbol Effect - Fix Preserve Door Properties")
+            @Config.RequiresMcRestart
+            public static boolean colloportus_fixPreserveDoorProperties = true;
+
             @Config.Comment("Fix Soul Infusions progress reset when player dies")
             @Config.Name("Soul Brews - Fix Persistency After Death")
             @Config.RequiresMcRestart
@@ -259,6 +269,10 @@ public class ModConfig {
             @Config.Name("Villager - Fix Crash On Sleeping")
             public static boolean villagerExtendedData_fixCrashOnSleeping = true;
 
+            @Config.Comment("Disallow Elytra usage when the entity is Resized or Transformed")
+            @Config.Name("Elytra - Disallow When Resized Or Transformed")
+            public static boolean tweak_disallowElytraWhenTransformedOrResized = true;
+
         }
 
         public static class BlockTweaks {
@@ -299,6 +313,11 @@ public class ModConfig {
             @Config.Comment("Fix crash when one of the coffin pieces is moved by a piston.")
             @Config.Name("Coffin - Fix Crash When Moved By Piston")
             public static boolean coffin_fixPistonMoveCrash = true;
+
+            @Config.Comment("If true, enables Crafttweaker integration for Kettle. Defaults to true, " +
+                    "as if enabled and not used does not alter Witchery behaviour")
+            @Config.Name("Kettle - Tweak Enable Crafttweaker Integration")
+            public static boolean kettle_tweakCustomHeatSources = true;
 
             @Config.Comment("Fix brews getting thrown immediately upon right-clicking the Kettle with a single empty bottle.")
             @Config.Name("Kettle - Fix Brews Thrown Upon Creation")
@@ -350,7 +369,7 @@ public class ModConfig {
             @Config.Name("Witch's Cauldron - Fix Unlimited Water")
             public static boolean witchsCauldron_fixUnlimitedWaterWhenEmpty = true;
 
-            @Config.Comment("If true, enabled Crafttweaker integration for Witch's Cauldron. Defaults to true, " +
+            @Config.Comment("If true, enables Crafttweaker integration for Witch's Cauldron. Defaults to true, " +
                     "as if enabled and not used does not alter Witchery behaviour")
             @Config.Name("Witch's Cauldron - Tweak Enable Crafttweaker Integration")
             public static boolean witchsCauldron_tweakCustomHeatSources = true;
@@ -901,19 +920,23 @@ public class ModConfig {
             @Config.Name("TOP Integration - Altar")
             public static EProbeElementIntegrationConfig altar = EProbeElementIntegrationConfig.DEFAULT;
 
-            @Config.Comment("If true, enabled TOP integration for Witch's Cauldron")
+            @Config.Comment("If true, enables TOP integration for Witch's Cauldron")
             @Config.Name("TOP Integration - Witch's Cauldron")
             public static EProbeElementIntegrationConfig cauldron = EProbeElementIntegrationConfig.DEFAULT;
 
-            @Config.Comment("If true, enabled TOP integration for Grassper")
+            @Config.Comment("If true, enables TOP integration for Kettle")
+            @Config.Name("TOP Integration - Kettle")
+            public static EProbeElementIntegrationConfig kettle = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Grassper")
             @Config.Name("TOP Integration - Grassper")
             public static EProbeElementIntegrationConfig grassper = EProbeElementIntegrationConfig.DEFAULT;
 
-            @Config.Comment("If true, enabled TOP integration for Hobgoblin")
+            @Config.Comment("If true, enables TOP integration for Hobgoblin")
             @Config.Name("TOP Integration - Hobgoblin")
             public static EProbeElementIntegrationConfig goblin = EProbeElementIntegrationConfig.DEFAULT;
 
-            @Config.Comment("If true, enabled TOP integration for Flame Imp")
+            @Config.Comment("If true, enables TOP integration for Flame Imp")
             @Config.Name("TOP Integration - Flame Imp")
             public static EProbeElementIntegrationConfig imp = EProbeElementIntegrationConfig.DEFAULT;
 

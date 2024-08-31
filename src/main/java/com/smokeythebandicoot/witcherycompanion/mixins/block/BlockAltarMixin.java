@@ -1,7 +1,8 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.block;
 
+import com.smokeythebandicoot.witcherycompanion.api.altar.IBlockAltarAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.altar.ITileEntityAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
-import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -28,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  [Bugfix] Fix Altar having multiple Cores (has same config as altar_fixPowerSourcePersistency)
  */
 @Mixin(BlockAltar.class)
-public abstract class BlockAltarMixin extends BlockContainer {
+public abstract class BlockAltarMixin extends BlockContainer implements IBlockAltarAccessor {
 
     @Shadow(remap = false)
     protected abstract BlockAltar.AltarPatternMatch findParts(IBlockAccess world, BlockPos pos);
@@ -83,7 +84,9 @@ public abstract class BlockAltarMixin extends BlockContainer {
                         if (!(tile instanceof TileEntityAltar)) continue;
                         TileEntityAltar altarPart = (TileEntityAltar) tile;
                         if (partPos.equals(corePos)) {
-                            ReflectionHelper.setField(altarPart, "core", false, true);
+                            // Use Accessor to set core to true for the part
+                            ITileEntityAltarAccessor altarAccessor = (ITileEntityAltarAccessor)altarPart;
+                            altarAccessor.accessor_setCore(true);
                             altarPart.updatePower();
                         } else {
                             altarPart.setInvalid();
@@ -111,6 +114,12 @@ public abstract class BlockAltarMixin extends BlockContainer {
                 altar.setInvalid();
             }
         }
+    }
+
+    /** Accessor Mixin for the getCore function. Used by The One Probe */
+    @Override
+    public BlockPos accessor_getCore(IBlockAccess world, BlockPos pos) {
+        return getCore(world ,pos);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.api;
+package com.smokeythebandicoot.witcherycompanion.api.altar;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
