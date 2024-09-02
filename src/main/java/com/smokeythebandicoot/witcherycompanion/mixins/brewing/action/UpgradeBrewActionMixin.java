@@ -22,7 +22,7 @@ public abstract class UpgradeBrewActionMixin implements IUpgradeBrewActionAccess
     private boolean witchery_Patcher$power;
 
     /** This Mixins injects at return to read the power boolean value and store it in the class for accessor use */
-    @Inject(method = "<init>", at = @At(value = "RETURN"))
+    @Inject(method = "<init>", remap = false, at = @At(value = "RETURN"))
     private void readIncrease(ItemKey key, BrewActionSerializer<?> serializer, boolean power, int increase, int limit, int cost, Function1<?, ?> upgradable, CallbackInfo ci) {
         this.witchery_Patcher$power = power;
     }

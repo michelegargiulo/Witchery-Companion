@@ -15,7 +15,3 @@ witcherycompanion.gui.imp_gift.name=Flame Imp Gifts
 witcherycompanion.message.potion.resizing.elytra_disallow=Due to your size the Elytra does not fit well enough to fly
 witcherycompanion.message.transform.elytra_disallow=Your current form prevents you from using your elytra
 
-# Witchery is missing this descriptions for this secret Brazier Recipe
-recipe.witchery.brazier.poltergeist=Summon Poltergeist
-recipe.witchery.brazier.poltergeist.description=Pull a dead being back into this world from beyond.
-

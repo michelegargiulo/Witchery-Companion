@@ -2,10 +2,10 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processo
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.brewing.ICapacityBrewActionAccessor;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.PatchouliIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.IPatchouliSerializable;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
-import com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.ISecretInfo;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.ProgressionProcessor;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -19,13 +19,11 @@ import vazkii.patchouli.common.util.ItemStackUtil;
 import java.util.*;
 
 
-public class CapacityBrewActionProcessor implements IComponentProcessor {
+public class CapacityBrewActionProcessor extends ProgressionProcessor implements IComponentProcessor {
 
     private static List<CapacityBrewActionInfo> capacityBrews = null;
 
 
-
-    /** ========== OVERRIDES ========== **/
     @Override
     public void setup(IVariableProvider<String> iVariableProvider) {
         if (capacityBrews == null || capacityBrews.isEmpty()) {
@@ -43,7 +41,7 @@ public class CapacityBrewActionProcessor implements IComponentProcessor {
             CapacityBrewActionInfo info = capacityBrews.get(index);
 
             // Checks if it is secret and if player has knowledge about it
-            if (!shouldShow(info))
+            if (shouldHide(info))
                 return null;
 
             return info.serialize();
@@ -53,7 +51,6 @@ public class CapacityBrewActionProcessor implements IComponentProcessor {
                 "Key: {}, Capacity Brew Size: {}", key, capacityBrews == null ? "null" : capacityBrews.size());
         return null;
     }
-
 
     private static void updateCapacityMap() {
         SortedSet<CapacityBrewActionInfo> sortedBrews = new TreeSet<>();
@@ -65,28 +62,6 @@ public class CapacityBrewActionProcessor implements IComponentProcessor {
         }
         capacityBrews = new ArrayList<>(sortedBrews);
     }
-
-    private static boolean shouldShow(CapacityBrewActionInfo info) {
-        // If not secret, it means it is written in the manual, so show it
-        if (!info.secret)
-            return true;
-
-        // Otherwise, Check if secrets should always be shown
-        PatchouliIntegration.EPatchouliSecretPolicy policy = PatchouliIntegration.common_showSecretsPolicy;
-        if (policy == PatchouliIntegration.EPatchouliSecretPolicy.ALWAYS_SHOW)
-            return true;
-
-        // If policy is not ALWAYS HIDDEN, then check progress to see if visible
-        return policy == PatchouliIntegration.EPatchouliSecretPolicy.PROGRESS && hasUnlockedProgress(info);
-    }
-
-    private static boolean hasUnlockedProgress(CapacityBrewActionInfo info) {
-        // Get secret key and return true if the corresponding element has been found
-        String key = ProgressUtils.getBrewActionSecret(info.stack);
-        return ClientProxy.getLocalWitcheryProgress().hasProgress(key);
-    }
-
-    /** ========== EXPOSED METHODS ========== **/
 
     /** Returns an ordered list of itemstacks to throw in the cauldron to have the required capacity */
     public static List<Ingredient> getItemsForCapacity(int requiredCapacity) {
@@ -109,8 +84,8 @@ public class CapacityBrewActionProcessor implements IComponentProcessor {
         return ingredients;
     }
 
-    /** ========== INFO HOLDER CLASS ========== **/
-    public static class CapacityBrewActionInfo implements Comparable<CapacityBrewActionInfo>, IPatchouliSerializable {
+
+    public static class CapacityBrewActionInfo implements Comparable<CapacityBrewActionInfo>, IPatchouliSerializable, ISecretInfo {
 
         public ItemStack stack;
         public int increment;
@@ -177,5 +152,14 @@ public class CapacityBrewActionProcessor implements IComponentProcessor {
 
         }
 
+        @Override
+        public boolean isSecret() {
+            return this.secret;
+        }
+
+        @Override
+        public String getSecretKey() {
+            return ProgressUtils.getBrewActionSecret(this.stack);
+        }
     }
 }

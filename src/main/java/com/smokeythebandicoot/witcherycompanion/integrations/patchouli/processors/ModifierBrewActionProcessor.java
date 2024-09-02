@@ -7,9 +7,9 @@ import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.IPatchoul
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.ISecretInfo;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.ProgressionProcessor;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
-import net.msrandom.witchery.brewing.action.BrewAction;
-import net.msrandom.witchery.brewing.action.UpgradeBrewAction;
+import net.msrandom.witchery.brewing.action.*;
 import net.msrandom.witchery.resources.BrewActionManager;
 import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariableProvider;
@@ -21,21 +21,23 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 
-public class UpgradeBrewActionProcessor extends ProgressionProcessor implements IComponentProcessor {
+public class ModifierBrewActionProcessor extends ProgressionProcessor implements IComponentProcessor {
 
-    private boolean power;
-    private static List<UpgradeBrewActionInfo> powerBrews = null;
-    private static List<UpgradeBrewActionInfo> durationBrews = null;
-
+    private String modifierType;
+    private static List<ModifierBrewActionInfo> modifierBrews = null;
+    private static List<ModifierBrewActionInfo> quaffingBrews = null;
+    private static List<ModifierBrewActionInfo> colorBrews = null;
 
     @Override
     public void setup(IVariableProvider<String> iVariableProvider) {
-        if (powerBrews == null || powerBrews.isEmpty() || durationBrews == null || durationBrews.isEmpty()) {
-            updateUpgradeMaps();
+        if (modifierBrews == null || modifierBrews.isEmpty() ||
+                quaffingBrews == null || quaffingBrews.isEmpty() ||
+                colorBrews == null || colorBrews.isEmpty()) {
+            updateModifierMaps();
         }
 
-        if (iVariableProvider.has("upgrade_type")) {
-            this.power = iVariableProvider.get("upgrade_type").equals("power");
+        if (iVariableProvider.has("modifier_type")) {
+            this.modifierType = iVariableProvider.get("modifier_type");
         }
     }
 
@@ -43,11 +45,11 @@ public class UpgradeBrewActionProcessor extends ProgressionProcessor implements 
     public String process(String key) {
 
         // Convert the set into a sorted list accessible by index
-        int index = ProcessorUtils.getIndexFromKey(key, "upgrade_brew_item");
+        int index = ProcessorUtils.getIndexFromKey(key, "modifier_brew_item");
 
         if (index > -1) {
 
-            UpgradeBrewActionInfo info;
+            ModifierBrewActionInfo info;
             if (this.power) {
                 if (index < powerBrews.size())
                     info = powerBrews.get(index);
@@ -75,49 +77,59 @@ public class UpgradeBrewActionProcessor extends ProgressionProcessor implements 
     }
 
 
-    private static void updateUpgradeMaps() {
-        SortedSet<UpgradeBrewActionInfo> sortedPower = new TreeSet<>();
-        SortedSet<UpgradeBrewActionInfo> sortedDuration = new TreeSet<>();
+    private static void updateModifierMaps() {
+        modifierBrews = new ArrayList<>();
+        quaffingBrews = new ArrayList<>();
+        colorBrews = new ArrayList<>();
         for (BrewAction action : BrewActionManager.INSTANCE.getActions()) {
-            if (action instanceof UpgradeBrewAction) {
-                UpgradeBrewActionInfo info = new UpgradeBrewActionInfo((UpgradeBrewAction) action);
-                if (info.increasesPower) {
-                    sortedPower.add(info);
-                } else {
-                    sortedDuration.add(info);
-                }
+            ModifierBrewActionInfo info = new ModifierBrewActionInfo(action);
+            if (action instanceof EffectModifierBrewAction) {
+                modifierBrews.add(info);
+            } else if (action instanceof QuaffingSpeedBrewAction) {
+                quaffingBrews.add(info);
+            } else if (action instanceof SetColorBrewAction) {
+                colorBrews.add(info);
             }
         }
-        powerBrews = new ArrayList<>(sortedPower);
-        durationBrews = new ArrayList<>(sortedDuration);
     }
 
 
-    public static class UpgradeBrewActionInfo implements Comparable<UpgradeBrewActionInfo>, IPatchouliSerializable, ISecretInfo {
+    public static class ModifierBrewActionInfo implements Comparable<ModifierBrewActionInfo>, IPatchouliSerializable, ISecretInfo {
 
         public ItemStack stack;
-        public int increment;
-        public int ceiling;
-        public boolean increasesPower;
+        public String description;
         public boolean secret;
 
-        public UpgradeBrewActionInfo() { }
+        public ModifierBrewActionInfo() { }
 
-        public UpgradeBrewActionInfo(UpgradeBrewAction action) {
+        public ModifierBrewActionInfo(SetColorBrewAction action) {
             this.stack = action.getKey().toStack();
-            this.increment = action.getIncrease();
-            this.secret = action.getHidden();
-            this.ceiling = action.getLimit();
-            if ((Object)action instanceof IUpgradeBrewActionAccessor) {
-                IUpgradeBrewActionAccessor accessor = (IUpgradeBrewActionAccessor) (Object)action;
-                this.increasesPower = accessor.increasesPower();
-            } else {
-                this.increasesPower = false;
-            }
+            this.description = I18n.format("")
+        }
+
+        public ModifierBrewActionInfo(BrewAction action) {
+            this.stack = action.getKey().toStack();
+           if (action instanceof EffectModifierBrewAction) {
+               EffectModifierBrewAction effectModifierBrewAction = (EffectModifierBrewAction) action;
+               switch (effectModifierBrewAction.getType()) {
+                   case NO_PARTICLES:
+                       this.description = I18n.format("item.witchery.witches_brews_book.modifiers.general.no_particles");
+                   case INVERT:
+                       this.description = I18n.format("item.witchery.witches_brews_book.modifiers.general.invert");
+                   case SKIP_BLOCK_EFFECTS:
+                       this.description = I18n.format("item.witchery.witches_brews_book.modifiers.general.skip_block_effects");
+                   case SKIP_ENTITY_EFFECTS:
+                       this.description = I18n.format("item.witchery.witches_brews_book.modifiers.general.skip_entity_effects");
+                   case DISABLE_POWER_LIMIT:
+                       this.description = I18n.format("item.witchery.witches_brews_book.modifiers.general.disable_power_limit");
+               }
+           } else if (action instanceof QuaffingSpeedBrewAction) {
+               this.description = I18n.format("item.witchery.witches_brews_book.modifiers.quaffing.faster_quaffing");
+           } else if (action instanceof )
 
         }
 
-        public UpgradeBrewActionInfo(ItemStack stack, int increment, boolean increasesPower, int ceiling, boolean secret) {
+        public ModifierBrewActionInfo(ItemStack stack, int increment, boolean increasesPower, int ceiling, boolean secret) {
             this.stack = stack;
             this.increment = increment;
             this.ceiling = ceiling;
@@ -127,7 +139,7 @@ public class UpgradeBrewActionProcessor extends ProgressionProcessor implements 
 
 
         @Override
-        public int compareTo(UpgradeBrewActionInfo o) {
+        public int compareTo(ModifierBrewActionInfo o) {
             if (o == null) return 1;
             if (increment != o.increment)
                 return Integer.compare(increment, o.increment);
@@ -176,5 +188,6 @@ public class UpgradeBrewActionProcessor extends ProgressionProcessor implements 
         public boolean isSecret() {
             return this.secret;
         }
+
     }
 }
