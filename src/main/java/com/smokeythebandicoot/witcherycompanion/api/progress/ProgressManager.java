@@ -49,11 +49,7 @@ public class ProgressManager {
     private static void discoverBrewActions() {
         for (BrewAction action : BrewActionManager.INSTANCE.getActions()) {
             if (action.getHidden()) {
-                if (action instanceof CapacityBrewAction) {
-                    secrets.add(ProgressUtils.getCapacityBrewAction(action.getKey().toStack()));
-                } else {
-                    secrets.add(ProgressUtils.getGenericBrewActionSecret(action.getKey().toStack()));
-                }
+                secrets.add(ProgressUtils.getBrewActionSecret(action.getKey().toStack()));
             }
         }
     }

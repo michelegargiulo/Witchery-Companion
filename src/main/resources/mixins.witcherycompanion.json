@@ -37,6 +37,7 @@
     "brewing.LiquidDispersalMixin",
     "brewing.TriggeredDispersalMixin",
     "brewing.action.CapacityBrewActionMixin",
+    "brewing.action.UpgradeBrewActionMixin",
     "brewing.action.effect.BlastBrewEffectMixin",
     "brewing.action.effect.BrewActionEffectMixin",
     "brewing.action.effect.ErosionBrewEffectMixin",

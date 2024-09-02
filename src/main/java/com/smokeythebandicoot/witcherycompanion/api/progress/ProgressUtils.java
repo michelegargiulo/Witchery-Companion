@@ -6,17 +6,10 @@ import net.minecraft.item.ItemStack;
 public class ProgressUtils {
 
     // Defined format for Capacity Brew secret items: MODID:brewing/capacity/<namespace>:<path>:<meta>
-    public static String getCapacityBrewAction(ItemStack stack) {
+    public static String getBrewActionSecret(ItemStack stack) {
         if (stack == null)
             return null;
-        return WitcheryCompanion.prefix("brewing/capacity/" + stack.getItem().getRegistryName() + ":" + stack.getMetadata());
-    }
-
-    // Defined format for Capacity Brew secret items: MODID:brewing/capacity/<namespace>:<path>:<meta>
-    public static String getGenericBrewActionSecret(ItemStack stack) {
-        if (stack == null)
-            return null;
-        return WitcheryCompanion.prefix("brewing/generic/" + stack.getItem().getRegistryName() + ":" + stack.getMetadata());
+        return WitcheryCompanion.prefix("brewing/items/" + stack.getItem().getRegistryName() + ":" + stack.getMetadata());
     }
 
     // Defined format for Secret Brazier Recipes: MODID:brazier/recipe/<recipeID>

@@ -82,7 +82,7 @@ public class CapacityBrewActionProcessor implements IComponentProcessor {
 
     private static boolean hasUnlockedProgress(CapacityBrewActionInfo info) {
         // Get secret key and return true if the corresponding element has been found
-        String key = ProgressUtils.getCapacityBrewAction(info.stack);
+        String key = ProgressUtils.getBrewActionSecret(info.stack);
         return ClientProxy.getLocalWitcheryProgress().hasProgress(key);
     }
 

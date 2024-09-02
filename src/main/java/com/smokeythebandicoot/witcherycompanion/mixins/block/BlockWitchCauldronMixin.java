@@ -135,7 +135,7 @@ public abstract class BlockWitchCauldronMixin {
                 ItemStack stack = action.getKey().toStack();
                 IWitcheryProgress progress = player.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
                 if (progress != null) {
-                    progress.unlockProgress(ProgressUtils.getCapacityBrewAction(stack));
+                    progress.unlockProgress(ProgressUtils.getBrewActionSecret(stack));
                     ProgressSync.serverRequest(player);
                 }
             }
