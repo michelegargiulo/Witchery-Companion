@@ -42,3 +42,6 @@ description.wolfsbane=Prevents a werewolf from shape shifting into or out of the
 description.worship=Gives player bonuses if they are being worshipped by Hobgoblins
 
 item.witchery.lingering_brew_bottle.name=Lingering Brew Bottle
+
+# Typo in Witchery lang file
+item.witchery.witches_brews_book.modifiers.color.gray=Gray color
