@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components;
 
 import com.google.gson.annotations.SerializedName;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.CauldronCapacityProcessor;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.CapacityBrewActionProcessor;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.CauldronDispersalProcessor;
 import net.minecraft.item.crafting.Ingredient;
 import net.msrandom.witchery.brewing.action.BrewAction;
@@ -77,7 +77,7 @@ public class CauldronBrewComponent implements ICustomComponent {
         BrewEffectActionInfo currentBrew = brewEffects.get(brewId);
 
         // First, insert enough capacity ingredients
-        stacks.addAll(CauldronCapacityProcessor.getItemsForCapacity(currentBrew.level));
+        stacks.addAll(CapacityBrewActionProcessor.getItemsForCapacity(currentBrew.level));
 
         stacks.add(currentBrew.stack);
 
