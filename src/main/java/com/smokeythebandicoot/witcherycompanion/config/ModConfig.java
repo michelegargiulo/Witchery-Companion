@@ -9,7 +9,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.common.event.FMLLoadEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLStateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
@@ -500,7 +506,7 @@ public class ModConfig {
             public static boolean movingEarth_tweakDisableVoidingBlocks = true;
 
             @Config.Comment("Set the Ritual of Moving Earth refund policy. Below, the valid values:\n" +
-                    "0: never refound the player (default Witchery Behaviour)\n" +
+                    "0: never refound the player (default Witchery Behavior)\n" +
                     "1: if the ritual doesn't move the upwards by its full extent, refund the player\n" +
                     "2: refund only if the rite has not moved any block")
             @Config.Name("Rite of Moving Earth - Tweak Rite Refund Policy")
@@ -567,7 +573,7 @@ public class ModConfig {
         public static class EntityTweaks {
 
             @Config.Comment("If true, enables all the Baba Yaga tweaks")
-            @Config.Name("Baba Yaga - Tweak Enable Custom Behaviour")
+            @Config.Name("Baba Yaga - Tweak Enable Custom Behavior")
             public static boolean babaYaga_enableTweaks = false;
 
             @Config.RangeDouble(min = 1.0, max = 256.0)
@@ -1066,6 +1072,9 @@ public class ModConfig {
 
     @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)
     public static class ConfigSyncHandler {
+
+        private static boolean finishedLoading = false;
+
         @SubscribeEvent
         public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
             if(event.getModID().equals(WitcheryCompanion.MODID)) {
@@ -1075,7 +1084,9 @@ public class ModConfig {
 
         public static void reloadConfig() {
             reloadRiteOfMovingEarthBlacklist();
-            IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
+            // Avoid reloading Patchouli flags when load is not completed
+            if (Loader.instance().hasReachedState(LoaderState.AVAILABLE))
+                IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
             ConfigManager.sync(WitcheryCompanion.MODID, Config.Type.INSTANCE);
         }
 

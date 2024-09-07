@@ -1,67 +1,88 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
-import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.brewing.ICapacityBrewActionAccessor;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.IPatchouliSerializable;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.ISecretInfo;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.ProgressionProcessor;
-import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
-import net.minecraft.item.ItemStack;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.beans.CapacityBrewActionDTO;
 import net.minecraft.item.crafting.Ingredient;
 import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.brewing.action.CapacityBrewAction;
 import net.msrandom.witchery.resources.BrewActionManager;
 import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariableProvider;
-import vazkii.patchouli.common.util.ItemStackUtil;
 
 import java.util.*;
 
 
-public class CapacityBrewActionProcessor extends ProgressionProcessor implements IComponentProcessor {
+public class CapacityBrewActionProcessor implements IComponentProcessor {
 
-    private static List<CapacityBrewActionInfo> capacityBrews = null;
+    private String removesCeilingText;
+    private String removesCeilingTooltip;
+    private String secretText;
+    private String secretTooltip;
 
+    private static final HashMap<Integer, CapacityBrewActionDTO> dtoCache = new HashMap<>();
+    private static List<CapacityBrewAction> capacityBrews = null;
 
     @Override
-    public void setup(IVariableProvider<String> iVariableProvider) {
+    public void setup(IVariableProvider<String> provider) {
+        // DTO is set dynamically for this component, as it renders all brews in a single page
         if (capacityBrews == null || capacityBrews.isEmpty()) {
             updateCapacityMap();
         }
+
+        dtoCache.clear();
+
+        this.removesCeilingText = ProcessorUtils.readVariable(provider, "removes_ceiling_text");
+        this.removesCeilingTooltip = ProcessorUtils.readVariable(provider, "removes_ceiling_tooltip");
+        this.secretText = ProcessorUtils.readVariable(provider, "secret_text");
+        this.secretTooltip = ProcessorUtils.readVariable(provider, "secret_tooltip");
     }
 
     @Override
     public String process(String key) {
-
-        // Convert the set into a sorted list accessible by index
-        int index = ProcessorUtils.getIndexFromKey(key, "capacity_brew_item");
+        // Serialized key
+        ProcessorUtils.KeyInfo info = ProcessorUtils.splitKeyIndex(key);
+        int index = info.index;
 
         if (index > -1 && index < capacityBrews.size()) {
-            CapacityBrewActionInfo info = capacityBrews.get(index);
 
-            // Checks if it is secret and if player has knowledge about it
-            if (shouldHide(info))
-                return null;
+            key = info.key;
+            CapacityBrewActionDTO dto;
 
-            return info.serialize();
+            // The DTO either comes from the cache, or must be computed and inserted into the cache
+            if (dtoCache.containsKey(index)) {
+                dto = dtoCache.get(index);
+            } else {
+                // Create new DTO from brew, serialize it and insert in cache and return
+                dto = new CapacityBrewActionDTO(capacityBrews.get(index));
+                dto.removesCeilingText = this.removesCeilingText;
+                dto.removesCeilingTooltip = this.removesCeilingTooltip;
+                dto.secretText = this.secretText;
+                dto.secretTooltip = this.secretTooltip;
+                dtoCache.put(index, dto);
+            }
 
+            // If the key is the serialized brew, then serialize and return.
+            // For cases in which the same brew is used more than once, caching might be used
+            // to improve performance and cache serialization results. But companion
+            // only uses this template in a single page, where the same brew is never used twice
+            if (key.equals("serialized")) {
+                return ProcessorUtils.serializeDto(dto);
+            }
+            return dto.getForKey(key);
         }
-        WitcheryCompanion.logger.warn("Could not parse key for CauldronCapacityProcessor. Key outside of bounds. " +
-                "Key: {}, Capacity Brew Size: {}", key, capacityBrews == null ? "null" : capacityBrews.size());
         return null;
     }
 
     private static void updateCapacityMap() {
-        SortedSet<CapacityBrewActionInfo> sortedBrews = new TreeSet<>();
+        capacityBrews = new ArrayList<>();
         for (BrewAction action : BrewActionManager.INSTANCE.getActions()) {
             if (action instanceof CapacityBrewAction) {
-                CapacityBrewAction capacityBrewAction = (CapacityBrewAction)action;
-                sortedBrews.add(new CapacityBrewActionInfo(capacityBrewAction));
+                capacityBrews.add((CapacityBrewAction) action);
             }
         }
-        capacityBrews = new ArrayList<>(sortedBrews);
+        capacityBrews.sort(Comparator.comparingInt(CapacityBrewAction::getCeiling));
     }
+
 
     /** Returns an ordered list of itemstacks to throw in the cauldron to have the required capacity */
     public static List<Ingredient> getItemsForCapacity(int requiredCapacity) {
@@ -74,92 +95,14 @@ public class CapacityBrewActionProcessor extends ProgressionProcessor implements
 
         // Build the list
         int currentCapacity = 0;
-        for (CapacityBrewActionInfo capacityBrewInfo : capacityBrews) {
+        for (CapacityBrewAction capacityBrewInfo : capacityBrews) {
             if (currentCapacity >= requiredCapacity) {
                 break;
             }
-            currentCapacity += capacityBrewInfo.increment;
-            ingredients.add(Ingredient.fromStacks(capacityBrewInfo.stack));
+            currentCapacity += capacityBrewInfo.getIncrement();
+            ingredients.add(Ingredient.fromStacks(capacityBrewInfo.getKey().toStack()));
         }
         return ingredients;
     }
 
-
-    public static class CapacityBrewActionInfo implements Comparable<CapacityBrewActionInfo>, IPatchouliSerializable, ISecretInfo {
-
-        public ItemStack stack;
-        public int increment;
-        public boolean removesCeiling;
-        public boolean secret;
-
-        public CapacityBrewActionInfo() { }
-
-        public CapacityBrewActionInfo(CapacityBrewAction action) {
-            this.stack = action.getKey().toStack();
-            this.increment = action.getIncrement();
-            this.secret = action.getHidden();
-            if ((Object)action instanceof ICapacityBrewActionAccessor) {
-                ICapacityBrewActionAccessor accessor = (ICapacityBrewActionAccessor)(Object) action;
-                this.removesCeiling = accessor.getRemoveCeiling();
-            } else {
-                this.removesCeiling = false;
-            }
-        }
-
-        public CapacityBrewActionInfo(ItemStack stack, int increment, boolean removesCeiling, boolean secret) {
-            this.stack = stack;
-            this.increment = increment;
-            this.removesCeiling = removesCeiling;
-            this.secret = secret;
-        }
-
-
-        @Override
-        public int compareTo(CapacityBrewActionInfo o) {
-            if (o == null) return 1;
-            if (increment != o.increment)
-                return Integer.compare(increment, o.increment);
-            return stack.getItem().getRegistryName().compareTo(o.stack.getItem().getRegistryName());
-        }
-
-        // Format:
-        // <stack>,<increment>,<removesCeiling>,<secret>
-        @Override
-        public String serialize() {
-            StringBuilder sb = new StringBuilder();
-            sb.append(ItemStackUtil.serializeStack(stack))
-                    .append(",")
-                    .append(increment)
-                    .append(",")
-                    .append(removesCeiling)
-                    .append(",")
-                    .append(secret);
-            return sb.toString();
-        }
-
-        @Override
-        public void deserialize(String str) {
-            String[] splits = str.split(",");
-            if (splits.length != 4) return;
-            try {
-                this.stack = ItemStackUtil.loadStackFromString(splits[0]);
-                this.increment = Integer.parseInt(splits[1]);
-                this.removesCeiling = Boolean.parseBoolean(splits[2]);
-                this.secret = Boolean.parseBoolean(splits[3]);
-            } catch (Exception ex) {
-                WitcheryCompanion.logger.warn("Could not deserialize CapacityBrewActionInfo from string: {}", str, ex);
-            }
-
-        }
-
-        @Override
-        public boolean isSecret() {
-            return this.secret;
-        }
-
-        @Override
-        public String getSecretKey() {
-            return ProgressUtils.getBrewActionSecret(this.stack);
-        }
-    }
 }

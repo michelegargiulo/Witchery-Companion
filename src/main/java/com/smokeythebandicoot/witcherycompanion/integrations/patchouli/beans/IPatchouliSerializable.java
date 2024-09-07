@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.patchouli;
+package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.beans;
 
 public interface IPatchouliSerializable {
 

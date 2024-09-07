@@ -4,6 +4,8 @@ import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.PatchouliIntegration.Flags;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.bookcomponents.ColorableImage;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.SymbolEffectProcessor;
+import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
+import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,9 +16,13 @@ import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 import net.msrandom.witchery.resources.SymbolEffectManager;
 import vazkii.patchouli.api.PatchouliAPI;
 import vazkii.patchouli.client.book.template.BookTemplate;
+import vazkii.patchouli.client.book.text.BookTextParser;
+import vazkii.patchouli.client.book.text.SpanState;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Mod.EventBusSubscriber()
 public class PatchouliApiIntegration {
@@ -25,6 +31,12 @@ public class PatchouliApiIntegration {
 
     public static void registerCustomComponents() {
         BookTemplate.registerComponent("colored_image", ColorableImage.class);
+    }
+
+    public static void registerCustomMacros() {
+        ReflectionHelper.invokeStaticMethod(BookTextParser.class, "register",
+                new Class<?>[] { BookTextParser.FunctionProcessor.class, String[].class },
+                false, new RomanNumberFunction(), new String[] {"roman"});
     }
 
     // Called from Proxy
@@ -77,4 +89,25 @@ public class PatchouliApiIntegration {
             registerFlag("symbols/" + effectId, true);
         }
     }
+
+
+    /** Custom FunctionProcessor for Patchouli's TextParser
+     * Usage: $(roman)<string>$(). While active, all numbers within the 'string' will be converted
+     * into roman numbers. Useful for dynamic Enchantment or Potion levels */
+    private static class RomanNumberFunction implements BookTextParser.FunctionProcessor {
+
+        private static final Pattern pattern = Pattern.compile("[0-9]+");
+
+        @Override
+        public String process(String s, SpanState spanState) {
+            Matcher matcher = pattern.matcher(s);
+            StringBuffer buffer = new StringBuffer();
+            while (matcher.find()) {
+                matcher.appendReplacement(buffer, RomanNumbers.toRoman(Integer.parseInt(matcher.group())));
+            }
+            matcher.appendTail(buffer);
+            return buffer.toString();
+        }
+    }
+
 }

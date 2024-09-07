@@ -3,10 +3,12 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processo
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.brewing.IUpgradeBrewActionAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.IPatchouliSerializable;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.beans.IPatchouliSerializable;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.ISecretInfo;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.ProgressionProcessor;
+import com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.brewing.action.UpgradeBrewAction;
@@ -21,9 +23,10 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 
-public class UpgradeBrewActionProcessor extends ProgressionProcessor implements IComponentProcessor {
+public class UpgradeBrewActionProcessor implements IComponentProcessor {
 
     private boolean power;
+    private String description;
     private static List<UpgradeBrewActionInfo> powerBrews = null;
     private static List<UpgradeBrewActionInfo> durationBrews = null;
 
@@ -37,13 +40,20 @@ public class UpgradeBrewActionProcessor extends ProgressionProcessor implements 
         if (iVariableProvider.has("upgrade_type")) {
             this.power = iVariableProvider.get("upgrade_type").equals("power");
         }
+
+        if (iVariableProvider.has("increment_text")) {
+            this.description = iVariableProvider.get("increment_text");
+        }
     }
 
     @Override
     public String process(String key) {
 
+        if (key.equals("increment_text"))
+            return this.description;
+
         // Convert the set into a sorted list accessible by index
-        int index = ProcessorUtils.getIndexFromKey(key, "upgrade_brew_item");
+        int index = ProcessorUtils.splitKeyIndex(key).index;
 
         if (index > -1) {
 
@@ -60,7 +70,7 @@ public class UpgradeBrewActionProcessor extends ProgressionProcessor implements 
             }
 
             // Checks if it is secret and if player has knowledge about it
-            if (shouldHide(info))
+            if (!shouldShow(info))
                 return null;
 
             return info.serialize();
@@ -72,6 +82,25 @@ public class UpgradeBrewActionProcessor extends ProgressionProcessor implements 
                 powerBrews == null ? "null" : powerBrews.size(),
                 durationBrews == null ? "null" : durationBrews.size());
         return null;
+    }
+
+    private static boolean shouldShow(UpgradeBrewActionInfo info) {
+        // Recipe is not secret, always show
+        if (!info.secret) return true;
+
+        // Otherwise, Check if secrets should always be shown
+        ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy policy = ModConfig.IntegrationConfigurations.PatchouliIntegration.common_showSecretsPolicy;
+        if (policy == ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy.ALWAYS_SHOW)
+            return true;
+
+        // If policy is not ALWAYS HIDDEN, then check progress to see if visible
+        return policy == ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy.PROGRESS && hasUnlockedProgress(info);
+    }
+
+    private static boolean hasUnlockedProgress(UpgradeBrewActionInfo info) {
+        // Get secret key and return true if the corresponding element has been found
+        String key = ProgressUtils.getBrewActionSecret(info.stack);
+        return ClientProxy.getLocalWitcheryProgress().hasProgress(key);
     }
 
 
@@ -95,11 +124,11 @@ public class UpgradeBrewActionProcessor extends ProgressionProcessor implements 
 
     public static class UpgradeBrewActionInfo implements Comparable<UpgradeBrewActionInfo>, IPatchouliSerializable, ISecretInfo {
 
-        public ItemStack stack;
-        public int increment;
-        public int ceiling;
-        public boolean increasesPower;
-        public boolean secret;
+        public ItemStack stack = new ItemStack(Items.AIR);
+        public int increment = 0;
+        public int ceiling = 0;
+        public boolean increasesPower = false;
+        public boolean secret = false;
 
         public UpgradeBrewActionInfo() { }
 
@@ -153,6 +182,8 @@ public class UpgradeBrewActionProcessor extends ProgressionProcessor implements 
 
         @Override
         public void deserialize(String str) {
+            if (str == null)
+                return;
             String[] splits = str.split(",");
             if (splits.length != 5) return;
             try {

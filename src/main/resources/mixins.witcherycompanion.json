@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "${mixin_refmap}",
   "mixins": [
+    "_minecraft.resources.RecipeManagerMixin",
     "_minecraft.resources.ResourceManagerMixin",
     "block.BlockAlderDoorMixin",
     "block.BlockAltarMixin",

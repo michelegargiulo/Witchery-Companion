@@ -1,56 +1,55 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components;
 
 import com.google.gson.annotations.SerializedName;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.CapacityBrewActionProcessor;
-import net.minecraft.client.Minecraft;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.beans.CapacityBrewActionDTO;
+import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import vazkii.patchouli.api.IComponentRenderContext;
-import vazkii.patchouli.api.ICustomComponent;
 import vazkii.patchouli.api.VariableHolder;
 import vazkii.patchouli.client.book.gui.BookTextRenderer;
 import vazkii.patchouli.client.book.gui.GuiBook;
-import vazkii.patchouli.client.book.gui.GuiBookEntry;
 
-public class CapacityBrewActionComponent implements ICustomComponent {
 
-    @SerializedName("capacity_brew_item")
+public class CapacityBrewActionComponent extends BrewActionComponent<CapacityBrewActionDTO> {
+
+    @SerializedName("increment")
     @VariableHolder
-    public String serializedCapacityBrew = null;
+    public String _increment;
 
-    @SerializedName("secret_text")
+    @SerializedName("removes_ceiling")
     @VariableHolder
-    public String secretText = "";
+    public String _removesCeiling;
 
     @SerializedName("removes_ceiling_text")
     @VariableHolder
-    public String removesCeilingText = "";
-
-    @SerializedName("secret_tooltip")
-    @VariableHolder
-    public String secretTooltip = "";
+    public String _removesCeilingText;
 
     @SerializedName("removes_ceiling_tooltip")
     @VariableHolder
-    public String removesCeilingTooltip = "";
+    public String _removesCeilingTooltip;
 
 
-    /** ========== NON-JSON VARIABLES ========== **/
-    private transient int x = 0;
-    private transient int y = 0;
-    private transient CapacityBrewActionProcessor.CapacityBrewActionInfo info = null;
+    private transient String increment = null;
+    private transient Boolean removesCeiling = null;
+    private transient String removesCeilingText = null;
+    private transient String removesCeilingTooltip = null;
+    private transient Boolean isSecret = null;
+    private transient String secretText = null;
+    private transient String secretTooltip = null;
     private transient BookTextRenderer textRenderer;
 
 
-    /** ========== OVERRIDES ========== **/
-    /** Called when this component is built. Take the chance to read variables and set
-     * any local positions here. */
     @Override
-    public void build(int componentX, int componentY, int pageNum) {
-        // Can return null
-        info = new CapacityBrewActionProcessor.CapacityBrewActionInfo();
-        info.deserialize(serializedCapacityBrew);
-        this.x = componentX;
-        this.y = componentY;
+    public void onBuild() {
+
+        super.onBuild();
+        this.increment = getTransform(this._increment, dto, d -> d.increment, "+?");
+        this.isSecret = getTransform(this._isSecret, Utils::tryParseBool, dto, d -> d.isSecret, false);
+        this.secretText = getTransform(this._secretText, dto, d -> d.secretText, "");
+        this.secretTooltip = getTransform(this._secretTooltip, dto, d -> d.secretTooltip, "");
+        this.removesCeiling = getTransform(this._removesCeiling, Utils::tryParseBool, dto, d -> d.removesCeiling, false);
+        this.removesCeilingText = getTransform(this._removesCeilingText, dto, d -> d.removesCeilingText, "");
+        this.removesCeilingTooltip = getTransform(this._removesCeilingTooltip, dto, d -> d.removesCeilingTooltip, "");
+
     }
 
     /** Called every render tick. No special transformations are applied, so you're responsible
@@ -58,12 +57,10 @@ public class CapacityBrewActionComponent implements ICustomComponent {
     @Override
     public void render(IComponentRenderContext context, float pticks, int mouseX, int mouseY) {
 
-        if (info == null || info.stack == null)
-            return;
-
         // Draw the ItemStack
-        context.renderItemStack(this.x, this.y, mouseX, mouseY, info.stack);
+        context.renderItemStack(this.x, this.y, mouseX, mouseY, this.stack);
 
+        // Draw text
         if (this.textRenderer != null) {
             this.textRenderer.render(mouseX, mouseY);
         }
@@ -75,16 +72,16 @@ public class CapacityBrewActionComponent implements ICustomComponent {
         if (context.getGui() instanceof GuiBook) {
 
             // Draw the "+X" string (always present)
-            StringBuilder sb = new StringBuilder("+");
-            sb.append(info.increment);
+            StringBuilder sb = new StringBuilder();
+            sb.append(this.increment);
 
             // Decorate with more info, if any
-            if (info.secret || info.removesCeiling) {
+            if (this.isSecret || this.removesCeiling) {
                 sb.append(" (");
-                if (info.secret)
+                if (this.isSecret)
                     sb.append("$(t:").append(secretTooltip).append(")").append(secretText).append("$(/t)");
-                if (info.removesCeiling) {
-                    if (info.secret) sb.append(", ");
+                if (this.removesCeiling) {
+                    if (this.isSecret) sb.append(", ");
                     sb.append("$(t:").append(removesCeilingTooltip).append(")").append(removesCeilingText).append("$(/t)");
                 }
                 sb.append(")");

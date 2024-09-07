@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components;
 
 import com.google.gson.annotations.SerializedName;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.ModifierBrewActionProcessor;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.UpgradeBrewActionProcessor;
 import vazkii.patchouli.api.IComponentRenderContext;
 import vazkii.patchouli.api.ICustomComponent;
@@ -26,7 +27,7 @@ public class ModifierBrewActionComponent implements ICustomComponent {
     /** ========== NON-JSON VARIABLES ========== **/
     private transient int x = 0;
     private transient int y = 0;
-    private transient UpgradeBrewActionProcessor.UpgradeBrewActionInfo info = null;
+    private transient ModifierBrewActionProcessor.ModifierBrewActionInfo info = null;
     private transient BookTextRenderer textRenderer;
 
 
@@ -36,7 +37,7 @@ public class ModifierBrewActionComponent implements ICustomComponent {
     @Override
     public void build(int componentX, int componentY, int pageNum) {
         // Can return null
-        info = new UpgradeBrewActionProcessor.UpgradeBrewActionInfo();
+        info = new ModifierBrewActionProcessor.ModifierBrewActionInfo();
         info.deserialize(serializedUpgradeBrew);
         this.x = componentX;
         this.y = componentY;
@@ -64,8 +65,7 @@ public class ModifierBrewActionComponent implements ICustomComponent {
         if (context.getGui() instanceof GuiBook) {
 
             // Draw the "+X" string (always present)
-            StringBuilder sb = new StringBuilder("+");
-            sb.append(info.increment);
+            StringBuilder sb = new StringBuilder(info.description);
 
             // Decorate with more info, if any
             if (info.secret) {

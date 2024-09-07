@@ -16,6 +16,17 @@ public class ReflectionHelper {
     private static final HashMap<ClassProp, Method> methodCache = new HashMap<>();
     private static final HashMap<ClassProp, Field> fieldCache = new HashMap<>();
 
+    /**
+     *
+     * @param obj Object to invoke this method from. Use null for static methods
+     * @param methodName Method identifier
+     * @param types List of method parameters. Must match arguments exactly
+     * @param returnType Return type. Must match return type
+     * @param bypassCache If true, ignores cached methods
+     * @param params Arguments to pass to the invoker
+     * @return Object that returns from the invocation
+     * @param <T> Type of the returned object
+     */
     @SuppressWarnings("unchecked")
     public static <T> T invokeMethod(Object obj, String methodName, Class<?>[] types, Class<?> returnType, boolean bypassCache, Object... params) {
         Class<?> clazz = obj.getClass();
@@ -44,8 +55,49 @@ public class ReflectionHelper {
 
     }
 
+    /**
+     *
+     * @param obj Object to invoke this method from. Use null for static methods
+     * @param methodName Method identifier
+     * @param types List of method parameters. Must match arguments exactly
+     * @param bypassCache If true, ignores cached methods
+     * @param params Arguments to pass to the invoker
+     * @return Object that returns from the invocation
+     * @param <T> Type of the returned object
+     */
     public static <T> T invokeMethod(Object obj, String methodName, Class<?>[] types, boolean bypassCache, Object... params) {
         return invokeMethod(obj, methodName, types, null, bypassCache, params);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T invokeStaticMethod(Class<?> clazz, String methodName, Class<?>[] types, Class<?> returnType, boolean bypassCache, Object... params) {
+        ClassProp cm = new ClassProp(clazz, methodName, types);
+        try {
+
+            Method target;
+            if (methodCache.containsKey(cm) && !bypassCache) {
+                target = methodCache.get(cm);
+            } else {
+                target = getMethodRecursive(clazz, methodName, types, returnType);
+                if (target == null) {
+                    WitcheryCompanion.logger.warn(String.format("Could not find method %s in class %s and its superclasses", methodName, clazz.getName()));
+                    return null;
+                }
+                target.setAccessible(true);
+                methodCache.put(cm, target);
+            }
+
+            return (T)target.invoke(null, params);
+
+        } catch (IllegalAccessException | InvocationTargetException | ClassCastException e) {
+            WitcheryCompanion.logger.error(e.getStackTrace());
+            return null;
+        }
+
+    }
+
+    public static <T> T invokeStaticMethod(Class<?> clazz, String methodName, Class<?>[] types, boolean bypassCache, Object... params) {
+        return invokeStaticMethod(clazz, methodName, types, null, bypassCache, params);
     }
 
     @SuppressWarnings("unchecked")

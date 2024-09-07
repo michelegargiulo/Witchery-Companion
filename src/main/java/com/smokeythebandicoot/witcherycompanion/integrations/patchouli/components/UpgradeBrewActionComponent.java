@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.componen
 
 import com.google.gson.annotations.SerializedName;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.UpgradeBrewActionProcessor;
+import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
 import vazkii.patchouli.api.IComponentRenderContext;
 import vazkii.patchouli.api.ICustomComponent;
 import vazkii.patchouli.api.VariableHolder;
@@ -21,6 +22,10 @@ public class UpgradeBrewActionComponent implements ICustomComponent {
     @SerializedName("secret_tooltip")
     @VariableHolder
     public String secretTooltip = "";
+
+    @SerializedName("increment_text")
+    @VariableHolder
+    public String description = "";
 
 
     /** ========== NON-JSON VARIABLES ========== **/
@@ -67,9 +72,18 @@ public class UpgradeBrewActionComponent implements ICustomComponent {
             StringBuilder sb = new StringBuilder("+");
             sb.append(info.increment);
 
+            if (this.description != null) {
+                sb.append(this.description.replace("%", String.valueOf(info.increasesPower ? info.ceiling : info.ceiling * 2)));
+            }
+
             // Decorate with more info, if any
             if (info.secret) {
-                sb.append(" ($(t:").append(secretTooltip).append(")").append(secretText).append("$(/t)").append(")");
+                sb.append(" ($(t:")
+                        .append(secretTooltip)
+                        .append(")")
+                        .append(secretText)
+                        .append("$(/t)")
+                        .append(")");
             }
 
             GuiBook guiBook = (GuiBook) context.getGui();

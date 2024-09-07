@@ -9,14 +9,10 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
 import net.msrandom.witchery.block.BlockAltar;
 import net.msrandom.witchery.block.entity.TileEntityAltar;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Utils {
 
@@ -74,4 +70,22 @@ public class Utils {
         }
         WitcheryCompanion.logger.error(builder.toString());
     }
+
+    public static int tryParseInt(String str) {
+        try {
+            return Integer.parseInt(str);
+        } catch (Exception ignored) {
+        }
+        return -1;
+    }
+
+    public static boolean tryParseBool(String str) {
+        try {
+            return Boolean.parseBoolean(str);
+        } catch (Exception ex) {
+            WitcheryCompanion.logger.warn("Could not convert string {} to bool: ", str);
+        }
+        return false;
+    }
+
 }
