@@ -5,6 +5,7 @@ import com.smokeythebandicoot.witcherycompanion.api.infernalimp.InfernalImpApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeCategory;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import jeresources.api.drop.LootDrop;
 import jeresources.util.LootTableHelper;
 import mezz.jei.api.IGuiHelper;
@@ -40,7 +41,7 @@ public class ImpGiftCategory extends BaseRecipeCategory<ImpGiftWrapper> {
     }
 
     public static boolean shouldRegister() {
-        return ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiImpGifts && Loader.isModLoaded("jeresources");
+        return ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiImpGifts && Loader.isModLoaded(Mods.JER);
     }
 
     public static void register(IRecipeCategoryRegistration registry) {

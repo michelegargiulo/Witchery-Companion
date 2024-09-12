@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.api.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -58,7 +59,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
         // If Aqua Acrobatics mod is loaded, then do not perform this. AA compat
         // is handled on the AA side
         if (!ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers ||
-                Loader.isModLoaded("aquaacrobatics")) {
+                Loader.isModLoaded(Mods.AQUAACROBATICS)) {
             return;
         }
 
@@ -116,7 +117,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
             target = "Lnet/msrandom/witchery/util/ResizingUtils;getPlayerEyeHeight(Lnet/minecraft/entity/player/EntityPlayer;F)F"))
     private float updateEyeHeightBeforeWitcheryAsm(EntityPlayer player, float eyeHeight, Operation<Float> original) {
         if (!ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers ||
-                Loader.isModLoaded("aquaacrobatics")) {
+                Loader.isModLoaded(Mods.AQUAACROBATICS)) {
             return original.call(player, eyeHeight);
         }
         return eyeHeight;

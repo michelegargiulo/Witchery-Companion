@@ -6,6 +6,7 @@ import com.smokeythebandicoot.witcherycompanion.api.player.IEntityPlayerAccessor
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.CommonTweaks;
 import com.smokeythebandicoot.witcherycompanion.integrations.morph.MorphIntegration;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
@@ -92,7 +93,7 @@ public abstract class ShapeShiftMixin {
     @Inject(method = "initCurrentShift(Lnet/minecraft/entity/player/EntityPlayer;)V", remap = false, at = @At(value = "INVOKE",
             remap = false, shift = At.Shift.AFTER, target = "Lnet/msrandom/witchery/common/ShapeShift;initCurrentShift(Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/entity/player/EntityPlayer;Z)V"))
     public void handleMorphOnDimensionChange(EntityPlayer player, CallbackInfo ci) {
-        if (Loader.isModLoaded("morph") && ModConfig.IntegrationConfigurations.MorphIntegration.fixSizeDesyncOnDimChange) {
+        if (Loader.isModLoaded(Mods.MORPH) && ModConfig.IntegrationConfigurations.MorphIntegration.fixSizeDesyncOnDimChange) {
             MorphIntegration.INSTANCE.handleMorphOnShapeShift(player);
         }
     }

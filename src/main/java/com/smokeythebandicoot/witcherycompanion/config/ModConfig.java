@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.config;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
@@ -1070,7 +1071,7 @@ public class ModConfig {
                 flags.put("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
                 flags.put("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);
                 flags.put("symbology/extended_intro", Flags.symbology_enableExtendedIntro);
-                flags.put("symbology/stroke_visualization", Flags.symbology_enableExtendedIntro);
+                flags.put("symbology/stroke_visualization", Flags.symbology_enableStrokeVisualization);
                 flags.put("symbology/show_secret", Flags.symbology_showSecret);
                 flags.put("symbology/show_knowledge", Flags.symbology_showKnowledge);
 
@@ -1085,7 +1086,7 @@ public class ModConfig {
     public static class ConfigSyncHandler {
 
         @SubscribeEvent
-        public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+        public static void onPostConfigChanged(ConfigChangedEvent.PostConfigChangedEvent event) {
             if(event.getModID().equals(WitcheryCompanion.MODID)) {
                 reloadConfig();
             }
@@ -1094,7 +1095,7 @@ public class ModConfig {
         public static void reloadConfig() {
             reloadRiteOfMovingEarthBlacklist();
             // Avoid reloading Patchouli flags when load is not completed
-            if (Loader.instance().hasReachedState(LoaderState.AVAILABLE))
+            if (Loader.instance().hasReachedState(LoaderState.AVAILABLE) && Loader.isModLoaded(Mods.PATCHOULI))
                 IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
             ConfigManager.sync(WitcheryCompanion.MODID, Config.Type.INSTANCE);
         }

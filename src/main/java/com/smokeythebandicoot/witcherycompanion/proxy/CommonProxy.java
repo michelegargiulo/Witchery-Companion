@@ -14,6 +14,7 @@ import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch
 import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.FamiliarPatches;
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.world.WorldEvent;
@@ -44,18 +45,18 @@ public class CommonProxy {
             MinecraftForge.EVENT_BUS.register(FamiliarPatches.getInstance());
 
         if (ModConfig.IntegrationConfigurations.QuarkIntegration.fixMandrakesRightClickHarvest &&
-                Loader.isModLoaded("quark"))
+                Loader.isModLoaded(Mods.QUARK))
             MinecraftForge.EVENT_BUS.register(BlockMandrakeCropIntegration.INSTANCE);
 
         if (ModConfig.IntegrationConfigurations.ThaumcraftIntegration.enableThaumcraftIntegration &&
-                Loader.isModLoaded("thaumcraft"))
+                Loader.isModLoaded(Mods.THAUMCRAFT))
             MinecraftForge.EVENT_BUS.register(ThaumcraftIntegration.class);
 
-        if (ModConfig.IntegrationConfigurations.TopIntegration.enableTopIntegration && Loader.isModLoaded("theoneprobe"))
-            FMLInterModComms.sendFunctionMessage("theoneprobe", "getTheOneProbe", TOPPlugin.class.getName());
+        if (ModConfig.IntegrationConfigurations.TopIntegration.enableTopIntegration && Loader.isModLoaded(Mods.TOP))
+            FMLInterModComms.sendFunctionMessage(Mods.TOP, "getTheOneProbe", TOPPlugin.class.getName());
 
         // Non-configurable, as it is required for Patchouli integration and does nothing if Patchouli is not used
-        if (Loader.isModLoaded("patchouli")) {
+        if (Loader.isModLoaded(Mods.PATCHOULI)) {
             PatchouliApiIntegration.registerCustomComponents();
             PatchouliApiIntegration.registerCustomMacros();
         }
@@ -67,13 +68,13 @@ public class CommonProxy {
         ModConfig.ConfigSyncHandler.reloadConfig();
 
         // Init compats
-        if (Loader.isModLoaded("jeresources") &&
+        if (Loader.isModLoaded(Mods.JER) &&
                 ModConfig.IntegrationConfigurations.JerIntegration.enableJerIntegration) {
             JERIntegration.init();
         }
 
         // Does not have a config to disable, as it just registers the flags
-        if (Loader.isModLoaded("patchouli")) {
+        if (Loader.isModLoaded(Mods.PATCHOULI)) {
             PatchouliApiIntegration.registerFlags();
             MinecraftForge.EVENT_BUS.register(PatchouliApiIntegration.class);
         }
