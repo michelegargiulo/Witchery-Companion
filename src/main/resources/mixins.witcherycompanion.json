@@ -84,6 +84,7 @@
     "item.brews.ItemErosionBrewMixin",
     "network.PacketSyncEntitySizeMixin",
     "network.medallion.PacketSummonFamiliarMixin",
+    "network.resources.PacketUpdateBrewActionsMixin",
     "potion.PotionEnslavedMixin",
     "potion.PotionFortuneMixin",
     "potion.PotionInsanityMixin",

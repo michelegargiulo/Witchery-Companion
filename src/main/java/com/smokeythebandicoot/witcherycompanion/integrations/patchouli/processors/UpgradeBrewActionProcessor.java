@@ -53,7 +53,7 @@ public class UpgradeBrewActionProcessor implements IComponentProcessor {
             return this.description;
 
         // Convert the set into a sorted list accessible by index
-        int index = ProcessorUtils.splitKeyIndex(key).index;
+        int index = ProcessorUtils.splitKeyIndex(key);
 
         if (index > -1) {
 

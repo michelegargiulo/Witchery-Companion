@@ -42,7 +42,7 @@ public class ModifierBrewActionProcessor implements IComponentProcessor {
     public String process(String key) {
 
         // Convert the set into a sorted list accessible by index
-        int index = ProcessorUtils.splitKeyIndex(key).index;
+        int index = ProcessorUtils.splitKeyIndex(key);
 
         if (index > -1) {
 

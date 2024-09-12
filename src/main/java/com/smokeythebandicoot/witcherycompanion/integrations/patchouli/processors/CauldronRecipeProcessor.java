@@ -1,128 +1,153 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
+import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BaseProcessor;
+import com.smokeythebandicoot.witcherycompanion.utils.ContentUtils;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.msrandom.witchery.init.data.recipes.WitcheryRecipeTypes;
 import net.msrandom.witchery.recipe.CauldronRecipe;
-import net.msrandom.witchery.util.WitcheryUtils;
-import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariableProvider;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 
-/** This processor is responsible for generating a list of items for a CauldronRecipeComponent from a Cauldron Recipe **/
-public class CauldronRecipeProcessor implements IComponentProcessor {
+public class CauldronRecipeProcessor extends BaseProcessor {
 
-    private String recipeOutput = null;
+    protected String title;
+    protected String description;
 
-    private String recipeOutput2 = null;
+    protected String firstRecipeId;
+    protected List<Ingredient> firstRecipeInputs = new ArrayList<>();
+    protected ItemStack firstRecipeOutput = ItemStack.EMPTY;
+    protected String firstRecipePower;
 
-    private List<Ingredient> inputs = null;
+    protected String secondRecipeId;
+    protected List<Ingredient> secondRecipeInputs = new ArrayList<>();
+    protected ItemStack secondRecipeOutput = ItemStack.EMPTY;
+    protected String secondRecipePower;
 
-    private List<Ingredient> inputs2 = null;
-
-    private boolean isDouble = false;
-
-    private static Map<String, CauldronRecipe> cauldronRecipeMap = null;
+    protected transient boolean switchRecipe = false;
+    protected transient String currentRecipeSecretKey;
+    protected transient boolean isDouble = false;
 
 
-    /** ========== OVERRIDES ========== **/
     @Override
-    public void setup(IVariableProvider<String> iVariableProvider) {
+    public void setup(IVariableProvider<String> provider) {
 
-        // Read first output
-        if (iVariableProvider.has("output_item")) {
-            this.recipeOutput = iVariableProvider.get("output_item");
+        this.title = readVariable(provider, "title");
+        this.description = readVariable(provider, "description");
+        this.isDouble = false;
+
+        this.firstRecipeId = readVariable(provider, "first_recipe_id");
+        this.secondRecipeId = readVariable(provider, "second_recipe_id");
+
+        // If first recipe is null but second is not, then second becomes first
+        if (secondRecipeId != null && firstRecipeId == null) {
+            this.firstRecipeId = secondRecipeId;
+            this.secondRecipeId = null;
         }
-        // Read second output
-        if (iVariableProvider.has("output_item2")) {
-            this.recipeOutput2 = iVariableProvider.get("output_item2");
+
+        firstRecipeBlock: {
+            // If first recipe is still null, return null
+            if (firstRecipeId == null) break firstRecipeBlock;
+
+            CauldronRecipe recipe = ContentUtils.getRecipeForType(WitcheryRecipeTypes.CAULDRON, this.firstRecipeId);
+            if (recipe == null) break firstRecipeBlock;
+
+            this.firstRecipeInputs = recipe.getIngredients();
+            this.firstRecipeOutput = recipe.getRecipeOutput();
+            this.firstRecipePower = String.valueOf(recipe.getPower());
+
+            // We set currentRecipeSecretKey to only obfuscate keys of first recipe
+            // We read secret_text and secret_tooltip twice, but we reuse a lot of code this way
+            switchRecipe = true;
+            this.currentRecipeSecretKey = ProgressUtils.getCauldronRecipeSecret(recipe.getId().path);
+            super.setup(provider);
+        }
+
+        secondRecipeBlock: {
+            // If second recipe is still null, return null
+            if (secondRecipeId == null) break secondRecipeBlock;
+
+            // If not, set isDouble to true
             this.isDouble = true;
+
+            CauldronRecipe recipe = ContentUtils.getRecipeForType(WitcheryRecipeTypes.CAULDRON, this.secondRecipeId);
+            if (recipe == null) break secondRecipeBlock;
+
+            this.secondRecipeInputs = recipe.getIngredients();
+            this.secondRecipeOutput = recipe.getRecipeOutput();
+            this.secondRecipePower = String.valueOf(recipe.getPower());
+
+            this.currentRecipeSecretKey = ProgressUtils.getCauldronRecipeSecret(recipe.getId().path);
+            super.setup(provider);
         }
 
-        // Double recipe can be forced
-        if (iVariableProvider.has("double")) {
-            this.isDouble = Boolean.parseBoolean(iVariableProvider.get("double"));
-        }
-
-        // Init data structures for first time
-        if (cauldronRecipeMap == null || cauldronRecipeMap.isEmpty()) {
-            updateCauldronRecipes();
-        }
-
-        // Retrieve stacks depending on recipe
-        // For first item
-        inputs = new ArrayList<>();
-        if (this.recipeOutput != null) {
-            String canonicStack = ProcessorUtils.getCanonic(this.recipeOutput);
-            if (cauldronRecipeMap.containsKey(canonicStack)){
-            inputs.addAll(cauldronRecipeMap.get(canonicStack).getInputs()
-                    .stream()
-                    .map(CauldronRecipe.PoweredItem::getIngredient)
-                    .collect(Collectors.toList()));
-            }
-            inputs.add(cauldronRecipeMap.get(canonicStack).getTriggerIngredient().getIngredient());
-        }
-
-        // And second item, if it is double
-        if (!this.isDouble)
-            return;
-        inputs2 = new ArrayList<>();
-        if (this.recipeOutput2 != null) {
-            String canonicStack2 = ProcessorUtils.getCanonic(this.recipeOutput2);
-            if (cauldronRecipeMap.containsKey(canonicStack2)){
-                inputs2.addAll(cauldronRecipeMap.get(canonicStack2).getInputs()
-                        .stream()
-                        .map(CauldronRecipe.PoweredItem::getIngredient)
-                        .collect(Collectors.toList()));
-            }
-            inputs2.add(cauldronRecipeMap.get(canonicStack2).getTriggerIngredient().getIngredient());
-        }
     }
 
     @Override
     public String process(String key) {
 
-        // Inputs of first recipe
-        if (key.equals("inputs_first")) {
-            return ProcessorUtils.serializeIngredientList(inputs);
-
-        // Output of first recipe
-        } else if (key.equals("output_first")) {
-            return this.recipeOutput;
-
-        // Inputs for second recipe
-        } else if (key.equals("inputs_second") && isDouble && inputs2 != null && recipeOutput2 != null) {
-            return ProcessorUtils.serializeIngredientList(inputs2);
-
-        // Output of second recipe
-        } else if (key.equals("output_second") && isDouble && inputs2 != null && recipeOutput2 != null) {
-            return this.recipeOutput2;
-
-        // Flag for whether to draw second recipe
-        } else if (key.equals("processor_isdouble")) {
-            return String.valueOf(this.isDouble);
-
+        switch (key) {
+            case "title":
+                return this.title;
+            case "description":
+                return this.description;
+            case "first_recipe_inputs":
+                return ProcessorUtils.serializeIngredientList(this.firstRecipeInputs);
+            case "first_recipe_output":
+                return ItemStackUtil.serializeStack(this.firstRecipeOutput);
+            case "first_recipe_power":
+                return this.firstRecipePower;
+            case "second_recipe_inputs":
+                return ProcessorUtils.serializeIngredientList(this.secondRecipeInputs);
+            case "second_recipe_output":
+                return ItemStackUtil.serializeStack(this.secondRecipeOutput);
+            case "second_recipe_power":
+                return this.secondRecipePower;
+            default:
+                return super.process(key);
         }
+    }
 
-        return null;
+    // Since the page has two separate recipes, we override the obfuscateIfSecret directly
+    @Override
+    protected String getSecretKey() {
+        return this.currentRecipeSecretKey;
+    }
+
+    @Override
+    protected void obfuscateFields() {
+        if (switchRecipe) {
+            obfuscateIngredientList(this.secondRecipeInputs);
+            this.secondRecipeOutput = OBFUSCATED_STACK;
+            this.secondRecipePower = obfuscate(this.secondRecipePower, EObfuscationMethod.PATCHOULI);
+        } else {
+            obfuscateIngredientList(this.firstRecipeInputs);
+            this.firstRecipeOutput = OBFUSCATED_STACK;
+            this.firstRecipePower = obfuscate(this.firstRecipePower, EObfuscationMethod.PATCHOULI);
+        }
+    }
+
+    @Override
+    protected void hideFields() {
+        if (switchRecipe) {
+            this.secondRecipeInputs = new ArrayList<>();
+            this.secondRecipeOutput = ItemStack.EMPTY;
+            this.secondRecipePower = "";
+        } else {
+            this.firstRecipeInputs = new ArrayList<>();
+            this.firstRecipeOutput = ItemStack.EMPTY;
+            this.firstRecipePower = "";
+        }
     }
 
     @Override
     public boolean allowRender(String group) {
-        return group.equals("second_recipe") && this.isDouble && inputs2 != null && recipeOutput2 != null;
-    }
-
-    private static void updateCauldronRecipes() {
-        cauldronRecipeMap = new HashMap<>();
-        List<CauldronRecipe> recipes = WitcheryUtils.getRecipeManager(null).getRecipesForType(WitcheryRecipeTypes.CAULDRON);
-        for (CauldronRecipe recipe : recipes) {
-            String output_item = ItemStackUtil.serializeStack(recipe.getRecipeOutput());
-            cauldronRecipeMap.put(output_item, recipe);
-        }
+        return group.equals("second_recipe") && this.isDouble;
     }
 
 

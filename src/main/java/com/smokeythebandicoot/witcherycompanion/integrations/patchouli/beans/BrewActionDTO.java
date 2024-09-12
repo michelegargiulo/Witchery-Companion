@@ -1,25 +1,29 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.beans;
 
-import com.google.gson.annotations.Expose;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
+import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.beans.base.AbstractDTO;
 import net.minecraft.item.ItemStack;
-import vazkii.patchouli.common.util.ItemStackUtil;
+import net.msrandom.witchery.brewing.action.BrewAction;
 
 public abstract class BrewActionDTO extends AbstractDTO {
 
-    @Expose
-    public ItemStack stack = ItemStack.EMPTY;
+    public boolean isSecret;
+    public String brewName;
+    public String brewType;
+    public ItemStack stack;
 
-    @Override
-    protected void initFields() {
-        mapField("brew_item", null,
-                () -> ProcessorUtils.serializeDto(this));
-
-        mapField("stack",
-                str -> this.stack = ItemStackUtil.loadStackFromString(str),
-                () -> ItemStackUtil.serializeStack(this.getHideState() == EHiddenState.CLEARTEXT ? this.stack : ItemStack.EMPTY)
-        );
+    public BrewActionDTO(BrewAction action) {
+        this.stack = action.getKey().toStack();
+        this.isSecret = action.getHidden();
+        if (action.getNamePart() != null)
+            this.brewName = action.getNamePart().toString();
+        else
+            this.brewName = "<no name>";
+        this.brewType = "<brew type>";
     }
 
+    @Override
+    public String getSecretKey() {
+        return ProgressUtils.getBrewActionSecret(this.stack);
+    }
 }

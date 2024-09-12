@@ -79,6 +79,7 @@ public class SpiritEffectRecipeProcessor implements IComponentProcessor {
                 if (forcedBeings != null) return forcedBeings;
                 return recipeInfo == null ? null : recipeInfo.beings;
             case "secret_guard":
+                if (recipeInfo == null) return null;
                 return this.shouldShow && recipeInfo.secret ? "true" : "";
         }
         return null;

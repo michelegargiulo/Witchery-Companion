@@ -47,7 +47,7 @@ public abstract class  BaseComponent<D extends AbstractDTO> implements ICustomCo
         if (this.serializedDto != null) {
             // Hacky way to avoid using Field reflection or even hackier ways to get the DTO type for deserialization
             Type type = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-            this.dto = ProcessorUtils.deserializeDto(serializedDto, type);
+            //this.dto = ProcessorUtils.deserializeDto(serializedDto, type);
         }
 
         this.onBuild();

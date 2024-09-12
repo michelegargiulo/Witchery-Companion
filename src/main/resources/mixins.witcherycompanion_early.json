@@ -22,7 +22,8 @@
     "minecraft.entity.player.EntityPlayerMixin",
     "minecraft.tileentity.TileEntityBedMixin",
     "minecraft.tileentity.TileEntityChestMixin",
-    "minecraft.tileentity.TileEntityEnderChestMixin"
+    "minecraft.tileentity.TileEntityEnderChestMixin",
+    "witchery.WitcheryResurrected_CompanionMixin"
   ],
   "server": [
   ],

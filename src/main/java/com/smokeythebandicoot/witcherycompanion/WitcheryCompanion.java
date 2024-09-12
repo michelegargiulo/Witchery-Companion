@@ -31,7 +31,7 @@ public class WitcheryCompanion implements ILateMixinLoader {
     public static final String MODCREDITS = "Ashley for Witchery: Resurrected and various contributions";
     public static final String MODURL = "";
     public static final String MODLOGO = "assets/witcherycompanion/logo.png";
-    public static final String MODDEPS = "required-before:witchery";
+    public static final String MODDEPS = "required-before:witchery;before:patchouli";
     public static final String MODDESCRIPTION = "A Companion mod for Witchery: Resurrected, patching bugs, adding " +
             "integrations and introducing modpack maker-oriented features";
 
@@ -84,7 +84,7 @@ public class WitcheryCompanion implements ILateMixinLoader {
     }
 
     public static String prefix(String text) {
-        return WitcheryCompanion.MODID + ":" + (text == "<null>" ? "" : text);
+        return WitcheryCompanion.MODID + ":" + (text == null ? "<null>" : text);
     }
 
 }

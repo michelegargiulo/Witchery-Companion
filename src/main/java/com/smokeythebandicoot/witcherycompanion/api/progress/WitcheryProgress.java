@@ -22,15 +22,11 @@ public class WitcheryProgress implements IWitcheryProgress {
 
     @Override
     public void unlockProgress(@Nonnull String progress) {
-        if (progress == null)
-            return;
         unlockedProgress.add(progress);
     }
 
     @Override
     public boolean hasProgress(@Nonnull String progress) {
-        if (progress == null)
-            return false;
         return unlockedProgress.contains(progress);
     }
 

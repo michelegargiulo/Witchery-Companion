@@ -1,108 +1,152 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
+import com.smokeythebandicoot.witcherycompanion.api.brewing.BrewRegistry;
+import com.smokeythebandicoot.witcherycompanion.api.brewing.ICapacityBrewActionAccessor;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.beans.CapacityBrewActionDTO;
-import net.minecraft.item.crafting.Ingredient;
-import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.brewing.action.CapacityBrewAction;
-import net.msrandom.witchery.resources.BrewActionManager;
-import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariableProvider;
+import vazkii.patchouli.common.util.ItemStackUtil;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class CapacityBrewActionProcessor implements IComponentProcessor {
+public class CapacityBrewActionProcessor extends BrewActionProcessor {
 
-    private String removesCeilingText;
-    private String removesCeilingTooltip;
-    private String secretText;
-    private String secretTooltip;
+    protected int increment = 0;
+    protected int ceiling = 0;
+    protected boolean removesCeiling = false;
+    protected String removesCeilingText;
+    protected String removesCeilingTooltip;
 
-    private static final HashMap<Integer, CapacityBrewActionDTO> dtoCache = new HashMap<>();
-    private static List<CapacityBrewAction> capacityBrews = null;
+    private static final Map<Integer, CapacityBrewActionInfo> cache = new HashMap<>();
 
+
+    // We override the setup because we do not have a one-brew-per-page case, but we have a
+    // list of all the capacity items in the same page. DTO is set dynamically, and we do not have
+    // a single CapacityBrewAction to point to.
     @Override
     public void setup(IVariableProvider<String> provider) {
-        // DTO is set dynamically for this component, as it renders all brews in a single page
-        if (capacityBrews == null || capacityBrews.isEmpty()) {
-            updateCapacityMap();
-        }
 
-        dtoCache.clear();
+        // We do not call super, so we read manually secret text and tooltip
+        this.secretText = readVariable(provider, "secret_text");
+        this.secretTooltip = readVariable(provider, "secret_tooltip");
 
-        this.removesCeilingText = ProcessorUtils.readVariable(provider, "removes_ceiling_text");
-        this.removesCeilingTooltip = ProcessorUtils.readVariable(provider, "removes_ceiling_tooltip");
-        this.secretText = ProcessorUtils.readVariable(provider, "secret_text");
-        this.secretTooltip = ProcessorUtils.readVariable(provider, "secret_tooltip");
+        // Read capacity-specific template variables
+        this.removesCeilingText = readVariable(provider, "removes_ceiling_text");
+        this.removesCeilingTooltip = readVariable(provider, "removes_ceiling_tooltip");
+
+        // Other variables are read in the process()
+
+        // Book contents are reloaded, invalidate caches
+        cache.clear();
     }
 
     @Override
     public String process(String key) {
-        // Serialized key
-        ProcessorUtils.KeyInfo info = ProcessorUtils.splitKeyIndex(key);
-        int index = info.index;
 
-        if (index > -1 && index < capacityBrews.size()) {
+        int index = ProcessorUtils.splitKeyIndex(key);
 
-            key = info.key;
-            CapacityBrewActionDTO dto;
-
-            // The DTO either comes from the cache, or must be computed and inserted into the cache
-            if (dtoCache.containsKey(index)) {
-                dto = dtoCache.get(index);
-            } else {
-                // Create new DTO from brew, serialize it and insert in cache and return
-                dto = new CapacityBrewActionDTO(capacityBrews.get(index));
-                dto.removesCeilingText = this.removesCeilingText;
-                dto.removesCeilingTooltip = this.removesCeilingTooltip;
-                dto.secretText = this.secretText;
-                dto.secretTooltip = this.secretTooltip;
-                dtoCache.put(index, dto);
-            }
-
-            // If the key is the serialized brew, then serialize and return.
-            // For cases in which the same brew is used more than once, caching might be used
-            // to improve performance and cache serialization results. But companion
-            // only uses this template in a single page, where the same brew is never used twice
-            if (key.equals("serialized")) {
-                return ProcessorUtils.serializeDto(dto);
-            }
-            return dto.getForKey(key);
+        // Caching avoids re-computing of all fields when a single brew has multiple fields
+        // In this case we have stack and description
+        CapacityBrewActionInfo info = null;
+        if (cache.containsKey(index)) {
+            info = cache.get(index);
         }
+        else {
+
+            CapacityBrewAction capacityBrewAction = BrewRegistry.getCapacity(index);
+            if (capacityBrewAction != null) {
+
+                // Variables from superclass
+                this.isSecret = capacityBrewAction.getHidden();
+                this.stack = capacityBrewAction.getKey().toStack();
+
+                // Increment and ceiling
+                this.increment = capacityBrewAction.getIncrement();
+                this.ceiling = capacityBrewAction.getCeiling();
+
+                // Get removes ceiling using Mixins instead of reflection
+                if ((Object) capacityBrewAction instanceof ICapacityBrewActionAccessor) {
+                    ICapacityBrewActionAccessor accessor = (ICapacityBrewActionAccessor) (Object) capacityBrewAction;
+                    this.removesCeiling = accessor.getRemoveCeiling();
+                }
+
+                // Description (at the end because other fields need to be set)
+                this.description = getDescription();
+
+                // We ignore brewName and brewType, as we do not use them in this template
+
+                // Call obfuscate fields
+                obfuscateIfSecret();
+
+                // Now that we have all the info, we cache it into a CapacityBrewActionInfo
+                info = new CapacityBrewActionInfo(ItemStackUtil.serializeStack(this.stack), this.description);
+                cache.put(index, info);
+            }
+        }
+
+        if (info == null) {
+            return null;
+        }
+
+        if (key.startsWith("stack")) {
+            return info.serializedStack;
+        } else if (key.startsWith("description")) {
+            return info.description;
+        }
+
+        // This does not call super, and is_enabled always returns true, as it is the BrewRegistry itself
+        // that adds or removes components
         return null;
     }
 
-    private static void updateCapacityMap() {
-        capacityBrews = new ArrayList<>();
-        for (BrewAction action : BrewActionManager.INSTANCE.getActions()) {
-            if (action instanceof CapacityBrewAction) {
-                capacityBrews.add((CapacityBrewAction) action);
+    @Override
+    protected void obfuscateFields() {
+        this.removesCeiling = false;
+        obfuscate(this.removesCeilingText, EObfuscationMethod.MINECRAFT);
+        obfuscate(this.removesCeilingTooltip, EObfuscationMethod.PATCHOULI);
+        super.obfuscateFields();
+    }
+
+    @Override
+    protected void hideFields() {
+        this.removesCeiling = false;
+        this.removesCeilingText = "";
+        this.removesCeilingTooltip = "";
+        super.hideFields();
+    }
+
+    public String getDescription() {
+        // Draw the "+X" string (always present)
+        StringBuilder sb = new StringBuilder("+");
+        sb.append(this.increment);
+
+        // Decorate with more info, if any
+        if (this.isSecret || this.removesCeiling) {
+            sb.append(" (");
+            if (this.isSecret)
+                sb.append("$(t:").append(this.secretTooltip).append(")").append(this.secretText).append("$(/t)");
+            if (this.removesCeiling) {
+                if (this.isSecret) sb.append(", ");
+                sb.append("$(t:").append(this.removesCeilingTooltip).append(")").append(this.removesCeilingText).append("$(/t)");
             }
+            sb.append(")");
         }
-        capacityBrews.sort(Comparator.comparingInt(CapacityBrewAction::getCeiling));
+
+        return sb.toString();
     }
 
 
-    /** Returns an ordered list of itemstacks to throw in the cauldron to have the required capacity */
-    public static List<Ingredient> getItemsForCapacity(int requiredCapacity) {
-        List<Ingredient> ingredients = new ArrayList<>();
+    private static class CapacityBrewActionInfo {
 
-        // Too early, return empty list
-        if (capacityBrews == null || capacityBrews.isEmpty()) {
-            return ingredients;
-        }
+        private String serializedStack;
+        private String description;
 
-        // Build the list
-        int currentCapacity = 0;
-        for (CapacityBrewAction capacityBrewInfo : capacityBrews) {
-            if (currentCapacity >= requiredCapacity) {
-                break;
-            }
-            currentCapacity += capacityBrewInfo.getIncrement();
-            ingredients.add(Ingredient.fromStacks(capacityBrewInfo.getKey().toStack()));
+        private CapacityBrewActionInfo(String serializedStack, String description) {
+            this.serializedStack = serializedStack;
+            this.description = description;
         }
-        return ingredients;
     }
 
 }

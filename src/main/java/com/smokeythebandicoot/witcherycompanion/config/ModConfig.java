@@ -2,7 +2,6 @@ package com.smokeythebandicoot.witcherycompanion.config;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
-import com.smokeythebandicoot.witcherycompanion.utils.ContentUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
@@ -12,18 +11,11 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.common.event.FMLLoadEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLStateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
 
 @Config(modid = WitcheryCompanion.MODID, name = "witchery_patches")
 @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)
@@ -987,43 +979,47 @@ public class ModConfig {
             public static class Flags {
 
                 @Config.Comment("If true, shows more info for Bottling Skill and Expertise")
-                @Config.Name("Patchouli Integration - Brewing Expertise Extension")
+                @Config.Name("Brewing - Expertise Extension")
                 public static boolean brewing_enableExpertiseExtension = false;
 
                 @Config.Comment("If true, shows ritual details in the Brew book")
-                @Config.Name("Patchouli Integration - Brewing Ritual Details Extension")
+                @Config.Name("Brewing - Ritual Details Extension")
                 public static boolean brewing_enableRitualsExtension = false;
 
                 @Config.Comment("If true, shows which Capacity ingredients also remove ceiling, allowing for more powerful potions")
-                @Config.Name("Patchouli Integration - Brewing Reveal Remove Ceiling")
+                @Config.Name("Brewing - Reveal Remove Ceiling")
                 public static boolean brewing_revealRemoveCeiling = false; // Not a flag, used by CauldronCapacityProcessor
 
+                @Config.Comment("If true, shows how much power a Cauldron recipe requires")
+                @Config.Name("Brewing - Show Required Power")
+                public static boolean brewing_showRequiredPower = false;
+
                 @Config.Comment("If true, adds a few more pages about how Brazier works")
-                @Config.Name("Patchouli Integration - Conjuring Enable Extended Intro")
+                @Config.Name("Conjuring - Enable Extended Intro")
                 public static boolean conjuring_enableExtendedIntro = false;
 
                 @Config.Comment("Some Brazier Summoning Recipes can summon an extra entity. Set this to true to show this info in the manual")
-                @Config.Name("Patchouli Integration - Conjuring Show Extra Entity")
+                @Config.Name("Conjuring - Show Extra Entity")
                 public static boolean conjuring_showExtraEntity = false;
 
                 @Config.Comment("If true, adds a few pages explaining what blocks are ideal to be bound to spectral entities and their recipes")
-                @Config.Name("Patchouli Integration - Fetish Details Extension")
+                @Config.Name("Fetish - Details Extension")
                 public static boolean conjuring_enableFetishExtension = false;
 
                 @Config.Comment("If true, shows more information about how to get into symbology and how it works in general")
-                @Config.Name("Patchouli Integration - Symbology Extended Intro")
+                @Config.Name("Symbology - Extended Intro")
                 public static boolean symbology_enableExtendedIntro = false;
 
                 @Config.Comment("If true, shows the drawn symbol inside the book pages")
-                @Config.Name("Patchouli Integration - Symbology Stroke Visualization")
+                @Config.Name("Symbology - Stroke Visualization")
                 public static boolean symbology_enableStrokeVisualization = false;
 
                 @Config.Comment("If true, shows a small text indicating that the spell is secret")
-                @Config.Name("Patchouli Integration - Symbology Show Secret")
+                @Config.Name("Symbology - Show Secret")
                 public static boolean symbology_showSecret = false;
 
                 @Config.Comment("If true, shows a small text indicating that the spell requires knowledge")
-                @Config.Name("Patchouli Integration - Symbology Show Knowledge")
+                @Config.Name("Symbology - Show Knowledge")
                 public static boolean symbology_showKnowledge = false;
 
             }
@@ -1034,13 +1030,27 @@ public class ModConfig {
                     "PROGRESS (default) -> Secret content is locked behind advancements. Players will discover the " +
                     "secret by themselves, gaining the advancement and permanently revealing the knowledge in the book.\n" +
                     "DISABLED -> Secret content is always hidden.")
-            @Config.Name("TOP Integration - Enabled")
+            @Config.Name("Patchouli Integration - Secret Policy")
             public static EPatchouliSecretPolicy common_showSecretsPolicy = EPatchouliSecretPolicy.PROGRESS;
+
+            @Config.RequiresWorldRestart
+            @Config.Comment("Defines the stretegy used to hide secret elements.\n" +
+                    "OBFUSCATE (default) -> Text will be obfuscated (unreadable), Items will show question marks, etc. " +
+                    "Players will know that a secret is there, but pages will never be empty.\n" +
+                    "INVISIBLE -> Hidden itemelements will not show. If all elements of a page are secret (a recipe page " +
+                    "for a secret recipe, for example) the page will simply be white")
+            @Config.Name("Patchouli Integration - Obfuscation Strategy")
+            public static EPatchouliObfuscationStrategy common_obfuscationStrategy = EPatchouliObfuscationStrategy.OBFUSCATE;
 
             public enum EPatchouliSecretPolicy {
                 ALWAYS_SHOW,
                 PROGRESS,
                 DISABLED
+            }
+
+            public enum EPatchouliObfuscationStrategy {
+                OBFUSCATE,
+                INVISIBLE
             }
 
             public static void reloadPatchouliFlags() {
@@ -1055,6 +1065,7 @@ public class ModConfig {
                 flags.put("brewing/expertise", Flags.brewing_enableExpertiseExtension);
                 flags.put("brewing/rituals", Flags.brewing_enableRitualsExtension);
                 flags.put("brewing/show_ceiling", Flags.brewing_revealRemoveCeiling);
+                flags.put("brewing/show_power", Flags.brewing_showRequiredPower);
                 flags.put("conjuring/show_extra", Flags.conjuring_showExtraEntity);
                 flags.put("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
                 flags.put("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);
@@ -1072,8 +1083,6 @@ public class ModConfig {
 
     @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)
     public static class ConfigSyncHandler {
-
-        private static boolean finishedLoading = false;
 
         @SubscribeEvent
         public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
