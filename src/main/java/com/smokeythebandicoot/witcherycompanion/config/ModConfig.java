@@ -1086,18 +1086,20 @@ public class ModConfig {
     public static class ConfigSyncHandler {
 
         @SubscribeEvent
-        public static void onPostConfigChanged(ConfigChangedEvent.PostConfigChangedEvent event) {
+        public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
             if(event.getModID().equals(WitcheryCompanion.MODID)) {
+                ConfigManager.sync(WitcheryCompanion.MODID, Config.Type.INSTANCE);
                 reloadConfig();
             }
         }
 
         public static void reloadConfig() {
             reloadRiteOfMovingEarthBlacklist();
+
             // Avoid reloading Patchouli flags when load is not completed
             if (Loader.instance().hasReachedState(LoaderState.AVAILABLE) && Loader.isModLoaded(Mods.PATCHOULI))
                 IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
-            ConfigManager.sync(WitcheryCompanion.MODID, Config.Type.INSTANCE);
+
         }
 
         private static void reloadRiteOfMovingEarthBlacklist() {
