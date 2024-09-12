@@ -1,211 +1,137 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
-import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.brewing.IUpgradeBrewActionAccessor;
-import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.beans.IPatchouliSerializable;
+import com.smokeythebandicoot.witcherycompanion.api.brewing.BrewRegistry;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.ISecretInfo;
-import com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy;
-import net.minecraft.init.Items;
+import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
 import net.minecraft.item.ItemStack;
-import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.brewing.action.UpgradeBrewAction;
-import net.msrandom.witchery.resources.BrewActionManager;
-import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariableProvider;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.function.Function;
 
 
-public class UpgradeBrewActionProcessor implements IComponentProcessor {
+public class UpgradeBrewActionProcessor extends BrewActionProcessor {
 
-    private boolean power;
-    private String description;
-    private static List<UpgradeBrewActionInfo> powerBrews = null;
-    private static List<UpgradeBrewActionInfo> durationBrews = null;
+    protected boolean upgradesPower;
+    protected String finalDescription;
+    protected String description;
+    protected int increment;
+    protected Function<Integer, String> incrementTransformFunction;
+
+    private static final Map<Integer, UpgradeBrewActionInfo> powerCache = new HashMap<>();
+    private static final Map<Integer, UpgradeBrewActionInfo> durationCache = new HashMap<>();
 
 
+    // We override the setup because we do not have a one-brew-per-page case, but we have a
+    // list of all the capacity items in the same page. DTO is set dynamically, and we do not have
+    // a single CapacityBrewAction to point to.
     @Override
-    public void setup(IVariableProvider<String> iVariableProvider) {
-        if (powerBrews == null || powerBrews.isEmpty() || durationBrews == null || durationBrews.isEmpty()) {
-            updateUpgradeMaps();
+    public void setup(IVariableProvider<String> provider) {
+
+        // We do not call super, so we read manually secret text and tooltip
+        this.secretText = readVariable(provider, "secret_text");
+        this.secretTooltip = readVariable(provider, "secret_tooltip");
+
+        String upgradesPowerStr = readVariable(provider, "upgrade_type");
+        this.upgradesPower = upgradesPowerStr == null || !upgradesPowerStr.equals("duration");
+
+        // Read capacity-specific template variables
+        this.description = readVariable(provider, "description");
+
+        String transformFunc = readVariable(provider, "transform_function");
+        switch (transformFunc) {
+            case "double":
+                this.incrementTransformFunction = val -> String.valueOf(val * 2);
+            case "roman":
+                this.incrementTransformFunction = RomanNumbers::toRoman;
+            default:
+                this.incrementTransformFunction = String::valueOf;
         }
 
-        if (iVariableProvider.has("upgrade_type")) {
-            this.power = iVariableProvider.get("upgrade_type").equals("power");
-        }
-
-        if (iVariableProvider.has("increment_text")) {
-            this.description = iVariableProvider.get("increment_text");
-        }
+        // Book contents are reloaded, invalidate caches
+        powerCache.clear();
+        durationCache.clear();
     }
 
     @Override
     public String process(String key) {
 
-        if (key.equals("increment_text"))
-            return this.description;
-
-        // Convert the set into a sorted list accessible by index
         int index = ProcessorUtils.splitKeyIndex(key);
 
-        if (index > -1) {
+        UpgradeBrewActionInfo info = null;
+        if (upgradesPower && powerCache.containsKey(index) || !upgradesPower && durationCache.containsKey(index)) {
+            if (upgradesPower) info = powerCache.get(index);
+            else info = durationCache.get(index);
+        }
+        else {
 
-            UpgradeBrewActionInfo info;
-            if (this.power) {
-                if (index < powerBrews.size())
-                    info = powerBrews.get(index);
-                else return null;
+            UpgradeBrewAction action = upgradesPower ?
+                    BrewRegistry.getPower(index) :
+                    BrewRegistry.getDuration(index);
+
+            if (action != null) {
+                this.isSecret = action.getHidden();
+                this.stack = action.getKey().toStack();
+
+                this.increment = action.getIncrease();
+
+                this.finalDescription = getDescription();
+
+                obfuscateIfSecret();
+
+                info = new UpgradeBrewActionInfo(
+                        ItemStackUtil.serializeStack(this.stack),
+                        this.finalDescription);
+
+                if (upgradesPower) powerCache.put(index, info);
+                else durationCache.put(index, info);
             }
-            else {
-                if (index < durationBrews.size())
-                    info = durationBrews.get(index);
-                else return null;
-            }
-
-            // Checks if it is secret and if player has knowledge about it
-            if (!shouldShow(info))
-                return null;
-
-            return info.serialize();
-
         }
 
-        WitcheryCompanion.logger.warn("Error while processing UpgradeBrewActionProcessor. Key outside of bounds. " +
-                "Key: {}, Power Brew Size: {}, Duration Brew Size: {}", key,
-                powerBrews == null ? "null" : powerBrews.size(),
-                durationBrews == null ? "null" : durationBrews.size());
+        if (info == null) return null;
+
+        if (key.startsWith("stack")) {
+            return info.serializedStack;
+        } else if (key.startsWith("description")) {
+            return info.description;
+        }
+
+        // This does not call super, and is_enabled always returns true, as it is the BrewRegistry itself
+        // that adds or removes components
         return null;
     }
 
-    private static boolean shouldShow(UpgradeBrewActionInfo info) {
-        // Recipe is not secret, always show
-        if (!info.secret) return true;
-
-        // Otherwise, Check if secrets should always be shown
-        ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy policy = ModConfig.IntegrationConfigurations.PatchouliIntegration.common_showSecretsPolicy;
-        if (policy == ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy.ALWAYS_SHOW)
-            return true;
-
-        // If policy is not ALWAYS HIDDEN, then check progress to see if visible
-        return policy == ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy.PROGRESS && hasUnlockedProgress(info);
+    @Override
+    protected void obfuscateFields() {
+        this.stack = OBFUSCATED_STACK;
+        obfuscate(this.finalDescription, EObfuscationMethod.PATCHOULI);
+        super.obfuscateFields();
     }
 
-    private static boolean hasUnlockedProgress(UpgradeBrewActionInfo info) {
-        // Get secret key and return true if the corresponding element has been found
-        String key = ProgressUtils.getBrewActionSecret(info.stack);
-        return ClientProxy.getLocalWitcheryProgress().hasProgress(key);
+    @Override
+    protected void hideFields() {
+        this.stack = ItemStack.EMPTY;
+        this.finalDescription = "";
+        super.hideFields();
     }
 
-
-    private static void updateUpgradeMaps() {
-        SortedSet<UpgradeBrewActionInfo> sortedPower = new TreeSet<>();
-        SortedSet<UpgradeBrewActionInfo> sortedDuration = new TreeSet<>();
-        for (BrewAction action : BrewActionManager.INSTANCE.getActions()) {
-            if (action instanceof UpgradeBrewAction) {
-                UpgradeBrewActionInfo info = new UpgradeBrewActionInfo((UpgradeBrewAction) action);
-                if (info.increasesPower) {
-                    sortedPower.add(info);
-                } else {
-                    sortedDuration.add(info);
-                }
-            }
-        }
-        powerBrews = new ArrayList<>(sortedPower);
-        durationBrews = new ArrayList<>(sortedDuration);
+    public String getDescription() {
+        String transformed = this.incrementTransformFunction.apply(this.increment);
+        if (this.description == null) return transformed;
+        return this.description.replace("{increment}", transformed);
     }
 
 
-    public static class UpgradeBrewActionInfo implements Comparable<UpgradeBrewActionInfo>, IPatchouliSerializable, ISecretInfo {
+    private static class UpgradeBrewActionInfo {
 
-        public ItemStack stack = new ItemStack(Items.AIR);
-        public int increment = 0;
-        public int ceiling = 0;
-        public boolean increasesPower = false;
-        public boolean secret = false;
+        private final String serializedStack;
+        private final String description;
 
-        public UpgradeBrewActionInfo() { }
-
-        public UpgradeBrewActionInfo(UpgradeBrewAction action) {
-            this.stack = action.getKey().toStack();
-            this.increment = action.getIncrease();
-            this.secret = action.getHidden();
-            this.ceiling = action.getLimit();
-            if ((Object)action instanceof IUpgradeBrewActionAccessor) {
-                IUpgradeBrewActionAccessor accessor = (IUpgradeBrewActionAccessor) (Object)action;
-                this.increasesPower = accessor.increasesPower();
-            } else {
-                this.increasesPower = false;
-            }
-
-        }
-
-        public UpgradeBrewActionInfo(ItemStack stack, int increment, boolean increasesPower, int ceiling, boolean secret) {
-            this.stack = stack;
-            this.increment = increment;
-            this.ceiling = ceiling;
-            this.increasesPower = increasesPower;
-            this.secret = secret;
-        }
-
-
-        @Override
-        public int compareTo(UpgradeBrewActionInfo o) {
-            if (o == null) return 1;
-            if (increment != o.increment)
-                return Integer.compare(increment, o.increment);
-            return Integer.compare(ceiling, o.ceiling);
-        }
-
-        // Format:
-        // <stack>,<increment>,<removesCeiling>,<secret>
-        @Override
-        public String serialize() {
-            StringBuilder sb = new StringBuilder();
-            sb.append(ItemStackUtil.serializeStack(stack))
-                    .append(",")
-                    .append(increment)
-                    .append(",")
-                    .append(increasesPower)
-                    .append(",")
-                    .append(ceiling)
-                    .append(",")
-                    .append(secret);
-            return sb.toString();
-        }
-
-        @Override
-        public void deserialize(String str) {
-            if (str == null)
-                return;
-            String[] splits = str.split(",");
-            if (splits.length != 5) return;
-            try {
-                this.stack = ItemStackUtil.loadStackFromString(splits[0]);
-                this.increment = Integer.parseInt(splits[1]);
-                this.increasesPower = Boolean.parseBoolean(splits[2]);
-                this.ceiling = Integer.parseInt(splits[3]);
-                this.secret = Boolean.parseBoolean(splits[4]);
-            } catch (Exception ex) {
-                WitcheryCompanion.logger.warn("Could not deserialize UpgradeBrewActionInfo from string: {}", str, ex);
-            }
-
-        }
-
-        @Override
-        public String getSecretKey() {
-            return ProgressUtils.getBrewActionSecret(this.stack);
-        }
-
-        @Override
-        public boolean isSecret() {
-            return this.secret;
+        private UpgradeBrewActionInfo(String serializedStack, String description) {
+            this.serializedStack = serializedStack;
+            this.description = description;
         }
     }
 }

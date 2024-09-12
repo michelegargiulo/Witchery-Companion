@@ -86,9 +86,7 @@ public class CapacityBrewActionProcessor extends BrewActionProcessor {
             }
         }
 
-        if (info == null) {
-            return null;
-        }
+        if (info == null) return null;
 
         if (key.startsWith("stack")) {
             return info.serializedStack;
@@ -140,8 +138,8 @@ public class CapacityBrewActionProcessor extends BrewActionProcessor {
 
     private static class CapacityBrewActionInfo {
 
-        private String serializedStack;
-        private String description;
+        private final String serializedStack;
+        private final String description;
 
         private CapacityBrewActionInfo(String serializedStack, String description) {
             this.serializedStack = serializedStack;
