@@ -2,8 +2,12 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processo
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BaseProcessor;
 import com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
+import kotlin.jvm.internal.Intrinsics;
+import net.minecraft.util.ResourceLocation;
+import net.msrandom.witchery.infusion.spirit.InfusedSpiritEffect;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
 import net.msrandom.witchery.resources.SpiritEffectManager;
 import vazkii.patchouli.api.IComponentProcessor;
@@ -15,21 +19,26 @@ import java.util.Map;
 
 
 /** This processor is responsible for processing templates that represent SpiritEffectRecipes **/
-public class SpiritEffectRecipeProcessor implements IComponentProcessor {
+public class SpiritEffectRecipeProcessor extends BaseProcessor {
 
-    private String recipeId = null;
+    protected String title;
+    protected String description;
+    protected String beings;
 
-    private static Map<String, SpiritEffectRecipeInfo> recipeMap;
+    private static Map<String, SpiritEffectRecipe> spiritEffectMap = new HashMap<>();
 
-    private SpiritEffectRecipeInfo recipeInfo;
-    private String forcedTitle;
-    private String forcedDesc;
-    private String forcedBeings;
-    private boolean shouldShow = true;
 
-    /** ========== OVERRIDES ========== **/
     @Override
-    public void setup(IVariableProvider<String> iVariableProvider) {
+    public void setup(IVariableProvider<String> provider) {
+
+        updateSpiritEffectMap();
+
+        String effectId = readVariable(provider, "effect_id");
+        if (effectId == null) return;
+
+        SpiritEffectRecipe recipe = SpiritEffectManager.INSTANCE
+
+
 
 
         if (iVariableProvider.has("effect_id")) {
@@ -85,11 +94,15 @@ public class SpiritEffectRecipeProcessor implements IComponentProcessor {
         return null;
     }
 
-    private static void updateRecipeMap() {
-        recipeMap = new HashMap<>();
+    private static void updateSpiritEffectMap() {
+        spiritEffectMap.clear();
         for (SpiritEffectRecipe recipe : SpiritEffectManager.INSTANCE.getEffects()) {
-            SpiritEffectRecipeInfo info = new SpiritEffectRecipeInfo(recipe);
-            recipeMap.put(info.id, info);
+
+            ResourceLocation id = InfusedSpiritEffect.REGISTRY.getKey(recipe.getResult());
+            if (id == null) continue;
+
+            String key = "fetish." + id.getNamespace() + '.' + id.getPath();
+            spiritEffectMap.put(key, recipe);
         }
     }
 
