@@ -28,6 +28,7 @@ public class SymbolEffectProcessor extends BaseProcessor {
     protected boolean hasKnowledge;
     protected String hasKnowledgeText;
     protected String hasKnowledgeTooltip;
+    protected String knowledgeDescription;
     protected String secretKey = "";
     protected SymbolDrawInfo drawInfo;
 
@@ -71,6 +72,8 @@ public class SymbolEffectProcessor extends BaseProcessor {
         this.isSecret = !effect.isVisible();
         this.secretKey = symbolId;
 
+        this.knowledgeDescription = getDescription();
+
         super.setup(provider);
     }
 
@@ -85,10 +88,8 @@ public class SymbolEffectProcessor extends BaseProcessor {
                 return this.strokesDescription;
             case "has_knowledge":
                 return String.valueOf(this.hasKnowledge);
-            case "has_knowledge_text":
-                return this.hasKnowledgeText;
-            case "has_knowledge_tooltip":
-                return this.hasKnowledgeTooltip;
+            case "knowledge_description":
+                return this.knowledgeDescription;
             case "strokes":
                 if (this.drawInfo == null) return null;
                 return ProcessorUtils.serializeStrokeArray(this.drawInfo.strokeArray);
@@ -128,6 +129,21 @@ public class SymbolEffectProcessor extends BaseProcessor {
         this.hasKnowledgeText = "";
         this.hasKnowledgeTooltip = "";
         this.drawInfo = null;
+    }
+
+    public String getDescription() {
+        if (this.isSecret || this.hasKnowledge) {
+            StringBuilder sb = new StringBuilder("(");
+            if (this.isSecret)
+                sb.append("$(t:").append(this.secretTooltip).append(")").append(this.secretText).append("$(/t)");
+            if (this.hasKnowledge) {
+                if (this.isSecret) sb.append(", ");
+                sb.append("$(t:").append(this.hasKnowledgeTooltip).append(")").append(this.hasKnowledgeText).append("$(/t)");
+            }
+            sb.append(")");
+
+            return sb.toString();
+        } else return "";
     }
 
 
