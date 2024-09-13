@@ -18,6 +18,7 @@ public class UpgradeBrewActionProcessor extends BrewActionProcessor {
     protected String finalDescription;
     protected String description;
     protected int increment;
+    protected int ceiling;
     protected Function<Integer, String> incrementTransformFunction;
 
     private static final Map<Integer, UpgradeBrewActionInfo> powerCache = new HashMap<>();
@@ -44,10 +45,13 @@ public class UpgradeBrewActionProcessor extends BrewActionProcessor {
         switch (transformFunc) {
             case "double":
                 this.incrementTransformFunction = val -> String.valueOf(val * 2);
+                break;
             case "roman":
                 this.incrementTransformFunction = RomanNumbers::toRoman;
+                break;
             default:
                 this.incrementTransformFunction = String::valueOf;
+                break;
         }
 
         // Book contents are reloaded, invalidate caches
@@ -76,6 +80,7 @@ public class UpgradeBrewActionProcessor extends BrewActionProcessor {
                 this.stack = action.getKey().toStack();
 
                 this.increment = action.getIncrease();
+                this.ceiling = action.getLimit();
 
                 this.finalDescription = getDescription();
 
@@ -118,9 +123,9 @@ public class UpgradeBrewActionProcessor extends BrewActionProcessor {
     }
 
     public String getDescription() {
-        String transformed = this.incrementTransformFunction.apply(this.increment);
+        String transformed = this.incrementTransformFunction.apply(this.ceiling);
         if (this.description == null) return transformed;
-        return this.description.replace("{increment}", transformed);
+        return this.description.replace("{limit}", transformed);
     }
 
 

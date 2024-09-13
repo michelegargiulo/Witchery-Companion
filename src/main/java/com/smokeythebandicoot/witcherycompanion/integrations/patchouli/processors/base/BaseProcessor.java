@@ -40,9 +40,9 @@ public abstract class BaseProcessor implements IComponentProcessor {
 
             // A string that represents the "Secret" text
             case "secret_text":
-                return obfuscate(this.secretText, EObfuscationMethod.PATCHOULI);
+                return this.secretText;
             case "secret_tooltip":
-                return obfuscate(this.secretTooltip, EObfuscationMethod.MINECRAFT);
+                return this.secretTooltip;
         }
         return null;
     }

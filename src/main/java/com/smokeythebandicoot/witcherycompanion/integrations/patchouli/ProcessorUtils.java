@@ -71,7 +71,7 @@ public class ProcessorUtils {
             Ingredient ing = it.next();
             sb.append(ItemStackUtil.serializeIngredient(ing));
             if (it.hasNext()) {
-                sb.append(",");
+                sb.append(";");
             }
         }
         return sb.toString();
@@ -84,7 +84,7 @@ public class ProcessorUtils {
     }
 
     public static void deserializeIngredientList(String serialized, @Nonnull Collection<Ingredient> ingredients) {
-        for (String serializedIngredient : serialized.replace(" ", "").split(",")) {
+        for (String serializedIngredient : serialized.replace(" ", "").split(";")) {
             ingredients.add(ItemStackUtil.loadIngredientFromString(serializedIngredient));
         }
     }

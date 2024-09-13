@@ -135,7 +135,7 @@ public class PatchouliApiIntegration {
     public static class FlagReloader<K, V> {
 
         private final String prefix;
-        private final Iterator<Map.Entry<K, V>> iterator;
+        private final Supplier<Iterator<Map.Entry<K, V>>> iteratorSupplier;
         private final Function<K, String> transformer;
         private final Function<FlaggerContext<K, V>, Boolean> flagger;
         private final Map<String, Boolean> flags;
@@ -165,26 +165,19 @@ public class PatchouliApiIntegration {
             flags = new HashMap<>();
             this.transformer = transformer;
             this.flagger = flagger;
-            this.prefix = WitcheryCompanion.prefix(prefix);
-            this.iterator = iteratorSupplier.get();
-        }
-
-        public boolean getFlag(String flag) {
-            if (flags.containsKey(flag)) return false;
-            Boolean flagValue = flags.get(this.prefix + flag);
-            if (flagValue == null) return false;
-            return flagValue;
+            this.prefix = prefix; // Witchery:Companion modid should not be added
+            this.iteratorSupplier = iteratorSupplier;
         }
 
         public void reloadFlags() {
-
             // Clear all the flags
             for (String flag : flags.keySet()) {
                 PatchouliAPI.instance.setConfigFlag(flag, false);
             }
             flags.clear();
 
-            // Rebuild them
+            // Reset iterator and Rebuild them
+            Iterator<Map.Entry<K, V>> iterator = iteratorSupplier.get();
             while (iterator.hasNext()) {
                 Map.Entry<K, V> entry = iterator.next();
                 String flagId = prefix + transformer.apply(entry.getKey());

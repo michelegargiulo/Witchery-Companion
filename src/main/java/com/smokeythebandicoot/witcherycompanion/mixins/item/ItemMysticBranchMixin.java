@@ -34,7 +34,11 @@ public abstract class ItemMysticBranchMixin extends Item {
             target = "Lnet/msrandom/witchery/infusion/symbol/SymbolEffect;perform(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/EntityPlayer;I)V"))
     private void unlockSecret(SymbolEffect instance, World world, EntityPlayer entityPlayer, int i, Operation<Void> original) {
         // At this point in the function, the effect and the player have already passed null-checks
-        SymbolEffectProcessor.SymbolEffectInfo info = new SymbolEffectProcessor.SymbolEffectInfo(instance);
+        int effectId = SymbolEffect.REGISTRY.getId(instance);
+        ResourceLocation effectKey = SymbolEffect.REGISTRY.getKey(effectId);
+
+        if (effectKey == null) return;
+
         IWitcheryProgress progress = entityPlayer.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
 
         // Retrieve progress
@@ -44,7 +48,7 @@ public abstract class ItemMysticBranchMixin extends Item {
         }
 
         // Unlock progress
-        progress.unlockProgress(ProgressUtils.getSymbolEffectSecret(info.effectId));
+        progress.unlockProgress(ProgressUtils.getSymbolEffectSecret(effectKey.path));
         ProgressSync.serverRequest(entityPlayer);
     }
 
