@@ -1,9 +1,13 @@
 package com.smokeythebandicoot.witcherycompanion.api.spiriteffect;
 
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.SortedSet;
 
@@ -20,6 +24,9 @@ public class SpiritEffectApi {
                 spiritEffectRecipeMap.put(id, effectRecipe);
             }
         }
+        if (Loader.isModLoaded(Mods.PATCHOULI)) {
+            PatchouliApiIntegration.spiritEffectReloader.reloadFlags();
+        }
     }
 
     /** Returns a SpiritEffectRecipe from ID **/
@@ -34,6 +41,10 @@ public class SpiritEffectApi {
             return accessor.getId();
         }
         return null;
+    }
+
+    public static Iterator<Map.Entry<ResourceLocation, SpiritEffectRecipe>> getIterator() {
+        return spiritEffectRecipeMap.entrySet().iterator();
     }
 
 }

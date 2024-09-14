@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.api.brewing;
 
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.event.world.WorldEvent;
@@ -9,11 +10,8 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.msrandom.witchery.brewing.Dispersal;
-import net.msrandom.witchery.brewing.action.BrewAction;
-import net.msrandom.witchery.brewing.action.CapacityBrewAction;
-import net.msrandom.witchery.brewing.action.DispersalBrewAction;
-import net.msrandom.witchery.brewing.action.UpgradeBrewAction;
+import net.msrandom.witchery.brewing.*;
+import net.msrandom.witchery.brewing.action.*;
 import net.msrandom.witchery.resources.BrewActionManager;
 import vazkii.patchouli.api.PatchouliAPI;
 
@@ -22,17 +20,23 @@ import java.util.*;
 
 public class BrewRegistry {
 
-    private static List<CapacityBrewAction> capacityBrews = new ArrayList<>();
-    private static List<UpgradeBrewAction> powerBrews = new ArrayList<>();
-    private static List<UpgradeBrewAction> durationBrews = new ArrayList<>();
-    private static Map<Class<? extends Dispersal>, List<ItemStack>> dispersalBrews = new HashMap<>();
+    private static final List<CapacityBrewAction> capacityBrews = new ArrayList<>();
+    private static final List<UpgradeBrewAction> powerBrews = new ArrayList<>();
+    private static final List<UpgradeBrewAction> durationBrews = new ArrayList<>();
+    private static final Map<EffectModifierBrewAction.Type, EffectModifierBrewAction> effectModifierBrews = new HashMap<>();
+    private static final List<QuaffingSpeedBrewAction> quaffingModifierBrews = new ArrayList<>();
+    private static final Map<EnumDyeColor, SetColorBrewAction> colorModifierBrews = new HashMap<>();
+    private static final Map<Class<? extends Dispersal>, List<ItemStack>> dispersalBrews = new HashMap<>();
 
 
     public static void reloadRegistries() {
-        capacityBrews = new ArrayList<>();
-        powerBrews = new ArrayList<>();
-        durationBrews = new ArrayList<>();
-        dispersalBrews = new HashMap<>();
+        capacityBrews.clear();
+        powerBrews.clear();
+        durationBrews.clear();
+        quaffingModifierBrews.clear();
+        colorModifierBrews.clear();
+        effectModifierBrews.clear();
+        dispersalBrews.clear();
 
         for (BrewAction action : BrewActionManager.INSTANCE.getActions()) {
 
@@ -59,11 +63,27 @@ public class BrewRegistry {
                 }
             }
 
+            else if (action instanceof SetColorBrewAction) {
+                SetColorBrewAction colorModifierAction = (SetColorBrewAction) action;
+                colorModifierBrews.put(action.getForcedColor(), colorModifierAction);
+            }
+
+            else if (action instanceof QuaffingSpeedBrewAction) {
+                QuaffingSpeedBrewAction quaffingModifierAction = (QuaffingSpeedBrewAction) action;
+                quaffingModifierBrews.add(quaffingModifierAction);
+            }
+
+            else if (action instanceof EffectModifierBrewAction) {
+                EffectModifierBrewAction effectModifierAction = (EffectModifierBrewAction) action;
+                effectModifierBrews.put(effectModifierAction.getType(), effectModifierAction);
+            }
+
         }
 
         capacityBrews.sort(Comparator.comparingInt(CapacityBrewAction::getCeiling));
         powerBrews.sort(Comparator.comparingInt(UpgradeBrewAction::getLimit));
         durationBrews.sort(Comparator.comparingInt(UpgradeBrewAction::getLimit));
+        quaffingModifierBrews.sort(Comparator.comparingInt(QuaffingSpeedBrewAction::getSpeed));
     }
 
 
@@ -85,11 +105,31 @@ public class BrewRegistry {
         return null;
     }
 
+    public static SetColorBrewAction getColor(EnumDyeColor color) {
+        if (colorModifierBrews.containsKey(color)) {
+            return colorModifierBrews.get(color);
+        }
+        return null;
+    }
 
-    public static Ingredient getDispersalIngredients(Class<? extends Dispersal> dispersal) {
-        if (dispersalBrews.containsKey(dispersal)) {
-            return Ingredient.fromStacks(dispersalBrews.get(dispersal).toArray(new ItemStack[]{}));
+    public static QuaffingSpeedBrewAction getQuaffing(int index) {
+        if (index >= 0 && index < quaffingModifierBrews.size())
+            return quaffingModifierBrews.get(index);
+        return null;
+    }
+
+    public static EffectModifierBrewAction getModifier(EffectModifierBrewAction.Type type) {
+        if (effectModifierBrews.containsKey(type)) {
+            return effectModifierBrews.get(type);
+        }
+        return null;
+    }
+
+    public static Ingredient getDispersalIngredients(Class<? extends Dispersal> dispersalType) {
+        if (dispersalBrews.containsKey(dispersalType)) {
+            return Ingredient.fromStacks(dispersalBrews.get(dispersalType).toArray(new ItemStack[]{}));
         }
         return Ingredient.EMPTY;
     }
+
 }

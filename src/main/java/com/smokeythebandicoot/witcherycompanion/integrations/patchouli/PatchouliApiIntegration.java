@@ -1,12 +1,14 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.SpiritEffectApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.PatchouliIntegration.Flags;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.bookcomponents.ColorableImage;
 import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.brewing.action.BrewAction;
+import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 import net.msrandom.witchery.init.data.recipes.WitcheryRecipeTypes;
 import net.msrandom.witchery.recipe.CauldronRecipe;
@@ -108,6 +110,12 @@ public class PatchouliApiIntegration {
                     ).entrySet().iterator(),
                 Function.identity(),
                 "content/cauldron_recipes/"
+    );
+
+    public static final FlagReloader<ResourceLocation, SpiritEffectRecipe> spiritEffectReloader = new FlagReloader<>(
+            SpiritEffectApi::getIterator,
+            id -> id.path,
+            "content/spirit_effect_recipes/"
     );
 
 
