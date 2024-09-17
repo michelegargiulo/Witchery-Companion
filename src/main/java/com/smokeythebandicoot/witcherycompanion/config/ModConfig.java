@@ -995,6 +995,10 @@ public class ModConfig {
                 @Config.Name("Brewing - Show Required Power")
                 public static boolean brewing_showRequiredPower = false;
 
+                @Config.Comment("If true, shows more information about Instant, Liquid and Gas dispersals, as Witchery does for Triggered dispersal")
+                @Config.Name("Brewing - Dispersal Details Extension")
+                public static boolean brewing_extendedDispersal = false;
+
                 @Config.Comment("If true, adds a few more pages about how Brazier works")
                 @Config.Name("Conjuring - Enable Extended Intro")
                 public static boolean conjuring_enableExtendedIntro = false;
@@ -1064,6 +1068,7 @@ public class ModConfig {
 
                 // Companion Flags
                 flags.put("brewing/expertise", Flags.brewing_enableExpertiseExtension);
+                flags.put("brewing/extended_dispersal", Flags.brewing_extendedDispersal);
                 flags.put("brewing/rituals", Flags.brewing_enableRitualsExtension);
                 flags.put("brewing/show_ceiling", Flags.brewing_revealRemoveCeiling);
                 flags.put("brewing/show_power", Flags.brewing_showRequiredPower);
@@ -1097,7 +1102,10 @@ public class ModConfig {
             reloadRiteOfMovingEarthBlacklist();
 
             // Avoid reloading Patchouli flags when load is not completed
-            if (Loader.instance().hasReachedState(LoaderState.AVAILABLE) && Loader.isModLoaded(Mods.PATCHOULI))
+            if (
+                    //Loader.instance().hasReachedState(LoaderState.AVAILABLE) &&
+                            Loader.isModLoaded(Mods.PATCHOULI)
+            )
                 IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
 
         }

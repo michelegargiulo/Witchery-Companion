@@ -4,25 +4,27 @@ import com.smokeythebandicoot.witcherycompanion.api.brewing.BrewRegistry;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BrewActionProcessor;
 import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
+import net.msrandom.witchery.brewing.action.IncrementBrewAction;
 import net.msrandom.witchery.brewing.action.UpgradeBrewAction;
 import vazkii.patchouli.api.IVariableProvider;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 
-public class UpgradeBrewActionProcessor extends BrewActionProcessor {
+public class IncrementBrewActionProcessor extends BrewActionProcessor {
 
-    protected boolean upgradesPower;
+    protected boolean upgradesExtent;
     protected String finalDescription;
     protected String description;
     protected int increment;
     protected int ceiling;
     protected Function<Integer, String> incrementTransformFunction;
 
-    private static final Map<Integer, BrewActionInfo> powerCache = new HashMap<>();
-    private static final Map<Integer, BrewActionInfo> durationCache = new HashMap<>();
+    private static final Map<Integer, BrewActionInfo> extentCache = new HashMap<>();
+    private static final Map<Integer, BrewActionInfo> lingeringCache = new HashMap<>();
 
 
     // We override the setup because we do not have a one-brew-per-page case, but we have a
@@ -35,7 +37,7 @@ public class UpgradeBrewActionProcessor extends BrewActionProcessor {
         this.secretText = readVariable(provider, "secret_text");
 
         String upgradesPowerStr = readVariable(provider, "upgrade_type");
-        this.upgradesPower = upgradesPowerStr == null || !upgradesPowerStr.equals("duration");
+        this.upgradesExtent = upgradesPowerStr == null || !upgradesPowerStr.equals("lingering");
 
         // Read capacity-specific template variables
         this.description = readVariable(provider, "description");
@@ -60,21 +62,21 @@ public class UpgradeBrewActionProcessor extends BrewActionProcessor {
         int index = ProcessorUtils.splitKeyIndex(key);
 
         BrewActionInfo info = null;
-        if (upgradesPower && powerCache.containsKey(index) || !upgradesPower && durationCache.containsKey(index)) {
-            if (upgradesPower) info = powerCache.get(index);
-            else info = durationCache.get(index);
+        if (upgradesExtent && extentCache.containsKey(index) || !upgradesExtent && lingeringCache.containsKey(index)) {
+            if (upgradesExtent) info = extentCache.get(index);
+            else info = lingeringCache.get(index);
         }
         else {
 
-            UpgradeBrewAction action = upgradesPower ?
-                    BrewRegistry.getPower(index) :
-                    BrewRegistry.getDuration(index);
+            IncrementBrewAction action = upgradesExtent ?
+                    BrewRegistry.getExtent(index) :
+                    BrewRegistry.getLingering(index);
 
             if (action != null) {
                 this.isSecret = action.getHidden();
                 this.stack = action.getKey().toStack();
 
-                this.increment = action.getIncrease();
+                this.increment = 1; // Increment is always 1
                 this.ceiling = action.getLimit();
 
                 this.finalDescription = getDescription();
@@ -85,8 +87,8 @@ public class UpgradeBrewActionProcessor extends BrewActionProcessor {
                         ItemStackUtil.serializeStack(this.stack),
                         this.finalDescription);
 
-                if (upgradesPower) powerCache.put(index, info);
-                else durationCache.put(index, info);
+                if (upgradesExtent) extentCache.put(index, info);
+                else lingeringCache.put(index, info);
             }
         }
 
@@ -116,14 +118,14 @@ public class UpgradeBrewActionProcessor extends BrewActionProcessor {
     }
 
     public String getDescription() {
-        String transformed = this.incrementTransformFunction.apply(this.ceiling);
+        String transformed = this.incrementTransformFunction.apply(this.ceiling + 1);
         if (this.description == null) return transformed;
         return this.description.replace("{limit}", transformed) + (this.isSecret ? this.secretText : "");
     }
 
     public static void clearCache() {
-        powerCache.clear();
-        durationCache.clear();
+        extentCache.clear();
+        lingeringCache.clear();
     }
 
 }

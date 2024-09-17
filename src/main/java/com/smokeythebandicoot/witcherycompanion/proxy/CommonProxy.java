@@ -75,7 +75,6 @@ public class CommonProxy {
 
         // Does not have a config to disable, as it just registers the flags
         if (Loader.isModLoaded(Mods.PATCHOULI)) {
-            PatchouliApiIntegration.registerFlags();
             MinecraftForge.EVENT_BUS.register(PatchouliApiIntegration.class);
         }
     }

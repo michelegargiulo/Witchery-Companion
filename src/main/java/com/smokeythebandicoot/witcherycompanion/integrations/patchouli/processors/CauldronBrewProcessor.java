@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BrewActionProcessor;
 import vazkii.patchouli.api.IVariableProvider;
 
 

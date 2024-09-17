@@ -3,6 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processo
 import com.smokeythebandicoot.witcherycompanion.api.brewing.BrewRegistry;
 import com.smokeythebandicoot.witcherycompanion.api.brewing.ICapacityBrewActionAccessor;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BrewActionProcessor;
 import net.msrandom.witchery.brewing.action.CapacityBrewAction;
 import vazkii.patchouli.api.IVariableProvider;
 import vazkii.patchouli.common.util.ItemStackUtil;
@@ -17,9 +18,8 @@ public class CapacityBrewActionProcessor extends BrewActionProcessor {
     protected int ceiling = 0;
     protected boolean removesCeiling = false;
     protected String removesCeilingText;
-    protected String removesCeilingTooltip;
 
-    private static final Map<Integer, CapacityBrewActionInfo> cache = new HashMap<>();
+    private static final Map<Integer, BrewActionInfo> cache = new HashMap<>();
 
 
     // We override the setup because we do not have a one-brew-per-page case, but we have a
@@ -30,16 +30,11 @@ public class CapacityBrewActionProcessor extends BrewActionProcessor {
 
         // We do not call super, so we read manually secret text and tooltip
         this.secretText = readVariable(provider, "secret_text");
-        this.secretTooltip = readVariable(provider, "secret_tooltip");
 
         // Read capacity-specific template variables
         this.removesCeilingText = readVariable(provider, "removes_ceiling_text");
-        this.removesCeilingTooltip = readVariable(provider, "removes_ceiling_tooltip");
 
         // Other variables are read in the process()
-
-        // Book contents are reloaded, invalidate caches
-        cache.clear();
     }
 
     @Override
@@ -49,7 +44,7 @@ public class CapacityBrewActionProcessor extends BrewActionProcessor {
 
         // Caching avoids re-computing of all fields when a single brew has multiple fields
         // In this case we have stack and description
-        CapacityBrewActionInfo info = null;
+        BrewActionInfo info = null;
         if (cache.containsKey(index)) {
             info = cache.get(index);
         }
@@ -81,7 +76,7 @@ public class CapacityBrewActionProcessor extends BrewActionProcessor {
                 obfuscateIfSecret();
 
                 // Now that we have all the info, we cache it into a CapacityBrewActionInfo
-                info = new CapacityBrewActionInfo(ItemStackUtil.serializeStack(this.stack), this.description);
+                info = new BrewActionInfo(ItemStackUtil.serializeStack(this.stack), this.description);
                 cache.put(index, info);
             }
         }
@@ -103,7 +98,6 @@ public class CapacityBrewActionProcessor extends BrewActionProcessor {
     protected void obfuscateFields() {
         this.removesCeiling = false;
         obfuscate(this.removesCeilingText, EObfuscationMethod.MINECRAFT);
-        obfuscate(this.removesCeilingTooltip, EObfuscationMethod.PATCHOULI);
         super.obfuscateFields();
     }
 
@@ -111,7 +105,6 @@ public class CapacityBrewActionProcessor extends BrewActionProcessor {
     protected void hideFields() {
         this.removesCeiling = false;
         this.removesCeilingText = "";
-        this.removesCeilingTooltip = "";
         super.hideFields();
     }
 
@@ -124,10 +117,10 @@ public class CapacityBrewActionProcessor extends BrewActionProcessor {
         if (this.isSecret || this.removesCeiling) {
             sb.append(" (");
             if (this.isSecret)
-                sb.append("$(t:").append(this.secretTooltip).append(")").append(this.secretText).append("$(/t)");
+                sb.append(this.secretText);
             if (this.removesCeiling) {
                 if (this.isSecret) sb.append(", ");
-                sb.append("$(t:").append(this.removesCeilingTooltip).append(")").append(this.removesCeilingText).append("$(/t)");
+                sb.append(this.removesCeilingText);
             }
             sb.append(")");
         }
@@ -135,16 +128,8 @@ public class CapacityBrewActionProcessor extends BrewActionProcessor {
         return sb.toString();
     }
 
-
-    private static class CapacityBrewActionInfo {
-
-        private final String serializedStack;
-        private final String description;
-
-        private CapacityBrewActionInfo(String serializedStack, String description) {
-            this.serializedStack = serializedStack;
-            this.description = description;
-        }
+    public static void clearCache() {
+        cache.clear();
     }
 
 }

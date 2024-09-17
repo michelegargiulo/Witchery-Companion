@@ -4,9 +4,12 @@ import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.SpiritEffectApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.PatchouliIntegration.Flags;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.bookcomponents.ColorableImage;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.*;
 import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
@@ -14,6 +17,7 @@ import net.msrandom.witchery.init.data.recipes.WitcheryRecipeTypes;
 import net.msrandom.witchery.recipe.CauldronRecipe;
 import net.msrandom.witchery.resources.BrewActionManager;
 import net.msrandom.witchery.util.WitcheryUtils;
+import vazkii.patchouli.api.BookContentsReloadEvent;
 import vazkii.patchouli.api.PatchouliAPI;
 import vazkii.patchouli.client.book.template.BookTemplate;
 import vazkii.patchouli.client.book.text.BookTextParser;
@@ -28,6 +32,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
+@Mod.EventBusSubscriber
 public class PatchouliApiIntegration {
 
     private PatchouliApiIntegration() { }
@@ -40,27 +45,6 @@ public class PatchouliApiIntegration {
         ReflectionHelper.invokeStaticMethod(BookTextParser.class, "register",
                 new Class<?>[] { BookTextParser.FunctionProcessor.class, String[].class },
                 false, new RomanNumberFunction(), new String[] {"roman"});
-    }
-
-    // Called from Proxy
-    public static void registerFlags() {
-        PatchouliAPI.IPatchouliAPI api = PatchouliAPI.instance;
-
-        registerFlag("brewing/expertise",  Flags.brewing_enableExpertiseExtension);
-        registerFlag("brewing/rituals", Flags.brewing_enableRitualsExtension);
-        registerFlag("brewing/show_ceiling", Flags.brewing_revealRemoveCeiling);
-        registerFlag("conjuring/show_extra", Flags.conjuring_showExtraEntity);
-        registerFlag("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
-        registerFlag("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);
-        registerFlag("symbology/extended_intro", Flags.symbology_enableExtendedIntro);
-        registerFlag("symbology/stroke_visualization", Flags.symbology_enableStrokeVisualization);
-        registerFlag("symbology/show_secret", Flags.symbology_showSecret);
-        registerFlag("symbology/show_knowledge", Flags.symbology_showKnowledge);
-
-    }
-
-    private static void registerFlag(String flag, boolean flagValue) {
-        PatchouliAPI.instance.setConfigFlag(WitcheryCompanion.prefix(flag), flagValue);
     }
 
     public static void updateFlag(String flag, boolean value) {
@@ -118,6 +102,15 @@ public class PatchouliApiIntegration {
             "content/spirit_effect_recipes/"
     );
 
+    @SubscribeEvent
+    public static void onBookReload(BookContentsReloadEvent event) {
+        // Clear cache of all the processors that implement caching
+        CapacityBrewActionProcessor.clearCache();
+        ModifierBrewActionProcessor.clearCache();
+        UpgradeBrewActionProcessor.clearCache();
+        DispersalBrewActionProcessor.clearCache();
+        IncrementBrewActionProcessor.clearCache();
+    }
 
     /** Custom FunctionProcessor for Patchouli's TextParser
      * Usage: $(roman)<string>$(). While active, all numbers within the 'string' will be converted
@@ -138,8 +131,9 @@ public class PatchouliApiIntegration {
         }
     }
 
-
-
+    /** Class that holds information about how to information about a registry and
+     * reloads Patchouli flags based on its contents. Used to update flags that enable/disable content
+     * (pages, components, etc) based on what content is enabled */
     public static class FlagReloader<K, V> {
 
         private final String prefix;

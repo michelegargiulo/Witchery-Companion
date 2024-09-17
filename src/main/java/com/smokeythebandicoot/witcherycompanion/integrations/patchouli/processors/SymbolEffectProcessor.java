@@ -2,10 +2,8 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processo
 
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.api.symboleffect.ISymbolEffectAccessor;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BaseProcessor;
-import com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.WitcheryResurrected;
 import net.msrandom.witchery.infusion.symbol.BranchStroke;
@@ -15,10 +13,6 @@ import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 import net.msrandom.witchery.resources.SymbolEffectManager;
 import vazkii.patchouli.api.IVariableProvider;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 
 public class SymbolEffectProcessor extends BaseProcessor {
 
@@ -27,7 +21,6 @@ public class SymbolEffectProcessor extends BaseProcessor {
     protected String strokesDescription;
     protected boolean hasKnowledge;
     protected String hasKnowledgeText;
-    protected String hasKnowledgeTooltip;
     protected String knowledgeDescription;
     protected String secretKey = "";
     protected SymbolDrawInfo drawInfo;
@@ -46,6 +39,7 @@ public class SymbolEffectProcessor extends BaseProcessor {
         this.title = readVariable(provider, "title");
         this.description = readVariable(provider, "description");
         this.strokesDescription = readVariable(provider, "stroke_description");
+        this.hasKnowledgeText = readVariable(provider, "has_knowledge_text");
 
         String[] splits = effect.getDescription().split("\n\n");
         if (splits.length >= 2) {
@@ -116,7 +110,6 @@ public class SymbolEffectProcessor extends BaseProcessor {
         this.strokesDescription = obfuscate(this.strokesDescription, EObfuscationMethod.PATCHOULI);
         this.hasKnowledge = false;
         this.hasKnowledgeText = "";
-        this.hasKnowledgeTooltip = "";
         this.drawInfo = null;
     }
 
@@ -127,23 +120,14 @@ public class SymbolEffectProcessor extends BaseProcessor {
         this.strokesDescription = "";
         this.hasKnowledge = false;
         this.hasKnowledgeText = "";
-        this.hasKnowledgeTooltip = "";
         this.drawInfo = null;
     }
 
     public String getDescription() {
-        if (this.isSecret || this.hasKnowledge) {
-            StringBuilder sb = new StringBuilder("(");
-            if (this.isSecret)
-                sb.append("$(t:").append(this.secretTooltip).append(")").append(this.secretText).append("$(/t)");
-            if (this.hasKnowledge) {
-                if (this.isSecret) sb.append(", ");
-                sb.append("$(t:").append(this.hasKnowledgeTooltip).append(")").append(this.hasKnowledgeText).append("$(/t)");
-            }
-            sb.append(")");
-
-            return sb.toString();
-        } else return "";
+        if (isSecret && hasKnowledge) return secretText + ", " + hasKnowledgeText;
+        if (isSecret) return secretText;
+        if (hasKnowledge) return hasKnowledgeText;
+        return "";
     }
 
 

@@ -1,7 +1,6 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
+package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base;
 
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BaseProcessor;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -85,4 +84,15 @@ public abstract class BrewActionProcessor extends BaseProcessor {
         return I18n.format(currentAction.getNamePart().resource);
     }
 
+
+    protected static class BrewActionInfo {
+
+        public final String serializedStack;
+        public final String description;
+
+        public BrewActionInfo(String serializedStack, String description) {
+            this.serializedStack = serializedStack;
+            this.description = description;
+        }
+    }
 }

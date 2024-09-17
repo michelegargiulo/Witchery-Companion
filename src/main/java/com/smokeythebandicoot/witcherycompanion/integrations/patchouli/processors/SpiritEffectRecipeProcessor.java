@@ -1,22 +1,12 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
 import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.SpiritEffectApi;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
-import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BaseProcessor;
-import com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
-import kotlin.jvm.internal.Intrinsics;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BaseProcessor;
 import net.minecraft.util.ResourceLocation;
-import net.msrandom.witchery.infusion.spirit.InfusedSpiritEffect;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
-import net.msrandom.witchery.resources.SpiritEffectManager;
-import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariableProvider;
-
-import javax.annotation.Nonnull;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /** This processor is responsible for processing templates that represent SpiritEffectRecipes **/
