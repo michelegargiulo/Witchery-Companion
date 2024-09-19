@@ -5,6 +5,8 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.SymbolEffectProcessor;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 import net.msrandom.witchery.item.ItemMysticBranch;
 import org.spongepowered.asm.mixin.Mixin;
@@ -48,8 +51,11 @@ public abstract class ItemMysticBranchMixin extends Item {
         }
 
         // Unlock progress
-        progress.unlockProgress(ProgressUtils.getSymbolEffectSecret(effectKey.path));
+        String progressKey = effectKey.path;
+        progress.unlockProgress(ProgressUtils.getSymbolEffectSecret(progressKey));
         ProgressSync.serverRequest(entityPlayer);
+        MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(entityPlayer, progressKey,
+                WitcheryProgressEvent.EProgressTriggerActivity.MYSTIC_BRANCH.activityTrigger));
     }
 
 }

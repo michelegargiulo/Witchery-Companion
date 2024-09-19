@@ -4,6 +4,8 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
 import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.SpiritEffectApi;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.SpiritEffectRecipeProcessor;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
@@ -14,6 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.msrandom.witchery.block.entity.TileEntityCircle;
 import net.msrandom.witchery.infusion.spirit.InfusedSpiritEffect;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
@@ -94,8 +97,11 @@ public abstract class RiteEffectBindSpiritsToFetishMixin extends RiteEffect {
                 ResourceLocation id = SpiritEffectApi.getId(recipe);
                 if (id == null) return;
 
-                progress.unlockProgress(ProgressUtils.getSpiritEffectRecipeSecret(id.toString()));
+                String progressKey = id.toString();
+                progress.unlockProgress(ProgressUtils.getSpiritEffectRecipeSecret(progressKey));
                 ProgressSync.serverRequest(player);
+                MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(player, progressKey,
+                        WitcheryProgressEvent.EProgressTriggerActivity.BIND_TO_FETISH.activityTrigger));
             }
         }
 
