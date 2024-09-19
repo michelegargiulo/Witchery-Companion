@@ -27,9 +27,6 @@ public abstract class WitcheryProgressEvent extends Event {
         /** Player has created a brew with a secret ingredient **/
         CAULDRON_BREW("cauldron_brewing"),
 
-        /** Player has triggered a cauldron ritual that contains a secret **/
-        CAULDRON_RITUAL("cauldron_ritual"),
-
         /** Player has triggered a secret rite with circle magic **/
         CIRCLE_MAGIC("circle_magic"),
 

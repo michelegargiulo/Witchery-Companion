@@ -26,6 +26,7 @@ public class SecretTextProcessor extends BaseProcessor {
     public void setup(IVariableProvider<String> provider) {
         this.title = readVariable(provider, "title");
         this.description = readVariable(provider, "description");
+        this.isSecret = true;
         this.progressKey = readVariable(provider, "secret_key");
         super.setup(provider);
     }
@@ -50,8 +51,8 @@ public class SecretTextProcessor extends BaseProcessor {
 
     @Override
     protected void obfuscateFields() {
-        this.title = obfuscate(this.title, EObfuscationMethod.PATCHOULI);
-        this.description = obfuscate(this.description, EObfuscationMethod.MINECRAFT);
+        this.title = obfuscate(this.title, EObfuscationMethod.MINECRAFT);
+        this.description = obfuscate(this.description, EObfuscationMethod.PATCHOULI);
     }
 
     @Override

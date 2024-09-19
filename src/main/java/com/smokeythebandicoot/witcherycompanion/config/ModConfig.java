@@ -10,7 +10,6 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -999,6 +998,10 @@ public class ModConfig {
                 @Config.Name("Brewing - Dispersal Details Extension")
                 public static boolean brewing_extendedDispersal = false;
 
+                @Config.Comment("If true, shows an additional page for Inferno Brew Effect detailing how to summon a Demon")
+                @Config.Name("Brew Effects - Inferno Details Extension")
+                public static boolean brewEffects_infernoExtendedDetails = false;
+
                 @Config.Comment("If true, adds a few more pages about how Brazier works")
                 @Config.Name("Conjuring - Enable Extended Intro")
                 public static boolean conjuring_enableExtendedIntro = false;
@@ -1072,6 +1075,7 @@ public class ModConfig {
                 flags.put("brewing/rituals", Flags.brewing_enableRitualsExtension);
                 flags.put("brewing/show_ceiling", Flags.brewing_revealRemoveCeiling);
                 flags.put("brewing/show_power", Flags.brewing_showRequiredPower);
+                flags.put("brew_effects/inferno_details", Flags.brewEffects_infernoExtendedDetails);
                 flags.put("conjuring/show_extra", Flags.conjuring_showExtraEntity);
                 flags.put("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
                 flags.put("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);

@@ -41,21 +41,9 @@ public abstract class ItemMysticBranchMixin extends Item {
         ResourceLocation effectKey = SymbolEffect.REGISTRY.getKey(effectId);
 
         if (effectKey == null) return;
+        ProgressUtils.unlockProgress(entityPlayer, effectKey.path,
+                WitcheryProgressEvent.EProgressTriggerActivity.MYSTIC_BRANCH.activityTrigger);
 
-        IWitcheryProgress progress = entityPlayer.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
-
-        // Retrieve progress
-        if (progress == null) {
-            WitcheryCompanion.logger.warn("Could not unlock secret SymbolEffect: progress is null");
-            return;
-        }
-
-        // Unlock progress
-        String progressKey = effectKey.path;
-        progress.unlockProgress(ProgressUtils.getSymbolEffectSecret(progressKey));
-        ProgressSync.serverRequest(entityPlayer);
-        MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(entityPlayer, progressKey,
-                WitcheryProgressEvent.EProgressTriggerActivity.MYSTIC_BRANCH.activityTrigger));
     }
 
 }

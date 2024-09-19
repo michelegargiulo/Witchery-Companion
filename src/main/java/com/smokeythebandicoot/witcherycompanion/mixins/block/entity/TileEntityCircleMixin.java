@@ -45,11 +45,8 @@ public abstract class TileEntityCircleMixin extends WitcheryTileEntity {
             if (progress == null) {
                 WitcheryCompanion.logger.warn("Error while updating Witchery Progress: could not find capability");
             } else {
-                String progressKey = ritual.rite.getId().toString();
-                progress.unlockProgress(ProgressUtils.getRiteEffectSecret(progressKey));
-                ProgressSync.serverRequest(player);
-                MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(player, progressKey,
-                        WitcheryProgressEvent.EProgressTriggerActivity.CIRCLE_MAGIC.activityTrigger));
+                ProgressUtils.unlockProgress(player, ritual.rite.getId().toString(),
+                        WitcheryProgressEvent.EProgressTriggerActivity.CIRCLE_MAGIC.activityTrigger);
             }
         }
 

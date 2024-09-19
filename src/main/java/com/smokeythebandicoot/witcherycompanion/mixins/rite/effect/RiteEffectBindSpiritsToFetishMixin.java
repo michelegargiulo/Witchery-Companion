@@ -96,12 +96,8 @@ public abstract class RiteEffectBindSpiritsToFetishMixin extends RiteEffect {
                 }
                 ResourceLocation id = SpiritEffectApi.getId(recipe);
                 if (id == null) return;
-
-                String progressKey = id.toString();
-                progress.unlockProgress(ProgressUtils.getSpiritEffectRecipeSecret(progressKey));
-                ProgressSync.serverRequest(player);
-                MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(player, progressKey,
-                        WitcheryProgressEvent.EProgressTriggerActivity.BIND_TO_FETISH.activityTrigger));
+                ProgressUtils.unlockProgress(player, ProgressUtils.getRiteEffectSecret(id.toString()),
+                        WitcheryProgressEvent.EProgressTriggerActivity.BIND_TO_FETISH.activityTrigger);
             }
         }
 

@@ -136,14 +136,8 @@ public abstract class BlockWitchCauldronMixin {
         for (BrewAction action : actionList.actions) {
             if (action.getHidden()) {
                 ItemStack stack = action.getKey().toStack();
-                IWitcheryProgress progress = player.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
-                if (progress != null) {
-                    String progressKey = ProgressUtils.getBrewActionSecret(stack);
-                    progress.unlockProgress(progressKey);
-                    ProgressSync.serverRequest(player);
-                    MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(player, progressKey,
-                            WitcheryProgressEvent.EProgressTriggerActivity.CAULDRON_BREW.activityTrigger));
-                }
+                ProgressUtils.unlockProgress(player, ProgressUtils.getBrewActionSecret(stack),
+                        WitcheryProgressEvent.EProgressTriggerActivity.CAULDRON_BREW.activityTrigger);
             }
         }
     }

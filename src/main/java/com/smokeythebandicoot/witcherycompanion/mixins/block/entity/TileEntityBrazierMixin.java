@@ -44,11 +44,8 @@ public abstract class TileEntityBrazierMixin extends WitcheryTileEntity implemen
         // Retrieve progress and unlock a new secret
         IWitcheryProgress progress = witchery_Patcher$recipeOwner.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
         if (progress != null && this.recipe.getHidden()) {
-            String progressKey = this.recipe.getId().toString();
-            progress.unlockProgress(ProgressUtils.getBrazierRecipeSecret(progressKey));
-            ProgressSync.serverRequest(witchery_Patcher$recipeOwner);
-            MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(witchery_Patcher$recipeOwner, progressKey,
-                    WitcheryProgressEvent.EProgressTriggerActivity.BRAZIER_RECIPE.activityTrigger));
+            ProgressUtils.unlockProgress(witchery_Patcher$recipeOwner, this.recipe.getId().toString(),
+                    WitcheryProgressEvent.EProgressTriggerActivity.BRAZIER_RECIPE.activityTrigger);
         }
 
         // Reset the recipe owner
