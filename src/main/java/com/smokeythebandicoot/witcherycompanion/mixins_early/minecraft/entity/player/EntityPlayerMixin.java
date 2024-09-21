@@ -88,7 +88,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
         } else {
             witchery_Patcher$currentResizingScale = 1.0f;
         }
-        this.stepHeight = witchery_Patcher$currentResizingScale * 0.5f;
+        this.stepHeight = witchery_Patcher$currentResizingScale * 0.6f;
 
         // Account for transformation when computing size
         // Those params are set in ShapeShiftMixin class
