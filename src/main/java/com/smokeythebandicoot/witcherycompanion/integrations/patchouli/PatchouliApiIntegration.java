@@ -2,12 +2,13 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.SpiritEffectApi;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.PatchouliIntegration.Flags;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.bookcomponents.ColorableImage;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.*;
 import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.msrandom.witchery.brewing.action.BrewAction;
@@ -105,11 +106,14 @@ public class PatchouliApiIntegration {
     @SubscribeEvent
     public static void onBookReload(BookContentsReloadEvent event) {
         // Clear cache of all the processors that implement caching
-        CapacityBrewActionProcessor.clearCache();
-        ModifierBrewActionProcessor.clearCache();
-        UpgradeBrewActionProcessor.clearCache();
-        DispersalBrewActionProcessor.clearCache();
-        IncrementBrewActionProcessor.clearCache();
+        if (Loader.instance().hasReachedState(LoaderState.AVAILABLE)) {
+            CapacityBrewActionProcessor.clearCache();
+            ModifierBrewActionProcessor.clearCache();
+            UpgradeBrewActionProcessor.clearCache();
+            DispersalBrewActionProcessor.clearCache();
+            IncrementBrewActionProcessor.clearCache();
+            MultiblockRegistry.reloadMultiblocks();
+        }
     }
 
     /** Custom FunctionProcessor for Patchouli's TextParser

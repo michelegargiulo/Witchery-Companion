@@ -50,7 +50,8 @@ public class ProcessorUtils {
         if (stripFormatting) {
             formattedString = formattedString
                 .replaceAll("§[0-9a-fklmnor]", "")
-                .replaceAll("\\$\\([0-9a-fklmnor]?\\)", "");
+                .replaceAll("\\$\\([0-9a-fklmnor]?\\)", "")
+                .replaceAll("\\$\\((item|thing|nocolor|obf|strike|italic|italics|bold|#[a-z0-9]*)\\)", "");
         }
         return formattedString
                 .trim()
