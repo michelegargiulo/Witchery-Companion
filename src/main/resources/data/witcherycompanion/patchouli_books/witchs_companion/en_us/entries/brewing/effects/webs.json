@@ -1,0 +1,14 @@
+{
+  "name": "Webs",
+  "icon": "witchery:dense_web",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Webs",
+      "item": "witchery:dense_web",
+      "text": "Causes a mass of webs to explode at the impact location, trapping creatures or providing obstacles."
+    }
+  ]
+}

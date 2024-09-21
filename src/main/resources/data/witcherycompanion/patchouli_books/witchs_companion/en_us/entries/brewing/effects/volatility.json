@@ -1,0 +1,14 @@
+{
+  "name": "Volatility",
+  "icon": "minecraft:deadbush",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Volatility",
+      "item": "minecraft:deadbush",
+      "text": "Creatures hit with this effect become explosively fragile to hits."
+    }
+  ]
+}

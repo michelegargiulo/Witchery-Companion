@@ -1,0 +1,14 @@
+{
+  "name": "Bodega",
+  "icon": "witchery:owlets_wing",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bodega",
+      "item": "witchery:owlets_wing",
+      "text": "Aggressive version of $(l:brewing/effects/bat_burst)Bat Burst$(/l). Requires an $(item)Owl familiar$(), targets the entity impacted. If there is no mob targeted or the target is an owl or bat, the effect will fail."
+    }
+  ]
+}

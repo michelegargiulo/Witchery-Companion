@@ -1,0 +1,14 @@
+{
+  "name": "Sticky Items",
+  "icon": "witchery:focused_will",
+  "category": "brew_effects/level_8",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Sticky Items",
+      "item": "witchery:focused_will",
+      "text": "Keep your inventory items when you die."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Flames",
+  "icon": "witchery:glint_weed",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Flames",
+      "item": "witchery:glint_weed",
+      "text": "Causes a spread of flames oven an area determined by the power of the effect."
+    }
+  ]
+}

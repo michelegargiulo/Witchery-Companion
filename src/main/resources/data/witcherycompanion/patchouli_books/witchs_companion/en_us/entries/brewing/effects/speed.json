@@ -1,0 +1,14 @@
+{
+  "name": "Speed / Slowness",
+  "icon": "minecraft:sugar",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Speed / Slowness",
+      "item": "minecraft:sugar",
+      "text": "Causes a creature under this effect to move faster.$(p)$(italic)$(l:brewing/modifiers)Inverted:$(/l)$() Slowness(br)Causes a creature under this effect to move slower."
+    }
+  ]
+}

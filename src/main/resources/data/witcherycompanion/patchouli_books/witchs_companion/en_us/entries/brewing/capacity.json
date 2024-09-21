@@ -1,0 +1,18 @@
+{
+  "name": "Capacity",
+  "icon": "minecraft:nether_wart",
+  "category": "brewing",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Capacity",
+      "text": "$(l:brewing/effects)Effects$(/l) each have a space requirement, add these ingredients, in order, to increase a brew's capacity."
+    },
+    {
+      "type": "brewing/cauldron_capacity_list",
+      "secret_text": "$(t:This item is secret. Does not show in this book for a Player who didn't use it in a brew before)$(4)Secret$()$(/t)",
+      "removes_ceiling_text": "$(t:Brews can have infinitely many effects, but they can be augmented - in power or duration - a limited amount of times. Using this item disables this ceiling, allowing for very powerful brews)$(3)Removes Ceiling$()$(/t)"
+    }
+  ]
+}

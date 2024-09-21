@@ -1,0 +1,13 @@
+{
+  "name": "Bear Trap",
+  "icon": "witchery:beartrap",
+  "category": "constructs/traps",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:beartrap",
+      "text": "The $(item)Beartrap$() is a mundane construct able to imprison an entity keeping it in place."
+    }
+  ]
+}

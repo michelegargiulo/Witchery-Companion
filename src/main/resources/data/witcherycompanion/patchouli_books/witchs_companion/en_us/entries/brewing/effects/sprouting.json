@@ -1,0 +1,14 @@
+{
+  "name": "Sprouting",
+  "icon": "witchery:ent_twig",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Sprouting",
+      "item": "witchery:ent_twig",
+      "text": "Causes a large branch to sprout from the hit surface. Thrown under a creature causes them to ride the branch upwards. Creatures under this effect will occasionally sprout a small branch below them."
+    }
+  ]
+}

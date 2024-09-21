@@ -1,0 +1,16 @@
+{
+  "components": [
+    {
+      "type": "item",
+      "item": "#stack",
+      "x": 0,
+      "y": -4
+    },
+    {
+      "type": "text",
+      "text": "#description",
+      "x": 20,
+      "Y": 0
+    }
+  ]
+}

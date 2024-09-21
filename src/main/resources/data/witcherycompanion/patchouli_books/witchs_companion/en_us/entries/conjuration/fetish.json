@@ -1,0 +1,60 @@
+{
+  "name": "Fetish Binding",
+  "icon": "witchery:scarecrow",
+  "category": "conjuration",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Fetish Binding",
+      "text": "A witch may use the $(item)Rite of Binding$() to bind spectral creatures to a $(item)fetish$() to create permanent effects.$(2br)The following pages show which beings must be bound for which effect."
+    },
+    {
+      "type": "text",
+      "title": "Hosts",
+      "text": "Hosts are small blocks that can be bound to spectral entities to have supernatural powers.$(br2)Very few artifacts are able to trap such volatile beings.",
+      "flag": "witcherycompanion:conjuring/extended_fetish"
+    },
+    {
+      "type": "crafting",
+      "recipe": "witchery:scarecrow",
+      "recipe2": "witchery:trent",
+      "flag": "witcherycompanion:conjuring/extended_fetish"
+    },
+    {
+      "type": "crafting",
+      "text": "$(p)Even though the fetishes are different, the effects manifested will be the same, as they depend on the beings and not the fetish itself.",
+      "recipe": "witchery:witchsladder",
+      "flag": "witcherycompanion:conjuring/extended_fetish"
+    },
+    {
+      "type": "conjuration/spirit_effect",
+      "effect_id": "witchery:voodoo_protection"
+    },
+    {
+      "type": "conjuration/spirit_effect",
+      "effect_id": "witchery:sentinel"
+    },
+    {
+      "type": "conjuration/spirit_effect",
+      "effect_id": "witchery:shrieking"
+    },
+    {
+      "type": "conjuration/spirit_effect",
+      "effect_id": "witchery:disorientation"
+    },
+    {
+      "type": "conjuration/spirit_effect",
+      "effect_id": "witchery:ghost_walking"
+    },
+    {
+      "type": "conjuration/spirit_effect",
+      "effect_id": "witchery:death",
+      "title": "Summon Death",
+      "description": "In your quest to command the undead, you have crossed a line unseen. The air grows cold, a whisper breaks the deafening silence. Death steps forth to reclaim its dominion.",
+      "required_beings": "Beings required:$(br)§8>§r Spectre: 5$(br)§8>§r Poltergeist: 5$(br)§8>§r Banshee: 5",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This effect is secret and won't show in this book for players that did not discover it"
+    }
+  ]
+}

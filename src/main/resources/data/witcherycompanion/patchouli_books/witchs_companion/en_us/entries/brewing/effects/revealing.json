@@ -1,0 +1,14 @@
+{
+  "name": "Revealing",
+  "icon": "witchery:purity_odor",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Revealing",
+      "item": "witchery:purity_odor",
+      "text": "Makes the invisible, visible."
+    }
+  ]
+}

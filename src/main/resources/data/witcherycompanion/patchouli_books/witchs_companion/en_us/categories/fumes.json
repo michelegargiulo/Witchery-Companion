@@ -1,0 +1,7 @@
+{
+  "name": "Collecting Fumes",
+  "description": "The practice of collecting fumes",
+  "icon": "witchery:witches_oven",
+  "sortnum": 1,
+  "secret": false
+}

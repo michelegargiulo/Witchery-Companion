@@ -1,0 +1,14 @@
+{
+  "name": "Cold",
+  "icon": "witchery:icy_needle",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Cold",
+      "item": "witchery:icy_needle",
+      "text": "Causes the creature to become very cold, slowing them and at higher levels causing cold damage. Blazes will take more damage from this effect, based on its level."
+    }
+  ]
+}

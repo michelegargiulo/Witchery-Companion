@@ -1,0 +1,14 @@
+{
+  "name": "Summon Leonard",
+  "icon": "witchery:witches_hat",
+  "category": "brew_effects/level_12",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Summon Leonard",
+      "item": "witchery:witches_hat",
+      "text": "a demon from medieval times, who can preside over a ritual to allow it to affect targets in other dimensions. When summoned he is unlikely to want to leave, unless defeated."
+    }
+  ]
+}

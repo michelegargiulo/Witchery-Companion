@@ -1,0 +1,14 @@
+{
+  "name": "Reflect / Attract Projectiles",
+  "icon": "minecraft:web",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Reflect / Attract Projectiles",
+      "item": "minecraft:web",
+      "text": "Projectiles targeting the creature under this effect will reflect back to their source.$(p)$(italic)$(l:brewing/modifiers)Inverted:$(/l)$() Weakness(br)Projectiles in an area based on the power of this effect will home-in on the victim."
+    }
+  ]
+}

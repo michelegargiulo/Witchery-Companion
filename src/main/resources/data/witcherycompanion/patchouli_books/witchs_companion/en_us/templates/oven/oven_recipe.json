@@ -1,0 +1,47 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.OvenRecipeProcessor",
+  "components": [
+    {
+      "type": "item",
+      "item": "witchery:clay_jar",
+      "x": 4,
+      "y": 4,
+      "guard": "#is_configured"
+    },
+    {
+      "type": "item",
+      "item": "#input",
+      "x": 23,
+      "y": 4,
+      "guard": "#is_configured"
+    },
+    {
+      "type": "item",
+      "item": "#output",
+      "x": 82,
+      "y": 4,
+      "guard": "#is_configured"
+    },
+    {
+      "type": "item",
+      "item": "#fume",
+      "x": 100,
+      "y": 4,
+      "guard": "#is_configured"
+    },
+    {
+      "type": "image",
+      "image": "witcherycompanion:textures/patchouli/oven.png",
+      "width": 120,
+      "height": 24,
+      "texture_width": 120,
+      "texture_height": 24,
+      "u": 0,
+      "v": 0,
+      "scale": 1,
+      "x": 0,
+      "y": 0,
+      "guard": "#is_configured"
+    }
+  ]
+}

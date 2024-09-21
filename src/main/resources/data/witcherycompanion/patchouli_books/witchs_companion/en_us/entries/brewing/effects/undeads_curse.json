@@ -1,0 +1,14 @@
+{
+  "name": "Undead's Curse",
+  "icon": "minecraft:fish:1",
+  "category": "brew_effects/level_6",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Undead's Curse",
+      "item": "minecraft:fish:1",
+      "text": "Creatures will be damaged by sunlight."
+    }
+  ]
+}

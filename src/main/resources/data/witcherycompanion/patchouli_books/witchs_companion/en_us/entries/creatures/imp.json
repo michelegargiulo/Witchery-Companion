@@ -1,0 +1,47 @@
+{
+  "name": "Flame Imp",
+  "icon": "witchery:fiery_tolerance_contract",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:imp",
+      "text": "Fiery Fiendishness.",
+      "offset": 0.12,
+      "scale": 0.8
+    },
+    {
+      "type": "text",
+      "title": "Behavior",
+      "text": "While not as physically strong as $(item)Demons$(), Imps are much more aggressive, naughty and mischievous. Flame Imps can be easily swayed if they have a personal gain."
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Taming Imps",
+      "description": "While Imps are notoriously aggressive, they can make a pact with a player.$(br)Give the Imp a $(item)Demonic Contract$() signed with blood (by crafting it with a bound $(l:constructs/misc/taglock_kit)Taglock kit$(/l)) and make sure to have something to trade. $(item)25 Experience Levels$() should suffice.$(p)When tamed, the Flame Imp will protect its master from any hostile entities.",
+      "secret_key": "witcherycompanion:creatures/imp_taming"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Imp Trading",
+      "description": "An Imp with a bound contract will trade with its master. A player can give the Imp items that it deems valuable, called $(item)Shinies$(). Once enough shinies have been gifted to the Imp, it will give a valuable in return. It is advised to not give too many shinies to Imps, as they might get tired of them.",
+      "secret_key": "witcherycompanion:creatures/imp_trading",
+      "_comment": "Unlocked when the player trades with an Imp"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Imp Magic",
+      "description": "Imp Magic is used to make Imps cast fire-related spells at the request of their masters. Craft with a $(item)Demonic Contract$() with the items for the spell, then bound it using a $(item)Taglock Kit$(). Once given to the Imp, it will start casting the spell if their master is not too far away.$(p)Imp Magic effects can be removed by dying or eating a $(item)Frozen Heart$().",
+      "secret_key": "witcherycompanion:creatures/imp_magic",
+      "_comment": "Unlocked when a player gives a spell contract to an Imp"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Demon Hearts",
+      "description": "Using a $(item)Demon Heart$() on an Imp will cause it to temporarily greatly grow in both size and strength. In this state the Imp cannot trade or perform Imp Magic. Using an $(item)Icy Needle$() on the creature will make it return to their normal size again.",
+      "secret_key": "witcherycompanion:creatures/imp_boost",
+      "_comment": "Unlocked when a player uses a Demon Heart on an Imp"
+    }
+  ]
+}

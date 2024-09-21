@@ -1,0 +1,79 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.DistilleryRecipeProcessor",
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    },
+    {
+      "type": "item",
+      "item": "#input0",
+      "x": 18,
+      "y": 33
+    },
+    {
+      "type": "item",
+      "item": "#input1",
+      "x": 18,
+      "y": 53
+    },
+    {
+      "type": "item",
+      "item": "#clay_jars",
+      "x": 18,
+      "y": 81
+    },
+    {
+      "type": "item",
+      "item": "#output0",
+      "x": 74,
+      "y": 43
+    },
+    {
+      "type": "item",
+      "item": "#output1",
+      "x": 92,
+      "y": 43
+    },
+    {
+      "type": "item",
+      "item": "#output2",
+      "x": 74,
+      "y": 61
+    },
+    {
+      "type": "item",
+      "item": "#output3",
+      "x": 92,
+      "y": 61
+    },
+    {
+      "type": "image",
+      "image": "witcherycompanion:textures/patchouli/distillery.png",
+      "width": 120,
+      "height": 80,
+      "texture_width": 120,
+      "texture_height": 80,
+      "u": 0,
+      "v": 0,
+      "scale": 1,
+      "x": 0,
+      "y": 22
+    },
+    {
+      "type": "text",
+      "text": "$(t:This recipe is secret and won't show in this book for players that did not discover it)$(4)Secret$()",
+      "guard": "#secret_guard",
+      "x": 2,
+      "y": 120,
+      "_comment": "by default, there shouldn't be any secret distillery recipe"
+    }
+  ]
+}

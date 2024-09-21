@@ -1,0 +1,14 @@
+{
+  "name": "Waking Nightmare",
+  "icon": "witchery:mellifluous_hunger",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Waking Nightmare",
+      "item": "witchery:mellifluous_hunger",
+      "text": "Creatures will occasionally experience their nightmares when awake."
+    }
+  ]
+}

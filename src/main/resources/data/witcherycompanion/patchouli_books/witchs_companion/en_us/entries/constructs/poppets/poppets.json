@@ -1,0 +1,87 @@
+{
+  "name": "Poppets",
+  "icon": "witchery:poppet",
+  "category": "constructs/poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:poppet",
+      "text": "In witchcraft, a poppet, sometimes referred to as a Moppet, Mommet, or Pippy, is a doll crafted to symbolize a person, used for casting spells on them or assisting them through magic.",
+      "anchor": "basic_doll"
+    },
+    {
+      "type": "text",
+      "text": "These dolls are created from basic natural materials and filled with items of magical importance, with the intention that actions performed on the subject will be transferred to the effigy through sympathetic magic. In less common instances, the sympathy can be reversed, causing actions performed on the effigy to affect the subject."
+    },
+    {
+      "type": "text",
+      "title": "Making a Poppet",
+      "text": "Creating a poppet involves three steps:$(p)$(8)1.$() First, a $(l:constructs/poppets/poppets#basic_doll)Basic Doll$(/l) is made.$(p)$(8)2.$() Next the doll must be filled with items appropriate to the desired magic effect$(p)$(8)3.$() Finally, the sympathetic connection between the poppet and a living being must be established by crafting it together with a $(l:constructs/misc/taglock_kit)Taglock$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Collecting Taglocks",
+      "text": "To bind a poppet to a living being it is enough to get a $(l:constructs/misc/taglock_kit)Taglock Kit$(/l) of the desired target, be it of a Player or another creature, and craft it together with the Poppet."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:earth_protection_poppet",
+      "text": "The earth protection poppet will redirect deadly falling damage from the bound player or creature to the poppet, destroying it in the process. Only deadly damage will be redirected to the poppet."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:water_protection_poppet",
+      "text": "The water protection poppet will protect its owner from deadly drowning damage. When the bound creature is about to die, the poppet will protect it by giving a small health boost and a few seconds of $(item)Water Breathing$(). The poppet will be destroyed it in the process."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:fire_protection_poppet",
+      "text": "The fire protection poppet will protect its owner from deadly fire damage. When the bound creature is about to die, the poppet will protect it by giving a small health boost and a few seconds of $(item)Fire Resistance$(). The poppet will be destroyed it in the process."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:hunger_protection_poppet",
+      "text": "The hunger protection poppet will protect its owner from starvation. When the bound creature is about to die, the poppet will protect it by giving a small health boost, filling its hunger bar and a few seconds of $(item)Saturation$(). The poppet will be destroyed it in the process."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:voodoo_protection_poppet",
+      "text": "The voodoo protection poppet will protect its owner from $(l:)Voodoo Poppets$(/l), $(l:)Vampiric Poppets$(/l) and $(l:)Curses$(/l). When the bound creature is about to be attacked, the effect is prevented, the attacking creature is struck by lightning and the poppet is destroyed. This poppet, however, is not immune from the $(l:)Curse of Corrupt Poppet$(/l)."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:tool_protection_poppet",
+      "text": "The tool protection poppet will protect its owner's tools from breaking. When the tool is about to break, the poppet will restore the tool's full durability, but the poppet will be destroyed in the process."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:armor_protection_poppet",
+      "text": "The tool protection poppet will protect its owner's armor from breaking. When the armor is about to break, the poppet will restore the armor piece's full durability, but the poppet will be destroyed in the process."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:poppet_protection_poppet",
+      "text": "The poppet protection poppet will protect other poppets by the same owner from the $(l:)Curse of Corrupt Poppet$(/l). The magic will be reflected back to the attacker in the form of a lightning, causing some damage to the poppet."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:death_protection_poppet",
+      "text": "The death protection poppet will protect its owner to almost any form of damage. When the bound creature is about to die, the poppet will partially restore its health, give a brief immunity appropriate to the damage received. The poppet is destroyed in the process."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:vampiric_poppet",
+      "text": "The vampiric poppet redirects most forms of damage from the first bound creature to the second. Each time the damage is redirected through the poppet, it will take damage. Once the target dies, the poppet will remain inert until re-bound. The effect persists until the protected creature holds the poppet in their inventory or poppet shelf."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:voodoo_poppet",
+      "text": "The voodoo poppet is a way to cause negative effects on the target creature. Using the poppet will throw violently the linked being around. This action can be charged to amplify the effect. "
+    },
+    {
+      "type": "text",
+      "text": "Sneaking and using $(l:)Bone Needles$(/l) will cause a small amount of magic damage to the target. Holding the poppet underwater will cause drowning damage, and throwing it in lava will set the target on fire, but the poppet will be destroyed instantly. All offensive actions done to the poppet will cause it to take small amounts of damage."
+    }
+  ]
+}

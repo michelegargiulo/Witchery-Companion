@@ -1,0 +1,67 @@
+{
+  "name": "Conjuration & Fetishes",
+  "icon": "witchery:graveyard_dust",
+  "category": "conjuration",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Conjuration & Fetishes",
+      "text": "A witch may use a $(item)Brazier$() to burn materials with magical purpose, and conjure that which is no longer of this world.$(2br)Place the ingredients into the brazier and ignite with a $(item)Flint and Steel$()."
+    },
+    {
+      "type": "text",
+      "title": "Using the Brazier",
+      "text": "Once lit, the Brazier will burn for a certain amount of time. For some rites, Altar power is required.$(2br)Using a $(item)Water Bottle$() or a $(item)Water Bucket$() will extinguish the flames, stopping the process.$(2br)Unfortunately, doing so will result in the loss of any ingredient in the Brazier.",
+      "flag": "witcherycompanion:conjuring/extended_intro"
+    },
+    {
+      "type": "conjuration/brazier_recipe",
+      "brazier_recipe": "witchery:brazier/graveyard_mist",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This item is secret. It won't show in the book for players that didn't discover"
+    },
+    {
+      "type": "conjuration/brazier_recipe",
+      "brazier_recipe": "witchery:brazier/resistance",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This item is secret. It won't show in the book for players that didn't discover"
+    },
+    {
+      "type": "conjuration/brazier_recipe",
+      "brazier_recipe": "witchery:brazier/banshee",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This item is secret. It won't show in the book for players that didn't discover"
+    },
+    {
+      "type": "conjuration/brazier_recipe",
+      "brazier_recipe": "witchery:brazier/spectre",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This item is secret. It won't show in the book for players that didn't discover"
+    },
+    {
+      "type": "conjuration/brazier_recipe",
+      "brazier_recipe": "witchery:brazier/drain_growth",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This item is secret. It won't show in the book for players that didn't discover"
+    },
+    {
+      "type": "conjuration/brazier_recipe",
+      "brazier_recipe": "witchery:brazier/invisibility",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This item is secret. It won't show in the book for players that didn't discover"
+    },
+    {
+      "type": "conjuration/brazier_recipe",
+      "brazier_recipe": "witchery:brazier/strength",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This item is secret. It won't show in the book for players that didn't discover"
+    },
+    {
+      "type": "conjuration/brazier_recipe",
+      "brazier_recipe": "witchery:brazier/poltergeist",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This item is secret. It won't show in the book for players that didn't discover"
+    }
+  ]
+}

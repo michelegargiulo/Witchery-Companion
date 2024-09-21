@@ -1,0 +1,35 @@
+{
+  "name": "Brews",
+  "icon": "witchery:mandrake_root",
+  "category": "brewing",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Brews",
+      "text": "Use a glass bottle to retrieve your potion when the cauldron splutters. Certain ingredients may need to draw power from an $(item)Altar$(). More brews may be recovered as your $(l:brewing/introduction#expertise)Expertise$(/l) grows"
+    },
+    {
+      "type": "text",
+      "title": "Effect & Modifiers",
+      "text": "A brew consists of one or more $(l:brewing/effects)effects$(/l) with modifiers and a $(l:brewing/dispersal)dispersal$(/l) method, also with modifiers.$(br)Modifiers to an effect or dispersal method must be added in-order before the effect is added."
+    },
+    {
+      "type": "text",
+      "title": "Capacity",
+      "text": "Each effect added to a brew will require a certain amount of storage space. Special $(l:brewing/capacity)ingredients$(/l) are used to add such capacity to a brew, and they must be added in order to have a cumulative effect.$(br2)Multiple effects can be added to a brew, but there must be sufficient capacity for all of them combined."
+    },
+    {
+      "type": "text",
+      "title": "Step-by-step",
+      "text": "1. Increase $(l:brewing/capacity)capacity$(/l)$(br)2. Add $(l:brewing/modifiers)modifiers$(/l)$(br)3. Increase $(l:brewing/main/power)power$(/l)$(br)4. Increase $(l:brewing/duration)duration$(/l)$(br)5. Add $(l:brewing/effects)effect$(/l)$(br)6. Repeat from 3$(br)> Bottle or continue$(br)7. Increase $(l:brewing/extent)extent$(/l)$(br)8. Increase $(l:brewing/lingering)lingering$(/l)$(br)9. Set $(l:brewing/dispersal)dispersal$(/l)$(br)> Bottle or do $(l:brewing/rituals)ritual$(/l)"
+    },
+    {
+      "type": "brewing/cauldron_brew",
+      "brew_item": "minecraft:coal",
+      "brew_type": "Splash Brew of",
+      "description": "Throw the following items into a full boiling cauldron. Then use a $(item)Glass Bottle$() on the cauldron.",
+      "cauldron_brew": "brew.witchery.extinguish"
+    }
+  ]
+}

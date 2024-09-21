@@ -1,0 +1,14 @@
+{
+  "name": "Blast",
+  "icon": "minecraft:gold_ingot",
+  "category": "brew_effects/level_5",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Blast",
+      "item": "minecraft:gold_ingot",
+      "text": "Causes an explosion. Higher power levels will cause more powerful explosions."
+    }
+  ]
+}

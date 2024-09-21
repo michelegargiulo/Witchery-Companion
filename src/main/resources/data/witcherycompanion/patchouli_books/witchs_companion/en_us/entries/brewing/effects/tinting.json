@@ -1,0 +1,14 @@
+{
+  "name": "Tinting",
+  "icon": "minecraft:dye:1",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Tinting",
+      "item": "minecraft:dye:1",
+      "text": "Changes the hue of the creature or player's skin to that of the selected dye.$(p)$(italic)The color is determined by the dye used.$()"
+    }
+  ]
+}

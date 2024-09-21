@@ -1,0 +1,8 @@
+{
+  "name": "Level 12 effects",
+  "description": "",
+  "parent": "brewing",
+  "icon": "witchery:witches_hat",
+  "sortnum": 12,
+  "secret": false
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Spread Debuffs",
+  "icon": "minecraft:skull:4",
+  "category": "brew_effects/level_8",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Spread Debuffs",
+      "item": "minecraft:skull:4",
+      "text": "Spread any curable negative potions of one level below this potions level to all creatures in a wide area."
+    }
+  ]
+}

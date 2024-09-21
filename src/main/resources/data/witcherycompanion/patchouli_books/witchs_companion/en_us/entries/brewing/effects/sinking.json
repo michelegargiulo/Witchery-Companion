@@ -1,0 +1,14 @@
+{
+  "name": "Sinking",
+  "icon": "witchery:disturbed_cotton",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Sinking",
+      "item": "witchery:disturbed_cotton",
+      "text": "Creatures under this effect will have an harder time to stay afloat."
+    }
+  ]
+}

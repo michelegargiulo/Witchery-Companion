@@ -1,0 +1,14 @@
+{
+  "name": "Stout Belly",
+  "icon": "witchery:foul_fume",
+  "category": "brew_effects/level_5",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Stout Belly",
+      "item": "witchery:foul_fume",
+      "text": "Removes the dizzy effects of $(l:brewing/effects/level1/moonshine)Moonshine$(/l)."
+    }
+  ]
+}

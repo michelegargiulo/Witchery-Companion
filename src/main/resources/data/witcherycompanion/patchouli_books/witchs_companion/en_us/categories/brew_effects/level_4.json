@@ -1,0 +1,8 @@
+{
+  "name": "Level 4 effects",
+  "description": "",
+  "parent": "brewing",
+  "icon": "witchery:golden_heart",
+  "sortnum": 4,
+  "secret": false
+}

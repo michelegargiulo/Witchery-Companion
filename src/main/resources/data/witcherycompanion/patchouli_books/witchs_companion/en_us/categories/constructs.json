@@ -1,0 +1,7 @@
+{
+  "name": "Constructs",
+  "description": "A compendium about the most common mystical devices a Witch must know about",
+  "icon": "witchery:altar",
+  "sortnum": 10,
+  "secret": false
+}

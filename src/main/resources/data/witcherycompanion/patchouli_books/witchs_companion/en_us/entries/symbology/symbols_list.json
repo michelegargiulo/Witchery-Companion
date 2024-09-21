@@ -1,0 +1,256 @@
+{
+  "name": "List of known Symbols",
+  "icon": "witchery:ent_twig",
+  "category": "symbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "accio",
+      "flag": "witcherycompanion:content/symbols/accio",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "aguamenti",
+      "flag": "witcherycompanion:content/symbols/aguamenti",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "alohomora",
+      "flag": "witcherycompanion:content/symbols/alohomora",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "attraho",
+      "flag": "witcherycompanion:content/symbols/attraho",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "avada_kedavra",
+      "flag": "witcherycompanion:content/symbols/avada_kedavra",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "baratrum",
+      "flag": "witcherycompanion:content/symbols/baratrum",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "caelum",
+      "flag": "witcherycompanion:content/symbols/caelum",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "carnosa_diem",
+      "flag": "witcherycompanion:content/symbols/carnosa_diem",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "cave_inimicum",
+      "flag": "witcherycompanion:content/symbols/cave_inimicum",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "colloportus",
+      "flag": "witcherycompanion:content/symbols/colloportus",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "confundus",
+      "flag": "witcherycompanion:content/symbols/confundus",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "crucio",
+      "flag": "witcherycompanion:content/symbols/crucio",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "defodio",
+      "flag": "witcherycompanion:content/symbols/defodio",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "ennervate",
+      "flag": "witcherycompanion:content/symbols/ennervate",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "episkey",
+      "flag": "witcherycompanion:content/symbols/episkey",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "expelliarmus",
+      "flag": "witcherycompanion:content/symbols/expelliarmus",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "flagrate",
+      "flag": "witcherycompanion:content/symbols/flagrate",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "flipendo",
+      "flag": "witcherycompanion:content/symbols/flipendo",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "ignianima",
+      "flag": "witcherycompanion:content/symbols/ignianima",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "impedimenta",
+      "flag": "witcherycompanion:content/symbols/impedimenta",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "imperio",
+      "flag": "witcherycompanion:content/symbols/imperio",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "incendio",
+      "flag": "witcherycompanion:content/symbols/incendio",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "lumos",
+      "flag": "witcherycompanion:content/symbols/lumos",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "meteolojinx_recanto",
+      "flag": "witcherycompanion:content/symbols/meteolojinx_recanto",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "morsmordre",
+      "flag": "witcherycompanion:content/symbols/morsmordre",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "nox",
+      "flag": "witcherycompanion:content/symbols/nox",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "occasus",
+      "flag": "witcherycompanion:content/symbols/occasus",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "ortus",
+      "flag": "witcherycompanion:content/symbols/ortus",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "protego",
+      "flag": "witcherycompanion:content/symbols/protego",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "stupefy",
+      "flag": "witcherycompanion:content/symbols/stupefy",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    },
+    {
+      "type": "symbology/symbol",
+      "symbol_id": "tormentum",
+      "flag": "witcherycompanion:content/symbols/tormentum",
+      "secret_text": "$(4)Secret$()",
+      "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Harvest",
+  "icon": "minecraft:apple",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Harvest",
+      "item": "minecraft:apple",
+      "text": "Breaks nearby harvestable plants, triggering their normal drops. A way of collecting them will still be needed."
+    }
+  ]
+}

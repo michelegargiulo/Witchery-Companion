@@ -1,0 +1,14 @@
+{
+  "name": "Planting",
+  "icon": "minecraft:wheat_seeds",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Planting",
+      "item": "minecraft:wheat_seeds",
+      "text": "Plants any seed that has been dropped on the floor nearby."
+    }
+  ]
+}

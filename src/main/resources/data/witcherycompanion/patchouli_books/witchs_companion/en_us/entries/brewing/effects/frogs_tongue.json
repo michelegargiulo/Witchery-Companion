@@ -1,0 +1,14 @@
+{
+  "name": "Frog's Tongue",
+  "icon": "minecraft:slime_ball",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Frog's Tongue",
+      "item": "minecraft:slime_ball",
+      "text": "Unpowered, pulls items and creatures to the impact location. When powered, will pull items and creatures towards the thrower. Very useful in combination with harvest-type effects."
+    }
+  ]
+}

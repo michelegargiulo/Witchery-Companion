@@ -1,0 +1,34 @@
+{
+  "name": "Collecting Fumes",
+  "icon": "witchery:foul_fume",
+  "category": "fumes",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Collecting Fumes",
+      "text": "The $(item)Witches Oven$() gives a practitioner of the art the opportunity to collect the fumes that may be produced when cooking.$(2br)Remember that the oven cannot smelt $(item)ore$(), but it does cook a little faster than a $(item)furnace$()."
+    },
+    {
+      "type": "text",
+      "title": "Collecting Fumes",
+      "text": "Place $(item)Clay Jars$() into the oven when cooking to collect the fumes:$(p)Food  $(6)Foul Fume$()$(br)Wood  $(6)Foul Fume$()$(p)Cooking $(item)Saplings$() produces $(item)Wood Ash$() and may also release the gaseous essence of the tree."
+    },
+    {
+      "type": "oven/oven_recipe_list",
+      "title": "Sapling Fumes",
+      "input0": "minecraft:sapling:0",
+      "input1": "minecraft:sapling:1",
+      "input2": "minecraft:sapling:2",
+      "input3": "witchery:rowan_sapling",
+      "text": ""
+    },
+    {
+      "type": "oven/oven_recipe_list",
+      "title": "Sapling Fumes",
+      "input0": "witchery:hawthorn_sapling",
+      "input1": "witchery:alder_sapling",
+      "text": "Most other items can be smelted in the oven and will produce $(item)Foul Fume$()."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Altar",
+  "description": "The symbol of one's dedication and sacrifice to witchcraft",
+  "icon": "witchery:altar",
+  "parent": "constructs",
+  "secret": false
+}

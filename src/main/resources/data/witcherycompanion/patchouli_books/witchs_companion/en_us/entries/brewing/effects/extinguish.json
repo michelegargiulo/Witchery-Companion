@@ -1,0 +1,14 @@
+{
+  "name": "Extinguish",
+  "icon": "minecraft:coal",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Extinguish",
+      "item": "minecraft:coal",
+      "text": "Extinguishes fires on blocks and creatures in an area. Harms blazes."
+    }
+  ]
+}

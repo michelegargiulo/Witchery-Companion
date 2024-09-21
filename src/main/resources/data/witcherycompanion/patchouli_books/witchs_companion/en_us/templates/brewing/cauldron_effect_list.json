@@ -1,0 +1,28 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.EffectListProcessor",
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    },
+    {
+      "type": "text",
+      "text": "#text",
+      "x": 2,
+      "y": 18
+    },
+    {
+      "type": "text",
+      "text": "#effect_list",
+      "x": 2,
+      "y": 60
+    }
+  ]
+}

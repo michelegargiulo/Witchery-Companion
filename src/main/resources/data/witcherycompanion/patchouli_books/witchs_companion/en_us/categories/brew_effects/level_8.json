@@ -1,0 +1,8 @@
+{
+  "name": "Level 8 effects",
+  "description": "",
+  "parent": "brewing",
+  "icon": "witchery:redstone_soup",
+  "sortnum": 8,
+  "secret": false
+}

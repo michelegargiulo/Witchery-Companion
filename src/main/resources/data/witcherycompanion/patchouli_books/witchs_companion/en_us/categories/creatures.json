@@ -1,0 +1,7 @@
+{
+  "name": "Creatures",
+  "description": "The study of demonic, otherworldly or outright supernatural creatures",
+  "icon": "witchery:binkys_skull",
+  "sortnum": 10,
+  "secret": false
+}

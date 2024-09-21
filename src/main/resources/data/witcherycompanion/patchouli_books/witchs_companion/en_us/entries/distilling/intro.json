@@ -1,0 +1,49 @@
+{
+  "name": "Distilling",
+  "icon": "witchery:magic_whiff",
+  "category": "distilling",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Using the Distillery",
+      "text": "The $(item)Distillery$() is a magical construct that distills items and is powered by Altar power rather than mundane heat.$(p)1. Ensure the distillery is near to an Altar to get power.$(br)2 Place the items into the distillery along with the required number of $(item)Clay Jars$().$(br)3 Wait for the distillation process to complete."
+    },
+    {
+      "type": "distilling/distillery_recipe",
+      "distillery_recipe": "witchery:distillery/focused_will"
+    },
+    {
+      "type": "distilling/distillery_recipe",
+      "distillery_recipe": "witchery:distillery/goddess_tear"
+    },
+    {
+      "type": "distilling/distillery_recipe",
+      "distillery_recipe": "witchery:distillery/ender_dew"
+    },
+    {
+      "type": "distilling/distillery_recipe",
+      "distillery_recipe": "witchery:distillery/diamong_vapor"
+    },
+    {
+      "type": "distilling/distillery_recipe",
+      "distillery_recipe": "witchery:distillery/purity_odour"
+    },
+    {
+      "type": "distilling/distillery_recipe",
+      "distillery_recipe": "witchery:distillery/diamond_vapor_infenal_blood"
+    },
+    {
+      "type": "distilling/distillery_recipe",
+      "distillery_recipe": "witchery:distillery/gypsum"
+    },
+    {
+      "type": "distilling/distillery_recipe",
+      "distillery_recipe": "witchery:distillery/netherrack_infenal_blood"
+    },
+    {
+      "type": "distilling/distillery_recipe",
+      "distillery_recipe": "witchery:distillery/glowstone_dust"
+    }
+  ]
+}

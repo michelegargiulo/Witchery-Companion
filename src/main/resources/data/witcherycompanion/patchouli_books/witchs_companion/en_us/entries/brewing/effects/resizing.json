@@ -1,0 +1,14 @@
+{
+  "name": "Resizing",
+  "icon": "minecraft:emerald",
+  "category": "brew_effects/level_6",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Resizing",
+      "item": "minecraft:emerald",
+      "text": "Changes the size of the hit creature, depending on the effect level."
+    }
+  ]
+}

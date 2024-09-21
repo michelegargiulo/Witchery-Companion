@@ -1,0 +1,14 @@
+{
+  "name": "Moonshine",
+  "icon": "minecraft:wheat",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Moonshine",
+      "item": "minecraft:wheat",
+      "text": "Alcohol makes you feel less pain, but get hungry instead, and occasionally dizzy."
+    }
+  ]
+}

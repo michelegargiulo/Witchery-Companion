@@ -1,0 +1,14 @@
+{
+  "name": "Cure Debuffs",
+  "icon": "witchery:purified_milk",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Cure Debuffs",
+      "item": "witchery:purified_milk",
+      "text": "Removes curable potion effects of the same level or less. Cast as a ritual can remove incurable effects. Level III or higher is capable to remove the $(item)Disease$() effect."
+    }
+  ]
+}
