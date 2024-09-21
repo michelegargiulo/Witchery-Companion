@@ -11,9 +11,9 @@ import com.smokeythebandicoot.witcherycompanion.api.mutations.IMutationManagerAc
 import com.smokeythebandicoot.witcherycompanion.api.mutations.MutationRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.resources.JsonReloadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -177,7 +177,7 @@ public abstract class MutationManagerMixin extends JsonReloadListener implements
 
             // Otherwise, proceed as normal
             IBlockState state = parseBlockState(entry.getValue().getAsJsonObject());
-            charMap.put(chr, state);
+            charMap.put(chr, state == null ? Blocks.AIR.getDefaultState() : state);
         }
 
         // Now that we have final key, pattern and charMap, add to registry

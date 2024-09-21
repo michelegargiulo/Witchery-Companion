@@ -16,7 +16,7 @@ public class MultiblockRegistry {
             MutationRegistry.MutationInfo info = entry.getValue();
 
             // Copy pattern to avoid modifying the registry
-            String[][] infoPattern = info.pattern;
+            String[][] infoPattern = cloneMatrix(info.pattern);
 
             // Find center of the multiblock
             String[] bottomLayer = infoPattern[0];
@@ -52,6 +52,19 @@ public class MultiblockRegistry {
             index += 2;
         }
         return objects;
+    }
+
+    private static String[][] cloneMatrix(String[][] src) {
+        int iLen = src.length;
+        int jLen = src[0].length;
+
+        String[][] dst = new String[iLen][jLen];
+        for (int i = 0; i < iLen; i++) {
+            for (int j = 0; j < jLen; j++) {
+                dst[i][j] = new String(src[i][j]);
+            }
+        }
+        return dst;
     }
 
 }
