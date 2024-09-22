@@ -33,7 +33,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
-@Mod.EventBusSubscriber
 public class PatchouliApiIntegration {
 
     private PatchouliApiIntegration() { }
@@ -57,15 +56,6 @@ public class PatchouliApiIntegration {
         for (String flag : flags.keySet()) {
             PatchouliAPI.instance.setConfigFlag(WitcheryCompanion.prefix(flag), flags.get(flag));
         }
-        PatchouliAPI.instance.reloadBookContents();
-    }
-
-    /** This function reloads all Witchery Content Flags (enabled Spell effects, items, etc)
-     * Should be called onWorldLoad as late as possible, when Witchery Registries are populated.
-     * Should be updated when recipes are reloaded on when players log in*/
-    public static void reloadAllFlags() {
-        symbolEffectReloader.reloadFlags();
-        brewActionReloader.reloadFlags();
         PatchouliAPI.instance.reloadBookContents();
     }
 

@@ -223,6 +223,12 @@ processResources {
 }
 
 jar {
+    // Copy Patchouli Book contents from in-game reloadable /run folder to /resources folder
+    copy {
+        from("run/patchouli_books")
+        into("src/main/resources/data/" + propertyString('mod_id') + "/patchouli_books")
+    }
+
     manifest {
         def attribute_map = [:]
         if (propertyBool('is_coremod')) {

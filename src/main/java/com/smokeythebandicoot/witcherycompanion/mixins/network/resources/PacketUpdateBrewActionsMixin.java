@@ -2,7 +2,9 @@ package com.smokeythebandicoot.witcherycompanion.mixins.network.resources;
 
 import com.smokeythebandicoot.witcherycompanion.api.brewing.BrewRegistry;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.Loader;
 import net.msrandom.witchery.network.WitcheryNetworkPacket;
 import net.msrandom.witchery.network.resources.PacketUpdateBrewActions;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +22,9 @@ public abstract class PacketUpdateBrewActionsMixin implements WitcheryNetworkPac
     @Inject(method = "apply", remap = false, at = @At("TAIL"))
     private void reloadBrewRegistryOnApply(EntityPlayer player, CallbackInfo ci) {
         BrewRegistry.reloadRegistries();
-        PatchouliApiIntegration.brewActionReloader.reloadFlags();
+        if (Loader.isModLoaded(Mods.PATCHOULI)) {
+            PatchouliApiIntegration.brewActionReloader.reloadFlags();
+        }
     }
 
 }

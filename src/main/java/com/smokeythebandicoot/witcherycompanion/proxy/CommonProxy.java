@@ -1,6 +1,5 @@
 package com.smokeythebandicoot.witcherycompanion.proxy;
 
-import com.smokeythebandicoot.witcherycompanion.api.brewing.BrewRegistry;
 import com.smokeythebandicoot.witcherycompanion.api.progress.CapabilityWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.commands.WitcheryProgressCommand;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
@@ -16,8 +15,6 @@ import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEf
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -74,6 +71,13 @@ public class CommonProxy {
         }
 
         // Does not have a config to disable, as it just registers the flags
+        if (Loader.isModLoaded(Mods.PATCHOULI)) {
+            MinecraftForge.EVENT_BUS.register(PatchouliApiIntegration.class);
+        }
+    }
+
+    public void load(FMLLoadCompleteEvent event) {
+        // Register Patchouli BookReloadEvent
         if (Loader.isModLoaded(Mods.PATCHOULI)) {
             MinecraftForge.EVENT_BUS.register(PatchouliApiIntegration.class);
         }
