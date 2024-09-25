@@ -1,0 +1,19 @@
+{
+  "name": "Ender Bramble",
+  "icon": "witchery:ender_bramble",
+  "category": "mutations",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "multiblock",
+      "multiblock_id": "witchery:ender_bramble",
+      "name": "Ender Bramble",
+      "text": "The $(item)Chest$() in the middle must be empty."
+    },
+    {
+      "type": "text",
+      "title": "Mutation Details",
+      "text": "Notes:$(br)All $(l:herbology/herbology#grassper)Grasspers$(/l) need to hold an $(item)Ender Pearl$().$(p)All $(item)Sugar Canes$() up to height 15 will be mutated."
+    }
+  ]
+}

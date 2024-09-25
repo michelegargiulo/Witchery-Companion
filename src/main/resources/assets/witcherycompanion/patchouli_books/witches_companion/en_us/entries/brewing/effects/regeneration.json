@@ -1,0 +1,20 @@
+{
+  "name": "Regeneration / Poison",
+  "icon": "minecraft:ghast_tear",
+  "category": "brew_effects/level_2",
+  "read_by_deafult": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Regeneration",
+      "item": "minecraft:ghast_tear",
+      "text": "Causes creatures under this effect to heal over time."
+    },
+    {
+      "type": "spotlight",
+      "title": "Poison",
+      "item": "minecraft:fermented_spider_eye",
+      "text": "$(l:brewing/modifiers)Inverted:$(/l)$(br)Causes damage over time to creatures under the effect."
+    }
+  ]
+}

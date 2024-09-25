@@ -1,0 +1,20 @@
+{
+  "name": "Rite of Binding",
+  "icon": "witchery:circle_talisman",
+  "category": "circle_magic",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:binding",
+      "title": "Binding Talisman",
+      "description": "Pulls the circles into the talisman."
+    },
+    {
+      "type": "circle_magic/circles",
+      "title": "Circles",
+      "circles": "",
+      "description": "Any circles allowed."
+    }
+  ]
+}

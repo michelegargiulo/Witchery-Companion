@@ -1,0 +1,14 @@
+{
+  "name": "Spinning Wheel",
+  "icon": "witchery:spinning_wheel",
+  "category": "spinning_wheel",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Spinning Wheel",
+      "item": "witchery:spinning_wheel",
+      "text": "The Spinning Wheel is a mystical device that can be used for spinning resources into a thread. It requires power from a nearby $(l:altar/altar)Altar$(/l). $(p)The process starts automatically, powered by magic itself, once the ingredients have been inserted."
+    }
+  ]
+}

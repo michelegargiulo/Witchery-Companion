@@ -34,8 +34,13 @@ public class ProgressUtils {
     }
 
     // Defined format for Secret Rite Effects: MODID:circles/rite_effect/<riteID>
-    public static String getRiteEffectSecret(@Nonnull String riteId) {
-        return WitcheryCompanion.prefix("circles/rite_effect/" + riteId);
+    public static String getRiteSecret(@Nonnull String riteId) {
+        return WitcheryCompanion.prefix("circles/rite/" + riteId);
+    }
+
+    // Defined format for Secret Rite Effects: MODID:circles/rite_effect/<riteEffectID>
+    public static String getRiteEffectSecret(@Nonnull String riteEffectId) {
+        return WitcheryCompanion.prefix("circles/rite_effect/" + riteEffectId);
     }
 
     // Defined format for Distillery Recipe: MODID:distillery/recipe/<recipeId>
@@ -46,6 +51,11 @@ public class ProgressUtils {
     // Defined format for Distillery Recipe: MODID:distillery/recipe/<recipeId>
     public static String getCauldronRecipeSecret(@Nonnull String recipeId) {
         return WitcheryCompanion.prefix("cauldron/recipe/" + recipeId);
+    }
+
+    // Defined format for Dimensions: MODID:dimensions/dimension_name
+    public static String getDimensionSecret(@Nonnull String dimension_name) {
+        return WitcheryCompanion.prefix("dimensions/" + dimension_name);
     }
 
 

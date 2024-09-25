@@ -1,0 +1,7 @@
+{
+  "name": "Rites of Summoning",
+  "description": "Rites that summon demons and other infernal entities.",
+  "icon": "witchery:demon_heart",
+  "parent": "circle_magic",
+  "secret": false
+}

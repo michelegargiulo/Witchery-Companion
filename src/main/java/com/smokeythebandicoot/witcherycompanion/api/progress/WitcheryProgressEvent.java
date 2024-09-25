@@ -33,6 +33,9 @@ public abstract class WitcheryProgressEvent extends Event {
         /** Player has unlocked progress through a command **/
         COMMAND("command"),
 
+        /** Player has visited a Witchery Dimension **/
+        DIMENSION_VISIT("dimension_visit"),
+
         /** Player has drawn a secret symbol **/
         MYSTIC_BRANCH("mystic_branch"),
         ;

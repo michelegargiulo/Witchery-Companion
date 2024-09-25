@@ -1,0 +1,25 @@
+{
+  "name": "Nightmare",
+  "icon": "witchery:mellifluous_hunger",
+  "category": "creatures",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:nightmare",
+      "text": "Physical manifestation of one's worst nightmares.",
+      "offset": 0.3,
+      "scale": 0.85
+    },
+    {
+      "type": "text",
+      "title": "Nightmare",
+      "text": "When a creature enters the $(l:dimensions/spirit_world)Spirit World$(/l) and experience nightmares when they dream, Nightmares will manifest and pursue it. Nightmares should not be fought, as not only they have notable strength and speed, but upon the death of one, another will immediately manifest nearby."
+    },
+    {
+      "type": "text",
+      "title": "Naked Nightmares",
+      "text": "In addition to their enhanced physical strengths, each hit received from a Nightmare will tend to remove armor and clothing, making the victim feel naked. Protection against this comes in the form of $(l:)Charm of Fanciful Thoughts$(/l)."
+    }
+  ]
+}

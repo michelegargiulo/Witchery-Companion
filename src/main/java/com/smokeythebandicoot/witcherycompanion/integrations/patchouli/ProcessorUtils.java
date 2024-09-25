@@ -49,9 +49,14 @@ public class ProcessorUtils {
         if (formattedString == null) return null;
         if (stripFormatting) {
             formattedString = formattedString
+                    // Remove text color and style (minecraft text formatting)
                 .replaceAll("§[0-9a-fklmnor]", "")
+                    // Remove text color and style (patchouli text formatting)
                 .replaceAll("\\$\\([0-9a-fklmnor]?\\)", "")
-                .replaceAll("\\$\\((item|thing|nocolor|obf|strike|italic|italics|bold|#[a-z0-9]*)\\)", "");
+                    // Remove text color and style (patchouli alias text formatting)
+                .replaceAll("\\$\\((item|thing|nocolor|obf|strike|italic|italics|bold|#[a-z0-9]*)\\)", "")
+                    // Remove links
+                .replaceAll("\\$\\(l:.+?\\)|\\$\\(/l\\)", "");
         }
         return formattedString
                 .trim()

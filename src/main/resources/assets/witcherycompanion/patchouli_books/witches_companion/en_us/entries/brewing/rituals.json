@@ -1,0 +1,91 @@
+{
+  "name": "Rituals",
+  "icon": "witchery:ritual_circle_glyph",
+  "category": "brewing",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Rituals",
+      "item": "witchery:dog_tongue",
+      "text": "Instead of bottling a brew, a full cauldron may instead be used to cast the effects as a ritual. Ritual casting requires the witch to add either a $(item)Taglock$() of the target or $(item)Tongue of Dog$() to cast it at the cauldron's location."
+    },
+    {
+      "type": "spotlight",
+      "title": "Waystones",
+      "item": "witchery:bound_waystone",
+      "text": "A $(item)Bound Waystone$() may be added before the $(item)Tongue of Dog$(), to cast the ritual at the waystone's location. Some effects may require a second waystone to determine a source location."
+    },
+    {
+      "type": "text",
+      "title": "Covens & Strength",
+      "text": "The power of rituals effect and the maximum range a ritual may be cast is determined by how many witches from a coven participate in the ritual. A maximum of seven witches may participate."
+    },
+    {
+      "type": "spotlight",
+      "title": "Dispersal",
+      "item": "witchery:bound_taglock_kit",
+      "text": "Using a $(item)Taglock$() to start a ritual targets the bound creature. Otherwise a $(l:brewing/dispersal)dispersal$() must be added before the $(item)Tongue of Dog$(). Instant splash remains unchanged, but gas become an expanding effect and liquid produces rain."
+    },
+    {
+      "type": "text",
+      "title": "Risks & Power",
+      "text": "Performing a ritual with a cauldron needs altar power and, unlike pure circle magic, carries a risk of side-effects.",
+      "anchor": "risks_and_power"
+    },
+    {
+      "type": "text",
+      "title": "Risks & Power",
+      "text": "Surrounding the cauldron with chalk circles can help offset the power requirements and augment the risks."
+    },
+    {
+      "type": "image",
+      "title": "Risks & Power",
+      "images": [
+        "witcherycompanion:textures/patchouli/brewing_circles.png"
+      ],
+      "border": true
+    },
+    {
+      "type": "text",
+      "title": "Risks & Power",
+      "text": "Small and medium ritual circles can be used to moderately reduce power costs and eliminate side-effects"
+    },
+    {
+      "type": "image",
+      "title": "Risks & Power",
+      "images": [
+        "witcherycompanion:textures/patchouli/brewing_circles_red.png"
+      ],
+      "border": true
+    },
+    {
+      "type": "text",
+      "title": "Risks & Power",
+      "text": "Small and medium Infernal circles can be used to significantly reduce altar power costs, but at an increased risk of side-effects.$(br2)Red and white circles may be mixed as desired to get the appropriate balance of power costs and risks."
+    },
+    {
+      "type": "text",
+      "title": "Failed Rituals",
+      "text": "When a ritual fails, it will emit colored smoke:$(p)$(2)$(bold)Green$() Target too far$(br)$(1)$(bold)Blue$() Coven needed$(br)$(4)$(bold)Red$() Invalid circles$(br)$(6)$(bold)Yellow$() Underpowered$(br)$(5)$(bold)Purple$() Other failure."
+    },
+    {
+      "type": "text",
+      "text": "$(br)Rituals will not start if there is too little power."
+    },
+    {
+      "type": "brewing/cauldron_ritual",
+      "title": "Ritual of Raise Land",
+      "text": "The further from the cauldron the waystone points, the larger the coven must be",
+      "ingredients": "minecraft:nether_wart;witchery:goddess_tear;minecraft:quartz;witchery:bound_waystone;witchery:dog_tongue",
+      "details": "Raises a cone of land. Increase strength to raise a wider area and further up"
+    },
+    {
+      "type": "brewing/cauldron_ritual",
+      "title": "Ext. Curse of Blindness",
+      "text": "The further from the victim, the larger the coven must be",
+      "ingredients": "minecraft:nether_wart;witchery:goddess_tear;minecraft:redstone;minecraft:quartz;minecraft:dye;witchery:bound_taglock_kit",
+      "details": "Applies curse of blindness to a target entity"
+    }
+  ]
+}

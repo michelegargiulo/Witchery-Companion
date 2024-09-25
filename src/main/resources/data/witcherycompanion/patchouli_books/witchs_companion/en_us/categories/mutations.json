@@ -1,7 +1,0 @@
-{
-  "name": "Mutations",
-  "description": "Mutating things into other things",
-  "icon": "witchery:mutating_sprig",
-  "sortnum": 9,
-  "secret": false
-}

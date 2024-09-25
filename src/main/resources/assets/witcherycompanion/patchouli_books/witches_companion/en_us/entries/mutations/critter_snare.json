@@ -1,0 +1,19 @@
+{
+  "name": "Critter Snare",
+  "icon": "witchery:empty_critter_snare",
+  "category": "mutations",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "multiblock",
+      "multiblock_id": "witchery:critter_snare",
+      "name": "Critter Snare",
+      "text": "Entities must be inside the central $(item)Cobweb$()."
+    },
+    {
+      "type": "text",
+      "title": "Mutation Details",
+      "text": "Entities:$(br)$(8)>$() 1 Zombie"
+    }
+  ]
+}

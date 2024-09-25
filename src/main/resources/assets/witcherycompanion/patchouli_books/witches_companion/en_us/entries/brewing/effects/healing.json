@@ -1,0 +1,21 @@
+{
+  "name": "Healing / Damage",
+  "icon": "minecraft:speckled_melon",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "flag": "witcherycompanion:brew_effects/show_healing",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Instant Healing",
+      "item": "minecraft:speckled_melon",
+      "text": "Creatures will heal their wounds instantly."
+    },
+    {
+      "type": "spotlight",
+      "title": "Instant Damage",
+      "item": "minecraft:fermented_spider_eye",
+      "text": "$(l:brewing/modifiers)Inverted:$(/l)$(br)Instantly damages a creature."
+    }
+  ]
+}

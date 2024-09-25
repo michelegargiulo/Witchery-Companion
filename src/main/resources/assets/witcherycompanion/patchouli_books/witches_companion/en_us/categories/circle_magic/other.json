@@ -1,0 +1,7 @@
+{
+  "name": "Other Rituals",
+  "description": "Other rituals that do not belong to any other category.",
+  "icon": "witchery:bound_waystone",
+  "parent": "circle_magic",
+  "secret": false
+}

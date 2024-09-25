@@ -1,0 +1,20 @@
+{
+  "name": "Wasting / Fullness",
+  "icon": "witchery:subdued_spirit",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Wasting",
+      "item": "witchery:subdued_spirit",
+      "text": "Affected creatures will deplete hunger and saturation faster."
+    },
+    {
+      "type": "spotlight",
+      "title": "Fullness",
+      "item": "minecraft:fermented_spider_eye",
+      "text": "$(l:brewing/modifiers)Inverted:$(/l)$(br)Reduces hunger."
+    }
+  ]
+}

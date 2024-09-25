@@ -1,0 +1,7 @@
+{
+  "name": "Rites of Infusion",
+  "description": "Rites that infuse a creature or an object of special powers.",
+  "icon": "witchery:infused_brew_base",
+  "parent": "circle_magic",
+  "secret": false
+}

@@ -105,6 +105,7 @@
     "rite.effect.RiteEffectMovingEarthMixin",
     "rite.effect.RiteEffectPartEarth_DirectionMixin",
     "rite.effect.RiteEffectPartEarthMixin",
+    "rite.sacrifice.ItemRiteSacrificeMixin",
     "util.EntityUtilMixin",
     "util.ResizingUtilsMixin",
     "world.dimension.spirit.WorldProviderSpiritWorldMixin",

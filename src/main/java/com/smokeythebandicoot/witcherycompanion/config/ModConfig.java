@@ -978,6 +978,10 @@ public class ModConfig {
 
             public static class Flags {
 
+                @Config.Comment("If true, shows a page in the Altar section detailing the effects of the Infinity Egg (Creative Item)")
+                @Config.Name("Altar - Show Infinity Booster")
+                public static boolean altar_enableInfinity = false;
+
                 @Config.Comment("If true, shows more info for Bottling Skill and Expertise")
                 @Config.Name("Brewing - Expertise Extension")
                 public static boolean brewing_enableExpertiseExtension = false;
@@ -1001,6 +1005,38 @@ public class ModConfig {
                 @Config.Comment("If true, shows an additional page for Inferno Brew Effect detailing how to summon a Demon")
                 @Config.Name("Brew Effects - Inferno Details Extension")
                 public static boolean brewEffects_infernoExtendedDetails = false;
+
+                @Config.Comment("If true, the Blight effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Blight")
+                public static boolean brewEffects_showBlight = false;
+
+                @Config.Comment("If true, the Floating effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Floating")
+                public static boolean brewEffects_showFloating = false;
+
+                @Config.Comment("If true, the Healing effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Healing")
+                public static boolean brewEffects_showHealing = false;
+
+                @Config.Comment("If true, the Lava Hold effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Lava Hold")
+                public static boolean brewEffects_showLavaHold = false;
+
+                @Config.Comment("If true, the Decanting effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Decanting")
+                public static boolean brewEffects_showDecanting = false;
+
+                @Config.Comment("If true, the Raise Land effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Raise Land")
+                public static boolean brewEffects_showRaiseLand = false;
+
+                @Config.Comment("If true, the Repell Attacker effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Repell Attacker")
+                public static boolean brewEffects_showRepellAttacker = false;
+
+                @Config.Comment("If true, the Weaken Vampires effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Weaken Vampires")
+                public static boolean brewEffects_showWeakenVampires = false;
 
                 @Config.Comment("If true, adds a few more pages about how Brazier works")
                 @Config.Name("Conjuring - Enable Extended Intro")
@@ -1070,12 +1106,21 @@ public class ModConfig {
                 HashMap<String, Boolean> flags = new HashMap<>();
 
                 // Companion Flags
+                flags.put("altar/show_infinity", Flags.altar_enableInfinity);
                 flags.put("brewing/expertise", Flags.brewing_enableExpertiseExtension);
                 flags.put("brewing/extended_dispersal", Flags.brewing_extendedDispersal);
                 flags.put("brewing/rituals", Flags.brewing_enableRitualsExtension);
                 flags.put("brewing/show_ceiling", Flags.brewing_revealRemoveCeiling);
                 flags.put("brewing/show_power", Flags.brewing_showRequiredPower);
                 flags.put("brew_effects/inferno_details", Flags.brewEffects_infernoExtendedDetails);
+                flags.put("brew_effects/show_blight", Flags.brewEffects_showBlight);
+                flags.put("brew_effects/show_floating", Flags.brewEffects_showFloating);
+                flags.put("brew_effects/show_healing", Flags.brewEffects_showHealing);
+                flags.put("brew_effects/show_lavahold", Flags.brewEffects_showLavaHold);
+                flags.put("brew_effects/show_decanting", Flags.brewEffects_showDecanting);
+                flags.put("brew_effects/show_raiseland", Flags.brewEffects_showRaiseLand);
+                flags.put("brew_effects/show_repellattacker", Flags.brewEffects_showRepellAttacker);
+                flags.put("brew_effects/show_weakenvampires", Flags.brewEffects_showWeakenVampires);
                 flags.put("conjuring/show_extra", Flags.conjuring_showExtraEntity);
                 flags.put("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
                 flags.put("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);

@@ -1,0 +1,15 @@
+{
+  "name": "Floating",
+  "icon": "minecraft:reeds",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "flag": "witcherycompanion:brew_effects/show_floating",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Floating",
+      "item": "minecraft:reeds",
+      "text": "Creatures will have a hard time staying on the ground."
+    }
+  ]
+}

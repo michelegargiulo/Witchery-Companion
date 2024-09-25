@@ -1,0 +1,7 @@
+{
+  "name": "Rites of Manifestation",
+  "description": "Rites allow creatures to manifest elsewhere under other forms.",
+  "icon": "witchery:spectral_dust",
+  "parent": "circle_magic",
+  "secret": false
+}

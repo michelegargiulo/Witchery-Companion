@@ -1,0 +1,56 @@
+{
+  "name": "Spirit World",
+  "icon": "witchery:wispy_cotton",
+  "category": "dimensions",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Spirit World",
+      "text": "The Spirit World is an alternate reality that mirrors the Overworld. Creatures able to dream often end up in this realm without even realizing. Witches can transfer their awake consciousness into the Spirit World by drinking the $(l:)Brew of Sleeping$(/l), but they'll leave their body and possessions in the physical realm. Also, circle magic won't work in the Spirit World."
+    },
+    {
+      "type": "spotlight",
+      "title": "Entering the Spirit World",
+      "item": "witchery:sleeping_brew",
+      "text": "To enter the spirit world, the Witch must use a $(l:)Brew of Sleeping$(/l) or a $(l:)Sleeping Apple$(/l). When entering the realm, a Witch can either experience a Dream or a Nightmare. In the first case, the world will be at daytime, while for nightmares it will be at night time."
+    },
+    {
+      "type": "spotlight",
+      "title": "Nightmares",
+      "item": "witchery:sleeping_apple",
+      "text": "While $(l:)Sleeping Apples$(/l) always give nightmares, the $(l:)Brew of Sleeping$(/l) has a small chance to not to. The chance of a dream can be increased if, at the time of drinking the brew, a $(l:)Dreamweaver of Nightmares$(/l) is placed nearby. Having a pool of $(l:)Flowing Spirit$(/l) and $(l:herbology/herbology#wispy_cotton)Wispy Cotton$(/l) nearby also helps."
+    },
+    {
+      "type": "text",
+      "title": "Transferring items",
+      "text": "Very few things can pass the membrane that separates the spirit and the physical realms. $(l:)Icy Needles$(/l) are always carried, while $(l:herbology/herbology#wispy_cotton)Wispy cotton$(/l), $(l:)Disturbed Cotton$(/l), $(l:)Mellifluous Hunger$(/l) and $(l:)Brews of Flowing Spirit$(/l) can only pass from the spirit world to the Overworld",
+      "anchor": "transferring_items"
+    },
+    {
+      "type": "text",
+      "title": "Resources of the Realm",
+      "text": "The Spirit World is the only source for some rare materials, such as $(l:)Wispy cotton$(/l), $(l:)Disturbed Cotton$(/l) and $(l:)Mellifluous Hunger$(/l), used for $(l:)Dream Weavers$(/l). Also, $(l:)Brews of Flowing Spirit$(/l) can only be created in this dimension."
+    },
+    {
+      "type": "text",
+      "title": "Returning back",
+      "text": "A dream walker can return from the Spirit World by using an $(l:)Icy Needle$(/l) on itself to wake up. Dying in the Spirit World or killing the sleeping body in the Physical World will also wake up the witch, without consequences. Gear obtained in the Spirit World will stay there, with some $(l:dimensions/spirit_world#transferring_items)exceptions$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Manifestations",
+      "text": "A witch can manifest as a Ghost in the physical world. By using the $(l:)Rite of Manifestation$(/l), a player can pass through a $(l:)Spirit Portal$(/l) that has been created to enter the physical world at the corresponding location for a short time. A ghost can return to the Spirit World by using an $(l:)Icy Needle$(/l), when they die, when manifestation effect expires or when they kill their sleeping body."
+    },
+    {
+      "type": "text",
+      "title": "Worsening Nightmares",
+      "text": "Some environments can manipulate one's oniric state, by inducing stronger nightmare effects. Listening the beat of a $(l:)Demon Heart$(/l) can greatly amplify the nightmare effect. Sky will be tinted red, and fiery rain might fall. Occasionally, demonic manifestation can join the $(l:creatures/nightmare)nightmare$(/l) manifestations. Such occurrences are known as $(item)Demonic Nightmares$()."
+    },
+    {
+      "type": "text",
+      "title": "Demonic Nightmares",
+      "text": "To induce a Demonic Nightmare, a $(l:)Brew of Sleeping$(/l) has to be drunk near a $(l:constructs/dream_weavers/nightmare)Dream Weaver of Nightmares$(/l), a pool of $(l:)Brew of Flowing Spirit$(/l) and a beating $(l:)Demon Heart$(/l). An additional Demon Heart and the presence of $(item)Fire$() can further increase the chance of the demonic nightmare."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Rites of Imprisonment",
+  "description": "Rites that capture creatures within specified locations.",
+  "icon": "minecraft:soul_sand",
+  "parent": "circle_magic",
+  "secret": false
+}

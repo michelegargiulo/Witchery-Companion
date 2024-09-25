@@ -1,0 +1,7 @@
+{
+  "name": "Rites of Charging",
+  "description": "Rites that imbue power into objects.",
+  "icon": "witchery:charged_attuned_stone",
+  "parent": "circle_magic",
+  "secret": false
+}

@@ -171,7 +171,7 @@ public abstract class MutationManagerMixin extends JsonReloadListener implements
             JsonArray reqs = obj.getAsJsonArray("requires");
             if (reqs != null) {
                 String[] replacements = witchery_Patcher$readJsonArray(reqs);
-                replacePatternLetter(chr, replacements);
+                witchery_Patcher$replacePatternLetter(chr, replacements);
                 continue;
             }
 
@@ -231,8 +231,10 @@ public abstract class MutationManagerMixin extends JsonReloadListener implements
                 // For example, Witchery uses "min" and "max" for some integer properties (like crop age)
                 if (propertyValue.isJsonPrimitive()) {
                     Optional<?> value = prop.parseValue(propertyValue.getAsString());
-                    state = setValue(state, prop, value.toString());
-                    if (state == null) return state;
+                    if (value.isPresent()) {
+                        state = witchery_Patcher$setValue(state, prop, value.get().toString());
+                    }
+                    if (state == null) return null;
                 }
             }
         }
@@ -241,7 +243,8 @@ public abstract class MutationManagerMixin extends JsonReloadListener implements
         return state;
     }
 
-    private void replacePatternLetter(char target, String[] replacements) {
+    @Unique
+    private void witchery_Patcher$replacePatternLetter(char target, String[] replacements) {
         if (this.witchery_Patcher$currentPattern == null || replacements.length == 0)
             return;
 
@@ -266,7 +269,8 @@ public abstract class MutationManagerMixin extends JsonReloadListener implements
         }
     }
 
-    private static <T extends Comparable<T>> IBlockState setValue(IBlockState state, final IProperty<T> prop, String val) {
+    @Unique
+    private static <T extends Comparable<T>> IBlockState witchery_Patcher$setValue(IBlockState state, final IProperty<T> prop, String val) {
         Optional<T> value = prop.parseValue(val);
         if (value.isPresent()) {
             return state.withProperty(prop, value.get());

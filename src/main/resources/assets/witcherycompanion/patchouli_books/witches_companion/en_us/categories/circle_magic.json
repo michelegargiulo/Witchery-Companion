@@ -1,0 +1,7 @@
+{
+  "name": "Circle Magic",
+  "description": "The practice performing Rites by drawing circle glyphs",
+  "icon": "witchery:heart_circle_glyph",
+  "sortnum": 10,
+  "secret": false
+}

@@ -1,0 +1,38 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.RiteProcessor",
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    },
+    {
+      "type": "text",
+      "text": "#description",
+      "x": 0,
+      "y": 18
+    },
+    {
+      "type": "custom",
+      "class": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components.IngredientListComponent",
+      "inputs": [
+        "#ingredients"
+      ],
+      "input_spacing": 2,
+      "x": 0,
+      "y": 40
+    },
+    {
+      "type": "text",
+      "text": "Altar Power: #altar_power#",
+      "x": 0,
+      "y": 120
+    }
+  ]
+}

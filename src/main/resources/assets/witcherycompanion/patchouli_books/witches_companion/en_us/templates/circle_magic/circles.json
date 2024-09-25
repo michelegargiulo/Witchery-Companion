@@ -1,0 +1,77 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.CirclesProcessor",
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    },
+    {
+      "type": "text",
+      "text": "#description",
+      "x": 0,
+      "y": 106
+    },
+    {
+      "type": "image",
+      "image": "#image0",
+      "guard": "#guard0",
+      "width": 84,
+      "height": 84,
+      "texture_width": 84,
+      "texture_height": 84,
+      "x": 16,
+      "y": 18
+    },
+    {
+      "type": "image",
+      "image": "#image1",
+      "guard": "#guard1",
+      "width": 84,
+      "height": 84,
+      "texture_width": 84,
+      "texture_height": 84,
+      "x": 16,
+      "y": 18
+    },
+    {
+      "type": "image",
+      "image": "#image2",
+      "guard": "#guard2",
+      "width": 84,
+      "height": 84,
+      "texture_width": 84,
+      "texture_height": 84,
+      "x": 16,
+      "y": 18
+    },
+    {
+      "type": "image",
+      "image": "#image3",
+      "guard": "#guard3",
+      "width": 84,
+      "height": 84,
+      "texture_width": 84,
+      "texture_height": 84,
+      "x": 16,
+      "y": 18
+    },
+    {
+      "type": "image",
+      "image": "#image4",
+      "guard": "#guard4",
+      "width": 84,
+      "height": 84,
+      "texture_width": 84,
+      "texture_height": 84,
+      "x": 16,
+      "y": 18
+    }
+  ]
+}

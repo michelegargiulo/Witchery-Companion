@@ -6,10 +6,10 @@ import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.bookcompo
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.*;
 import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
@@ -20,9 +20,14 @@ import net.msrandom.witchery.resources.BrewActionManager;
 import net.msrandom.witchery.util.WitcheryUtils;
 import vazkii.patchouli.api.BookContentsReloadEvent;
 import vazkii.patchouli.api.PatchouliAPI;
+import vazkii.patchouli.client.book.BookCategory;
+import vazkii.patchouli.client.book.BookContents;
+import vazkii.patchouli.client.book.BookEntry;
 import vazkii.patchouli.client.book.template.BookTemplate;
 import vazkii.patchouli.client.book.text.BookTextParser;
 import vazkii.patchouli.client.book.text.SpanState;
+import vazkii.patchouli.common.book.Book;
+import vazkii.patchouli.common.item.ItemModBook;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
 import java.util.*;
@@ -79,7 +84,7 @@ public class PatchouliApiIntegration {
     public static final FlagReloader<String, CauldronRecipe> cauldronRecipeReloader = new FlagReloader<>(
             () -> WitcheryUtils.getRecipeManager(null).getRecipesForType(WitcheryRecipeTypes.CAULDRON).stream()
                     .collect(Collectors.toMap(
-                            cauldronRecipe -> cauldronRecipe.getId().path,
+                            cauldronRecipe -> cauldronRecipe.getId().getPath(),
                             Function.identity()
                         )
                     ).entrySet().iterator(),
@@ -89,13 +94,14 @@ public class PatchouliApiIntegration {
 
     public static final FlagReloader<ResourceLocation, SpiritEffectRecipe> spiritEffectReloader = new FlagReloader<>(
             SpiritEffectApi::getIterator,
-            id -> id.path,
+            id -> id.getPath(),
             "content/spirit_effect_recipes/"
     );
 
     @SubscribeEvent
     public static void onBookReload(BookContentsReloadEvent event) {
         // Clear cache of all the processors that implement caching
+        if (!event.book.namespace.equals(WitcheryCompanion.MODID)) return;
         if (Loader.instance().hasReachedState(LoaderState.AVAILABLE)) {
             CapacityBrewActionProcessor.clearCache();
             ModifierBrewActionProcessor.clearCache();
@@ -104,6 +110,20 @@ public class PatchouliApiIntegration {
             IncrementBrewActionProcessor.clearCache();
             MultiblockRegistry.reloadMultiblocks();
         }
+
+        /* Maybe in the future, implement a custom book reloader. Probably Patchouli code will have to
+            be changed with Mixins or a Fork. Inject into BookContents.reload(), some work needs to be
+            put in loadEntry and entry.build(). For now, modpack makers that change brew effect levels
+            will need to override the entire category of the book.
+        Book book = ItemModBook.getBook(ItemModBook.forBook(event.book.toString()));
+        BookContents contents = book.contents;
+        for (BookCategory category : contents.categories.values()) {
+            if (category.getName().equals("level_1")) {
+                category.getEntries().clear();
+                category.addEntry(new BookEntry());
+            }
+        }
+        */
     }
 
     /** Custom FunctionProcessor for Patchouli's TextParser

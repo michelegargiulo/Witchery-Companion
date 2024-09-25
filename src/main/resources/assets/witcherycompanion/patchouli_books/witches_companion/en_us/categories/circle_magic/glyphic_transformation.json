@@ -1,0 +1,7 @@
+{
+  "name": "Rites of Charging",
+  "description": "Rites that transform one glyph type into another.",
+  "icon": "witchery:otherwhere_circle_glyph",
+  "parent": "circle_magic",
+  "secret": false
+}
