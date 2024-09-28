@@ -1,0 +1,66 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.CauldronBrewProcessor",
+  "components": [
+    {
+      "type": "header",
+      "text": "#brew_type",
+      "centered": true,
+      "x": -1,
+      "y": -1,
+      "scale": 0.8
+    },
+    {
+      "type": "header",
+      "text": "#brew_name",
+      "centered": true,
+      "x": -1,
+      "y": 8,
+      "scale": 1
+    },
+    {
+      "type": "separator",
+      "y": 20
+    },
+    {
+      "type": "text",
+      "text": "#description",
+      "x": 2,
+      "y": 26
+    },
+    {
+      "type": "custom",
+      "class": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components.IngredientListComponent",
+      "inputs": [
+        "#ingredients"
+      ],
+      "output": "#output",
+      "input_spacing": 2,
+      "x": 0,
+      "y": 72
+    },
+    {
+      "type": "image",
+      "image": "witchery:textures/gui/cauldron.png",
+      "width": 26,
+      "height": 24,
+      "texture_width": 26,
+      "texture_height": 24,
+      "x": 24,
+      "y": 86
+    },
+    {
+      "type": "colored_image",
+      "image": "witchery:textures/gui/cauldron_water.png",
+      "red": 0.89,
+      "green": 0.134,
+      "blue": 0.777,
+      "alpha": 1.0,
+      "width": 26,
+      "height": 24,
+      "texture_width": 26,
+      "texture_height": 24,
+      "x": 24,
+      "y": 86
+    }
+  ]
+}

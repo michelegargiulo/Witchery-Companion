@@ -1,0 +1,45 @@
+{
+  "name": "Altar Boosters",
+  "icon": "witchery:arthana",
+  "category": "altar",
+  "sortnum": 1,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Altar Boosters",
+      "text": "Certain objects, mundane or otherwise, known as foci, can be placed on the Altar to boost some of its capabilities, like range, recharge rate or maximum power. Only one of each type will have an effect, so it's better to use more powerful foci rather than using more of the same one."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:skull:0",
+      "title": "Skulls",
+      "text": "$(item)Skeleton Skull$():$(br)+10 Recharge Rate$(br)x2 Max Power$(p)$(item)Wither Skeleton Skull$():$(br)+20 Recharge Rate$(br)x3 Max Power$(p)$(item)Player Head$():$(br)+30 Recharge Rate$(br)x4 Max Power$()"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:candelabra",
+      "title": "Candelabra",
+      "text": "$(item)Torch$():$(br)+10 Recharge Rate$(p)$(item)Candelabra$():$(br)+20 Recharge Rate"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:chalice",
+      "title": "Chalice",
+      "text": "$(item)Chalice$():$(br)x2 Max Power$(p)$(item)Filled Chalice$():$(br)x3 Max Power"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:candelabra",
+      "title": "Others",
+      "text": "$(item)Arthana$():$(br)+16 Range$(p)$(item)Mystic Branch$():$(br)+1 Enchantment Level$(p)$(item)Pentacle$():$(br)x2 Recharge Rate (applied after all other effects)$(p)The effect of these items are not mutually exclusive."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:infinity_egg",
+      "title": "Infinity",
+      "text": "$(item)Infinity Egg$():$(br)x10 Recharge Rate$(br)x10 Max Power$(p)All effects are applied after all others, including $(item)Pentacle$().",
+      "flag": "witcherycompanion:altar/show_infinity"
+    }
+  ]
+}

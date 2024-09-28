@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Mirror Infusion",
+  "icon": "witchery:mirror",
+  "category": "circle_magic/infusion",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:mirror_infusion",
+      "title": "Mirror Infusion",
+      "description": "Trap a $(l:)Demon$(/l) into a $(l:)Mirror$(/l)."
+    }
+  ]
+}

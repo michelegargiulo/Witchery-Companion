@@ -2,9 +2,12 @@ package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 
 import com.smokeythebandicoot.witcherycompanion.api.brazier.ITileEntityBrazierAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.common.MinecraftForge;
 import net.msrandom.witchery.block.entity.TileEntityBrazier;
 import net.msrandom.witchery.block.entity.WitcheryTileEntity;
 import net.msrandom.witchery.recipe.brazier.BrazierRecipe;
@@ -41,8 +44,8 @@ public abstract class TileEntityBrazierMixin extends WitcheryTileEntity implemen
         // Retrieve progress and unlock a new secret
         IWitcheryProgress progress = witchery_Patcher$recipeOwner.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
         if (progress != null && this.recipe.getHidden()) {
-            progress.unlockProgress(ProgressUtils.getBrazierRecipeSecret(this.recipe.getId().toString()));
-            ProgressSync.serverRequest(witchery_Patcher$recipeOwner);
+            ProgressUtils.unlockProgress(witchery_Patcher$recipeOwner, this.recipe.getId().toString(),
+                    WitcheryProgressEvent.EProgressTriggerActivity.BRAZIER_RECIPE.activityTrigger);
         }
 
         // Reset the recipe owner

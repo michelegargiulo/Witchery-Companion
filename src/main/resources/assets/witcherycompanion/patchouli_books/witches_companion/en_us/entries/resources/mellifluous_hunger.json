@@ -1,0 +1,13 @@
+{
+  "name": "Mellifluous Hunger",
+  "icon": "witchery:mellifluous_hunger",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Mellifluous Hunger",
+      "text": "Usually dropped by $(l:creatures/nightmare)Nightmares$(/l) when killed in the $(l:dimensions/spirit_world)Spirit World$(/l). It is used in some recipes, most notably it is involved in the making of $(l:constructs/dream_weavers/nightmare_dream_weaver)Dream Weavers$(/l)."
+    }
+  ]
+}

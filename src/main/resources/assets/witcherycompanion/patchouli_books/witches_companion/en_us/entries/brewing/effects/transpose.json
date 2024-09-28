@@ -1,0 +1,14 @@
+{
+  "name": "Transpose",
+  "icon": "minecraft:ender_pearl",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Transpose",
+      "item": "minecraft:ender_pearl",
+      "text": "In a brew, this effect will randomly teleport the target a short distance.$(p)To cast as a ritual, first, use a $(item)Waystone$() to target a destination, then add a $(item)Taglock Kit$() to identify the target."
+    }
+  ]
+}

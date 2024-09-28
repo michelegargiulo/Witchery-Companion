@@ -1,17 +1,24 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.PatchouliIntegration.Flags;
+import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.SpiritEffectApi;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.bookcomponents.ColorableImage;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.*;
 import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.entity.item.ItemEvent;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.LoaderState;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.msrandom.witchery.brewing.action.BrewAction;
+import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 import net.msrandom.witchery.init.data.recipes.WitcheryRecipeTypes;
 import net.msrandom.witchery.recipe.CauldronRecipe;
 import net.msrandom.witchery.resources.BrewActionManager;
 import net.msrandom.witchery.util.WitcheryUtils;
+import vazkii.patchouli.api.BookContentsReloadEvent;
 import vazkii.patchouli.api.PatchouliAPI;
 import vazkii.patchouli.client.book.template.BookTemplate;
 import vazkii.patchouli.client.book.text.BookTextParser;
@@ -40,27 +47,6 @@ public class PatchouliApiIntegration {
                 false, new RomanNumberFunction(), new String[] {"roman"});
     }
 
-    // Called from Proxy
-    public static void registerFlags() {
-        PatchouliAPI.IPatchouliAPI api = PatchouliAPI.instance;
-
-        registerFlag("brewing/expertise",  Flags.brewing_enableExpertiseExtension);
-        registerFlag("brewing/rituals", Flags.brewing_enableRitualsExtension);
-        registerFlag("brewing/show_ceiling", Flags.brewing_revealRemoveCeiling);
-        registerFlag("conjuring/show_extra", Flags.conjuring_showExtraEntity);
-        registerFlag("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
-        registerFlag("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);
-        registerFlag("symbology/extended_intro", Flags.symbology_enableExtendedIntro);
-        registerFlag("symbology/stroke_visualization", Flags.symbology_enableStrokeVisualization);
-        registerFlag("symbology/show_secret", Flags.symbology_showSecret);
-        registerFlag("symbology/show_knowledge", Flags.symbology_showKnowledge);
-
-    }
-
-    private static void registerFlag(String flag, boolean flagValue) {
-        PatchouliAPI.instance.setConfigFlag(WitcheryCompanion.prefix(flag), flagValue);
-    }
-
     public static void updateFlag(String flag, boolean value) {
         PatchouliAPI.instance.setConfigFlag(WitcheryCompanion.prefix(flag), value);
         PatchouliAPI.instance.reloadBookContents();
@@ -70,15 +56,6 @@ public class PatchouliApiIntegration {
         for (String flag : flags.keySet()) {
             PatchouliAPI.instance.setConfigFlag(WitcheryCompanion.prefix(flag), flags.get(flag));
         }
-        PatchouliAPI.instance.reloadBookContents();
-    }
-
-    /** This function reloads all Witchery Content Flags (enabled Spell effects, items, etc)
-     * Should be called onWorldLoad as late as possible, when Witchery Registries are populated.
-     * Should be updated when recipes are reloaded on when players log in*/
-    public static void reloadAllFlags() {
-        symbolEffectReloader.reloadFlags();
-        brewActionReloader.reloadFlags();
         PatchouliAPI.instance.reloadBookContents();
     }
 
@@ -102,13 +79,59 @@ public class PatchouliApiIntegration {
     public static final FlagReloader<String, CauldronRecipe> cauldronRecipeReloader = new FlagReloader<>(
             () -> WitcheryUtils.getRecipeManager(null).getRecipesForType(WitcheryRecipeTypes.CAULDRON).stream()
                     .collect(Collectors.toMap(
-                            cauldronRecipe -> cauldronRecipe.getId().path,
+                            cauldronRecipe -> cauldronRecipe.getId().getPath(),
                             Function.identity()
                         )
                     ).entrySet().iterator(),
                 Function.identity(),
                 "content/cauldron_recipes/"
     );
+
+    public static final FlagReloader<ResourceLocation, SpiritEffectRecipe> spiritEffectReloader = new FlagReloader<>(
+            SpiritEffectApi::getIterator,
+            ResourceLocation::getPath,
+            "content/spirit_effect_recipes/"
+    );
+
+    /*
+    public static final Map<String, Boolean> immortalBookState = new HashMap<>();
+    public static final FlagReloader<String, Boolean> immortalBookReloader = new FlagReloader<>(
+            () -> {
+                immortalBookState.clear();
+                immo
+            },
+            String::valueOf,
+            "observations/immortal/level_"
+    );
+    */
+
+    @SubscribeEvent
+    public static void onBookReload(BookContentsReloadEvent event) {
+        // Clear cache of all the processors that implement caching
+        if (!event.book.namespace.equals(WitcheryCompanion.MODID)) return;
+        if (Loader.instance().hasReachedState(LoaderState.AVAILABLE)) {
+            CapacityBrewActionProcessor.clearCache();
+            ModifierBrewActionProcessor.clearCache();
+            UpgradeBrewActionProcessor.clearCache();
+            DispersalBrewActionProcessor.clearCache();
+            IncrementBrewActionProcessor.clearCache();
+            MultiblockRegistry.reloadMultiblocks();
+        }
+
+        /* Maybe in the future, implement a custom book reloader. Probably Patchouli code will have to
+            be changed with Mixins or a Fork. Inject into BookContents.reload(), some work needs to be
+            put in loadEntry and entry.build(). For now, modpack makers that change brew effect levels
+            will need to override the entire category of the book.
+        Book book = ItemModBook.getBook(ItemModBook.forBook(event.book.toString()));
+        BookContents contents = book.contents;
+        for (BookCategory category : contents.categories.values()) {
+            if (category.getName().equals("level_1")) {
+                category.getEntries().clear();
+                category.addEntry(new BookEntry());
+            }
+        }
+        */
+    }
 
 
     /** Custom FunctionProcessor for Patchouli's TextParser
@@ -130,12 +153,13 @@ public class PatchouliApiIntegration {
         }
     }
 
-
-
+    /** Class that holds information about how to information about a registry and
+     * reloads Patchouli flags based on its contents. Used to update flags that enable/disable content
+     * (pages, components, etc) based on what content is enabled */
     public static class FlagReloader<K, V> {
 
         private final String prefix;
-        private final Iterator<Map.Entry<K, V>> iterator;
+        private final Supplier<Iterator<Map.Entry<K, V>>> iteratorSupplier;
         private final Function<K, String> transformer;
         private final Function<FlaggerContext<K, V>, Boolean> flagger;
         private final Map<String, Boolean> flags;
@@ -165,26 +189,19 @@ public class PatchouliApiIntegration {
             flags = new HashMap<>();
             this.transformer = transformer;
             this.flagger = flagger;
-            this.prefix = WitcheryCompanion.prefix(prefix);
-            this.iterator = iteratorSupplier.get();
-        }
-
-        public boolean getFlag(String flag) {
-            if (flags.containsKey(flag)) return false;
-            Boolean flagValue = flags.get(this.prefix + flag);
-            if (flagValue == null) return false;
-            return flagValue;
+            this.prefix = prefix; // Witchery:Companion modid should not be added
+            this.iteratorSupplier = iteratorSupplier;
         }
 
         public void reloadFlags() {
-
             // Clear all the flags
             for (String flag : flags.keySet()) {
                 PatchouliAPI.instance.setConfigFlag(flag, false);
             }
             flags.clear();
 
-            // Rebuild them
+            // Reset iterator and Rebuild them
+            Iterator<Map.Entry<K, V>> iterator = iteratorSupplier.get();
             while (iterator.hasNext()) {
                 Map.Entry<K, V> entry = iterator.next();
                 String flagId = prefix + transformer.apply(entry.getKey());

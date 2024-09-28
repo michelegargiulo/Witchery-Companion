@@ -1,0 +1,14 @@
+{
+  "name": "Knockback",
+  "icon": "minecraft:stick",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Knockback",
+      "item": "minecraft:stick",
+      "text": "Causes creatures to be pushed away from the impact location. The strength of the effect determines how far they are pushed back."
+    }
+  ]
+}

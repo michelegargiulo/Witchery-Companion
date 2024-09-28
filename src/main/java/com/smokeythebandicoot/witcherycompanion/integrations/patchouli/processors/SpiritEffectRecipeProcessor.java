@@ -1,156 +1,83 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.SpiritEffectApi;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
-import com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BaseProcessor;
+import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
-import net.msrandom.witchery.resources.SpiritEffectManager;
-import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariableProvider;
-
-import javax.annotation.Nonnull;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /** This processor is responsible for processing templates that represent SpiritEffectRecipes **/
-public class SpiritEffectRecipeProcessor implements IComponentProcessor {
+public class SpiritEffectRecipeProcessor extends BaseProcessor {
 
-    private String recipeId = null;
+    protected String title;
+    protected String description;
+    protected String beings;
+    protected String secretKey;
 
-    private static Map<String, SpiritEffectRecipeInfo> recipeMap;
 
-    private SpiritEffectRecipeInfo recipeInfo;
-    private String forcedTitle;
-    private String forcedDesc;
-    private String forcedBeings;
-    private boolean shouldShow = true;
-
-    /** ========== OVERRIDES ========== **/
     @Override
-    public void setup(IVariableProvider<String> iVariableProvider) {
+    public void setup(IVariableProvider<String> provider) {
 
+        // Effect_id must be namespaced
+        String effectId = readVariable(provider, "effect_id");
+        if (effectId == null) return;
 
-        if (iVariableProvider.has("effect_id")) {
-            this.recipeId = iVariableProvider.get("effect_id");
+        SpiritEffectRecipe recipe = SpiritEffectApi.getById(new ResourceLocation(effectId));
+        if (recipe == null) return;
+
+        this.isSecret = recipe.getHidden();
+        this.secretKey = effectId;
+
+        // Override title and description if not provided by the symbol effect
+        this.title = readVariable(provider, "title");
+        this.description = readVariable(provider, "description");
+        this.beings = readVariable(provider, "required_beings");
+
+        String[] splits = recipe.getDescription().split("\n\n");
+        if (splits.length > 3) {
+            if (this.title == null) this.title = ProcessorUtils.reformatPatchouli(splits[0], true);
+            if (this.description == null) this.description = splits[1];
+            if (this.beings == null) this.beings = ProcessorUtils.reformatPatchouli(splits[2] + "$(br)" + splits[3], false);
         }
 
-        if (iVariableProvider.has("title")) {
-            this.forcedTitle = iVariableProvider.get("title");
-        }
-
-        if (iVariableProvider.has("description")) {
-            this.forcedDesc = iVariableProvider.get("description");
-        }
-
-        if (iVariableProvider.has("required_beings")) {
-            this.forcedBeings = iVariableProvider.get("required_beings");
-        }
-
-        // Init data structures for first time
-        if (recipeMap == null || recipeMap.isEmpty()) {
-            updateRecipeMap();
-        }
-
-        if (!recipeMap.containsKey(recipeId))
-            return;
-
-        this.recipeInfo = recipeMap.get(recipeId);
-
-        if (!shouldShow(recipeInfo)) { // It's updated on Book Reload (so also when progress is unlocked)
-            this.shouldShow = false;
-        }
+        super.setup(provider);
 
     }
 
     @Override
     public String process(String key) {
         switch (key) {
-            case "guard":
-                return String.valueOf(this.shouldShow);
             case "title":
-                if (forcedTitle != null) return forcedTitle;
-                return recipeInfo == null ? null : recipeInfo.title;
-            case "text":
-                if (forcedDesc != null) return forcedDesc;
-                return recipeInfo == null ? null : recipeInfo.description;
+                return this.title;
+            case "description":
+                return this.description;
             case "beings":
-                if (forcedBeings != null) return forcedBeings;
-                return recipeInfo == null ? null : recipeInfo.beings;
-            case "secret_guard":
-                if (recipeInfo == null) return null;
-                return this.shouldShow && recipeInfo.secret ? "true" : "";
-        }
-        return null;
-    }
-
-    private static void updateRecipeMap() {
-        recipeMap = new HashMap<>();
-        for (SpiritEffectRecipe recipe : SpiritEffectManager.INSTANCE.getEffects()) {
-            SpiritEffectRecipeInfo info = new SpiritEffectRecipeInfo(recipe);
-            recipeMap.put(info.id, info);
+                return this.beings;
+            default:
+                return super.process(key);
         }
     }
 
-    private static boolean shouldShow(SpiritEffectRecipeInfo info) {
-        // Recipe is not secret, always show
-        if (!info.secret) return true;
-
-        // Otherwise, Check if secrets should always be shown
-        ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy policy = ModConfig.IntegrationConfigurations.PatchouliIntegration.common_showSecretsPolicy;
-        if (policy == ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy.ALWAYS_SHOW)
-            return true;
-
-        // If policy is not ALWAYS HIDDEN, then check progress to see if visible
-        return policy == ModConfig.IntegrationConfigurations.PatchouliIntegration.EPatchouliSecretPolicy.PROGRESS && hasUnlockedProgress(info);
+    @Override
+    protected String getSecretKey() {
+        return ProgressUtils.getSpiritEffectRecipeSecret(this.secretKey);
     }
 
-    private static boolean hasUnlockedProgress(SpiritEffectRecipeInfo info) {
-        // Get secret key and return true if the corresponding element has been found
-        String key = ProgressUtils.getSpiritEffectRecipeSecret(info.id);
-        return ClientProxy.getLocalWitcheryProgress().hasProgress(key);
+    @Override
+    protected void obfuscateFields() {
+        this.title = obfuscate(this.title, EObfuscationMethod.MINECRAFT);
+        this.description = obfuscate(this.description, EObfuscationMethod.PATCHOULI);
+        this.beings = obfuscate(this.beings, EObfuscationMethod.PATCHOULI);
     }
 
-
-
-    public static class SpiritEffectRecipeInfo {
-
-        public final String id;
-        public final String title;
-        public final String description;
-        public final String beings;
-        public final boolean secret;
-
-        public SpiritEffectRecipeInfo(@Nonnull SpiritEffectRecipe recipe) {
-            String[] splits = recipe.getDescription().split("\n\n");
-
-            // Retrieve title
-            if (splits.length > 0) {
-                this.title = ProcessorUtils.reformatPatchouli(splits[0], true);
-            } else {
-                this.title = "<unnamed effect>";
-            }
-
-            // Retrieve description
-            if (splits.length > 1) {
-                this.description = ProcessorUtils.reformatPatchouli(splits[1], false);
-            } else {
-                this.description = "<unknown details>";
-            }
-
-            if (splits.length > 3) {
-                this.beings = ProcessorUtils.reformatPatchouli(splits[3], false);
-            } else {
-                this.beings = "<unknown required beings>";
-            }
-
-            this.id = title.replace(" ", "_").toLowerCase();
-            this.secret = recipe.getHidden();
-
-        }
-
-
+    @Override
+    protected void hideFields() {
+        this.title = "";
+        this.description = "";
+        this.beings = "";
     }
 
 }

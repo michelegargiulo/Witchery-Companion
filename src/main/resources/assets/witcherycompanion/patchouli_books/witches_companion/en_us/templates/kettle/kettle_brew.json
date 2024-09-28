@@ -1,0 +1,61 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.KettleProcessor",
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    },
+    {
+      "type": "text",
+      "text": "#description",
+      "x": 0,
+      "y": 18
+    },
+    {
+      "type": "custom",
+      "class": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components.IngredientListComponent",
+      "inputs": [
+        "#ingredients"
+      ],
+      "output": "#output",
+      "input_spacing": 2,
+      "x": 0,
+      "y": 82,
+      "output_offset_x": 66,
+      "output_offset_y": 26
+    },
+    {
+      "type": "image",
+      "image": "witchery:textures/gui/kettle.png",
+      "width": 26,
+      "height": 24,
+      "texture_width": 26,
+      "texture_height": 24,
+      "x": 16,
+      "y": 102
+    },
+    {
+      "type": "image",
+      "image": "witchery:textures/gui/arrow.png",
+      "width": 25,
+      "height": 15,
+      "texture_width": 25,
+      "texture_height": 15,
+      "x": 44,
+      "y": 110
+    },
+    {
+      "type": "text",
+      "text": "Altar Power: $(item)#altar_power#$()$(br)#note#",
+      "x": 0,
+      "y": 132
+    }
+  ]
+}

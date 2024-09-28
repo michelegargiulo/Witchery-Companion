@@ -1,0 +1,14 @@
+{
+  "name": "Spectral Stone",
+  "icon": "witchery:spectral_stone",
+  "category": "circle_magic/necromancy",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:spectral_stone_necromancy",
+      "title": "Spectral Stone",
+      "description": "Creates a $(l:)Spectral Stone$(/l). Perform at night."
+    }
+  ]
+}

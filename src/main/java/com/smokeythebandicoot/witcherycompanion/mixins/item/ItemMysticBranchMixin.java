@@ -5,6 +5,8 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.SymbolEffectProcessor;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 import net.msrandom.witchery.item.ItemMysticBranch;
 import org.spongepowered.asm.mixin.Mixin;
@@ -34,18 +37,13 @@ public abstract class ItemMysticBranchMixin extends Item {
             target = "Lnet/msrandom/witchery/infusion/symbol/SymbolEffect;perform(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/EntityPlayer;I)V"))
     private void unlockSecret(SymbolEffect instance, World world, EntityPlayer entityPlayer, int i, Operation<Void> original) {
         // At this point in the function, the effect and the player have already passed null-checks
-        SymbolEffectProcessor.SymbolEffectInfo info = new SymbolEffectProcessor.SymbolEffectInfo(instance);
-        IWitcheryProgress progress = entityPlayer.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
+        int effectId = SymbolEffect.REGISTRY.getId(instance);
+        ResourceLocation effectKey = SymbolEffect.REGISTRY.getKey(effectId);
 
-        // Retrieve progress
-        if (progress == null) {
-            WitcheryCompanion.logger.warn("Could not unlock secret SymbolEffect: progress is null");
-            return;
-        }
+        if (effectKey == null) return;
+        ProgressUtils.unlockProgress(entityPlayer, effectKey.path,
+                WitcheryProgressEvent.EProgressTriggerActivity.MYSTIC_BRANCH.activityTrigger);
 
-        // Unlock progress
-        progress.unlockProgress(ProgressUtils.getSymbolEffectSecret(info.effectId));
-        ProgressSync.serverRequest(entityPlayer);
     }
 
 }

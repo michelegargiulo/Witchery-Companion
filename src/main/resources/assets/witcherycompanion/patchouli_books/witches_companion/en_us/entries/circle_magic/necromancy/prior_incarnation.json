@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Prior Incarnation",
+  "icon": "witchery:graveyard_dust",
+  "category": "circle_magic/necromancy",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:prior_incarnation",
+      "title": "Rite of Prior Incarnation",
+      "description": "Summon a prior incarnation of a player (and their items) near to where they died."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Bestial Call",
+  "icon": "witchery:wolf_head",
+  "category": "circle_magic/other",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:beastial_call",
+      "title": "Bestial Call",
+      "description": "Calls animals. Requires a $(l:)Coven$(/l) of at least 3 members"
+    }
+  ]
+}

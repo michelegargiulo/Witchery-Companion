@@ -1,0 +1,14 @@
+{
+  "name": "Undeadbane",
+  "icon": "minecraft:pumpkin",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Undeadbane",
+      "item": "minecraft:pumpkin",
+      "text": "Causes a small amount of damage to all creatures, and a lot of damage to undead."
+    }
+  ]
+}

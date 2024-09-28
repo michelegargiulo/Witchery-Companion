@@ -1,0 +1,14 @@
+{
+  "name": "Cure Buffs",
+  "icon": "witchery:misfortune_reek",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Cure Buffs",
+      "item": "witchery:misfortune_reek",
+      "text": "Removes any positive potion effects from hit creatures, that are the same level or lower than that of the power of this effect."
+    }
+  ]
+}

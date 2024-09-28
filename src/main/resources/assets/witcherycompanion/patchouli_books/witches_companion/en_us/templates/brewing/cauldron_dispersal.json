@@ -1,0 +1,58 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.DispersalBrewActionProcessor",
+  "include": [
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "dispersal_brew_action0",
+      "using": {
+        "stack": "#stack@instant",
+        "description": "#description@instant"
+      },
+      "x": 4,
+      "y": 26
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "dispersal_brew_action1",
+      "using": {
+        "stack": "#stack@liquid",
+        "description": "#description@liquid"
+      },
+      "x": 4,
+      "y": 44
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "capacity_brew_action2",
+      "using": {
+        "stack": "#stack@gas",
+        "description": "#description@gas"
+      },
+      "x": 4,
+      "y": 62
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "dispersal_brew_action3",
+      "using": {
+        "stack": "#stack@triggered",
+        "description": "#description@triggered"
+      },
+      "x": 4,
+      "y": 80
+    }
+  ],
+  "components": [
+    {
+      "type": "header",
+      "text": "Dispersals",
+      "centered": true,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    }
+  ]
+}

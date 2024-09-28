@@ -1,0 +1,14 @@
+{
+  "name": "Pulverization",
+  "icon": "minecraft:flint",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Pulverization",
+      "item": "minecraft:flint",
+      "text": "Smashes nearby blocks into increasing fragmented block types. $(item)Stone$() to $(item)Gravel$() to $(item)Sand$()."
+    }
+  ]
+}

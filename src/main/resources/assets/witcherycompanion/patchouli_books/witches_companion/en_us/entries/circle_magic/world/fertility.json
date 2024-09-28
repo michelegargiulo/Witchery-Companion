@@ -1,0 +1,20 @@
+{
+  "name": "Rite of Fertility",
+  "icon": "minecraft:farmland",
+  "category": "circle_magic/world",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:fertility",
+      "title": "Rite of Fertility",
+      "description": "Makes nearby land fertile. Heals sick villagers."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:portable_fertility",
+      "title": "Rite of Fertility",
+      "description": "Makes nearby land fertile. Heals sick villagers."
+    }
+  ]
+}

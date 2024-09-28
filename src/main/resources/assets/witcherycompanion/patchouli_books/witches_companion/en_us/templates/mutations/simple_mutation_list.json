@@ -1,0 +1,49 @@
+{
+  "include": [
+    {
+      "template": "mutations/simple_mutation",
+      "as": "simple_mutation_0",
+      "using": {
+        "input": "#input0",
+        "output": "#output0"
+      },
+      "x": -2,
+      "y": 12
+    },
+    {
+      "template": "mutations/simple_mutation",
+      "as": "simple_mutation_1",
+      "using": {
+        "input": "#input1",
+        "output": "#output1"
+      },
+      "x": -2,
+      "y": 42
+    },
+    {
+      "template": "mutations/simple_mutation",
+      "as": "simple_mutation_2",
+      "using": {
+        "input": "#input2",
+        "output": "#output2"
+      },
+      "x": -2,
+      "y": 72
+    }
+  ],
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -2
+    },
+    {
+      "type": "text",
+      "text": "#text",
+      "x": 2,
+      "y": 108
+    }
+  ]
+}

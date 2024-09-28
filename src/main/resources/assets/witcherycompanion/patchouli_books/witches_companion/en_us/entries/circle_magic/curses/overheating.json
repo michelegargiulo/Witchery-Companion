@@ -1,0 +1,20 @@
+{
+  "name": "Curse of Overheating",
+  "icon": "minecraft:blaze_powder",
+  "category": "circle_magic/curses",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:overheating_curse",
+      "title": "Curse of Overheating",
+      "description": "Curse the taglocked being with overheating."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:overheating_curse_removal",
+      "title": "Rite of Remove Curse",
+      "description": "Cleanse the taglocked being of overheating. Things may get worse."
+    }
+  ]
+}

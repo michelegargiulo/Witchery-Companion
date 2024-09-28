@@ -1,0 +1,18 @@
+{
+  "name": "Boline",
+  "icon": "witchery:boline",
+  "category": "constructs/tools",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:boline",
+      "text": "A boline is a mundane tool whose main purpose it to collect ingredients. The tool acts as $(item)Shears$(), but will also harvest $(item)Cobweb$() without dropping it as $(item)String$(). The Boline can also harvest $(l:constructs/traps/blood_poppy)Blood Poppies$(/l) and $(l:constructs/traps/trapped_plants)Trapped Plants$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Other uses",
+      "text": "The boline can also be used a weapon, albeit very weak, but can be enchanted. The Boline can also be used in $(l:)Circle Magic$(/l) for rites connected with Necromancy."
+    }
+  ]
+}

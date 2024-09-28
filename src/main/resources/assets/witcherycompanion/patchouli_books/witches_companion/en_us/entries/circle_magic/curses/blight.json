@@ -1,0 +1,14 @@
+{
+  "name": "Curse of Blight",
+  "icon": "minecraft:gravel",
+  "category": "circle_magic/curses",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:blight_curse",
+      "title": "Curse of Blight",
+      "description": "Makes nearby land infertile and causes sickness."
+    }
+  ]
+}

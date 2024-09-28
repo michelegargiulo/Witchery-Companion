@@ -49,8 +49,14 @@ public class ProcessorUtils {
         if (formattedString == null) return null;
         if (stripFormatting) {
             formattedString = formattedString
+                    // Remove text color and style (minecraft text formatting)
                 .replaceAll("§[0-9a-fklmnor]", "")
-                .replaceAll("\\$\\([0-9a-fklmnor]?\\)", "");
+                    // Remove text color and style (patchouli text formatting)
+                .replaceAll("\\$\\([0-9a-fklmnor]?\\)", "")
+                    // Remove text color and style (patchouli alias text formatting)
+                .replaceAll("\\$\\((item|thing|nocolor|obf|strike|italic|italics|bold|#[a-z0-9]*)\\)", "")
+                    // Remove links
+                .replaceAll("\\$\\(l:.+?\\)|\\$\\(/l\\)", "");
         }
         return formattedString
                 .trim()
@@ -69,9 +75,9 @@ public class ProcessorUtils {
         Iterator<Ingredient> it = ingredients.iterator();
         while (it.hasNext()) {
             Ingredient ing = it.next();
-            sb.append(ItemStackUtil.serializeIngredient(ing));
+            sb.append(serializeItemStackArray(ing.matchingStacks));
             if (it.hasNext()) {
-                sb.append(",");
+                sb.append(";");
             }
         }
         return sb.toString();
@@ -84,7 +90,7 @@ public class ProcessorUtils {
     }
 
     public static void deserializeIngredientList(String serialized, @Nonnull Collection<Ingredient> ingredients) {
-        for (String serializedIngredient : serialized.replace(" ", "").split(",")) {
+        for (String serializedIngredient : serialized.replace(" ", "").split(";")) {
             ingredients.add(ItemStackUtil.loadIngredientFromString(serializedIngredient));
         }
     }
@@ -102,6 +108,20 @@ public class ProcessorUtils {
             ItemStack stack = it.next();
             sb.append(ItemStackUtil.serializeStack(stack));
             if (it.hasNext()) {
+                sb.append(",");
+            }
+        }
+        return sb.toString();
+    }
+
+    public static String serializeItemStackArray(ItemStack[] stacks) {
+        if (stacks == null)
+            return "";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < stacks.length; i++) {
+            ItemStack stack = stacks[i];
+            sb.append(ItemStackUtil.serializeStack(stack));
+            if (i < stacks.length - 1) {
                 sb.append(",");
             }
         }

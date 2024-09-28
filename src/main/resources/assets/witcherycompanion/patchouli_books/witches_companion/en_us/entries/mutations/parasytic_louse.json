@@ -1,0 +1,18 @@
+{
+  "name": "Parasytic Louse",
+  "icon": "witchery:parasytic_louse",
+  "category": "mutations",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "multiblock",
+      "multiblock_id": "witchery:parasytic_louse",
+      "name": "Parasytic Louse"
+    },
+    {
+      "type": "text",
+      "title": "Mutation Details",
+      "text": "Notes:$(br)One $(l:herbology/herbology#grassper)Grassper$(/l) needs to hold a $(l:)Charged Attuned Stone$(/l), one a $(l:resources/tongue_of_dog)Tongue of Dog$() and the other two $(l:)Mutandis Extremis$(/l)."
+    }
+  ]
+}

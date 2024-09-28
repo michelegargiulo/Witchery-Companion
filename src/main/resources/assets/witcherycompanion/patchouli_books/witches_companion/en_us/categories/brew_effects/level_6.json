@@ -1,0 +1,8 @@
+{
+  "name": "Level 6 effects",
+  "description": "",
+  "parent": "brewing",
+  "icon": "minecraft:emerald",
+  "sortnum": 6,
+  "secret": false
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Disease",
+  "icon": "minecraft:rotten_flesh",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Disease",
+      "item": "minecraft:rotten_flesh",
+      "text": "Causes creatures under this effect to be weakened and to spread the disease futher."
+    }
+  ]
+}

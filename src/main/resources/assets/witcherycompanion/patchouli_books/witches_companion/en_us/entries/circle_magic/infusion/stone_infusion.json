@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Stone Infusion",
+  "icon": "witchery:seer_stone",
+  "category": "circle_magic/infusion",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:seer_stone_infusion",
+      "title": "Stone Infusion",
+      "description": "Infuse a $(item)Quartz Sphere$() to communicate in a $(l:)Coven$(/l). Perform at night."
+    }
+  ]
+}

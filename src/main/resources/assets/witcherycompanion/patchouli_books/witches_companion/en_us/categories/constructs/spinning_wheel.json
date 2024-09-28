@@ -1,0 +1,7 @@
+{
+  "name": "Spinning Wheel",
+  "description": "A magical machine capable of threading raw materials.",
+  "icon": "witchery:spinning_wheel",
+  "parent": "constructs",
+  "secret": false
+}

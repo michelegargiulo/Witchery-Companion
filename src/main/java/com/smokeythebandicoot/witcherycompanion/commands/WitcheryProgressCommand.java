@@ -2,6 +2,9 @@ package com.smokeythebandicoot.witcherycompanion.commands;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressLockEvent;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressResetEvent;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
@@ -10,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -70,16 +74,21 @@ public class WitcheryProgressCommand implements ICommand {
         switch (args[1]) {
             case "unlock":
                 progress.unlockProgress(key);
+                MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(player, key,
+                        WitcheryProgressUnlockEvent.EProgressTriggerActivity.COMMAND.activityTrigger));
                 sender.sendMessage(new TextComponentString("Unlocked progress " + key + " for " + player.getName()));
                 ProgressSync.serverRequest(player);
                 break;
             case "lock":
                 progress.lockProgress(key);
+                MinecraftForge.EVENT_BUS.post(new WitcheryProgressLockEvent(player, key,
+                        WitcheryProgressUnlockEvent.EProgressTriggerActivity.COMMAND.activityTrigger));
                 sender.sendMessage(new TextComponentString("Locked progress " + key + " for " + player.getName()));
                 ProgressSync.serverRequest(player);
                 break;
             case "reset":
                 sender.sendMessage(new TextComponentString("Reset progress for " + player.getName()));
+                MinecraftForge.EVENT_BUS.post(new WitcheryProgressResetEvent(player, progress.getUnlockedProgress()));
                 progress.resetProgress();
                 ProgressSync.serverRequest(player);
                 break;

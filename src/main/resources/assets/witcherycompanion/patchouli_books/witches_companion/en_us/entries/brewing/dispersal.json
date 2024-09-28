@@ -1,0 +1,69 @@
+{
+  "name": "Dispersal",
+  "icon": "witchery:wormwood",
+  "category": "brewing",
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Dispersal",
+      "text": "$(italic)Dispersal$() - Add one, after any $(l:brewing/dispersal#extent)extent$(/l) or $(l:brewing/dispersal#lingering)linger$(/l) modifiers, to set a splash effect."
+    },
+    {
+      "type": "brewing/cauldron_dispersal",
+      "instant_description": "$(l:brewing/dispersal#instant)Instant$(/l)",
+      "liquid_description": "$(l:brewing/dispersal#liquid)Liquid$(/l)",
+      "gas_description": "$(l:brewing/dispersal#gas)Gas",
+      "triggered_description": "$(l:brewing/dispersal#triggered)Triggered$(/l)"
+    },
+    {
+      "type": "text",
+      "title": "Instant Dispersal",
+      "text": "Instant dispersal will cause the brew to be a splash potion. When thrown, it will affect nearby Entities and Blocks, but the further the target, the weaker the effect will be.$(p)$(l:brewing/dispersal#extent)Extent$(/l) dispersal modifier will increase the impact radius, while $(l:brewing/dispersal#lingering)Lingering$(/l) dispersal modifier has no effect.",
+      "anchor": "instant",
+      "flag": "witcherycompanion:brewing/extended_dispersal"
+    },
+    {
+      "type": "text",
+      "title": "Liquid Dispersal",
+      "text": "Liquid dispersal will cause the brew to be a liquid potion. When thrown, it will create a liquid version of the brew. Its effects will be applied to all entities that touch the liquid. The liquid will vanish shortly after.$(p)$(l:brewing/dispersal#extent)Extent$(/l) dispersal modifier will increase the distance the liquid will reach, while $(l:brewing/dispersal#lingering)Lingering$(/l) dispersal modifier increases the time the liquid persists in the world.",
+      "anchor": "liquid",
+      "flag": "witcherycompanion:brewing/extended_dispersal"
+    },
+    {
+      "type": "text",
+      "title": "Gas Dispersal",
+      "text": "Gas dispersal will cause the brew to be a gas potion. When thrown, it will become a gas cloud that will expand, applying its effects to all entities that touch it. The cloud will vanish shortly after$(p)$(l:brewing/dispersal#extent)Extent$(/l) dispersal modifier will increase cloud radius, while $(l:brewing/dispersal#lingering)Lingering$(/l) dispersal modifier will increase the time the cloud persists in the world.",
+      "anchor": "gas",
+      "flag": "witcherycompanion:brewing/extended_dispersal"
+    },
+    {
+      "type": "text",
+      "title": "Triggered Dispersal",
+      "text": "Triggered dispersal make the brew able to curse special blocks: their effects being dormant until an entity or player triggers the block. Upon trigger, the brew's effects will be applied to the victim. Using more of the same brew on the same block, will increase the amount of potential victims.$(p)Both $(l:brewing/dispersal#extent)Extent$(/l) and $(l:brewing/dispersal#lingering)Lingering$(/l) dispersal modifiers have no effect on this dispersal.",
+      "anchor": "triggered"
+    },
+    {
+      "type": "brewing/cauldron_increment",
+      "upgrade_type": "extent",
+      "description": " +1 (to level {limit})",
+      "transform_function": "roman",
+      "secret_text": "$(t:This ingredient is secret. It appears when a player actually uses it in a brew)$(4)Secret$()$(/t)",
+      "title": "Extent",
+      "text": "$(italic)Dispersal Extent$() - Add, in order, before an $(l:brewing/dispersal)dispersal$(/l) ingredient to increase its area of effect.",
+      "anchor": "extent",
+      "_comment": "{limit} is a placeholder that represents the maximum increment that the brew can receive, incremented by 1"
+    },
+    {
+      "type": "brewing/cauldron_increment",
+      "upgrade_type": "lingering",
+      "description": " +1 (to level {limit})",
+      "transform_function": "roman",
+      "secret_text": "$(t:This ingredient is secret. It appears when a player actually uses it in a brew)$(4)Secret$()$(/t)",
+      "title": "Lingering",
+      "text": "$(italic)Dispersal Lingering$() - Add, in order, before an $(l:brewing/dispersal)dispersal$(/l) ingredient to increase its duration.",
+      "anchor": "lingering",
+      "_comment": "{limit} is a placeholder that represents the maximum increment that the brew can receive, incremented by 1"
+    }
+  ]
+}

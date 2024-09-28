@@ -1,0 +1,14 @@
+{
+  "name": "Paralysed",
+  "icon": "witchery:demon_heart",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Paralysed",
+      "item": "witchery:demon_heart",
+      "text": "Cause a creature to freeze in place. Level III or higher will also freeze Players."
+    }
+  ]
+}

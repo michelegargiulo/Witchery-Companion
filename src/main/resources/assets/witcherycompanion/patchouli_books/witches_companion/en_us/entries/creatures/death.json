@@ -1,0 +1,29 @@
+{
+  "name": "Death",
+  "icon": "witchery:deployed_deaths_hand",
+  "category": "creatures",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:death",
+      "text": "Death itself, straight from the other realm.",
+      "offset": 0.12,
+      "scale": 0.95
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Summoning Death",
+      "description": "$(italic)Death can be summoned while trying to bind with $(item)Rite of Binding$() too many spectral beings at once. If there are at least 5 $(item)Poltergeist$(), 5 $(item)Spectres$() and 5 $(item)Banshees$() nearby, the $(item)Fetish$() is destroyed and $(item)Death$() itself will be summoned.",
+      "secret_key": "witcherycompanion:creatures/death_summon",
+      "_comment": "Unlocked when the player summons Death"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Wearing Death",
+      "description": "If a player is wearing all of Death's outfit and wields a $(item)Hand of Death$(), that player will became Death itself, thus being summoned during such rite.",
+      "secret_key": "witcherycompanion:creatures/death_robes",
+      "_comment": "Unlocked when a player is summoned in place of Death"
+    }
+  ]
+}

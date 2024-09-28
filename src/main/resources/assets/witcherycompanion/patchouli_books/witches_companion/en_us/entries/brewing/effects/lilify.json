@@ -1,0 +1,14 @@
+{
+  "name": "Lilify",
+  "icon": "minecraft:waterlily",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Lilify",
+      "item": "minecraft:waterlily",
+      "text": "Causes a lily to rapidly grow if triggered in water. The lily may expand depending on the brew's power level."
+    }
+  ]
+}

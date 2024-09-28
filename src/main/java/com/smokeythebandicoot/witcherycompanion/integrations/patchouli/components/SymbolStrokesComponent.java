@@ -53,6 +53,8 @@ public class SymbolStrokesComponent implements ICustomComponent {
         ProcessorUtils.deserializeStrokeArray(strokes, strokeList);
 
         try {
+            if (offsetX == null || offsetX.isEmpty() || offsetY == null || offsetY.isEmpty())
+                return;
             startX = Integer.parseInt(offsetX);
             startY = Integer.parseInt(offsetY);
         } catch (Exception ex) {

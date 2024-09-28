@@ -1,0 +1,20 @@
+{
+  "name": "Animal Attraction / Repulsion",
+  "icon": "witchery:golden_heart",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Animal Attraction",
+      "item": "witchery:golden_heart",
+      "text": "Will tame any untamed animal in a wide area and cause animals to move towards the drinker."
+    },
+    {
+      "type": "spotlight",
+      "title": "Animal Repulsion",
+      "item": "minecraft:fermented_spider_eye",
+      "text": "$(l:brewing/modifiers)Inverted:$(/l)$(br)Will untame any animal not tamed by the drinker and cause all animals to flee away."
+    }
+  ]
+}

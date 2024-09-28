@@ -1,0 +1,15 @@
+{
+  "name": "Bind Waystone",
+  "icon": "witchery:waystone",
+  "category": "circle_magic/other",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "circle_magic/other_rites",
+      "circles": "tiny_otherwhere",
+      "title": "Bind Waystone",
+      "description": "Bind up to 8 $(l:)Waystones$(/l) to a position or one to a creature standing in the circle using $(l:altar/altar)Altar$(/l) power.",
+      "ingredients": "witchery:waystone"
+    }
+  ]
+}

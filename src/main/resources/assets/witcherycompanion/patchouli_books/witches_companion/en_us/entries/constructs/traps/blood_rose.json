@@ -1,0 +1,14 @@
+{
+  "name": "Blood Poppy",
+  "icon": "witchery:blood_poppy",
+  "category": "constructs/traps",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:blood_poppy",
+      "title": "Blood Poppy",
+      "text": "A Blood Rose has an appearance very similar to a normal $(item)Poppy$(), but holds a secret. With its sharp spikes, it can scrath those who pass over it. The Rose will collect a blood sample of the creature and store it. The sample can be collected with the use of a $(l:constructs/misc/taglock_kit)Taglock Kit$(/l). The Rose will lose the sample if harvested with anything except a $(l:BOLINE)Boline$(/l)."
+    }
+  ]
+}

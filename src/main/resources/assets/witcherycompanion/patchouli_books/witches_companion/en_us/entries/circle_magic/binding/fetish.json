@@ -1,0 +1,14 @@
+{
+  "name": "Bind Fetish",
+  "icon": "witchery:scarecrow",
+  "category": "circle_magic/binding",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:fetish_binding",
+      "title": "Bind Fetish",
+      "description": "Bind spectral creatures to a $(l:)Trent Effigy$(/l), $(l:)Scarecrow$(/l) or $(l:)Witch's Ladder$(/l) for an effect."
+    }
+  ]
+}

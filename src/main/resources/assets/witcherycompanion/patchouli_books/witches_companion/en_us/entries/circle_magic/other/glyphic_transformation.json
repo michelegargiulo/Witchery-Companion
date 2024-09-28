@@ -1,0 +1,15 @@
+{
+  "name": "Rite of Glyphic Transformation",
+  "icon": "witchery:ritual_circle_glyph",
+  "category": "circle_magic/other",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:glyphic_transformation",
+      "title": "Glyphic Transformation",
+      "description": "Drop $(l:)Chalk$(/l) of the desired color. 1 = small, 2 = medium, 3 = large.",
+      "note": "Any circles allowed"
+    }
+  ]
+}

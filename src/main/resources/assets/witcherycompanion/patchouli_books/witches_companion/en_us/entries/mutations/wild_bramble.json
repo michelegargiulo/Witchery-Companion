@@ -1,0 +1,18 @@
+{
+  "name": "Wild Bramble",
+  "icon": "witchery:wild_bramble",
+  "category": "mutations",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "multiblock",
+      "multiblock_id": "witchery:wild_bramble",
+      "name": "Wild Bramble"
+    },
+    {
+      "type": "text",
+      "title": "Mutation Details",
+      "text": "Notes:$(br)Two $(l:herbology/herbology#grassper)Grasspers$(/l) need to hold $(item)Bonemeal$(), the other two $(item)Blaze Powder$().$(p)All $(item)Cacti$() up to height 3 will be converted to $(item)Wild Brambles$()."
+    }
+  ]
+}

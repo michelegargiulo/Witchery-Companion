@@ -1,0 +1,23 @@
+{
+  "name": "Bind Talisman",
+  "icon": "witchery:circle_talisman",
+  "category": "circle_magic/binding",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:circle_binding",
+      "title": "Binding Talisman",
+      "description": "Pulls the circles into the $(l:constructs/misc/circle_talisman)Talisman$(/l).",
+      "note": "Any Circle allowed",
+      "anchor": "binding_talisman"
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:portable_circle_binding",
+      "title": "Binding Talisman",
+      "description": "Pulls the circles into the $(l:constructs/misc/circle_talisman)Talisman$(/l).",
+      "note": "Any Circle allowed"
+    }
+  ]
+}

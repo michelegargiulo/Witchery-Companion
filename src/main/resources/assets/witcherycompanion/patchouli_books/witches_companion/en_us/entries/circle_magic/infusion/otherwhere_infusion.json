@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Otherwhere Infusion",
+  "icon": "witchery:otherwhere_spirit",
+  "category": "circle_magic/infusion",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:otherwhere_infusion",
+      "title": "Otherwhere Infusion",
+      "description": "You must stand in the circle."
+    }
+  ]
+}

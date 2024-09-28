@@ -1,0 +1,7 @@
+{
+  "name": "Weapons",
+  "description": "Many witches have been found whispering to their loyal tools of torture.",
+  "icon": "witchery:arthana",
+  "parent": "constructs",
+  "secret": false
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Wolfsbane",
+  "icon": "witchery:wolfsbane",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Wolfsbane",
+      "item": "witchery:wolfsbane",
+      "text": "Prevents a werewolf from shapeshifting thus locking it in its current form until the potion wears off. The power of the effect determines how effective it is against more powerful werewolves."
+    }
+  ]
+}

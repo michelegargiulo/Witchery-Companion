@@ -1,0 +1,14 @@
+{
+  "name": "Poison",
+  "icon": "minecraft:spider_eye",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Poison",
+      "item": "minecraft:spider_eye",
+      "text": "Causes damage over time to creatures under the effect."
+    }
+  ]
+}

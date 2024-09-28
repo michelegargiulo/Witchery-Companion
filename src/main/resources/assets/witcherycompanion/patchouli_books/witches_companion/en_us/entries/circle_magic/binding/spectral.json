@@ -1,0 +1,14 @@
+{
+  "name": "Bind Spectral Beings",
+  "icon": "witchery:spectral_dust",
+  "category": "circle_magic/binding",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:spectral_binding",
+      "title": "Spectral Binding",
+      "description": "Bind up to three spectral creatures of the same type into a $(l:)Spectral Stone$(/l)."
+    }
+  ]
+}

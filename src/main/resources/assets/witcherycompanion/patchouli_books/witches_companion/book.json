@@ -1,0 +1,11 @@
+{
+  "name": "Witches' Companion!",
+  "landing_text": "A Witchcraft Compendium",
+  "version": 1,
+  "creative_tab": "minecraft:tools_and_utilities",
+  "book_texture": "witcherycompanion:textures/patchouli/book_texture.png",
+  "progress_bar_color": "EE00CC",
+  "model": "patchouli:book_purple",
+  "show_progress": false,
+  "use_resource_pack": true
+}

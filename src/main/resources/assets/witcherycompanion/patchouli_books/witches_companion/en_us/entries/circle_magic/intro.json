@@ -1,0 +1,45 @@
+{
+  "name": "Circle Magic",
+  "icon": "witchery:heart_circle_glyph",
+  "category": "circle_magic",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Introduction",
+      "text": "Circle magic is a type of witchcraft that involves drawing special $(item)circles$() with. A circle is made up of magical $(item)glyphs$() that influences the properties of the rite. A $(l:circle_magic/intro#golden_chalk)Heart Circle Glyph$(/l) must always be the center of the circles."
+    },
+    {
+      "type": "text",
+      "title": "Introduction",
+      "text": "Some rites may require power or items. Power may be provided by a nearby $(l:altar/altar)Altar$(/l), while items can be thrown on the ground inside the circles or placed on $(l:herbology/herbology#grassper)Grasspers$(/l). After drawing the circles, dropping items and providing power, the rite can be started by activating the $(l:circle_magic/intro#golden_chalk)Heart Circle Glyph$(/l) by right-clicking it or with a $(item)Redstone Signal$()."
+    },
+    {
+      "type": "circle_magic/circles",
+      "title": "Circle Sizes",
+      "circles": "small_ritual,medium_infernal,large_otherwhere",
+      "description": "Rite circles can be of three sizes: Small (7x7), Medium (11x11) and Large (15x15). Each rite must have both the correct type and size."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:heart_circle_glyph",
+      "text": "Represents the center of the rite. Altar power has to be provided to this glyph. For more advanced Rites, a witch may need the help or their $(l:)Coven$(/l). In such case, they must use a $(l:constructs/misc/seer_stone)Seer Stone$(/l) on the heart glyph. Such rites tend to require a minimum amount of witches, and will increase in power the larger the coven.",
+      "anchor": "golden_chalk"
+    },
+    {
+      "type": "text",
+      "title": "Items & Rites",
+      "text": "Some items will not be consumed by rituals, for example $(l:constructs/weapons/arthana)Arthana$(/l). When rites do not require altar power, they might require a $(l:constructs/misc/charged_attuned_stone)Charged Attuned Stone$(/l) instead, that won't be consumed, but will be drained of its contained power instead."
+    },
+    {
+      "type": "text",
+      "title": "Combining Rites",
+      "text": "Where multiple rites use compatible circles, as they may use the same circles or different-sized circles), the objects for multiple rites can be used at the same time. Upon activation of the heart glyph, the items for all the rites will be consumed, and rites will be executed sequentially, with undefined but deterministic order."
+    },
+    {
+      "type": "text",
+      "title": "Redirecting Rites",
+      "text": "Some rites do not require to be performed at the location of the circles, and might be more useful if performed at a specific location. In such cases, some rites optionally use a $(l:constructs/misc/waystone)Bound Waystone$(/l) to perform their effects to the location pointed by the waystone. Keep in mind that rites still have a maximum range for their effects, that starts at 50 blocks plus an additional 50 blocks per coven member, up to 350 blocks."
+    }
+  ]
+}

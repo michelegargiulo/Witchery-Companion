@@ -3,10 +3,29 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.componen
 import com.google.gson.annotations.SerializedName;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.texture.TextureUtil;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
+import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.patchouli.api.IComponentRenderContext;
 import vazkii.patchouli.api.ICustomComponent;
 import vazkii.patchouli.api.VariableHolder;
+import vazkii.patchouli.client.book.gui.GuiBookEntry;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
 import java.util.*;
@@ -32,6 +51,14 @@ public class IngredientListComponent implements ICustomComponent {
     @VariableHolder
     public String inputSpacing = null;
 
+    @SerializedName("layout")
+    @VariableHolder
+    public String layout = null;
+
+    @SerializedName("line_length")
+    @VariableHolder
+    public int lineLength = 100;
+
     @SerializedName("output")
     @VariableHolder
     public String output = null;
@@ -53,6 +80,7 @@ public class IngredientListComponent implements ICustomComponent {
     private transient int offsetY = 0;
     private transient List<Ingredient> stacks = null;
     private transient Ingredient outputStack = null;
+    private transient GuiBookEntry guiBookEntry = null;
 
 
     /** ========== OVERRIDES ========== **/
@@ -88,16 +116,60 @@ public class IngredientListComponent implements ICustomComponent {
     @Override
     public void render(IComponentRenderContext context, float pticks, int mouseX, int mouseY) {
         if (stacks == null || stacks.isEmpty()) return;
+
+        if (guiBookEntry == null && context instanceof GuiBookEntry) {
+            this.guiBookEntry = (GuiBookEntry) context;
+        }
+
         int curX = this.x;
         int curY = this.y;
-        for (Ingredient ingredient : stacks) {
-            context.renderIngredient(curX, curY, mouseX, mouseY, ingredient);
-            curX += 16 + this.spacing;
+        int lineIndex = 1;
+
+        if (this.isVertical()) {
+            for (Ingredient ingredient : stacks) {
+
+                // Custom ingredient rendering, that also renders AIR stacks
+                ItemStack[] matchingStacks = ingredient.matchingStacks;
+                GlStateManager.pushMatrix();
+                GlStateManager.color(1.0f, 1.0f, 1.0f, 0.5f);
+                if (matchingStacks.length > 0) {
+                    context.renderItemStack(curX, curY, mouseX, mouseY,
+                            matchingStacks[guiBookEntry.ticksInBook / 20 % matchingStacks.length]);
+                }
+                GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+                GlStateManager.popMatrix();
+
+                curY += 16 + this.spacing;
+                lineIndex++;
+                if (lineIndex > lineLength) {
+                    lineIndex = 0;
+                    curY = this.y;
+                    curX += 16 + this.spacing;
+                }
+            }
+
+        } else {
+            for (Ingredient ingredient : stacks) {
+                context.renderIngredient(curX, curY, mouseX, mouseY, ingredient);
+
+                curX += 16 + this.spacing;
+                lineIndex++;
+                if (lineIndex >= lineLength) {
+                    lineIndex = 1;
+                    curX = this.x;
+                    curY += 16 + this.spacing;
+                }
+            }
         }
 
         if (outputStack != null) {
             context.renderIngredient(this.x + offsetX, this.y + offsetY, mouseX, mouseY, outputStack);
         }
+    }
+
+    protected boolean isVertical() {
+        if (this.layout == null) return false;
+        return this.layout.equals("vertical");
     }
 
 }

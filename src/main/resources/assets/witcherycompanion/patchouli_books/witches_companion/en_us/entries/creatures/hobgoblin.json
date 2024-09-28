@@ -1,0 +1,40 @@
+{
+  "name": "Hobgoblin",
+  "icon": "witchery:koboldite_pickaxe",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:goblin",
+      "text": "Friendly Goblins.",
+      "offset": 0.12,
+      "scale": 0.5
+    },
+    {
+      "type": "text",
+      "title": "Trading with Hobgoblins",
+      "text": "Hobgoblins are friendly creatures often found in forested biomes in groups, especially nearby $(item)Hobgoblin Huts$() structures.$(2br)They are neutral, but will attack back if provoked."
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Hobgoblins and Villages",
+      "description": "Hobgoblins will raid and take over villages. When a village is nearby, they also tend to offer trades in a manner not too dissimilar from villager trading.",
+      "secret_key": "witcherycompanion:creatures/hobgoblin_villages"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Koboldite source",
+      "description": "Using a $(item)leat$() on a Hobgoblin will incline them to perform manual labor. When leashed, they will pick up dropped items and drop them into nearby chests.$(2br)Giving a Hobgoblin a pickaxe will make it begin mining. Occasionally, they can find $(item)Koboldite Dust$().",
+      "secret_key": "witcherycompanion:creatures/hobgoblin_mining",
+      "_comment": "Unlocked when an hobgoblin gets a pickaxe thrown from a player"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Hobgoblin worshipping",
+      "description": "Hobgoblins worship their gods, $(item)Mog$() and $(item)Gulg$(). If a bound $(item)Statue of Hobgoblin Patron$() is nearby, they will begin worshipping it, recharging $(item)Infusion Power$() of the player the statue is bound to.$(2br)Worshipping Hobgoblins also increase the power of the $(item)Mystic Branch$() and its effects, but remember, if too many Hobgoblins worship the statue, Mog and Gulg will descend to slay the player.",
+      "secret_key": "witcherycompanion:creatures/hobgoblin_worship",
+      "_comment": "Unlocked when a player crafts a Statue of Hobgoblin patron"
+    }
+  ]
+}

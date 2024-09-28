@@ -1,0 +1,14 @@
+{
+  "name": "Ill Fitting",
+  "icon": "witchery:wild_bramble",
+  "category": "brew_effects/level_6",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Ill Fitting",
+      "item": "witchery:wild_bramble",
+      "text": "Causes clothing to slip off the victim when the effect countdown finishes. The higher the level, the more chance of multiple losses."
+    }
+  ]
+}

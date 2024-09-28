@@ -1,0 +1,8 @@
+{
+  "name": "Rites of Necromancy",
+  "description": "Rites that create objects related to necromancy.",
+  "icon": "witchery:alluring_skull",
+  "parent": "circle_magic",
+  "sortnum": 6,
+  "secret": false
+}

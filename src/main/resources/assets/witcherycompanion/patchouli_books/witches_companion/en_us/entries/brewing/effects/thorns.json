@@ -1,0 +1,14 @@
+{
+  "name": "Thorns",
+  "icon": "minecraft:cactus",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Thorns",
+      "item": "minecraft:cactus",
+      "text": "Causes a cactus to grow, or an existing cactus to grow more. Creatures hit with this effect will gain spikey coating that damages creatures they walk in to."
+    }
+  ]
+}

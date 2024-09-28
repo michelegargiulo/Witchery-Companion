@@ -1,0 +1,26 @@
+{
+  "name": "Rite of Moving Earth",
+  "icon": "minecraft:piston",
+  "category": "circle_magic/world",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:moving_earth_4",
+      "title": "Rite of Moving Earth",
+      "description": "Raise a column of earth."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:moving_earth_6",
+      "title": "Rite of Moving Earth",
+      "description": "Raise a column of earth."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:moving_earth_9",
+      "title": "Rite of Moving Earth",
+      "description": "Raise a column of earth."
+    }
+  ]
+}

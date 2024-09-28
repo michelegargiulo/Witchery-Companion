@@ -4,12 +4,15 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.msrandom.witchery.block.entity.TileEntityCircle;
 import net.msrandom.witchery.block.entity.WitcheryTileEntity;
 import net.msrandom.witchery.rite.RiteHandler;
@@ -42,10 +45,8 @@ public abstract class TileEntityCircleMixin extends WitcheryTileEntity {
             if (progress == null) {
                 WitcheryCompanion.logger.warn("Error while updating Witchery Progress: could not find capability");
             } else {
-                String id = ritual.rite.getId().toString();
-                Utils.logChat("Rite ID: " + id);
-                progress.unlockProgress(ProgressUtils.getRiteEffectSecret(id));
-                ProgressSync.serverRequest(player);
+                ProgressUtils.unlockProgress(player, ritual.rite.getId().toString(),
+                        WitcheryProgressEvent.EProgressTriggerActivity.CIRCLE_MAGIC.activityTrigger);
             }
         }
 

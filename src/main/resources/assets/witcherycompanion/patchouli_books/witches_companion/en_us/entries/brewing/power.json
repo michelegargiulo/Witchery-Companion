@@ -1,0 +1,18 @@
+{
+  "name": "Power",
+  "icon": "minecraft:glowstone_dust",
+  "category": "brewing",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "brewing/cauldron_upgrade",
+      "upgrade_type": "power",
+      "description": " (to power {limit})",
+      "transform_function": "roman",
+      "secret_text": "$(t:This ingredient is secret. It appears when a player actually uses it in a brew)$(4)Secret$()$(/t)",
+      "title": "Power",
+      "text": "$(italic)Power$() - Add, in order, before an $(l:brewing/effect)effect$(/l) to increase its power.",
+      "_comment": "{limit} is a placeholder that represents the maximum augmentation that the brew can receive"
+    }
+  ]
+}

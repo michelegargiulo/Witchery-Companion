@@ -9,6 +9,7 @@ import net.minecraft.item.crafting.Ingredient;
 import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariableProvider;
 
+import javax.annotation.Nonnull;
 import java.util.Collection;
 
 
@@ -16,7 +17,6 @@ public abstract class BaseProcessor implements IComponentProcessor {
 
     protected boolean isSecret = false;
     protected String secretText = "";
-    protected String secretTooltip = "";
 
     protected static ItemStack OBFUSCATED_STACK = new ItemStack(Items.PAPER);
     protected static Ingredient OBFUSCATED_INGREDIENT = Ingredient.fromStacks(new ItemStack(Items.PAPER));
@@ -25,8 +25,6 @@ public abstract class BaseProcessor implements IComponentProcessor {
     @Override
     public void setup(IVariableProvider<String> provider) {
         secretText = readVariable(provider, "secret_text");
-        secretTooltip = readVariable(provider, "secret_tooltip");
-
         obfuscateIfSecret();
     }
 
@@ -37,12 +35,9 @@ public abstract class BaseProcessor implements IComponentProcessor {
             // A flag that is true when the content is secret
             case "is_secret":
                 return String.valueOf(this.isSecret);
-
-            // A string that represents the "Secret" text
+            // A string that represents the "Secret" text. Can contain tooltips
             case "secret_text":
-                return obfuscate(this.secretText, EObfuscationMethod.PATCHOULI);
-            case "secret_tooltip":
-                return obfuscate(this.secretTooltip, EObfuscationMethod.MINECRAFT);
+                return this.secretText;
         }
         return null;
     }
@@ -83,17 +78,15 @@ public abstract class BaseProcessor implements IComponentProcessor {
                 return;
             case LOCKED:
                 // Obfuscate self fields and let child classes obfuscate theirs
-                // Secret text and Tooltip are edge cases, as the "Secret" text should
+                // Secret text is an edge case, as the "Secret" text should
                 // not appear if the page is unlocked (while other components should be
                 // obfuscated, not hidden)
                 this.secretText = "";
-                this.secretTooltip = "";
                 obfuscateFields();
                 break;
             case DISABLED:
                 // Hide self fields and let child classes hide theirs
                 this.secretText = "";
-                this.secretTooltip = "";
                 hideFields();
         }
     }
@@ -110,7 +103,7 @@ public abstract class BaseProcessor implements IComponentProcessor {
 
     /** Depending on how the text should be hidden, return proper string.
      * Do not use on non-text objects! (like stacks or ingredients, just titles and descriptions) */
-    protected String obfuscate(String text, EObfuscationMethod obfuscationMethod) {
+    protected String obfuscate(String text, @Nonnull EObfuscationMethod obfuscationMethod) {
         return obfuscate(text, obfuscationMethod.obfStart, obfuscationMethod.obfEnd);
     }
 
@@ -122,7 +115,7 @@ public abstract class BaseProcessor implements IComponentProcessor {
         return OBFUSCATED_INGREDIENT;
     }
 
-    protected void obfuscateStackList(Collection<ItemStack> stacks) {
+    protected void obfuscateStackList(@Nonnull Collection<ItemStack> stacks) {
         int size = stacks.size();
         stacks.clear();
         for (int i = 0; i < size; i++) {
@@ -130,13 +123,14 @@ public abstract class BaseProcessor implements IComponentProcessor {
         }
     }
 
-    protected void obfuscateIngredientList(Collection<Ingredient> ingredients) {
+    protected void obfuscateIngredientList(@Nonnull Collection<Ingredient> ingredients) {
         int size = ingredients.size();
         ingredients.clear();
         for (int i = 0; i < size; i++) {
             ingredients.add(OBFUSCATED_INGREDIENT);
         }
     }
+
 
     protected enum EHiddenState {
         UNLOCKED,

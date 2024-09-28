@@ -1,0 +1,20 @@
+{
+  "name": "Curse of Insanity",
+  "icon": "witchery:mandrake_root",
+  "category": "circle_magic/curses",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:insanity_curse",
+      "title": "Curse of Insanity",
+      "description": "Curse the taglocked being with insanity. Perform during a storm."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:insanity_curse_removal",
+      "title": "Rite of Remove Curse",
+      "description": "Cleanse the taglocked being of insanity. Things may get worse."
+    }
+  ]
+}

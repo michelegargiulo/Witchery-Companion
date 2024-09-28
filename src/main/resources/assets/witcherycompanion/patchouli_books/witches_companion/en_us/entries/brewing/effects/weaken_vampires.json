@@ -1,0 +1,15 @@
+{
+  "name": "Weaken Vampires",
+  "icon": "witchery:garlic",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "flag": "witcherycompanion:brew_effects/show_weakenvampires",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Weaken Vampires",
+      "item": "witchery:garlic",
+      "text": "Weakens vampire strength and can drains some of their power."
+    }
+  ]
+}

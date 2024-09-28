@@ -1,0 +1,14 @@
+{
+  "name": "Erosion",
+  "icon": "witchery:vitriol_oil",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Erosion",
+      "item": "witchery:vitriol_oil",
+      "text": "This effect causes blocks to melt, instantly destroying most and mining others. Only a few blocks can resist the erosion. Creatures hit will take damage, as will the armor they are wearing."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Poltergeist",
+  "icon": "witchery:spectral_dust",
+  "category": "creatures",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:poltergeist",
+      "text": "Mischievous Ghosts.",
+      "offset": 0.12,
+      "scale": 0.9
+    },
+    {
+      "type": "text",
+      "title": "Behavior",
+      "text": "They are invisible, mischievous entities that can be quite dangerous. They seek chaos and will open doors, throw objects, open chests, and even attack players."
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Unique properties",
+      "description": "Using a $(item)Brew of Revealing$() reveals their true form.$(p)If a player summons a Poltergeist, they can spray a bit of $(item)Graveyard Dust$() over them to greatly increase their health.",
+      "secret_key": "witcherycompanion:creatures/poltergeist_properties",
+      "_comment": "Unlocked when player uses Brew of Revealing on a Poltergeist (TODO)"
+    }
+  ]
+}

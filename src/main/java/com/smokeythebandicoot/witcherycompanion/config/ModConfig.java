@@ -10,7 +10,6 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -979,6 +978,10 @@ public class ModConfig {
 
             public static class Flags {
 
+                @Config.Comment("If true, shows a page in the Altar section detailing the effects of the Infinity Egg (Creative Item)")
+                @Config.Name("Altar - Show Infinity Booster")
+                public static boolean altar_enableInfinity = false;
+
                 @Config.Comment("If true, shows more info for Bottling Skill and Expertise")
                 @Config.Name("Brewing - Expertise Extension")
                 public static boolean brewing_enableExpertiseExtension = false;
@@ -994,6 +997,46 @@ public class ModConfig {
                 @Config.Comment("If true, shows how much power a Cauldron recipe requires")
                 @Config.Name("Brewing - Show Required Power")
                 public static boolean brewing_showRequiredPower = false;
+
+                @Config.Comment("If true, shows more information about Instant, Liquid and Gas dispersals, as Witchery does for Triggered dispersal")
+                @Config.Name("Brewing - Dispersal Details Extension")
+                public static boolean brewing_extendedDispersal = false;
+
+                @Config.Comment("If true, shows an additional page for Inferno Brew Effect detailing how to summon a Demon")
+                @Config.Name("Brew Effects - Inferno Details Extension")
+                public static boolean brewEffects_infernoExtendedDetails = false;
+
+                @Config.Comment("If true, the Blight effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Blight")
+                public static boolean brewEffects_showBlight = false;
+
+                @Config.Comment("If true, the Floating effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Floating")
+                public static boolean brewEffects_showFloating = false;
+
+                @Config.Comment("If true, the Healing effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Healing")
+                public static boolean brewEffects_showHealing = false;
+
+                @Config.Comment("If true, the Lava Hold effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Lava Hold")
+                public static boolean brewEffects_showLavaHold = false;
+
+                @Config.Comment("If true, the Decanting effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Decanting")
+                public static boolean brewEffects_showDecanting = false;
+
+                @Config.Comment("If true, the Raise Land effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Raise Land")
+                public static boolean brewEffects_showRaiseLand = false;
+
+                @Config.Comment("If true, the Repell Attacker effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Repell Attacker")
+                public static boolean brewEffects_showRepellAttacker = false;
+
+                @Config.Comment("If true, the Weaken Vampires effect will show in the Brew Effects List")
+                @Config.Name("Brew Effects - Show Weaken Vampires")
+                public static boolean brewEffects_showWeakenVampires = false;
 
                 @Config.Comment("If true, adds a few more pages about how Brazier works")
                 @Config.Name("Conjuring - Enable Extended Intro")
@@ -1043,6 +1086,22 @@ public class ModConfig {
             @Config.Name("Patchouli Integration - Obfuscation Strategy")
             public static EPatchouliObfuscationStrategy common_obfuscationStrategy = EPatchouliObfuscationStrategy.OBFUSCATE;
 
+            @Config.RequiresMcRestart
+            @Config.Comment("[WIP] If true, WitcheryCompanion will replace the Witchery mechanic of crafting Torn Pages with " +
+                    "the Observations of an Immortal book with its own, including it in the Patchouli Guide. Torn Page " +
+                    "will be replaced with a new, transparent-to-players item (and compatible with old worlds) that can " +
+                    "be right-clicked to add a new page to the Observations section of the Patchouli guide. Can still be " +
+                    "combined with Witchery Observations book. If false, this section will be hidden altogether and old " +
+                    "mechanic will still work.")
+            @Config.Name("Patchouli Integration - Revamp Vampire Book")
+            public static boolean common_replaceImmortalsBook = false;
+
+            @Config.Comment("If true, Torn Pages will only have a chance of unlocking new knowledge, as it may contain " +
+                    "duplicate pages. Pages will always be unlocked sequentially, but later pages will be increasingly harder " +
+                    "to unlock")
+            @Config.Name("Patchouli Integration - Revamp Vampire Book")
+            public static boolean common_harderImmortalPages = false;
+
             public enum EPatchouliSecretPolicy {
                 ALWAYS_SHOW,
                 PROGRESS,
@@ -1063,10 +1122,21 @@ public class ModConfig {
                 HashMap<String, Boolean> flags = new HashMap<>();
 
                 // Companion Flags
+                flags.put("altar/show_infinity", Flags.altar_enableInfinity);
                 flags.put("brewing/expertise", Flags.brewing_enableExpertiseExtension);
+                flags.put("brewing/extended_dispersal", Flags.brewing_extendedDispersal);
                 flags.put("brewing/rituals", Flags.brewing_enableRitualsExtension);
                 flags.put("brewing/show_ceiling", Flags.brewing_revealRemoveCeiling);
                 flags.put("brewing/show_power", Flags.brewing_showRequiredPower);
+                flags.put("brew_effects/inferno_details", Flags.brewEffects_infernoExtendedDetails);
+                flags.put("brew_effects/show_blight", Flags.brewEffects_showBlight);
+                flags.put("brew_effects/show_floating", Flags.brewEffects_showFloating);
+                flags.put("brew_effects/show_healing", Flags.brewEffects_showHealing);
+                flags.put("brew_effects/show_lavahold", Flags.brewEffects_showLavaHold);
+                flags.put("brew_effects/show_decanting", Flags.brewEffects_showDecanting);
+                flags.put("brew_effects/show_raiseland", Flags.brewEffects_showRaiseLand);
+                flags.put("brew_effects/show_repellattacker", Flags.brewEffects_showRepellAttacker);
+                flags.put("brew_effects/show_weakenvampires", Flags.brewEffects_showWeakenVampires);
                 flags.put("conjuring/show_extra", Flags.conjuring_showExtraEntity);
                 flags.put("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
                 flags.put("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);
@@ -1074,6 +1144,9 @@ public class ModConfig {
                 flags.put("symbology/stroke_visualization", Flags.symbology_enableStrokeVisualization);
                 flags.put("symbology/show_secret", Flags.symbology_showSecret);
                 flags.put("symbology/show_knowledge", Flags.symbology_showKnowledge);
+
+                // Special flag that is required to hide the observations section of the book
+                flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
 
                 PatchouliApiIntegration.updateFlags(flags);
 
@@ -1097,7 +1170,10 @@ public class ModConfig {
             reloadRiteOfMovingEarthBlacklist();
 
             // Avoid reloading Patchouli flags when load is not completed
-            if (Loader.instance().hasReachedState(LoaderState.AVAILABLE) && Loader.isModLoaded(Mods.PATCHOULI))
+            if (
+                    //Loader.instance().hasReachedState(LoaderState.AVAILABLE) &&
+                            Loader.isModLoaded(Mods.PATCHOULI)
+            )
                 IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
 
         }

@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Grave Infusion",
+  "icon": "witchery:infused_grave_brew",
+  "category": "circle_magic/infusion",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:grave_brew_infusion",
+      "title": "Grave Brew Infusion",
+      "description": "Infuse the $(l:)Brew of the Grave$(/l)."
+    }
+  ]
+}

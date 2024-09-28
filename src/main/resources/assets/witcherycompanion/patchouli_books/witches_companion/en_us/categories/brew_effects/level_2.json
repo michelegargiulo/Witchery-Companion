@@ -1,0 +1,8 @@
+{
+  "name": "Level 2 effects",
+  "description": "",
+  "parent": "brewing",
+  "icon": "minecraft:magma_cream",
+  "sortnum": 2,
+  "secret": false
+}

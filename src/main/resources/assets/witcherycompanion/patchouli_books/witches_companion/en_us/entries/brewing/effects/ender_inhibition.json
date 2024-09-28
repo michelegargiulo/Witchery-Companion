@@ -1,0 +1,14 @@
+{
+  "name": "Ender Inhibition",
+  "icon": "witchery:ender_dew",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Ender Inhibition",
+      "item": "witchery:ender_dew",
+      "text": "Prevents teleportation of most creatures. Higher levels may be required to prevent more powerful teleportation effects and rituals."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Potion Longevity",
+  "icon": "witchery:creeper_heart",
+  "category": "brew_effects/level_6",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Potion Longevity",
+      "item": "witchery:creeper_heart",
+      "text": "Boosts the duration of any currently active potion effects. Cannot be used when $(item)Queasy$()."
+    }
+  ]
+}

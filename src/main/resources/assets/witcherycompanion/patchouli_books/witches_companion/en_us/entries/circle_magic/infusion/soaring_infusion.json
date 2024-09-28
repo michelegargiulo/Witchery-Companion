@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Soaring Infusion",
+  "icon": "witchery:infused_soaring_brew",
+  "category": "circle_magic/infusion",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:soaring_brew_infusion",
+      "title": "Soaring Brew Infusion",
+      "description": "Infuse the $(l:)Brew of Soaring$(/l)."
+    }
+  ]
+}

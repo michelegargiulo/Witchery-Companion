@@ -1,0 +1,14 @@
+{
+  "name": "Poison Toad",
+  "icon": "minecraft:double_plant",
+  "category": "brew_effects/level_5",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Poison Toad",
+      "item": "minecraft:double_plant",
+      "text": "summons a toad that will explode causing nearby creatures to become poisoned."
+    }
+  ]
+}

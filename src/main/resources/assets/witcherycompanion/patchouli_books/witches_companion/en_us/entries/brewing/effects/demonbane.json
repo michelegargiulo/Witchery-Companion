@@ -1,0 +1,14 @@
+{
+  "name": "Demonbane",
+  "icon": "minecraft:ice",
+  "category": "brew_effects/level_5",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Demonbane",
+      "item": "minecraft:ice",
+      "text": "Causes a lot of damage to $(l:creatures/demon)Demons$() and a little damage to other creatures."
+    }
+  ]
+}

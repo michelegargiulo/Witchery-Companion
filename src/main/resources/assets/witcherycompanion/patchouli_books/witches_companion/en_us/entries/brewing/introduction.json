@@ -1,0 +1,39 @@
+{
+  "name": "Introduction",
+  "icon": "witchery:anointing_paste",
+  "category": "brewing",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": "Fill a $(item)Cauldron$() to the brim with water and light a fire beneath. When the water boils, throw in your ingredients for either:$(br)$(li)$(l:brewing/brewing)Brews$(li)$(l:brewing/rituals)Rituals$(li)$(l:brewing/crafting)Crafting"
+    },
+    {
+      "type": "crafting",
+      "recipe": "witchery:anointing_paste",
+      "text": "A Witch's Cauldron is made by placing a normal $(o)Cauldron$() in the world and using $(thing)$(o)Anointing Paste$() on it"
+    },
+    {
+      "type": "brewing/cauldron_clear",
+      "title": "Cauldron: Emptying",
+      "top_text": "Empty a cauldron by dropping in one of the following:",
+      "bottom_text": "$(italic)The witch and nearby structures will not be damaged$()",
+      "item1": "witchery:gypsum",
+      "item1_desc": "Clear cauldron",
+      "item2": "witchery:quicklime",
+      "item2_desc": "Explode cauldron"
+    },
+    {
+      "type": "text",
+      "title": "Bottling",
+      "text": "Inexperienced witches are not so proficient in actually bottling a brew. To obtain more brews from a cauldron practice is needed, eventually requiring more complex brews to be made.",
+      "anchor": "expertise"
+    },
+    {
+      "type": "text",
+      "title": "Bottling Skill",
+      "flag": "witcherycompanion:brewing/expertise",
+      "text": "Expertise is measured by $(o)Bottling Skill$(). To increase expertise, craft complex brews and provide the brew with more capacity and high-level effects.$(p)Use a $(item)Seer Stone$() to check your current Bottling Skill level.$(p)More experienced witches are able to bottle more brews for the same amount of ingredients used."
+    }
+  ]
+}

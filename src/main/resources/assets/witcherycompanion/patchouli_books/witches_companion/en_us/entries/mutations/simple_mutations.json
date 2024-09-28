@@ -1,0 +1,24 @@
+{
+  "name": "Simple Mutations",
+  "icon": "minecraft:mycelium",
+  "category": "mutations",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Simple Mutations",
+      "text": "The $(item)Mutating Sprig$() is also capable of mutating some blocks into others by simply using it on such blocks."
+    },
+    {
+      "type": "mutations/simple_mutation_list",
+      "title": "Simple Mutations",
+      "text": "Mutations have no cost nor cooldown.",
+      "input0": "minecraft:grass",
+      "output0": "minecraft:mycelium",
+      "input1": "minecraft:dirt",
+      "output1": "minecraft:clay",
+      "input2": "minecraft:mycelium",
+      "output2": "minecraft:grass"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Broom Infusion",
+  "icon": "witchery:broom",
+  "category": "circle_magic/infusion",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:sky_broom_infusion",
+      "title": "Broom Infusion",
+      "description": "Infuse a $(l:)Broom$(/l). Perform at night."
+    }
+  ]
+}

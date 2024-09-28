@@ -1,0 +1,98 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.ModifierBrewActionProcessor",
+  "include": [
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general0",
+      "using": {
+        "stack": "#stack0",
+        "description": "#description0"
+      },
+      "x": 4,
+      "y": 21
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general1",
+      "using": {
+        "stack": "#stack1",
+        "description": "#description1"
+      },
+      "x": 4,
+      "y": 38
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general2",
+      "using": {
+        "stack": "#stack2",
+        "description": "#description2"
+      },
+      "x": 4,
+      "y": 55
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general3",
+      "using": {
+        "stack": "#stack3",
+        "description": "#description3"
+      },
+      "x": 4,
+      "y": 72
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general4",
+      "using": {
+        "stack": "#stack4",
+        "description": "#description4"
+      },
+      "x": 4,
+      "y": 89
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general5",
+      "using": {
+        "stack": "#stack5",
+        "description": "#description5"
+      },
+      "x": 4,
+      "y": 106
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general6",
+      "using": {
+        "stack": "#stack6",
+        "description": "#description6"
+      },
+      "x": 4,
+      "y": 123
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general7",
+      "using": {
+        "stack": "#stack7",
+        "description": "#description7"
+      },
+      "x": 4,
+      "y": 140
+    }
+  ],
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    }
+  ]
+}

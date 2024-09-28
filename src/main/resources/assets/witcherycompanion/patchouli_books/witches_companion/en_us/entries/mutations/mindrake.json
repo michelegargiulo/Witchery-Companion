@@ -1,0 +1,19 @@
+{
+  "name": "Mindrake Bulb",
+  "icon": "witchery:mindrake_bulb",
+  "category": "mutations",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "multiblock",
+      "multiblock_id": "witchery:mindrake",
+      "name": "Mindrake Bulb",
+      "text": "Entities must be inside the central $(item)Cobweb$()."
+    },
+    {
+      "type": "text",
+      "title": "Mutation Details",
+      "text": "Entities:$(br)$(8)>$() 1 Creeper$(br)$(8)>$() 1 $(l:creatures/mandrake)Mandrake$(/l)$(p)Notes:$(br)One $(l:herbology/herbology#grassper)Grassper$(/l) needs to hold a $(l:)Charged Attuned Stone$(/l), one a $(l:)Focused Will$() and the other two $(l:)Mutandis Extremis$(/l)$(p)$(l:)Mandrake$(/l) crops must be fully mature."
+    }
+  ]
+}

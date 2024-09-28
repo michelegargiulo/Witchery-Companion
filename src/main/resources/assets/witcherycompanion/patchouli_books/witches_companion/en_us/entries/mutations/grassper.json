@@ -1,0 +1,14 @@
+{
+  "name": "Grassper",
+  "icon": "witchery:grassper",
+  "category": "mutations",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "multiblock",
+      "multiblock_id": "witchery:grassper",
+      "name": "Grassper",
+      "text": "The $(item)Chest$() in the middle must be empty."
+    }
+  ]
+}

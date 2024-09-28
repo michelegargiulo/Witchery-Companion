@@ -1,0 +1,59 @@
+{
+  "name": "Kettle Infusions",
+  "icon": "witchery:world_soul",
+  "category": "kettle",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Brewing Infusions",
+      "text": "The $(item)Kettle$() really shines when used to prepare $(item)Infusions$(), the highest tier of witchcraft magic."
+    },
+    {
+      "type": "text",
+      "title": "Step-by-Step",
+      "text": "$(8)1.$() Throw the ingredients into a heated, water-filled Kettle. $(l:altar/altar)Altars$(/l) provide power, if needed.$(p)$(8)2.$() Fill the brew into an empty $(item)Glass Bottle$().$(p)$(8)3.$() For infusions, use them in a Rite of Infusion ($(l:circle_magic/infusion/light_infusion)Light$(/l), $(l:circle_magic/infusion/earth_infusion)Earth$(/l), $(l:circle_magic/infusion/infernal_infusion)Infernal$(/l), $(l:circle_magic/infusion/otherwhere_infusion)Otherwhere$(/l)); but remember, death is almost always assured."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/flying_ointment",
+      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Poison III potion effect for one minute."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/mystic_unguent",
+      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Weakness II potion effect for one minute"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/happenstance_oil",
+      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Night Vision potion effect for one minute"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/infusion_base",
+      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Wither IV potion effect for 10 seconds."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/ghost_of_the_light",
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/soul_of_the_world",
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/infernal_animus",
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II for one minute and Wither III potion effect for 3 minutes."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/spirit_of_otherwhere",
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute."
+    }
+  ]
+}
+

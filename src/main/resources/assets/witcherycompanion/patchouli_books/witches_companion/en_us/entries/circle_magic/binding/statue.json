@@ -1,0 +1,14 @@
+{
+  "name": "Bind Statue",
+  "icon": "witchery:frogs_toe",
+  "category": "circle_magic/binding",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:player_statue_binding",
+      "title": "Bind Statue",
+      "description": "Bind a player in the circle to the $(l:)Statue$(/l)."
+    }
+  ]
+}

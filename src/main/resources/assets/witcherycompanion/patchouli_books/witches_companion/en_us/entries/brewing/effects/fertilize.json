@@ -1,0 +1,14 @@
+{
+  "name": "Fertilize",
+  "icon": "minecraft:dye:15",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Fertilize",
+      "item": "minecraft:dye:15",
+      "text": "Fertilizes the blocks in an area in a similar way to $(item)Bonemeal$()"
+    }
+  ]
+}

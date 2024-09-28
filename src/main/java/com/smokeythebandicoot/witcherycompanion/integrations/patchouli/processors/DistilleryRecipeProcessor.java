@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/** This processor is responsible for generating a list of strokes for a SymbolStrokesComponent from a Symbol Effect **/
 public class DistilleryRecipeProcessor extends BaseProcessor {
 
     protected String recipeId = null;

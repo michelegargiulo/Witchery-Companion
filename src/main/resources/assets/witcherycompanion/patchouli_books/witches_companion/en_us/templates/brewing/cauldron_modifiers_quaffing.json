@@ -1,0 +1,54 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.ModifierBrewActionProcessor",
+  "include": [
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_quaffing0",
+      "using": {
+        "stack": "#stack0",
+        "description": "#description0"
+      },
+      "x": 4,
+      "y": 86
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_quaffing1",
+      "using": {
+        "stack": "#stack1",
+        "description": "#description1"
+      },
+      "x": 4,
+      "y": 104
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_quaffing2",
+      "using": {
+        "stack": "#stack2",
+        "description": "#description2"
+      },
+      "x": 4,
+      "y": 122
+    }
+  ],
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    },
+    {
+      "type": "text",
+      "text": "#text",
+      "x": 2,
+      "y": 20
+    }
+  ]
+}

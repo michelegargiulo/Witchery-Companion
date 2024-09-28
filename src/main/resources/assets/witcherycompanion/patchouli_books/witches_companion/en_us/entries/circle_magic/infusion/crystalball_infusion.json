@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Crystal Ball Infusion",
+  "icon": "witchery:crystal_ball",
+  "category": "circle_magic/infusion",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:future_crystal_ball_infusion",
+      "title": "Crystal Ball Infusion",
+      "description": "Infuse a $(l:)Crystal Ball$(/l) to see the future. Perform at night."
+    }
+  ]
+}

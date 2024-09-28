@@ -1,0 +1,15 @@
+{
+  "name": "Blight",
+  "icon": "minecraft:poisonous_potato",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "flag": "witcherycompanion:brew_effects/show_blight",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Blight",
+      "item": "minecraft:poisonous_potato",
+      "text": "Kills and decays all land and entities in the area of effect, turning farmland into sand, mutating $(item)Villager$() into their zombie variants and turning $(item)Cows$() into $(item)Mooshrooms$()."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Other Rituals",
+  "description": "Other rituals that do not belong to any other category.",
+  "icon": "witchery:charged_attuned_stone",
+  "parent": "circle_magic",
+  "sortnum": 11,
+  "secret": false
+}

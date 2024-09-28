@@ -1,0 +1,14 @@
+{
+  "name": "Snow Trail",
+  "icon": "minecraft:snowball",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Snow Trail",
+      "item": "minecraft:snowball",
+      "text": "Causes a light snow covering to burst over hit blocks. Creatures and players will start to leave snow trails (in not too hot biomes). Snowmen may suffer from too much snow."
+    }
+  ]
+}

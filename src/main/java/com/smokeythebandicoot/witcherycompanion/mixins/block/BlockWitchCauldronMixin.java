@@ -3,6 +3,8 @@ package com.smokeythebandicoot.witcherycompanion.mixins.block;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
@@ -15,6 +17,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.msrandom.witchery.block.BlockWitchCauldron;
@@ -133,11 +136,8 @@ public abstract class BlockWitchCauldronMixin {
         for (BrewAction action : actionList.actions) {
             if (action.getHidden()) {
                 ItemStack stack = action.getKey().toStack();
-                IWitcheryProgress progress = player.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
-                if (progress != null) {
-                    progress.unlockProgress(ProgressUtils.getBrewActionSecret(stack));
-                    ProgressSync.serverRequest(player);
-                }
+                ProgressUtils.unlockProgress(player, ProgressUtils.getBrewActionSecret(stack),
+                        WitcheryProgressEvent.EProgressTriggerActivity.CAULDRON_BREW.activityTrigger);
             }
         }
     }

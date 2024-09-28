@@ -1,0 +1,14 @@
+{
+  "name": "Felling",
+  "icon": "minecraft:string",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Felling",
+      "item": "minecraft:string",
+      "text": "Breaks any nearby log blocks, triggering their normal drops."
+    }
+  ]
+}

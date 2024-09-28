@@ -1,0 +1,31 @@
+{
+  "name": "Introduction",
+  "icon": "witchery:mystic_unguent",
+  "category": "symbology",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Symbology",
+      "text": "Drawing symbols with a $(item)Mystic Branch$() allows a practitioner to sculpt natural energies.$(2br)Only $(italic)Infused$() practitioners can use this type of magic.$(2br)Forbidden curses require the $(italic)Infernal Infusion$()"
+    },
+    {
+      "type": "text",
+      "title": "Introduction",
+      "text": "First off, start by performing a $(item)Rite of Infusion$() to combine $(item)Mystic Unguent$() and an $(item)Ent Twig$() to get a $(item)Mystic Branch$().$(2br)To cast a spell, use and hold the Mystic Branch in the air, then wave it in a direction to draw a $(item)Symbol$(). If the symbols drawn represent the pattern of a spell, it will be casted upon release of the Mystic Branch.$(2br)Left click with the branch to deflect a spell projectile.",
+      "flag": "witcherycompanion:symbology/extended_intro"
+    },
+    {
+      "type": "text",
+      "title": "Boosting power",
+      "text": "Spell power can be boosted by binding a $(item)Statue of Hobgoblin Patron$() and getting $(item)Hobgoblins$() to worship it instead of their Mog and Gulg. This worship gives the Witch more power but too many Hobgoblins may cause Mog and Gulg to notice and attack the Witch.",
+      "flag": "witcherycompanion:symbology/extended_intro"
+    },
+    {
+      "type": "text",
+      "title": "Secret Spells",
+      "text": "Some spells are still unknown and might appear as blank pages or unreadable text. Once you find and draw the spell, their text will be revealed.$(2br)Also, Some spells require a certain knowledge to be used. Dealing with $(item)Flame Imps$() and $(item)Lord of Torment$() might shed light on the dark secrets of symbology.",
+      "flag": "witcherycompanion:symbology/extended_intro"
+    }
+  ]
+}

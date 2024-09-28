@@ -1,0 +1,14 @@
+{
+  "name": "Sticky Potion Effects",
+  "icon": "witchery:redstone_soup",
+  "category": "brew_effects/level_8",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Sticky Potion Effects",
+      "item": "witchery:redstone_soup",
+      "text": "Keep active beneficial potion effects on death."
+    }
+  ]
+}

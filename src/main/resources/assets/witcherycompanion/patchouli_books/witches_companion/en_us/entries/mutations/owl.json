@@ -1,0 +1,19 @@
+{
+  "name": "Owl",
+  "icon": "minecraft:feather",
+  "category": "mutations",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "multiblock",
+      "multiblock_id": "witchery:owl",
+      "name": "Owl",
+      "text": "Entities must be inside the central $(item)Cobweb$()."
+    },
+    {
+      "type": "text",
+      "title": "Mutation Details",
+      "text": "Entities:$(br)$(8)>$() 1 Wolf$(br)$(p)Notes:$(br)One $(l:herbology/herbology#grassper)Grassper$(/l) needs to hold a $(l:)Charged Attuned Stone$(/l), and the other three $(l:)Mutandis Extremis$(/l)$(p)Snares must be $(l:herbology/herbology#critter_snare)Bat Critter Snare$(/l)."
+    }
+  ]
+}

@@ -4,14 +4,19 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
+import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.SpiritEffectApi;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.SpiritEffectRecipeProcessor;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.msrandom.witchery.block.entity.TileEntityCircle;
 import net.msrandom.witchery.infusion.spirit.InfusedSpiritEffect;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
@@ -89,9 +94,10 @@ public abstract class RiteEffectBindSpiritsToFetishMixin extends RiteEffect {
                     WitcheryCompanion.logger.warn("Could not unlock secret for InfusedSpiritEffect: progress is null");
                     return;
                 }
-                SpiritEffectRecipeProcessor.SpiritEffectRecipeInfo info = new SpiritEffectRecipeProcessor.SpiritEffectRecipeInfo(recipe);
-                progress.unlockProgress(ProgressUtils.getSpiritEffectRecipeSecret(info.id));
-                ProgressSync.serverRequest(player);
+                ResourceLocation id = SpiritEffectApi.getId(recipe);
+                if (id == null) return;
+                ProgressUtils.unlockProgress(player, ProgressUtils.getRiteEffectSecret(id.toString()),
+                        WitcheryProgressEvent.EProgressTriggerActivity.BIND_TO_FETISH.activityTrigger);
             }
         }
 

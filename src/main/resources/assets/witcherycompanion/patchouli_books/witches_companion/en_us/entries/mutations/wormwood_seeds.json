@@ -1,0 +1,14 @@
+{
+  "name": "Wormwood Seeds",
+  "icon": "witchery:wormwood_seeds",
+  "category": "mutations",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "multiblock",
+      "multiblock_id": "witchery:wormwood_seeds",
+      "name": "Wormwood Seeds",
+      "text": "$(item)Wheat$() crop must $(italic)not$() be fully mature."
+    }
+  ]
+}

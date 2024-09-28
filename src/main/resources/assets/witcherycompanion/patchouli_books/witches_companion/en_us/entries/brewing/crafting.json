@@ -1,0 +1,126 @@
+{
+  "name": "Crafting",
+  "icon": "witchery:luck_drop",
+  "category": "brewing",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Crafting",
+      "text": "The cauldron can be used to create or imbue items with magical properties. If a suitable combination of ingredients is thrown into the cauldron, the creation process will begin automatically. Use $(l:brewing/rituals#risks_and_power)ritual circles$(/l) to reduce power costs!"
+    },
+    {
+      "type": "text",
+      "title": "Recipes",
+      "text": "> $(l:brewing/crafting#nether_wart)Nether Wart$(/l)$(br)> $(l:brewing/crafting#boiled_meat)Boiled Meat$(/l)$(br)> $(l:brewing/crafting#pit_traps)Pit Traps$(/l)$(br)> $(l:brewing/crafting#drop_of_luck)Drop of Luck$(/l)$(br)> $(l:brewing/crafting#mutating_sprig)Mutating Sprig$(/l)$(br)> $(l:brewing/crafting#rotten_flesh)Rotten Flesh$(/l)$(br)> $(l:brewing/crafting#golden_chalk)Golden Chalk$(/l)$(br)> $(l:brewing/crafting#infernal_chalk)Infernal Chalk$(/l)$(br)> $(l:brewing/crafting#mutandis_extremis)Mutandis Extremis$(/l)$(br)> $(l:brewing/crafting#mutandis)Mutandis$(/l)$(br)> $(l:brewing/crafting#otherwhere_chalk)Otherwhere Chalk$(/l)$(br)> $(l:brewing/crafting#end_stone)End Stone$(/l)$(br)> $(l:brewing/crafting#player_compass)Player Compass$(/l)$(br)"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Nether Wart",
+      "description": "For when a Nether Fortress is too hard to find",
+      "output_item": "minecraft:nether_wart",
+      "first_recipe_id": "witchery:cauldron/nether_wart",
+      "anchor": "nether_wart"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Pit Traps",
+      "description": "Non-solid blocks!",
+      "first_recipe_id": "witchery:cauldron/pit_traps/pit_grass",
+      "second_recipe_id": "witchery:cauldron/pit_traps/pit_dirt",
+      "anchor": "pit_traps"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Boiled Meat",
+      "description": "Porkchop, Beef, Chicken and Mutton? can all be dropped into a boiling cauldron to cook",
+      "first_recipe_id": "witchery:cauldron/boiled_meat/cooked_porkchop",
+      "second_recipe_id": "witchery:cauldron/boiled_meat/cooked_beef",
+      "anchor": "boiled_meat"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Boiled Meat",
+      "description": "Porkchop, Beef, Chicken and Mutton? can all be dropped into a boiling cauldron to cook",
+      "first_recipe_id": "witchery:cauldron/boiled_meat/cooked_chicken",
+      "second_recipe_id": "witchery:cauldron/boiled_meat/cooked_mutton"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Boiled Meat",
+      "description": "Porkchop, Beef, Chicken and Mutton? can all be dropped into a boiling cauldron to cook",
+      "first_recipe_id": "witchery:cauldron/boiled_meat/cooked_sheep_liver",
+      "second_recipe_id": "witchery:cauldron/boiled_meat/cooked_odd_porkchop"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Rotten Flesh",
+      "description": "Finally a use for spare hands.",
+      "first_recipe_id": "witchery:cauldron/rotten_flesh",
+      "anchor": "rotten_flesh"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Mutating Sprig",
+      "description": "Use on plants and creatures as part of mutating rituals",
+      "first_recipe_id": "witchery:cauldron/mutating_sprig",
+      "anchor": "mutating_sprig"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Drop of Luck",
+      "description": "Bottled luck, rare and hard to make",
+      "first_recipe_id": "witchery:cauldron/luck_drop",
+      "anchor": "drop_of_luck"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Golden Chalk",
+      "description": "The centrepiece of most rites",
+      "first_recipe_id": "witchery:cauldron/chalk/heart_circle_glyph",
+      "anchor": "golden_chalk"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Infernal Chalk",
+      "description": "Used in rites involving the nether and demons",
+      "first_recipe_id": "witchery:cauldron/chalk/infernal_circle_glyph",
+      "anchor": "infernal_chalk"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Mutandis Extremis",
+      "description": "Use on plants to mutate them. Grass creates mycelium. Underwater dirt creates clay.",
+      "first_recipe_id": "witchery:cauldron/mutandis_extremis",
+      "anchor": "mutandis_extremis"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Mutandis",
+      "description": "Use $(item)Mutandis$() on simple plants to mutate them into another, perhaps undiscovered, species.",
+      "first_recipe_id": "witchery:cauldron/mutandis",
+      "anchor": "mutandis"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Otherwhere Chalk",
+      "description": "Used in rites involving transposition",
+      "first_recipe_id": "witchery:cauldron/chalk/otherwhere_circle_glyph",
+      "anchor": "otherwhere_chalk"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "End Stone",
+      "description": "What happens when the floating island is all gone?",
+      "first_recipe_id": "witchery:cauldron/end_stone",
+      "anchor": "end_stone"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Player Compass",
+      "description": "Craft with a taglock to find the way to that person",
+      "first_recipe_id": "witchery:cauldron/player_compass",
+      "anchor": "player_compass"
+    }
+  ]
+}

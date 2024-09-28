@@ -1,0 +1,7 @@
+{
+  "name": "Herbology",
+  "description": "Studying plants that are widely used for witchcrafting",
+  "icon": "witchery:belladonna_flower",
+  "sortnum": 3,
+  "secret": false
+}

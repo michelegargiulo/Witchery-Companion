@@ -1,0 +1,88 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.CapacityBrewActionProcessor",
+  "include": [
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "capacity_brew_action0",
+      "using": {
+        "stack": "#stack0",
+        "description": "#description0"
+      },
+      "x": 4,
+      "y": 26
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "capacity_brew_action1",
+      "using": {
+        "stack": "#stack1",
+        "description": "#description1"
+      },
+      "x": 4,
+      "y": 44
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "capacity_brew_action2",
+      "using": {
+        "stack": "#stack2",
+        "description": "#description2"
+      },
+      "x": 4,
+      "y": 62
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "capacity_brew_action3",
+      "using": {
+        "stack": "#stack3",
+        "description": "#description3"
+      },
+      "x": 4,
+      "y": 80
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "capacity_brew_action4",
+      "using": {
+        "stack": "#stack4",
+        "description": "#description4"
+      },
+      "x": 4,
+      "y": 98
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "capacity_brew_action5",
+      "using": {
+        "stack": "#stack5",
+        "description": "#description5"
+      },
+      "x": 4,
+      "y": 116
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "capacity_brew_action6",
+      "using": {
+        "stack": "#stack6",
+        "description": "#description6"
+      },
+      "x": 4,
+      "y": 134
+    }
+  ],
+  "components": [
+    {
+      "type": "header",
+      "text": "Capacity Items",
+      "centered": true,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    }
+  ]
+}

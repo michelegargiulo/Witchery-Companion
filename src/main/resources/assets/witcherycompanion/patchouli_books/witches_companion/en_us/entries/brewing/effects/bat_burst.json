@@ -1,0 +1,14 @@
+{
+  "name": "Bat Burst",
+  "icon": "witchery:concentrated_bat_ball",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bat Burst",
+      "item": "witchery:concentrated_bat_ball",
+      "text": "Causes an explosion of bats."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Light Infusion",
+  "icon": "witchery:light_ghost",
+  "category": "circle_magic/infusion",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:light_infusion",
+      "title": "Light Infusion",
+      "description": "You must stand in the circle."
+    }
+  ]
+}

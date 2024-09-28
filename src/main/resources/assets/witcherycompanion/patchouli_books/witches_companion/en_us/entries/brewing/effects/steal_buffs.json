@@ -1,0 +1,14 @@
+{
+  "name": "Steal Buffs",
+  "icon": "minecraft:skull:0",
+  "category": "brew_effects/level_6",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Steal Buffs",
+      "item": "minecraft:skull:0",
+      "text": "Removes all of the positive effects from creatures in a wide area, and applies them on the caster."
+    }
+  ]
+}

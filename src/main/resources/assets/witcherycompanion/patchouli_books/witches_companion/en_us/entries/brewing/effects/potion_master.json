@@ -1,0 +1,21 @@
+{
+  "name": "Decanting / Insanity",
+  "icon": "witchery:luck_drop",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "flag": "witcherycompanion:brew_effects/show_decanting",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Decanting",
+      "item": "witchery:luck_drop",
+      "text": "Witches will have increased brewing yield."
+    },
+    {
+      "type": "spotlight",
+      "title": "Insanity",
+      "item": "minecraft:fermented_spider_eye",
+      "text": "$(l:brewing/modifiers)Inverted:$(/l)$(br)Makes a creature under this effect allucinate."
+    }
+  ]
+}
