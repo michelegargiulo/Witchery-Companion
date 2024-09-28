@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "witchery:circle_talisman",
-      "text": "A Circle Talisman is a way to store $(item)Circle Glyphs$() in the talisman itself, for later deploy or quickly moving them. Using a $(l:)Rite of Binding$(/l) the circle glyphs will be erased from the world and stored in the talisman."
+      "text": "A Circle Talisman is a way to store $(item)Circle Glyphs$() in the talisman itself, for later deploy or quickly moving them. Using a $(l:circle_magic/binding/talisman)Rite of Binding$(/l) the circle glyphs will be erased from the world and stored in the talisman."
     },
     {
       "type": "text",

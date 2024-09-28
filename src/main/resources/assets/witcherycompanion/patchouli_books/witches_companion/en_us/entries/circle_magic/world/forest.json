@@ -1,0 +1,50 @@
+{
+  "name": "Rite of the Forest",
+  "icon": "minecraft:sapling",
+  "category": "circle_magic/world",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:oak_forestation",
+      "title": "Oak Forestation",
+      "description": "Grow an Oak forest."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:spruce_forestation",
+      "title": "Spruce Forestation",
+      "description": "Grow a Spruce forest."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:birch_forestation",
+      "title": "Birch Forestation",
+      "description": "Grow a Birch forest."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:jungle_forestation",
+      "title": "Jungle Forestation",
+      "description": "Grow a Jungle forest."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:alder_forestation",
+      "title": "Alder Forestation",
+      "description": "Grow a Alder forest."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:hawthorn_forestation",
+      "title": "Hawthorn Forestation",
+      "description": "Grow a Hawthorn forest."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:rowan_forestation",
+      "title": "Rowan Forestation",
+      "description": "Grow a Rowan forest."
+    }
+  ]
+}

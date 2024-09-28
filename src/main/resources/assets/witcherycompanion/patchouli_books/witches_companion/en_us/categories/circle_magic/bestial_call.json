@@ -1,7 +1,0 @@
-{
-  "name": "Rites of Bestial Call",
-  "description": "Rites that recall beasts and animals.",
-  "icon": "witchery:wolf_head",
-  "parent": "circle_magic",
-  "secret": false
-}

@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Shifting Seasons",
+  "icon": "witchery:biome_note",
+  "category": "circle_magic/world",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:shifting_seasons",
+      "title": "Rite of Shifting Seasons",
+      "description": "Pick Biome with biome foci and $(item)Glowstone$(). Requires a $(l:)Coven$(/l) of 4 or more."
+    }
+  ]
+}

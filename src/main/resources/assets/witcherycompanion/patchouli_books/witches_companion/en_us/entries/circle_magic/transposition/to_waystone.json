@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Waystone Transposition",
+  "icon": "witchery:bound_waystone",
+  "category": "circle_magic/transposition",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:position_waystone_transposition",
+      "title": "Waystone Transposition",
+      "description": "Teleport to the $(l:)Bound Waystone$(/l) location."
+    }
+  ]
+}

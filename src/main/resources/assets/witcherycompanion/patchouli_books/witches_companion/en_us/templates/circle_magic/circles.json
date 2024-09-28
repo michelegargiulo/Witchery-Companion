@@ -2,17 +2,6 @@
   "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.CirclesProcessor",
   "components": [
     {
-      "type": "header",
-      "text": "#title",
-      "centered": true,
-      "x": -1,
-      "y": -1
-    },
-    {
-      "type": "separator",
-      "y": 12
-    },
-    {
       "type": "text",
       "text": "#description",
       "x": 0,

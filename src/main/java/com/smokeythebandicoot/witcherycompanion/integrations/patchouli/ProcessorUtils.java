@@ -75,7 +75,7 @@ public class ProcessorUtils {
         Iterator<Ingredient> it = ingredients.iterator();
         while (it.hasNext()) {
             Ingredient ing = it.next();
-            sb.append(ItemStackUtil.serializeIngredient(ing));
+            sb.append(serializeItemStackArray(ing.matchingStacks));
             if (it.hasNext()) {
                 sb.append(";");
             }
@@ -108,6 +108,20 @@ public class ProcessorUtils {
             ItemStack stack = it.next();
             sb.append(ItemStackUtil.serializeStack(stack));
             if (it.hasNext()) {
+                sb.append(",");
+            }
+        }
+        return sb.toString();
+    }
+
+    public static String serializeItemStackArray(ItemStack[] stacks) {
+        if (stacks == null)
+            return "";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < stacks.length; i++) {
+            ItemStack stack = stacks[i];
+            sb.append(ItemStackUtil.serializeStack(stack));
+            if (i < stacks.length - 1) {
                 sb.append(",");
             }
         }

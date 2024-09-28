@@ -1,0 +1,14 @@
+{
+  "name": "Curse of Raining Toads",
+  "icon": "witchery:frogs_toe",
+  "category": "circle_magic/curses",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:raining_toads_curse",
+      "title": "Curse of Raining Toads",
+      "description": "Rain poisonous toads. Requires a $(l:)Coven$(/l) of 1 or more."
+    }
+  ]
+}

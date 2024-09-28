@@ -76,6 +76,7 @@
     "infusion.symbol.AlohomoraSymbolEffectMixin",
     "infusion.symbol.ColloportusSymbolEffectMixin",
     "infusion.symbol.SymbolEffectMixin",
+    "init.items.WitcheryIngredientItemsMixin",
     "integration.ThaumcraftIntegration_IntegrateThaumcraftMixin",
     "item.ItemCreativeMedallionMixin",
     "item.ItemMysticBranchMixin",

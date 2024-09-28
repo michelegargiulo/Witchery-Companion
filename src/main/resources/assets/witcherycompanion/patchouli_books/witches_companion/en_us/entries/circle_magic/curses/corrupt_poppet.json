@@ -1,0 +1,14 @@
+{
+  "name": "Curse of Corrupt Poppet",
+  "icon": "witchery:poppet",
+  "category": "circle_magic/curses",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:corrupt_poppet_curse",
+      "title": "Curse of Corrupt Poppet",
+      "description": "Destroy voodoo protection of taglocked being. Needs cat familiar."
+    }
+  ]
+}

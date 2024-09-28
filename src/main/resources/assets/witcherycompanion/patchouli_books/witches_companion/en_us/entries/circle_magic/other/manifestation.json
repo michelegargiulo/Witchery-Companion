@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Manifestation",
+  "icon": "witchery:flowing_spirit_brew",
+  "category": "circle_magic/other",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:manifestation",
+      "title": "Rite of Manifestation",
+      "description": "Manifest as a ghost from the $(l:dimensions/spirit_world#manifestation)Spirit World$(/l)."
+    }
+  ]
+}

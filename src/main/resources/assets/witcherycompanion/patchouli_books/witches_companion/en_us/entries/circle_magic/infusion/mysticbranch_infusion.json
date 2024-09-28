@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Branch Infusion",
+  "icon": "witchery:ent_twig",
+  "category": "circle_magic/infusion",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:tree_mystic_branch_infusion",
+      "title": "Mystic Branch Infusion",
+      "description": "Infuse a $(l:)Mystic Branch$(/l). Perform at night."
+    }
+  ]
+}

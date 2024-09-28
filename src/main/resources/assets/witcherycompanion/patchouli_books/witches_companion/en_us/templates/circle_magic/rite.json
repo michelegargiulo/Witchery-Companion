@@ -1,10 +1,23 @@
 {
   "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.RiteProcessor",
+  "include": [
+    {
+      "template": "circle_magic/circles",
+      "as": "circles0",
+      "using": {
+        "description": "",
+        "circles": "#circles"
+      },
+      "x": 16,
+      "y": 30
+    }
+  ],
   "components": [
     {
       "type": "header",
       "text": "#title",
       "centered": true,
+      "scale": 0.9,
       "x": -1,
       "y": -1
     },
@@ -24,15 +37,18 @@
       "inputs": [
         "#ingredients"
       ],
+      "output": "",
       "input_spacing": 2,
-      "x": 0,
-      "y": 40
+      "layout": "vertical",
+      "line_length": 5,
+      "x": -2,
+      "y": 44
     },
     {
       "type": "text",
-      "text": "Altar Power: #altar_power#",
+      "text": "Altar Power: $(item)#altar_power#$()$(br)#note#",
       "x": 0,
-      "y": 120
+      "y": 132
     }
   ]
 }

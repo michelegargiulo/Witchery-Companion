@@ -3,5 +3,6 @@
   "description": "Rites that manipulate the world.",
   "icon": "minecraft:leaves",
   "parent": "circle_magic",
+  "sortnum": 3,
   "secret": false
 }

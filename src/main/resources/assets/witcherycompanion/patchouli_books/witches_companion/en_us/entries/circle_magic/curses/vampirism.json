@@ -1,0 +1,14 @@
+{
+  "name": "Remove Curse of the Vampire",
+  "icon": "witchery:vampire_coat",
+  "category": "circle_magic/curses",
+  "sortnum": 11,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:vampirism_curse_removal",
+      "title": "Rite of Remove Curse",
+      "description": "Cleanse the taglocked being of vampirism."
+    }
+  ]
+}

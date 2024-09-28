@@ -1,0 +1,21 @@
+{
+  "name": "Rite of Demon Summoning",
+  "icon": "witchery:pentacle",
+  "category": "circle_magic/banishing",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:demon_summoning",
+      "title": "Demon Summoning",
+      "description": "Call forth a $(l:creatures/demon)Demon$(/l).",
+      "note": "$(t:Requires that the inner 7x7x4-blocks area to be clear of any obstacles or blocks)Requires clear area$(/t)"
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:expensive_demon_summoning",
+      "title": "Rite of Demon Summoning",
+      "description": "Call forth a $(l:creatures/demon)Demon$(/l). The inner area must be clear 7x7x4 blocks."
+    }
+  ]
+}

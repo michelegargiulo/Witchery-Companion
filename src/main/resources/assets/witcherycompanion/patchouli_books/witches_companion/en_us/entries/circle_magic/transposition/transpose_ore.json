@@ -1,0 +1,14 @@
+{
+  "name": "Ore Transposition",
+  "icon": "minecraft:iron_ore",
+  "category": "circle_magic/transposition",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:ore_transposition",
+      "title": "Ore Transposition",
+      "description": "Transpose $(item)Iron$() from the ore below."
+    }
+  ]
+}

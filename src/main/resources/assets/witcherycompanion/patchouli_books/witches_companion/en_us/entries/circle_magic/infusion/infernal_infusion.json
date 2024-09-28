@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Infernal Infusion",
+  "icon": "witchery:infernal_animus",
+  "category": "circle_magic/infusion",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:infernal_infusion",
+      "title": "Infernal Infusion",
+      "description": "You must stand in the circle."
+    }
+  ]
+}

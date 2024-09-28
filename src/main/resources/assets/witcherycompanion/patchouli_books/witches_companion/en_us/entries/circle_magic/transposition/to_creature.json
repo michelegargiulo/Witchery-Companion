@@ -1,0 +1,14 @@
+{
+  "name": "Creature Transposition",
+  "icon": "witchery:blooded_waystone",
+  "category": "circle_magic/transposition",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:creature_waystone_transposition",
+      "title": "Creature Transposition",
+      "description": "Teleport to the $(l:)Blooded Waystone$(/l) location."
+    }
+  ]
+}

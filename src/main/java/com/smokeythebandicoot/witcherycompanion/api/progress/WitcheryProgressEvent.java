@@ -36,6 +36,9 @@ public abstract class WitcheryProgressEvent extends Event {
         /** Player has visited a Witchery Dimension **/
         DIMENSION_VISIT("dimension_visit"),
 
+        /** Player has used a Torn Page for the Observations of an Immortal book **/
+        USE_VAMPIRE_PAGE("torn_page_use"),
+
         /** Player has drawn a secret symbol **/
         MYSTIC_BRANCH("mystic_branch"),
         ;

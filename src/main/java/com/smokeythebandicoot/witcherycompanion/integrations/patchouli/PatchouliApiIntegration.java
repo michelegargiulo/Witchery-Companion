@@ -6,8 +6,8 @@ import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.bookcompo
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.*;
 import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.entity.item.ItemEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -20,14 +20,9 @@ import net.msrandom.witchery.resources.BrewActionManager;
 import net.msrandom.witchery.util.WitcheryUtils;
 import vazkii.patchouli.api.BookContentsReloadEvent;
 import vazkii.patchouli.api.PatchouliAPI;
-import vazkii.patchouli.client.book.BookCategory;
-import vazkii.patchouli.client.book.BookContents;
-import vazkii.patchouli.client.book.BookEntry;
 import vazkii.patchouli.client.book.template.BookTemplate;
 import vazkii.patchouli.client.book.text.BookTextParser;
 import vazkii.patchouli.client.book.text.SpanState;
-import vazkii.patchouli.common.book.Book;
-import vazkii.patchouli.common.item.ItemModBook;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
 import java.util.*;
@@ -94,9 +89,21 @@ public class PatchouliApiIntegration {
 
     public static final FlagReloader<ResourceLocation, SpiritEffectRecipe> spiritEffectReloader = new FlagReloader<>(
             SpiritEffectApi::getIterator,
-            id -> id.getPath(),
+            ResourceLocation::getPath,
             "content/spirit_effect_recipes/"
     );
+
+    /*
+    public static final Map<String, Boolean> immortalBookState = new HashMap<>();
+    public static final FlagReloader<String, Boolean> immortalBookReloader = new FlagReloader<>(
+            () -> {
+                immortalBookState.clear();
+                immo
+            },
+            String::valueOf,
+            "observations/immortal/level_"
+    );
+    */
 
     @SubscribeEvent
     public static void onBookReload(BookContentsReloadEvent event) {
@@ -125,6 +132,7 @@ public class PatchouliApiIntegration {
         }
         */
     }
+
 
     /** Custom FunctionProcessor for Patchouli's TextParser
      * Usage: $(roman)<string>$(). While active, all numbers within the 'string' will be converted

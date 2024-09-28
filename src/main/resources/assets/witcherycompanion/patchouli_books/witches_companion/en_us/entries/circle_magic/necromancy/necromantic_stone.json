@@ -1,0 +1,14 @@
+{
+  "name": "Necromantic Stone",
+  "icon": "witchery:necromantic_stone",
+  "category": "circle_magic/necromancy",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:necromantic_stone_necromancy",
+      "title": "Necromantic Stone",
+      "description": "Creates a $(l:)Necromantic Stone$(/l). Perform at night."
+    }
+  ]
+}

@@ -13,13 +13,20 @@
       "type": "spotlight",
       "title": "Entering the Spirit World",
       "item": "witchery:sleeping_brew",
-      "text": "To enter the spirit world, the Witch must use a $(l:)Brew of Sleeping$(/l) or a $(l:)Sleeping Apple$(/l). When entering the realm, a Witch can either experience a Dream or a Nightmare. In the first case, the world will be at daytime, while for nightmares it will be at night time."
+      "text": "To enter the spirit world, the Witch must use a $(l:)Brew of Sleeping$(/l) or a $(l:)Sleeping Apple$(/l). When entering the realm, a Witch can either experience a Dream or a Nightmare. In the first case, the world will be at daytime, while for nightmares it will be at night time.",
+      "anchor": "entering"
+    },
+    {
+      "type": "spotlight",
+      "title": "Dreams",
+      "item": "witchery:flowing_spirit_brew",
+      "text": "Preparing the surrounding environment before sleeping, can decrease the chance of having nightmares. While next to a $(l:constructs/dream_weavers/nightmare)Dream Weaver of Nightmares$(/l), a pool of $(l:kettle/kettle_intro#flowing_spirit)Brew of the Flowing Spirit$(/l) will decrease the chance of a nightmare by 10% for each source block, up to 30%. Having $(l:herbology/herbology#wispy_cotton)Wispy Cotton$(/l) nearby also helps."
     },
     {
       "type": "spotlight",
       "title": "Nightmares",
       "item": "witchery:sleeping_apple",
-      "text": "While $(l:)Sleeping Apples$(/l) always give nightmares, the $(l:)Brew of Sleeping$(/l) has a small chance to not to. The chance of a dream can be increased if, at the time of drinking the brew, a $(l:)Dreamweaver of Nightmares$(/l) is placed nearby. Having a pool of $(l:)Flowing Spirit$(/l) and $(l:herbology/herbology#wispy_cotton)Wispy Cotton$(/l) nearby also helps."
+      "text": "While the $(l:)Brew of Sleeping$(/l) has a small chance to avoid nightmares, a player who eats $(l:)Sleeping Apples$(/l) will always experience a nightmare."
     },
     {
       "type": "text",
@@ -40,7 +47,8 @@
     {
       "type": "text",
       "title": "Manifestations",
-      "text": "A witch can manifest as a Ghost in the physical world. By using the $(l:)Rite of Manifestation$(/l), a player can pass through a $(l:)Spirit Portal$(/l) that has been created to enter the physical world at the corresponding location for a short time. A ghost can return to the Spirit World by using an $(l:)Icy Needle$(/l), when they die, when manifestation effect expires or when they kill their sleeping body."
+      "text": "A witch can manifest as a Ghost in the physical world. By using the $(l:circle_magic/other/manifestation)Rite of Manifestation$(/l), a player can pass through a $(l:)Spirit Portal$(/l) that has been created to enter the physical world at the corresponding location for a short time. A ghost can return to the Spirit World by using an $(l:)Icy Needle$(/l), when they die, when manifestation effect expires or when they kill their sleeping body.",
+      "anchor": "manifestation"
     },
     {
       "type": "text",

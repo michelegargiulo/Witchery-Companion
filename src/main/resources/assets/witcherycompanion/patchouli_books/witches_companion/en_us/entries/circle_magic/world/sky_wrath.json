@@ -1,0 +1,26 @@
+{
+  "name": "Rite of Sky's Wrath",
+  "icon": "witchery:sun_grenade",
+  "category": "circle_magic/world",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:sky_wrath",
+      "title": "Rite of Sky's Wrath",
+      "description": "Call a focused lightning storm inside the circle."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:large_sky_wrath",
+      "title": "Rite of Sky's Wrath",
+      "description": "Call a focused lightning storm outside the circle."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:portable_sky_wrath",
+      "title": "Rite of Sky's Wrath",
+      "description": "Call a focused lightning storm inside the circle."
+    }
+  ]
+}

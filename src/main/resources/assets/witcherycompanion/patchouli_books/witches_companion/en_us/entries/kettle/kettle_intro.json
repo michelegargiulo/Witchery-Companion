@@ -1,0 +1,175 @@
+{
+  "name": "Kettle Brews",
+  "icon": "witchery:kettle",
+  "category": "kettle",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Using the Kettle",
+      "text": "The $(item)Kettle$() is a magical construct that, similarly to the cauldron, is used to prepare brews, but such brews, while easier to prepare, cannot be augmented, nor their effects can be combined.$(br)Place a heat source underneath the kettle."
+    },
+    {
+      "type": "text",
+      "title": "Step-by-Step",
+      "text": "$(8)1.$() Throw the ingredients into a heated, water-filled Kettle. $(l:altar/altar)Altars$(/l) provide power, if needed.$(p)$(8)2.$() Fill the brew into an empty $(item)Glass Bottle$()."
+    },
+    {
+      "type": "text",
+      "title": "Brew Yield",
+      "text": "Proper clothing can increase the yield of brews the Kettle can output from a single recipe. Wearing $(l:)Witches Hat$(/l) and $(l:)Witches Robes$(/l) or having the $(l:brewing/brew_effects/decanting)Decanting$(/l) potion effect can increase the average yield."
+    },
+    {
+      "type": "text",
+      "title": "Ruined brews",
+      "text": "Make sure that the heat source never runs out while the recipe is being prepared, as it can ruin the brew inside.$(p)Black smoke and brown liquid indicate that the brew is ruined.$(p)Black swirls coming from the Kettle is a sign there is not enough power."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/redstone_soup",
+      "description": ""
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_congealed_spirit",
+      "description": "Crafting ingredient for $(l:)Spectral Stone$(/l)."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_hitchcock",
+      "description": "Causes a flock or $(l:creatures/owl)Owls$(/l) to descent on and attack the target. The Owls will disappear if the victim dies."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_sprouting",
+      "description": "Causes a branch to grow on the impact location. Direction of the branch depends on the side of the block hit. Can be used to quickly create bridges or, if thrown at the feet, to ascend rapidly."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_infection",
+      "description": "If it hits a block, it infects it with $(item)Silverfish$(); Also infects $(item)Villagers$() turning them into $(item)Zombie Villagers$(). If used on players, it freezes them, as they clear the worms off themselves.",
+      "note": "Yield cannot be increased"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_raising",
+      "description": "Summons undead creatures from the ground. If it hits a wall, it will bounce and can be collected again. Undeads won't attack the summoner and can be ordered to attack using a $(l:)Necromantic Stone$(/l)"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_sleep",
+      "description": "Will cause players to sleep and enter the $(l:dimensions/spirit_world#entering)Spirit World$(/l). Unless proper preparations, a nightmare is to be expected."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/flowing_spirit_brew",
+      "description": "When thrown on the ground, the liquid will burst out. Standing in the liquid will heal most creatuers, weaken $(l:creatures/demon)Demons$(/l) and undeads. $(l:creatures/nightmare)Nightmares$(/l) will become vulnerable while standing in the liquid.",
+      "note": "Only brewed in the $(l:dimensions/spirit_world)Spirit world$(/l).",
+      "anchor": "flowing_spirit"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/thorns_brew",
+      "description": "Causes a high $(item)Cactus$() to grow where it lands. If it hits a creature, it will be surrounded by four 1-block high cacti. Bounces off walls and can be picked-up again. Hitting cacti will cause them to grow higher."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_cursed_leaping",
+      "description": "Causes the hit creature to be thrown far into the sky. Also gives them $(item)Jumping Boost IV$() potion effect."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/webs_brew",
+      "description": "Creates a bounch of $(item)Cobwebs$() where it lands. Can be used to stop a fall or to slow a pursuer."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_bats",
+      "description": "Causes a swarm of $(item)Bats$() to explode, causing all creatures nearby the impact location to become momentarily stunned."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_ice",
+      "description": "Will spawn a small sheet of $(item)Ice$() at the impact location, or, if thrown in water, it will cause it to freeze. Hit creatures will be encased in ice, but some unexpected effects may happen if used on certain creatures."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/vines_brew",
+      "description": "Causes $(item)Vines$() to grow instantly from the surface it hits. The vines can climb or descend walls that are flat enough. $(l:)Toad Familiars$(/l) augment its effects. The brew bounces off of flat terrain."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_love",
+      "description": "Farm animals and $(item)Villagers$() will start breeding. Hit pairs of $(item)Zombies$() created with $(l:)Brew of Raising$(/l) or enthralled with the $(l:)Infernal Infusion Power$(/l) will produce a $(item)Baby Zombie$() and become $(item)Zombie Villagers$()."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_erosion",
+      "description": "Melts naerby blocks, destroying most blocks. Liquids tend to be unaffected by the volatile acid this brew contains. Hit creatures and their armor will be significantly damaged.",
+      "anchor": "erosion"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_wasting",
+      "description": "Causes anything in its area of effect to waste away. Dissolves foliage, withers creatures and increases hunger to players."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_revealing",
+      "description": "Reveals invisible creatures and entities that are affected by $(item)Invisibility$() potion effect. Will also reveal some spectral creatures."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_frogs_tongue",
+      "description": "Explodes when it hits anything, causing all creatures in its area of effect to be pulled towards the thrower."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_grotesque",
+      "description": "When drunk, most creatures will change their appearance in a form so horrifying that other creatures will run away. Effect lasts for a few minutes."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_depths",
+      "description": "When drunk, creatures will develop gills to breathe underwater, but they will no longer be able to breathe air. The effect will last a few minutes, is removed when if the affected creature dies.",
+      "note": "Milk does not clear the effect."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_substitution",
+      "description": "Swaps placed blocks with unplaced ones. Drop blocks on the ground, then throw the brew. All placed blocks in its area of effects will be swapped with the dropped blocks, in a spiral pattern."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_ink",
+      "description": "Explodes in a burst of ink on impact, blinding most creatures in its area of effect. Further creatures will experience a shorter effect."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/solid_dirt_brew",
+      "description": "Will cause all $(l:distillery/intro#hollow_tears)Hollow Tears$(/l) to solidify into $(item)Dirt$()."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_solid_stone",
+      "description": "Will cause all $(l:distillery/intro#hollow_tears)Hollow Tears$(/l) to solidify into $(item)Stone$()."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_solid_sand",
+      "description": "Will cause all $(l:distillery/intro#hollow_tears)Hollow Tears$(/l) to solidify into $(item)Sand$()."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_solid_sandstone",
+      "title": "Solid. Brew (Sandstone)",
+      "description": "Will cause all $(l:distillery/intro#hollow_tears)Hollow Tears$(/l) to solidify into $(item)Sandstone$()."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/brew_solid_erosion",
+      "title": "Solidifying Erosion Brew",
+      "description": "Will cause all $(l:distilling/intro#hollow_tears)Hollow Tears$(/l) and the blocks below it to be eroded as if hit by a $(l:kettle/kettle_intro#erosion)Brew of Erosion$(/l)."
+    }
+  ]
+}

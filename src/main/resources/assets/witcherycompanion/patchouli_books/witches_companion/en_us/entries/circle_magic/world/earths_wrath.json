@@ -1,0 +1,22 @@
+{
+  "name": "Rite of Earth's Wrath",
+  "icon": "witchery:lava_diviner",
+  "category": "circle_magic/world",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:earth_wrath",
+      "title": "Rite of Earth's Wrath",
+      "description": "Raise a volcano.",
+      "note": "A lava pool must lie below."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:portable_earth_wrath",
+      "title": "Rite of Earth's Wrath",
+      "description": "Raise a volcano.",
+      "note": "A lava pool must lie below."
+    }
+  ]
+}

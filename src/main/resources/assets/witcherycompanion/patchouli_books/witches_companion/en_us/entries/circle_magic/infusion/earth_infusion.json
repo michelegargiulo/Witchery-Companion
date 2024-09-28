@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Earth Infusion",
+  "icon": "witchery:world_soul",
+  "category": "circle_magic/infusion",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:earth_infusion",
+      "title": "Earth Infusion",
+      "description": "You must stand in the circle."
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 {
-  "name": "Rites of Banishment",
-  "description": "Rites that banish demons back to the pit.",
-  "icon": "witchery:demonic_blood",
+  "name": "Rites of Summoning",
+  "description": "Rites that summon demons or banish them back to the pit.",
+  "icon": "witchery:pentacle",
   "parent": "circle_magic",
+  "sortnum": 4,
   "secret": false
 }

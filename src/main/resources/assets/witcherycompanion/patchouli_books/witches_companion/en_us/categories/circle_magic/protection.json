@@ -3,5 +3,6 @@
   "description": "Rites that protect creatures or locations.",
   "icon": "minecraft:shield",
   "parent": "circle_magic",
+  "sortnum": 2,
   "secret": false
 }

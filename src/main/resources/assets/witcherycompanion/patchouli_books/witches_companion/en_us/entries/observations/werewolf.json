@@ -1,0 +1,112 @@
+{
+  "name": "Of a Lycantrope",
+  "title": "Observations",
+  "icon": "witchery:wolf_head",
+  "category": "observations",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "text": "It is with some reluctance I commit there observations to paper, for what I have witnessd is not for the weak of mind.$(br)Instead, take my words as a warning..."
+    },
+    {
+      "type": "text",
+      "text": "He reminisced over dinner this evening about his 'birth', a demonic pact of sorts. He butchered a chicken over a skull with a boline and held the glass goblet to collect the blood. It was barbaric, I remarked as such to him."
+    },
+    {
+      "type": "multiblock",
+      "multiblock": {
+        "pattern": [[
+          "TWWWWWT",
+          "WW   WW",
+          "W RRR W",
+          "W R0R W",
+          "W RRR W",
+          "WW   WW",
+          "TWWWWWT"
+        ]],
+        "mapping": {
+          "0": "minecraft:skull",
+          "R": "minecraft:redstone_wire",
+          "W": "minecraft:tripwire",
+          "T": "minecraft:torch"
+        }
+      },
+      "text": "He told me of a rite, described it in great detail and I drew what I could."
+    },
+    {
+      "type": "text",
+      "text": "During the night, he remarked, in an open area that the stars shined down upon, he circled string around red dust, accompanied by torches at the four corners and a skull in the middle."
+    },
+    {
+      "type": "text",
+      "text": "He poured the blood from the goblet onto the skull and a woman appeared, he told he had to take her to the lava lakes of the underworld..."
+    },
+    {
+      "type": "text",
+      "text": "He proved his worth to Her, with sword and skill, and asked upon victory for Her to fill his goblet again. He did not hesitate to drink the essence and start his new life."
+    },
+    {
+      "type": "text",
+      "text": "We met again this evening, and he gold me of his first kill and the insatiable hunger he had. After he drank his fill, he said it was no longer a pressing need and he felt stronger.",
+      "flag": "witcherycompanion:observations/immortal/level_1"
+    },
+    {
+      "type": "text",
+      "text": "He found, shortly after, he was able to transfix his victims, and now he drank what he needed from the transfixed victims. If he did not drink more than half of their blood. He did so from five and his strength grew again.",
+      "flag": "witcherycompanion:observations/immortal/level_2"
+    },
+    {
+      "type": "text",
+      "text": "He continued to stay fed until the fourth night after his mastery, the world slowed down.",
+      "flag": "witcherycompanion:observations/immortal/level_3"
+    },
+    {
+      "type": "text",
+      "text": "He remarked that he needed to conquer the sun, find a way to collect it and he obsessed over it. He found a way to harness the sun and did so ten times, burning and singeing himself in the night to become numb to the pain.",
+      "flag": "witcherycompanion:observations/immortal/level_4"
+    },
+    {
+      "type": "text",
+      "text": "The sun grenades had worked, he could now go out into the sun. He could feel burning, but it was no longer instantaneous. He needed more strength and sought the fortress of the underworld and their pure fire creatures. He slayed twenty and his strength grew even more.",
+      "flag": "witcherycompanion:observations/immortal/level_5"
+    },
+    {
+      "type": "text",
+      "text": "He smashed solid stone, he felt no pain, but he still felt limited to the terrain. He needed to call upon Her again, and he repeated the rite of his 'birth'. After proving his worth again he gifted her a flower, the color of the blood She so craves, and she filled his goblet again.",
+      "flag": "witcherycompanion:observations/immortal/level_6"
+    },
+    {
+      "type": "text",
+      "text": "He regaled me, with a great smile, about his first flight. He flew from his village to another and continued until he knew the full extent of his domain. He was finally free of the mortal coil.",
+      "flag": "witcherycompanion:observations/immortal/level_7"
+    },
+    {
+      "type": "text",
+      "text": "He learned that his power had grown, those he could transfix would now follow uncommanded and uncaring. He lured five into iron cages topped with wood. He left a gap in the front, but sealed the rest of it.",
+      "flag": "witcherycompanion:observations/immortal/level_8"
+    },
+    {
+      "type": "multiblock",
+      "multiblock": {
+        "pattern": [
+          ["WWW", "WWW", "WWW"],
+          ["B B", "B B", "BBB"],
+          ["BBB", "B0B", "BBB"]
+        ],
+        "mapping": {
+          "B": "minecraft:iron_bars",
+          "W": "minecraft:planks"
+        },
+        "symmetrical": true
+      },
+      "text": "He fed from each one of them, ensuring his victims were transfixed before doing so. He was careful to leave them unharmed.",
+      "flag": "witcherycompanion:observations/immortal/level_9"
+    },
+    {
+      "type": "text",
+      "text": "He told me that he could replicate what She had done for him. He brought me before a coffin, far from the sun's gaze, and drained me to near death, before filling the goblet with his blood and forcing it into my hand, and my lips. He whispered one word to me, and I obeyed.",
+      "flag": "witcherycompanion:observations/immortal/level_10"
+    }
+  ]
+}

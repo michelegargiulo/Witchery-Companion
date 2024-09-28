@@ -1,7 +1,8 @@
 {
   "name": "Rites of Transposition",
-  "description": "Rites that telepor creatures and things.",
+  "description": "Rites that teleport creatures and things.",
   "icon": "minecraft:ender_pearl",
   "parent": "circle_magic",
+  "sortnum": 1,
   "secret": false
 }

@@ -53,9 +53,14 @@ public class ProgressUtils {
         return WitcheryCompanion.prefix("cauldron/recipe/" + recipeId);
     }
 
-    // Defined format for Dimensions: MODID:dimensions/dimension_name
+    // Defined format for Dimensions: MODID:dimensions/<dimension_name>
     public static String getDimensionSecret(@Nonnull String dimension_name) {
         return WitcheryCompanion.prefix("dimensions/" + dimension_name);
+    }
+
+    // Defined format for Dimensions: MODID:kettle/<recipe_id>
+    public static String getKettleSecret(@Nonnull String recipe_id) {
+        return WitcheryCompanion.prefix("kettle/" + recipe_id);
     }
 
 

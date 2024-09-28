@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Charging",
+  "icon": "witchery:charged_attuned_stone",
+  "category": "circle_magic/other",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:attuned_stone_charging",
+      "title": "Charge Attuned Stone",
+      "description": "Charges the $(l:)Attuned Stone$(/l)."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Icy Expansion",
+  "icon": "minecraft:ice",
+  "category": "circle_magic/world",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:icy_expansion",
+      "title": "Rite of Icy Expansion",
+      "description": "Create an icy sphere. Requires a $(l:)Coven$(/l) of 2 or more."
+    }
+  ]
+}

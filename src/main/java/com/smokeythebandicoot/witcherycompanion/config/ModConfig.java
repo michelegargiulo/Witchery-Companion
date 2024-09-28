@@ -1086,6 +1086,22 @@ public class ModConfig {
             @Config.Name("Patchouli Integration - Obfuscation Strategy")
             public static EPatchouliObfuscationStrategy common_obfuscationStrategy = EPatchouliObfuscationStrategy.OBFUSCATE;
 
+            @Config.RequiresMcRestart
+            @Config.Comment("[WIP] If true, WitcheryCompanion will replace the Witchery mechanic of crafting Torn Pages with " +
+                    "the Observations of an Immortal book with its own, including it in the Patchouli Guide. Torn Page " +
+                    "will be replaced with a new, transparent-to-players item (and compatible with old worlds) that can " +
+                    "be right-clicked to add a new page to the Observations section of the Patchouli guide. Can still be " +
+                    "combined with Witchery Observations book. If false, this section will be hidden altogether and old " +
+                    "mechanic will still work.")
+            @Config.Name("Patchouli Integration - Revamp Vampire Book")
+            public static boolean common_replaceImmortalsBook = false;
+
+            @Config.Comment("If true, Torn Pages will only have a chance of unlocking new knowledge, as it may contain " +
+                    "duplicate pages. Pages will always be unlocked sequentially, but later pages will be increasingly harder " +
+                    "to unlock")
+            @Config.Name("Patchouli Integration - Revamp Vampire Book")
+            public static boolean common_harderImmortalPages = false;
+
             public enum EPatchouliSecretPolicy {
                 ALWAYS_SHOW,
                 PROGRESS,
@@ -1128,6 +1144,9 @@ public class ModConfig {
                 flags.put("symbology/stroke_visualization", Flags.symbology_enableStrokeVisualization);
                 flags.put("symbology/show_secret", Flags.symbology_showSecret);
                 flags.put("symbology/show_knowledge", Flags.symbology_showKnowledge);
+
+                // Special flag that is required to hide the observations section of the book
+                flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
 
                 PatchouliApiIntegration.updateFlags(flags);
 

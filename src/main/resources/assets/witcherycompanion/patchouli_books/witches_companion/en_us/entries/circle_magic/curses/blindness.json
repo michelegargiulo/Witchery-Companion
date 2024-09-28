@@ -1,0 +1,14 @@
+{
+  "name": "Curse of Blindness",
+  "icon": "minecraft:dye:0",
+  "category": "circle_magic/curses",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:blindness_curse",
+      "title": "Curse of Blindness",
+      "description": "Makes nearby creature blind."
+    }
+  ]
+}

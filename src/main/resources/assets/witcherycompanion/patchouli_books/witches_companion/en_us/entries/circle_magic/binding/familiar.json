@@ -1,0 +1,14 @@
+{
+  "name": "Bind Familiars",
+  "icon": "witchery:frogs_toe",
+  "category": "circle_magic/binding",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:familiar_binding",
+      "title": "Bind Familiar",
+      "description": "Bind a tamed $(l:)Owl$(/l), $(l:)Toad$(/l) or $(l:)Cat$(/l) as a familiar."
+    }
+  ]
+}

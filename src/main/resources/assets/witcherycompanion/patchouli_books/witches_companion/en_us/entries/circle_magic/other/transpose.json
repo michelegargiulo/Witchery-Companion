@@ -1,0 +1,16 @@
+{
+  "name": "Transpose",
+  "icon": "minecraft:ender_pearl",
+  "category": "circle_magic/other",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "circle_magic/other_rites",
+      "circles": "mini_otherwhere",
+      "title": "Transpose",
+      "description": "Transpose to a bound $(l:)Waystones$(/l)",
+      "ingredients": "witchery:bound_waystone,witchery:blooded_waystone",
+      "note": "You must stand in the circle"
+    }
+  ]
+}

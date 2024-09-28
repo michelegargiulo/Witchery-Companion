@@ -11,7 +11,8 @@
     },
     {
       "type": "distilling/distillery_recipe",
-      "distillery_recipe": "witchery:distillery/focused_will"
+      "distillery_recipe": "witchery:distillery/focused_will",
+      "anchor": "hollow_tears"
     },
     {
       "type": "distilling/distillery_recipe",

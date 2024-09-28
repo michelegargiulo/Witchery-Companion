@@ -1,0 +1,20 @@
+{
+  "name": "Curse of the Wolf",
+  "icon": "witchery:wolf_head",
+  "category": "circle_magic/curses",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:wolf_curse",
+      "title": "Curse of the Wolf",
+      "description": "Perform under a full moon with a full $(l:)Coven$(/l)."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:wolf_curse_removal",
+      "title": "Rite of Remove Curse",
+      "description": "Cleanse the taglocked being of lycanthropy."
+    }
+  ]
+}

@@ -3,5 +3,6 @@
   "description": "Rites that involve creating a bond between two creatures or objects.",
   "icon": "witchery:circle_talisman",
   "parent": "circle_magic",
+  "sortnum": 0,
   "secret": false
 }

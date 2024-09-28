@@ -1,7 +1,0 @@
-{
-  "name": "Rites of Sanctity",
-  "description": "Rites that banish creatures from specified locations.",
-  "icon": "witchery:trent_effigy",
-  "parent": "circle_magic",
-  "secret": false
-}

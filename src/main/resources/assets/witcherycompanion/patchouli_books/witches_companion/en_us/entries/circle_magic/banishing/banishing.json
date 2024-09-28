@@ -1,0 +1,20 @@
+{
+  "name": "Rite of Banishing",
+  "icon": "witchery:demonic_blood",
+  "category": "circle_magic/banishing",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:banishing",
+      "title": "Rite of Banishing",
+      "description": "Send nearby $(l:creatures/demon)Demons$(/l) back to the Pit."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:portable_banishing",
+      "title": "Rite of Banishing",
+      "description": "Send nearby $(l:creatures/demon)Demons$(/l) back to the Pit."
+    }
+  ]
+}

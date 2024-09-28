@@ -1,0 +1,15 @@
+{
+  "name": "Rite of Reflection Summoning",
+  "icon": "witchery:mirror",
+  "category": "circle_magic/banishing",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:reflection_summoning",
+      "title": "Mirror Demon Summoning",
+      "description": "Call forth the $(l:creatures/reflection)Demon$(/l) from a $(l:)Mirror$(/l).",
+      "note": "$(t:Requires that the inner 7x7x4-blocks area to be clear of any obstacles or blocks)Requires clear area$(/t)"
+    }
+  ]
+}
