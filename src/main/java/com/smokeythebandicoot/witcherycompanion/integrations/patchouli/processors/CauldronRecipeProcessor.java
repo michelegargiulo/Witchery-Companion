@@ -64,7 +64,7 @@ public class CauldronRecipeProcessor extends BaseProcessor {
             // We set currentRecipeSecretKey to only obfuscate keys of first recipe
             // We read secret_text and secret_tooltip twice, but we reuse a lot of code this way
             switchRecipe = true;
-            this.currentRecipeSecretKey = ProgressUtils.getCauldronRecipeSecret(recipe.getId().path);
+            this.currentRecipeSecretKey = ProgressUtils.getCauldronRecipeSecret(recipe.getId().getPath());
             super.setup(provider);
         }
 
@@ -82,7 +82,7 @@ public class CauldronRecipeProcessor extends BaseProcessor {
             this.secondRecipeOutput = recipe.getRecipeOutput();
             this.secondRecipePower = String.valueOf(recipe.getPower());
 
-            this.currentRecipeSecretKey = ProgressUtils.getCauldronRecipeSecret(recipe.getId().path);
+            this.currentRecipeSecretKey = ProgressUtils.getCauldronRecipeSecret(recipe.getId().getPath());
             super.setup(provider);
         }
 

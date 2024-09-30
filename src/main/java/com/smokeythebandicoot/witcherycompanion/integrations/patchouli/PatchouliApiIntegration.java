@@ -108,8 +108,8 @@ public class PatchouliApiIntegration {
     @SubscribeEvent
     public static void onBookReload(BookContentsReloadEvent event) {
         // Clear cache of all the processors that implement caching
-        if (!event.book.namespace.equals(WitcheryCompanion.MODID)) return;
         if (Loader.instance().hasReachedState(LoaderState.AVAILABLE)) {
+        if (!event.book.getNamespace().equals(WitcheryCompanion.MODID)) return;
             CapacityBrewActionProcessor.clearCache();
             ModifierBrewActionProcessor.clearCache();
             UpgradeBrewActionProcessor.clearCache();
