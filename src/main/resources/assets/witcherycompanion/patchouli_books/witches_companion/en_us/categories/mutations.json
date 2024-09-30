@@ -3,5 +3,6 @@
   "description": "Mutating things into other things",
   "icon": "witchery:mutating_sprig",
   "sortnum": 8,
-  "secret": false
+  "secret": false,
+  "flag": "witcherycompanion:multiblocks_ready"
 }

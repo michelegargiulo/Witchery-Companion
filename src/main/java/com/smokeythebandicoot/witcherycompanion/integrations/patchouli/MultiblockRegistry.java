@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli;
 
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.mutations.MutationRegistry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
@@ -8,6 +9,8 @@ import vazkii.patchouli.api.PatchouliAPI;
 import java.util.Map;
 
 public class MultiblockRegistry {
+
+    private static boolean multiblocks_updated = false;
 
     public static void reloadMultiblocks() {
         for (Map.Entry<ResourceLocation, MutationRegistry.MutationInfo> entry : MutationRegistry.mutations.entrySet()) {
@@ -32,6 +35,10 @@ public class MultiblockRegistry {
             Object[] charMap = convertForPatchouli(info.state, middleChar);
             PatchouliAPI.instance.registerMultiblock(
                     mutation, PatchouliAPI.instance.makeMultiblock(infoPattern, charMap));
+        }
+        if (!multiblocks_updated && !MutationRegistry.mutations.isEmpty()) {
+            multiblocks_updated = true;
+            PatchouliApiIntegration.updateFlag("multiblocks_ready", true);
         }
     }
 

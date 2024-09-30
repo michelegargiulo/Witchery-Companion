@@ -1168,13 +1168,10 @@ public class ModConfig {
 
         public static void reloadConfig() {
             reloadRiteOfMovingEarthBlacklist();
-
-            // Avoid reloading Patchouli flags when load is not completed
-            if (
-                    //Loader.instance().hasReachedState(LoaderState.AVAILABLE) &&
-                            Loader.isModLoaded(Mods.PATCHOULI)
-            )
-                IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
+            // Flags are always reloaded, but Book Contents won't be triggered
+            // Content is reloaded only when PatchouliAPIIntegration 'readyToReload'
+            // is true, which is set as such only on PlayerJoinedWorldEvent
+            IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
 
         }
 
@@ -1201,7 +1198,6 @@ public class ModConfig {
                 PatchesConfiguration.RitesTweaks.movingEarth_stateBlacklist.add(block.getStateFromMeta(meta));
             }
         }
-
 
     }
 }

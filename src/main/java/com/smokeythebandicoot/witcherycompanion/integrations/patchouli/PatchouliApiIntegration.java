@@ -6,11 +6,13 @@ import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.bookcompo
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.*;
 import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.entity.item.ItemEvent;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
@@ -35,6 +37,8 @@ import java.util.stream.Collectors;
 
 public class PatchouliApiIntegration {
 
+    private static boolean readyToReload = false;
+
     private PatchouliApiIntegration() { }
 
     public static void registerCustomComponents() {
@@ -49,14 +53,19 @@ public class PatchouliApiIntegration {
 
     public static void updateFlag(String flag, boolean value) {
         PatchouliAPI.instance.setConfigFlag(WitcheryCompanion.prefix(flag), value);
-        PatchouliAPI.instance.reloadBookContents();
+        if (readyToReload) {
+            PatchouliAPI.instance.reloadBookContents();
+        }
     }
 
     public static void updateFlags(Map<String, Boolean> flags) {
         for (String flag : flags.keySet()) {
             PatchouliAPI.instance.setConfigFlag(WitcheryCompanion.prefix(flag), flags.get(flag));
         }
-        PatchouliAPI.instance.reloadBookContents();
+
+        if (readyToReload) {
+            PatchouliAPI.instance.reloadBookContents();
+        }
     }
 
     public static final FlagReloader<ResourceLocation, SymbolEffect> symbolEffectReloader = new FlagReloader<>(
@@ -105,11 +114,12 @@ public class PatchouliApiIntegration {
     );
     */
 
+    /** When book reload is requested, clear caches and reload processors **/
     @SubscribeEvent
     public static void onBookReload(BookContentsReloadEvent event) {
         // Clear cache of all the processors that implement caching
-        if (Loader.instance().hasReachedState(LoaderState.AVAILABLE)) {
         if (!event.book.getNamespace().equals(WitcheryCompanion.MODID)) return;
+        if (readyToReload) {
             CapacityBrewActionProcessor.clearCache();
             ModifierBrewActionProcessor.clearCache();
             UpgradeBrewActionProcessor.clearCache();
@@ -133,6 +143,16 @@ public class PatchouliApiIntegration {
         */
     }
 
+    /** Only when player has joined world (and book content can be displayed) we should be able
+     * to call a book reload for Witchery Companion, as Witchery loads content on this very event **/
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onPlayerJoinedWorld(EntityJoinWorldEvent event) {
+        if (event.getEntity() == Minecraft.getMinecraft().player) {
+            readyToReload = true;
+        }
+    }
+
 
     /** Custom FunctionProcessor for Patchouli's TextParser
      * Usage: $(roman)<string>$(). While active, all numbers within the 'string' will be converted
@@ -152,6 +172,7 @@ public class PatchouliApiIntegration {
             return buffer.toString();
         }
     }
+
 
     /** Class that holds information about how to information about a registry and
      * reloads Patchouli flags based on its contents. Used to update flags that enable/disable content
