@@ -480,6 +480,11 @@ public class ModConfig {
             @Config.Name("Rite of Broken Earth - Tweak Align Breakables With Erosion")
             public static boolean brokenEarth_tweakAlignBreakablesWithErosion = false;
 
+            @Config.Comment("If true, backports from 0.6 a bugfix for the Rite of Binding (Copy Waystone type) where a player " +
+                    "tries to duplicate a bound waystone but the result of the rite is a bound waystone with no location data")
+            @Config.Name("Rite of Binding (Copy Waystone) - Fix Result")
+            public static boolean copyWaystone_fixResult = true;
+
             @Config.Comment("Multiplies the damage taken by a Voodoo Protection Poppet when the owner is protected by " +
                     "this ritual. Default: 1. Witchery applies a strength of 1, if the levelBuff is zero, 3 otherwise. " +
                     "This factor multiplies the value given by Witchery")
