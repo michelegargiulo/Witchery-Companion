@@ -20,13 +20,13 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:waystone_copy_binding",
       "title": "Copy Waystone",
-      "description": "Binds the $(l:)Waystone$(/l) to the location of the ritual."
+      "description": "Binds the $(l:)Waystone$(/l) location on one waystone to another waystone."
     },
     {
       "type": "circle_magic/rite",
       "rite_id": "witchery:portable_waystone_copy_binding",
       "title": "Copy Waystone",
-      "description": "Binds the $(l:)Waystone$(/l) to the location of the ritual."
+      "description": "Binds the $(l:)Waystone$(/l) location on one waystone to another waystone."
     },
     {
       "type": "circle_magic/rite",
