@@ -389,6 +389,10 @@ public class ModConfig {
                     "make up a bucket. Recommended to set to true")
             @Config.Name("Witch's Cauldron - Tweak Smaller Bottle")
             public static boolean witchsCauldron_tweakSmallerBottle = false;
+
+            @Config.Comment("If true, backports from 0.6 a fix to spawn burning particles at the correct height")
+            @Config.Name("Witches Oven - Fix Burning Particles")
+            public static boolean witchesOven_fixBurningParticlesHeight = true;
         }
 
         public static class ItemTweaks {

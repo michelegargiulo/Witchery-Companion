@@ -113,6 +113,7 @@
     "world.loot.functions.LevelledRandomEnchantmentMixin"
   ],
   "client": [
+    "block.BlockWitchesOvenMixin",
     "client.gui.book.GuiHerbologyBookMixin",
     "client.renderer.entity.RenderSpellEffectMixin",
     "client.renderer.entity.block.RenderPoppetShelfMixin",
