@@ -1177,10 +1177,13 @@ public class ModConfig {
 
         public static void reloadConfig() {
             reloadRiteOfMovingEarthBlacklist();
+
             // Flags are always reloaded, but Book Contents won't be triggered
             // Content is reloaded only when PatchouliAPIIntegration 'readyToReload'
             // is true, which is set as such only on PlayerJoinedWorldEvent
-            IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
+            if (Loader.isModLoaded(Mods.PATCHOULI)) {
+                IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
+            }
 
         }
 

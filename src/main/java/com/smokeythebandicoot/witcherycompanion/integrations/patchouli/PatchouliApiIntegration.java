@@ -27,7 +27,9 @@ import vazkii.patchouli.client.book.text.BookTextParser;
 import vazkii.patchouli.client.book.text.SpanState;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
