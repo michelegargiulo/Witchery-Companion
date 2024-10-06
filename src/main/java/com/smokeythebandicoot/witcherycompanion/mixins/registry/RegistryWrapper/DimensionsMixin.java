@@ -1,11 +1,10 @@
-package com.smokeythebandicoot.witcherycompanion.mixins.registry;
+package com.smokeythebandicoot.witcherycompanion.mixins.registry.RegistryWrapper;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
-import net.minecraftforge.common.DimensionManager;
 import net.msrandom.witchery.registry.RegistryWrapper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -18,7 +17,7 @@ import java.util.HashMap;
  [Bugfix] Fix Dimension ID configuration not being applied
  */
 @Mixin(RegistryWrapper.Dimensions.class)
-public abstract class RegistryWrapper_DimensionsMixin {
+public abstract class DimensionsMixin {
 
     @Unique
     private final static HashMap<String, Integer> witchery_Patches$dimensionOverrides = new HashMap<>();

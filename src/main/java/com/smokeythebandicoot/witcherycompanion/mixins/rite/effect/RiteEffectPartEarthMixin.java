@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 /**
  Mixins:
- [Bugfix] (Partial, complementary to RiteEffectPartEarth_DirectionMixin) Fix NPE when destination location is null
+ [Bugfix] (Partial, complementary to RiteEffectPartEarth$DirectionMixin) Fix NPE when destination location is null
  */
 @Mixin(RiteEffectPartEarth.class)
 public abstract class RiteEffectPartEarthMixin extends RiteEffect {

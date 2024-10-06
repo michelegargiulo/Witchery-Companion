@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.mixins.integration;
+package com.smokeythebandicoot.witcherycompanion.mixins.integration.ThaumcraftIntegration;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     Thaumcraft compat is active, as it registers the aspects anyway
  */
 @Mixin(targets = "net.msrandom.witchery.integration.ThaumcraftIntegration$IntegrateThaumcraft")
-public abstract class ThaumcraftIntegration_IntegrateThaumcraftMixin {
+public abstract class IntegrateThaumcraftMixin {
 
     /** This Mixin avoids running W:R thaumcraft compat during startup is Companion adds its own anyway */
     @Inject(method = "registerAspects", remap = false, cancellable = true, at = @At("HEAD"))

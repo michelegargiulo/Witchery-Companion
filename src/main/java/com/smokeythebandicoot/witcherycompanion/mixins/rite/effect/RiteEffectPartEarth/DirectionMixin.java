@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.mixins.rite.effect;
+package com.smokeythebandicoot.witcherycompanion.mixins.rite.effect.RiteEffectPartEarth;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  [Bugfix] (Partial, complementary to RiteEffectPartEarthMixin) Fix NPE when destination location is null
  */
 @Mixin(targets = "net/msrandom/witchery/rite/effect/RiteEffectPartEarth$Direction")
-public class RiteEffectPartEarth_DirectionMixin {
+public class DirectionMixin {
 
     /** This Mixin prevents an NPE from occurring when companion passes NULL as destination param. This is due to
      Companion fixing another NPE. See RiteEffectPartEarthMixin.

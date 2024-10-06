@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.mixins.item;
+package com.smokeythebandicoot.witcherycompanion.mixins.item.WitcheryPoppetItems;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -25,7 +25,7 @@ import java.util.List;
  [Tweak] Disable PvP elements of Witchery Poppets, while keeping PvE
  */
 @Mixin(WitcheryPoppetItems.ItemPoppet.class)
-public abstract class WitcheryPoppetItems_ItemPoppetMixin {
+public abstract class ItemPoppetMixin {
 
     @Unique
     private boolean witchery_Patcher$boundToPlayer = false;
