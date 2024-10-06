@@ -197,7 +197,7 @@ public abstract class ShapeShiftMixin {
             accessor.accessor_setCurrentFormWidthScale(stats.getWidth() / 0.6f);
             accessor.accessor_setCurrentFormHeightScale(stats.getHeight() / 1.8f);
             accessor.accessor_setCurrentFormEyeHeightScale(stats.getEyeHeight() / stats.getHeight());
-            accessor.accessor_setCurrentFormStepHeightScale(stats.getStepHeight() / 0.5f);
+            accessor.accessor_setCurrentFormStepHeightScale(stats.getStepHeight() / 0.6f);
             // Send the new size to all players
             WitcheryNetworkChannel.sendToAll(new PacketSyncEntitySize(player));
         }

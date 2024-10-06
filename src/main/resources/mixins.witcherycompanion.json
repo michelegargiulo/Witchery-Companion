@@ -107,6 +107,7 @@
     "rite.effect.RiteEffectPartEarth_DirectionMixin",
     "rite.effect.RiteEffectPartEarthMixin",
     "rite.sacrifice.ItemRiteSacrificeMixin",
+    "transformation.CreatureForm.StatsMixin",
     "util.EntityUtilMixin",
     "util.ResizingUtilsMixin",
     "world.dimension.spirit.WorldProviderSpiritWorldMixin",

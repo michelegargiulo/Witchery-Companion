@@ -77,6 +77,10 @@ public class ModConfig {
         @Config.Name("Dimension Tweaks")
         public static DimensionTweaks dimensions;
 
+        @Config.Comment("Configuration for patches related to Transformations")
+        @Config.Name("Transformation Tweaks")
+        public static TransformationTweaks transformations;
+
         @Config.Comment("Configuration for patches related to World Generation")
         @Config.Name("Worldgen Tweaks")
         public static WorldGenTweaks worldgen;
@@ -842,6 +846,16 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static int mirror_tweakID = 13;
 
+
+        }
+
+        public static class TransformationTweaks {
+
+            @Config.Comment("If true, fixes default step height for when the player has no active transformations. Default " +
+                    "step height is 0.6 for all entities, including players, but Witchery sets it to 0.5. Enable this to set " +
+                    "it back to 0.6.")
+            @Config.Name("No Form - Fix Default Step Height")
+            public static boolean noForm_fixDefaultStepHeight = true;
 
         }
 
