@@ -81,7 +81,7 @@ public class ProgressUtils {
         }
 
         // Unlock progress
-        progress.unlockProgress(ProgressUtils.getSymbolEffectSecret(progressKey));
+        progress.unlockProgress(progressKey);
         ProgressSync.serverRequest(player);
         return MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(player, progressKey, activity));
     }
