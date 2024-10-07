@@ -2,7 +2,7 @@
   "name": "Poltergeist",
   "icon": "witchery:spectral_dust",
   "category": "creatures",
-  "sortnum": 2,
+  "sortnum": 1,
   "pages": [
     {
       "type": "entity",

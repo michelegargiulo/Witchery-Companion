@@ -250,7 +250,8 @@
       "flag": "witcherycompanion:content/symbols/tormentum",
       "secret_text": "$(4)Secret$()",
       "secret_tooltip": "This Symbol effect is secret and only shows after you have drawn it once",
-      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)"
+      "has_knowledge_text": "$(t:This Symbol requires the player to have special knowledge)$(d)Requires Knowledge$()$(/t)",
+      "anchor": "tormentum"
     }
   ]
 }

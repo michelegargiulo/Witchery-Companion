@@ -1,0 +1,35 @@
+{
+  "name": "Stone Circle",
+  "icon": "witchery:witches_hat",
+  "category": "dimensions",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Stone Circle",
+      "text": "The $(item)Stone Circle$() or $(item)Coven Circle$() is a landmark structure, built from Cracked Stone Bricks and Cobblestone, with a Chiseled Stone square in the middle, filled with Water. Even tough it's a very ancient landmark, it's still used by $(l:creatures/coven_witch)Coven Witches$(/l) to this day. In fact, it is not uncommon to find them nearby. Its role in witchcraft makes it the only place to perform the summon $(l:creatures/lord_of_torment)Lord of Torment$(/l) ritual."
+    },
+    {
+      "type": "multiblock",
+      "name": "Stone Circle",
+      "multiblock": {
+        "pattern": [
+          ["    HHHW   ", "  HH   HH  ", " H       H ", " H       H ", "H         H", "H         H", "H         H", " H       H ", " H       H ", "  HH   HH  ", "    HHH    "],
+          ["    C C    ", "  C     C  ", " C       C ", "           ", "C         C", "           ", "C         C", "          W", " C       C ", "  C     C  ", "    C C    "],
+          ["    C C    ", "  C     C  ", " C       C ", "           ", "C   SSS   C", "    S0S    ", "C   SSS   C", "W          ", " C       C ", "  C     C  ", "    C C    "],
+          ["           ", "           ", "           ", "           ", "    P      ", "     D     ", "      P    ", "           ", "           ", "           ", "           "]
+        ],
+        "mapping": {
+          "C": "minecraft:cobblestone",
+          "S": "minecraft:stonebrick[variant=chiseled_stonebrick]",
+          "0": "minecraft:water",
+          "W": "minecraft:web",
+          "P": "minecraft:mob_spawner",
+          "D": "minecraft:dispenser",
+          "H": "minecraft:stonebrick[variant=cracked_stonebrick]"
+        },
+        "symmetrical": true
+      }
+    }
+  ]
+}
