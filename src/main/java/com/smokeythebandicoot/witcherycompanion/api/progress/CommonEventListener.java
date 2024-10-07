@@ -13,7 +13,7 @@ import net.msrandom.witchery.init.WitcheryDimensions;
 public class CommonEventListener {
 
     @SubscribeEvent
-    public void onEntityJoinWorld(EntityJoinWorldEvent event) {
+    public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
         Entity entity = event.getEntity();
         World world = event.getWorld();
 
