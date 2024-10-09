@@ -71,10 +71,7 @@ public class CommonProxy {
     }
 
     public void load(FMLLoadCompleteEvent event) {
-        // Register Patchouli BookReloadEvent
-        if (Loader.isModLoaded(Mods.PATCHOULI)) {
-            MinecraftForge.EVENT_BUS.register(PatchouliApiIntegration.class);
-        }
+
     }
 
     public void serverStarting(FMLServerStartingEvent event) {

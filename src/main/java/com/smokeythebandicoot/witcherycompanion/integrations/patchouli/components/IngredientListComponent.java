@@ -130,14 +130,10 @@ public class IngredientListComponent implements ICustomComponent {
 
                 // Custom ingredient rendering, that also renders AIR stacks
                 ItemStack[] matchingStacks = ingredient.matchingStacks;
-                GlStateManager.pushMatrix();
-                GlStateManager.color(1.0f, 1.0f, 1.0f, 0.5f);
                 if (matchingStacks.length > 0) {
                     context.renderItemStack(curX, curY, mouseX, mouseY,
                             matchingStacks[guiBookEntry.ticksInBook / 20 % matchingStacks.length]);
                 }
-                GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-                GlStateManager.popMatrix();
 
                 curY += 16 + this.spacing;
                 lineIndex++;
