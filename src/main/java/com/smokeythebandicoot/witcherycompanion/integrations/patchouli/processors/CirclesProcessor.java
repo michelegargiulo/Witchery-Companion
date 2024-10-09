@@ -17,6 +17,7 @@ public class CirclesProcessor extends BaseProcessor {
     protected String description;
     protected static final Map<ECircleType, ResourceLocation> circleMap = new HashMap<>();
     protected static final String CIRCLES_PATH = "witcherycompanion:textures/patchouli/circles/";
+    protected static final String EMPTY_CIRCLES_PATH = "witcherycompanion:textures/patchouli/circles/empty";
 
     protected transient List<String> images;
 
@@ -60,7 +61,7 @@ public class CirclesProcessor extends BaseProcessor {
         int index = ProcessorUtils.splitKeyIndex(key);
 
         if (key.startsWith("image")) {
-            if (index < 0 || index >= images.size()) return null;
+            if (index < 0 || index >= images.size()) return EMPTY_CIRCLES_PATH;
             return images.get(index);
         } else if (key.startsWith("guard")) {
             return String.valueOf(index >= 0 && index < images.size());

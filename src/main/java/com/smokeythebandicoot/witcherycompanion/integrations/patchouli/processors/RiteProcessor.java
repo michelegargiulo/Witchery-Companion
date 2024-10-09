@@ -5,11 +5,9 @@ import com.smokeythebandicoot.witcherycompanion.api.rite.IItemRiteSacrificeAcces
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BaseProcessor;
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.msrandom.witchery.block.BlockCircleGlyph;
 import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.resources.RiteManager;
 import net.msrandom.witchery.rite.Rite;
