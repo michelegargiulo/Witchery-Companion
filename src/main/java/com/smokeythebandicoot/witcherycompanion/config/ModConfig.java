@@ -1061,6 +1061,10 @@ public class ModConfig {
                 @Config.Name("Brew Effects - Show Weaken Vampires")
                 public static boolean brewEffects_showWeakenVampires = false;
 
+                @Config.Comment("If true, shows an additional page for the Rite of Shifting Seasons listing the Foci")
+                @Config.Name("Circle Magic - Show Shifting Sesons Foci")
+                public static boolean circleMagic_showShiftingSeasonsFoci = false;
+
                 @Config.Comment("If true, adds a few more pages about how Brazier works")
                 @Config.Name("Conjuring - Enable Extended Intro")
                 public static boolean conjuring_enableExtendedIntro = false;
@@ -1160,6 +1164,7 @@ public class ModConfig {
                 flags.put("brew_effects/show_raiseland", Flags.brewEffects_showRaiseLand);
                 flags.put("brew_effects/show_repellattacker", Flags.brewEffects_showRepellAttacker);
                 flags.put("brew_effects/show_weakenvampires", Flags.brewEffects_showWeakenVampires);
+                flags.put("circle_magic/shifting_seasons_foci", Flags.circleMagic_showShiftingSeasonsFoci);
                 flags.put("conjuring/show_extra", Flags.conjuring_showExtraEntity);
                 flags.put("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
                 flags.put("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);

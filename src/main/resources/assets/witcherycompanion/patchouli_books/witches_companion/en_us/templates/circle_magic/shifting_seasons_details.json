@@ -16,13 +16,13 @@
       "type": "text",
       "text": "#text",
       "x": 0,
-      "y": 18
+      "y": 126
     },
     {
       "type": "custom",
       "class": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components.IngredientListComponent",
       "inputs": [
-        "#foci"
+        "#foci_first"
       ],
       "output": "",
       "input_spacing": 2,
@@ -32,22 +32,89 @@
       "y": 18
     },
     {
+      "type": "custom",
+      "class": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components.IngredientListComponent",
+      "inputs": [
+        "#foci_second"
+      ],
+      "output": "",
+      "input_spacing": 2,
+      "layout": "vertical",
+      "descriptions": "#descriptions",
+      "x": 56,
+      "y": 18
+    },
+    {
       "type": "text",
       "text": "Forest",
       "x": 16,
-      "y": 23
+      "y": 22
     },
     {
       "type": "text",
       "text": "Plains",
       "x": 16,
-      "y": 41
+      "y": 40
     },
     {
       "type": "text",
       "text": "Savanna",
       "x": 16,
-      "y": 59
+      "y": 58
+    },
+    {
+      "type": "text",
+      "text": "Mountain",
+      "x": 16,
+      "y": 76
+    },
+    {
+      "type": "text",
+      "text": "Swamp",
+      "x": 16,
+      "y": 92
+    },
+    {
+      "type": "text",
+      "text": "Ocean",
+      "x": 16,
+      "y": 110
+    },
+    {
+      "type": "text",
+      "text": "River",
+      "x": 74,
+      "y": 22
+    },
+    {
+      "type": "text",
+      "text": "Sandy",
+      "x": 74,
+      "y": 40
+    },
+    {
+      "type": "text",
+      "text": "Snowy",
+      "x": 74,
+      "y": 58
+    },
+    {
+      "type": "text",
+      "text": "Jungle",
+      "x": 74,
+      "y": 76
+    },
+    {
+      "type": "text",
+      "text": "Beach",
+      "x": 74,
+      "y": 92
+    },
+    {
+      "type": "text",
+      "text": "Mushroom",
+      "x": 74,
+      "y": 110
     }
   ]
 }
