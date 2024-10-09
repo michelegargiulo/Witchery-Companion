@@ -1,0 +1,53 @@
+{
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "scale": 0.9,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    },
+    {
+      "type": "text",
+      "text": "#text",
+      "x": 0,
+      "y": 18
+    },
+    {
+      "type": "custom",
+      "class": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components.IngredientListComponent",
+      "inputs": [
+        "#foci"
+      ],
+      "output": "",
+      "input_spacing": 2,
+      "layout": "vertical",
+      "descriptions": "#descriptions",
+      "x": -2,
+      "y": 18
+    },
+    {
+      "type": "text",
+      "text": "Forest",
+      "x": 16,
+      "y": 23
+    },
+    {
+      "type": "text",
+      "text": "Plains",
+      "x": 16,
+      "y": 41
+    },
+    {
+      "type": "text",
+      "text": "Savanna",
+      "x": 16,
+      "y": 59
+    }
+  ]
+}
