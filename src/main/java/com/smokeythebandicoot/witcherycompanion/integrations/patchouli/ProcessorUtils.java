@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import com.smokeythebandicoot.witcherycompanion.api.recipes.IIngredientAccessor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.msrandom.witchery.infusion.symbol.BranchStroke;
@@ -75,7 +76,14 @@ public class ProcessorUtils {
         Iterator<Ingredient> it = ingredients.iterator();
         while (it.hasNext()) {
             Ingredient ing = it.next();
-            sb.append(serializeItemStackArray(ing.matchingStacks));
+            ItemStack[] stacks;
+            if (ing instanceof IIngredientAccessor) {
+                IIngredientAccessor accessor = (IIngredientAccessor) ing;
+                stacks = ((IIngredientAccessor) ing).getAllMatchingStacks();
+            } else {
+                stacks = ing.getMatchingStacks(); // Will lose blinking capability to indicate optional stacks
+            }
+            sb.append(serializeItemStackArray(stacks));
             if (it.hasNext()) {
                 sb.append(";");
             }
@@ -162,6 +170,9 @@ public class ProcessorUtils {
     }
 
     public static void deserializeStrokeArray(String[] serialized, @Nonnull Collection<BranchStroke> strokes) {
+        // Add exception for this case, as it is probably obfuscated
+        if (serialized.length == 1 && serialized[0].isEmpty())
+            return;
         for (String elem : serialized) {
             for (String s : elem.replace(" ", "").split(",")) {
                 try {

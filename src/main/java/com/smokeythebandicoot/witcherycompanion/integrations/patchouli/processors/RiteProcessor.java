@@ -64,7 +64,7 @@ public class RiteProcessor extends BaseProcessor {
                 for (ItemRiteSacrifice.ItemRequirement req : accessor.getRequirements()) {
                     if (req.getOptional()) {
                         // If item is optional, cycle the item with AIR
-                        ItemStack[] matching = req.getIngredient().matchingStacks;
+                        ItemStack[] matching = req.getIngredient().getMatchingStacks();
                         ItemStack[] stacks = new ItemStack[matching.length + 1];
                         System.arraycopy(matching, 0, stacks, 0, matching.length);
                         stacks[stacks.length - 1] = ItemStack.EMPTY;

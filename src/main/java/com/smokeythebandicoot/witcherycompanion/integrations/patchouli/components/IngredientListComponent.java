@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.componen
 
 import com.google.gson.annotations.SerializedName;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import com.smokeythebandicoot.witcherycompanion.api.recipes.IIngredientAccessor;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -129,7 +130,13 @@ public class IngredientListComponent implements ICustomComponent {
             for (Ingredient ingredient : stacks) {
 
                 // Custom ingredient rendering, that also renders AIR stacks
-                ItemStack[] matchingStacks = ingredient.matchingStacks;
+                ItemStack[] matchingStacks;
+                if (ingredient instanceof IIngredientAccessor) {
+                    IIngredientAccessor accessor = (IIngredientAccessor) ingredient;
+                    matchingStacks = accessor.getAllMatchingStacks();
+                } else {
+                    matchingStacks = ingredient.matchingStacks;
+                }
                 if (matchingStacks.length > 0) {
                     context.renderItemStack(curX, curY, mouseX, mouseY,
                             matchingStacks[guiBookEntry.ticksInBook / 20 % matchingStacks.length]);
