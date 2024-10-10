@@ -124,8 +124,8 @@ public class PatchouliApiIntegration {
             DispersalBrewActionProcessor.clearCache();
             IncrementBrewActionProcessor.clearCache();
             MultiblockRegistry.reloadMultiblocks();
-            //WitcheryCompanion.logger.debug("Patchouli Book Reloaded");
-            Utils.logChat("Patchouli Book Reloaded");
+            WitcheryCompanion.logger.debug("Patchouli Book Reloaded");
+            //Utils.logChat("Patchouli Book Reloaded");
         }
 
         /* Maybe in the future, implement a custom book reloader. Probably Patchouli code will have to
