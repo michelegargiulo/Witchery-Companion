@@ -1,0 +1,25 @@
+{
+  "name": "Horned Huntsman",
+  "icon": "witchery:hunts_horn",
+  "category": "creatures",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:horned_huntsman",
+      "text": "Wild Hunter",
+      "offset": 0,
+      "scale": 1
+    },
+    {
+      "type": "text",
+      "title": "Horned Huntsman",
+      "text": "The Horned Huntsman is a member of the $(item)Wild Hunt$(), a powerful entity created by the $(item)Horned God$().$(p)The demon usually fights by shooting arrows and teleporting short distances, but can also summon hostile $(item)Wolves$() with $(item)Resistance$() potion effect to fight for him.$(p)Upon death, it may drop its $(l:constructs/weapons/spear_of_the_huntsman)Spear$(/l)"
+    },
+    {
+      "type": "text",
+      "title": "Summoning the Huntsman",
+      "text": "The demon can be summoned by lighting a Wicked Man or Bloodied Wicked Man on fire, the latter having a greatly increased chance.$(br)The $(l:constructs/misc/horn_of_the_hunt)Horn of the Hunt$(/l) can also be used to summon the Horned Huntsman."
+    }
+  ]
+}

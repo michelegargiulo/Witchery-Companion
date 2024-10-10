@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "witchery:huntsmans_spear",
-      "text": "The Horned Huntsman Spear is the main weapon of the $(l:creatures/hurned_huntsman)Horned Huntsman$(/l). When wielded, it grants resistance from $(item)Knockback$() and when used in combat has a chance to spawn a $(item)Wolf$() to assist its owner. The spear is somewhat more effective at combat against creatures of the $(l:dimensions/spirit_world)Spirit World$(/l)."
+      "text": "The Horned Huntsman Spear is the main weapon of the $(l:creatures/horned_huntsman)Horned Huntsman$(/l). When wielded, it grants resistance from $(item)Knockback$() and when used in combat has a chance to spawn a $(item)Wolf$() to assist its owner. The spear is somewhat more effective at combat against creatures of the $(l:dimensions/spirit_world)Spirit World$(/l)."
     }
   ]
 }

@@ -65,7 +65,8 @@ public class ProgressUtils {
 
 
 
-    /** Helper method that takes a player, a secret key and an activity type and retrieves player capability **/
+    /** Helper method that takes a player, a secret key and an activity type and retrieves player capability.
+     * Should only be called server-side **/
     public static boolean unlockProgress(EntityPlayer player, String progressKey, String activity) {
 
         // Event and progress cannot continue if any element is null

@@ -1077,6 +1077,11 @@ public class ModConfig {
                 @Config.Name("Fetish - Details Extension")
                 public static boolean conjuring_enableFetishExtension = false;
 
+                @Config.Comment("If true, adds an entry to the Observations chapter, adding new lore to the Werewolf transformation in a similar way " +
+                        "to how Witchery does for Vampirism (in Observations of an Immortal). Content is original.")
+                @Config.Name("Observations - Add Observations of a Lycanthrope")
+                public static boolean observations_enableLycanthrope = false;
+
                 @Config.Comment("If true, shows more information about how to get into symbology and how it works in general")
                 @Config.Name("Symbology - Extended Intro")
                 public static boolean symbology_enableExtendedIntro = false;
@@ -1126,7 +1131,7 @@ public class ModConfig {
             @Config.Comment("If true, Torn Pages will only have a chance of unlocking new knowledge, as it may contain " +
                     "duplicate pages. Pages will always be unlocked sequentially, but later pages will be increasingly harder " +
                     "to unlock")
-            @Config.Name("Patchouli Integration - Revamp Vampire Book")
+            @Config.Name("Patchouli Integration - Harder Immortal Pages")
             public static boolean common_harderImmortalPages = false;
 
             public enum EPatchouliSecretPolicy {
@@ -1175,6 +1180,7 @@ public class ModConfig {
 
                 // Special flag that is required to hide the observations section of the book
                 flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
+                flags.put("observations/add_werewolf", Flags.observations_enableLycanthrope);
 
                 PatchouliApiIntegration.updateFlags(flags);
 

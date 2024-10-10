@@ -3,6 +3,7 @@
   "title": "Observations",
   "icon": "witchery:full_chalice",
   "category": "observations",
+  "flag": "witcherycompanion:observations/revamp_book",
   "sortnum": 0,
   "pages": [
     {
@@ -48,7 +49,7 @@
     },
     {
       "type": "text",
-      "text": "We met again this evening, and he gold me of his first kill and the insatiable hunger he had. After he drank his fill, he said it was no longer a pressing need and he felt stronger.",
+      "text": "We met again this evening, and he told me of his first kill and the insatiable hunger he had. After he drank his fill, he said it was no longer a pressing need and he felt stronger.",
       "flag": "witcherycompanion:observations/immortal/level_1"
     },
     {
@@ -100,7 +101,7 @@
         },
         "symmetrical": true
       },
-      "text": "He fed from each one of them, ensuring his victims were transfixed first. He was careful to leave them unharmed.",
+      "text": "He fed from each one of them, ensuring his victims were transfixed first. He was careful to leave them unharmed",
       "flag": "witcherycompanion:observations/immortal/level_9"
     },
     {

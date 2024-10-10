@@ -1,0 +1,36 @@
+{
+  "name": "Wicker Man",
+  "icon": "minecraft:hay_block",
+  "category": "dimensions",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Wicker Man",
+      "text": "The $(item)Wicker Man$() is an artificial, human-looking structures built out of $(item)Hay Bales$(). Most of them have a $(item)Monster Spawner$() underneath, and lighting them on fire may attract powerful hunter entities."
+    },
+    {
+      "type": "multiblock",
+      "name": "Stone Circle",
+      "multiblock": {
+        "pattern": [
+          [" FF "],
+          [" FF "],
+          ["HHHH"],
+          ["VHHV"],
+          ["FVVF"],
+          [" VV "],
+          [" VV "],
+          [" S0 "]
+        ],
+        "mapping": {
+          "S": "minecraft:mob_spawner",
+          "V": "minecraft:hay_block[axis=z]",
+          "H": "minecraft:hay_block[axis=y]",
+          "F": "minecraft:hay_block[axis=x]"
+        },
+        "symmetrical": true
+      }
+    }
+  ]
+}

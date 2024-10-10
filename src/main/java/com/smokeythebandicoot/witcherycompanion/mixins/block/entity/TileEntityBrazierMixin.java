@@ -2,12 +2,9 @@ package com.smokeythebandicoot.witcherycompanion.mixins.block.entity;
 
 import com.smokeythebandicoot.witcherycompanion.api.brazier.ITileEntityBrazierAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
-import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
-import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
-import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.common.MinecraftForge;
 import net.msrandom.witchery.block.entity.TileEntityBrazier;
 import net.msrandom.witchery.block.entity.WitcheryTileEntity;
 import net.msrandom.witchery.recipe.brazier.BrazierRecipe;
