@@ -751,6 +751,10 @@ public class ModConfig {
             @Config.Name("Baba Yaga - Tweak Give By Loot Table")
             public static boolean babaYaga_tweakGiveDropLootTable = false;
 
+            @Config.Comment("Banshee will give loot to its owner based on a Loot Table (witchery:entities/banshee)")
+            @Config.Name("Banshee - Tweak Give Own Loot Table")
+            public static boolean banshee_tweakLootTable = false;
+
             @Config.Comment("If true, Coven Witch will drop loot according to its own Loot Table, instead of " +
                     "Vanilla Witch loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
                     "mods to vanilla Witch loot table, will not reflect on Coven Witches")
@@ -787,9 +791,9 @@ public class ModConfig {
             @Config.Name("Infernal Imp - Tweak Drop Loot By Table")
             public static boolean infernalImp_tweakLootTable = false;
 
-            @Config.Comment("If true, Imp will drop loot according to its Loot Table (witchery:entities/imp_gift)")
-            @Config.Name("Infernal Imp - Tweak Gift Loot Table")
-            public static boolean infernalImp_tweakGiveGiftLootTable = false;
+            @Config.Comment("If true, Hobgoblins will drop loot according to its Loot Table (witchery:entities/hobgoblin)")
+            @Config.Name("Hobgoblin - Tweak Own Loot By Table")
+            public static boolean hobgoblin_tweakLootTable = false;
 
             @Config.Comment("If true, Death will drop loot according to its Loot Table (witchery:entities/death)")
             @Config.Name("Death - Tweak Drop Loot by Table")

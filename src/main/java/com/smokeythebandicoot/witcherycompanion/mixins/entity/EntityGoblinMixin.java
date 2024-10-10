@@ -2,11 +2,14 @@ package com.smokeythebandicoot.witcherycompanion.mixins.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import com.smokeythebandicoot.witcherycompanion.api.goblintrade.GoblinTradeApi;
+import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.village.Village;
 import net.minecraft.world.DifficultyInstance;
@@ -82,6 +85,11 @@ public abstract class EntityGoblinMixin extends EntityAgeable {
             return new Village();
         }
         return original.call(instance);
+    }
+
+    @Override
+    public ResourceLocation getLootTable() {
+        return ModConfig.PatchesConfiguration.LootTweaks.hobgoblin_tweakLootTable ? LootTables.HOBGOBLIN : null;
     }
 
     /*

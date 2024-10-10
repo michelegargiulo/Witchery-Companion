@@ -13,6 +13,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Mixin:
+ * [Tweak] Give own loot table
+ */
 @Mixin(EntityDemon.class)
 public abstract class EntityDemonMixin extends EntityGolem {
 

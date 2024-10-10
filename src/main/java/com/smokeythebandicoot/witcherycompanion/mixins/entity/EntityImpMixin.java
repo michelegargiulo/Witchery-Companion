@@ -132,11 +132,11 @@ public abstract class EntityImpMixin extends EntityTameable implements IEntityIm
             this.secretsShared += 1;
 
         // If not gift are present for the given secret, then generate one using the loot table
-        // If newStack is not null, but is EMPTY, it will be treates as any other item, as it will be
+        // If newStack is not null, but is EMPTY, it will be treated as any other item, as it will be
         // interpreted as "INTENTIONALLY LEFT BLANK"
         if (newStack == null) {
 
-            if (EntityTweaks.flameImp_tweakCustomExtraItems) {// First time retrieving the lootTable, retrieve it and cache it
+            if (EntityTweaks.flameImp_tweakCustomExtraItems) { // First time retrieving the lootTable, retrieve it and cache it
                 if (witchery_Patcher$impGiftTable == null) {
                     witchery_Patcher$impGiftTable = instance.getLootTableManager()
                             .getLootTableFromLocation(LootTables.IMP_GIFT);

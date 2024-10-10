@@ -32,7 +32,7 @@ public abstract class EntityDeathMixin extends EntityMob {
     }
 
     @Inject(method = "dropFewItems", remap = true, cancellable = true, at = @At("HEAD"))
-    public void WPlootTweakDropFewItems(boolean par1, int par2, CallbackInfo ci) {
+    public void WPlootTweakDropFewItems(boolean recentlyHit, int lootingModifier, CallbackInfo ci) {
         if (ModConfig.PatchesConfiguration.LootTweaks.death_tweakLootTable) {
             ci.cancel();
         }
