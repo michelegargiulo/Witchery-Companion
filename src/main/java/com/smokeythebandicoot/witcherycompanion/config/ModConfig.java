@@ -313,6 +313,16 @@ public class ModConfig {
             @Config.Name("Coffin - Fix Edge Case Crash")
             public static boolean coffin_fixEdgeCrash = true;
 
+            @Config.Comment("Sets the Altar Power required for a Crystal Ball prediciton. Witchery default is 500.")
+            @Config.Name("Crystal Ball - Tweak Required Power")
+            @Config.RangeInt(min = 1, max = 10000)
+            public static int crystalBall_tweakRequiredPower = 500;
+
+            @Config.Comment("Sets the cooldown in ticks between each Crystal Ball usage. Witchery default is 100 (5 seconds).")
+            @Config.Name("Crystal Ball - Tweak Cooldown")
+            @Config.RangeInt(min = 1, max = 10000)
+            public static int crystalBall_tweakCooldown = 100;
+
             @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
                     "at least they should not crash the game as often")
             @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")
