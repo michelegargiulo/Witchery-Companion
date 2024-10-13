@@ -7,21 +7,116 @@
     {
       "type": "spotlight",
       "item": "witchery:crystal_ball",
-      "text": "The Crystal Ball is considered the peak of Divination magic. In the right hands its full potential can be unlocked, as it can display the world from other creatures' point of view or even see into the future. The Crystal Ball requires $(l:altar/altar)Altar Power$(/l) to function and only works for $(item)Fortune Tellers$(): players who crafted the Crystal Ball themselves."
+      "text": "The Crystal Ball is considered the peak of Divination magic. In the right hands its full potential can be unlocked, as it can display the world from other creatures' point of view or even see into the future. The Crystal Ball requires $(l:altar/altar)Altar Power$(/l) to function and only works for $(item)Fortune Tellers$(): players who crafted the Crystal Ball themselves.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
     },
     {
       "type": "text",
       "title": "Divining other Creatures",
-      "text": "Using a $(l:constructs/misc/taglock_kit)Taglock Kit$(/l) on the ball will cause the user's point of view to switch to the one of the creature bound to the taglock. As this is a divination, the user has no control over the creature. While divining, the user can still move, but much slower, as typically they are not in their own point of view. The divination works up to a distance of 150 blocks."
+      "text": "Using a $(l:constructs/misc/taglock_kit)Taglock Kit$(/l) on the ball will cause the user's point of view to switch to the one of the creature bound to the taglock. As this is a divination, the user has no control over the creature. While divining, the user can still move, but much slower, as typically they are not in their own point of view. The divination works up to a distance of 150 blocks.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
     },
     {
       "type": "text",
       "title": "Divining a Location",
-      "text": "The power of the crystal ball is not limited to what other creatures can see, but is able to also remotely access a location and display an image as if the user's eyes are just there. This is performed by using a $(l:constructs/misc/bound_waystone)Bound Waystone$(/l) on the Crystal Ball."
+      "text": "The power of the crystal ball is not limited to what other creatures can see, but is able to also remotely access a location and display an image as if the user's eyes are just there. This is performed by using a $(l:constructs/misc/bound_waystone)Bound Waystone$(/l) on the Crystal Ball.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
     },
     {
       "type": "text",
       "title": "Divining the Future",
-      "text": "Using the Crystal Ball empty-handed, will allow the user to see into their future. The Crystal Ball will try to predict the future and will whisper it to them. Before that the prediction happens, the Crystal Ball won't provide any other prediction."
+      "text": "Using the Crystal Ball empty-handed, will allow the user to see into their future. The Crystal Ball will try to predict the future and will whisper it to them. Before that the prediction happens, the Crystal Ball won't provide any other prediction.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Coal Cache",
+      "text": "The shadows speak of abundant coal. Venture forth, and you shall uncover a wealth of dark treasures awaiting your touch.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Walking Tree",
+      "text": "Nature whispers of an ancient guardian. Tread carefully, for you may soon cross paths with an $(l:creatures/ent)Ent$(/l).",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Crone's Wrath",
+      "text": "The winds whisper of the crone's fury. Beware, for $(l:creatures/baba_yaga)Baba Yaga$(/l) and her sisters stir, their ire soon to be unleashed upon you.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Stumbling Fate",
+      "text": "The earth trembles beneath you. Be wary, for a hidden trap may soon pull you into its depths unless misfortune finds you first.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Wet Fate",
+      "text": "The water's call is inevitable. Prepare, for a sudden pool may rise beneath your feet unless you dive into its depths first.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Iron Influx",
+      "text": "The earth hums with metallic riches. Delve deep, for abundant iron awaits your discovery, hidden beneath $(item)stone$() and $(item)ore$().",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Undead Clash",
+      "text": "Dark forces stir. Brace yourself, for the undead may soon rise from their graves, crossing your path unexpectedly.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Guardian's Aid",
+      "text": "In your time of need, a loyal $(item)Wolf$() or $(l:creatures/owl)Owl$(/l) will emerge, ready to defend you against the lurking threats.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Arrow's Fate",
+      "text": "The whispers of the grave grow louder. Beware, for an arrow may find you soon, heralding the approach of a $(item)Skeleton$().",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Hidden Riches",
+      "text": "The ground conceals secrets. As you tread upon the land, be prepared, for a buried treasure may reveal itself beneath your feet.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Hell Journey",
+      "text": "The shadows grow darker. Beware, for a demon's gaze may transport you to the fiery depths of the $(item)Nether$(), where a blaze awaits.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"
+    },
+    {
+      "type": "text",
+      "title": "Prediction: New Companion",
+      "text": "The forest whispers of loyalty. Be prepared, for a faithful $(item)Wolf$() friend may soon find you, bound by an unspoken bond.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Hidden Gems",
+      "text": "The earth conceals brilliance. As you delve into the stone, be ready to unearth rare $(item)Diamonds$() or $(item)Emeralds$(), sparkling with fortune.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Crone's Gaze",
+      "text": "The mists whisper of an old enchantress. Be cautious, for $(l:creatures/baba_yaga)Baba Yaga$(/l) and her sisters have taken notice, and their presence will soon be felt.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
+    },
+    {
+      "type": "text",
+      "title": "Prediction: Enigmatic Stranger",
+      "text": "Prepare yourself, for a dark and handsome stranger may soon cross your path, sparking an unexpected connection.",
+      "flag": "witcherycompanion:crystal_ball/reveal_predictions"
+    }
   ]
 }

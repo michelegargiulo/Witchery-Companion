@@ -1091,6 +1091,10 @@ public class ModConfig {
                 @Config.Name("Fetish - Details Extension")
                 public static boolean conjuring_enableFetishExtension = false;
 
+                @Config.Comment("If true, adds some pages that vaguely explain the predictions that the Crystal Ball might foresee")
+                @Config.Name("Constructs - Show Crystal Ball Predictions")
+                public static boolean constructs_revealCrystalBallPredictions = false;
+
                 @Config.Comment("If true, adds an entry to the Observations chapter, adding new lore to the Werewolf transformation in a similar way " +
                         "to how Witchery does for Vampirism (in Observations of an Immortal). Content is original.")
                 @Config.Name("Observations - Add Observations of a Lycanthrope")
@@ -1187,6 +1191,7 @@ public class ModConfig {
                 flags.put("conjuring/show_extra", Flags.conjuring_showExtraEntity);
                 flags.put("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
                 flags.put("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);
+                flags.put("crystal_ball/reveal_predictions", Flags.constructs_revealCrystalBallPredictions);
                 flags.put("symbology/extended_intro", Flags.symbology_enableExtendedIntro);
                 flags.put("symbology/stroke_visualization", Flags.symbology_enableStrokeVisualization);
                 flags.put("symbology/show_secret", Flags.symbology_showSecret);
