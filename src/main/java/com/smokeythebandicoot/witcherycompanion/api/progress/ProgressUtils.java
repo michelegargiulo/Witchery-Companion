@@ -81,10 +81,14 @@ public class ProgressUtils {
             return false;
         }
 
-        // Unlock progress
-        progress.unlockProgress(progressKey);
-        ProgressSync.serverRequest(player);
-        return MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(player, progressKey, activity));
+        // Unlock progress if it's new, otherwise ignore
+        if (!progress.hasProgress(progressKey)) {
+            progress.unlockProgress(progressKey);
+            ProgressSync.serverRequest(player);
+            return MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(player, progressKey, activity));
+        }
+
+        return false;
     }
 
 }
