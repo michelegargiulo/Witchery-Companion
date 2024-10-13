@@ -1,0 +1,13 @@
+{
+  "name": "Creeper Heart",
+  "icon": "witchery:creeper_heart",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:creeper_heart",
+      "text": "The beating heart of an explosive, hostile creature. Rare crafting ingredient, can also be eaten, but beware! It may have consequences."
+    }
+  ]
+}

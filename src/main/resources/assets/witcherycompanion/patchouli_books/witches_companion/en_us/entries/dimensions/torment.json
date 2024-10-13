@@ -2,7 +2,7 @@
   "name": "Torment",
   "icon": "witchery:torment_stone",
   "category": "dimensions",
-  "sortnum": 1,
+  "sortnum": 0,
   "pages": [
     {
       "type": "text",

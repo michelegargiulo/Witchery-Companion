@@ -5,9 +5,13 @@
   "sortnum": 0,
   "pages": [
     {
+      "type": "spotlight",
+      "item": "witchery:torment_contract",
+      "text": "A $(item)Torment Scroll$() contains the instructions to perform the Ritual used to summon a demonic creature named $(l:creatures/lord_of_torment)Lord of Torment$(/l). These scrolls are rare, but $(l:creatures/imp)Flame Imps$(/l) have been known to possess and gift them, sometimes."
+    },
+    {
       "type": "text",
-      "title": "Torment Scroll",
-      "text": "A $(item)Torment Scroll$() contains the instructions to perform the Ritual used to summon a $(l:creatures/lord_of_torment)Lord of Torment$(/l). These scrolls are rare, but $(creatures/imp)Flame Imps$(/l) have been known to possess and gift them, sometimes.$(br)Using the scroll is enough to start the ritual, and in case of incorrect steps, the scroll will notify the player.$(br)For example, the player must stand in the dead center of a $(dimensions/stone_circle)Stone Circle$(/l)."
+      "text": "Using the scroll is enough to start the ritual, and in case of incorrect steps, the scroll will whisper to the player.$(p)For a start, try to stand in the dead center of a $(l:dimensions/stone_circle)Stone Circle$(/l)."
     }
   ]
 }

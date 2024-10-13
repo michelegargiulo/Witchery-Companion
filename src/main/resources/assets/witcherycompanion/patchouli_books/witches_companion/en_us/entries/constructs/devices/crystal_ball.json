@@ -1,0 +1,27 @@
+{
+  "name": "Crystal Ball",
+  "icon": "witchery:crystal_ball",
+  "category": "constructs/devices",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:crystal_ball",
+      "text": "The Crystal Ball is considered the peak of Divination magic. In the right hands its full potential can be unlocked, as it can display the world from other creatures' point of view or even see into the future. The Crystal Ball requires $(l:altar/altar)Altar Power$(/l) to function and only works for $(item)Fortune Tellers$(): players who crafted the Crystal Ball themselves."
+    },
+    {
+      "type": "text",
+      "title": "Divining other Creatures",
+      "text": "Using a $(l:constructs/misc/taglock_kit)Taglock Kit$(/l) on the ball will cause the user's point of view to switch to the one of the creature bound to the taglock. As this is a divination, the user has no control over the creature. While divining, the user can still move, but much slower, as typically they are not in their own point of view. The divination works up to a distance of 150 blocks."
+    },
+    {
+      "type": "text",
+      "title": "Divining a Location",
+      "text": "The power of the crystal ball is not limited to what other creatures can see, but is able to also remotely access a location and display an image as if the user's eyes are just there. This is performed by using a $(l:constructs/misc/bound_waystone)Bound Waystone$(/l) on the Crystal Ball."
+    },
+    {
+      "type": "text",
+      "title": "Divining the Future",
+      "text": "Using the Crystal Ball empty-handed, will allow the user to see into their future. The Crystal Ball will try to predict the future and will whisper it to them. Before that the prediction happens, the Crystal Ball won't provide any other prediction."
+  ]
+}

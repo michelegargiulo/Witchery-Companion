@@ -1,0 +1,18 @@
+{
+  "name": "Mirror",
+  "icon": "witchery:mirror_wall",
+  "category": "dimensions",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Torment",
+      "text": "Mirror is a pocket dimension made of 9x9x9 rooms, separated by an impenetrable $(item)Mirror Wall$(). Initially inhabited by a $(l:creatures/reflection)Reflection$(/l), one can fight it to gain control over the space. The Demon won't return afterwards."
+    },
+    {
+      "type": "text",
+      "title": "Entering the Mirror",
+      "text": "This dimension can only be accessed by walking through a $(l:constructs/devices/mirror)Mirror$(/l).$(p)Another identical mirror will appear on the inside, and it is the main way to exit the dimension."
+    }
+  ]
+}

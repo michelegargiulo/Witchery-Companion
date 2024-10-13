@@ -32,7 +32,7 @@
     {
       "type": "generic/secret_text",
       "title": "Hobgoblin worshipping",
-      "description": "Hobgoblins worship their gods, $(item)Mog$() and $(item)Gulg$(). If a bound $(item)Statue of Hobgoblin Patron$() is nearby, they will begin worshipping it, recharging $(item)Infusion Power$() of the player the statue is bound to.$(2br)Worshipping Hobgoblins also increase the power of the $(item)Mystic Branch$() and its effects, but remember, if too many Hobgoblins worship the statue, Mog and Gulg will descend to slay the player.",
+      "description": "Hobgoblins worship their gods, $(item)Mog$() and $(item)Gulg$(). If a bound $(item)Statue of Hobgoblin Patron$() is nearby, they will begin worshipping it, recharging $(item)Infusion Power$() of the player the statue is bound to.$(br)Worshipping Hobgoblins also increase the power of the $(item)Mystic Branch$() and its effects, but remember, if too many Hobgoblins worship the statue, Mog and Gulg will descend to slay the player.",
       "secret_key": "witcherycompanion:creatures/hobgoblin_worship",
       "_comment": "Unlocked when a player crafts a Statue of Hobgoblin patron"
     }

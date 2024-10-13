@@ -1,0 +1,51 @@
+{
+  "name": "Goblin Hut",
+  "icon": "minecraft:wheat",
+  "category": "dimensions",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Goblin Hut",
+      "text": "This small structure can be found all around the world. They are usually inhabited by $(l:creatures/hobgoblin)Hobgoblins$(/l)."
+    },
+    {
+      "type": "multiblock",
+      "name": "Goblin Hut",
+      "multiblock": {
+        "pattern": [
+          ["       ", "       ", "       ", "   E   ", "  JNM  ", "   A   ", "       ", "       "],
+          ["       ", "  ABA  ", " BRRRB ", "MRRRRRJ", "BRRRRRB", "MRRRRRJ", " BRRRB ", "  EBE  "],
+          ["       ", "  L L  ", " L K L ", "L     L", "F     F", "L     L", " L  QL ", "  LFL  "],
+          ["       ", "  U U  ", " P D P ", "T     V", "P     P", "T     V", " PRRRP ", "  WPW  "],
+          ["       ", "   S   ", " FHHHF ", " HCCCH ", "FHCOCHF", " HCCCH ", " F   F ", "       "],
+          ["   S   ", "   W   ", " F   F ", "       ", "F  0  F", "       ", " F   F ", "       "]
+        ],
+        "mapping": {
+          "F": "minecraft:fence",
+          "C": "minecraft:stone_slab[half=bottom,variant=cobblestone]",
+          "O": "minecraft:cauldron[level=0]",
+          "H": "minecraft:wooden_slab[half=top,variant=oak]",
+          "N": "minecraft:wooden_slab[half=bottom,variant=spruce]",
+          "D": "minecraft:wooden_door[facing=east,half=lower,hinge=right]",
+          "K": "minecraft:wooden_door[facing=east,half=upper,hinge=right]",
+          "P": "minecraft:planks[variant=oak]",
+          "Q": "minecraft:torch[facing=up]",
+          "R": "minecraft:wooden_slab[half=top,variant=spruce]",
+          "S": "minecraft:oak_stairs[half=bottom,shape=straight,facing=east]",
+          "T": "minecraft:oak_stairs[half=top,shape=straight,facing=south]",
+          "U": "minecraft:oak_stairs[half=top,shape=straight,facing=east]",
+          "V": "minecraft:oak_stairs[half=top,shape=straight,facing=north]",
+          "W": "minecraft:oak_stairs[half=top,shape=straight,facing=west]",
+          "L": "minecraft:log[variant=oak,axis=y]",
+          "B": "minecraft:planks[variant=spruce]",
+          "A": "minecraft:spruce_stairs[half=bottom,shape=straight,facing=east]",
+          "J": "minecraft:spruce_stairs[half=bottom,shape=straight,facing=north]",
+          "M": "minecraft:spruce_stairs[half=bottom,shape=straight,facing=south]",
+          "E": "minecraft:spruce_stairs[half=bottom,shape=straight,facing=west]"
+        },
+        "symmetrical": true
+      }
+    }
+  ]
+}
