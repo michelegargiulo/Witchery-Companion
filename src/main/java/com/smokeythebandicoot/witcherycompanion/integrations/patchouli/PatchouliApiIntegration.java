@@ -116,7 +116,7 @@ public class PatchouliApiIntegration {
     @SubscribeEvent
     public static void onBookReload(BookContentsReloadEvent event) {
         // Clear cache of all the processors that implement caching
-        if (!event.book.getNamespace().equals(WitcheryCompanion.MODID)) return;
+        if (event.book == null || !event.book.getNamespace().equals(WitcheryCompanion.MODID)) return;
         if (readyToReload) {
             CapacityBrewActionProcessor.clearCache();
             ModifierBrewActionProcessor.clearCache();
@@ -125,7 +125,6 @@ public class PatchouliApiIntegration {
             IncrementBrewActionProcessor.clearCache();
             MultiblockRegistry.reloadMultiblocks();
             WitcheryCompanion.logger.debug("Patchouli Book Reloaded");
-            //Utils.logChat("Patchouli Book Reloaded");
         }
 
         /* Maybe in the future, implement a custom book reloader. Probably Patchouli code will have to
