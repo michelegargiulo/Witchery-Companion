@@ -48,6 +48,12 @@ public class ExtendedPlayerHandler {
     }
 
     @ZenMethod
+    @ZenDoc(value="Returns true if player can make predictions with Crystal Ball")
+    public static boolean isFortuneTeller(IPlayer player) {
+        return PlayerExtendedDataApi.isFortuneTeller(CraftTweakerMC.getPlayer(player));
+    }
+
+    @ZenMethod
     @ZenDoc(value="Returns an array of learnt Symbol Effects")
     public static SymbolEffectWrapper[] getLearntSymbols(IPlayer player) {
         return PlayerExtendedDataApi.getLearntSymbols(CraftTweakerMC.getPlayer(player))
