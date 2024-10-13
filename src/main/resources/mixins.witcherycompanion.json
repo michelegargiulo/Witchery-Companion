@@ -95,7 +95,6 @@
     "potion.PotionFortuneMixin",
     "potion.PotionInsanityMixin",
     "potion.PotionResizingMixin",
-    "prediction.PredictionMixin",
     "recipe.brazier.BrazierSummoningRecipeMixin",
     "registry.RegistryWrapper.DimensionsMixin",
     "resources.MutationManagerMixin",
