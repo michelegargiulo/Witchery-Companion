@@ -3,5 +3,5 @@
   "description": "Observations",
   "icon": "witchery:full_chalice",
   "sortnum": 15,
-  "secret": false
+  "secret": true
 }
