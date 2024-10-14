@@ -970,6 +970,10 @@ public class ModConfig {
             @Config.Name("TOP Integration - Witch's Cauldron")
             public static EProbeElementIntegrationConfig cauldron = EProbeElementIntegrationConfig.DEFAULT;
 
+            @Config.Comment("If true, enables TOP integration for Crystal Ball")
+            @Config.Name("TOP Integration - Crystal Ball")
+            public static EProbeElementIntegrationConfig crystalBall = EProbeElementIntegrationConfig.DEFAULT;
+
             @Config.Comment("If true, enables TOP integration for Kettle")
             @Config.Name("TOP Integration - Kettle")
             public static EProbeElementIntegrationConfig kettle = EProbeElementIntegrationConfig.DEFAULT;
