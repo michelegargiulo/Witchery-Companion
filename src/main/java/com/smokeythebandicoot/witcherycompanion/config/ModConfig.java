@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -1202,6 +1203,7 @@ public class ModConfig {
                 flags.put("observations/add_werewolf", Flags.observations_enableLycanthrope);
 
                 PatchouliApiIntegration.updateFlags(flags);
+                PatchouliApiIntegration.reloadBook();
 
             }
 

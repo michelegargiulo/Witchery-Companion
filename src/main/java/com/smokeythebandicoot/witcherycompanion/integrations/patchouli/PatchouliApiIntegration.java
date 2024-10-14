@@ -78,6 +78,10 @@ public class PatchouliApiIntegration {
         }
     }
 
+    public static void reloadBook() {
+        PatchouliAPI.instance.reloadBookContents();
+    }
+
     public static final FlagReloader<ResourceLocation, SymbolEffect> symbolEffectReloader = new FlagReloader<>(
             SymbolEffect.REGISTRY::iterator,
             ResourceLocation::getPath,
