@@ -25,6 +25,7 @@
     "block.WitcheryBlockDoorMixin",
     "block.entity.TileEntityAlderDoorMixin",
     "block.entity.TileEntityAltarMixin",
+    "block.entity.TileEntityBeartrapMixin",
     "block.entity.TileEntityBloodTrapMixin",
     "block.entity.TileEntityBrazierMixin",
     "block.entity.TileEntityCauldronMixin",
