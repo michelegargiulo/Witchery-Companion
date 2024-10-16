@@ -38,6 +38,9 @@ public class TOPPlugin implements Function<ITheOneProbe, Void> {
                 // Kettle
                 probe.registerProvider(KettleProbeInfoProvider.getInstance());
 
+                // Sun Collector
+                probe.registerProvider(SunCollectorProbeInfoProvider.getInstance());
+
                 // ---------- ENTITIES ---------- //
                 // Hobgoblin
                 probe.registerEntityProvider(HobgoblinProbeInfoProvider.getInstance());

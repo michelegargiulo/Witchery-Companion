@@ -974,13 +974,17 @@ public class ModConfig {
             @Config.Name("TOP Integration - Crystal Ball")
             public static EProbeElementIntegrationConfig crystalBall = EProbeElementIntegrationConfig.DEFAULT;
 
+            @Config.Comment("If true, enables TOP integration for Grassper")
+            @Config.Name("TOP Integration - Grassper")
+            public static EProbeElementIntegrationConfig grassper = EProbeElementIntegrationConfig.DEFAULT;
+
             @Config.Comment("If true, enables TOP integration for Kettle")
             @Config.Name("TOP Integration - Kettle")
             public static EProbeElementIntegrationConfig kettle = EProbeElementIntegrationConfig.DEFAULT;
 
-            @Config.Comment("If true, enables TOP integration for Grassper")
-            @Config.Name("TOP Integration - Grassper")
-            public static EProbeElementIntegrationConfig grassper = EProbeElementIntegrationConfig.DEFAULT;
+            @Config.Comment("If true, enables TOP integration for Sun Collector")
+            @Config.Name("TOP Integration - Sun Collector")
+            public static EProbeElementIntegrationConfig sunCollector = EProbeElementIntegrationConfig.DEFAULT;
 
             @Config.Comment("If true, enables TOP integration for Hobgoblin")
             @Config.Name("TOP Integration - Hobgoblin")
