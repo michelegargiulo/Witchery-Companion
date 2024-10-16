@@ -8,6 +8,7 @@
     "minecraft.resources.ResourceManagerMixin",
     "witchery.block.BlockAlderDoorMixin",
     "witchery.block.BlockAltarMixin",
+    "witchery.block.BlockBeartrapMixin",
     "witchery.block.BlockBrazierMixin",
     "witchery.block.BlockCircleGlyphMixin",
     "witchery.block.BlockCrystalBallMixin",

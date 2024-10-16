@@ -299,6 +299,11 @@ public class ModConfig {
             @Config.Name("Block Fetish - Fix No Drops on Harvest")
             public static boolean blockFetish_fixNoDropsOnHarvest = true;
 
+            @Config.Comment("If true, makes Bear Traps and Wolf Traps break if there is no block with a solid upper face beneath. " +
+                    "Also applies to Wolf Traps")
+            @Config.Name("Bear Trap - Tweak Surface Requirement")
+            public static boolean bearTrap_tweakNeedsSolidSurface = false;
+
             @Config.Comment("Fixes fetish blocks resetting their data on world reload or when many blocks are " +
                     "updated at once, including Players bound to them")
             @Config.Name("Block Fetish - Fix Data Loss on World Reload")
@@ -408,9 +413,14 @@ public class ModConfig {
             @Config.Name("Witches Oven - Fix Burning Particles")
             public static boolean witchesOven_fixBurningParticlesHeight = true;
 
-            @Config.Comment("If true, when the bear trap is activated, warns the player about approaching werewolves")
+            @Config.Comment("If true, when the Wolf Trap is activated, warns the player about approaching werewolves")
             @Config.Name("Wolf Trap - Tweak Warn Players")
             public static boolean wolfTrap_warnPlayers = false;
+
+            @Config.Comment("If true, the Wolf Trap will drop itself when broken. It is a tweak, as Witchery intentionally " +
+                    "makes the wolf trap impossible to relocate once placed")
+            @Config.Name("Wolf Trap - Tweak Drop On Break")
+            public static boolean wolfTrap_tweakDropOnBreak = false;
         }
 
         public static class ItemTweaks {
