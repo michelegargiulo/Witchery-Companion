@@ -96,6 +96,7 @@
     "witchery.potion.PotionFortuneMixin",
     "witchery.potion.PotionInsanityMixin",
     "witchery.potion.PotionResizingMixin",
+    "witchery.recipe.KettleRecipeMixin",
     "witchery.recipe.brazier.BrazierSummoningRecipeMixin",
     "witchery.registry.RegistryWrapper.DimensionsMixin",
     "witchery.resources.MutationManagerMixin",
