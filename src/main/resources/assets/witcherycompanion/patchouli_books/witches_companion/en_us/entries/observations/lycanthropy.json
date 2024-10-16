@@ -1,6 +1,6 @@
 {
   "name": "Lycanthropy",
-  "icon": "witchery:full_chalice",
+  "icon": "witchery:wolfsbane",
   "category": "observations",
   "flag": "witcherycompanion:observations/show_lycanthropy_intro",
   "sortnum": 1,
@@ -56,7 +56,8 @@
       "title": "Wolfman Form",
       "description": "Player can now transform into the $(item)Wolfman Form$() using a $(l:)Moon Charm$(/l) while sneaking.$(br)A werewolf in Wolfman Form will have the following changes to their body and abilities:$(br)$(8)> $()Cannot wear armor$(br)$(8)> $()Will drop held object$(br)$(8)> $()Faster movement and better jump and leap$(br)$(8)> $()Increased step height$(br)$(8)> $()Night vision$(br)$(8)> $()Immunity to poison and disease",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_5",
-      "flag": "witcherycompanion:observations/show_lycanthropy_progress"
+      "flag": "witcherycompanion:observations/show_lycanthropy_progress",
+      "anchor": "wolfman_form"
     },
     {
       "type": "generic/secret_text",

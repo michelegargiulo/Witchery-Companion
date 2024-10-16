@@ -18,6 +18,7 @@ import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraftforge.event.LootTableLoadEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.msrandom.witchery.common.CommonEvents;
 import net.msrandom.witchery.config.WitcheryConfigOptions;
 import org.spongepowered.asm.mixin.Mixin;
@@ -88,4 +89,13 @@ public abstract class CommonEventsMixin {
         }
         return Blocks.AIR;
     }
+
+    @Inject(method = "onEntityJoinWorld", remap = false, cancellable = true, at = @At(value = "INVOKE", ordinal = 1,
+            target = "Lnet/minecraft/entity/ai/EntityAITasks;addTask(ILnet/minecraft/entity/ai/EntityAIBase;)V", remap = true))
+    private static void removeInjectedAIs(EntityJoinWorldEvent event, CallbackInfo ci) {
+        if (ModConfig.PatchesConfiguration.EntityTweaks.villager_disablePackportedAI) {
+            ci.cancel();
+        }
+    }
+
 }

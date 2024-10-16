@@ -39,6 +39,7 @@
     "witchery.block.entity.TileEntityKettleMixin",
     "witchery.block.entity.TileEntityPlacedItemMixin",
     "witchery.block.entity.TileEntityPoppetShelfMixin",
+    "witchery.block.entity.TileEntityWorshipStatueMixin",
     "witchery.brewing.LiquidDispersalMixin",
     "witchery.brewing.TriggeredDispersalMixin",
     "witchery.brewing.action.CapacityBrewActionMixin",

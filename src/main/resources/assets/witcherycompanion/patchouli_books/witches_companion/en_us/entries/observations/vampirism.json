@@ -1,6 +1,6 @@
 {
   "name": "Vampirism",
-  "icon": "witchery:vampire_corset",
+  "icon": "witchery:garlic",
   "category": "observations",
   "flag": "witcherycompanion:observations/show_lycanthropy_intro",
   "sortnum": 1,

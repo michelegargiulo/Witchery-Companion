@@ -752,6 +752,10 @@ public class ModConfig {
                     "of ticks before despawning")
             @Config.Name("Spectre - Tweak Tick Delay Before Despawn")
             public static int spectre_tweakDelayTicksBeforeDespawn = 60;
+
+            @Config.Comment("If true, removes Witchery: Resurrected Back-ported AI for Villagers")
+            @Config.Name("Villager - Tweak Remove Backported AI")
+            public static boolean villager_disablePackportedAI = false;
         }
 
         public static class BookTweaks {
@@ -998,6 +1002,10 @@ public class ModConfig {
             @Config.Comment("If true, enables TOP integration for Kettle")
             @Config.Name("TOP Integration - Kettle")
             public static EProbeElementIntegrationConfig kettle = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Statue of Hobgoblin Patron")
+            @Config.Name("TOP Integration - Statue of Hobgoblin Patron")
+            public static EProbeElementIntegrationConfig statueOfHobgoblinPatron = EProbeElementIntegrationConfig.DEFAULT;
 
             @Config.Comment("If true, enables TOP integration for Sun Collector")
             @Config.Name("TOP Integration - Sun Collector")

@@ -21,6 +21,11 @@
       "item": "witchery:filtered_fume_funnel",
       "text": "A Filtered Fume Funnel also increases the cooking speed of the $(item)Witches' Oven$() by 10% but increases the chance of by-product of 30%. A fully-upgraded Oven can cook at 130% the speed of a $(item)Furnace$() and a 90% chance of generating by-products.",
       "anchor": "filtered"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:fume_filter",
+      "text": "A $(item)Filtered Fume Funnel$() is created by crafting together a $(item)Fume Funnel$() with a $(item)Fume Filter$()"
     }
   ]
 }
