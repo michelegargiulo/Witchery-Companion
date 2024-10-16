@@ -952,6 +952,10 @@ public class ModConfig {
             @Config.Name("JEI Integration - Enable Imp Shinies")
             public static boolean enableJeiImpShinies = true;
 
+            @Config.Comment("If true, enables Sun Collector JEI Integration")
+            @Config.Name("JEI Integration - Enable Sun Collector")
+            public static boolean enableJeiSunCollector = true;
+
         }
 
         public static class QuarkIntegration {
