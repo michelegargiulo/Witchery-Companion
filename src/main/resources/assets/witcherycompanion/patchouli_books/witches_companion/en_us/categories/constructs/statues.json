@@ -1,0 +1,7 @@
+{
+  "name": "Statues",
+  "description": "Statues and effigies used for witchcraft purposes",
+  "icon": "witchery:goddess_statue",
+  "parent": "constructs",
+  "secret": false
+}

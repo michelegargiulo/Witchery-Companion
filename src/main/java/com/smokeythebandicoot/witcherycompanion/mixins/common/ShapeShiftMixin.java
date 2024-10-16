@@ -2,7 +2,10 @@ package com.smokeythebandicoot.witcherycompanion.mixins.common;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.player.IEntityPlayerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.CommonTweaks;
 import com.smokeythebandicoot.witcherycompanion.integrations.morph.MorphIntegration;
@@ -15,13 +18,13 @@ import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.play.server.SPacketPlayerAbilities;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.fml.common.Loader;
 import net.msrandom.witchery.common.ShapeShift;
 import net.msrandom.witchery.extensions.PlayerExtendedData;
 import net.msrandom.witchery.network.PacketSyncEntitySize;
 import net.msrandom.witchery.network.WitcheryNetworkChannel;
 import net.msrandom.witchery.transformation.CreatureForm;
-import net.msrandom.witchery.util.EntitySizeInfo;
 import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -35,6 +38,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  [Bugfix] Fix floating entities when traveling through dimensions due to an incorrect usage of 'sendPlayerAbilities'
     that spawns tracked entities from origin dimension to target dimension
  [Tweak] Current Health after a transformation will be set as the same percentage of HP as before the transformation
+ [Feature] Unlock progress when werewolf infects player with Curse of the Wolf
  */
 @Mixin(ShapeShift.class)
 public abstract class ShapeShiftMixin {
@@ -50,12 +54,6 @@ public abstract class ShapeShiftMixin {
 
     @Unique
     private EntityPlayer witchery_Patcher$prevPlayerOnTransform = null;
-
-    @Unique
-    private final Float witchery_Patcher$prevHpPercentOnDetransform = null;
-
-    @Unique
-    private final EntityPlayer witchery_Patcher$prevPlayerOnDetransform = null;
 
 
     /** Wraps around the sendPlayerAbilities() call and cancels it. The shape-shifting only changes the ability to fly,
@@ -201,6 +199,17 @@ public abstract class ShapeShiftMixin {
             // Send the new size to all players
             WitcheryNetworkChannel.sendToAll(new PacketSyncEntitySize(player));
         }
+    }
+
+    /** This Mixin runs almost at the end of the method, where Witchery sends the chat message to notify the player
+     * of the new Werewolf injection. This method of acquiring the Curse of the Wolf is not well documented, so assumed
+     * to be secret. **/
+    @WrapOperation(method = "processWolfInfection(Lnet/minecraft/entity/EntityLivingBase;Lnet/msrandom/witchery/entity/EntityWerewolf;F)V", remap = false,
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/EntityPlayer;sendMessage(Lnet/minecraft/util/text/ITextComponent;)V"))
+    private void unlockSecretOnWerewolfInfection(EntityPlayer instance, ITextComponent iTextComponent, Operation<Void> original) {
+        original.call(instance, iTextComponent);
+        ProgressUtils.unlockProgress(instance, WitcheryCompanion.prefix("werewolf_to_player_infection"),
+                WitcheryProgressEvent.EProgressTriggerActivity.WEREWOLF_INFECTION.activityTrigger);
     }
 
 }

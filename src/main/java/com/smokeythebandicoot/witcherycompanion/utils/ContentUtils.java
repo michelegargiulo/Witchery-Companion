@@ -7,13 +7,10 @@ import net.minecraft.resources.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 import net.msrandom.witchery.recipe.WitcheryRecipe;
+import net.msrandom.witchery.transformation.CreatureTraitType;
 import net.msrandom.witchery.util.WitcheryUtils;
 
 public class ContentUtils {
-
-    public static boolean isSymbolEffectEnabled(String effectId) {
-        return SymbolEffect.REGISTRY.get(new ResourceLocation("witchery:" + effectId)) != null;
-    }
 
     @SuppressWarnings({"unchecked"})
     public static WitcheryRecipe getRecipeForType(RecipeType recipeType, ResourceLocation recipeId) {
@@ -33,6 +30,11 @@ public class ContentUtils {
             return (T)accessor.getRecipeForType(recipeType, new ResourceLocation(recipeId));
         }
         return null;
+    }
+
+    public static ResourceLocation getTraitTypeResourceLocation(CreatureTraitType<?> type) {
+        int traitId = CreatureTraitType.REGISTRY.getId(type);
+        return CreatureTraitType.REGISTRY.getKey(traitId);
     }
 
 

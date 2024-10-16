@@ -13,7 +13,6 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -408,6 +407,10 @@ public class ModConfig {
             @Config.Comment("If true, backports from 0.6 a fix to spawn burning particles at the correct height")
             @Config.Name("Witches Oven - Fix Burning Particles")
             public static boolean witchesOven_fixBurningParticlesHeight = true;
+
+            @Config.Comment("If true, when the bear trap is activated, warns the player about approaching werewolves")
+            @Config.Name("Wolf Trap - Tweak Warn Players")
+            public static boolean wolfTrap_warnPlayers = false;
         }
 
         public static class ItemTweaks {
@@ -1104,10 +1107,47 @@ public class ModConfig {
                 @Config.Name("Constructs - Show Crystal Ball Predictions")
                 public static boolean constructs_revealCrystalBallPredictions = false;
 
+                @Config.Comment("If true, adds a new entry that explains Fume Funnels and their role in upgrading the Witches' Oven")
+                @Config.Name("Fumes - Explain Funnels")
+                public static boolean fumes_enableFunnels = false;
+
                 @Config.Comment("If true, adds an entry to the Observations chapter, adding new lore to the Werewolf transformation in a similar way " +
                         "to how Witchery does for Vampirism (in Observations of an Immortal). Content is original.")
                 @Config.Name("Observations - Add Observations of a Lycanthrope")
-                public static boolean observations_enableLycanthrope = false;
+                public static boolean observations_enableLycanthropyLore = false;
+
+                @Config.Comment("If true, adds an entry to the Lycanthropy section in Observations chapter, with an introduction on lycanthropy in general.")
+                @Config.Name("Observations - Add Lycanthropy Intro")
+                public static boolean observations_enableLycanthropyIntro = false;
+
+                @Config.Comment("If true, adds an entry to the Observations chapter, documenting the progression of becoming a werewolf. Each page will be " +
+                        "unlocked after reaching a higher level in lycanthropy.")
+                @Config.Name("Observations - Add Lycanthropy Progress")
+                public static boolean observations_enableLycanthropyProgress = false;
+
+                @Config.Comment("If true, adds an entry to the Vampirism section in Observations chapter, with an introduction on vampirism in general.")
+                @Config.Name("Observations - Add Vampirism Intro")
+                public static boolean observations_enableVampirismIntro = false;
+
+                @Config.Comment("If true, adds an entry to the Observations chapter, documenting the progression of becoming a vampire. Each page will be " +
+                        "unlocked after reaching a higher level in vampirism.")
+                @Config.Name("Observations - Add Vampirism Progress")
+                public static boolean observations_enableVampirismProgress = false;
+
+                @Config.Comment("If true, adds a page regarding the Statue of The Goddess. Being considered an almost-creative item, some pack makers " +
+                        "might want to disable its recipe or hide it altogether. Keep this flag to false if it's the case.")
+                @Config.Name("Statues - Show Statue of The Goddess")
+                public static boolean statues_showGoddess = false;
+
+                @Config.Comment("If true, adds a page regarding the Statue of Broken Curses. Being considered an almost-creative item, some pack makers " +
+                        "might want to disable its recipe or hide it altogether. Keep this flag to false if it's the case.")
+                @Config.Name("Statues - Show Statue of Broken Curses")
+                public static boolean statues_showBrokenCurses = false;
+
+                @Config.Comment("If true, adds a page regarding the Statue of Occluded Summons. Being considered an almost-creative item, some pack makers " +
+                        "might want to disable its recipe or hide it altogether. Keep this flag to false if it's the case.")
+                @Config.Name("Statues - Show Statue of Broken Curses")
+                public static boolean statues_showOccludedSummons = false;
 
                 @Config.Comment("If true, shows more information about how to get into symbology and how it works in general")
                 @Config.Name("Symbology - Extended Intro")
@@ -1201,14 +1241,20 @@ public class ModConfig {
                 flags.put("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
                 flags.put("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);
                 flags.put("crystal_ball/reveal_predictions", Flags.constructs_revealCrystalBallPredictions);
+                flags.put("fumes/funnels", Flags.fumes_enableFunnels);
+                flags.put("observations/add_werewolf", Flags.observations_enableLycanthropyLore);
+                flags.put("observations/show_lycanthropy_intro", Flags.observations_enableLycanthropyIntro);
+                flags.put("observations/show_lycanthropy_progress", Flags.observations_enableLycanthropyProgress);
+                flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
+                flags.put("observations/show_vampirism_intro", Flags.observations_enableVampirismIntro);
+                flags.put("observations/show_vampirism_progress", Flags.observations_enableVampirismProgress);
+                flags.put("statues/show_goddess", Flags.statues_showGoddess);
+                flags.put("statues/show_broken_curses", Flags.statues_showBrokenCurses);
+                flags.put("statues/show_occluded_summons", Flags.statues_showOccludedSummons);
                 flags.put("symbology/extended_intro", Flags.symbology_enableExtendedIntro);
                 flags.put("symbology/stroke_visualization", Flags.symbology_enableStrokeVisualization);
                 flags.put("symbology/show_secret", Flags.symbology_showSecret);
                 flags.put("symbology/show_knowledge", Flags.symbology_showKnowledge);
-
-                // Special flag that is required to hide the observations section of the book
-                flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
-                flags.put("observations/add_werewolf", Flags.observations_enableLycanthrope);
 
                 PatchouliApiIntegration.updateFlags(flags);
                 PatchouliApiIntegration.reloadBook();

@@ -1,0 +1,103 @@
+{
+  "name": "Clay Jars",
+  "icon": "witchery:misfortune_reek",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:soft_clay_jar",
+      "text": "A mundane, unfired clay jar that can be heated to harden."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:clay_jar",
+      "text": "A mundane contained usually used for $(l:fumes/fumes)Collecting Fumes$(/l) in a $(item)Witches' Oven$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:foul_fume",
+      "text": "A noxious vapor distilled from arcane remnants, likely to linger where curses were cast. Approach with caution. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:diamond_vapor",
+      "text": "An ethereal mist born from crystalline whispers, holding fleeting glimpses of untold power. Handle with wonder. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:vitriol_oil",
+      "text": "A caustic elixir, rumored to originate from the venom of ancient serpents. Keep far from prying eyes. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:horned_one_exhale",
+      "text": "A breath of ancient mysticism, drawn from the depths of the forest's forbidden secrets. Use with reverence. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:goddess_breath",
+      "text": "A delicate breeze imbued with divine grace, capturing whispers from the realms beyond. Wield with awe. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:goddess_tear",
+      "text": "A rare droplet of celestial sorrow, shimmering with the secrets of the heavens. Cherish its elusive power. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:rebirth_hint",
+      "text": "A whisper of life reborn, extracted from the essence of nature's endless cycle. Embrace its renewal. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:magic_whiff",
+      "text": "An elusive scent, said to be bottled from the very essence of spells cast in moonlit nights. Use sparingly. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:misfortune_reek",
+      "text": "A sinister concoction of essence and dread, its purpose shrouded in dark intentions. Handle with care. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:purity_odor",
+      "text": "A fragrant essence distilled from untouched realms, carrying whispers of sanctity. Preserve its innocence. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:luck_drop",
+      "text": "A fleeting essence of fortune, captured from the whims of fate itself. Keep close, and fortune may follow. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:ender_dew",
+      "text": "A mystical condensation, rumored to condense under the watchful eyes of the $(item)Endermen$(). Store with curiosity. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:demonic_blood",
+      "text": "A potent draught rumored to pulse with the rage of fallen demons, drawn from the darkest of rituals. Use in the shadows. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:mellifluous_hunger",
+      "text": "A nectar of insatiable desire, whispered to lure even the strongest will. Handle with caution; its pull is irresistible.$(p)Usually dropped by $(l:creatures/nightmare)Nightmares$(/l) when killed in the $(l:dimensions/spirit_world)Spirit World$(/l). Common crafting ingredient, most notably it is involved in the making of $(l:constructs/dream_weavers/nightmare)Dream Weavers$(/l)."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:purified_milk",
+      "text": "A serene draught, whispered to have the power to cleanse the darkest of curses. Sip with trust. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:focused_will",
+      "text": "A concentrated essence of determination, distilled from the unwavering resolve of heroes past. Guard its strength. Common crafting ingredient."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:condensed_fear",
+      "text": "An essence forged from the shadows of nightmares, distilled into a palpable dread. Wield with trepidation. Common crafting ingredient."
+    }
+  ]
+}

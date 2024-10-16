@@ -1,0 +1,25 @@
+{
+  "name": "Werewolf",
+  "icon": "witchery:wolf_head",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:werewolf",
+      "text": "Mutant Beasts.",
+      "offset": 0.1,
+      "scale": 0.95
+    },
+    {
+      "type": "text",
+      "title": "Werewolf",
+      "text": "A $(item)Villager$() that has become infected with $(l:observations/lycanthropy)Lycanthropy$(/l). During daytime, it is indistinguishable from all the other Villagers, but when there is a $(item)Full Moon$() they will transform into their $(item)Wolfman$() form and attack players and villagers alike."
+    },
+    {
+      "type": "text",
+      "title": "Countering Werewolves",
+      "text": "Werewolves in their Wolfman form are very hard to kill, being naturally resistant to most forms of damage. $(item)Silver$() or $(item)Silvered$() weapons are known to damage them the most.$(p)A $(l:herbology/herbology#wolfsbane)Wolfsbane$(/l) flower is known to be able to detect an infected villager, as they'll tend to flee from a player holding it."
+    }
+  ]
+}

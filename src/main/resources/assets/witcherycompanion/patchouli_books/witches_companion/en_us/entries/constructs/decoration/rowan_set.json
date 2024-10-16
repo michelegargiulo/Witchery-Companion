@@ -1,0 +1,14 @@
+{
+  "name": "Alder Set",
+  "icon": "witchery:rowan_fence",
+  "category": "constructs/decoration",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "constructs/decorative_set",
+      "title": "Alder Set",
+      "ingredients": "witchery:rowan_log;witchery:rowan_planks;witchery:rowan_stairs;witchery:rowan_slab;witchery:rowan_fence;witchery:rowan_fence_gate;witchery:rowan_leaves;witchery:rowan_door",
+      "description": "A decorative building set made of $(l:herbology/herbology#rowan)Rowan$(/l) wood."
+    }
+  ]
+}

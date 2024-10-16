@@ -13,6 +13,7 @@
     },
     {
       "type": "text",
+      "title": "Baba Yaga",
       "text": "A crone so powerful that the sky darkens when she's nearby. She knows many secrets and will use them at her advantage. She knows very well how to fight, and attacking her with a mundane melee weapon may hurt more the attacker than Baba Yaga. The $(l:constructs/weapons/spear_of_the_huntsman)Spear of the Huntsman$(/l) is an effective weapon against the Crone, as it avoids the hit-back."
     },
     {
