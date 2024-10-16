@@ -31,7 +31,7 @@ public class WolfAltarWrapper extends BaseRecipeWrapper {
 
     @Override
     public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-        minecraft.fontRenderer.drawString(I18n.format("witcherycompanion.gui.wolf_altar.min_level") + minLevel, 2, 34, 0xffffff);
+        minecraft.fontRenderer.drawString(I18n.format("witcherycompanion.gui.wolf_altar.min_level") + minLevel, 2, 36, 0x000000);
     }
 
 }
