@@ -1,0 +1,18 @@
+{
+  "name": "Multiple Afflictions",
+  "icon": "witchery:full_glass_goblet",
+  "category": "observations",
+  "flag": "&witcherycompanion:observations/show_lycanthropy_intro,witcherycompanion:observations/show_vampirism_intro",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Vampire Werewolves",
+      "text": "While not commot, it is possible for a vampire to become a lycanthrope. Such creature gains most of the strength and weaknesses of both traits. A vampire cannot use its power while in $(l:observations/lycanthropy#wolf_form)Wolf$(/l) or $(l:observations/lycanthropy#wolfman_form)Wolfman$(/l) forms. Feeding upon corpses as a wolf will not recover the vampire's hunger, and drinking blood remains the only way."
+    },
+    {
+      "type": "text",
+      "text": "The vampire also loses its immunity to silver, and makes the werewolf vulnerable to fire and sunlight.$(p)The blood storage capacity is also reduced by a third with respect to a pure vampire creature."
+    }
+  ]
+}

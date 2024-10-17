@@ -1,0 +1,110 @@
+{
+  "name": "Vampirism",
+  "icon": "witchery:garlic",
+  "category": "observations",
+  "flag": "witcherycompanion:observations/show_lycanthropy_intro",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "text": "Vampirism is an affliction that is acquired after a body has had $(item)Demon$() tainted blood transfused into it. Burned by sunlight, stigmatized by mortals, and thirsting for blood, most vampires go to extreme lengths to hide their ailment or entire presence from the world. Others revel in their infamy."
+    },
+    {
+      "type": "text",
+      "title": "Weaknesses",
+      "text": "Contrary to many popular beliefs, the only way to kill a vampire is with fire, either by burning them or by exposing them to sunlight (which instantly incinerates them). Other than this, there are very few known ways to slay a vampire although attacks from other $(item)Vampires$(), $(l:creatures/werewolf)Werewolves$(/l) and other very powerful creatures, seem to be some of them."
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Dying in the Sun",
+      "description": "Vampires will die almost instantly in the sun. If out in the open at night, take a clock! Especially if the vampire's respawn point is itself sunlit.",
+      "secret_key": "witcherycompanion:traits/vampirism/level_1",
+      "flag": "witcherycompanion:observations/show_vampirism_progress",
+      "_comment": "Unlocked when enabled in config and player reached respective level in vampirism"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Growing in power",
+      "description": "Upon becoming a vampire, a player will acquire the following abilities:$(p)$(8)> $()Immunity to Poison and Disease$(br)$(8)> $()Blood sensing and drinking to restore hunger$(br)$(8)> $()Increased attack damage$(br)$(8)> $()Immunity to most damage types, except $(item)Fire$()$(br)$(8)> $()Instant death from sunlight$(br)$(8)> $()Extreme hunger upon eating other food$(br).",
+      "secret_key": "witcherycompanion:traits/vampirism/level_1",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Growing in power",
+      "description": "$(8)> $()No Fire resistance$(br)$(8)> $()$(l:)Vampiric$(/l) and $(l:)Death Protection$(/l) poppets will have no effects on the vampire",
+      "secret_key": "witcherycompanion:traits/vampirism/level_1",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Blood Sensing",
+      "description": "The Vampire can drink blood, generally causing damage. If the victim is asleep and the vampire drains less than half of its blood, no damage will be received.$(br)Blood Sensing is the ability of the vampire to tell how much blood a potential victim has left just by looking at it.",
+      "secret_key": "witcherycompanion:traits/vampirism/level_1",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Transfix",
+      "description": "The vampire acquires the ability to $(item)Transfix$(): the victim cannot move while the vampire drains its blood. Draining less than half of the victim's blood does not damage it, even if awake. Costs blood itself to activate.$(br)Vampire also gains $(item)Night Vision$() if it sneak-uses during transfix.",
+      "secret_key": "witcherycompanion:traits/vampirism/level_2",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Knockback",
+      "description": "Normal attacks have knockback effect.",
+      "secret_key": "witcherycompanion:traits/vampirism/level_3",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Speed Increase",
+      "description": "Costs blood to activate, but boosts for a short duration the vampire's speed and jump abilities. More experienced vampires can activate it multiple times for a cumulative buff.",
+      "secret_key": "witcherycompanion:traits/vampirism/level_4",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Sunlight Resistance",
+      "description": "Sunlight burns away blood at a slower rate, resulting in some tolerance to sunlight, although the vampire's capabilities will be significantly reduced. Tolerance increases for more experienced vampires.",
+      "secret_key": "witcherycompanion:traits/vampirism/level_5",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Smash Stone",
+      "description": "Hitting $(item)Stone$() while sneaking breaks it instantly if not holding a stone-breaking tool. Causes a large amount of exhaustion.",
+      "secret_key": "witcherycompanion:traits/vampirism/level_6",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Batswarm Form ",
+      "description": "Turn into a swarm of bats and fly around, costs blood to activate and drains blood while active. Massive damage debuff when active and blood drinking rate massively reduced.",
+      "secret_key": "witcherycompanion:traits/vampirism/level_7",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Mesmerize",
+      "description": "Transfix ability will now cause $(item)Villagers$() and $(l:creatures/village_guard)Village Guards$(/l) to follow the vampire.",
+      "secret_key": "witcherycompanion:traits/vampirism/level_8",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Create vampires",
+      "description": "Player can now turn $(item)Villagers$() and other players into vampires using a $(l:)Glass Goblet$(/l) to collect their own demon tainted blood.",
+      "secret_key": "witcherycompanion:traits/vampirism/level_9",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Blood power",
+      "description": "Child vampires can now donate their blood into a $(l:)Blood Crucible$(/l) as they return from a nights feeding, when full a player can consume this blood with an ingredient to gain 5 charges of one of the following powers:$(br)$(8)> $()Call Storm to make it rain and hide from the sun$(br)$(8)> $()Teleport to spawn bed if far away from it, to nearest $(item)Village$() otherwise$(br)$(8)> $()Call a swarm of $(item)Bats$() to attack the creature the vampire is looking at$(br)$(8)> $()$(item)Zombie$() respect,",
+      "secret_key": "witcherycompanion:traits/vampirism/level_10",
+      "flag": "witcherycompanion:observations/show_vampirism_progress"
+    }
+  ]
+}

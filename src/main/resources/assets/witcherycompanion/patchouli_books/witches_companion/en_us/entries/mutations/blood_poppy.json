@@ -7,11 +7,7 @@
     {
       "type": "multiblock",
       "multiblock_id": "witchery:blood_poppy",
-      "name": "Blood Poppy"
-    },
-    {
-      "type": "text",
-      "title": "Mutation Details",
+      "name": "Blood Poppy",
       "text": "The $(l:constructs/traps/leech_chest)Leech Chest$(/l) in the middle must be empty."
     }
   ]

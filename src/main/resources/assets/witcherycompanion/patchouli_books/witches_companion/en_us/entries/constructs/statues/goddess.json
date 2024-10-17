@@ -1,0 +1,14 @@
+{
+  "name": "Statue of The Goddess",
+  "icon": "witchery:goddess_statue",
+  "category": "constructs/statues",
+  "read_by_default": true,
+  "flag": "witcherycompanion:statues/show_goddess",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:goddess_statue",
+      "text": "The Statue of The Goddess can remove all curses afflicting a player through a $(item)Blessing of The Goddess$(). The statue is so powerful that simply activating it will cure instantly the creature from all the curses."
+    }
+  ]
+}

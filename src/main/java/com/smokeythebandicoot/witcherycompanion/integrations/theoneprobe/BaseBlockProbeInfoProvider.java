@@ -70,4 +70,5 @@ public abstract class BaseBlockProbeInfoProvider<B extends Block, T extends Tile
         if (shouldAddDebug(probeMode))
             addDebugInfo(block, tile, probeMode, iProbeInfo, entityPlayer, world, iBlockState, iProbeHitData);
     }
+
 }

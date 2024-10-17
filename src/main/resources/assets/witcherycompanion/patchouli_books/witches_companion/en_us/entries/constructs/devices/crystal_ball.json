@@ -25,7 +25,7 @@
     {
       "type": "text",
       "title": "Divining the Future",
-      "text": "Using the Crystal Ball empty-handed, will allow the user to see into their future. The Crystal Ball will try to predict the future and will whisper it to them. Before that the prediction happens, the Crystal Ball won't provide any other prediction.",
+      "text": "Using the Crystal Ball empty-handed, will allow the user to see into their future or the future of other players. The Crystal Ball will try to predict the future and will whisper it to the Fortune Teller, or, if other players are nearby, to the closest other player. Before that the prediction happens, the Crystal Ball won't provide any other prediction.",
       "flag": "witcherycompanion:crystal_ball/reveal_predictions"   
     },
     {

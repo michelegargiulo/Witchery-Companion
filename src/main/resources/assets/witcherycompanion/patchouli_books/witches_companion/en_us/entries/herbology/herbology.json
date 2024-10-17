@@ -11,94 +11,79 @@
     },
     {
       "type": "spotlight",
-      "title": "Belladonna Flower",
-      "text": "Deadly nightshade, so is this plant known, and deadly poisons from it grown. It grows in tilled earth in stages. Tall grass yields seeds.",
-      "item": "witchery:belladonna_flower"
+      "item": "witchery:belladonna_flower",
+      "text": "Deadly nightshade, so is this plant known, and deadly poisons from it grown. It grows in tilled earth in stages. Tall grass yields seeds."
     },
     {
       "type": "spotlight",
-      "title": "Ember Moss",
-      "text": "A plant with a unique defense, when disturbed it bursts into flames. Harvest with shears. It can live anywhere, but spreads only on $(item)grass$(), $(item)dirt$() and $(item)sand$(). Mutate this plant from another with $(item)Mutandis$().",
-      "item": "witchery:ember_moss"
+      "item": "witchery:ember_moss",
+      "text": "A plant with a unique defense, when disturbed it bursts into flames. Harvest with shears. It can live anywhere, but spreads only on $(item)grass$(), $(item)dirt$() and $(item)sand$(). Mutate this plant from another with $(item)Mutandis$()."
     },
     {
       "type": "spotlight",
-      "title": "Glint Weed",
-      "text": "Emits an unearthly glow that illuminates it's surround. It can live anywhere, but spreads only on $(item)grass$(), $(item)dirt$() and $(item)sand$(). Mutate this plant from another with $(item)Mutandis$().",
-      "item": "witchery:glint_weed"
+      "item": "witchery:glint_weed",
+      "text": "Emits an unearthly glow that illuminates it's surround. It can live anywhere, but spreads only on $(item)grass$(), $(item)dirt$() and $(item)sand$(). Mutate this plant from another with $(item)Mutandis$()."
     },
     {
       "type": "spotlight",
-      "title": "Mandrake Root",
-      "text": "It's parsnip-shaped root has the look of a man. Harvest at night, lest it waken and scream. It grows in tilled earth in stages. Tall grass yields seeds.",
-      "item": "witchery:mandrake_root"
+      "item": "witchery:mandrake_root",
+      "text": "It's parsnip-shaped root has the look of a man. Harvest at night, lest it waken and scream. It grows in tilled earth in stages. Tall grass yields seeds."
     },
     {
       "type": "spotlight",
-      "title": "Snowbell Flower",
-      "text": "A curious plant, cold as the snow, freezes moisture as it grows. It grows in tilled earth in stages. Tall grass yields seeds.",
-      "item": "witchery:snowbell_flower"
+      "item": "witchery:snowbell_flower",
+      "text": "A curious plant, cold as the snow, freezes moisture as it grows. It grows in tilled earth in stages. Tall grass yields seeds."
     },
     {
       "type": "spotlight",
-      "title": "Spanish Moss",
-      "text": "A creeper-like moss that grows best on trees, forms the best poppets that can be. Harvest with shears to keet it intact. Mutate this plant from another with $(item)Mutandis$().",
-      "item": "witchery:spanish_moss"
+      "item": "witchery:spanish_moss",
+      "text": "A creeper-like moss that grows best on trees, forms the best poppets that can be. Harvest with shears to keet it intact. Mutate this plant from another with $(item)Mutandis$()."
     },
     {
       "type": "spotlight",
-      "title": "Wild Bramble",
-      "text": "This thorny bramble spreads around, when you try to pull it down. Mutate this plant from $(item)cactus$() and $(item)spanish moss$().",
-      "item": "witchery:wild_bramble"
+      "item": "witchery:wild_bramble",
+      "text": "This thorny bramble spreads around, when you try to pull it down. Mutate this plant from $(item)cactus$() and $(item)spanish moss$()."
     },
     {
       "type": "spotlight",
-      "title": "Ender Bramble",
-      "text": "This strange bramble keeps creatures at bay; for when they get close it teleports them away. Mutate this plant from $(item)sugar cane$() and $(item)spanish moss$().",
-      "item": "witchery:ender_bramble"
+      "item": "witchery:ender_bramble",
+      "text": "This strange bramble keeps creatures at bay; for when they get close it teleports them away. Mutate this plant from $(item)sugar cane$() and $(item)spanish moss$()."
     },
     {
       "type": "spotlight",
-      "title": "Void Bramble",
-      "text": "This strange bramble keeps creatures at bay; for when they get close it teleports them away. Created and fueled with magic no rituals will function near to it.",
-      "item": "witchery:void_bramble"
+      "item": "witchery:void_bramble",
+      "text": "This strange bramble keeps creatures at bay; for when they get close it teleports them away. Created and fueled with magic no rituals will function near to it."
     },
     {
       "type": "spotlight",
-      "title": "Water Artichoke Globe",
-      "text": "A water-bred plant with strange effect, fills the belly then empties it. It grows on still water in stages. Tall grass yields seeds.",
-      "item": "witchery:artichoke_globe"
+      "item": "witchery:artichoke_globe",
+      "text": "A water-bred plant with strange effect, fills the belly then empties it. It grows on still water in stages. Tall grass yields seeds."
     },
     {
       "type": "spotlight",
-      "title": "Grassper",
-      "text": "A curious plant that holds whatever it is given. Mutate this plant from tall grass and an empty chest.",
       "item": "witchery:grassper",
+      "text": "A curious plant that holds whatever it is given. Mutate this plant from tall grass and an empty chest.",
       "anchor": "grassper"
     },
     {
       "type": "spotlight",
-      "title": "Critter Snare",
-      "text": "Small creatures are this plants' prey, it snaps them up - never to get away. Mutate this plant from $(l:herbology/herbology#alder)alder saplings$(), a $(item)web$() and a $(item)zombie$().",
       "item": "witchery:empty_critter_snare",
+      "text": "Small creatures are this plants' prey, it snaps them up - never to get away. Mutate this plant from $(l:herbology/herbology#alder)alder saplings$(), a $(item)web$() and a $(item)zombie$().",
       "anchor": "critter_snare"
     },
     {
       "type": "spotlight",
-      "title": "Blood Poppy",
-      "text": "In a witches garden keep in mind, a scratch from this rose leaves your blood behind. Mutate this plant from $(item)poppies$() and a $(l:constructs/traps/leech_chest)leech chest$(/l).",
-      "item": "witchery:blood_poppy"
+      "item": "witchery:blood_poppy",
+      "text": "In a witches garden keep in mind, a scratch from this rose leaves your blood behind. Mutate this plant from $(item)poppies$() and a $(l:constructs/traps/leech_chest)leech chest$(/l)."
     },
     {
       "type": "spotlight",
-      "title": "Wispy Cotton",
-      "text": "A make-believe plant that only grows, in the deepest of sleep, where one dreams go.",
       "item": "witchery:wispy_cotton",
+      "text": "A make-believe plant that only grows, in the deepest of sleep, where one dreams go.",
       "anchor": "wispy_cotton"
     },
     {
       "type": "generic/secret_spotlight",
-      "title": "Disturbed Cotton",
       "item": "witchery:disturbed_cotton",
       "description": "Disturbed cotton is obtained by harvesting $(l:herbology/herbology#wispy_cotton)Wispy Cotton$(/l) in the $(l:dimensions/spirit_world)Spirit World$(/l) when one or more players are experiencing nightmares. This cotton can be spun into $(l:)Tormented Twine$(/l) in the $(l:)Spinning Wheel$(/l), and cannot be replanted.",
       "secret_key": "witcherycompanion:dimensions/spirit_world",
@@ -106,34 +91,42 @@
     },
     {
       "type": "spotlight",
-      "title": "Wolfsbane",
+      "item": "witchery:wolfsbane",
       "text": "Its name is the clue, the werewolf's secret it does undo. It grows in tilled earth in stages. Tall grass yields seeds.",
-      "item": "witchery:wolfsbane"
+      "anchor": "wolfsbane"
     },
     {
       "type": "spotlight",
-      "title": "Garlic",
-      "text": "A flavor for food at day, at night it keeps vampires away. It grows in tilled earth in stages. Tall grass yields seeds.",
-      "item": "witchery:garlic"
+      "item": "witchery:garlic",
+      "text": "A flavor for food at day, at night it keeps vampires away. It grows in tilled earth in stages. Tall grass yields seeds."
     },
     {
       "type": "spotlight",
-      "title": "Alder Sapling",
-      "text": "The alder wood appears to bleed when cut, this tree brings misfortune to all. Mutate the sapling from another plant with $(item)Mutandis$().",
       "item": "witchery:alder_sapling",
+      "text": "The alder wood appears to bleed when cut, this tree brings misfortune to all. Mutate the sapling from another plant with $(item)Mutandis$().",
       "anchor": "alder"
     },
     {
       "type": "spotlight",
-      "title": "Hawthorn Sapling",
+      "item": "witchery:hawthorn_sapling",
       "text": "Hawthorn is the tree of purity, it has long history in the field of herbalism. Mutate the sapling from another plant with $(item)Mutandis$().",
-      "item": "witchery:hawthorn_sapling"
+      "anchor": "hawthorn"
     },
     {
       "type": "spotlight",
-      "title": "Rowan Sapling",
+      "item": "witchery:rowan_sapling",
       "text": "The rowan, or mountain-ash has an affinity with mgic other trees seldom match. Mutate this plant from another with $(item)Mutandis$().",
-      "item": "witchery:rowan_sapling"
+      "anchor": "rowan"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:wormwood",
+      "text": "Grows in a tall plant on tilled earth. The plant is renewable, but initially it must be $(l:mutations/wormwood_seeds)mutated$(/l) from $(item)Wheat$() and $(l:herbology/herbology#wispy_cotton)Wispy Cotton$(/l)."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:mindrake_bulb",
+      "text": "The insane result of $(l:mutations/mindrake)mutating$(/l) a creeper and a $(l:creatures/mandrake)Mandrake$(/l) together. A Minedrake Bulb dropped on the ground will spawn a Minedrake after a few seconds. Bulbs can also be planted in $(item)Farmland$(), but grow slower than most crops."
     }
   ]
 }

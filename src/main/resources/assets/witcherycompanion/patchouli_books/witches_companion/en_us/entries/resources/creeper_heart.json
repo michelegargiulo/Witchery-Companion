@@ -1,13 +1,49 @@
 {
-  "name": "Creeper Heart",
-  "icon": "witchery:creeper_heart",
+  "name": "Monster Drops",
+  "icon": "witchery:dog_tongue",
   "category": "resources",
   "sortnum": 0,
+  "read_by_default": true,
   "pages": [
     {
       "type": "spotlight",
+      "item": "witchery:bat_wool",
+      "text": "A grisly token, snatched from the jaws of a fearsome beast. It thrums with a primal energy, said to bestow uncanny tracking abilities upon those brave enough to harness its power."
+    },
+    {
+      "type": "spotlight",
       "item": "witchery:creeper_heart",
-      "text": "The beating heart of an explosive, hostile creature. Rare crafting ingredient, can also be eaten, but beware! It may have consequences."
+      "text": "A pulsating core, torn from the explosive soul of a Creeper. It still beats with a volatile energy, thrumming with the promise of immense, if unpredictable, power. Rare crafting ingredient, can also be eaten, but beware! It may have consequences."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:owlets_wing",
+      "text": "A delicate relic, plucked from the silent flight of a nocturnal guardian. It whispers secrets of the night sky, promising swiftness and silent passage to those who bear it. ."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:owlets_wing",
+      "text": "An amphibious relic, plucked from the webbed foot of a swamp-dweller. It carries whispers of boggy secrets and murky waters, promising elusive agility to its keeper.."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:ent_twig",
+      "text": "A gnarled branch, fallen from the grasp of an ancient Ent. It pulsates with the age-old magic of the forest, promising the wisdom of the trees and the strength of deep roots to its bearer."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:wolf_head",
+      "text": "A fierce trophy, hewn from the leader of the pack. It exudes a wild, untamed strength, and the eyes seem to follow you with a knowing glare. Keep it close, and perhaps some of that primal ferocity will guard you too."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:head",
+      "text": "A fearsome trophy, harvested from the flames of a demon's lair. It crackles with infernal energy, radiating an oppressive heat and hinting at the hellish power it once commanded. Keep it close, and you might just harness some of its fiery wrath."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:binkys_skull",
+      "text": "A grim artifact, taken from the remains of the once-feared Binky. It radiates an eerie aura, whispering tales of past horrors and promising to imbue its wielder with the resilience of those who have faced the darkest fears."
     }
   ]
 }

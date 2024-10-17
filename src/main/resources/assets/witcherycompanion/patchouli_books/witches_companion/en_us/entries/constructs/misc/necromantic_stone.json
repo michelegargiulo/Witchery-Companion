@@ -1,0 +1,18 @@
+{
+  "name": "Necromantic Stone",
+  "icon": "witchery:necromantic_stone",
+  "category": "constructs/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:necromantic_stone",
+      "text": "Created using the $(l:circle_magic/necromancy/necromantic_stone)Rite of Necromancy$(/l), it can be used to control $(item)undead$() monsters raised by a $(l:)Brew of Raising$() or bound ghosts released from a $(l:)Spectral Stone$()."
+    },
+    {
+      "type": "text",
+      "title": "Usage",
+      "text": "Point the stone to a target creature or player and the monster under the witch's control will attack the target.$(p)If used on blocks, the controlled monster will move to that location.$(p)The Necromantic Stone is also used to activate and deactivate the $(l:constructs/devices/alluring_skull)Alluring Skull$(/l)."
+    }
+  ]
+}

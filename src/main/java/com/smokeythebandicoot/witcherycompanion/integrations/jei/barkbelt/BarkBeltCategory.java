@@ -26,14 +26,12 @@ public class BarkBeltCategory extends BaseRecipeCategory<BarkBeltWrapper> {
 
     public static String UID = WitcheryCompanion.prefix("bark_belt");
     public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/bark_belt.png");
-    public static ResourceLocation iconTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/bark_belt_icon.png");
 
     private static final int PAGE_WIDTH = 6;
     private static final int PAGE_HEIGHT = 7;
 
     public BarkBeltCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(backgroundTexture, 0, 0, 124, 144, 124, 144);
-        //icon = guiHelper.createDrawable(iconTexture, 0, 0, 16, 16, 16, 16);
         icon = null;
         localizedName = I18n.format("witcherycompanion.gui.bark_belt.name");
     }

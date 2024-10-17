@@ -1,6 +1,6 @@
 {
   "name": "Baba Yaga",
-  "icon": "witchery:baba_yaga",
+  "icon": "witchery:babas_hat",
   "category": "creatures",
   "sortnum": 2,
   "pages": [
@@ -13,7 +13,8 @@
     },
     {
       "type": "text",
-      "text": "A crone so powerful that the sky darkens when she's nearby. She knows many secrets and will use them at her advantage. She knows very well how to fight, and attacking her with a mundane melee weapon may hurt more the attacker than  Baba Yaga. $(l:constructs/weapons/spear_of_the_hunter)Spear of the Hunter$(/l) is an effective weapon against the Crone, as it avoids the hit-back."
+      "title": "Baba Yaga",
+      "text": "A crone so powerful that the sky darkens when she's nearby. She knows many secrets and will use them at her advantage. She knows very well how to fight, and attacking her with a mundane melee weapon may hurt more the attacker than Baba Yaga. The $(l:constructs/weapons/spear_of_the_huntsman)Spear of the Huntsman$(/l) is an effective weapon against the Crone, as it avoids the hit-back."
     },
     {
       "type": "text",
@@ -23,7 +24,7 @@
     {
       "type": "text",
       "title": "Baba Yaga's Gaze",
-      "text": "Baba Yaga not always has bad intentions. The future $(item)Fortune Teller$() may be predicted to a good fate, and Baba Yaga encounter might not have a negative connotation."
+      "text": "Baba Yaga not always has bad intentions. The future of a $(item)Fortune Teller$() may be predicted to a good fate, and Baba Yaga encounter might not have a negative connotation, as she tends to take an interest in those who meddle in the future."
     }
   ]
 }

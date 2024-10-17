@@ -36,11 +36,17 @@ public abstract class WitcheryProgressEvent extends Event {
         /** Player has visited a Witchery Dimension **/
         DIMENSION_VISIT("dimension_visit"),
 
+        /** Player has drawn a secret symbol **/
+        MYSTIC_BRANCH("mystic_branch"),
+
         /** Player has used a Torn Page for the Observations of an Immortal book **/
         USE_VAMPIRE_PAGE("torn_page_use"),
 
-        /** Player has drawn a secret symbol **/
-        MYSTIC_BRANCH("mystic_branch"),
+        /** Player has levelled up as a Vampire or Werewolf **/
+        TRAIT_LEVEL_UP("trait_level_up"),
+
+        /** Player has been infected by a Werewolf using the Wolf Trap and Altar **/
+        WEREWOLF_INFECTION("werewolf_infection"),
         ;
 
         public final String activityTrigger;

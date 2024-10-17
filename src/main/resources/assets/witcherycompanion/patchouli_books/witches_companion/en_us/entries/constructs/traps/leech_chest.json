@@ -8,7 +8,7 @@
       "type": "spotlight",
       "item": "witchery:leech_chest",
       "title": "Leech Chest",
-      "text": "A Leech Chest is a mutated plant that has been hybridized with a $(item)Chest$(). This plant acts as a $(item)Trapped Chest$() except it cannot join another specimen to form a Double Chest."
+      "text": "A Leech Chest is a $(l:mutations/leech_chest)mutated$(/l) plant that has been hybridized with a $(item)Chest$(). This plant acts as a $(item)Trapped Chest$() except it cannot join another specimen to form a Double Chest."
     },
     {
       "type": "text",

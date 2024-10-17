@@ -303,6 +303,11 @@ public class ModConfig {
             @Config.Name("Block Fetish - Fix No Drops on Harvest")
             public static boolean blockFetish_fixNoDropsOnHarvest = true;
 
+            @Config.Comment("If true, makes Bear Traps and Wolf Traps break if there is no block with a solid upper face beneath. " +
+                    "Also applies to Wolf Traps")
+            @Config.Name("Bear Trap - Tweak Surface Requirement")
+            public static boolean bearTrap_tweakNeedsSolidSurface = false;
+
             @Config.Comment("Fixes fetish blocks resetting their data on world reload or when many blocks are " +
                     "updated at once, including Players bound to them")
             @Config.Name("Block Fetish - Fix Data Loss on World Reload")
@@ -411,6 +416,15 @@ public class ModConfig {
             @Config.Comment("If true, backports from 0.6 a fix to spawn burning particles at the correct height")
             @Config.Name("Witches Oven - Fix Burning Particles")
             public static boolean witchesOven_fixBurningParticlesHeight = true;
+
+            @Config.Comment("If true, when the Wolf Trap is activated, warns the player about approaching werewolves")
+            @Config.Name("Wolf Trap - Tweak Warn Players")
+            public static boolean wolfTrap_warnPlayers = false;
+
+            @Config.Comment("If true, the Wolf Trap will drop itself when broken. It is a tweak, as Witchery intentionally " +
+                    "makes the wolf trap impossible to relocate once placed")
+            @Config.Name("Wolf Trap - Tweak Drop On Break")
+            public static boolean wolfTrap_tweakDropOnBreak = false;
 
             public static class KettleTweaks {
 
@@ -779,6 +793,10 @@ public class ModConfig {
                     "of ticks before despawning")
             @Config.Name("Spectre - Tweak Tick Delay Before Despawn")
             public static int spectre_tweakDelayTicksBeforeDespawn = 60;
+
+            @Config.Comment("If true, removes Witchery: Resurrected Back-ported AI for Villagers")
+            @Config.Name("Villager - Tweak Remove Backported AI")
+            public static boolean villager_disablePackportedAI = false;
         }
 
         public static class BookTweaks {
@@ -995,6 +1013,10 @@ public class ModConfig {
             @Config.Name("JEI Integration - Enable Imp Shinies")
             public static boolean enableJeiImpShinies = true;
 
+            @Config.Comment("If true, enables Sun Collector JEI Integration")
+            @Config.Name("JEI Integration - Enable Sun Collector")
+            public static boolean enableJeiSunCollector = true;
+
         }
 
         public static class QuarkIntegration {
@@ -1026,13 +1048,25 @@ public class ModConfig {
             @Config.Name("TOP Integration - Witch's Cauldron")
             public static EProbeElementIntegrationConfig cauldron = EProbeElementIntegrationConfig.DEFAULT;
 
-            @Config.Comment("If true, enables TOP integration for Kettle")
-            @Config.Name("TOP Integration - Kettle")
-            public static EProbeElementIntegrationConfig kettle = EProbeElementIntegrationConfig.DEFAULT;
+            @Config.Comment("If true, enables TOP integration for Crystal Ball")
+            @Config.Name("TOP Integration - Crystal Ball")
+            public static EProbeElementIntegrationConfig crystalBall = EProbeElementIntegrationConfig.DEFAULT;
 
             @Config.Comment("If true, enables TOP integration for Grassper")
             @Config.Name("TOP Integration - Grassper")
             public static EProbeElementIntegrationConfig grassper = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Kettle")
+            @Config.Name("TOP Integration - Kettle")
+            public static EProbeElementIntegrationConfig kettle = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Statue of Hobgoblin Patron")
+            @Config.Name("TOP Integration - Statue of Hobgoblin Patron")
+            public static EProbeElementIntegrationConfig statueOfHobgoblinPatron = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Sun Collector")
+            @Config.Name("TOP Integration - Sun Collector")
+            public static EProbeElementIntegrationConfig sunCollector = EProbeElementIntegrationConfig.DEFAULT;
 
             @Config.Comment("If true, enables TOP integration for Hobgoblin")
             @Config.Name("TOP Integration - Hobgoblin")
@@ -1152,10 +1186,47 @@ public class ModConfig {
                 @Config.Name("Constructs - Show Crystal Ball Predictions")
                 public static boolean constructs_revealCrystalBallPredictions = false;
 
+                @Config.Comment("If true, adds a new entry that explains Fume Funnels and their role in upgrading the Witches' Oven")
+                @Config.Name("Fumes - Explain Funnels")
+                public static boolean fumes_enableFunnels = false;
+
                 @Config.Comment("If true, adds an entry to the Observations chapter, adding new lore to the Werewolf transformation in a similar way " +
                         "to how Witchery does for Vampirism (in Observations of an Immortal). Content is original.")
                 @Config.Name("Observations - Add Observations of a Lycanthrope")
-                public static boolean observations_enableLycanthrope = false;
+                public static boolean observations_enableLycanthropyLore = false;
+
+                @Config.Comment("If true, adds an entry to the Lycanthropy section in Observations chapter, with an introduction on lycanthropy in general.")
+                @Config.Name("Observations - Add Lycanthropy Intro")
+                public static boolean observations_enableLycanthropyIntro = false;
+
+                @Config.Comment("If true, adds an entry to the Observations chapter, documenting the progression of becoming a werewolf. Each page will be " +
+                        "unlocked after reaching a higher level in lycanthropy.")
+                @Config.Name("Observations - Add Lycanthropy Progress")
+                public static boolean observations_enableLycanthropyProgress = false;
+
+                @Config.Comment("If true, adds an entry to the Vampirism section in Observations chapter, with an introduction on vampirism in general.")
+                @Config.Name("Observations - Add Vampirism Intro")
+                public static boolean observations_enableVampirismIntro = false;
+
+                @Config.Comment("If true, adds an entry to the Observations chapter, documenting the progression of becoming a vampire. Each page will be " +
+                        "unlocked after reaching a higher level in vampirism.")
+                @Config.Name("Observations - Add Vampirism Progress")
+                public static boolean observations_enableVampirismProgress = false;
+
+                @Config.Comment("If true, adds a page regarding the Statue of The Goddess. Being considered an almost-creative item, some pack makers " +
+                        "might want to disable its recipe or hide it altogether. Keep this flag to false if it's the case.")
+                @Config.Name("Statues - Show Statue of The Goddess")
+                public static boolean statues_showGoddess = false;
+
+                @Config.Comment("If true, adds a page regarding the Statue of Broken Curses. Being considered an almost-creative item, some pack makers " +
+                        "might want to disable its recipe or hide it altogether. Keep this flag to false if it's the case.")
+                @Config.Name("Statues - Show Statue of Broken Curses")
+                public static boolean statues_showBrokenCurses = false;
+
+                @Config.Comment("If true, adds a page regarding the Statue of Occluded Summons. Being considered an almost-creative item, some pack makers " +
+                        "might want to disable its recipe or hide it altogether. Keep this flag to false if it's the case.")
+                @Config.Name("Statues - Show Statue of Broken Curses")
+                public static boolean statues_showOccludedSummons = false;
 
                 @Config.Comment("If true, shows more information about how to get into symbology and how it works in general")
                 @Config.Name("Symbology - Extended Intro")
@@ -1249,16 +1320,23 @@ public class ModConfig {
                 flags.put("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
                 flags.put("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);
                 flags.put("crystal_ball/reveal_predictions", Flags.constructs_revealCrystalBallPredictions);
+                flags.put("fumes/funnels", Flags.fumes_enableFunnels);
+                flags.put("observations/add_werewolf", Flags.observations_enableLycanthropyLore);
+                flags.put("observations/show_lycanthropy_intro", Flags.observations_enableLycanthropyIntro);
+                flags.put("observations/show_lycanthropy_progress", Flags.observations_enableLycanthropyProgress);
+                flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
+                flags.put("observations/show_vampirism_intro", Flags.observations_enableVampirismIntro);
+                flags.put("observations/show_vampirism_progress", Flags.observations_enableVampirismProgress);
+                flags.put("statues/show_goddess", Flags.statues_showGoddess);
+                flags.put("statues/show_broken_curses", Flags.statues_showBrokenCurses);
+                flags.put("statues/show_occluded_summons", Flags.statues_showOccludedSummons);
                 flags.put("symbology/extended_intro", Flags.symbology_enableExtendedIntro);
                 flags.put("symbology/stroke_visualization", Flags.symbology_enableStrokeVisualization);
                 flags.put("symbology/show_secret", Flags.symbology_showSecret);
                 flags.put("symbology/show_knowledge", Flags.symbology_showKnowledge);
 
-                // Special flag that is required to hide the observations section of the book
-                flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
-                flags.put("observations/add_werewolf", Flags.observations_enableLycanthrope);
-
                 PatchouliApiIntegration.updateFlags(flags);
+                PatchouliApiIntegration.reloadBook();
 
             }
 

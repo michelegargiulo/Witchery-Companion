@@ -1,9 +1,14 @@
 {
-  "name": "Mellifluous Hunger",
-  "icon": "witchery:mellifluous_hunger",
+  "name": "Clay Jars",
+  "icon": "witchery:misfortune_reek",
   "category": "resources",
   "sortnum": 0,
   "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:soft_clay_jar",
+      "text": ""
+    },
     {
       "type": "spotlight",
       "item": "witchery:mellifluous_hunger",

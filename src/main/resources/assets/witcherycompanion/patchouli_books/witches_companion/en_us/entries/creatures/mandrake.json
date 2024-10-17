@@ -1,0 +1,18 @@
+{
+  "name": "Mandrake",
+  "icon": "witchery:mandrake_root",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:mandrake",
+      "text": "Screaming Plants."
+    },
+    {
+      "type": "text",
+      "title": "Mandrake",
+      "text": "According to the legend, when the root of the Mandrake plant is dug up it screams and kills all who hear it. While not powerful enough to kill, the scream is more than capable of causing severe discomfort to those around. This effect can be mitigated by the use of $(l:constructs/misc/earmuffs)Earmuffs$(/l)."
+    }
+  ]
+}

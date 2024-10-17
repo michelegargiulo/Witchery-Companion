@@ -1,0 +1,13 @@
+{
+  "name": "Leaping Lily",
+  "icon": "witchery:leaping_lily",
+  "category": "constructs/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:leaping_lily",
+      "text": "This special kind of $(item)Lily Pad$() can be placed on most surfaces. When a creature walks over it, they are given $(item)Speed$() and $(item)Jump Boost$() potion effects, allowing fast movement across all kinds of terrain."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Wolf Trap",
+  "icon": "witchery:wolftrap",
+  "category": "constructs/traps",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:wolftrap",
+      "text": "The Wolf Trap is a variation of the $(l:constructs/traps/bear_trap)Bear Trap$(/l) that is able to trap $(l:creatures/werewolf)Werewolves$(/l) while remaining inert for other beings, thanks to a fine coating of $(item)Silver$()."
+    }
+  ]
+}

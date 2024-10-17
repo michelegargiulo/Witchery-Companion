@@ -7,13 +7,18 @@ witcherycompanion.poppetitem.restrictiontooltip.pve=This Poppet won't affect §4
 witcherycompanion.poppetitem.restrictiontooltip.pvp=This Poppet won't affect §4Creatures§r
 
 # JEI plugins
+witcherycompanion.gui.bark_belt.name=Bark Belt
 witcherycompanion.gui.goblin_trade.name=Hobgoblin Trades
 witcherycompanion.gui.imp_shiny.name=Flame Imp Shinies
 witcherycompanion.gui.imp_gift.name=Flame Imp Gifts
+witcherycompanion.gui.sun_collector.name=Sun Collector
+witcherycompanion.gui.wolf_altar.name=Wolf Altar
+witcherycompanion.gui.wolf_altar.min_level=Min. Lycanthropy level:
 
 # Messages to player
 witcherycompanion.message.potion.resizing.elytra_disallow=Due to your size the Elytra does not fit well enough to fly
 witcherycompanion.message.transform.elytra_disallow=Your current form prevents you from using your elytra
+witcherycompanion.wolftrap.approaching.message=Your eyes catch fleeting glimpses of movement. Somethings is approaching you. Quickly.
 
 # New Torn Page tooltips and messages
 witcherycompanion.tooltip.torn_page.lore=§oSeems like a missing page from some esoteric book§r
@@ -21,3 +26,17 @@ witcherycompanion.tooltip.torn_page.usage=§dRight-click to read§r
 witcherycompanion.torn_page.fits.message=§oThe tears in the page seem to match those in the book perfectly§r
 witcherycompanion.torn_page.already_present.message=§oUnfortunately, it seems that I already possess this piece of information§r
 witcherycompanion.torn_page.no_more_pages.message=§oThe diary seems complete, there are no more missing pages§r
+
+# The One Probe messages
+## Pretty dimension names
+witcherycompanion.probe.dimension.overworld.name=Overworld
+witcherycompanion.probe.dimension.the_nether.name=The Nether
+witcherycompanion.probe.dimension.the_end.name=The End
+witcherycompanion.probe.dimension.spirit_world.name=Spirit World
+witcherycompanion.probe.dimension.torment.name=Torment
+witcherycompanion.probe.dimension.mirror.name=Mirror
+
+## Pretty Familiar Power names
+witcherycompanion.probe.familiar_power.brew_mastery.name=Brew Mastery (Toad Familiar)
+witcherycompanion.probe.familiar_power.broom_mastery.name=Broom Mastery (Owl Familiar)
+witcherycompanion.probe.familiar_power.curse_mastery.name=Curse Mastery (Cat Familiar)
