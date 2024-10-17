@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.tinkers;
 
 
 import net.minecraft.item.ItemStack;
+import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
 
 public class Integration {
@@ -25,4 +26,7 @@ public class Integration {
     }
 
 
+    public static boolean registerMaterials() {
+        TinkerRegistry.addMaterial();
+    }
 }

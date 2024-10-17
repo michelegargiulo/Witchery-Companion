@@ -891,6 +891,8 @@ public class ModConfig {
         @Config.Name("Patchouli Integration - Configuration")
         public static PatchouliIntegration patchouliIntegrationConfig;
 
+        public static TinkersIntegration tinkersIntegrationConfig;
+
         @Config.Comment("Configuration related to The One Probe integration")
         @Config.Name("TOP Integration - Configuration")
         public static TopIntegration TOPIntegrationConfig;
@@ -1172,6 +1174,32 @@ public class ModConfig {
                 flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
 
                 PatchouliApiIntegration.updateFlags(flags);
+
+            }
+
+        }
+
+        public static class TinkersIntegration {
+
+            @Config.Comment("Master switch for all Tinkers integrations")
+            @Config.Name("Tinkers Integration - Enabled")
+            public static boolean enableTinkersIntegration = true;
+
+            public static class ModifiersConfig {
+
+                public static class WolfsbaneConfig {
+
+                    @Config.Comment("Multiplier for damage dealt to Werewolves")
+                    @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                    @Config.Name("Damage Multiplier")
+                    public static float werewolfDamageMultiplier = 2.0f;
+
+                    @Config.Comment("Multiplier for damage dealt to non-Werewolves")
+                    @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                    @Config.Name("Damage Penalty")
+                    public static float nonWerewolfDamageMultiplier = 0.85f;
+
+                }
 
             }
 
