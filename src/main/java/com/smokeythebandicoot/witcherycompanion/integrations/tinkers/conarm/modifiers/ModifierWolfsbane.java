@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.modifiers;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TinkersIntegration.ModifiersConfig.WolfsbaneConfig;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TinkersIntegration.ModifiersConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.msrandom.witchery.util.CreatureUtil;
@@ -38,9 +38,9 @@ public class ModifierWolfsbane extends ModifierTrait {
     @Override
     public void onHit(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage, boolean isCritical) {
         if (CreatureUtil.isWerewolf(target)) {
-            damage *= WolfsbaneConfig.werewolfDamageMultiplier;
+            damage *= ModifiersConfig.wolfsbane_werewolfDamageMultiplier;
         } else {
-            damage *= WolfsbaneConfig.nonWerewolfDamageMultiplier;
+            damage *= ModifiersConfig.wolfsbane_nonWerewolfDamageMultiplier;
         }
         super.onHit(tool, player, target, damage, isCritical);
     }

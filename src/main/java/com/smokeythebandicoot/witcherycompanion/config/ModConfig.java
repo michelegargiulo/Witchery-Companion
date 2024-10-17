@@ -1187,19 +1187,21 @@ public class ModConfig {
 
             public static class ModifiersConfig {
 
-                public static class WolfsbaneConfig {
+                @Config.Comment("Multiplier for damage dealt to Werewolves")
+                @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                @Config.Name("Silvered - Damage Multiplier")
+                public static float silvered_werewolfDamageMultiplier = 2.0f;
 
-                    @Config.Comment("Multiplier for damage dealt to Werewolves")
-                    @Config.RangeDouble(min = 0.1f, max = 8.0f)
-                    @Config.Name("Damage Multiplier")
-                    public static float werewolfDamageMultiplier = 2.0f;
+                @Config.Comment("Multiplier for damage dealt to Werewolves")
+                @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                @Config.Name("Wolfsbane - Damage Multiplier")
+                public static float wolfsbane_werewolfDamageMultiplier = 2.5f;
 
-                    @Config.Comment("Multiplier for damage dealt to non-Werewolves")
-                    @Config.RangeDouble(min = 0.1f, max = 8.0f)
-                    @Config.Name("Damage Penalty")
-                    public static float nonWerewolfDamageMultiplier = 0.85f;
+                @Config.Comment("Multiplier for damage dealt to non-Werewolves")
+                @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                @Config.Name("Wolfsbane - Damage Penalty")
+                public static float wolfsbane_nonWerewolfDamageMultiplier = 0.8f;
 
-                }
 
             }
 

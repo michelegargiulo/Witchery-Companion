@@ -41,7 +41,7 @@ Provides several benefits to the creature wearing the armor:
 
 ### Silvered [Silver Deposits, 32x for max level (1)]
 [On Weapons]
-Deals significantly more damage to werewolf creatures, but at the expense of less damage to all others
+More damage to werewolves, weapons and projectiles only
 [On Armor]
 Damage from werewolf attacks are halved in damage. Werewolf attackers will receive a small amount of Fire damage, and armor won't be damaged from those attacks
 
@@ -51,8 +51,8 @@ More damage to vampires, weapons and projectiles only
 [On Armor]
 Damage from vampires attacks are halved in damage. Vampire attackers will receive a small amount of Fire damage, and armor won't be damaged from those attacks
 
-### Wolfsbane [Wolfsbane, 64x for max level (1)]
-More damage to werewolves, weapons and projectiles only
+### Wolfsbane [Wolfsbane, 64x for max level (1)]. Makes up for the existance of Fire aspect for Vampires, but might be too powerful, so this nerf is required
+Deals significantly more damage to werewolf creatures, but at the expense of less damage to all others. Incompatible with Silvered
 
 ### Demonrend
 Deals 50% more damage to Undead and Demons
