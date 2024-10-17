@@ -4,12 +4,14 @@ package com.smokeythebandicoot.witcherycompanion.utils;
 public class Mods {
 
     public static final String AQUAACROBATICS = "aquaacrobatics";
-    public static final String CRAFTTWEAKER = "witchery";
+    public static final String CONSTRUCT_ARMORY = "conarm";
+    public static final String CRAFTTWEAKER = "crafttweaker";
     public static final String JEI = "jei";
     public static final String JER = "jeresources";
     public static final String MORPH = "morph";
     public static final String PATCHOULI = "patchouli";
     public static final String QUARK = "quark";
+    public static final String TINKERS_CONSTRUCT = "tconstruct";
     public static final String THAUMCRAFT = "thaumcraft";
     public static final String TOP = "theoneprobe";
 

@@ -141,6 +141,15 @@ dependencies {
     // The One Probe
     compileOnly rfg.deobf('curse.maven:theoneprobe-245211:2667280')
 
+    // Mantle
+    compileOnly rfg.deobf("curse.maven:mantle-74924:2713386")
+
+    // Tinkers' Construct
+    compileOnly rfg.deobf("curse.maven:tinkers-construct-74072:2902483")
+
+    // Construct Armory
+    compileOnly rfg.deobf("curse.maven:constructs-armory-287683:3174535")
+
     // Crafttweaker
     compileOnly rfg.deobf('CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.684')
 

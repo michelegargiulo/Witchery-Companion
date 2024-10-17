@@ -2,6 +2,8 @@ package com.smokeythebandicoot.witcherycompanion;
 
 import com.smokeybandicoot.witcherycompanion.Tags;
 import com.smokeythebandicoot.witcherycompanion.proxy.CommonProxy;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -84,7 +86,14 @@ public class WitcheryCompanion implements ILateMixinLoader {
     @Override
     public List<String> getMixinConfigs() {
         List<String> configs = new ArrayList<>();
+
+        // Add Main Patches
         configs.add("mixins.witcherycompanion.json");
+
+        // Add ConArm Patches
+        if (Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
+            configs.add("mixins.witcherycompanion.conarm.json");
+
         return configs;
     }
 

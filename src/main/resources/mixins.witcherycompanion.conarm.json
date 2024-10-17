@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "${mixin_refmap}",
+  "mixins": [
+    "block.BlockKettleMixin",
+    "common.CommonEventsMixin",
+    "item.ItemWitchesClothesMixin"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8"
+}
