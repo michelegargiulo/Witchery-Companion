@@ -285,6 +285,10 @@ public class ModConfig {
 
         public static class BlockTweaks {
 
+            @Config.Comment("Configuration for patches related to Books")
+            @Config.Name("Kettle Tweaks")
+            public static KettleTweaks kettleTweaks;
+
             @Config.Comment("Fix Altar blocks requiring to get broken and re-placed to work properly again")
             @Config.Name("Altar - Fix Power Source Persistence")
             public static boolean altar_fixPowerSourcePersistency = true;
@@ -407,6 +411,43 @@ public class ModConfig {
             @Config.Comment("If true, backports from 0.6 a fix to spawn burning particles at the correct height")
             @Config.Name("Witches Oven - Fix Burning Particles")
             public static boolean witchesOven_fixBurningParticlesHeight = true;
+
+            public static class KettleTweaks {
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while wearing Witches Hat " +
+                        "or (if enabled) an Construct Armory helmet with 'Witch Touch' Trait")
+                @Config.Name("Witches Hat - Tweak Kettle Bonus Chance")
+                public static double witchHat_tweakKettleBonus = 0.35;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while wearing Baba Yaga's Hat " +
+                        "or (if enabled) an Construct Armory helmet with 'Baba Yaga's Touch' Trait")
+                @Config.Name("Witches Hat - Tweak Bonus Chance")
+                public static double babaYagaHat_tweakKettleBonus = 0.25;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while wearing Baba Yaga's Hat " +
+                        "or (if enabled) an Construct Armory helmet with 'Baba Yaga's Touch' Trait")
+                @Config.Name("Witches Hat - Tweak Second Bonus Chance")
+                public static double babaYagaHat_tweakKettleBonus2 = 0.25;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while wearing Witches Robes " +
+                        "or (if enabled) an Construct Armory chestplate with 'Witch Touch' Trait")
+                @Config.Name("Witches Robes - Tweak Kettle Bonus Chance")
+                public static double witchRobes_tweakKettleBonus = 0.0;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while wearing Necromancer's Robes " +
+                        "or (if enabled) an Construct Armory helmet with 'Necrotic Touch' Trait")
+                @Config.Name("Necromancer Robes - Tweak Kettle Bonus Chance")
+                public static double necromancerRobes_tweakKettleBonus = 0.25;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while having a Toad familiar")
+                @Config.Name("Toad Familiar - Tweak Kettle Bonus Chance")
+                public static double toadFamiliar_tweakKettleBonus = 0.05;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while having a Toad familiar AND Baba's Hat")
+                @Config.Name("Toad Familiar Baba Hat Enhancement - Tweak Kettle Bonus Chance")
+                public static double toadFamiliarAndBabaHat_tweakKettleBonus = 0.05;
+            }
+
         }
 
         public static class ItemTweaks {
@@ -455,6 +496,11 @@ public class ModConfig {
             @Config.Name("Poppet Protection Poppet - Tweak Damage Taken on Protect")
             public static int poppetProtectionPoppet_tweakDamageTakenOnProtect = 350;
 
+            @Config.Comment("If true, when the Seer Stone is shift-right-clicked Throwing Skills won't be printed, " +
+                    "as it is a mechanic not yet implemented in Witchery: Resurrected")
+            @Config.Name("Seer Stone - Tweak Unprint Throwing Skills")
+            public static boolean seerStone_tweakUnprintThrowingSkill = false;
+
             @Config.Comment("If true, fixes a crash that happens when a Voodoo Protection Poppet protects its owner")
             @Config.Name("Voodoo Protection Poppet - Fix Crash on Protect")
             public static boolean voodooProtectionPoppet_fixCrashOnCurseProtect = true;
@@ -463,11 +509,6 @@ public class ModConfig {
                     "curse. Default 350 (Vanilla Witchery value). Needs voodooProtectionPoppet_fixCrashOnCurseProtect=true to work")
             @Config.Name("Voodoo Protection Poppet - Tweak Damage Taken on Protect")
             public static int voodooProtectionPoppet_tweakDamageTaken = 350;
-
-            @Config.Comment("If true, when the Seer Stone is shift-right-clicked Throwing Skills won't be printed, " +
-                    "as it is a mechanic not yet implemented in Witchery: Resurrected")
-            @Config.Name("Seer Stone - Tweak Unprint Throwing Skills")
-            public static boolean seerStone_tweakUnprintThrowingSkill = false;
 
         }
 
@@ -885,6 +926,10 @@ public class ModConfig {
 
     public static class IntegrationConfigurations {
 
+        @Config.Comment("Configuration related to Construct Armory integration")
+        @Config.Name("Construct Armory Integration - Configuration")
+        public static ConarmIntegration conarmIntegrationConfig;
+
         @Config.Comment("Configuration related to Just Enough Resources integration")
         @Config.Name("JER Integration - Configuration")
         public static JerIntegration jerIntegrationConfig;
@@ -913,6 +958,16 @@ public class ModConfig {
         @Config.Name("Thaumcraft Integration - Configuration")
         public static ThaumcraftIntegration ThaumcraftIntegrationConfig;
 
+
+        public static class ConarmIntegration {
+
+            @Config.Comment("If true, enabled Baba's Touch Trait. When applied on Helmets, it gives the " +
+                    "same effects as if the player was wearing Baba Yaga's Hat")
+            @Config.Name("Conarm Integration - Enable Baba Yaga's Touch Trait")
+            @Config.RequiresMcRestart
+            public static boolean babaYagasTouchTrait_enable = false;
+        }
+
         public static class JerIntegration {
 
             @Config.Comment("Master switch for all JER integrations")
@@ -928,10 +983,12 @@ public class ModConfig {
 
             @Config.Comment("If true, enables Goblin Trade JEI Integration")
             @Config.Name("JEI Integration - Enable Goblin Trades")
+            @Config.RequiresMcRestart
             public static boolean enableJeiGoblinTrades = true;
 
             @Config.Comment("If true, enables Imp Gifts JEI Integration")
             @Config.Name("JEI Integration - Enable Imp Gifts")
+            @Config.RequiresMcRestart
             public static boolean enableJeiImpGifts = true;
 
             @Config.Comment("If true, enables Imp Shinies JEI Integration")
