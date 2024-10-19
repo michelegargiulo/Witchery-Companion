@@ -26,7 +26,7 @@ public abstract class TileEntityBeartrapMixin extends WitcheryTileEntity {
         if (ModConfig.PatchesConfiguration.BlockTweaks.wolfTrap_warnPlayers) {
             BlockPos pos = this.getPos();
             for (EntityPlayer player : this.world.getPlayers(EntityPlayer.class, player -> player.getDistanceSq(pos) < 256.0)) {
-                player.sendMessage(new TextComponentString(I18n.format("witcherycompanion.wolftrap.approaching.message")));
+                player.sendMessage(new TextComponentString(I18n.format("witcherycompanion.message.wolftrap.approaching")));
             }
         }
     }
