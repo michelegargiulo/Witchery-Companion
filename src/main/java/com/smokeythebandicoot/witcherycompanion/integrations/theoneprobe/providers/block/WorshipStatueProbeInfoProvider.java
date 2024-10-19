@@ -45,6 +45,9 @@ public class WorshipStatueProbeInfoProvider extends BaseBlockProbeInfoProvider<B
 
     @Override
     public void addBasicInfo(BlockStatueOfWorship block, TileEntityWorshipStatue tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
+        if (tile != null && tile.getOwner() != null) {
+            TOPHelper.addText(iProbeInfo, "Owner", tile.getOwner().getName(), TextFormatting.DARK_PURPLE);
+        }
         if (tile instanceof ITileEntityWorshipStatueAccessor) {
             ITileEntityWorshipStatueAccessor accessor = (ITileEntityWorshipStatueAccessor) tile;
             TOPHelper.addText(iProbeInfo, "Worship Level", String.valueOf(accessor.getWorshipLevel()), TextFormatting.DARK_PURPLE);
