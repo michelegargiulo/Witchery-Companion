@@ -300,6 +300,11 @@ public class ModConfig {
             @Config.Name("Kettle Tweaks")
             public static KettleTweaks kettleTweaks;
 
+            @Config.Comment("Fix Alder Door rendering when disguised, as the rendering of the door does not reflect its state " +
+                    "(for example it renders open while it is closed, etc.)")
+            @Config.Name("Alder Door - Fix Disguised Alder Door Rendering")
+            public static boolean alderDoor_fixDisguiseRendering = true;
+
             @Config.Comment("Fix Altar blocks requiring to get broken and re-placed to work properly again")
             @Config.Name("Altar - Fix Power Source Persistence")
             public static boolean altar_fixPowerSourcePersistency = true;

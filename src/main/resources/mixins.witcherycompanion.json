@@ -126,6 +126,7 @@
     "witchery.block.BlockWitchesOvenMixin",
     "witchery.client.gui.book.GuiHerbologyBookMixin",
     "witchery.client.renderer.entity.RenderSpellEffectMixin",
+    "witchery.client.renderer.entity.block.RenderDisguisedAlderDoorMixin",
     "witchery.client.renderer.entity.block.RenderPoppetShelfMixin",
     "witchery.client.renderer.entity.model.ModelOwlMixin"
   ],
