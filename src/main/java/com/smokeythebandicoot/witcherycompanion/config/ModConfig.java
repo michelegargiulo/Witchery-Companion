@@ -102,6 +102,17 @@ public class ModConfig {
             @Config.Name("Common - Disable Strength Ceiling")
             public static boolean common_tweakDisableStrengthCeiling = true;
 
+            @Config.Comment("If true, completes implementation of the throwing skill, that is used to throw splash brews further. To improve " +
+                    "this skill, launch more splash brews. Max distance is controlled by the Tweak Throwing Skill Max Power config")
+            @Config.Name("Common - Fix Throwing Skill")
+            public static boolean common_fixThrowingSkill = true;
+
+            @Config.Comment("Controls how powerful the throws of a lvl100 throwing skill compared to a lvl1. Defaults to 2.0. " +
+                    "Higher values may result in weird behavior, so it's capped at 3.0")
+            @Config.RangeDouble(min = 1.0f, max = 3.0f)
+            @Config.Name("Common - Tweak Throwing Skill Max Power")
+            public static float common_tweakThrowingSkillMaxPower = 2.0f;
+
             @Config.Comment("If true, fixes Cauldron rituals with Liquid Dispersal not having any effect. Also" +
                     " should improve performance and memory usage by 0.00000001%")
             @Config.Name("Liquid Dispersal - Fix Cauldron Ritual No Effect")
