@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "witchery:moon_charm",
-      "text": "A Moon Charm is gives to a $(l:observations/lycanthropy)Werewolf$(/l) that has chosen to pursue greater power in their affliction. When the creature affected by the curse holds the charm in its inventory, any transformation is prevented, and the werewolf remains in their current form. Simply gifting 3 (item)Gold Ingots$() to a $(l:constructs/statues/wolf_altar)Wolf Altar$(/l) results in the gifting of another Moon Charm."
+      "text": "A Moon Charm is gives to a $(l:observations/lycanthropy)Werewolf$(/l) that has chosen to pursue greater power in their affliction. When the creature affected by the curse holds the charm in its inventory, any transformation is prevented, and the werewolf remains in their current form. Simply gifting 3 $(item)Gold Ingots$() to a $(l:constructs/statues/wolf_altar)Wolf Altar$(/l) results in the gifting of another Moon Charm."
     },
     {
       "type": "text",

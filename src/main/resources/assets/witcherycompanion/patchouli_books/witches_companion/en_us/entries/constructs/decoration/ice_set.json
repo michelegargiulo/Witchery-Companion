@@ -3,6 +3,7 @@
   "icon": "witchery:ice_fence",
   "category": "constructs/decoration",
   "read_by_default": true,
+  "sortnum": 1,
   "pages": [
     {
       "type": "constructs/decorative_set",

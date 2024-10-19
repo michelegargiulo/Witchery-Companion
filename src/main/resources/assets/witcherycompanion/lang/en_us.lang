@@ -16,9 +16,14 @@ witcherycompanion.gui.wolf_altar.name=Wolf Altar
 witcherycompanion.gui.wolf_altar.min_level=Min. Lycanthropy level:
 
 # Messages to player
+witcherycompanion.message.statue_of_worship.worship_zero=§oThe air is eerily silent around the statue, devoid of any hobgoblins
+witcherycompanion.message.statue_of_worship.worship_one=§oAmidst the hushed whispers, %s Hobgoblin worships your effigy
+witcherycompanion.message.statue_of_worship.worship_low=§oAmidst the hushed whispers, %s Hobgoblins worship your effigy
+witcherycompanion.message.statue_of_worship.worship_medium=§oYou observe as %s hobgoblins pray around the statue
+witcherycompanion.message.statue_of_worship.worship_intense=§oFervent prayers grow intense as %s Hobgoblins kneel before the your effigy
 witcherycompanion.message.potion.resizing.elytra_disallow=Due to your size the Elytra does not fit well enough to fly
 witcherycompanion.message.transform.elytra_disallow=Your current form prevents you from using your elytra
-witcherycompanion.wolftrap.approaching.message=Your eyes catch fleeting glimpses of movement. Somethings is approaching you. Quickly.
+witcherycompanion.message.wolftrap.approaching=Your eyes catch fleeting glimpses of movement. Somethings is approaching you. Quickly.
 
 # New Torn Page tooltips and messages
 witcherycompanion.tooltip.torn_page.lore=§oSeems like a missing page from some esoteric book§r

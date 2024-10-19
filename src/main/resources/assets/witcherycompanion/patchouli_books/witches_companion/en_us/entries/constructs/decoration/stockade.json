@@ -3,6 +3,7 @@
   "icon": "witchery:oak_stockade",
   "category": "constructs/decoration",
   "read_by_default": true,
+  "sortnum": 2,
   "pages": [
     {
       "type": "spotlight",

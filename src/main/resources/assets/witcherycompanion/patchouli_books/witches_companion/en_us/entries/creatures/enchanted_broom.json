@@ -1,0 +1,29 @@
+{
+  "name": "Enchanted Broom",
+  "icon": "witchery:enchanted_broom",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:broom",
+      "text": "Sentient Brooms.",
+      "scale": 0.5
+    },
+    {
+      "type": "text",
+      "title": "Usage",
+      "text": "Place the Enchanted Broom on the ground and activate it to mount it. Move forward and backwards, steering left and right as required.$(p)To move vertically, push forward while looking in the desired direction.$(p)Sneak to dismount, and bash it until it breaks to pick it up."
+    },
+    {
+      "type": "text",
+      "title": "Dismounting",
+      "text": "When dismounting, the Enchanted Broom maintains its momentum, so it is advised to come to a stop first. It's also not recommended to dismount in the air, as the Enchanted Broom will stay there and might be hard to recover afterwards."
+    },
+    {
+      "type": "text",
+      "title": "Other Properties",
+      "text": "Just like mundane $(l:)Brooms$(/l), an Enchanted Broom can be used to quickly remove $(l:)Circle Glyphs$(/l).$(br)It is also worth nothing that they can be renamed in an $(item)Anvil$() and dyed by using a $(item)Dye$() when placed in the world.$(br)Lastly, it is important to know that if the creature in control of the Enchanted Broom has a $(l:)Owl Familiar$(/l) the Broom will be much easier to control, with better deceleration and the ability to strafe."
+    }
+  ]
+}

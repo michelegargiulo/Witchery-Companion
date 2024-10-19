@@ -3,6 +3,7 @@
   "icon": "witchery:alder_fence",
   "category": "constructs/decoration",
   "read_by_default": true,
+  "sortnum": 0,
   "pages": [
     {
       "type": "constructs/decorative_set",
