@@ -395,6 +395,10 @@ public class ModConfig {
             @Config.Name("Stockade - Fix Bounding Box")
             public static boolean stockade_fixBoundingBox = true;
 
+            @Config.Comment("If true, fixes JEI Plugin compat for the Spinning Wheel.")
+            @Config.Name("Spinning Wheel - Fix JEI Plugin")
+            public static boolean spinningWheel_fixJeiPlugin = true;
+
             @Config.Comment("If true, fix player bottling skill increase, which won't happen otherwise.")
             @Config.Name("Witch's Cauldron - Fix Bottling Skill Increase")
             public static boolean witchsCauldron_fixBottlingSkillIncrease = true;
