@@ -522,6 +522,10 @@ public class ModConfig {
             @Config.Name("Brew of Erosion Item - Tweak Emulate Erosion Brew")
             public static boolean itemErosionBrew_tweakEmulateBrewEffects = false;
 
+            @Config.Comment("If true, enables CraftTweaker integration for all types of Mutandis conversions")
+            @Config.Name("Mutandis - Tweak Enable CraftTweaker Integration")
+            public static boolean mutandis_tweakEnableCraftTweaker = true;
+
             @Config.Comment("If true, this poppet won't be able to affect players")
             @Config.Name("Poppet Item - Disable PVP")
             public static boolean poppetItem_tweakDisablePvP = false;

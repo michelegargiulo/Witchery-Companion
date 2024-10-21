@@ -88,6 +88,7 @@
     "witchery.integration.ThaumcraftIntegration.IntegrateThaumcraftMixin",
     "witchery.item.ItemCreativeMedallionMixin",
     "witchery.item.ItemIcyNeedleMixin",
+    "witchery.item.ItemMutandisMixin",
     "witchery.item.ItemMysticBranchMixin",
     "witchery.item.ItemSeerStoneMixin",
     "witchery.item.ItemSpectralStoneMixin",

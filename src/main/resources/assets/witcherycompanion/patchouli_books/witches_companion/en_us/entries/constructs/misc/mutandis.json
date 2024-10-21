@@ -1,0 +1,29 @@
+{
+  "name": "Mutandis",
+  "icon": "witchery:mutandis",
+  "category": "constructs/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:mutandis",
+      "text": "A mutagen used by witches to mutate plants into other species, usually rare and not found naturally. Simply use it on small plants, grass, flowers to convert them. The mutation is random and cannot be controlled. Some plants like $(item)Wheat$() or $(item)Cactus$() require a more potent version of the Mutandis, called $(l:constructs/misc/mutandis#extremis)Mutandis Extremis$(/l).$(br)"
+    },
+    {
+      "type": "text",
+      "title": "Mutating Meats",
+      "text": "Mutandis also seems to have an effect on $(item)Raw Meat$(). It seems to mutate it into other types of Raw Meat. It seems to also have an effect on $(item)Rotten Flesh$()."
+    },
+    {
+      "type": "text",
+      "title": "Mutating Extremis",
+      "text": "Mutandis extremis has the same properties of Mutandis, but due to its augmented efficacy, it works more types of plants, including $(item)Wheat$() and $(item)Cacti$(), and can also mutate $(item)Cooked Meat$().",
+      "anchor": "extremis"
+    },
+    {
+      "type": "text",
+      "title": "Mutating Blocks",
+      "text": "This more extreme version of Mutandis can also mutate some blocks.$(br)For example, it can turn a $(item)Grass$() block into $(item)Mycelium$() or vice-versa.$(br)It is also powerful enough to turn a patch of $(item)Dirt$() blocks with $(item)Water$() on top into some $(item)Clay$() blocks."
+    }
+  ]
+}
