@@ -508,6 +508,10 @@ public class ModConfig {
             @Config.Name("Spectral Stone - Fix Entity Dupe Exploit")
             public static boolean spectralStone_fixEntityReleaseExploit = true;
 
+            @Config.Comment("If true, the Icy Needle can also be used in the air instead of having to be used on a block")
+            @Config.Name("Icy Needle - Fix Right-Click in Air")
+            public static boolean icyNeedle_fixRightClickInAir = true;
+
             @Config.Comment("If true, set max stack size of all chalk items to 1, regardless of damage. " +
                     "Workaround for some chalk-stacking related bugs")
             @Config.Name("Chalk - Tweak Unstackable Chalk")

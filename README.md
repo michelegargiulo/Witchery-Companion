@@ -57,6 +57,7 @@ jar in the resource packs folder.
 - **Infusions**
   - **[Soul Brews]** Fix losing Soul brews (so the Mystic Branch knowledge) upon death
 - **Items**
+  - **[Icy Needle]** Fix having an effect only when right-clicking on a block
   - **[Rowan Boat]** Fix Rowan Boat not having texture (not configurable)
   - **[Spectral Stone]** Fix NBT being retained after entity is released, effectively duping it
   - **[Lingering Potion]** Fix unlocalized name (not configurable)
