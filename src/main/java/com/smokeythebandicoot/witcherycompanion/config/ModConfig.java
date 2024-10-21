@@ -395,6 +395,16 @@ public class ModConfig {
             @Config.Name("Stockade - Fix Bounding Box")
             public static boolean stockade_fixBoundingBox = true;
 
+            @Config.Comment("If true, fixes conditions for the portal to stay. If any blocks of the portal frame or portal itself " +
+                    "is broken, the portal should be broken. Without this fix, some portal blocks stay lit regardless.")
+            @Config.Name("Spirit Portal - Fix Break Condition")
+            public static boolean spiritPortal_fixBreakCondition = true;
+
+            @Config.Comment("If true, fixes the Spirit Portal block so that blocks that require support (buttons, levers, etc) " +
+                    "cannot be placed on the surface of the portal.")
+            @Config.Name("Spirit Portal - Fix Block Face Shape")
+            public static boolean spiritPortal_fixBlockFaceShape = true;
+
             @Config.Comment("If true, fixes JEI Plugin compat for the Spinning Wheel.")
             @Config.Name("Spinning Wheel - Fix JEI Plugin")
             public static boolean spinningWheel_fixJeiPlugin = true;

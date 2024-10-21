@@ -19,6 +19,7 @@
     "witchery.block.BlockPlacedItemMixin",
     "witchery.block.BlockRemovedBlockMixin",
     "witchery.block.BlockRowanDoorMixin",
+    "witchery.block.BlockSpiritPortalMixin",
     "witchery.block.BlockStockadeMixin",
     "witchery.block.BlockSunCollectorMixin",
     "witchery.block.BlockWitchCauldronMixin",

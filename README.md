@@ -24,6 +24,9 @@ jar in the resource packs folder.
   - **[Mandrake Crop]** Fix spawning mandrakes even when not fully mature
   - **[Poppet Shelf]** Fix upside-down poppet rendering
   - **[Stockade]** Fix weird rendering when player head is too close to the stockade
+  - **[Spirit Portal Block]** Fix Spirit Portal Block not being completely broken when there are no longer the conditions to stay lit
+  - **[Spirit Portal Block]** Fix Spirit Portal Block being able to support buttons, levers, etc on its surface
+  - **[Spirit Portal Block]** Fix Spirit Portal Block having wrong collision box when placed along the Z-axis
   - **[Witch's Cauldron]** Fix bottling skill being impossible to increase
   - **[Witch's Cauldron]** Fix right-clicking with an empty Bucket voiding the brew inside
   - **[Witch's Cauldron]** Fix right-clicking with an Empty Bucket on an empty Cauldron giving a water bucket
@@ -92,6 +95,7 @@ jar in the resource packs folder.
   - **[Crystal Ball]** Tweak to customize Altar Power consumption for each use
   - **[Fetishes]** Tweak to customize cooldown of Sentinel and Twister spirit effects
   - **[Witch's Cauldron]** Tweak to set glass bottle size to 250mB instead of 333/334mB (depending if draining or filling)
+  - **[Spirit Portal Block]** Tweak to change texture and transparency to better reflect the original Witchery texture
 - **Entities**
   - **[Baba Yaga]** Tweak to modify gifts given to owners frequency, max distance and max items
   - **[Baba Yaga]** Tweak to give her own loot table instead of hard-coded loot, both on death and for gifted items
