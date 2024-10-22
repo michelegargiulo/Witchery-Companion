@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.api.kettle;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -65,7 +66,7 @@ public class KettleApi {
 
     public static void registerRecipe(ResourceLocation id, ItemStack result, float power, int hatBonus, String familiarPower, Integer dimension, boolean special, Ingredient... inputs) {
         // Generate random id if one is not provided
-        if (id == null) id = generateRandomRecipeId();
+        if (id == null) id = Utils.generateRandomRecipeId("kettle_");
 
         // Retrieve familiar power
         ResourceLocation familiar = null;
@@ -97,10 +98,6 @@ public class KettleApi {
     /** Internal usage */
     public static Material getFireMaterial() {
         return Material.FIRE;
-    }
-
-    public static ResourceLocation generateRandomRecipeId() {
-        return new ResourceLocation(WitcheryCompanion.MODID, "kettle_" + UUID.randomUUID().toString().replace("-", ""));
     }
 
     public enum EFamiliarPower {

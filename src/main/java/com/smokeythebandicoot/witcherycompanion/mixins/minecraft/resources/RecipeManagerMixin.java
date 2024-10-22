@@ -2,8 +2,12 @@ package com.smokeythebandicoot.witcherycompanion.mixins.minecraft.resources;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.smokeythebandicoot.witcherycompanion.api.brazier.BrazierApi;
+import com.smokeythebandicoot.witcherycompanion.api.cauldron.CauldronApi;
+import com.smokeythebandicoot.witcherycompanion.api.distillery.DistilleryApi;
 import com.smokeythebandicoot.witcherycompanion.api.kettle.KettleApi;
 import com.smokeythebandicoot.witcherycompanion.api.recipes.IRecipeManagerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.spinningwheel.SpinningWheelApi;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.recipe.RecipeType;
@@ -59,7 +63,29 @@ public abstract class RecipeManagerMixin extends JsonReloadListener implements I
             kettleRecipes.remove(resourceLocation);
         }
 
-        this.recipes.size();
+        Map<ResourceLocation, WitcheryRecipe<?>> cauldronRecipes = this.recipes.get(WitcheryRecipeTypes.CAULDRON);
+        cauldronRecipes.putAll(CauldronApi.recipesToAdd);
+        for (ResourceLocation resourceLocation : CauldronApi.recipesToRemove) {
+            cauldronRecipes.remove(resourceLocation);
+        }
+
+        Map<ResourceLocation, WitcheryRecipe<?>> distilleryRecipes = this.recipes.get(WitcheryRecipeTypes.DISTILLERY);
+        distilleryRecipes.putAll(DistilleryApi.recipesToAdd);
+        for (ResourceLocation resourceLocation : DistilleryApi.recipesToRemove) {
+            distilleryRecipes.remove(resourceLocation);
+        }
+
+        Map<ResourceLocation, WitcheryRecipe<?>> spinningWheelRecipes = this.recipes.get(WitcheryRecipeTypes.SPINNING_WHEEL);
+        spinningWheelRecipes.putAll(SpinningWheelApi.recipesToAdd);
+        for (ResourceLocation resourceLocation : SpinningWheelApi.recipesToRemove) {
+            spinningWheelRecipes.remove(resourceLocation);
+        }
+
+        Map<ResourceLocation, WitcheryRecipe<?>> brazierRecipes = this.recipes.get(WitcheryRecipeTypes.BRAZIER);
+        brazierRecipes.putAll(BrazierApi.recipesToAdd);
+        for (ResourceLocation resourceLocation : BrazierApi.recipesToRemove) {
+            brazierRecipes.remove(resourceLocation);
+        }
 
     }
 

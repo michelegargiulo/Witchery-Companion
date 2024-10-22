@@ -1,12 +1,21 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker;
 
+import com.smokeythebandicoot.witcherycompanion.api.brazier.BrazierApi;
 import com.smokeythebandicoot.witcherycompanion.api.cauldron.CauldronApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.item.IIngredient;
+import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @ModOnly(value = "witchery")
 @ZenClass("mods.smokeythebandicoot.witcherycompanion.Cauldron")
@@ -41,6 +50,31 @@ public class CauldronHandler {
     @ZenDoc(value="Returns true if the specified IBlockState is a valid Cauldron Heat Source")
     public static boolean isHeatSource(crafttweaker.api.block.IBlockState state) {
         return CauldronApi.isHeatSource(CraftTweakerMC.getBlockState(state));
+    }
+
+    @ZenMethod
+    @ZenDoc(value="Registers a new Cauldron recipe")
+    public static void registerRecipe(IItemStack result, IIngredient trigger, int power, IIngredient[] inputs) {
+
+        if (result == null || trigger == null || inputs.length == 0) return;
+
+        Ingredient[] inp = new Ingredient[inputs.length];
+        for (int i = 0; i < inp.length; i++) {
+            inp[i] = CraftTweakerMC.getIngredient(inputs[i]);
+        }
+
+        CauldronApi.registerRecipe(null,
+                CraftTweakerMC.getItemStack(result),
+                CraftTweakerMC.getIngredient(trigger),
+                power,
+                inp
+        );
+    }
+
+    @ZenMethod
+    @ZenDoc(value="Removes a Cauldron Recipe")
+    public static void removeRecipe(String resourceLocation) {
+        CauldronApi.removeRecipe(new ResourceLocation(resourceLocation));
     }
 
 }
