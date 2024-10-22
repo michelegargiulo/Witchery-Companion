@@ -114,7 +114,8 @@ public abstract class ItemMutandisMixin extends Item {
     @Unique
     private static boolean witchery_Patcher$performMutandisConversion(World world, BlockPos pos, boolean extremis) {
         IBlockState source = world.getBlockState(pos);
-        IBlockState target = MutandisApi.getConversion(source, extremis);
+        int dim = world.provider.getDimension();
+        IBlockState target = MutandisApi.getConversion(source, extremis, dim);
 
         if (target != null) {
 

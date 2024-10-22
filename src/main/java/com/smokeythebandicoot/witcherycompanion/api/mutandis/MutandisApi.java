@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.api.mutandis;
 
-import com.smokeythebandicoot.witcherycompanion.utils.IndexedHashSet;
+import com.smokeythebandicoot.witcherycompanion.utils.GroupedSet;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockTallGrass;
@@ -9,7 +9,9 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
 import net.msrandom.witchery.init.WitcheryBlocks;
+import net.msrandom.witchery.init.WitcheryDimensions;
 import net.msrandom.witchery.init.WitcheryWoodTypes;
 
 import java.util.HashMap;
@@ -19,8 +21,8 @@ public class MutandisApi {
 
     public static final HashMap<IBlockState, IBlockState> grassConversion;
     public static final HashMap<IBlockState, IBlockState> clayConversion;
-    public static final IndexedHashSet<IBlockState> mutandis;
-    public static final IndexedHashSet<IBlockState> mutandisExtremis;
+    public static final GroupedSet<IBlockState> mutandis;
+    public static final GroupedSet<IBlockState> mutandisExtremis;
     //public static final HashMap<IBlockState, int> dimensionMap; // Modify IndexedHashSet to contain dimension info
 
     static {
@@ -38,7 +40,7 @@ public class MutandisApi {
 
         // PRIORITY 3 - this conversion is checked third
         // Mutandis conversion: Plant blocks that can be converted into any other block of the set
-        mutandis = new IndexedHashSet<>();
+        mutandis = new GroupedSet<>(new Random());
         // All vanilla saplings
         mutandis.add(Blocks.SAPLING.getDefaultState().withProperty(BlockSapling.TYPE, BlockPlanks.EnumType.OAK));
         mutandis.add(Blocks.SAPLING.getDefaultState().withProperty(BlockSapling.TYPE, BlockPlanks.EnumType.SPRUCE));
@@ -68,7 +70,7 @@ public class MutandisApi {
         // Mutandis Extremis conversion: extends the set of normal Mutandis. Moreover, the Mutandis checks if the BlockStateContainer has
         // some common properties, like BlockCrops.AGE, BlockWitchCrop.AGE4, BlockWitchCrop.AGE5, BlockReed.AGE, BlockStem.AGE or BlockNetherWart.AGE
         // and sets their age to min(age of mutated plant, max age of new crop). Otherwise, property will be ignored
-        mutandisExtremis = new IndexedHashSet<>();
+        mutandisExtremis = new GroupedSet<>(new Random());
         mutandisExtremis.add(Blocks.CARROTS.getDefaultState());
         mutandisExtremis.add(Blocks.POTATOES.getDefaultState());
         mutandisExtremis.add(Blocks.WHEAT.getDefaultState());
@@ -78,7 +80,7 @@ public class MutandisApi {
         mutandisExtremis.add(Blocks.REEDS.getDefaultState());
         mutandisExtremis.add(Blocks.PUMPKIN_STEM.getDefaultState());
         mutandisExtremis.add(Blocks.MELON_STEM.getDefaultState());
-        mutandisExtremis.add(Blocks.NETHER_WART.getDefaultState());
+        mutandisExtremis.add(Blocks.NETHER_WART.getDefaultState(), WitcheryDimensions.SPIRIT_WORLD.getType().getId());
         mutandisExtremis.add(Blocks.CACTUS.getDefaultState());
 
         /**
@@ -161,7 +163,15 @@ public class MutandisApi {
         return mutandis.contains(state) || (extremisAvailable && mutandisExtremis.contains(state));
     }
 
-    public static IBlockState getConversion(IBlockState sourceState, boolean extremis) {
+    public static IBlockState getConversion(IBlockState sourceState, boolean extremis, int dim) {
+        return getConversion(new Random(), sourceState, extremis, dim);
+    }
+
+    public static IBlockState getConversion(World world, IBlockState sourceState, boolean extremis) {
+        return getConversion(world.rand, sourceState, extremis, world.provider.getDimension());
+    }
+
+    public static IBlockState getConversion(Random random, IBlockState sourceState, boolean extremis, Integer dim) {
 
         // Ignore Age property on blocks
         IBlockState state = getAgeAgnosticBlockState(sourceState);
@@ -170,7 +180,7 @@ public class MutandisApi {
         if (!extremis) {
             // If list contains it, return a random element
             if (mutandis.contains(state)) {
-                return mutandis.getRandom();
+                return mutandis.getRandom(dim);
             }
             // Otherwise, no conversion :(
             return null;
@@ -190,9 +200,9 @@ public class MutandisApi {
 
         // If < normalSize, then take from mutandis
         if ((new Random()).nextInt(normalSize + extremisSize) < normalSize) {
-            return mutandis.getRandom();
+            return mutandis.getRandom(dim);
         } else {
-            return mutandisExtremis.getRandom();
+            return mutandisExtremis.getRandom(dim);
         }
 
     }
@@ -204,5 +214,7 @@ public class MutandisApi {
         }
         return state;
     }
+
+
 
 }
