@@ -7,10 +7,14 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.recipe.DistilleryRecipe;
 
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
+@ParametersAreNonnullByDefault
 public class DistilleryApi {
 
     // New recipes that are added through crafttweaker, in addition to Witchery ones
@@ -22,7 +26,7 @@ public class DistilleryApi {
         registerRecipe(null, input1, input2, clayJars, output1, output2, output3, output4);
     }
 
-    public static void registerRecipe(ResourceLocation id, Ingredient input1, Ingredient input2, int clayJars, ItemStack output1, ItemStack output2, ItemStack output3, ItemStack output4) {
+    public static void registerRecipe(@Nullable ResourceLocation id, Ingredient input1, Ingredient input2, int clayJars, ItemStack output1, ItemStack output2, ItemStack output3, ItemStack output4) {
         // Generate random id if one is not provided
         if (id == null) id = Utils.generateRandomRecipeId("distillery_");
 
@@ -38,7 +42,7 @@ public class DistilleryApi {
     }
 
     public static void removeRecipe(ResourceLocation id) {
-        if (id != null) recipesToRemove.add(id);
+        recipesToRemove.add(id);
     }
 
 }

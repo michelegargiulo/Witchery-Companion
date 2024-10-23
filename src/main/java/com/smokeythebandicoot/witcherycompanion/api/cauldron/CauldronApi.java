@@ -10,8 +10,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.recipe.CauldronRecipe;
 
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 
+@ParametersAreNonnullByDefault
 public class CauldronApi {
 
     // Recipes
@@ -55,7 +58,7 @@ public class CauldronApi {
         registerRecipe(null, result, trigger, power, inputs);
     }
 
-    public static void registerRecipe(ResourceLocation id, ItemStack result, Ingredient trigger, int power, Ingredient... inputs) {
+    public static void registerRecipe(@Nullable ResourceLocation id, ItemStack result, Ingredient trigger, int power, Ingredient... inputs) {
         // Generate random id if one is not provided
         if (id == null) id = Utils.generateRandomRecipeId("cauldron_");
 
@@ -72,7 +75,7 @@ public class CauldronApi {
     }
 
     public static void removeRecipe(ResourceLocation id) {
-        if (id != null) recipesToRemove.add(id);
+        recipesToRemove.add(id);
     }
 
     /** Internal usage */

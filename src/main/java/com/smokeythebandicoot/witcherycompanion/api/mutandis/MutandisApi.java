@@ -14,9 +14,11 @@ import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.init.WitcheryDimensions;
 import net.msrandom.witchery.init.WitcheryWoodTypes;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
 import java.util.Random;
 
+@ParametersAreNonnullByDefault
 public class MutandisApi {
 
     public static final HashMap<IBlockState, IBlockState> grassConversion;

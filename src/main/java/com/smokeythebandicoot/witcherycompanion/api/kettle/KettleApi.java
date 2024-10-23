@@ -1,6 +1,5 @@
 package com.smokeythebandicoot.witcherycompanion.api.kettle;
 
-import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,8 +14,12 @@ import net.minecraftforge.common.DimensionManager;
 import net.msrandom.witchery.WitcheryResurrected;
 import net.msrandom.witchery.recipe.KettleRecipe;
 
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 
+
+@ParametersAreNonnullByDefault
 public class KettleApi {
 
     // New recipes that are added through crafttweaker, in addition to Witchery ones
@@ -60,11 +63,11 @@ public class KettleApi {
         registerRecipe(null, result, power, 0, null, null, false, inputs);
     }
 
-    public static void registerRecipe(ItemStack result, float power, int hatBonus, String familiarPower, Integer dimension, boolean special, Ingredient... inputs) {
+    public static void registerRecipe(ItemStack result, float power, int hatBonus, @Nullable String familiarPower, @Nullable Integer dimension, boolean special, Ingredient... inputs) {
         registerRecipe(null, result, power, hatBonus, familiarPower, dimension, special, inputs);
     }
 
-    public static void registerRecipe(ResourceLocation id, ItemStack result, float power, int hatBonus, String familiarPower, Integer dimension, boolean special, Ingredient... inputs) {
+    public static void registerRecipe(@Nullable ResourceLocation id, ItemStack result, float power, int hatBonus, @Nullable String familiarPower, @Nullable Integer dimension, boolean special, Ingredient... inputs) {
         // Generate random id if one is not provided
         if (id == null) id = Utils.generateRandomRecipeId("kettle_");
 
@@ -90,7 +93,7 @@ public class KettleApi {
     }
 
     public static void removeRecipe(ResourceLocation id) {
-        if (id != null) recipesToRemove.add(id);
+        recipesToRemove.add(id);
     }
 
 

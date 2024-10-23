@@ -1051,6 +1051,10 @@ public class ModConfig {
             @Config.Name("JEI Integration - Enable Imp Shinies")
             public static boolean enableJeiImpShinies = true;
 
+            @Config.Comment("If true, enables Mutandis (on Blocks) JEI Integration")
+            @Config.Name("JEI Integration - Enable Mutandis-on-Block Integration")
+            public static boolean enableJeiMutandisBlock = true;
+
             @Config.Comment("If true, enables Sun Collector JEI Integration")
             @Config.Name("JEI Integration - Enable Sun Collector")
             public static boolean enableJeiSunCollector = true;
