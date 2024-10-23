@@ -12,11 +12,19 @@ import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.items.Ite
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.*;
 import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.msrandom.witchery.brewing.ItemKey;
 import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
@@ -26,9 +34,12 @@ import net.msrandom.witchery.resources.BrewActionManager;
 import net.msrandom.witchery.util.WitcheryUtils;
 import vazkii.patchouli.api.BookContentsReloadEvent;
 import vazkii.patchouli.api.PatchouliAPI;
+import vazkii.patchouli.client.book.gui.GuiBook;
+import vazkii.patchouli.client.book.gui.GuiBookLanding;
 import vazkii.patchouli.client.book.template.BookTemplate;
 import vazkii.patchouli.client.book.text.BookTextParser;
 import vazkii.patchouli.client.book.text.SpanState;
+import vazkii.patchouli.common.book.Book;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
 import java.util.HashMap;
@@ -154,6 +165,37 @@ public class PatchouliApiIntegration {
         // Update Immortal Book flags if revamp is enabled
         if (ModConfig.IntegrationConfigurations.PatchouliIntegration.common_replaceImmortalsBook) {
             updateImmortalBookFlags(player);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
+    public static void onItemTooltip(ItemTooltipEvent event) {
+        ItemStack stack = event.getItemStack();
+
+        if (event.getEntityPlayer() == null) return;
+        if (!event.getEntityPlayer().world.isRemote) return;
+
+        GuiScreen currentGui = Minecraft.getMinecraft().currentScreen;
+
+        if (currentGui instanceof GuiBook && (!(currentGui instanceof GuiBookLanding))) {
+            GuiBook guiBook = (GuiBook) currentGui;
+
+            // For some reason "guiBook.book" crashes in a weird way in a dev env, so just use Reflection to access the
+            // field. The prod environment gets accessed first (and field is cached for performance). If it fails due to
+            // deobf mapping in the dev env, then try to get book, by the same means
+            Book book = ReflectionHelper.getField(guiBook, "book", false);
+            if (book == null)  book = ReflectionHelper.getField(guiBook, "field_146297_k", false);
+
+            if (book != null && book.owner.getModId().equals(WitcheryCompanion.MODID)) {
+                BrewAction action = BrewActionManager.INSTANCE.getAction(ItemKey.fromStack(stack));
+                if (action != null) {
+                    int cost = action.getPowerCost();
+                    if (cost > 0) {
+                        event.getToolTip().add(I18n.format("witchery.brewing.ingredientpowercost", cost, (int)Math.ceil(1.4 * (double)cost)));
+                    }
+                }
+            }
         }
     }
 
