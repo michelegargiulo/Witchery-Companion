@@ -1,7 +1,7 @@
 {
   "name": "Mog's Quiver",
   "icon": "witchery:mogs_quiver",
-  "category": "constructs/misc",
+  "category": "constructs/clothing",
   "read_by_default": true,
   "pages": [
     {

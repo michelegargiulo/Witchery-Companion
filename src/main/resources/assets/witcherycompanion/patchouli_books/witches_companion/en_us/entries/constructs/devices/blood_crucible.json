@@ -1,0 +1,13 @@
+{
+  "name": "Blood Crucible",
+  "icon": "witchery:blood_crucible",
+  "category": "constructs/devices",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:blood_crucible",
+      "text": "The Blood Crucible is a block that can be used by players affected by $(item)Vampirism$() the $(l:observations/vampirism#blood_power)Blood Power$(/l) abilities. It will be used by $(item)Child Vampires$() to deposit the blood they collected."
+    }
+  ]
+}

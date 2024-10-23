@@ -95,14 +95,22 @@
     {
       "type": "generic/secret_text",
       "title": "Create vampires",
-      "description": "Player can now turn $(item)Villagers$() and other players into vampires using a $(l:)Glass Goblet$(/l) to collect their own demon tainted blood.",
+      "description": "Player can now turn $(item)Villagers$(), $(l:creatures/village_guard)Village Guards$(/l) and other players into vampires using a $(l:)Glass Goblet$(/l) to collect their own demon tainted blood. Drain completely a $(item)mesmerized$() Villager or Guard of its $(item)blood$(), then use a Glass Goblet filled with your blood on them to turn them into Vampires. A $(l:constructs/devices/coffin)Coffin$(/l) must be very close to the creature. Created Vampires will deposit blood in a $(l:constructs/devices/blood_crucible)Blood Crucible$(/l) when drinking blood.",
       "secret_key": "witcherycompanion:traits/vampirism/level_9",
       "flag": "witcherycompanion:observations/show_vampirism_progress"
     },
     {
       "type": "generic/secret_text",
       "title": "Blood power",
-      "description": "Child vampires can now donate their blood into a $(l:)Blood Crucible$(/l) as they return from a nights feeding, when full a player can consume this blood with an ingredient to gain 5 charges of one of the following powers:$(br)$(8)> $()Call Storm to make it rain and hide from the sun$(br)$(8)> $()Teleport to spawn bed if far away from it, to nearest $(item)Village$() otherwise$(br)$(8)> $()Call a swarm of $(item)Bats$() to attack the creature the vampire is looking at$(br)$(8)> $()$(item)Zombie$() respect,",
+      "description": "Child vampires can now donate their blood into a $(l:constructs/devices/blood_crucible)Blood Crucible$(/l) as they return from a nights feeding, when full a player can consume this blood with an ingredient to gain 5 charges of one of the following powers:$(p)$(8)> $()Call Storm to make it rain and hide from the sun$(br)$(8)> $()Teleport to spawn bed if far away from it, to nearest $(item)Village$() otherwise.",
+      "secret_key": "witcherycompanion:traits/vampirism/level_10",
+      "flag": "witcherycompanion:observations/show_vampirism_progress",
+      "anchor": "blood_power"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Blood power",
+      "description": "$(8)> $()Call a swarm of $(item)Bats$() to attack the creature the vampire is looking at.$(p)Additionally, the player will gain $(item)Zombie Respect$(), as $(item)Zombies$() will no longer attack the player.",
       "secret_key": "witcherycompanion:traits/vampirism/level_10",
       "flag": "witcherycompanion:observations/show_vampirism_progress"
     }

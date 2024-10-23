@@ -1,13 +1,13 @@
 {
   "name": "Earmuffs",
   "icon": "witchery:earmuffs",
-  "category": "constructs/misc",
+  "category": "constructs/clothing",
   "read_by_default": true,
   "pages": [
     {
       "type": "spotlight",
       "item": "witchery:earmuffs",
-      "text": "Earmuffs provide mediocre physical protection against attacks, but they are more valuable for the hearing protection against screaming creatures, especially $(l:creatures/mandrake)Mandrakes$(/l) and $(l:creatures/banshee)Banshees$(/l)."
+      "text": "Earmuffs provide mediocre physical protection against attacks, but they are more valuable as hearing protection against screaming creatures, especially $(l:creatures/mandrake)Mandrakes$(/l) and $(l:creatures/banshee)Banshees$(/l)."
     }
   ]
 }
