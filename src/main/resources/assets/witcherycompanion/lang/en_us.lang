@@ -45,3 +45,6 @@ witcherycompanion.probe.dimension.mirror.name=Mirror
 witcherycompanion.probe.familiar_power.brew_mastery.name=Brew Mastery (Toad Familiar)
 witcherycompanion.probe.familiar_power.broom_mastery.name=Broom Mastery (Owl Familiar)
 witcherycompanion.probe.familiar_power.curse_mastery.name=Curse Mastery (Cat Familiar)
+
+## Optional string for optional items in Rites
+witcherycompanion.tooltip.optional=§r (Optional)

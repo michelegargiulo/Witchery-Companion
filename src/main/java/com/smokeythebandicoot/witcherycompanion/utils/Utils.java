@@ -61,4 +61,13 @@ public class Utils {
         return new ResourceLocation(WitcheryCompanion.MODID, pathPrefix + UUID.randomUUID().toString().replace("-", ""));
     }
 
+    public static int argbToInt(byte a, byte r, byte g, byte b) {
+        return ((a & 0xFF) << 24) |
+               ((r & 0xFF) << 16) |
+               ((g & 0xFF) << 8)  |
+               (b & 0xFF);
+    }
+
+
+
 }

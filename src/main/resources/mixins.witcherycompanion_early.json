@@ -20,7 +20,6 @@
     "minecraft.entity.EntityLivingBaseMixin",
     "minecraft.entity.ai.EntityAIOpenDoorMixin",
     "minecraft.entity.player.EntityPlayerMixin",
-    "minecraft.item.crafting.IngredientMixin",
     "minecraft.tileentity.TileEntityBedMixin",
     "minecraft.tileentity.TileEntityChestMixin",
     "minecraft.tileentity.TileEntityEnderChestMixin",
@@ -29,5 +28,6 @@
   "server": [
   ],
   "client": [
-	]
+    "minecraft.client.renderer.RenderItemMixin"
+  ]
 }

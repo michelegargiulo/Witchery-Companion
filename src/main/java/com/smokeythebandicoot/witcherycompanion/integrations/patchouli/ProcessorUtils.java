@@ -1,7 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.recipes.IIngredientAccessor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.msrandom.witchery.infusion.symbol.BranchStroke;
@@ -76,14 +75,7 @@ public class ProcessorUtils {
         Iterator<Ingredient> it = ingredients.iterator();
         while (it.hasNext()) {
             Ingredient ing = it.next();
-            ItemStack[] stacks;
-            if (ing instanceof IIngredientAccessor) {
-                IIngredientAccessor accessor = (IIngredientAccessor) ing;
-                stacks = ((IIngredientAccessor) ing).getAllMatchingStacks();
-            } else {
-                stacks = ing.getMatchingStacks(); // Will lose blinking capability to indicate optional stacks
-            }
-            sb.append(serializeItemStackArray(stacks));
+            sb.append(serializeItemStackArray(ing.getMatchingStacks()));
             if (it.hasNext()) {
                 sb.append(";");
             }
