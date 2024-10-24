@@ -3,9 +3,8 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.componen
 import com.google.gson.annotations.SerializedName;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
-import com.smokeythebandicoot.witcherycompanion.patches.mixin_invokers.IRenderItemInvoker;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
+import com.smokeythebandicoot.witcherycompanion.utils.RenderItemUtils;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -15,7 +14,10 @@ import vazkii.patchouli.api.VariableHolder;
 import vazkii.patchouli.client.book.gui.GuiBookEntry;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class IngredientListComponent implements ICustomComponent {
 
@@ -191,13 +193,16 @@ public class IngredientListComponent implements ICustomComponent {
     }
 
     protected void renderOptionalItemStack(IComponentRenderContext context, int x, int y, int mouseX, int mouseY, ItemStack stack, boolean optional) {
-        RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-        if (optional && renderItem instanceof IRenderItemInvoker) {
-            IRenderItemInvoker invoker = (IRenderItemInvoker) renderItem;
-            // Check if optional
-            invoker.setColor(0x80FFFFFF);
+        if (optional) {
+            /* RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+            if (renderItem instanceof IRenderItemInvoker) {
+                IRenderItemInvoker invoker = (IRenderItemInvoker) renderItem;
+                // Check if optional
+                invoker.setColor(0x80FFFFFF);
+            } */
+            RenderItemUtils.nextStackColor = 0x80ffffff;
         }
         context.renderItemStack(x, y, mouseX, mouseY, stack);
     }
-    
+
 }

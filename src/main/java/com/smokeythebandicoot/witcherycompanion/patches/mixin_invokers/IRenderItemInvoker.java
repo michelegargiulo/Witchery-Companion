@@ -6,6 +6,4 @@ public interface IRenderItemInvoker {
 
     int getColor();
 
-    void restoreColor();
-
 }
