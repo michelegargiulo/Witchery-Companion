@@ -1,0 +1,18 @@
+{
+  "name": "Necromancer Robes",
+  "icon": "witchery:necromancer_robes",
+  "category": "artifacts/clothing",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:necromancer_robes",
+      "text": "A wearable item that offers a small amount of protection and can be $(item)enchanted$(). It can be repaired by using $(item)Leather$() in an $(item)Anvil$() or by crafting with four $(l:resources/impregnated_leather)Impregnated Leather$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Special Properties",
+      "text": "When worn, the Necromancer Robes provide an improved chance of creating an additional brew when using the $(l:kettle/kettle_intro)Kettle$(/l).$(p)Moreover, the creature that wears the piece is ignored by undead creatures, like $(item)Zombies$() and $(item)Skeletons$().$(p)The piece becomes invisible when the creature that wears it is invisible."
+    }
+  ]
+}

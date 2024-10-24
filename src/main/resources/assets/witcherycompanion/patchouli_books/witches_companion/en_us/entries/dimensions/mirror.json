@@ -12,7 +12,7 @@
     {
       "type": "text",
       "title": "Entering the Mirror",
-      "text": "This dimension can only be accessed by walking through a $(l:constructs/devices/mirror)Mirror$(/l).$(p)Another identical mirror will appear on the inside, and it is the main way to exit the dimension."
+      "text": "This dimension can only be accessed by walking through a $(l:artifacts/devices/mirror)Mirror$(/l).$(p)Another identical mirror will appear on the inside, and it is the main way to exit the dimension."
     }
   ]
 }

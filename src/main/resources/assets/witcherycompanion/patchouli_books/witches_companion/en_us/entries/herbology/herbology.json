@@ -74,7 +74,7 @@
     {
       "type": "spotlight",
       "item": "witchery:blood_poppy",
-      "text": "In a witches garden keep in mind, a scratch from this rose leaves your blood behind. Mutate this plant from $(item)poppies$() and a $(l:constructs/traps/leech_chest)leech chest$(/l)."
+      "text": "In a witches garden keep in mind, a scratch from this rose leaves your blood behind. Mutate this plant from $(item)poppies$() and a $(l:artifacts/traps/leech_chest)leech chest$(/l)."
     },
     {
       "type": "spotlight",

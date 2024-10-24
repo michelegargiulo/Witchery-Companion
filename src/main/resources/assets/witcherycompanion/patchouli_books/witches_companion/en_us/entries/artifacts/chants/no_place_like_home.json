@@ -1,0 +1,13 @@
+{
+  "name": "There's no place like Home",
+  "icon": "minecraft:bed",
+  "category": "artifacts/chants",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:devils_tongue_charm",
+      "text": ""
+    }
+  ]
+}

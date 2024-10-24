@@ -1,0 +1,28 @@
+{
+  "name": "Statue of Hobgoblin Patron",
+  "icon": "witchery:worship_statue",
+  "category": "artifacts/statues",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:worship_statue",
+      "title": "St. of Hobgoblin Patron",
+      "text": "$(l:creatures/hobgoblin)Hobgoblins$(/l) can be tricked into directing their worship away from $(l:creatures/mog)Mog$(/l) and $(l:creatures/gulg)Gulg$(/l), their gods. Their worship can be directed to an unscrupulous enough witch instead."
+    },
+    {
+      "type": "text",
+      "title": "Creating the Statue",
+      "text": "The creation of the statue involves several steps:$(p)$(8)1. Crafting$()$(br)Its creation usually involves $(l:resources/koboldite)Koboldite$(/l).$(p)$(8)2. Binding$()$(br)The statue must be bound to the witch using the appropriate $(l:circle_magic/binding/statue)Rite of Binding$(/l)$(p)$(8)3. Installation$()$(br)The statue must be placed near to Hobgoblins."
+    },
+    {
+      "type": "text",
+      "title": "Effects",
+      "text": "Having Hobgoblins that worship the statue, will increase the witch's $(l:)Mystic Branch$(/l) powers. The more worshippers, the greater the power directed to the witch.$(p)For a small number of worshippers, the witch's $(l:)infusion$(/l) power will recharge within 64 blocks of the statue.$(br)For a larger number of worshippers, the witch may draw larger versions of a Symbol, and the effect's"
+    },
+    {
+      "type": "text",
+      "text": "powers are amplified.$(p)An even larger number of worshippers allows even larger Symbols to be drawn, further magnifying their effects.$(p)But beware, the more worshippers, the higher the risk of Mog and Gulg taking notice and sending their avatars to sort things out."
+    }
+  ]
+}

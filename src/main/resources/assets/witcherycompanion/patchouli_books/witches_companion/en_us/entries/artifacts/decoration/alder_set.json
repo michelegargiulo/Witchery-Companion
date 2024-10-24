@@ -1,0 +1,15 @@
+{
+  "name": "Alder Set",
+  "icon": "witchery:alder_fence",
+  "category": "artifacts/decoration",
+  "read_by_default": true,
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Alder Set",
+      "ingredients": "witchery:alder_log;witchery:alder_planks;witchery:alder_stairs;witchery:alder_slab;witchery:alder_fence;witchery:alder_fence_gate;witchery:alder_leaves;witchery:alder_door",
+      "description": "A decorative building set made of $(l:herbology/herbology#alder)Alder$(/l) wood."
+    }
+  ]
+}

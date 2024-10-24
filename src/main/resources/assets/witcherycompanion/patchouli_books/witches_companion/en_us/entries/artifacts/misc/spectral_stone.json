@@ -1,0 +1,18 @@
+{
+  "name": "Spectral Stone",
+  "icon": "witchery:spectral_stone",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:spectral_stone",
+      "text": "The Spectral Stone can be used to bind some spectral creatures like $(l:creatures/banshee)Banshees$(/l), $(l:creatures/poltergeist)Poltergeist$(/l) and $(l:creatures/spectre)Spectres$(/l). To trap a spectral being into the stone, the proper $(l:circle_magic/binding/spectral)Rite of Binding$(/l) has to be used."
+    },
+    {
+      "type": "text",
+      "title": "Releasing the Beings",
+      "text": "Charging the Spectral Stone and using it when a note sound is heard will release the trapped beings. The creatures will be bound to the witch who released them, and may be controlled with a $(l:artifacts/misc/necromantic_stone)Necromantic Stone$(/l)."
+    }
+  ]
+}

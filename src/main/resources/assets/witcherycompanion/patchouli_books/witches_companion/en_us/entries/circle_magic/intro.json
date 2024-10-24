@@ -23,7 +23,7 @@
     {
       "type": "spotlight",
       "item": "witchery:heart_circle_glyph",
-      "text": "Represents the center of the rite. $(l:altar/altar)Altar$(/l) power has to be provided to this glyph. For more advanced Rites, a witch may need the help of their $(l:)Coven$(/l). In such case, they must use a $(l:constructs/misc/seer_stone)Seer Stone$(/l) on the heart glyph. Such rites tend to require a minimum amount of witches, and will increase in power the larger the coven.",
+      "text": "Represents the center of the rite. $(l:altar/altar)Altar$(/l) power has to be provided to this glyph. For more advanced Rites, a witch may need the help of their $(l:)Coven$(/l). In such case, they must use a $(l:artifacts/misc/seer_stone)Seer Stone$(/l) on the heart glyph. Such rites tend to require a minimum amount of witches, and will increase in power the larger the coven.",
       "anchor": "golden_chalk"
     },
     {
@@ -47,7 +47,7 @@
     {
       "type": "text",
       "title": "Items & Rites",
-      "text": "Some items will not be consumed by rituals, for example $(l:constructs/weapons/arthana)Arthana$(/l). When rites do not require altar power, they might require a $(l:constructs/misc/charged_attuned_stone)Charged Attuned Stone$(/l) instead, that won't be consumed, but will be drained of its contained power instead."
+      "text": "Some items will not be consumed by rituals, for example $(l:artifacts/weapons/arthana)Arthana$(/l). When rites do not require altar power, they might require a $(l:artifacts/misc/charged_attuned_stone)Charged Attuned Stone$(/l) instead, that won't be consumed, but will be drained of its contained power instead."
     },
     {
       "type": "text",
@@ -57,7 +57,7 @@
     {
       "type": "text",
       "title": "Redirecting Rites",
-      "text": "Some rites do not require to be performed at the location of the circles, and might be more useful if performed at a specific location. In such cases, some rites optionally use a $(l:constructs/misc/waystone)Bound Waystone$(/l) to perform their effects to the location pointed by the waystone. Keep in mind that rites still have a maximum range for their effects, that starts at 50 blocks plus an additional 50 blocks per coven member, up to 350 blocks."
+      "text": "Some rites do not require to be performed at the location of the circles, and might be more useful if performed at a specific location. In such cases, some rites optionally use a $(l:artifacts/misc/waystone)Bound Waystone$(/l) to perform their effects to the location pointed by the waystone. Keep in mind that rites still have a maximum range for their effects, that starts at 50 blocks plus an additional 50 blocks per coven member, up to 350 blocks."
     }
   ]
 }

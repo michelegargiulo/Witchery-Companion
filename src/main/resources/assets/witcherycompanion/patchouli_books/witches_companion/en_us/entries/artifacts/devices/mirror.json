@@ -1,0 +1,29 @@
+{
+  "name": "Mirror",
+  "icon": "witchery:mirror",
+  "category": "artifacts/devices",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Mirror",
+      "item": "witchery:mirror",
+      "text": "Unlike what one might think, this Mirror is not a mundane device. A Mirror is created by trapping a $(l:creatures/demon)Demon$(/l) into it using the $(l:circle_magic/infusion/mirror_infusion)Rite of Infusion$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Fairest one of All",
+      "text": "Clicking on the mirror will summon the demon inside, who will stick his head out. The demon will be able to look from his mirror and will point out the most beautiful person he has ever seen pass by. Keep in mind that beauty is not only external, but could also indicate a person with a $(item)heart of gold$()."
+    },
+    {
+      "type": "text",
+      "title": "Demon in the Mirror",
+      "text": "A Demon in a mirror is called a $(l:creatures/reflection)Reflection$(/l) and guards the pocket dimension located inside of it, that goes by the name of $(l:dimensions/mirror)Mirror$(/l) dimension. By touching the mirror one will be teleported inside of this pocket dimension, where the Reflection can be fought. Upon defeat, the mirror will become hollow."
+    },
+    {
+      "type": "text",
+      "title": "Linked Mirrors",
+      "text": "Hollow Mirrors can be used as a short-distance teleportation option. By placing two Hollow Mirrors within 16 blocks of distance and with opposite facings, they will link together. They won't teleport players to the Mirror dimension, but rather from the position of one to the other's. Also works vertically."
+    }
+  ]
+}

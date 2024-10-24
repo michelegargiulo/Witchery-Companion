@@ -23,7 +23,7 @@
     {
       "type": "text",
       "title": "Step-by-step",
-      "text": "1. Increase $(l:brewing/capacity)capacity$(/l)$(br)2. Add $(l:brewing/modifiers)modifiers$(/l)$(br)3. Increase $(l:brewing/main/power)power$(/l)$(br)4. Increase $(l:brewing/duration)duration$(/l)$(br)5. Add $(l:brewing/effects)effect$(/l)$(br)6. Repeat from 3$(br)> Bottle or continue$(br)7. Increase $(l:brewing/extent)extent$(/l)$(br)8. Increase $(l:brewing/lingering)lingering$(/l)$(br)9. Set $(l:brewing/dispersal)dispersal$(/l)$(br)> Bottle or do $(l:brewing/rituals)ritual$(/l)"
+      "text": "1. Increase $(l:brewing/capacity)capacity$(/l)$(br)2. Add $(l:brewing/modifiers)modifiers$(/l)$(br)3. Increase $(l:brewing/main/power)power$(/l)$(br)4. Increase $(l:brewing/duration)duration$(/l)$(br)5. Add $(l:brewing/effects)effect$(/l)$(br)6. Repeat from 3$(br)> Bottle or continue$(br)7. Increase $(l:brewing/dispersal#extent)extent$(/l)$(br)8. Increase $(l:brewing/dispersal#lingering)lingering$(/l)$(br)9. Set $(l:brewing/dispersal)dispersal$(/l)$(br)> Bottle or do $(l:brewing/rituals)ritual$(/l)"
     },
     {
       "type": "brewing/cauldron_brew",

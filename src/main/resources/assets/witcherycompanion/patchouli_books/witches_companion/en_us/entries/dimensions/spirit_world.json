@@ -20,7 +20,7 @@
       "type": "spotlight",
       "title": "Dreams",
       "item": "witchery:flowing_spirit_brew",
-      "text": "Preparing the surrounding environment before sleeping, can decrease the chance of having nightmares. While next to a $(l:constructs/dream_weavers/nightmare)Dream Weaver of Nightmares$(/l), a pool of $(l:kettle/kettle_intro#flowing_spirit)Brew of the Flowing Spirit$(/l) will decrease the chance of a nightmare by 10% for each source block, up to 30%. Having $(l:herbology/herbology#wispy_cotton)Wispy Cotton$(/l) nearby also helps."
+      "text": "Preparing the surrounding environment before sleeping, can decrease the chance of having nightmares. While next to a $(l:artifacts/dream_weavers/nightmare)Dream Weaver of Nightmares$(/l), a pool of $(l:kettle/kettle_intro#flowing_spirit)Brew of the Flowing Spirit$(/l) will decrease the chance of a nightmare by 10% for each source block, up to 30%. Having $(l:herbology/herbology#wispy_cotton)Wispy Cotton$(/l) nearby also helps."
     },
     {
       "type": "spotlight",
@@ -58,7 +58,7 @@
     {
       "type": "text",
       "title": "Demonic Nightmares",
-      "text": "To induce a Demonic Nightmare, a $(l:)Brew of Sleeping$(/l) has to be drunk near a $(l:constructs/dream_weavers/nightmare)Dream Weaver of Nightmares$(/l), a pool of $(l:)Brew of Flowing Spirit$(/l) and a beating $(l:)Demon Heart$(/l). An additional Demon Heart and the presence of $(item)Fire$() can further increase the chance of the demonic nightmare."
+      "text": "To induce a Demonic Nightmare, a $(l:)Brew of Sleeping$(/l) has to be drunk near a $(l:artifacts/dream_weavers/nightmare)Dream Weaver of Nightmares$(/l), a pool of $(l:)Brew of Flowing Spirit$(/l) and a beating $(l:)Demon Heart$(/l). An additional Demon Heart and the presence of $(item)Fire$() can further increase the chance of the demonic nightmare."
     }
   ]
 }

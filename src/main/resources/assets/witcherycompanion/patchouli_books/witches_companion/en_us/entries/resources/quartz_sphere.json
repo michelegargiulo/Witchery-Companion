@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "witchery:quartz_sphere",
-      "text": "Simple ingredient used for the creation of $(l:constructs/devices/crystal_ball)Crystal Balls$(/l), $(l:constructs/weapons/sun_grenade)Sun Grenades$(/l) and $(l:constructs/misc/duplication_grenade)Duplication Grenades$(/l)."
+      "text": "Simple ingredient used for the creation of $(l:artifacts/devices/crystal_ball)Crystal Balls$(/l), $(l:artifacts/weapons/sun_grenade)Sun Grenades$(/l) and $(l:artifacts/misc/duplication_grenade)Duplication Grenades$(/l)."
     }
   ]
 }

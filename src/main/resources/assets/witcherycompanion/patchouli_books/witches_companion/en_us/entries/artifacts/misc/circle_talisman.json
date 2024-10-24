@@ -1,0 +1,18 @@
+{
+  "name": "Circle Talisman",
+  "icon": "witchery:circle_talisman",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:circle_talisman",
+      "text": "A Circle Talisman is a way to store $(item)Circle Glyphs$() in the talisman itself, for later deploy or quickly moving them. Using a $(l:circle_magic/binding/talisman)Rite of Binding$(/l) the circle glyphs will be erased from the world and stored in the talisman."
+    },
+    {
+      "type": "text",
+      "title": "Using the Talisman",
+      "text": "Holding the talisman will show a preview of where the circles would be placed, and using the talisman on a new location with enough empty space will put back the circles in the world in the previewed position. In case of obstruction, a fail sound will be played and operation will fail."
+    }
+  ]
+}

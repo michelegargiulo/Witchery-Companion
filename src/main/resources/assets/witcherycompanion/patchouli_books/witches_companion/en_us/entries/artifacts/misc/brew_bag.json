@@ -1,0 +1,18 @@
+{
+  "name": "Brew Bag",
+  "icon": "witchery:brew_bag",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:brew_bag",
+      "text": "A convenient way to store and deploy $(l:brewing/brewing)Cauldron Brews$(/l) and $(l:kettle/kettle_intro)Kettle Brews$(/l). The Brew Bag can hold up to eight stacks of Brews.$(p)The Brew Bag can be dyed by crafting it with any dye."
+    },
+    {
+      "type": "text",
+      "title": "Usage",
+      "text": "Sneak-use the Brew Bag to open its internal inventory and store the Brews.$(p)Hold right-click and push the mouse towards the direction of a Brew to quickly select it. The Brew will be thrown on release.$(p)Once a Brew has been selected, Sneak to clear the selection."
+    }
+  ]
+}

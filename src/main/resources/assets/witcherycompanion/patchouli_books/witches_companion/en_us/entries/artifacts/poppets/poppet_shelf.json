@@ -1,0 +1,13 @@
+{
+  "name": "Poppet Shelf",
+  "icon": "witchery:poppet_shelf",
+  "category": "artifacts/poppets",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:poppet_shelf",
+      "text": "This construct has a connection with its owner. A maximum of 9 Poppets can be stored within in, and they are all kept active even when outside of the owner's inventory."
+    }
+  ]
+}

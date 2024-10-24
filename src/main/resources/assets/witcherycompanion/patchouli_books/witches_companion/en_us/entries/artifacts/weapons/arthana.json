@@ -1,0 +1,23 @@
+{
+  "name": "Arthana",
+  "icon": "witchery:arthana",
+  "category": "artifacts/weapons",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:arthana",
+      "text": "The Arthana is a special knife used by witches and warlocks to harvest special ingredients or for some rites. Very similar to a $(item)Golden Sword$() for several aspects, it improves upon it in a few others, such as durability."
+    },
+    {
+      "type": "text",
+      "title": "Harvesting Ingredients",
+      "text": "The main purpose of the dagger, is to collect special ingredients from some creatures, as it greatly increases the chance of dropping such ingredients when killing them. Typical examples are $(item)Tognue of Dogs$() and $(item)Wool of Bat$(), but also $(item)Skulls$() (except Wither Skeletons') and $(item)Spectral Dust$() from spectral beings. All changes further increase when the Arthana is enchanted."
+    },
+    {
+      "type": "text",
+      "title": "Other usages",
+      "text": "The Arthana is also one of the $(l:artifacts/altar/altar)Altar$(/l) boosting items, and finds some usages also in $(l:)Circle Magic$(/l). When the Arthana is used as a $(item)foci$() in Circle Magic, it is not consumed."
+    }
+  ]
+}
