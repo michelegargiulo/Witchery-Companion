@@ -305,6 +305,11 @@ public class ModConfig {
             @Config.Name("Alder Door - Fix Disguised Alder Door Rendering")
             public static boolean alderDoor_fixDisguiseRendering = true;
 
+            @Config.Comment("Fix Alder Door reacting to redstone. The Alder door should provide redstone power, but should be " +
+                    "inert to it. Pressure plates, levers etc should never open/close the door, only right-clicking it")
+            @Config.Name("Alder Door - Fix Redstone Behavior")
+            public static boolean alderDoor_fixRedstoneBehavior = true;
+
             @Config.Comment("Fix Altar blocks requiring to get broken and re-placed to work properly again")
             @Config.Name("Altar - Fix Power Source Persistence")
             public static boolean altar_fixPowerSourcePersistency = true;
