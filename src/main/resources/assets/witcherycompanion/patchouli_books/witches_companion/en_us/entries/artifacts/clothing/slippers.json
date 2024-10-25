@@ -17,7 +17,7 @@
     {
       "type": "spotlight",
       "item": "witchery:ruby_slippers",
-      "text": "Icy Slippers are footwear that offer low levels of protection, can be $(item)enchanted$() but not dyed.$(br)Once every 30 minutes, an $(l:kettle/infusion_intro#light_infusion)Infused$(/l) player can $(l:artifacts/chants/no_place_like_home)Chant$() 'There's no place like home' to get teleported back to their $(item)Spawn Point$().$(br)The Chant will consume 40% of the Infusion Power, 60% if the Spawn Point is across dimensions."
+      "text": "Icy Slippers are footwear that offer low levels of protection, can be $(item)enchanted$() but not dyed.$(br)Once every 30 minutes, an $(l:kettle/infusion_intro#light_infusion)Infused$(/l) player can $(l:artifacts/chants/no_place_like_home)Chant$() 'There's no place like home' to get teleported back to their $(item)Spawn Point$()."
     },
     {
       "type": "text",

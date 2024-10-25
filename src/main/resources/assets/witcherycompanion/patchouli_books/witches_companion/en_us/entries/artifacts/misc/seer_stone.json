@@ -1,0 +1,23 @@
+{
+  "name": "Seer Stone",
+  "icon": "witchery:seer_stone",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:seer_stone",
+      "text": "A Seer Stone is a variation of the $(l:artifacts/devices/crystal_ball)Crystal Ball$(/l). It allows witches that belong to the same $(l:artifacts/coven/coven_intro)Coven$(/l) to communicate over long distances.$(p)To summon a Coven, use the Seer Stone while held. Holding for longer summons more coven members. and will help the summoner if they're fighting."
+    },
+    {
+      "type": "text",
+      "title": "Augment Magic",
+      "text": "If near a $(l:brewing/introduction)Witch's Cauldron$(/l) the summoned Witches will circle it ready for a $(l:brewing/rituals)Ritual$(/l).$(p)To rummon the coven for a $(l:circle_magic/intro)Rite$(/l) activate the $(l:circle_magic/intro#golden_chalk)Heart Circle Glyph$(/l) with the Seer Stone."
+    },
+    {
+      "type": "text",
+      "title": "Divinate Players",
+      "text": "The Seer Stone can be used on other players to reveal if they are afflicted by a $(item)Curse$() like the $(l:circle_magic/curses/wolf)Curse of the Wolf$(/l).$(br)It will also show more information about them, like if they have a Coven or $(l:)Familiar$(/l), how much time they can $(l:dimensions/spirit_world#manifestation)Manifest$(/l) and their skills.$(p)Sneak-using the stone will show the same information for the bearer of the Seer Stone."
+    }
+  ]
+}

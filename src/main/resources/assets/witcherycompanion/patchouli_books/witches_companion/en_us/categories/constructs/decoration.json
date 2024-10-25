@@ -1,7 +1,0 @@
-{
-  "name": "Decoration",
-  "description": "Cozy Witches",
-  "icon": "witchery:hawthorn_door",
-  "parent": "constructs",
-  "secret": false
-}

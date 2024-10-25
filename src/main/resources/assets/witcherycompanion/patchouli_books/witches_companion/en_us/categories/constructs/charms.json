@@ -1,7 +1,0 @@
-{
-  "name": "Charms",
-  "description": "For witches in need of special effects",
-  "icon": "witchery:fanciful_thinking_charm",
-  "parent": "constructs",
-  "secret": false
-}

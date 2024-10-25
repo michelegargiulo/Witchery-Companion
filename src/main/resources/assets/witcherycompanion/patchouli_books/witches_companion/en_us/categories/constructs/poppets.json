@@ -1,7 +1,0 @@
-{
-  "name": "Poppets",
-  "description": "Y'know, it's almost as if they're alive!",
-  "icon": "witchery:poppet",
-  "parent": "constructs",
-  "secret": false
-}

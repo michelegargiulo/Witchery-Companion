@@ -1,0 +1,7 @@
+{
+  "name": "Covens",
+  "description": "Form powerful Covens, where witches unite to amplify and extend their magic.",
+  "icon": "witchery:seer_stone",
+  "parent": "artifacts",
+  "secret": false
+}

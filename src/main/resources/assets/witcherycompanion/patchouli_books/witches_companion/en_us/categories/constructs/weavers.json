@@ -1,7 +1,0 @@
-{
-  "name": "Dream Weavers",
-  "description": "Also known as Dream Catchers, this devices are connect to one's sleeping mind and manipulate their dreams... and nightmares",
-  "icon": "witchery:fasting_dream_weaver",
-  "parent": "constructs",
-  "secret": false
-}

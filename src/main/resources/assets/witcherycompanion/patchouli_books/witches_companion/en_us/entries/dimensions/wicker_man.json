@@ -20,11 +20,10 @@
           ["VHHV"],
           ["FVVF"],
           [" VV "],
-          [" VV "],
-          [" S0 "]
+          [" V0 "]
         ],
         "mapping": {
-          "S": "minecraft:mob_spawner",
+          "0": "minecraft:hay_block[axis=z]",
           "V": "minecraft:hay_block[axis=z]",
           "H": "minecraft:hay_block[axis=y]",
           "F": "minecraft:hay_block[axis=x]"

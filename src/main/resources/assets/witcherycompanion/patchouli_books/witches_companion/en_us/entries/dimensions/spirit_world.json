@@ -7,7 +7,7 @@
     {
       "type": "text",
       "title": "Spirit World",
-      "text": "The Spirit World is an alternate reality that mirrors the Overworld. Creatures able to dream often end up in this realm without even realizing. Witches can transfer their awake consciousness into the Spirit World by drinking the $(l:)Brew of Sleeping$(/l), but they'll leave their body and possessions in the physical realm. Also, circle magic won't work in the Spirit World."
+      "text": "The Spirit World is an alternate reality that mirrors the Overworld. Creatures able to dream often end up in this realm without even realizing. Witches can transfer their awake consciousness into the Spirit World by drinking the $(l:kettle/kettle_intro#sleeping)Brew of Sleeping$(/l), but they'll leave their body and possessions in the physical realm. Also, circle magic won't work in the Spirit World."
     },
     {
       "type": "spotlight",
@@ -46,7 +46,7 @@
     },
     {
       "type": "text",
-      "title": "Manifestations",
+      "title": "Manifestation",
       "text": "A witch can manifest as a Ghost in the physical world. By using the $(l:circle_magic/other/manifestation)Rite of Manifestation$(/l), a player can pass through a $(l:)Spirit Portal$(/l) that has been created to enter the physical world at the corresponding location for a short time. A ghost can return to the Spirit World by using an $(l:)Icy Needle$(/l), when they die, when manifestation effect expires or when they kill their sleeping body.",
       "anchor": "manifestation"
     },

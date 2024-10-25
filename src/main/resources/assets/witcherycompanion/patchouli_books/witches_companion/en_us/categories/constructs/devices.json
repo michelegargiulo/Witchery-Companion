@@ -1,7 +1,0 @@
-{
-  "name": "Devices",
-  "description": "Small Devices with very specific use cases.",
-  "icon": "witchery:mirror",
-  "parent": "constructs",
-  "secret": false
-}
