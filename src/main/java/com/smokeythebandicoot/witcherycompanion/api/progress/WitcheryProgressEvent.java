@@ -33,6 +33,12 @@ public abstract class WitcheryProgressEvent extends Event {
         /** Player has unlocked progress through a command **/
         COMMAND("command"),
 
+        /** Player has fulfilled a Quest issued by a Coven Witch **/
+        COVEN_QUEST_FULFILLED("coven_quest"),
+
+        /** Player has a full coven **/
+        COVEN_FULL("full_coven"),
+
         /** Player has visited a Witchery Dimension **/
         DIMENSION_VISIT("dimension_visit"),
 

@@ -63,6 +63,12 @@ public class ProgressUtils {
         if (infusionRegistryName == null) return null;
         return WitcheryCompanion.prefix("infusions/" + infusionRegistryName);
     }
+
+    // Defined format for Coven quests: MODID:coven_quest/<quest_id>
+    public static String getCovenQuestSecret(@Nonnull ResourceLocation questId) {
+        return WitcheryCompanion.prefix("coven_quest/" + questId);
+    }
+
     // Defined format for Dimensions: MODID:dimensions/<dimension_name>
     public static String getDimensionSecret(@Nonnull String dimension_name) {
         return WitcheryCompanion.prefix("dimensions/" + dimension_name);

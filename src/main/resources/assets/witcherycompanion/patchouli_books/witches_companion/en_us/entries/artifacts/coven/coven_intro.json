@@ -1,0 +1,24 @@
+{
+  "name": "Witch Covens",
+  "icon": "witchery:witches_hand",
+  "category": "artifacts/coven",
+  "sortnum": 0,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Coven Witches",
+      "text": "$(l:creatures/coven_witch)Coven Witches$(/l) are $(item)Witches$() that have joined a Coven, a group that unites to augment their witchcraft skills and power. They usually recognize other practitioners of the magic, and might be interested into them if they have a minimum of skill. Usually having a $(l:)Familiar$(/l) is enough."
+    },
+    {
+      "type": "text",
+      "title": "Making a Coven",
+      "text": "A player can talk to the Coven Witch by interacting with them with an empty hand. If the Witch acknowledges the power of the player, they might decide to put them to the test, assigning a $(l:artifacts/coven/quests)Coven Quest$(/l).$(br)Completing the quest will prove the player's skills to the Witch, and the latter will join the player's coven. The Coven might count no more than 6 members, in addition to the player, with."
+    },
+    {
+      "type": "text",
+      "title": "Requesting your Coven",
+      "text": "Coven Witches that have joined your coven can be called upon by using a $(l:artifacts/misc/seer_stone)Seer Stone$(/l). They might occasionally appear and potter around without any apparent reason.$(p)When performing $(l:circle_magic/intro)Circle Magic$(/l) they can be called upon by using the Seer Stone on the $(l:circle_magic/intro#golden_chalk)Heart Glyph$(/l)"
+    }
+  ]
+}
