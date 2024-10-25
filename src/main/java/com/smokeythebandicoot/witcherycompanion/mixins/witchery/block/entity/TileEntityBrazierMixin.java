@@ -39,8 +39,7 @@ public abstract class TileEntityBrazierMixin extends WitcheryTileEntity implemen
             return;
 
         // Retrieve progress and unlock a new secret
-        IWitcheryProgress progress = witchery_Patcher$recipeOwner.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
-        if (progress != null && this.recipe.getHidden()) {
+        if (this.recipe.getHidden()) {
             ProgressUtils.unlockProgress(witchery_Patcher$recipeOwner, this.recipe.getId().toString(),
                     WitcheryProgressEvent.EProgressTriggerActivity.BRAZIER_RECIPE.activityTrigger);
         }

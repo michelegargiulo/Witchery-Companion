@@ -36,6 +36,9 @@ public abstract class WitcheryProgressEvent extends Event {
         /** Player has visited a Witchery Dimension **/
         DIMENSION_VISIT("dimension_visit"),
 
+        /** Player has acquired an Infusion **/
+        INFUSION_OBTAINED("infusion_obtained"),
+
         /** Player has drawn a secret symbol **/
         MYSTIC_BRANCH("mystic_branch"),
 

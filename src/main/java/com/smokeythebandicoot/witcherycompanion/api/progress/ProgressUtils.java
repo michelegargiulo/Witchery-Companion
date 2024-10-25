@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
+import net.msrandom.witchery.infusion.Infusion;
 import net.msrandom.witchery.transformation.CreatureTraitType;
 
 import javax.annotation.Nonnull;
@@ -56,6 +57,12 @@ public class ProgressUtils {
         return WitcheryCompanion.prefix("cauldron/recipe/" + recipeId);
     }
 
+    // Defined format for Infusions: MODID:infusions/<infusion_name>
+    public static String getInfusionSecret(@Nonnull Infusion infusion) {
+        ResourceLocation infusionRegistryName = Infusion.REGISTRY.getKey(infusion);
+        if (infusionRegistryName == null) return null;
+        return WitcheryCompanion.prefix("infusions/" + infusionRegistryName);
+    }
     // Defined format for Dimensions: MODID:dimensions/<dimension_name>
     public static String getDimensionSecret(@Nonnull String dimension_name) {
         return WitcheryCompanion.prefix("dimensions/" + dimension_name);

@@ -27,7 +27,7 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/redstone_soup",
-      "description": ""
+      "description": "It is considered the base for many other $(l:kettle/kettle_intro)Brews$(/l). When drunk, the Redstone Soup grants the $(item)Health Boost$() potion effect for two minutes."
     },
     {
       "type": "kettle/kettle_brew",
@@ -58,7 +58,8 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_sleep",
-      "description": "Will cause players to sleep and enter the $(l:dimensions/spirit_world#entering)Spirit World$(/l). Unless proper preparations, a nightmare is to be expected."
+      "description": "Will cause players to sleep and enter the $(l:dimensions/spirit_world#entering)Spirit World$(/l). Unless proper preparations, a nightmare is to be expected.",
+      "anchor": "sleeping"
     },
     {
       "type": "kettle/kettle_brew",

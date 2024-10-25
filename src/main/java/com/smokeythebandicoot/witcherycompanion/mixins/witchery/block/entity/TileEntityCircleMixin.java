@@ -37,13 +37,9 @@ public abstract class TileEntityCircleMixin extends WitcheryTileEntity {
 
         // If rite is hidden and player is not null, unlock progress for him
         if (player != null && ritual.rite != null && ritual.rite.getHidden()) {
-            IWitcheryProgress progress = player.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
-            if (progress == null) {
-                WitcheryCompanion.logger.warn("Error while updating Witchery Progress: could not find capability");
-            } else {
-                ProgressUtils.unlockProgress(player, ritual.rite.getId().toString(),
-                        WitcheryProgressEvent.EProgressTriggerActivity.CIRCLE_MAGIC.activityTrigger);
-            }
+            ProgressUtils.unlockProgress(player, ritual.rite.getId().toString(),
+                    WitcheryProgressEvent.EProgressTriggerActivity.CIRCLE_MAGIC.activityTrigger);
+
         }
 
         // Return original result
