@@ -28,9 +28,6 @@ public class WolfAltarCategory extends BaseRecipeCategory<WolfAltarWrapper> {
     public static String UID = WitcheryCompanion.prefix("wolf_altar");
     public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/wolf_altar.png");
 
-    private static final int PAGE_WIDTH = 6;
-    private static final int PAGE_HEIGHT = 7;
-
     public WolfAltarCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(backgroundTexture, 0, 0, 124, 44, 124, 44);
         icon = null;

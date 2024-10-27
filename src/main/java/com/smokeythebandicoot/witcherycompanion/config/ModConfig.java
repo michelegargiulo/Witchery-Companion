@@ -1056,6 +1056,10 @@ public class ModConfig {
             @Config.Name("JEI Integration - Enable Imp Shinies")
             public static boolean enableJeiImpShinies = true;
 
+            @Config.Comment("If true, enables Mirror JEI Integration")
+            @Config.Name("JEI Integration - Enable Mirror Integration")
+            public static boolean enableJeiMirror = true;
+
             @Config.Comment("If true, enables Mutandis (on Blocks) JEI Integration")
             @Config.Name("JEI Integration - Enable Mutandis-on-Block Integration")
             public static boolean enableJeiMutandisBlock = true;

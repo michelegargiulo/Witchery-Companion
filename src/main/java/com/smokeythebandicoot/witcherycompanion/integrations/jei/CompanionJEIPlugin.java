@@ -4,6 +4,7 @@ import com.smokeythebandicoot.witcherycompanion.integrations.jei.barkbelt.BarkBe
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.goblin.GoblinTradeCategory;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.gifts.ImpGiftCategory;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.shinies.ImpShinyCategory;
+import com.smokeythebandicoot.witcherycompanion.integrations.jei.mirror.MirrorCategory;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.suncollector.SunCollectorCategory;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.wolfaltar.WolfAltarCategory;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
@@ -30,6 +31,7 @@ public class CompanionJEIPlugin implements IModPlugin {
         GoblinTradeCategory.register(registry);
         ImpShinyCategory.register(registry);
         BarkBeltCategory.register(registry);
+        MirrorCategory.register(registry);
         SunCollectorCategory.register(registry);
         WolfAltarCategory.register(registry);
 
@@ -47,6 +49,7 @@ public class CompanionJEIPlugin implements IModPlugin {
         GoblinTradeCategory.initialize(registry);
         ImpShinyCategory.initialize(registry);
         BarkBeltCategory.initialize(registry);
+        MirrorCategory.initialize(registry);
         SunCollectorCategory.initialize(registry);
         WolfAltarCategory.initialize(registry);
 
