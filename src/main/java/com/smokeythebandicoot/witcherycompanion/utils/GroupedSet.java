@@ -67,8 +67,8 @@ public class GroupedSet<T> {
     }
 
     public T getRandom(Integer dim) {
+        List<T> generalGroup = groups.get(null);
         if (dim != null) {
-            List<T> generalGroup = groups.get(null);
             List<T> group = groups.get(dim);
             if (group == null) {
                 return getRandom(null);
@@ -82,10 +82,12 @@ public class GroupedSet<T> {
                 return generalGroup.get(randomInt - group.size());
             }
         } else {
-            List<T> generalGroup = groups.get(null);
             if (generalGroup.isEmpty()) return null;
             return generalGroup.get(random.nextInt(generalGroup.size()));
         }
+    }
 
+    public Set<T> toSet() {
+        return new HashSet<>(elements);
     }
 }

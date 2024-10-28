@@ -1081,6 +1081,10 @@ public class ModConfig {
             @Config.Name("JEI Integration - Enable Mutandis-on-Block Integration")
             public static boolean enableJeiMutandisBlock = true;
 
+            @Config.Comment("If true, enables Mutandis (on Plants) JEI Integration")
+            @Config.Name("JEI Integration - Enable Mutandis-on-Plant Integration")
+            public static boolean enableJeiMutandisPlant = true;
+
             @Config.Comment("If true, enables Sun Collector JEI Integration")
             @Config.Name("JEI Integration - Enable Sun Collector")
             public static boolean enableJeiSunCollector = true;

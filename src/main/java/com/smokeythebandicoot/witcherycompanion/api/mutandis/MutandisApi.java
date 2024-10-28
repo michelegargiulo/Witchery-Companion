@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.api.mutandis;
 
 import com.smokeythebandicoot.witcherycompanion.utils.GroupedSet;
+import mezz.jei.ingredients.Ingredients;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockTallGrass;
@@ -9,6 +10,8 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.world.World;
 import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.init.WitcheryDimensions;
@@ -16,7 +19,9 @@ import net.msrandom.witchery.init.WitcheryWoodTypes;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 @ParametersAreNonnullByDefault
 public class MutandisApi {
@@ -25,14 +30,19 @@ public class MutandisApi {
     public static final HashMap<IBlockState, IBlockState> clayConversion;
     public static final GroupedSet<IBlockState> mutandis;
     public static final GroupedSet<IBlockState> mutandisExtremis;
+
+    public static final HashMap<IBlockState, Ingredient> representativeItems;
     //public static final HashMap<IBlockState, int> dimensionMap; // Modify IndexedHashSet to contain dimension info
 
     static {
 
+        // Util hashmap to connect IBlockStates to Ingredients
+        representativeItems = new HashMap<>();
+
         // PRIORITY 1 - this conversion is checked first
         // Clay Conversion: Blocks that get converted into others if water is on top. Conversion happens in patches (+ shape of blocks)
         clayConversion = new HashMap<>();
-        clayConversion.put(Blocks.DIRT.getDefaultState(), Blocks.MYCELIUM.getDefaultState());
+        clayConversion.put(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState());
 
         // PRIORITY 2 - this conversion is checked second
         // Default conversion: Non-plant blocks that can be converted into other blocks
@@ -66,24 +76,24 @@ public class MutandisApi {
         mutandis.add(Blocks.YELLOW_FLOWER.getDefaultState());
         // Misc Witchery
         mutandis.add(WitcheryBlocks.EMBER_MOSS.getDefaultState());
-        mutandis.add(WitcheryBlocks.SPANISH_MOSS.getDefaultState().withProperty(BlockVine.SOUTH, true));
+        mutandis.add(WitcheryBlocks.SPANISH_MOSS.getDefaultState());
 
         // PRIORITY 3 - same priority as normal mutandis, but with extended set
         // Mutandis Extremis conversion: extends the set of normal Mutandis. Moreover, the Mutandis checks if the BlockStateContainer has
         // some common properties, like BlockCrops.AGE, BlockWitchCrop.AGE4, BlockWitchCrop.AGE5, BlockReed.AGE, BlockStem.AGE or BlockNetherWart.AGE
         // and sets their age to min(age of mutated plant, max age of new crop). Otherwise, property will be ignored
         mutandisExtremis = new GroupedSet<>(new Random());
-        mutandisExtremis.add(Blocks.CARROTS.getDefaultState());
-        mutandisExtremis.add(Blocks.POTATOES.getDefaultState());
-        mutandisExtremis.add(Blocks.WHEAT.getDefaultState());
         mutandisExtremis.add(WitcheryBlocks.BELLADONNA_SEEDS.getDefaultState());
         mutandisExtremis.add(WitcheryBlocks.MANDRAKE_SEEDS.getDefaultState());
         mutandisExtremis.add(WitcheryBlocks.ARTICHOKE_SEEDS.getDefaultState());
-        mutandisExtremis.add(Blocks.REEDS.getDefaultState());
-        mutandisExtremis.add(Blocks.PUMPKIN_STEM.getDefaultState());
-        mutandisExtremis.add(Blocks.MELON_STEM.getDefaultState());
-        mutandisExtremis.add(Blocks.NETHER_WART.getDefaultState(), WitcheryDimensions.SPIRIT_WORLD.getType().getId());
         mutandisExtremis.add(Blocks.CACTUS.getDefaultState());
+        setMutandisConversion(Blocks.CARROTS.getDefaultState(), true, Ingredient.fromItem(Items.CARROT));
+        setMutandisConversion(Blocks.PUMPKIN_STEM.getDefaultState(), true, Ingredient.fromItem(Items.PUMPKIN_SEEDS));
+        setMutandisConversion(Blocks.MELON_STEM.getDefaultState(), true, Ingredient.fromItem(Items.MELON_SEEDS));
+        setMutandisConversion(Blocks.WHEAT.getDefaultState(), true, Ingredient.fromItem(Items.WHEAT_SEEDS));
+        setMutandisConversion(Blocks.POTATOES.getDefaultState(), true, Ingredient.fromItem(Items.POTATO));
+        setMutandisConversion(Blocks.REEDS.getDefaultState(), true, Ingredient.fromItem(Items.REEDS));
+        setMutandisConversion(Blocks.NETHER_WART.getDefaultState(), true, WitcheryDimensions.SPIRIT_WORLD.getType().getId(), Ingredient.fromItem(Items.NETHER_WART));
 
         /**
          * mutandisExtremis.add(Blocks.CARROTS.getDefaultState().withProperty(BlockCrops.AGE, Math.min(currentAge, 7)));
@@ -154,8 +164,30 @@ public class MutandisApi {
         }
     }
 
+    public static void setMutandisConversion(IBlockState sourceState, boolean needsExtremis, Ingredient repr) {
+        representativeItems.put(sourceState, repr);
+        setMutandisConversion(sourceState, needsExtremis);
+    }
+
+    public static void setMutandisConversion(IBlockState sourceState, boolean needsExtremis, Integer dimension) {
+        IBlockState state = getAgeAgnosticBlockState(sourceState);
+        if (needsExtremis) {
+            mutandis.remove(state);
+            mutandisExtremis.add(state, dimension);
+        } else {
+            mutandis.add(state, dimension);
+            mutandisExtremis.remove(state);
+        }
+    }
+
+    public static void setMutandisConversion(IBlockState sourceState, boolean needsExtremis, Integer dimension, Ingredient repr) {
+        representativeItems.put(sourceState, repr);
+        setMutandisConversion(sourceState, needsExtremis, dimension);
+    }
+
     public static void removeMutandisConversion(IBlockState sourceState) {
         IBlockState state = getAgeAgnosticBlockState(sourceState);
+        representativeItems.remove(sourceState);
         mutandisExtremis.remove(state);
         mutandis.remove(state);
     }
@@ -207,6 +239,19 @@ public class MutandisApi {
             return mutandisExtremis.getRandom(dim);
         }
 
+    }
+
+    public static HashMap<IBlockState, Ingredient> getPlantConversions(boolean extremis) {
+        HashMap<IBlockState, Ingredient> mutables = new HashMap<>();
+        for (IBlockState state : mutandis.toSet()) {
+            mutables.put(state, representativeItems.getOrDefault(state, null));
+        }
+        if (extremis) {
+            for (IBlockState state : mutandisExtremis.toSet()) {
+                mutables.put(state, representativeItems.getOrDefault(state, null));
+            }
+        }
+        return mutables;
     }
 
     private static IBlockState getAgeAgnosticBlockState(IBlockState state) {

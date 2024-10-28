@@ -18,17 +18,14 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.msrandom.witchery.init.WitcheryBlocks;
-import net.msrandom.witchery.init.items.WitcheryGeneralItems;
 import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class MutandisBlockCategory extends BaseRecipeCategory<MutandisClayWrapper> {
+public class MutandisBlockCategory extends BaseRecipeCategory<MutandisBlockWrapper> {
 
     public static String UID = WitcheryCompanion.prefix("mutandis_block");
     public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/mutandis_block.png");
@@ -63,18 +60,17 @@ public class MutandisBlockCategory extends BaseRecipeCategory<MutandisClayWrappe
             IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
             registry.addRecipes(getRecipes(guiHelper), UID);
-            Ingredient catalyst = Ingredient.fromItems(WitcheryIngredientItems.MUTANDIS_EXTREMIS);
-            registry.addRecipeCatalyst(catalyst, UID);
+            registry.addRecipeCatalyst(new ItemStack(WitcheryIngredientItems.MUTANDIS_EXTREMIS), UID);
         } catch (Throwable t) {
             WitcheryCompanion.logger.error(t);
         }
     }
 
-    public static List<MutandisClayWrapper> getRecipes(IGuiHelper guiHelper) {
-        List<MutandisClayWrapper> recipes = new ArrayList<>();
+    public static List<MutandisBlockWrapper> getRecipes(IGuiHelper guiHelper) {
+        List<MutandisBlockWrapper> recipes = new ArrayList<>();
 
         for (Map.Entry<IBlockState, IBlockState> entry : MutandisApi.clayConversion.entrySet()) {
-            recipes.add(new MutandisClayWrapper(
+            recipes.add(new MutandisBlockWrapper(
                     Utils.blockstateToStack(entry.getKey()),
                     Utils.blockstateToStack(entry.getValue()),
                     true
@@ -82,7 +78,7 @@ public class MutandisBlockCategory extends BaseRecipeCategory<MutandisClayWrappe
         }
 
         for (Map.Entry<IBlockState, IBlockState> entry : MutandisApi.grassConversion.entrySet()) {
-            recipes.add(new MutandisClayWrapper(
+            recipes.add(new MutandisBlockWrapper(
                     Utils.blockstateToStack(entry.getKey()),
                     Utils.blockstateToStack(entry.getValue()),
                     false
@@ -99,16 +95,23 @@ public class MutandisBlockCategory extends BaseRecipeCategory<MutandisClayWrappe
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, MutandisClayWrapper mutandisClayWrapper, @Nonnull IIngredients iIngredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, MutandisBlockWrapper mutandisBlockWrapper, @Nonnull IIngredients iIngredients) {
 
         IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 
-        guiItemStacks.init(0, false, 31, 4);
-        guiItemStacks.init(2, false, 31, 24);
-        guiItemStacks.init(1, true, 84, 17);
-        guiItemStacks.set(0, mutandisClayWrapper.input);
-        guiItemStacks.set(1, mutandisClayWrapper.output);
-        guiItemStacks.set(2, mutandisClayWrapper.isClayConversion ? new ItemStack(Items.WATER_BUCKET) : ItemStack.EMPTY);
+        if (mutandisBlockWrapper.isClayConversion) {
+            guiItemStacks.init(0, false, 2, 22);
+            guiItemStacks.init(2, false, 2, 2);
+            guiItemStacks.init(1, true, 106, 8);
+            guiItemStacks.set(0, mutandisBlockWrapper.input);
+            guiItemStacks.set(1, mutandisBlockWrapper.output);
+            guiItemStacks.set(2, new ItemStack(Items.WATER_BUCKET));
+        } else {
+            guiItemStacks.init(0, false, 2, 10);
+            guiItemStacks.init(1, true, 106, 10);
+            guiItemStacks.set(0, mutandisBlockWrapper.input);
+            guiItemStacks.set(1, mutandisBlockWrapper.output);
+        }
 
     }
 
