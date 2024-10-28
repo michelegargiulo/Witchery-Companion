@@ -109,7 +109,7 @@ public abstract class BlockSpiritPortalMixin extends BlockBreakable {
     @Inject(method = "neighborChanged", remap = false, cancellable = true, at = @At("HEAD"))
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos, CallbackInfo ci) {
 
-        if (BlockTweaks.spiritPortal_fixBreakCondition) {
+        if (!BlockTweaks.spiritPortal_fixBreakCondition) {
             return;
         }
 
@@ -133,7 +133,7 @@ public abstract class BlockSpiritPortalMixin extends BlockBreakable {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         }
 
-        // Prevent original code fro running
+        // Prevent original code from running
         ci.cancel();
 
     }
