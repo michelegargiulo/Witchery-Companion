@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion;
 
 import com.smokeybandicoot.witcherycompanion.Tags;
 import com.smokeythebandicoot.witcherycompanion.proxy.CommonProxy;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -92,4 +93,7 @@ public class WitcheryCompanion implements ILateMixinLoader {
         return WitcheryCompanion.MODID + ":" + (text == null ? "<null>" : text);
     }
 
+    static {
+        FluidRegistry.enableUniversalBucket();
+    }
 }

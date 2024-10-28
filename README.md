@@ -56,6 +56,8 @@ jar in the resource packs folder.
   - **[Apothecary Villager]** Fix missing Zombified texture
 - **Infusions**
   - **[Soul Brews]** Fix losing Soul brews (so the Mystic Branch knowledge) upon death
+- **Fluids**
+  - **[Soul Brews]** Enable Forge Universal Bucket, otherwise fluids like Flowing Spirit could not be picked up (non configurable)
 - **Items**
   - **[Icy Needle]** Fix having an effect only when right-clicking on a block
   - **[Rowan Boat]** Fix Rowan Boat not having texture (not configurable)
