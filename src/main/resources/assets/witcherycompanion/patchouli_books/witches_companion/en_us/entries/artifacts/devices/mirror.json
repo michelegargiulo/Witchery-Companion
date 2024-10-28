@@ -23,7 +23,8 @@
     {
       "type": "text",
       "title": "Linked Mirrors",
-      "text": "Hollow Mirrors can be used as a short-distance teleportation option. By placing two Hollow Mirrors within 16 blocks of distance and with opposite facings, they will link together. They won't teleport players to the Mirror dimension, but rather from the position of one to the other's. Also works vertically."
+      "text": "Hollow Mirrors can be used as a short-distance teleportation option. By placing two Hollow Mirrors within 16 blocks of distance and with opposite facings, they will link together. They won't teleport players to the Mirror dimension, but rather from the position of one to the other's. Also works vertically.",
+      "anchor": "linked_mirror"
     }
   ]
 }

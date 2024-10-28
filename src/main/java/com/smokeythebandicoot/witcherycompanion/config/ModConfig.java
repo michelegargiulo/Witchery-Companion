@@ -375,6 +375,16 @@ public class ModConfig {
             @Config.Name("Mandrake Crop - Fix Drop Even When Not Mature")
             public static boolean mandrakeCrop_fixMandrakeSpawningNotMature = true;
 
+            @Config.Comment("Fixes the Mirror in Mirror (MiM) feature.")
+            @Config.Name("Mirror - Fix MiM")
+            public static boolean mirror_fixMirrorInMirror = true;
+
+            @Config.Comment("Tweaks to modify the required power to use the Mirror in Mirror (MiM) feature (traverse the rooms " +
+                    "inside of the Mirror dimension. Witchery default is 3000")
+            @Config.Name("Mirror - Tweak MiM Power Requirement")
+            @Config.RangeDouble(min = 1.0, max = 10000.0)
+            public static float mirror_inMirrorPowerConsumption = 3000;
+
             @Config.Comment("Fix Arthana, Pentacle and other items placed on top of the altar not dropping when " +
                     "the altar block below them is broken.")
             @Config.Name("Placed Items - Fix No Drops")
@@ -713,6 +723,13 @@ public class ModConfig {
                     "the player holds more items than needed, the quest goes into negative item amount requirement")
             @Config.Name("Coven Witch - Fix Negative Request Amount")
             public static boolean covenWitch_fixNegativeRequestAmount = true;
+
+            @Config.Comment("When the game mode is set to Peaceful, some quests cannot be completed. To avoid this, set this number to " +
+                    "a value greater than zero, as it represents the number of times the quest can be re-rolled. More attempts means less performance, " +
+                    "less attempts means that from time to time a Fight quest can happen in peaceful")
+            @Config.Name("Coven Witch - Tweak Fight Quests Peaceful Rerolls")
+            @Config.RangeInt(min = 0, max = 10)
+            public static int covenWitch_tweakFightQuestsPeacefulRerolls = 0;
 
             @Config.Comment("If true, fixes a freeze when the Broom breaks due to not dismounting passengers")
             @Config.Name("Enchanted Broom - Fix Freeze On Break")

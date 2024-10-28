@@ -38,6 +38,9 @@ public class TOPPlugin implements Function<ITheOneProbe, Void> {
                 // Kettle
                 probe.registerProvider(KettleProbeInfoProvider.getInstance());
 
+                // Mirror
+                probe.registerProvider(MirrorProbeInfoProvider.getInstance());
+
                 // Statue of Hobgoblin Patron
                 probe.registerProvider(WorshipStatueProbeInfoProvider.getInstance());
 
