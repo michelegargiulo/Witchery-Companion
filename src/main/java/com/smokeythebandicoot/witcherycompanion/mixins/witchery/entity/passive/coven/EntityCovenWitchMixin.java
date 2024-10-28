@@ -9,16 +9,23 @@ import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerInteractionManager;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.msrandom.witchery.entity.passive.coven.CovenQuest;
 import net.msrandom.witchery.entity.passive.coven.EntityCovenWitch;
+import net.msrandom.witchery.entity.passive.coven.FightPetCovenQuest;
+import net.msrandom.witchery.registry.WitcheryRegistry;
 import net.msrandom.witchery.resources.CovenQuestManager;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -26,6 +33,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 
 /**
  Mixins:
@@ -46,10 +54,21 @@ public abstract class EntityCovenWitchMixin extends EntityTameable {
     @Shadow(remap = false) @Final
     protected abstract void setQuestItemsNeeded(Integer var1);
 
-    @Shadow protected abstract boolean isCovenFull(EntityPlayer player);
+    @Shadow(remap = false)
+    protected abstract boolean isCovenFull(EntityPlayer player);
+
+    @Unique
+    private EntityPlayer currentInteractingPlayer;
+
 
     private EntityCovenWitchMixin(World worldIn) {
         super(worldIn);
+    }
+
+
+    @Inject(method = "processInteract", remap = true, cancellable = false, at = @At(value = "HEAD"))
+    public void WPshrinkCorrectly(EntityPlayer player, EnumHand hand, CallbackInfoReturnable<Boolean> cir) {
+        this.currentInteractingPlayer = player;
     }
 
 
@@ -117,5 +136,25 @@ public abstract class EntityCovenWitchMixin extends EntityTameable {
             }
         }
 
+    }
+
+    /** This Mixin forces Quest re-roll if it cannot be completed in peaceful mode. Has failsafe if it takes more than 5 attempts **/
+    @WrapOperation(method = "processInteract", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/registry/WitcheryRegistry;getRandom(Ljava/util/Random;)Ljava/lang/Object;"))
+    private Object avoidFightsInPeaceful(WitcheryRegistry<ResourceLocation, CovenQuest> instance, Random random, Operation<ResourceLocation> original) {
+        ResourceLocation result = original.call(instance, random);
+        if (this.currentInteractingPlayer != null &&
+                this.currentInteractingPlayer.getServer() != null && this.currentInteractingPlayer.getServer().getDifficulty() == EnumDifficulty.PEACEFUL &&
+                ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_tweakFightQuestsPeacefulRerolls > 0
+        ) {
+            int attempts = ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_tweakFightQuestsPeacefulRerolls;
+            CovenQuest quest = CovenQuestManager.INSTANCE.getRegistry().get(result);
+            while (attempts > 0 && (quest instanceof FightPetCovenQuest)) {
+                attempts++;
+                result = CovenQuestManager.INSTANCE.getRegistry().getRandom(random);
+                quest = CovenQuestManager.INSTANCE.getRegistry().get(result);
+            }
+        }
+        return result;
     }
 }
