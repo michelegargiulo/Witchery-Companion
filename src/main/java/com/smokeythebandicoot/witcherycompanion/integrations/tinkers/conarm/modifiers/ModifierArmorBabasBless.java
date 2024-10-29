@@ -1,12 +1,10 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.modifiers;
 
 import c4.conarm.common.items.armor.Helmet;
+import c4.conarm.lib.modifiers.ArmorModifierTrait;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.traits.TraitNecromancerClothing;
-import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.traits.TraitWitchClothing;
 import net.minecraft.item.ItemStack;
 import slimeknights.tconstruct.library.modifiers.IToolMod;
-import slimeknights.tconstruct.library.modifiers.ModifierTrait;
 
 
 /**
@@ -14,12 +12,12 @@ import slimeknights.tconstruct.library.modifiers.ModifierTrait;
  * and if it is, its effects will be applied:
  * - Unlock Baba's bonus when brewing in Kettle
  * **/
-public class ModifierBabasBless extends ModifierTrait {
+public class ModifierArmorBabasBless extends ArmorModifierTrait {
 
     public static final String id = WitcheryCompanion.prefix("babas_bless");
 
-    public ModifierBabasBless() {
-        super(id, 0xDD20DD);
+    public ModifierArmorBabasBless() {
+        super(id, 0xdd20dd);
     }
 
     @Override

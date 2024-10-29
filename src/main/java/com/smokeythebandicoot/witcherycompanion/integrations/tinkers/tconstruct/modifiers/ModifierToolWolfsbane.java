@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.modifiers;
+package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.tconstruct.modifiers;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TinkersIntegration.ModifiersConfig;
@@ -15,11 +15,11 @@ import slimeknights.tconstruct.library.tools.SwordCore;
  * New Trait - Deals more damage to werewolves, both villagers and players
  * Does not provide any additional damage bonus to any non-werewolf entities
  * **/
-public class ModifierWolfsbane extends ModifierTrait {
+public class ModifierToolWolfsbane extends ModifierTrait {
 
     public static final String id = WitcheryCompanion.prefix("wolfsbane");
 
-    public ModifierWolfsbane() {
+    public ModifierToolWolfsbane() {
         super(id, 0xDD20DD);
     }
 
