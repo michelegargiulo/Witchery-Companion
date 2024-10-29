@@ -9,6 +9,7 @@ import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.oredict.IOreDictEntry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -36,11 +37,29 @@ public class AltarHandler {
     }
 
     @ZenMethod
+    @ZenDoc(value="Registers a new custom Power Source")
+    public static void registerPowerSource(IBlock iBlock, int factor, int limit, Ingredient representativeItem) {
+        Block block = CraftTweakerMC.getBlock(iBlock);
+        AltarPowerSource data = new AltarPowerSource(factor, limit, representativeItem);
+        addingMap.put(block, data);
+    }
+
+    @ZenMethod
     @ZenDoc(value="Registers a new custom Power Source by oreDict")
     public static void registerPowerSource(IOreDictEntry oreDictEntry, int factor, int limit) {
         List<Block> blocks = getBlocksForOre(oreDictEntry.getName());
         for (Block block : blocks) {
             AltarPowerSource data = new AltarPowerSource(factor, limit);
+            addingMap.put(block, data);
+        }
+    }
+
+    @ZenMethod
+    @ZenDoc(value="Registers a new custom Power Source by oreDict")
+    public static void registerPowerSource(IOreDictEntry oreDictEntry, int factor, int limit, Ingredient representativeItem) {
+        List<Block> blocks = getBlocksForOre(oreDictEntry.getName());
+        for (Block block : blocks) {
+            AltarPowerSource data = new AltarPowerSource(factor, limit, representativeItem);
             addingMap.put(block, data);
         }
     }

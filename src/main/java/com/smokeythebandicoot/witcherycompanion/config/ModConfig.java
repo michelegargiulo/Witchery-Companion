@@ -1055,6 +1055,10 @@ public class ModConfig {
 
         public static class JeiIntegration {
 
+            @Config.Comment("If true, enables Altar JEI Integration")
+            @Config.Name("JEI Integration - Altar")
+            public static boolean enableJeiAltar = true;
+
             @Config.Comment("If true, enables Bark Belt JEI Integration")
             @Config.Name("JEI Integration - Enable Bark Belt")
             public static boolean enableJeiBarkBelt = true;

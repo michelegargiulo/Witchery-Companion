@@ -5,6 +5,7 @@ import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.block.IBlockState;
+import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -66,6 +67,31 @@ public class MutandisHandler {
     @ZenDoc(value="Registers a new Plant mutation for Mutandis")
     public static void setMutandisConversion(IBlockState state, boolean needsExtremis) {
         MutandisApi.setMutandisConversion(CraftTweakerMC.getBlockState(state), needsExtremis);
+    }
+
+    @ZenMethod
+    @ZenDoc(value="Registers a new Plant mutation for Mutandis. This mutation will only happen in the specified dimension")
+    public static void setMutandisConversion(IBlockState state, boolean needsExtremis, int dimension) {
+        MutandisApi.setMutandisConversion(CraftTweakerMC.getBlockState(state), needsExtremis, dimension);
+    }
+
+    @ZenMethod
+    @ZenDoc(value="Registers a new Plant mutation for Mutandis. This mutation will be represented by the specified ingredient")
+    public static void setMutandisConversion(IBlockState state, boolean needsExtremis, IIngredient representativeIngredient) {
+        MutandisApi.setMutandisConversion(
+                CraftTweakerMC.getBlockState(state),
+                needsExtremis,
+                CraftTweakerMC.getIngredient(representativeIngredient));
+    }
+
+    @ZenMethod
+    @ZenDoc(value="Registers a new Plant mutation for Mutandis. This mutation will be represented by the specified ingredient and " +
+            "will only happen in the specified dimension")
+    public static void setMutandisConversion(IBlockState state, boolean needsExtremis, int dimension, IIngredient representativeIngredient) {
+        MutandisApi.setMutandisConversion(
+                CraftTweakerMC.getBlockState(state),
+                needsExtremis, dimension,
+                CraftTweakerMC.getIngredient(representativeIngredient));
     }
 
     @ZenMethod

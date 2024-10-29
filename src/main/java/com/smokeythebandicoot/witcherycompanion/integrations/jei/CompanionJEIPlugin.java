@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.jei;
 
+import com.smokeythebandicoot.witcherycompanion.integrations.jei.altar.AltarCategory;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.barkbelt.BarkBeltCategory;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.goblin.GoblinTradeCategory;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.gifts.ImpGiftCategory;
@@ -31,6 +32,7 @@ public class CompanionJEIPlugin implements IModPlugin {
         jeiHelpers = registry.getJeiHelpers();
         guiHelper = jeiHelpers.getGuiHelper();
 
+        AltarCategory.register(registry);
         GoblinTradeCategory.register(registry);
         ImpShinyCategory.register(registry);
         BarkBeltCategory.register(registry);
@@ -52,6 +54,7 @@ public class CompanionJEIPlugin implements IModPlugin {
         jeiHelpers = registry.getJeiHelpers();
         guiHelper = jeiHelpers.getGuiHelper();
 
+        AltarCategory.initialize(registry);
         GoblinTradeCategory.initialize(registry);
         ImpShinyCategory.initialize(registry);
         BarkBeltCategory.initialize(registry);
