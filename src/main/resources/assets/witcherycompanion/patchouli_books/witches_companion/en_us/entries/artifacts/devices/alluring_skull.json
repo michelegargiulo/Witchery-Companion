@@ -1,0 +1,18 @@
+{
+  "name": "Alluring Skull",
+  "icon": "witchery:alluring_skull",
+  "category": "artifacts/devices",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:alluring_skull",
+      "text": "Product of Necromantic magic, it attracts the attention of otherwise passive undead creatures. When placed in the world, right-click on it with a $(l:artifacts/misc/necromantic_stone)Necromantic Stone$(/l) to activate it. Using the Necromantic Stone on it a second time will deactivate it."
+    },
+    {
+      "type": "text",
+      "title": "Effects",
+      "text": "On activation, its face will light up, and all $(item)undead$() in a wide area will be drawn towards it, provided that there is nothing more interesting, such as a nearby player."
+    }
+  ]
+}

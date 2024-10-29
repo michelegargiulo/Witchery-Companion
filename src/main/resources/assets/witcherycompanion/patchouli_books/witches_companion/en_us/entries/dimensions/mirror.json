@@ -1,0 +1,27 @@
+{
+  "name": "Mirror",
+  "icon": "witchery:mirror_wall",
+  "category": "dimensions",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Torment",
+      "text": "Mirror is a pocket dimension made of 9x9x9 rooms, separated by an impenetrable $(item)Mirror Wall$(). Initially inhabited by a $(l:creatures/reflection)Reflection$(/l), one can fight it to gain control over the space. The Demon won't return afterwards."
+    },
+    {
+      "type": "text",
+      "title": "Entering the Mirror",
+      "text": "This dimension can only be accessed by walking through a $(l:artifacts/devices/mirror)Mirror$(/l).$(p)Another identical mirror will appear on the inside, and it is the main way to exit the dimension. If broken, there might be no other way of leaving the dimension. Beware!"
+    },
+    {
+      "type": "text",
+      "title": "Mirror in Mirror",
+      "text": "It is possible to use $(l:artifacts/devices/mirror#linked_mirror)Mirror Linking$(/l) to travel across the rooms of the dimension. Using a Mirror inside of the Mirror dimension is called 'Mirror in Mirror'.$(p)Place a Mirror down and $(l:altar/altar)Power$(/l) it with an Altar placed inside the room. The mirror will search for rooms in the direction the Mirror points to. "
+    },
+    {
+      "type": "text",
+      "text": "Keep in mind to bring a spare one with yourself and place it in the equivalent spot in the target room, to be able to get back.$(p)If you ever get lost or trapped, a $(l:artifacts/chants/mirror_send_me_home)Chant$(/l) might be able to help you."
+    }
+  ]
+}

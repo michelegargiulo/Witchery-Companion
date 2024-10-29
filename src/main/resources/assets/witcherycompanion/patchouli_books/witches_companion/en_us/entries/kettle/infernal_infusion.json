@@ -1,0 +1,93 @@
+{
+  "name": "Infernal Infusion",
+  "icon": "witchery:infernal_animus",
+  "category": "kettle",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "generic/secret_text",
+      "title": "Infernal Infusion",
+      "description": "The Infernal Infusion gives creatures the power of $(item)The Nether$(). The abilities available through the Infusion are utilized with various controls using a $(l:artifacts/tools/witches_hand)Witches Hand$(/l)",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Creature Enthrall",
+      "description": "Sneak+punch a creature to enthrall it.",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Creature Sacrifice",
+      "description": "Sneak+punch an enthralled creature to sacrifice it, and gain its powers.",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Infernal Command",
+      "description": "Punch a creature to make enthralled creatures attack it.",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Infernal Command",
+      "description": "Sneak-use on the ground to make all weak nearby creatures move to that location, if possible.",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Steal Powers",
+      "description": "Use to activate the power from the last sacrificed creature. The creature might give an active and a passive ability.$(p)$(9)$(bold)$(item)Zombie$()$(br)$(2)[Active] $()$(item)Strength II$() and $(item)Resistance II$() for 30 seconds$(br)$(2)[Passive] $()None$(p)$(9)$(bold)$(item)Enderman$()$(br)$(2)[Active] $()Teleport to targeted location$(br)$(2)[Passive] $()None",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Creature Powers",
+      "description": "$(9)$(bold)$(item)Creeper$()$(br)$(2)[Active] $()Explode$(br)$(2)[Passive] $()Recharge infusion power if struck by lightning$(p)$(9)$(bold)$(item)Skeleton$()$(br)$(2)[Active] $()Shoot arrow$(br)$(2)[Passive] $()Lesser breath underwater$(p)$(9)$(bold)$(item)Spider$()$(br)$(2)[Active] $()Launch web$(br)$(2)[Passive] $()Climb walls",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Creature Powers",
+      "description": "$(9)$(bold)$(item)Ocelot$()$(br)$(2)[Active] $()Speed IV for 20 seconds$(br)$(2)[Passive] $()Move faster on land$(p)$(9)$(bold)$(item)Slime$()$(br)$(2)[Active] $()Jump boost IV for 20 seconds$(br)$(2)[Passive] $()Jump higher, immune to fall damage$(p)$(9)$(bold)$(item)Cave Spider$()$(br)$(2)[Active] $()Launch web$(br)$(2)[Passive] $()Climb walls",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Creature Powers",
+      "description": "$(9)$(bold)$(item)Zombie Pigman$()$(br)$(2)[Active] $()Strength II and Resistance II for 30 seconds$(br)$(2)[Passive] $()Immune to fire$(p)$(9)$(bold)$(item)Blaze$()$(br)$(2)[Active] $()Shoot 3 small fireballs$(br)$(2)[Passive] $()Fire resistance when in flames$(p)$(9)$(bold)$(item)Ghast$()$(br)$(2)[Active] $()Launch fireball$(br)$(2)[Passive] $()Fire Resistance when in flames",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Creature Powers",
+      "description": "$(9)$(bold)$(item)Silverfish$()$(br)$(2)[Active] $()Speed IV for 20 seconds$(br)$(2)[Passive] $()Move faster on land$(p)$(9)$(bold)$(item)Magma Cube$()$(br)$(2)[Active] $()Jump Boost IV for 20 seconds$(br)$(2)[Passive] $()Jump higher, immune to fall damage$(p)$(9)$(bold)$(item)Villager$()$(br)$(2)[Active] $()Heal$(br)$(2)[Passive] $()None",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Creature Powers",
+      "description": "$(9)$(bold)$(item)Bat$()$(br)$(2)[Active] $()Night Vision for 20 seconds$(br)$(2)[Passive] $()Jump to fly, shift to avoid fall damage$(p)$(9)$(bold)$(item)Pig$()$(br)$(2)[Active] $()Heal$(br)$(2)[Passive] $()None$(p)$(9)$(bold)$(item)Sheep$()$(br)$(2)[Active] $()Heal$(br)$(2)[Passive] $()None",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Creature Powers",
+      "description": "$(9)$(bold)$(item)Cow$()$(br)$(2)[Active] $()Heal$(br)$(2)[Passive] $()None$(p)$(9)$(bold)$(item)Chicken$()$(br)$(2)[Active] $()Heal$(br)$(2)[Passive] $()None$(p)$(9)$(bold)$(item)Wolf$()$(br)$(2)[Active] $()Speed IV for 20 seconds$(br)$(2)[Passive] $()Move faster on land",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Creature Powers",
+      "description": "$(9)$(bold)$(item)Squid$()$(br)$(2)[Active] $()Blind targeted entity$(br)$(2)[Passive] $()Swim faster, breathe underwater$(p)$(9)$(bold)$(item)Mooshroom$()$(br)$(2)[Active] $()Heal$(br)$(2)[Passive] $()None$(p)$(9)$(bold)$(item)Horse & Donkey$()$(br)$(2)[Active] $()Speed IV for 20 seconds$(br)$(2)[Passive] $()Move faster on land",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Creature Powers",
+      "description": "$(9)$(bold)$(item)Toad$()$(br)$(2)[Active] $()Jump Boost IV for 20 seconds$(br)$(2)[Passive] $()Jump higher, immune to fall damage$(p)$(9)$(bold)$(item)Owl$()$(br)$(2)[Active] $()Night Vision for 20 seconds$(br)$(2)[Passive] $()Jump to fly, sneak to avoid fall damage",
+      "secret_key": "witcherycompanion:infusions/witchery:infernal"
+    }
+  ]
+}
+

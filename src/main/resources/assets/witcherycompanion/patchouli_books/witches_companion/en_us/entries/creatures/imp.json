@@ -19,7 +19,7 @@
     {
       "type": "generic/secret_text",
       "title": "Taming Imps",
-      "description": "While Imps are notoriously aggressive, they can make a pact with a player.$(br)Give the Imp a $(item)Demonic Contract$() signed with blood (by crafting it with a bound $(l:constructs/misc/taglock_kit)Taglock kit$(/l)) and make sure to have something to trade. $(item)25 Experience Levels$() should suffice.$(p)When tamed, the Flame Imp will protect its master from any hostile entities.",
+      "description": "While Imps are notoriously aggressive, they can make a pact with a player.$(br)Give the Imp a $(item)Demonic Contract$() signed with blood (by crafting it with a bound $(l:artifacts/misc/taglock_kit)Taglock kit$(/l)) and make sure to have something to trade. $(item)25 Experience Levels$() should suffice.$(p)When tamed, the Flame Imp will protect its master from any hostile entities.",
       "secret_key": "witcherycompanion:creatures/imp_taming"
     },
     {

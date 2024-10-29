@@ -1,0 +1,32 @@
+{
+  "name": "Spirit Portal",
+  "icon": "witchery:flowing_spirit_brew",
+  "category": "dimensions",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Spirit Portal",
+      "text": "The Spirit Portal can only be created in the $(l:dimensions/spirit_world)Spirit world$(/l). It can be used by witches to $(l:dimensions/spirit_world#manifestation)Manifest$(/l) in the $(item)Overworld$() for a short time.$(br)Traversing the Spirit Portal won't bring any items over, with rare exceptions such as $(l:)Icy Needles$(/l)."
+    },
+    {
+      "type": "multiblock",
+      "name": "Stone Circle",
+      "multiblock": {
+        "pattern": [
+          ["      "],
+          [" SSSS "],
+          [" SPPS "],
+          [" SPPS "],
+          [" SS0S "]
+        ],
+        "mapping": {
+          "0": "minecraft:snow",
+          "S": "minecraft:snow",
+          "P": "witchery:spirit_portal[axis=z]"
+        },
+        "symmetrical": true
+      }
+    }
+  ]
+}

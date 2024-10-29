@@ -1,7 +1,0 @@
-{
-  "name": "Others",
-  "description": "Other mystical devices that help witches in everyday mischiefs.",
-  "icon": "witchery:bound_taglock_kit",
-  "parent": "constructs",
-  "secret": false
-}

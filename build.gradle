@@ -120,6 +120,9 @@ dependencies {
     // Baubles
     compileOnly rfg.deobf('curse.maven:baubles-227083:2518667')
 
+    // Code Chicken Lib
+    compileOnly rfg.deobf('curse.maven:codechickenlib-242818:2779848')
+
     // Had Enough Items
     compileOnly rfg.deobf('curse.maven:hei-557549:5229422')
 

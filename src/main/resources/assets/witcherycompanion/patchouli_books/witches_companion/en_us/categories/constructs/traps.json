@@ -1,7 +1,0 @@
-{
-  "name": "Traps",
-  "description": "Mundane and mystical devices to trap all kinds of creatures",
-  "icon": "witchery:beartrap",
-  "parent": "constructs",
-  "secret": false
-}

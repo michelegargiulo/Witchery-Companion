@@ -37,6 +37,7 @@
       "inputs": [
         "#ingredients"
       ],
+      "transparent_indices": "#transparent_indices",
       "output": "",
       "input_spacing": 2,
       "layout": "vertical",

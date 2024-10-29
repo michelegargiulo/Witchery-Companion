@@ -18,13 +18,13 @@
     {
       "type": "text",
       "title": "Boosting power",
-      "text": "Spell power can be boosted by binding a $(item)Statue of Hobgoblin Patron$() and getting $(item)Hobgoblins$() to worship it instead of their Mog and Gulg. This worship gives the Witch more power but too many Hobgoblins may cause Mog and Gulg to notice and attack the Witch.",
+      "text": "Spell power can be boosted by binding a $(l:artifacts/statues/hobgolin_patron)Statue of Hobgoblin Patron$(/l) and getting $(l:creatures/hobgoblins)Hobgoblins$() to worship it instead of their $(l:creatures/mog)Mog$(/l) and $(l:creatures/gulg)Gulg$(/l). This worship gives the Witch more power but too many Hobgoblins may cause Mog and Gulg to notice and attack the witch.",
       "flag": "witcherycompanion:symbology/extended_intro"
     },
     {
       "type": "text",
       "title": "Secret Spells",
-      "text": "Some spells are still unknown and might appear as blank pages or unreadable text. Once you find and draw the spell, their text will be revealed.$(2br)Also, Some spells require a certain knowledge to be used. Dealing with $(item)Flame Imps$() and $(item)Lord of Torment$() might shed light on the dark secrets of symbology.",
+      "text": "Some spells are still unknown and might appear as blank pages or unreadable text. Once you find and draw the spell, their text will be revealed.$(p)Also, Some spells require a certain knowledge to be used. Dealing with $(l:creatures/imp)Flame Imps$(/l) and $(l:creatures/lord_of_torment)Lord of Torment$(/l) might shed light on the dark secrets of symbology.",
       "flag": "witcherycompanion:symbology/extended_intro"
     }
   ]

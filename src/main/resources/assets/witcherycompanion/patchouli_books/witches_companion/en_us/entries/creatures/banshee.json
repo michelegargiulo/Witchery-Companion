@@ -1,0 +1,20 @@
+{
+  "name": "Banshee",
+  "icon": "witchery:graveyard_dust",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:banshee",
+      "text": "Screaming Ghosts.",
+      "offset": 0.12,
+      "scale": 0.9
+    },
+    {
+      "type": "text",
+      "title": "Banshee",
+      "text": "Translucent ghosts that are not happy to be summoned from the world of the dead. They are aggressive and will tend to attack everything nearby by screaming.$(p)Ear protection might mitigate this effect. $(l:resources/graveyard_dust)Graveyard Dust$(/l) can buff their health."
+    }
+  ]
+}

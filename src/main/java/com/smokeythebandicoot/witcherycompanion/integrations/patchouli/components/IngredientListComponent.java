@@ -3,32 +3,21 @@ package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.componen
 import com.google.gson.annotations.SerializedName;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.texture.TextureUtil;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import com.smokeythebandicoot.witcherycompanion.utils.RenderItemUtils;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
-import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.patchouli.api.IComponentRenderContext;
 import vazkii.patchouli.api.ICustomComponent;
 import vazkii.patchouli.api.VariableHolder;
 import vazkii.patchouli.client.book.gui.GuiBookEntry;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class IngredientListComponent implements ICustomComponent {
 
@@ -50,6 +39,10 @@ public class IngredientListComponent implements ICustomComponent {
     @SerializedName("input_spacing")
     @VariableHolder
     public String inputSpacing = null;
+
+    @SerializedName("transparent_indices")
+    @VariableHolder
+    public String transparentIndices = null;
 
     @SerializedName("layout")
     @VariableHolder
@@ -81,11 +74,9 @@ public class IngredientListComponent implements ICustomComponent {
     private transient List<Ingredient> stacks = null;
     private transient Ingredient outputStack = null;
     private transient GuiBookEntry guiBookEntry = null;
+    private transient Set<Integer> optionalItems = null;
 
 
-    /** ========== OVERRIDES ========== **/
-    /** Called when this component is built. Take the chance to read variables and set
-     * any local positions here. */
     @Override
     public void build(int componentX, int componentY, int pageNum) {
 
@@ -104,15 +95,40 @@ public class IngredientListComponent implements ICustomComponent {
         }
 
         stacks = new ArrayList<>();
+        optionalItems = new HashSet<>();
         ProcessorUtils.deserializeIngredientList(inputs, stacks);
+
+        if (transparentIndices != null && !transparentIndices.isEmpty()) {
+            String[] indices = transparentIndices.split(",");
+            for (String index : indices) {
+                try {
+                    int i = Integer.parseInt(index);
+                    optionalItems.add(i);
+                } catch (Exception ignored) {
+                }
+            }
+        }
+
+        // Replace all the display names of all the matching stacks in the name with the "(Optional)" string
+        // in the setup phase to avoid computing it every render tick
+        for (int i = 0; i < stacks.size(); i++) {
+            if (optionalItems.contains(i)) {
+                ItemStack[] oldStacks = stacks.get(i).getMatchingStacks();
+                ItemStack[] newStacks = new ItemStack[oldStacks.length];
+                for (int j = 0; j < oldStacks.length; j++) {
+                    newStacks[j] = oldStacks[j];
+                    newStacks[j].setStackDisplayName(oldStacks[j].getDisplayName() + I18n.format("witcherycompanion.tooltip.optional"));
+                }
+                stacks.set(i, Ingredient.fromStacks(newStacks));
+            }
+        }
 
         if (output != null)
             outputStack = ItemStackUtil.loadIngredientFromString(output);
 
     }
 
-    /** Called every render tick. No special transformations are applied, so you're responsible
-     * for putting everything in the right place. */
+
     @Override
     public void render(IComponentRenderContext context, float pticks, int mouseX, int mouseY) {
         if (stacks == null || stacks.isEmpty()) return;
@@ -126,18 +142,14 @@ public class IngredientListComponent implements ICustomComponent {
         int lineIndex = 1;
 
         if (this.isVertical()) {
-            for (Ingredient ingredient : stacks) {
 
-                // Custom ingredient rendering, that also renders AIR stacks
-                ItemStack[] matchingStacks = ingredient.matchingStacks;
-                GlStateManager.pushMatrix();
-                GlStateManager.color(1.0f, 1.0f, 1.0f, 0.5f);
+            for (int i = 0; i < stacks.size(); i++) {
+                Ingredient ingredient = stacks.get(i);
+                ItemStack[] matchingStacks = ingredient.getMatchingStacks();
                 if (matchingStacks.length > 0) {
-                    context.renderItemStack(curX, curY, mouseX, mouseY,
-                            matchingStacks[guiBookEntry.ticksInBook / 20 % matchingStacks.length]);
+                    ItemStack stack = matchingStacks[guiBookEntry.ticksInBook / 20 % matchingStacks.length];
+                    renderOptionalItemStack(context, curX, curY, mouseX, mouseY, stack, optionalItems.contains(i));
                 }
-                GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-                GlStateManager.popMatrix();
 
                 curY += 16 + this.spacing;
                 lineIndex++;
@@ -149,8 +161,15 @@ public class IngredientListComponent implements ICustomComponent {
             }
 
         } else {
-            for (Ingredient ingredient : stacks) {
-                context.renderIngredient(curX, curY, mouseX, mouseY, ingredient);
+
+            for (int i = 0; i < stacks.size(); i++) {
+
+                Ingredient ingredient = stacks.get(i);
+                ItemStack[] matchingStacks = ingredient.getMatchingStacks();
+                if (matchingStacks.length > 0) {
+                    ItemStack stack = matchingStacks[guiBookEntry.ticksInBook / 20 % matchingStacks.length];
+                    renderOptionalItemStack(context, curX, curY, mouseX, mouseY, stack, optionalItems.contains(i));
+                }
 
                 curX += 16 + this.spacing;
                 lineIndex++;
@@ -163,6 +182,7 @@ public class IngredientListComponent implements ICustomComponent {
         }
 
         if (outputStack != null) {
+            // No transparency
             context.renderIngredient(this.x + offsetX, this.y + offsetY, mouseX, mouseY, outputStack);
         }
     }
@@ -170,6 +190,19 @@ public class IngredientListComponent implements ICustomComponent {
     protected boolean isVertical() {
         if (this.layout == null) return false;
         return this.layout.equals("vertical");
+    }
+
+    protected void renderOptionalItemStack(IComponentRenderContext context, int x, int y, int mouseX, int mouseY, ItemStack stack, boolean optional) {
+        if (optional) {
+            /* RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+            if (renderItem instanceof IRenderItemInvoker) {
+                IRenderItemInvoker invoker = (IRenderItemInvoker) renderItem;
+                // Check if optional
+                invoker.setColor(0x80FFFFFF);
+            } */
+            RenderItemUtils.nextStackColor = 0x80ffffff;
+        }
+        context.renderItemStack(x, y, mouseX, mouseY, stack);
     }
 
 }

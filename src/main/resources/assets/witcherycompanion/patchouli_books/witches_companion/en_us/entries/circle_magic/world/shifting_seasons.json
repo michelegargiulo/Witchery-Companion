@@ -9,6 +9,14 @@
       "rite_id": "witchery:shifting_seasons",
       "title": "Rite of Shifting Seasons",
       "description": "Pick Biome with biome foci and $(item)Glowstone$(). Requires a $(l:)Coven$(/l) of 4 or more."
+    },
+    {
+      "type": "circle_magic/shifting_seasons_details",
+      "title": "Shifting Seasons Foci",
+      "text": "Use $(item)Glowstone Dust$() to cycle between biomes of the same type.",
+      "foci_first": "minecraft:sapling:0;minecraft:tallgrass:1;minecraft:stone:0;minecraft:obsidian;minecraft:slime_ball;minecraft:water_bucket",
+      "foci_second": "witchery:artichoke_seeds;minecraft:cactus;witchery:icy_needle;minecraft:sapling:3;minecraft:sand;minecraft:red_mushroom",
+      "flag": "witcherycompanion:circle_magic/shifting_seasons_foci"
     }
   ]
 }

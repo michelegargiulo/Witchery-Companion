@@ -1,0 +1,23 @@
+{
+  "name": "Mystic Branch",
+  "icon": "witchery:mystic_branch",
+  "category": "artifacts/tools",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:mystic_branch",
+      "text": "A Mystic Branch allows an $(l:kettle/infusion_intro#light_infusion)Infused$(/l) player to draw $(l:symbology/introduction)Symbols$(/l) into the air and cast $(l:symbology/symbols_list)Spells$() with magical effects. Each Symbol will drain a bit of Infusion Power, and some symbols may be accessed only with a certain type of Infusion."
+    },
+    {
+      "type": "text",
+      "title": "Usage",
+      "text": "Symbols are drawn by holding the right mouse button and moving the mouse around in any direction. The symbols will appear in the air. Upon drawing a pattern that corresponds to a Spell, its name will appear, and upon release it will be casted."
+    },
+    {
+      "type": "text",
+      "title": "Spell Deflection",
+      "text": "The Mystic Branch can also be used to deflect targeted effects by hitting the Spell projectile. Deflection requires good timing, and not all effects can be deflected."
+    }
+  ]
+}

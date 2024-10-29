@@ -1,8 +1,8 @@
 {
   "name": "Kettle Infusions",
-  "icon": "witchery:world_soul",
+  "icon": "witchery:infused_brew_base",
   "category": "kettle",
-  "sortnum": 2,
+  "sortnum": 1,
   "pages": [
     {
       "type": "text",
@@ -37,22 +37,26 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/ghost_of_the_light",
-      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute."
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute.",
+      "anchor": "light_infusion"
     },
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/soul_of_the_world",
-      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute."
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute.",
+      "anchor": "earth_infusion"
     },
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/infernal_animus",
-      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II for one minute and Wither III potion effect for 3 minutes."
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II for one minute and Wither III potion effect for 3 minutes.",
+      "anchor": "infernal_infusion"
     },
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/spirit_of_otherwhere",
-      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute."
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute.",
+      "anchor": "otherwhere_infusion"
     }
   ]
 }

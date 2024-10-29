@@ -1,0 +1,15 @@
+{
+  "name": "Ice Set",
+  "icon": "witchery:ice_fence",
+  "category": "artifacts/decoration",
+  "read_by_default": true,
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Ice Set",
+      "ingredients": "witchery:perpetual_ice;witchery:ice_stairs;witchery:ice_slab;witchery:ice_fence;witchery:ice_fence_gate;witchery:ice_pressure_plate;witchery:ice_stockade;witchery:ice_door",
+      "description": "A decorative building set made of $(ice). Obtained by using the $(l:)Brew of Frost$(/l) on the relative blocks."
+    }
+  ]
+}

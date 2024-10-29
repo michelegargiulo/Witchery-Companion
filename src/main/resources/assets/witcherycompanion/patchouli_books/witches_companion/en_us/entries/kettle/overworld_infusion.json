@@ -1,0 +1,57 @@
+{
+  "name": "Infusion of the Overworld",
+  "icon": "witchery:world_soul",
+  "category": "kettle",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "generic/secret_text",
+      "title": "Infusion of the Overworld",
+      "description": "The Infusion of the Overworld gives creatures the power to manipulate the earth and metals. The abilities available through the Infusion are utilized with various controls using a $(l:artifacts/tools/witches_hand)Witches Hand$(/l)",
+      "secret_key": "witcherycompanion:infusions/witchery:overworld"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Metal Disarm",
+      "description": "Interact with a creature holding a weapon made out of metal to disarm them.",
+      "secret_key": "witcherycompanion:infusions/witchery:overworld"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Earth Pillar",
+      "description": "Use on the ground to create a 3-blocks high pillar of $(item)Dirt$() with a $(item)Grass$() block on top.",
+      "secret_key": "witcherycompanion:infusions/witchery:overworld"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Launch Block",
+      "description": "Use on an unobstructed block to launch it in the direction the player faces, dealing damage to any entities it hits.",
+      "secret_key": "witcherycompanion:infusions/witchery:overworld"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Attract Metal",
+      "description": "Sneak-use to bring any nearby dropped metal items towards the user.",
+      "secret_key": "witcherycompanion:infusions/witchery:overworld"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Shockwave",
+      "description": "Hold down and release the right mouse button to create a circular shockwave that pushes and damages all surrounding entities. The longer the key is held down, the farther the shockwave will travel.",
+      "secret_key": "witcherycompanion:infusions/witchery:overworld"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Ore Smelting",
+      "description": "Use on an ore block to turn it to $(item)Stone$() and drop two $(item)Ingots$() of that metal.",
+      "secret_key": "witcherycompanion:infusions/witchery:overworld"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Metal Punch",
+      "description": "Punch a nearby entity in metal armor to push them a great distance.",
+      "secret_key": "witcherycompanion:infusions/witchery:overworld"
+    }
+  ]
+}
+

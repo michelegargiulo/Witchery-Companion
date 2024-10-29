@@ -1,0 +1,13 @@
+{
+  "name": "No place like Home",
+  "icon": "minecraft:bed",
+  "category": "artifacts/chants",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "text",
+      "title": "No place like Home",
+      "text": "This Chant will teleport the player back to their $(item)Spawn Point$(), that is, the place where they would spawn if they were killed. It can be used as a quick way to escape back to a safe place, be it the last place where the player slept or the world's $(item)Spawn Point$(). $(br)The Chant requires the player to be $(l:kettle/infusion_intro)Infused$(/l) and will consume 40% of the Infusion Power, 60% if the Spawn Point is across dimensions."
+    }
+  ]
+}

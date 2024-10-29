@@ -1,13 +1,25 @@
 package com.smokeythebandicoot.witcherycompanion.api.cauldron;
 
+import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.msrandom.witchery.recipe.CauldronRecipe;
 
-import java.util.Collections;
-import java.util.HashSet;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.*;
 
+@ParametersAreNonnullByDefault
 public class CauldronApi {
+
+    // Recipes
+    public static final HashMap<ResourceLocation, CauldronRecipe> recipesToAdd = new HashMap<>();
+    public static final List<ResourceLocation> recipesToRemove = new ArrayList<>();
 
     // Blockstate heat sources
     private static final HashSet<IBlockState> heatSourceBlockStates = new HashSet<>();
@@ -40,6 +52,30 @@ public class CauldronApi {
     /** Returns true if the specified blockstate is an heat source */
     public static boolean isHeatSource(IBlockState state) {
         return heatSourceBlockStates.contains(state) || heatSourceBlocks.contains(state.getBlock());
+    }
+
+    public static void registerRecipe(ItemStack result, Ingredient trigger, int power, Ingredient... inputs) {
+        registerRecipe(null, result, trigger, power, inputs);
+    }
+
+    public static void registerRecipe(@Nullable ResourceLocation id, ItemStack result, Ingredient trigger, int power, Ingredient... inputs) {
+        // Generate random id if one is not provided
+        if (id == null) id = Utils.generateRandomRecipeId("cauldron_");
+
+        // Retrieve inputs (max 6)
+        NonNullList<CauldronRecipe.PoweredItem> inp = NonNullList.create();
+        for (Ingredient input : inputs) {
+            inp.add(new CauldronRecipe.PoweredItem(input, 0));
+        }
+
+        // Create the recipe and store for later addition
+        CauldronRecipe recipe = new CauldronRecipe(id, null, inp,
+                new CauldronRecipe.PoweredItem(trigger, power), result);
+        recipesToAdd.put(id, recipe);
+    }
+
+    public static void removeRecipe(ResourceLocation id) {
+        recipesToRemove.add(id);
     }
 
     /** Internal usage */

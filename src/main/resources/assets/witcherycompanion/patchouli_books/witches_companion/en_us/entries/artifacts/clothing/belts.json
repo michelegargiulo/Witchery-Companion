@@ -1,0 +1,33 @@
+{
+  "name": "Belts",
+  "icon": "witchery:bark_belt",
+  "category": "artifacts/clothing",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:biting_belt",
+      "text": "The Biting Belt is worn in the legs slot, offers low levels of protection and can be dyed and $(item)enchanted$().$(br)Being made from a $(l:creatures/parasytic_louse)Parasytic Louse$(/l), can be fed the same way with up to two $(item)Potions$(), and will also react in the same way to attacks.$(br)The Biting Belt will only bite if the wearer is not under the effect of that Potion."
+    },
+    {
+      "type": "text",
+      "title": "Other Properties",
+      "text": "The Biting Belt will turn invisible when the player is invisible, and can be repaired by crafting them with four $(l:resources/impregnated_leather)Impregnated Leather$(/l) or by combining them with $(item)Leather$() into an $(item)Anvil$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:bark_belt",
+      "text": "The Bark Belt is worn in the legs slot, offers low levels of protection and can be dyed and $(item)enchanted$().$(br)The Bark Belt is infused with the spirit of nature and will grow pieces of protective bark on the wearer if they stand on $(item)Grass$() or $(item)Mycelium$(). Bark can only grow on clothing made of $(l:resources/impregnated_leather)Impregnated Leather$(/l). "
+    },
+    {
+      "type": "text",
+      "title": "Other Properties",
+      "text": "Valid clothing:$(br)$(8)> $()$(l:artifacts/clothing/witches_clothing)Witches' Clothing$(/l)$()$(br)$(8)> $()$(l:artifacts/clothing/babas_hat)Baba Yaga' Hat$(/l)$()$(br)$(8)> $()$(l:artifacts/clothing/slippers)Slippers$(/l)$()$(br)$(8)> $()$(l:artifacts/clothing/necromancer_robes)Necromancer Robes$(/l)$()$(br)$(8)> $()$(l:artifacts/clothing/seeping_shoes)Seeping Shoes$(/l)$()$(p)Two pieces of bark will grow per clothing worn, for a maximum of eight pieces.$(p)When hit by anything except $(item)Wooden Weapons$(), one or two bark pieces will be knocked off, and wearer won't be hit."
+    },
+    {
+      "type": "text",
+      "title": "Other Properties",
+      "text": "The Biting Belt will turn invisible when the player is invisible, and can be repaired by crafting them with four $(l:resources/impregnated_leather)Impregnated Leather$(/l) or by combining them with $(item)Leather$() into an $(item)Anvil$()."
+    }
+  ]
+}

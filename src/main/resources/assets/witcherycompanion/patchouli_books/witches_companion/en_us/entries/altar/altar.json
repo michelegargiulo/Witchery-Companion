@@ -26,7 +26,7 @@
     {
       "type": "text",
       "title": "Using the Altar",
-      "text": "A witch can check the amount of power the Altar has stored by right-clicking on it. Other information is also displayed, such as the maximum amount of power it can collect and how fast it recharges depleted power. Some witchcraft procedures require power, such as $(l:distilling/intro)Distilling$(/l), $(l:brewing/introduction)Brewing$(/l) and using the $(l:kettle/intro)Kettle$(/l)."
+      "text": "A witch can check the amount of power the Altar has stored by right-clicking on it. Other information is also displayed, such as the maximum amount of power it can collect and how fast it recharges depleted power. Some witchcraft procedures require power, such as $(l:distilling/intro)Distilling$(/l), $(l:brewing/introduction)Brewing$(/l) and using the $(l:kettle/kettle_intro)Kettle$(/l)."
     },
     {
       "type": "text",

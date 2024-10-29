@@ -1,0 +1,18 @@
+{
+  "name": "Polynesia Charm",
+  "icon": "witchery:polynesia_charm",
+  "category": "artifacts/charms",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:polynesia_charm",
+      "text": "This charm allows its user to communicate with animals and other docile beasts like spiders during daytime. Using the charm, a creature can trade with the animal. This approach might be considered an alternative for acquiring ingredients that are usually obtained by slaying the animal. Use the charm on a creature to try to trade with it."
+    },
+    {
+      "type": "text",
+      "title": "Special Trades",
+      "text": "Rarely, a creature might have some truly exceptional items and they might be willing to trade them.$(p)The charm also allows to trade with some types of monsters when they are not hostile to the charm's user. Remember that some $(item)Clothing$() might have just the properties you're looking for."
+    }
+  ]
+}

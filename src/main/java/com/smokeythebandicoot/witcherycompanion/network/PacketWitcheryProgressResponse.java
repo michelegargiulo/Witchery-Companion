@@ -33,7 +33,6 @@ public class PacketWitcheryProgressResponse {
         // Then serialized into bytes (on server)
         @Override
         public void toBytes(ByteBuf buf) {
-            // Loop through nutrients from server player, and add to buffer
             progress = serverPlayer.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
 
             // Write unlocked secrets

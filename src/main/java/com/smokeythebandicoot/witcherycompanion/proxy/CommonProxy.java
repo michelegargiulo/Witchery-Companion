@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.proxy;
 
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.CapabilityWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.commands.WitcheryProgressCommand;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
@@ -14,10 +15,18 @@ import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.Familiar
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.msrandom.witchery.init.WitcheryBlocks;
+import net.msrandom.witchery.init.items.WitcheryBrewItems;
+import net.msrandom.witchery.init.items.WitcheryGeneralItems;
+import net.msrandom.witchery.init.items.WitcheryIngredientItems;
+import vazkii.patchouli.api.PatchouliAPI;
 
 public class CommonProxy {
 
@@ -52,17 +61,13 @@ public class CommonProxy {
         if (ModConfig.IntegrationConfigurations.TopIntegration.enableTopIntegration && Loader.isModLoaded(Mods.TOP))
             FMLInterModComms.sendFunctionMessage(Mods.TOP, "getTheOneProbe", TOPPlugin.class.getName());
 
-        // Non-configurable, as it is required for Patchouli integration and does nothing if Patchouli is not used
-        if (Loader.isModLoaded(Mods.PATCHOULI)) {
-            PatchouliApiIntegration.registerCustomComponents();
-            PatchouliApiIntegration.registerCustomMacros();
-        }
-
     }
 
     public void init(FMLInitializationEvent event) {
         // Reload configs
         ModConfig.ConfigSyncHandler.reloadConfig();
+
+        registerRecipes();
 
         // Init compats
         if (Loader.isModLoaded(Mods.JER) &&
@@ -77,10 +82,7 @@ public class CommonProxy {
     }
 
     public void load(FMLLoadCompleteEvent event) {
-        // Register Patchouli BookReloadEvent
-        if (Loader.isModLoaded(Mods.PATCHOULI)) {
-            MinecraftForge.EVENT_BUS.register(PatchouliApiIntegration.class);
-        }
+
     }
 
     public void serverStarting(FMLServerStartingEvent event) {
@@ -102,6 +104,21 @@ public class CommonProxy {
 
     protected void registerCommands(FMLServerStartingEvent event) {
         event.registerServerCommand(new WitcheryProgressCommand());
+    }
+
+    protected void registerRecipes() {
+        if (Loader.isModLoaded(Mods.PATCHOULI)) {
+            GameRegistry.addShapedRecipe(
+                    new ResourceLocation(WitcheryCompanion.MODID, "witchs_book"),
+                    null,
+                    PatchouliAPI.instance.getBookStack(WitcheryCompanion.prefix("witches_companion")),
+                    " A ", "BXC", " D ",
+                    'A', new ItemStack(WitcheryIngredientItems.BELLADONNA),
+                    'B', new ItemStack(WitcheryBlocks.GARLIC),
+                    'C', new ItemStack(WitcheryIngredientItems.WOLFSBANE),
+                    'D', new ItemStack(WitcheryIngredientItems.SNOWBELL_FLOWER),
+                    'X', new ItemStack(Items.BOOK));
+        }
     }
 
 }

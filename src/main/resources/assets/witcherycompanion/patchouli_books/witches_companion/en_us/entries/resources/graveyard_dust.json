@@ -1,0 +1,13 @@
+{
+  "name": "Graveyard Dust",
+  "icon": "witchery:graveyard_dust",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:graveyard_dust",
+      "text": "An arcane, dusty substance that is widely used in $(l:conjuration/conjuration)Conjuring$(/l)."
+    }
+  ]
+}

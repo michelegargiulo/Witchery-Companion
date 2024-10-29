@@ -1,0 +1,7 @@
+{
+  "name": "Chants",
+  "description": "Chants harness ancient words to invoke powerful magic. Speak them wisely to unlock their hidden secrets.",
+  "icon": "minecraft:noteblock",
+  "parent": "artifacts",
+  "secret": false
+}

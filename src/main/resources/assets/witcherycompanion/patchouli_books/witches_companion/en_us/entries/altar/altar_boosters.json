@@ -8,7 +8,7 @@
     {
       "type": "text",
       "title": "Altar Boosters",
-      "text": "Certain objects, mundane or otherwise, known as foci, can be placed on the Altar to boost some of its capabilities, like range, recharge rate or maximum power. Only one of each type will have an effect, so it's better to use more powerful foci rather than using more of the same one."
+      "text": "Certain objects, mundane or otherwise, known as foci, can be placed on the Altar to boost some of its capabilities like $(item)range$(), $(item)recharge rate$() or $(item)maximum power$(). Only one of each type will have an effect, so it's better to use more powerful foci rather than using more of the same one."
     },
     {
       "type": "spotlight",

@@ -2,10 +2,14 @@ package com.smokeythebandicoot.witcherycompanion.api.progress;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
+import com.smokeythebandicoot.witcherycompanion.utils.ContentUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
+import net.msrandom.witchery.infusion.Infusion;
+import net.msrandom.witchery.transformation.CreatureTraitType;
 
 import javax.annotation.Nonnull;
 
@@ -53,6 +57,18 @@ public class ProgressUtils {
         return WitcheryCompanion.prefix("cauldron/recipe/" + recipeId);
     }
 
+    // Defined format for Infusions: MODID:infusions/<infusion_name>
+    public static String getInfusionSecret(@Nonnull Infusion infusion) {
+        ResourceLocation infusionRegistryName = Infusion.REGISTRY.getKey(infusion);
+        if (infusionRegistryName == null) return null;
+        return WitcheryCompanion.prefix("infusions/" + infusionRegistryName);
+    }
+
+    // Defined format for Coven quests: MODID:coven_quest/<quest_id>
+    public static String getCovenQuestSecret(@Nonnull ResourceLocation questId) {
+        return WitcheryCompanion.prefix("coven_quest/" + questId);
+    }
+
     // Defined format for Dimensions: MODID:dimensions/<dimension_name>
     public static String getDimensionSecret(@Nonnull String dimension_name) {
         return WitcheryCompanion.prefix("dimensions/" + dimension_name);
@@ -63,9 +79,17 @@ public class ProgressUtils {
         return WitcheryCompanion.prefix("kettle/" + recipe_id);
     }
 
+    // Defined format for Trait Types: MODID:traits/<trait_type>/level_<level>
+    public static String getCreatureTraitSecret(@Nonnull CreatureTraitType<?> type, int level) {
+        ResourceLocation resourceLocation = ContentUtils.getTraitTypeResourceLocation(type);
+        if (resourceLocation == null) return null;
+        return WitcheryCompanion.prefix("traits/" + resourceLocation.getPath() + "/level_" + level);
+    }
 
 
-    /** Helper method that takes a player, a secret key and an activity type and retrieves player capability **/
+
+    /** Helper method that takes a player, a secret key and an activity type and retrieves player capability.
+     * The function unlocks a secret for the player holding such capability. Should only be called server-side **/
     public static boolean unlockProgress(EntityPlayer player, String progressKey, String activity) {
 
         // Event and progress cannot continue if any element is null
@@ -80,10 +104,39 @@ public class ProgressUtils {
             return false;
         }
 
-        // Unlock progress
-        progress.unlockProgress(ProgressUtils.getSymbolEffectSecret(progressKey));
-        ProgressSync.serverRequest(player);
-        return MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(player, progressKey, activity));
+        // Unlock progress if it's new, otherwise ignore
+        if (!progress.hasProgress(progressKey)) {
+            progress.unlockProgress(progressKey);
+            ProgressSync.serverRequest(player);
+            return MinecraftForge.EVENT_BUS.post(new WitcheryProgressUnlockEvent(player, progressKey, activity));
+        }
+
+        return false;
+    }
+
+    /** Helper method that takes a player and a secret key and retrieves player capability.
+     * The function locks a secret for the player holding such capability. Should only be called server-side **/
+    public static boolean lockProgress(EntityPlayer player, String progressKey, String activity) {
+
+        // Event and progress cannot continue if any element is null
+        if (progressKey == null || activity == null || player instanceof FakePlayer)
+            return false;
+
+        // Retrieve progress
+        IWitcheryProgress progress = player.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
+        if (progress == null) {
+            WitcheryCompanion.logger.warn("Could not lock progress: capability is null; player: {}, key: {}", player, progressKey);
+            return false;
+        }
+
+        // Unlock progress if it's new, otherwise ignore
+        if (progress.hasProgress(progressKey)) {
+            progress.lockProgress(progressKey);
+            ProgressSync.serverRequest(player);
+            return MinecraftForge.EVENT_BUS.post(new WitcheryProgressLockEvent(player, progressKey, activity));
+        }
+
+        return false;
     }
 
 }

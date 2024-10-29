@@ -1,7 +1,0 @@
-{
-  "name": "Tools",
-  "description": "Instruments to simplify a witch or warlock everyday life.",
-  "icon": "witchery:boline",
-  "parent": "constructs",
-  "secret": false
-}

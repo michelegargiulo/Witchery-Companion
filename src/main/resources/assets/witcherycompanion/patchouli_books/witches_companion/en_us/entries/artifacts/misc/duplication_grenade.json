@@ -1,0 +1,17 @@
+{
+  "name": "Duplication Grenade",
+  "icon": "witchery:duplication_grenade",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:duplication_grenade",
+      "text": "The Duplication Grenade can be used to create a short-lived illusion that appears identical to the player that threw it.$(br)Can usually redirect mob hostility from the player to the duplicate."
+    },
+    {
+      "type": "text",
+      "text": "$(p)It is obtained by using a $(l:resources/quartz_sphere)Quartz Sphere$(/l) on a $(l:artifacts/devices/mirror)Mirror$(/l) at the cost of $(item)2000$() $(l:altar/altar)Altar Power$(/l), and it will be bound to the player who created it. When the illusion ends or dies, a Quartz Sphere will drop in its place."
+    }
+  ]
+}

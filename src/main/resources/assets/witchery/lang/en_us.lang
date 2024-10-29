@@ -53,3 +53,7 @@ recipe.witchery.brazier.poltergeist.description=Pull a dead being back into this
 # == Modifier Effect brews
 item.witchery.witches_brews_book.modifiers.general.disable_power_limit=Disable power limit
 
+# Missing Witchery Block Names
+tile.witchery.torment_stone.name=Torment Stone
+tile.witchery.mirror_wall.name=Mirror Wall
+

@@ -1,0 +1,13 @@
+{
+  "name": "Quartz Sphere",
+  "icon": "witchery:quartz_sphere",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:quartz_sphere",
+      "text": "Simple ingredient used for the creation of $(l:artifacts/devices/crystal_ball)Crystal Balls$(/l), $(l:artifacts/weapons/sun_grenade)Sun Grenades$(/l) and $(l:artifacts/misc/duplication_grenade)Duplication Grenades$(/l)."
+    }
+  ]
+}

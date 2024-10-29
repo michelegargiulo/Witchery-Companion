@@ -5,11 +5,9 @@ import com.smokeythebandicoot.witcherycompanion.api.rite.IItemRiteSacrificeAcces
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BaseProcessor;
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.msrandom.witchery.block.BlockCircleGlyph;
 import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.resources.RiteManager;
 import net.msrandom.witchery.rite.Rite;
@@ -32,6 +30,7 @@ public class RiteProcessor extends BaseProcessor {
     protected String note;
     protected String circles;
     protected List<Ingredient> ingredients;
+    protected String transparentItems;
     protected float altarPower = 0;
 
 
@@ -39,6 +38,7 @@ public class RiteProcessor extends BaseProcessor {
     public void setup(IVariableProvider<String> provider) {
         ingredients = new ArrayList<>();
         circles = "";
+        transparentItems = "";
 
         this.riteId = readVariable(provider, "rite_id");
         if (riteId == null) return;
@@ -60,21 +60,23 @@ public class RiteProcessor extends BaseProcessor {
         }
 
         this.ingredients = new ArrayList<>();
+        StringBuilder optionalIndices = new StringBuilder();
         for (RiteSacrifice sacrifice : rite.getSacrifices()) {
             if (sacrifice instanceof ItemRiteSacrifice && sacrifice instanceof IItemRiteSacrificeAccessor) {
                 IItemRiteSacrificeAccessor accessor = (IItemRiteSacrificeAccessor) sacrifice;
-                for (ItemRiteSacrifice.ItemRequirement req : accessor.getRequirements()) {
-                    if (req.getOptional()) {
-                        // If item is optional, cycle the item with AIR
-                        ItemStack[] matching = req.getIngredient().matchingStacks;
-                        ItemStack[] stacks = new ItemStack[matching.length + 1];
-                        System.arraycopy(matching, 0, stacks, 0, matching.length);
-                        stacks[stacks.length - 1] = ItemStack.EMPTY;
-                        ingredients.add(Ingredient.fromStacks(stacks));
-                        continue;
-                    }
+                Iterator<ItemRiteSacrifice.ItemRequirement> it = accessor.getRequirements().iterator();
+                while (it.hasNext()) {
+                    ItemRiteSacrifice.ItemRequirement req = it.next();
                     ingredients.add(req.getIngredient());
+                    if (req.getOptional()) {
+                        optionalIndices.append(ingredients.size() - 1);
+                        if (it.hasNext()) {
+                            optionalIndices.append(",");
+                        }
+                    }
                 }
+                this.transparentItems = optionalIndices.toString();
+
             } else if (sacrifice instanceof PowerRiteSacrifice) {
                 PowerRiteSacrifice powerSacrifice = (PowerRiteSacrifice) sacrifice;
                 this.altarPower = powerSacrifice.powerRequired;
@@ -119,6 +121,8 @@ public class RiteProcessor extends BaseProcessor {
                 return this.note;
             case "ingredients":
                 return ProcessorUtils.serializeIngredientList(this.ingredients);
+            case "transparent_indices":
+                return this.transparentItems;
             case "circles":
                 return this.circles;
             case "altar_power":

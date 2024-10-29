@@ -1,0 +1,7 @@
+{
+  "name": "Covens",
+  "description": "Loyal companions that bond with witches, enhancing and specializing their magic through a unique mystical connection that not even death can sever.",
+  "icon": "minecraft:noteblock",
+  "parent": "artifacts",
+  "secret": false
+}

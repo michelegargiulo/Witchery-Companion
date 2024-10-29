@@ -1,0 +1,15 @@
+{
+  "name": "Hawthorn Set",
+  "icon": "witchery:hawthorn_fence",
+  "category": "artifacts/decoration",
+  "read_by_default": true,
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Hawthorn Set",
+      "ingredients": "witchery:hawthorn_log;witchery:hawthorn_planks;witchery:hawthorn_stairs;witchery:hawthorn_slab;witchery:hawthorn_fence;witchery:hawthorn_fence_gate;witchery:hawthorn_leaves;witchery:hawthorn_door",
+      "description": "A decorative building set made of $(l:herbology/herbology#hawthorn)Hawthorn$(/l) wood."
+    }
+  ]
+}

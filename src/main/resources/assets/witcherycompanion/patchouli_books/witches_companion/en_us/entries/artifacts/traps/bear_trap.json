@@ -1,0 +1,13 @@
+{
+  "name": "Bear Trap",
+  "icon": "witchery:beartrap",
+  "category": "artifacts/traps",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:beartrap",
+      "text": "The Beartrap is a mundane construct able to imprison an entity keeping it in place."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Torment",
+  "icon": "witchery:torment_stone",
+  "category": "dimensions",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Torment",
+      "text": "Torment is an alternate dimension, an endless void that only contains six vertically-stacked mazes. The mazes are independent from each other, and one can't reach one from another."
+    },
+    {
+      "type": "spotlight",
+      "title": "Entering the Torment",
+      "item": "witchery:torment_contract",
+      "text": "To initially enter the Torment dimension, a $(l:creatures/lord_of_torment)Lord of Torment$(/l) must be summoned and fought. When half of $(item)Lord of Torment$()'s health is depleted, it will teleport itself and the players who are fighting in this dimension.",
+      "anchor": "entering"
+    },
+    {
+      "type": "spotlight",
+      "title": "Entering the Torment",
+      "item": "witchery:mystic_branch",
+      "text": "A player that has advanced symbology skills and knowledge can also banish certain types of creatures, including other players, to the Torment with a $(l:symbology/symbol_list#tormentum)Spell$(/l).",
+      "flag": "witcherycompanion:content/symbols/tormentum"
+    },
+    {
+      "type": "text",
+      "title": "Exiting Torment",
+      "text": "At the end of each maze in the Torment there is a $(item)Torment Portal$(). The player has to solve the maze to reach the portal, which will teleport them back to the $(item)Overworld$()$(p)When a player dies in the Torment dimension, they will be teleported back to the Overworld."
+    }
+  ]
+}

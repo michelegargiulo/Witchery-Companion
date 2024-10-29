@@ -1,0 +1,49 @@
+{
+  "name": "Witch Shack",
+  "icon": "minecraft:spruce_door",
+  "category": "dimensions",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Witch Shack",
+      "text": "The Witch Shack is a small structure found around the world, usually inhabited by a $(l:creatures/coven_witch)Coven Witch$(/l) and their $(l:)Familiar$(/l)."
+    },
+    {
+      "type": "multiblock",
+      "name": "Witch Shack",
+      "multiblock": {
+        "pattern": [
+          ["       ", "       ", "AAAAAAA", "KKKKKKK", "EEEEEEE", "       ", "       "],
+          ["       ", "AAAAAAA", "WBBBBBW", "WBBBBBW", "WBBBBBW", "EEEEEEE", "       "],
+          ["AAAAAAA", "LBBBBBL", "B T   B", "B     B", "B  O  B", "LBBBBBL", "EEEEEEE"],
+          ["       ", "LBHBNBL", "B     B", "G   P G", "B     B", "LNGBNBL", "       "],
+          ["       ", "LCDCCCL", "C    XC", "C   FSC", "C   RBC", "LCCCCCL", "       "],
+          ["       ", "CCCCCCC", "CCCCCCC", "CCC0CCC", "CCCCCCC", "CCCCCCC", "       "]
+        ],
+        "mapping": {
+          "0": "minecraft:cobblestone",
+          "C": "minecraft:cobblestone",
+          "L": "minecraft:log[variant=spruce,axis=y]",
+          "W": "minecraft:log[variant=spruce,axis=x]",
+          "D": "minecraft:wooden_door[facing=west,half=lower,hinge=right]",
+          "H": "minecraft:wooden_door[facing=west,half=upper,hinge=right]",
+          "X": "minecraft:chest",
+          "F": "minecraft:fence",
+          "S": "minecraft:birch_stairs[facing=south,half=bottom,shape=straight]",
+          "R": "minecraft:birch_stairs[facing=east,half=bottom,shape=straight]",
+          "B": "minecraft:planks[variant=birch]",
+          "P": "minecraft:wooden_pressure_plate",
+          "E": "minecraft:spruce_stairs[facing=west,half=bottom,shape=straight]",
+          "A": "minecraft:spruce_stairs[facing=east,half=bottom,shape=straight]",
+          "O": "minecraft:torch[facing=west]",
+          "T": "minecraft:torch[facing=east]",
+          "K": "minecraft:planks[variant=spruce]",
+          "G": "minecraft:glass_pane[east=true,north=false,south=false,west=true]",
+          "N": "minecraft:glass_pane[east=false,north=true,south=true,west=false]"
+        },
+        "symmetrical": true
+      }
+    }
+  ]
+}

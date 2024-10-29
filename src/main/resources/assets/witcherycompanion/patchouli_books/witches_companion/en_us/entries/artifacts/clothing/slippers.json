@@ -1,0 +1,33 @@
+{
+  "name": "Slippers",
+  "icon": "witchery:ruby_slippers",
+  "category": "artifacts/clothing",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:icy_slippers",
+      "text": "Icy Slippers are footwear that offer low levels of protection, can be dyed and $(item)enchanted$().$(br)They will freeze any $(item)Water$() they come in contact with, allowing the wearer to effectively walk on water.$(p)Wearing the slippers underwater is a very bad idea, as it might get the wearer trapped in an ice prison."
+    },
+    {
+      "type": "text",
+      "title": "Other Properties",
+      "text": "Icy Slippers will also turn $(item)Lava$() into $(item)Obsidian$() when walked over, but it will significantly damage the Icy Slippers and there's still a risk of being set on fire.$(p)Icy Slippers will turn invisible when the player is invisible, and can be repaired by crafting them with four $(l:resources/impregnated_leather)Impregnated Leather$(/l) or by combining them with $(item)Leather$() into an $(item)Anvil$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:ruby_slippers",
+      "text": "Icy Slippers are footwear that offer low levels of protection, can be $(item)enchanted$() but not dyed.$(br)Once every 30 minutes, an $(l:kettle/infusion_intro#light_infusion)Infused$(/l) player can $(l:artifacts/chants/no_place_like_home)Chant$() 'There's no place like home' to get teleported back to their $(item)Spawn Point$()."
+    },
+    {
+      "type": "text",
+      "title": "Waystone Transposition",
+      "text": "An alternative to the Spawn Point is to drop a $(l:artifacts/misc/bound_waystone)Bound Waystone$(/l) near themselves and use the Chant to teleport to the location of the Bound Waystone, which will be consumed.$(p)The ability saves the need to draw circles for the $(l:circle_magic/transposition/to_waystone)Rite of Transposition$(/l) and costs 20% of the Infusion Power, 40% if the target location is cross-dimensional."
+    },
+    {
+      "type": "text",
+      "title": "Other Properties",
+      "text": "Ruby Slippers will turn invisible when the player is invisible, and can be repaired by crafting them with four $(l:resources/impregnated_leather)Impregnated Leather$(/l) or by combining them with $(item)Leather$() into an $(item)Anvil$()."
+    }
+  ]
+}

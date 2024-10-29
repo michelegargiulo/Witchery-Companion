@@ -1,0 +1,15 @@
+{
+  "name": "Rowan Set",
+  "icon": "witchery:rowan_fence",
+  "category": "artifacts/decoration",
+  "read_by_default": true,
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Rowan Set",
+      "ingredients": "witchery:rowan_log;witchery:rowan_planks;witchery:rowan_stairs;witchery:rowan_slab;witchery:rowan_fence;witchery:rowan_fence_gate;witchery:rowan_leaves;witchery:rowan_door",
+      "description": "A decorative building set made of $(l:herbology/herbology#rowan)Hawthorn$(/l) wood."
+    }
+  ]
+}

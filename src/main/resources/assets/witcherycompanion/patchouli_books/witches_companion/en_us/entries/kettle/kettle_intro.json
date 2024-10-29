@@ -7,12 +7,12 @@
     {
       "type": "text",
       "title": "Using the Kettle",
-      "text": "The $(item)Kettle$() is a magical construct that, similarly to the cauldron, is used to prepare brews, but such brews, while easier to prepare, cannot be augmented, nor their effects can be combined.$(br)Place a heat source underneath the kettle."
+      "text": "The $(item)Kettle$() is a magical construct that, similarly to the cauldron, is used to prepare brews, but such brews, while easier to prepare, cannot be augmented, nor their effects can be combined.$(br)Place a heat source underneath the kettle.$(p)If at any point during the brew preparation the heat goes away, the brew becomes $(item)ruined$() and has to be thrown away."
     },
     {
       "type": "text",
       "title": "Step-by-Step",
-      "text": "$(8)1.$() Throw the ingredients into a heated, water-filled Kettle. $(l:altar/altar)Altars$(/l) provide power, if needed.$(p)$(8)2.$() Fill the brew into an empty $(item)Glass Bottle$()."
+      "text": "$(8)1.$() Throw the ingredients into a heated, water-filled Kettle. $(l:altar/altar)Altars$(/l) provide power, if needed.$(p)$(8)2.$() Fill the brew into an empty $(item)Glass Bottle$().$(p)Some brews require having a $(l:)Familiar$(/l) or being in a given $(item)dimension$()."
     },
     {
       "type": "text",
@@ -27,7 +27,7 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/redstone_soup",
-      "description": ""
+      "description": "It is considered the base for many other $(l:kettle/kettle_intro)Brews$(/l). When drunk, the Redstone Soup grants the $(item)Health Boost$() potion effect for two minutes."
     },
     {
       "type": "kettle/kettle_brew",
@@ -58,7 +58,8 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_sleep",
-      "description": "Will cause players to sleep and enter the $(l:dimensions/spirit_world#entering)Spirit World$(/l). Unless proper preparations, a nightmare is to be expected."
+      "description": "Will cause players to sleep and enter the $(l:dimensions/spirit_world#entering)Spirit World$(/l). Unless proper preparations, a nightmare is to be expected.",
+      "anchor": "sleeping"
     },
     {
       "type": "kettle/kettle_brew",

@@ -75,7 +75,7 @@ public class ProcessorUtils {
         Iterator<Ingredient> it = ingredients.iterator();
         while (it.hasNext()) {
             Ingredient ing = it.next();
-            sb.append(serializeItemStackArray(ing.matchingStacks));
+            sb.append(serializeItemStackArray(ing.getMatchingStacks()));
             if (it.hasNext()) {
                 sb.append(";");
             }
@@ -162,6 +162,9 @@ public class ProcessorUtils {
     }
 
     public static void deserializeStrokeArray(String[] serialized, @Nonnull Collection<BranchStroke> strokes) {
+        // Add exception for this case, as it is probably obfuscated
+        if (serialized.length == 1 && serialized[0].isEmpty())
+            return;
         for (String elem : serialized) {
             for (String s : elem.replace(" ", "").split(",")) {
                 try {

@@ -28,5 +28,6 @@
   "server": [
   ],
   "client": [
-	]
+    "minecraft.client.renderer.RenderItemMixin"
+  ]
 }

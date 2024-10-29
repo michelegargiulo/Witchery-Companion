@@ -4,13 +4,12 @@ A Companion to Witchery: Resurrected fixing bugs, crashes, patching things and a
 configurability. Witchery: Resurrected is a required dependency, and is the original 1.7.10 Witchery
 jar in the resource packs folder.
 
-## Current Features (as of v0.28-beta):
+## Current Features (as of v0.32.4-beta):
 ### Bugfixes:
 - **Common**
   - **[Common]** Fix crash when pulling null entity
+  - **[Common]** Fix some mispelled language entries (for us_en) and add the few missing ones
   - **[Loot]** Fix crash with Levelled random enchant
-  - **[Spell Rendering]** Fix crash when bosses (Lord of Torment, Lilith) use spells that have been disabled in config
-  - **[Spell Rendering]** Fix crash when client and server have mismatching spell configuration
 - **Blocks**
   - **[Altar]** Fix Altar not providing power on world load/reload
   - **[Altar]** Fix Placed Items (Arthana, Pentacle, etc.) not dropping anything when breaking Altar blocks below them
@@ -18,17 +17,21 @@ jar in the resource packs folder.
   - **[Altar]** Fix Altar multiblock not being assembled correctly, causing the Altar to provide multiple power sources
   - **[Coffin]** Fix edge-case crash when placing the Coffin across chunk boundaries
   - **[Coffin]** Fix crash when piston moves the top block of the coffin
-  - **[Cursed Blocks]** Fix crash when using trigger dispersal. They still don't work, but they should not crash the game
+  - **[Cursed Blocks]** Fix crash when using trigger dispersal. ~They still don't work, but they should not crash the game~ Now it works, even on supported Tile Entities! Try cursing chests, pressure plates, doors and even Beds and Tripwires! More info on the Wiki
   - **[Fetish]** Fix fetish blocks not having drops (Scarecrows, Trent Effiges, Vines)
   - **[Fetish]** Fix fetishes forgetting data on world reload, including the players they are bound to
   - **[Kettle]** Fix throwing splash brews immediately after brewing them
   - **[Mandrake Crop]** Fix spawning mandrakes even when not fully mature
   - **[Poppet Shelf]** Fix upside-down poppet rendering
   - **[Stockade]** Fix weird rendering when player head is too close to the stockade
+  - **[Spirit Portal Block]** Fix Spirit Portal Block not being completely broken when there are no longer the conditions to stay lit
+  - **[Spirit Portal Block]** Fix Spirit Portal Block being able to support buttons, levers, etc on its surface
+  - **[Spirit Portal Block]** Fix Spirit Portal Block having wrong collision box when placed along the Z-axis
   - **[Witch's Cauldron]** Fix bottling skill being impossible to increase
   - **[Witch's Cauldron]** Fix right-clicking with an empty Bucket voiding the brew inside
   - **[Witch's Cauldron]** Fix right-clicking with an Empty Bucket on an empty Cauldron giving a water bucket
   - **[Witch's Cauldron]** Fix right-clicking with a Forge fluid handler voiding the brew inside
+  - **[Witches Oven]** Fix particles spawning too low
 - **Books**
   - **[Herbology Book]** Fix plants being rendered above text
 - **Brews**
@@ -44,15 +47,19 @@ jar in the resource packs folder.
   - **[All Familiars]** Fix Familiars (Owl, Toad, Cat) losing their owner on world reload or on dimension change
   - **[Coven Witch]** Fix Brew of the Grotesque quest requiring a negative amount of items
   - **[Enchanted Broom]** Fix server freeze when the player is on the broom that breaks while flying
+  - **[Fairest]** Fix randomly spawning with missing texture
   - **[Rowan Boat]** Fix missing Rowan Boat entity model texture (not configurable)
   - **[Owl]** Fix Owls being unable to sit
   - **[Voodoo Protection Poppet]** Fix crash when trying to protect its owner from a curse
   - **[Poppet Protection Poppet]** Fix crash when trying to protect its owner from a poppet
+  - **[Villagers]** Fix rare crash when Villagers try to sleep
+  - **[Apothecary Villager]** Fix missing Zombified texture
 - **Infusions**
-  - **[Alohomora]** Fix blockstate glitching when using it on some door types
-  - **[Colloportus]** Fix doors having different hinge and facing on transformation
   - **[Soul Brews]** Fix losing Soul brews (so the Mystic Branch knowledge) upon death
+- **Fluids**
+  - **[Soul Brews]** Enable Forge Universal Bucket, otherwise fluids like Flowing Spirit could not be picked up (non configurable)
 - **Items**
+  - **[Icy Needle]** Fix having an effect only when right-clicking on a block
   - **[Rowan Boat]** Fix Rowan Boat not having texture (not configurable)
   - **[Spectral Stone]** Fix NBT being retained after entity is released, effectively duping it
   - **[Lingering Potion]** Fix unlocalized name (not configurable)
@@ -63,11 +70,20 @@ jar in the resource packs folder.
 - **Rites**
   - **[Rite of Broken Earth]** Fix NPE when foci location could not be determined
   - **[Rite of Prior Incarnation]** Fix "WitcheryPriIncUsr" NBT data persisting after item pickup
+  - **[Rite of Binding]** (Copy Waystone version) Fix result always being an empty bound waystone
+- **Symbology**
+  - **[Common]** Fix crash when bosses (Lord of Torment, Lilith) use spells that have been disabled in config
+  - **[Common]** Fix crash when client and server have mismatching spell configuration
+  - **[Alohomora]** Fix blockstate glitching when using it on some door types
+  - **[Alohomora]** Fix crash on Rowan Doors
+  - **[Colloportus]** Fix doors having different hinge and facing on transformation
 - **World**
   - **[Apothecary] Fix crash when generating book in chests and item frames when Tinkers' Construct or Thaumcraft are 
   installed due to duplicate loot pool entries
 - **Dimensions**
   - **[Spirit World] Fix endless spawn of Nightmares
+- **Integrations**
+  - **[Thaumcraft]** Fix Thaumcraft Integration registering aspects too early
 
 ### Tweaks
 - **Brews**
@@ -78,12 +94,16 @@ jar in the resource packs folder.
     hitting a block (but the explosion won't damage terrain). Each brew is then delegated to ignore the effects, depending
     on applied modifiers
 - **Blocks**
+  - **[Crystal Ball]** Tweak to customize cooldown 
+  - **[Crystal Ball]** Tweak to customize Altar Power consumption for each use
   - **[Fetishes]** Tweak to customize cooldown of Sentinel and Twister spirit effects
   - **[Witch's Cauldron]** Tweak to set glass bottle size to 250mB instead of 333/334mB (depending if draining or filling)
+  - **[Spirit Portal Block]** Tweak to change texture and transparency to better reflect the original Witchery texture
 - **Entities**
   - **[Baba Yaga]** Tweak to modify gifts given to owners frequency, max distance and max items
   - **[Baba Yaga]** Tweak to give her own loot table instead of hard-coded loot, both on death and for gifted items
   - **[Banshee]** Tweak to make them ignore each-other, to easy some rituals that require them nearby
+  - **[Banshee]** Tweak to give her own loot table instead of hard-coded loot
   - **[Cat Familiar]** Separate their loot table from Vanilla ocelots loot table
   - **[Coven Witch]** Separate their loot table from Vanilla witches loot table
   - **[Demon]** Tweak to give them their own loot table instead of hard-coded loot
@@ -93,6 +113,7 @@ jar in the resource packs folder.
   - **[Flame Imp]** Tweak to give random gifts based on a loot table instead of being hardcoded  
   - **[Hobgoblin]** Tweak to control the maximum number of trades per level (Witchery default is 1)
   - **[Hobgoblin]** Tweak to allow the Hobgoblin to generate trades even when there are no villages nearby
+  - **[Hobgoblin]** Tweak to give her own loot table instead of hard-coded loot
   - **[Lilith]** Tweak to disable enchanting items given to her
   - **[Lord of Torment]** Tweak to disable mid-fight teleportation to Torment dimension
   - **[Lord of Torment]** Tweak to disable hardcoded loot drops (enchanted books)
@@ -131,31 +152,61 @@ jar in the resource packs folder.
   - **[Mirror World]** Tweak to modify default dimension ID to 13 (configurable)
 - **Potions**
   - **[Common]** Elytra cannot be used while resized (enabled by default)
-- **Transformations**
+  - **[Common]** Add all missing potion effects Icons and Descriptions
+- **Shape Shifting**
   - **[Common]** Elytra cannot be used while transformed (enabled by default)
+  - **[Common]** Tweak to preserve HP percentage on transformation that change players' HP
 
 ### Integrations
 - **CraftTweaker**
-  - **[Altar]** Integration to register or un-register Blocks nearby the altar that can power the Altar
-  - **[Witch's Cauldron]** Integration to register or un-register Blocks underneath the cauldron that can act as a heat
-    source. Supports fluids
-  - **[Brew of Erosion]** Integration to customize what the brew can mine, destroy or ignore, including
-    a maximum harvest level
-  - **[Hobgoblin trades]** Integration to customize trades and various aspects related to them
+    - **[Altar]** 
+        - Register or un-register Blocks nearby the altar that can power the Altar (power sources)
+    - **[Kettle]**
+        - Add / Remove Heatsources
+          - Add / Remove recipes
+    - **[Witch's Cauldron]** 
+        - Register or un-register Blocks underneath the cauldron that can act as a heat
+      source. Supports fluids
+    - **[Brew of Erosion]** 
+        - Customize what the brew can mine, destroy or ignore, including
+      a maximum harvest level
+    - **[Hobgoblin trades]** 
+        - Customize trades and various aspects related to them
+    - **[Flame Imps]**
+        - Customize gifts for each level with custom criteria
+        - Customize items that can be donated to them (shinies) and their affection boost
+    - **[Bark Belt]** 
+        - Customize blocks on which the player can stand on to recharge
+    - **[Player]**
+        - Hooks into Witchery extended data to expose various progress and capability of the player so that it can be used to customize recipes and events in CraftTweaker. For example, current form, bottling skill, familiar info, etc. More info on the Wiki
 
 - **Just Enough Items**
   - **[Goblin]** Show possible Goblin trades
   - **[Flame Imp]** Show items that the Imp accepts as gifts and their respective affection boost
   - **[Flame Imp]** show items that the Imp will gift to the player and the level required to have that item gifted (requires Just Enough Resources)
+  - **[Bark Belt]** show blocks that recharge the Bark Belt
 
 - **Just Enough Resources**
   - **[Entities]** Integration to register many entities and their loot in entity drops category
 
 - **The One Probe**
   - **[Altar]** Shows Available power, Max power and recharge rate
-  - **[Witch's Cauldron]** Shows whether the cauldron is boiling and has enough power for the current ingredients
+  - **[Witch's Cauldron]** Shows whether the cauldron is boiling and has enough power for the current ingredients, among with the ingredients themselves
   - **[Hobgoblin]** Shows current profession name
   - **[Flame Imp]** Shows whether the Imp has a contract and with who, it's trade level and cooldown status (extended information)
+  - **[Grassper]** Shows current held item
+  - **[Kettle]** Shows if the Kettle has enough power for the recipe and if it's ruined. Also shows inserted items, shows dimension and familiar requirements and, in case of correct recipe, its output.
+
+- **Enchantment Descriptions**
+  - Add Enchantment descriptions for all enchantments added by Witchery
+
+- **Quark**
+  - Fix Right-click to harvest not spawning Mandrakes from Mandrake crops
+
+- **Patchouli**
+  - Implement configurable, dynamic, in-depth in-game documentation. Implements almost all features and all content of the Witchery books (except book of biomes)
+  - Adds huge amounts of other content, documented directly from the official Witchery Wiki. No more online look-ups to find those Mutating Sprig mutations! Also contains renders of structures and entities.
+  - Some secrets are obfuscated in the book. It tracks progress and unlocks pages accordingly, so that new players still have to discover the contents, but once unlocked they remain in the book for easy retrieval
 
 ### Performance
 - Implement caching for the Altar Power Source map
@@ -163,9 +214,10 @@ jar in the resource packs folder.
 ### Misc.
 - Implement a Plugin that automatically downloads Witchery 1.7.10 jar and puts it in the resourcepacks folder, 
   as it is a required dependency for Witchery: Resurrected
+- Implement a Progress System. Tracks what the player does (completes a brew, discovers a new recipe, levels up as werewolf or vampire) and fires an event. Also supports commands and unlocks pages in Patchouli book, if installed
 
 ### Future Plans
-- Add CraftTweaker integration for main recipe categories (Cauldron, Distillery, Kettle, Oven)
+- Add CraftTweaker integration for main recipe categories (Cauldron, Distillery, Kettle)
 - Add CraftTweaker integration for Brew of Sprouting, to specify valid trees to spawn
 - Finish JER Integration
 - Squishing all bugs
@@ -175,14 +227,13 @@ jar in the resource packs folder.
   - Vampire clothing
   - Hunter clothing
   - Withes robes
-- JEI Handlers for as many things as possible (Altar Power providers, Goblin trades, Baba Yaga drops, etc.)
+- JEI Handlers for as many things as possible (Altar Power providers, Baba Yaga drops, etc.)
 - More Tweaks
   - Modify Rite/Curse strength, to fine-tune how much damage poppets take for the given Rite/Curse
   - Modify entity attributes, such as Max health, Damage, Speed, etc
 
 ### Help Wanted
-- Owl AI for transporting items
-- Winged Monkey AI
+- Fix Owl AI for transporting items
+- Fix Winged Monkey AI
 - Brew Bucket item does not exist yet. Needs implementation. Will make possible to move brews between cauldrons
 - Groovyscript Integration
-- Textures for new elements (JEI GUIs, potion icons)

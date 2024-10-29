@@ -44,10 +44,11 @@ public class InfernalImpApi {
         shinies.put(new SimpleItemStack(Blocks.LAPIS_BLOCK), 7);
         shinies.put(new SimpleItemStack(Blocks.REDSTONE_BLOCK), 5);
 
-        gifts.put(0, new ItemStack(WitcheryBrewItems.SOUL_HUNGER_BREW));
-        gifts.put(1, new ItemStack(WitcheryBrewItems.SOUL_FEAR_BREW));
-        gifts.put(2, new ItemStack(WitcheryBrewItems.SOUL_ANGUISH_BREW));
-        gifts.put(3, new ItemStack(WitcheryContractItems.TORMENT_CONTRACT));
+        // Use the API function to increment Last Gift Index
+        setGift(new ItemStack(WitcheryBrewItems.SOUL_HUNGER_BREW), 0);
+        setGift(new ItemStack(WitcheryBrewItems.SOUL_FEAR_BREW), 1);
+        setGift(new ItemStack(WitcheryBrewItems.SOUL_ANGUISH_BREW), 2);
+        setGift(new ItemStack(WitcheryContractItems.TORMENT_CONTRACT), 3);
     }
 
 

@@ -1,0 +1,13 @@
+{
+  "name": "Charm of Fanciful Thinking",
+  "icon": "witchery:fanciful_thinking_charm",
+  "category": "artifacts/charms",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:fanciful_thinking_charm",
+      "text": "This charm protects its owner from the worst things a $(l:creatures/nightmare)Nightmare$(/l) can throw at you. Keep it on yourself in order to be protected."
+    }
+  ]
+}

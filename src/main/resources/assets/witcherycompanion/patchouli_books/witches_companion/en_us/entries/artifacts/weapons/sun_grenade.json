@@ -1,0 +1,18 @@
+{
+  "name": "Sun Grenade",
+  "icon": "witchery:sun_grenade",
+  "category": "artifacts/weapons",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:sun_grenade",
+      "text": "The Sun Grenade is a weapon especially effective against $(l:)Vampires$(/l). The Sun Grenade is merely a container for sunlight it collects in a certain time span, and releases all of it in an instant. Upon sunlight release, the Sun Grenades turns back to a Quartz Sphere."
+    },
+    {
+      "type": "text",
+      "title": "Creating a Sun Grenade",
+      "text": "The Sun Grenade is created by placing a $(l:resources/quartz_sphere)Quartz Sphere$(/l) on a $(l:artifacts/devices/sun_collector)Sun Collector$(/l)."
+    }
+  ]
+}

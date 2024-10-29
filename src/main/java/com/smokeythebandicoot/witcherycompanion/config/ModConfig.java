@@ -102,6 +102,17 @@ public class ModConfig {
             @Config.Name("Common - Disable Strength Ceiling")
             public static boolean common_tweakDisableStrengthCeiling = true;
 
+            @Config.Comment("If true, completes implementation of the throwing skill, that is used to throw splash brews further. To improve " +
+                    "this skill, launch more splash brews. Max distance is controlled by the Tweak Throwing Skill Max Power config")
+            @Config.Name("Common - Fix Throwing Skill")
+            public static boolean common_fixThrowingSkill = true;
+
+            @Config.Comment("Controls how powerful the throws of a lvl100 throwing skill compared to a lvl1. Defaults to 2.0. " +
+                    "Higher values may result in weird behavior, so it's capped at 3.0")
+            @Config.RangeDouble(min = 1.0f, max = 3.0f)
+            @Config.Name("Common - Tweak Throwing Skill Max Power")
+            public static float common_tweakThrowingSkillMaxPower = 2.0f;
+
             @Config.Comment("If true, fixes Cauldron rituals with Liquid Dispersal not having any effect. Also" +
                     " should improve performance and memory usage by 0.00000001%")
             @Config.Name("Liquid Dispersal - Fix Cauldron Ritual No Effect")
@@ -285,6 +296,20 @@ public class ModConfig {
 
         public static class BlockTweaks {
 
+            @Config.Comment("Configuration for patches related to Books")
+            @Config.Name("Kettle Tweaks")
+            public static KettleTweaks kettleTweaks;
+
+            @Config.Comment("Fix Alder Door rendering when disguised, as the rendering of the door does not reflect its state " +
+                    "(for example it renders open while it is closed, etc.)")
+            @Config.Name("Alder Door - Fix Disguised Alder Door Rendering")
+            public static boolean alderDoor_fixDisguiseRendering = true;
+
+            @Config.Comment("Fix Alder Door reacting to redstone. The Alder door should provide redstone power, but should be " +
+                    "inert to it. Pressure plates, levers etc should never open/close the door, only right-clicking it")
+            @Config.Name("Alder Door - Fix Redstone Behavior")
+            public static boolean alderDoor_fixRedstoneBehavior = true;
+
             @Config.Comment("Fix Altar blocks requiring to get broken and re-placed to work properly again")
             @Config.Name("Altar - Fix Power Source Persistence")
             public static boolean altar_fixPowerSourcePersistency = true;
@@ -299,6 +324,11 @@ public class ModConfig {
             @Config.Name("Block Fetish - Fix No Drops on Harvest")
             public static boolean blockFetish_fixNoDropsOnHarvest = true;
 
+            @Config.Comment("If true, makes Bear Traps and Wolf Traps break if there is no block with a solid upper face beneath. " +
+                    "Also applies to Wolf Traps")
+            @Config.Name("Bear Trap - Tweak Surface Requirement")
+            public static boolean bearTrap_tweakNeedsSolidSurface = false;
+
             @Config.Comment("Fixes fetish blocks resetting their data on world reload or when many blocks are " +
                     "updated at once, including Players bound to them")
             @Config.Name("Block Fetish - Fix Data Loss on World Reload")
@@ -312,6 +342,16 @@ public class ModConfig {
             @Config.Comment("Fix an edge case where the coffin would not have a color associated with it, causing a crash.")
             @Config.Name("Coffin - Fix Edge Case Crash")
             public static boolean coffin_fixEdgeCrash = true;
+
+            @Config.Comment("Sets the Altar Power required for a Crystal Ball prediciton. Witchery default is 500.")
+            @Config.Name("Crystal Ball - Tweak Required Power")
+            @Config.RangeInt(min = 1, max = 10000)
+            public static int crystalBall_tweakRequiredPower = 500;
+
+            @Config.Comment("Sets the cooldown in ticks between each Crystal Ball usage. Witchery default is 100 (5 seconds).")
+            @Config.Name("Crystal Ball - Tweak Cooldown")
+            @Config.RangeInt(min = 1, max = 10000)
+            public static int crystalBall_tweakCooldown = 100;
 
             @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
                     "at least they should not crash the game as often")
@@ -334,6 +374,16 @@ public class ModConfig {
             @Config.Comment("Fix true, it will prevent Mandrake entities from spawning when harvesting non-mature mandrake crops.")
             @Config.Name("Mandrake Crop - Fix Drop Even When Not Mature")
             public static boolean mandrakeCrop_fixMandrakeSpawningNotMature = true;
+
+            @Config.Comment("Fixes the Mirror in Mirror (MiM) feature.")
+            @Config.Name("Mirror - Fix MiM")
+            public static boolean mirror_fixMirrorInMirror = true;
+
+            @Config.Comment("Tweaks to modify the required power to use the Mirror in Mirror (MiM) feature (traverse the rooms " +
+                    "inside of the Mirror dimension. Witchery default is 3000")
+            @Config.Name("Mirror - Tweak MiM Power Requirement")
+            @Config.RangeDouble(min = 1.0, max = 10000.0)
+            public static float mirror_inMirrorPowerConsumption = 3000;
 
             @Config.Comment("Fix Arthana, Pentacle and other items placed on top of the altar not dropping when " +
                     "the altar block below them is broken.")
@@ -359,6 +409,20 @@ public class ModConfig {
                     "box to make player head not get as close.")
             @Config.Name("Stockade - Fix Bounding Box")
             public static boolean stockade_fixBoundingBox = true;
+
+            @Config.Comment("If true, fixes conditions for the portal to stay. If any blocks of the portal frame or portal itself " +
+                    "is broken, the portal should be broken. Without this fix, some portal blocks stay lit regardless.")
+            @Config.Name("Spirit Portal - Fix Break Condition")
+            public static boolean spiritPortal_fixBreakCondition = true;
+
+            @Config.Comment("If true, fixes the Spirit Portal block so that blocks that require support (buttons, levers, etc) " +
+                    "cannot be placed on the surface of the portal.")
+            @Config.Name("Spirit Portal - Fix Block Face Shape")
+            public static boolean spiritPortal_fixBlockFaceShape = true;
+
+            @Config.Comment("If true, fixes JEI Plugin compat for the Spinning Wheel.")
+            @Config.Name("Spinning Wheel - Fix JEI Plugin")
+            public static boolean spinningWheel_fixJeiPlugin = true;
 
             @Config.Comment("If true, fix player bottling skill increase, which won't happen otherwise.")
             @Config.Name("Witch's Cauldron - Fix Bottling Skill Increase")
@@ -397,6 +461,52 @@ public class ModConfig {
             @Config.Comment("If true, backports from 0.6 a fix to spawn burning particles at the correct height")
             @Config.Name("Witches Oven - Fix Burning Particles")
             public static boolean witchesOven_fixBurningParticlesHeight = true;
+
+            @Config.Comment("If true, when the Wolf Trap is activated, warns the player about approaching werewolves")
+            @Config.Name("Wolf Trap - Tweak Warn Players")
+            public static boolean wolfTrap_warnPlayers = false;
+
+            @Config.Comment("If true, the Wolf Trap will drop itself when broken. It is a tweak, as Witchery intentionally " +
+                    "makes the wolf trap impossible to relocate once placed")
+            @Config.Name("Wolf Trap - Tweak Drop On Break")
+            public static boolean wolfTrap_tweakDropOnBreak = false;
+
+            public static class KettleTweaks {
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while wearing Witches Hat " +
+                        "or (if enabled) an Construct Armory helmet with 'Witch Touch' Trait")
+                @Config.Name("Witches Hat - Tweak Kettle Bonus Chance")
+                public static double witchHat_tweakKettleBonus = 0.35;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while wearing Baba Yaga's Hat " +
+                        "or (if enabled) an Construct Armory helmet with 'Baba Yaga's Touch' Trait")
+                @Config.Name("Witches Hat - Tweak Bonus Chance")
+                public static double babaYagaHat_tweakKettleBonus = 0.25;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while wearing Baba Yaga's Hat " +
+                        "or (if enabled) an Construct Armory helmet with 'Baba Yaga's Touch' Trait")
+                @Config.Name("Witches Hat - Tweak Second Bonus Chance")
+                public static double babaYagaHat_tweakKettleBonus2 = 0.25;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while wearing Witches Robes " +
+                        "or (if enabled) an Construct Armory chestplate with 'Witch Touch' Trait")
+                @Config.Name("Witches Robes - Tweak Kettle Bonus Chance")
+                public static double witchRobes_tweakKettleBonus = 0.0;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while wearing Necromancer's Robes " +
+                        "or (if enabled) an Construct Armory helmet with 'Necrotic Touch' Trait")
+                @Config.Name("Necromancer Robes - Tweak Kettle Bonus Chance")
+                public static double necromancerRobes_tweakKettleBonus = 0.25;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while having a Toad familiar")
+                @Config.Name("Toad Familiar - Tweak Kettle Bonus Chance")
+                public static double toadFamiliar_tweakKettleBonus = 0.05;
+
+                @Config.Comment("Bonus chance of having increased yield from kettle while having a Toad familiar AND Baba's Hat")
+                @Config.Name("Toad Familiar Baba Hat Enhancement - Tweak Kettle Bonus Chance")
+                public static double toadFamiliarAndBabaHat_tweakKettleBonus = 0.05;
+            }
+
         }
 
         public static class ItemTweaks {
@@ -413,6 +523,10 @@ public class ModConfig {
             @Config.Name("Spectral Stone - Fix Entity Dupe Exploit")
             public static boolean spectralStone_fixEntityReleaseExploit = true;
 
+            @Config.Comment("If true, the Icy Needle can also be used in the air instead of having to be used on a block")
+            @Config.Name("Icy Needle - Fix Right-Click in Air")
+            public static boolean icyNeedle_fixRightClickInAir = true;
+
             @Config.Comment("If true, set max stack size of all chalk items to 1, regardless of damage. " +
                     "Workaround for some chalk-stacking related bugs")
             @Config.Name("Chalk - Tweak Unstackable Chalk")
@@ -422,6 +536,10 @@ public class ModConfig {
                     "Brew of Erosion crafted into the Witch's Cauldron")
             @Config.Name("Brew of Erosion Item - Tweak Emulate Erosion Brew")
             public static boolean itemErosionBrew_tweakEmulateBrewEffects = false;
+
+            @Config.Comment("If true, enables CraftTweaker integration for all types of Mutandis conversions")
+            @Config.Name("Mutandis - Tweak Enable CraftTweaker Integration")
+            public static boolean mutandis_tweakEnableCraftTweaker = true;
 
             @Config.Comment("If true, this poppet won't be able to affect players")
             @Config.Name("Poppet Item - Disable PVP")
@@ -445,6 +563,11 @@ public class ModConfig {
             @Config.Name("Poppet Protection Poppet - Tweak Damage Taken on Protect")
             public static int poppetProtectionPoppet_tweakDamageTakenOnProtect = 350;
 
+            @Config.Comment("If true, when the Seer Stone is shift-right-clicked Throwing Skills won't be printed, " +
+                    "as it is a mechanic not yet implemented in Witchery: Resurrected")
+            @Config.Name("Seer Stone - Tweak Unprint Throwing Skills")
+            public static boolean seerStone_tweakUnprintThrowingSkill = false;
+
             @Config.Comment("If true, fixes a crash that happens when a Voodoo Protection Poppet protects its owner")
             @Config.Name("Voodoo Protection Poppet - Fix Crash on Protect")
             public static boolean voodooProtectionPoppet_fixCrashOnCurseProtect = true;
@@ -453,11 +576,6 @@ public class ModConfig {
                     "curse. Default 350 (Vanilla Witchery value). Needs voodooProtectionPoppet_fixCrashOnCurseProtect=true to work")
             @Config.Name("Voodoo Protection Poppet - Tweak Damage Taken on Protect")
             public static int voodooProtectionPoppet_tweakDamageTaken = 350;
-
-            @Config.Comment("If true, when the Seer Stone is shift-right-clicked Throwing Skills won't be printed, " +
-                    "as it is a mechanic not yet implemented in Witchery: Resurrected")
-            @Config.Name("Seer Stone - Tweak Unprint Throwing Skills")
-            public static boolean seerStone_tweakUnprintThrowingSkill = false;
 
         }
 
@@ -606,6 +724,13 @@ public class ModConfig {
             @Config.Name("Coven Witch - Fix Negative Request Amount")
             public static boolean covenWitch_fixNegativeRequestAmount = true;
 
+            @Config.Comment("When the game mode is set to Peaceful, some quests cannot be completed. To avoid this, set this number to " +
+                    "a value greater than zero, as it represents the number of times the quest can be re-rolled. More attempts means less performance, " +
+                    "less attempts means that from time to time a Fight quest can happen in peaceful")
+            @Config.Name("Coven Witch - Tweak Fight Quests Peaceful Rerolls")
+            @Config.RangeInt(min = 0, max = 10)
+            public static int covenWitch_tweakFightQuestsPeacefulRerolls = 0;
+
             @Config.Comment("If true, fixes a freeze when the Broom breaks due to not dismounting passengers")
             @Config.Name("Enchanted Broom - Fix Freeze On Break")
             public static boolean enchantedBroom_fixFreezeOnBreak = true;
@@ -728,6 +853,10 @@ public class ModConfig {
                     "of ticks before despawning")
             @Config.Name("Spectre - Tweak Tick Delay Before Despawn")
             public static int spectre_tweakDelayTicksBeforeDespawn = 60;
+
+            @Config.Comment("If true, removes Witchery: Resurrected Back-ported AI for Villagers")
+            @Config.Name("Villager - Tweak Remove Backported AI")
+            public static boolean villager_disablePackportedAI = false;
         }
 
         public static class BookTweaks {
@@ -750,6 +879,10 @@ public class ModConfig {
             @Config.Comment("Baba Yaga will give loot to its owner based on a Loot Table (witchery:entities/baba_yaga_owner)")
             @Config.Name("Baba Yaga - Tweak Give By Loot Table")
             public static boolean babaYaga_tweakGiveDropLootTable = false;
+
+            @Config.Comment("Banshee will give loot to its owner based on a Loot Table (witchery:entities/banshee)")
+            @Config.Name("Banshee - Tweak Give Own Loot Table")
+            public static boolean banshee_tweakLootTable = false;
 
             @Config.Comment("If true, Coven Witch will drop loot according to its own Loot Table, instead of " +
                     "Vanilla Witch loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
@@ -787,9 +920,9 @@ public class ModConfig {
             @Config.Name("Infernal Imp - Tweak Drop Loot By Table")
             public static boolean infernalImp_tweakLootTable = false;
 
-            @Config.Comment("If true, Imp will drop loot according to its Loot Table (witchery:entities/imp_gift)")
-            @Config.Name("Infernal Imp - Tweak Gift Loot Table")
-            public static boolean infernalImp_tweakGiveGiftLootTable = false;
+            @Config.Comment("If true, Hobgoblins will drop loot according to its Loot Table (witchery:entities/hobgoblin)")
+            @Config.Name("Hobgoblin - Tweak Own Loot By Table")
+            public static boolean hobgoblin_tweakLootTable = false;
 
             @Config.Comment("If true, Death will drop loot according to its Loot Table (witchery:entities/death)")
             @Config.Name("Death - Tweak Drop Loot by Table")
@@ -871,6 +1004,10 @@ public class ModConfig {
 
     public static class IntegrationConfigurations {
 
+        @Config.Comment("Configuration related to Construct Armory integration")
+        @Config.Name("Construct Armory Integration - Configuration")
+        public static ConarmIntegration conarmIntegrationConfig;
+
         @Config.Comment("Configuration related to Just Enough Resources integration")
         @Config.Name("JER Integration - Configuration")
         public static JerIntegration jerIntegrationConfig;
@@ -901,6 +1038,16 @@ public class ModConfig {
         @Config.Name("Thaumcraft Integration - Configuration")
         public static ThaumcraftIntegration ThaumcraftIntegrationConfig;
 
+
+        public static class ConarmIntegration {
+
+            @Config.Comment("If true, enabled Baba's Touch Trait. When applied on Helmets, it gives the " +
+                    "same effects as if the player was wearing Baba Yaga's Hat")
+            @Config.Name("Conarm Integration - Enable Baba Yaga's Touch Trait")
+            @Config.RequiresMcRestart
+            public static boolean babaYagasTouchTrait_enable = false;
+        }
+
         public static class JerIntegration {
 
             @Config.Comment("Master switch for all JER integrations")
@@ -910,21 +1057,43 @@ public class ModConfig {
 
         public static class JeiIntegration {
 
+            @Config.Comment("If true, enables Altar JEI Integration")
+            @Config.Name("JEI Integration - Altar")
+            public static boolean enableJeiAltar = true;
+
             @Config.Comment("If true, enables Bark Belt JEI Integration")
             @Config.Name("JEI Integration - Enable Bark Belt")
             public static boolean enableJeiBarkBelt = true;
 
             @Config.Comment("If true, enables Goblin Trade JEI Integration")
             @Config.Name("JEI Integration - Enable Goblin Trades")
+            @Config.RequiresMcRestart
             public static boolean enableJeiGoblinTrades = true;
 
             @Config.Comment("If true, enables Imp Gifts JEI Integration")
             @Config.Name("JEI Integration - Enable Imp Gifts")
+            @Config.RequiresMcRestart
             public static boolean enableJeiImpGifts = true;
 
             @Config.Comment("If true, enables Imp Shinies JEI Integration")
             @Config.Name("JEI Integration - Enable Imp Shinies")
             public static boolean enableJeiImpShinies = true;
+
+            @Config.Comment("If true, enables Mirror JEI Integration")
+            @Config.Name("JEI Integration - Enable Mirror Integration")
+            public static boolean enableJeiMirror = true;
+
+            @Config.Comment("If true, enables Mutandis (on Blocks) JEI Integration")
+            @Config.Name("JEI Integration - Enable Mutandis-on-Block Integration")
+            public static boolean enableJeiMutandisBlock = true;
+
+            @Config.Comment("If true, enables Mutandis (on Plants) JEI Integration")
+            @Config.Name("JEI Integration - Enable Mutandis-on-Plant Integration")
+            public static boolean enableJeiMutandisPlant = true;
+
+            @Config.Comment("If true, enables Sun Collector JEI Integration")
+            @Config.Name("JEI Integration - Enable Sun Collector")
+            public static boolean enableJeiSunCollector = true;
 
         }
 
@@ -957,13 +1126,25 @@ public class ModConfig {
             @Config.Name("TOP Integration - Witch's Cauldron")
             public static EProbeElementIntegrationConfig cauldron = EProbeElementIntegrationConfig.DEFAULT;
 
-            @Config.Comment("If true, enables TOP integration for Kettle")
-            @Config.Name("TOP Integration - Kettle")
-            public static EProbeElementIntegrationConfig kettle = EProbeElementIntegrationConfig.DEFAULT;
+            @Config.Comment("If true, enables TOP integration for Crystal Ball")
+            @Config.Name("TOP Integration - Crystal Ball")
+            public static EProbeElementIntegrationConfig crystalBall = EProbeElementIntegrationConfig.DEFAULT;
 
             @Config.Comment("If true, enables TOP integration for Grassper")
             @Config.Name("TOP Integration - Grassper")
             public static EProbeElementIntegrationConfig grassper = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Kettle")
+            @Config.Name("TOP Integration - Kettle")
+            public static EProbeElementIntegrationConfig kettle = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Statue of Hobgoblin Patron")
+            @Config.Name("TOP Integration - Statue of Hobgoblin Patron")
+            public static EProbeElementIntegrationConfig statueOfHobgoblinPatron = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Sun Collector")
+            @Config.Name("TOP Integration - Sun Collector")
+            public static EProbeElementIntegrationConfig sunCollector = EProbeElementIntegrationConfig.DEFAULT;
 
             @Config.Comment("If true, enables TOP integration for Hobgoblin")
             @Config.Name("TOP Integration - Hobgoblin")
@@ -1063,6 +1244,10 @@ public class ModConfig {
                 @Config.Name("Brew Effects - Show Weaken Vampires")
                 public static boolean brewEffects_showWeakenVampires = false;
 
+                @Config.Comment("If true, shows an additional page for the Rite of Shifting Seasons listing the Foci")
+                @Config.Name("Circle Magic - Show Shifting Sesons Foci")
+                public static boolean circleMagic_showShiftingSeasonsFoci = false;
+
                 @Config.Comment("If true, adds a few more pages about how Brazier works")
                 @Config.Name("Conjuring - Enable Extended Intro")
                 public static boolean conjuring_enableExtendedIntro = false;
@@ -1074,6 +1259,52 @@ public class ModConfig {
                 @Config.Comment("If true, adds a few pages explaining what blocks are ideal to be bound to spectral entities and their recipes")
                 @Config.Name("Fetish - Details Extension")
                 public static boolean conjuring_enableFetishExtension = false;
+
+                @Config.Comment("If true, adds some pages that vaguely explain the predictions that the Crystal Ball might foresee")
+                @Config.Name("Constructs - Show Crystal Ball Predictions")
+                public static boolean constructs_revealCrystalBallPredictions = false;
+
+                @Config.Comment("If true, adds a new entry that explains Fume Funnels and their role in upgrading the Witches' Oven")
+                @Config.Name("Fumes - Explain Funnels")
+                public static boolean fumes_enableFunnels = false;
+
+                @Config.Comment("If true, adds an entry to the Observations chapter, adding new lore to the Werewolf transformation in a similar way " +
+                        "to how Witchery does for Vampirism (in Observations of an Immortal). Content is original.")
+                @Config.Name("Observations - Add Observations of a Lycanthrope")
+                public static boolean observations_enableLycanthropyLore = false;
+
+                @Config.Comment("If true, adds an entry to the Lycanthropy section in Observations chapter, with an introduction on lycanthropy in general.")
+                @Config.Name("Observations - Add Lycanthropy Intro")
+                public static boolean observations_enableLycanthropyIntro = false;
+
+                @Config.Comment("If true, adds an entry to the Observations chapter, documenting the progression of becoming a werewolf. Each page will be " +
+                        "unlocked after reaching a higher level in lycanthropy.")
+                @Config.Name("Observations - Add Lycanthropy Progress")
+                public static boolean observations_enableLycanthropyProgress = false;
+
+                @Config.Comment("If true, adds an entry to the Vampirism section in Observations chapter, with an introduction on vampirism in general.")
+                @Config.Name("Observations - Add Vampirism Intro")
+                public static boolean observations_enableVampirismIntro = false;
+
+                @Config.Comment("If true, adds an entry to the Observations chapter, documenting the progression of becoming a vampire. Each page will be " +
+                        "unlocked after reaching a higher level in vampirism.")
+                @Config.Name("Observations - Add Vampirism Progress")
+                public static boolean observations_enableVampirismProgress = false;
+
+                @Config.Comment("If true, adds a page regarding the Statue of The Goddess. Being considered an almost-creative item, some pack makers " +
+                        "might want to disable its recipe or hide it altogether. Keep this flag to false if it's the case.")
+                @Config.Name("Statues - Show Statue of The Goddess")
+                public static boolean statues_showGoddess = false;
+
+                @Config.Comment("If true, adds a page regarding the Statue of Broken Curses. Being considered an almost-creative item, some pack makers " +
+                        "might want to disable its recipe or hide it altogether. Keep this flag to false if it's the case.")
+                @Config.Name("Statues - Show Statue of Broken Curses")
+                public static boolean statues_showBrokenCurses = false;
+
+                @Config.Comment("If true, adds a page regarding the Statue of Occluded Summons. Being considered an almost-creative item, some pack makers " +
+                        "might want to disable its recipe or hide it altogether. Keep this flag to false if it's the case.")
+                @Config.Name("Statues - Show Statue of Broken Curses")
+                public static boolean statues_showOccludedSummons = false;
 
                 @Config.Comment("If true, shows more information about how to get into symbology and how it works in general")
                 @Config.Name("Symbology - Extended Intro")
@@ -1124,7 +1355,7 @@ public class ModConfig {
             @Config.Comment("If true, Torn Pages will only have a chance of unlocking new knowledge, as it may contain " +
                     "duplicate pages. Pages will always be unlocked sequentially, but later pages will be increasingly harder " +
                     "to unlock")
-            @Config.Name("Patchouli Integration - Revamp Vampire Book")
+            @Config.Name("Patchouli Integration - Harder Immortal Pages")
             public static boolean common_harderImmortalPages = false;
 
             public enum EPatchouliSecretPolicy {
@@ -1162,18 +1393,28 @@ public class ModConfig {
                 flags.put("brew_effects/show_raiseland", Flags.brewEffects_showRaiseLand);
                 flags.put("brew_effects/show_repellattacker", Flags.brewEffects_showRepellAttacker);
                 flags.put("brew_effects/show_weakenvampires", Flags.brewEffects_showWeakenVampires);
+                flags.put("circle_magic/shifting_seasons_foci", Flags.circleMagic_showShiftingSeasonsFoci);
                 flags.put("conjuring/show_extra", Flags.conjuring_showExtraEntity);
                 flags.put("conjuring/extended_intro", Flags.conjuring_enableExtendedIntro);
                 flags.put("conjuring/extended_fetish", Flags.conjuring_enableFetishExtension);
+                flags.put("crystal_ball/reveal_predictions", Flags.constructs_revealCrystalBallPredictions);
+                flags.put("fumes/funnels", Flags.fumes_enableFunnels);
+                flags.put("observations/add_werewolf", Flags.observations_enableLycanthropyLore);
+                flags.put("observations/show_lycanthropy_intro", Flags.observations_enableLycanthropyIntro);
+                flags.put("observations/show_lycanthropy_progress", Flags.observations_enableLycanthropyProgress);
+                flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
+                flags.put("observations/show_vampirism_intro", Flags.observations_enableVampirismIntro);
+                flags.put("observations/show_vampirism_progress", Flags.observations_enableVampirismProgress);
+                flags.put("statues/show_goddess", Flags.statues_showGoddess);
+                flags.put("statues/show_broken_curses", Flags.statues_showBrokenCurses);
+                flags.put("statues/show_occluded_summons", Flags.statues_showOccludedSummons);
                 flags.put("symbology/extended_intro", Flags.symbology_enableExtendedIntro);
                 flags.put("symbology/stroke_visualization", Flags.symbology_enableStrokeVisualization);
                 flags.put("symbology/show_secret", Flags.symbology_showSecret);
                 flags.put("symbology/show_knowledge", Flags.symbology_showKnowledge);
 
-                // Special flag that is required to hide the observations section of the book
-                flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
-
                 PatchouliApiIntegration.updateFlags(flags);
+                PatchouliApiIntegration.reloadBook();
 
             }
 

@@ -124,4 +124,10 @@ public class PlayerExtendedDataApi {
         return playerResize.accessor_getCurrentResizingScale();
     }
 
+    /** Returns true if the Player is able to use a Crystal Ball */
+    public static boolean isFortuneTeller(EntityPlayer player) {
+        PlayerExtendedData playerEx = WitcheryUtils.getExtension(player);
+        return playerEx.isFortuneTeller();
+    }
+
 }

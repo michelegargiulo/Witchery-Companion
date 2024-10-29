@@ -1,0 +1,18 @@
+{
+  "name": "Gulg's Gurdle",
+  "icon": "witchery:gulgs_grudle",
+  "category": "artifacts/clothing",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:gulgs_grudle",
+      "text": "The Quiver can be worn in the legs armor slot. In addition to providing a small amount of protection to the wearer, it also grants significantly increased damage in one's fist, allowing to do much more damage to creatures when bare-handed and launching them into the air."
+    },
+    {
+      "type": "text",
+      "title": "Affinity",
+      "text": "Being close to another player wearing $(l:artifacts/clothing/mogs_quiver)Mog's Quiver$(/l) grants a buff in $(item)Resistance$()."
+    }
+  ]
+}

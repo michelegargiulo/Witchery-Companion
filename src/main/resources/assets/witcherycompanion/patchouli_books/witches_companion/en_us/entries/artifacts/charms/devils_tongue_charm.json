@@ -1,0 +1,18 @@
+{
+  "name": "Devils Tongue Charm",
+  "icon": "witchery:devils_tongue_charm",
+  "category": "artifacts/charms",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:devils_tongue_charm",
+      "text": "This charm is a more powerful variation of the $(l:artifacts/charms/polynesia_charm)Polynesia Charm$(/l). If has all the properties of the latter, but when held, $(l:creatures/demon)Demons$(/l) will be significantly less likely to attack."
+    },
+    {
+      "type": "text",
+      "title": "Demon Trading",
+      "text": "Demons that adopt a non-hostile behaviour against the charm's user will also be inclined to trade with them. When bargaining, a Demon is likely to reduce its prices. Regardless of price, the charm gets damaged each time the player trades with a Demon, and when the charm breaks, there are no guarantees that the Demon will remain docile."
+    }
+  ]
+}

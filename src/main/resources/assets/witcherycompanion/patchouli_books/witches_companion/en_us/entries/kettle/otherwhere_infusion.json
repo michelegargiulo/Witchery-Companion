@@ -1,0 +1,33 @@
+{
+  "name": "Infusion of Otherwhere",
+  "icon": "witchery:otherwhere_spirit",
+  "category": "kettle",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "generic/secret_text",
+      "title": "Infusion of Otherwhere",
+      "description": "The Infusion of Otherwhere gives creatures the power of The End. The abilities available through the Infusion are utilized with various controls using a $(l:artifacts/tools/witches_hand)Witches Hand$(/l)",
+      "secret_key": "witcherycompanion:infusions/witchery:otherwhere"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Transposition",
+      "description": "Use to teleport a short distance towards the targeted location or creature.$(p)Hold the right mouse button to charge the teleport and teleport a long distance towards the targeted location or creature.",
+      "secret_key": "witcherycompanion:infusions/witchery:otherwhere"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Recall",
+      "description": "Sneak and hold the right mouse button to charge the infusion until a sound is played. When that happens, a $(item)Recall Point$() is ready to be set upon release.$(p)Sneak and use to return to the last set Recall Point.$(p)Sneak and punch a creature to teleport it and yourself to the last set Recall Point.",
+      "secret_key": "witcherycompanion:infusions/witchery:otherwhere"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Vertical Teleport",
+      "description": "Punch a creature to teleport it and the player into the air.",
+      "secret_key": "witcherycompanion:infusions/witchery:otherwhere"
+    }
+  ]
+}
+

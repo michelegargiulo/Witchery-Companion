@@ -1,7 +1,0 @@
-{
-  "name": "Wearables",
-  "description": "Special clothing ideal to protect from and fight mystical creatures",
-  "icon": "witchery:necromancer_robes",
-  "parent": "constructs",
-  "secret": false
-}

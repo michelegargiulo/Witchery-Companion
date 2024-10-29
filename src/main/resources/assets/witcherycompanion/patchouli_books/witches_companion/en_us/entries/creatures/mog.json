@@ -1,0 +1,20 @@
+{
+  "name": "Mog",
+  "icon": "witchery:mogs_quiver",
+  "category": "creatures",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:goblin_mog",
+      "text": "Together with $(l:creatures/gulg)Gulg$(/l), they're a couple of god-like creatures worshipped by $(l:creatures/hobgoblin)Hobgoblins$(/l).",
+      "offset": 0.12,
+      "scale": 0.95
+    },
+    {
+      "type": "text",
+      "title": "",
+      "text": "They may send their avatars to pay witches a visit who exploit their worship with a $(l:artifacts/statues/hobgoblin_patron)Statue of Hobgoblin Patron$(/l). Rumor has it that using a $(item)Nether Star$() may make them take immediate notice.$(p)The avatars of Mog and Gulg should not be left close to one another! $(l:artifacts/clothing/gulgs_gurdle)Gulg's Gurdle$(/l) and $(l:artifacts/clothing/mogs_quiver)Mog's Quiver$(/l) are rumored to be powerful artifacts."
+    }
+  ]
+}

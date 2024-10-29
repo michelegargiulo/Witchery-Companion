@@ -1,18 +1,30 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressLockEvent;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressResetEvent;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
 import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.SpiritEffectApi;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.bookcomponents.ColorableImage;
+import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.items.ItemTornPage;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.*;
 import com.smokeythebandicoot.witcherycompanion.utils.ReflectionHelper;
 import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.msrandom.witchery.brewing.ItemKey;
 import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
@@ -22,9 +34,12 @@ import net.msrandom.witchery.resources.BrewActionManager;
 import net.msrandom.witchery.util.WitcheryUtils;
 import vazkii.patchouli.api.BookContentsReloadEvent;
 import vazkii.patchouli.api.PatchouliAPI;
+import vazkii.patchouli.client.book.gui.GuiBook;
+import vazkii.patchouli.client.book.gui.GuiBookLanding;
 import vazkii.patchouli.client.book.template.BookTemplate;
 import vazkii.patchouli.client.book.text.BookTextParser;
 import vazkii.patchouli.client.book.text.SpanState;
+import vazkii.patchouli.common.book.Book;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
 import java.util.HashMap;
@@ -35,6 +50,8 @@ import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static com.smokeythebandicoot.witcherycompanion.api.progress.CapabilityWitcheryProgress.WITCHERY_PROGRESS_CAPABILITY;
 
 
 public class PatchouliApiIntegration {
@@ -55,19 +72,16 @@ public class PatchouliApiIntegration {
 
     public static void updateFlag(String flag, boolean value) {
         PatchouliAPI.instance.setConfigFlag(WitcheryCompanion.prefix(flag), value);
-        if (readyToReload) {
-            PatchouliAPI.instance.reloadBookContents();
-        }
     }
 
     public static void updateFlags(Map<String, Boolean> flags) {
         for (String flag : flags.keySet()) {
             PatchouliAPI.instance.setConfigFlag(WitcheryCompanion.prefix(flag), flags.get(flag));
         }
+    }
 
-        if (readyToReload) {
-            PatchouliAPI.instance.reloadBookContents();
-        }
+    public static void reloadBook() {
+        PatchouliAPI.instance.reloadBookContents();
     }
 
     public static final FlagReloader<ResourceLocation, SymbolEffect> symbolEffectReloader = new FlagReloader<>(
@@ -104,23 +118,11 @@ public class PatchouliApiIntegration {
             "content/spirit_effect_recipes/"
     );
 
-    /*
-    public static final Map<String, Boolean> immortalBookState = new HashMap<>();
-    public static final FlagReloader<String, Boolean> immortalBookReloader = new FlagReloader<>(
-            () -> {
-                immortalBookState.clear();
-                immo
-            },
-            String::valueOf,
-            "observations/immortal/level_"
-    );
-    */
-
     /** When book reload is requested, clear caches and reload processors **/
     @SubscribeEvent
     public static void onBookReload(BookContentsReloadEvent event) {
         // Clear cache of all the processors that implement caching
-        if (!event.book.getNamespace().equals(WitcheryCompanion.MODID)) return;
+        if (event.book == null || !event.book.getNamespace().equals(WitcheryCompanion.MODID)) return;
         if (readyToReload) {
             CapacityBrewActionProcessor.clearCache();
             ModifierBrewActionProcessor.clearCache();
@@ -128,6 +130,7 @@ public class PatchouliApiIntegration {
             DispersalBrewActionProcessor.clearCache();
             IncrementBrewActionProcessor.clearCache();
             MultiblockRegistry.reloadMultiblocks();
+            WitcheryCompanion.logger.debug("Patchouli Book Reloaded");
         }
 
         /* Maybe in the future, implement a custom book reloader. Probably Patchouli code will have to
@@ -145,14 +148,104 @@ public class PatchouliApiIntegration {
         */
     }
 
-    /** Only when player has joined world (and book content can be displayed) we should be able
+    /** Only when player has logged-in in a world (and book content can be displayed) we should be able
      * to call a book reload for Witchery Companion, as Witchery loads content on this very event **/
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onPlayerJoinedWorld(EntityJoinWorldEvent event) {
-        if (event.getEntity() == Minecraft.getMinecraft().player) {
-            readyToReload = true;
+    public static void onPlayerJoinedWorld(PlayerEvent.PlayerLoggedInEvent event) {
+        EntityPlayer player = event.player;
+        readyToReload = true;
+
+        // Update reloaders flags
+        cauldronRecipeReloader.reloadFlags(false);
+        spiritEffectReloader.reloadFlags(false);
+        brewActionReloader.reloadFlags(false);
+        symbolEffectReloader.reloadFlags(false);
+        // Reloading here is not necessary
+
+        // Update Immortal Book flags if revamp is enabled
+        if (ModConfig.IntegrationConfigurations.PatchouliIntegration.common_replaceImmortalsBook) {
+            updateImmortalBookFlags(player);
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
+    public static void onItemTooltip(ItemTooltipEvent event) {
+        ItemStack stack = event.getItemStack();
+
+        if (event.getEntityPlayer() == null) return;
+        if (!event.getEntityPlayer().world.isRemote) return;
+
+        GuiScreen currentGui = Minecraft.getMinecraft().currentScreen;
+
+        if (currentGui instanceof GuiBook && (!(currentGui instanceof GuiBookLanding))) {
+            GuiBook guiBook = (GuiBook) currentGui;
+
+            // For some reason "guiBook.book" crashes in a weird way in a dev env, so just use Reflection to access the
+            // field. The prod environment gets accessed first (and field is cached for performance). If it fails due to
+            // deobf mapping in the dev env, then try to get book, by the same means
+            Book book = ReflectionHelper.getField(guiBook, "book", false);
+            if (book == null)  book = ReflectionHelper.getField(guiBook, "field_146297_k", false);
+
+            if (book != null && book.owner.getModId().equals(WitcheryCompanion.MODID)) {
+                BrewAction action = BrewActionManager.INSTANCE.getAction(ItemKey.fromStack(stack));
+                if (action != null) {
+                    int cost = action.getPowerCost();
+                    if (cost > 0) {
+                        event.getToolTip().add(I18n.format("witchery.brewing.ingredientpowercost", cost, (int)Math.ceil(1.4 * (double)cost)));
+                    }
+                }
+            }
+        }
+    }
+
+    /** Anytime the progress is updated, some Patchouli pages need to be reloaded, so mark the book as dirty **/
+    @SubscribeEvent
+    public static void onProgressReset(WitcheryProgressResetEvent event) {
+        updateImmortalBookFlags(event.player, 0);
+    }
+
+    /** Anytime the progress is updated, some Patchouli pages need to be reloaded, so mark the book as dirty **/
+    @SubscribeEvent
+    public static void onProgressLock(WitcheryProgressLockEvent event) {
+        if (event.progressKey.contains("observations/immortal/level_"))
+            updateImmortalBookFlags(event.player);
+    }
+
+    /** Anytime the progress is updated, some Patchouli pages need to be reloaded, so mark the book as dirty **/
+    @SubscribeEvent
+    public static void onProgressUpdate(WitcheryProgressUnlockEvent event) {
+        if (event.progressKey.contains("observations/immortal/level_"))
+            updateImmortalBookFlags(event.player);
+    }
+
+    /** This is only called server-side, but Patchouli handles it client-side
+     * This is a special case for the ImmortalBook progress reloader **/
+    public static void updateImmortalBookFlags(EntityPlayer player, int progressNum) {
+        for (int i = 1; i <= 10; i++) {
+            String progressKey = ItemTornPage.VAMPIRE_PAGE_PROGRESS + i;
+            PatchouliAPI.instance.setConfigFlag(progressKey, i <= progressNum);
+        }
+        //PatchouliAPI.instance.reloadBookContents(); // Must reload here when the book is closed
+    }
+
+    /** This is only called server-side, but Patchouli handles it client-side
+     * This is a special case for the ImmortalBook progress reloader. This function
+     * computes the current progress from the capability **/
+    public static void updateImmortalBookFlags(EntityPlayer player) {
+        int progressNum = 1;
+        IWitcheryProgress progress = player.getCapability(WITCHERY_PROGRESS_CAPABILITY, null);
+        if (progress != null) {
+            while (progressNum <= 10) {
+                String progressKey = ItemTornPage.VAMPIRE_PAGE_PROGRESS + progressNum;
+                if (!progress.hasProgress(progressKey)) {
+                    break;
+                }
+                progressNum++;
+            }
+        }
+
+        updateImmortalBookFlags(player, progressNum);
     }
 
 
@@ -216,7 +309,7 @@ public class PatchouliApiIntegration {
             this.iteratorSupplier = iteratorSupplier;
         }
 
-        public void reloadFlags() {
+        public void reloadFlags(boolean reloadBook) {
             // Clear all the flags
             for (String flag : flags.keySet()) {
                 PatchouliAPI.instance.setConfigFlag(flag, false);
@@ -234,6 +327,16 @@ public class PatchouliApiIntegration {
 
             // Use the PatchouliAPIIntegration to update all flags and reload book contents
             updateFlags(flags);
+
+            // Reload book if necessary
+            // Recommended when multiple reloaders are called in sequence
+            if (reloadBook) {
+                PatchouliAPI.instance.reloadBookContents();
+            }
+        }
+
+        public void reloadFlags() {
+            reloadFlags(true);
         }
 
 
