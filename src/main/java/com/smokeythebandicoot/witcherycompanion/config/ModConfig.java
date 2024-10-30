@@ -1004,10 +1004,6 @@ public class ModConfig {
 
     public static class IntegrationConfigurations {
 
-        @Config.Comment("Configuration related to Construct Armory integration")
-        @Config.Name("Construct Armory Integration - Configuration")
-        public static ConarmIntegration conarmIntegrationConfig;
-
         @Config.Comment("Configuration related to Just Enough Resources integration")
         @Config.Name("JER Integration - Configuration")
         public static JerIntegration jerIntegrationConfig;
@@ -1038,15 +1034,6 @@ public class ModConfig {
         @Config.Name("Thaumcraft Integration - Configuration")
         public static ThaumcraftIntegration ThaumcraftIntegrationConfig;
 
-
-        public static class ConarmIntegration {
-
-            @Config.Comment("If true, enabled Baba's Touch Trait. When applied on Helmets, it gives the " +
-                    "same effects as if the player was wearing Baba Yaga's Hat")
-            @Config.Name("Conarm Integration - Enable Baba Yaga's Touch Trait")
-            @Config.RequiresMcRestart
-            public static boolean babaYagasTouchTrait_enable = false;
-        }
 
         public static class JerIntegration {
 
@@ -1422,27 +1409,57 @@ public class ModConfig {
 
         public static class TinkersIntegration {
 
-            @Config.Comment("Master switch for all Tinkers integrations")
-            @Config.Name("Tinkers Integration - Enabled")
-            public static boolean enableTinkersIntegration = true;
+            @Config.Comment("Master switch for all Tinkers Construct integrations")
+            @Config.Name("Tinkers Construct Integration - Enabled")
+            public static TinkersConstructIntegration tinkersIntegration;
 
-            public static class ModifiersConfig {
+            @Config.Comment("Master switch for all Construct Armory integrations")
+            @Config.Name("Construct Armory Integration - Enabled")
+            public static ConstructArmoryIntegration conarmIntegration;
 
-                @Config.Comment("Multiplier for damage dealt to Werewolves")
-                @Config.RangeDouble(min = 0.1f, max = 8.0f)
-                @Config.Name("Silvered - Damage Multiplier")
-                public static float silvered_werewolfDamageMultiplier = 2.0f;
+            public static class TinkersConstructIntegration {
 
-                @Config.Comment("Multiplier for damage dealt to Werewolves")
-                @Config.RangeDouble(min = 0.1f, max = 8.0f)
-                @Config.Name("Wolfsbane - Damage Multiplier")
-                public static float wolfsbane_werewolfDamageMultiplier = 2.5f;
+                @Config.Comment("Master switch for all Tinkers Construct integrations")
+                @Config.Name("Tinkers Construct Integration - Enabled")
+                public static boolean enableTinkersIntegration = true;
 
-                @Config.Comment("Multiplier for damage dealt to non-Werewolves")
-                @Config.RangeDouble(min = 0.1f, max = 8.0f)
-                @Config.Name("Wolfsbane - Damage Penalty")
-                public static float wolfsbane_nonWerewolfDamageMultiplier = 0.8f;
+                public static class ModifiersConfig {
 
+                    @Config.Comment("Multiplier for damage dealt to Werewolves")
+                    @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                    @Config.Name("Silvered - Damage Multiplier")
+                    public static float silvered_werewolfDamageMultiplier = 2.0f;
+
+                    @Config.Comment("Multiplier for damage dealt to Werewolves")
+                    @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                    @Config.Name("Wolfsbane - Damage Multiplier")
+                    public static float wolfsbane_werewolfDamageMultiplier = 2.5f;
+
+                    @Config.Comment("Multiplier for damage dealt to non-Werewolves")
+                    @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                    @Config.Name("Wolfsbane - Damage Penalty")
+                    public static float wolfsbane_nonWerewolfDamageMultiplier = 0.8f;
+
+                }
+
+            }
+
+            public static class ConstructArmoryIntegration {
+
+                @Config.Comment("Master switch for all Construct Armory integrations")
+                @Config.Name("Construct Armory Integration - Enabled")
+                public static boolean enableConarmIntegration = true;
+
+                public static class ModifiersConfig {
+
+
+                    @Config.Comment("If true, enabled Baba's Touch Trait. When applied on Helmets, it gives the " +
+                            "same effects as if the player was wearing Baba Yaga's Hat")
+                    @Config.Name("Conarm Integration - Enable Baba Yaga's Touch Trait")
+                    @Config.RequiresMcRestart
+                    public static boolean babaYagasTouchTrait_enable = false;
+
+                }
 
             }
 

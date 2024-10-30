@@ -9,11 +9,13 @@ import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.Patchouli
 import com.smokeythebandicoot.witcherycompanion.integrations.quark.BlockMandrakeCropIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.thaumcraft.ThaumcraftIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPPlugin;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
 import com.smokeythebandicoot.witcherycompanion.network.CompanionNetworkChannel;
 import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.FamiliarPatches;
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.TinkersUtils;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -22,9 +24,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.msrandom.witchery.init.WitcheryBlocks;
-import net.msrandom.witchery.init.items.WitcheryBrewItems;
-import net.msrandom.witchery.init.items.WitcheryGeneralItems;
 import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 import vazkii.patchouli.api.PatchouliAPI;
 
@@ -38,6 +39,11 @@ public class CommonProxy {
 
         registerNetworkHandlers();
 
+        registerOreDicts();
+
+
+        TinkersUtils.isTicLoaded = Loader.isModLoaded(Mods.TINKERS_CONSTRUCT);
+        TinkersUtils.isCoALoaded = Loader.isModLoaded(Mods.CONSTRUCT_ARMORY);
 
         if (ModConfig.PatchesConfiguration.InfusionTweaks.soulBrews_fixPersistency)
             MinecraftForge.EVENT_BUS.register(SymbolEffectPatch.INSTANCE);
@@ -53,6 +59,18 @@ public class CommonProxy {
         if (ModConfig.IntegrationConfigurations.QuarkIntegration.fixMandrakesRightClickHarvest &&
                 Loader.isModLoaded(Mods.QUARK))
             MinecraftForge.EVENT_BUS.register(BlockMandrakeCropIntegration.INSTANCE);
+
+        if (ModConfig.IntegrationConfigurations.ThaumcraftIntegration.enableThaumcraftIntegration &&
+                Loader.isModLoaded(Mods.THAUMCRAFT))
+            MinecraftForge.EVENT_BUS.register(ThaumcraftIntegration.class);
+
+        if (ModConfig.IntegrationConfigurations.TinkersIntegration.TinkersConstructIntegration.enableTinkersIntegration &&
+                Loader.isModLoaded(Mods.TINKERS_CONSTRUCT))
+            Integration.registerTinkers();
+
+        if (ModConfig.IntegrationConfigurations.TinkersIntegration.ConstructArmoryIntegration.enableConarmIntegration &&
+                Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
+            Integration.registerConarm();
 
         if (ModConfig.IntegrationConfigurations.ThaumcraftIntegration.enableThaumcraftIntegration &&
                 Loader.isModLoaded(Mods.THAUMCRAFT))
@@ -120,5 +138,10 @@ public class CommonProxy {
                     'X', new ItemStack(Items.BOOK));
         }
     }
+
+    protected void registerOreDicts() {
+        OreDictionary.registerOre("cropGarlic", WitcheryBlocks.GARLIC);
+    }
+
 
 }

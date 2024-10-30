@@ -26,6 +26,7 @@
 - [ ] Homing
 - [ ] Seeping
 - [ ] Nullifying
+- [ ] Barked
 
 
 
@@ -125,6 +126,10 @@ Whenever the player has Poison status effect, it will make it sip into the soil,
 ### Nullifying [Nullifying Bolts]
 [On Weapons (Bolts and Arrows only)]
 Ignores Bark Belt and Baba Yaga's torns when doing damage. When shoot by a player that is wearing the full Nullified armor, on hit, the target is drained of 1/3 of their magical power (infusion power?) and Poppet-based protections won't work (Vampiric and Death). Also removes magical potion effects, except poison and wither. Shooter is drained of all their magical power, if they have any
+
+### Barked [Bark Belt]
+[On Armor]
+Armor provides protection AND Bark Belt charges, that, as long as the attacking weapon is not made out of wood, will protect the wearer by consuming the belt charges instead of doing damage. Belt charges will recharge by simply standing on grass or mycelium (CraftTweaker support already added)
 
 
 
