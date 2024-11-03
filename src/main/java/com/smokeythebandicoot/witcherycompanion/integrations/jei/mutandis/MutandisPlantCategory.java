@@ -63,8 +63,8 @@ public class MutandisPlantCategory extends BaseRecipeCategory<MutandisPlantWrapp
             IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
             registry.addRecipes(getRecipes(guiHelper), UID);
-            registry.addRecipeCatalyst(new ItemStack(WitcheryIngredientItems.MUTANDIS_EXTREMIS), UID);
             registry.addRecipeCatalyst(new ItemStack(WitcheryIngredientItems.MUTANDIS), UID);
+            registry.addRecipeCatalyst(new ItemStack(WitcheryIngredientItems.MUTANDIS_EXTREMIS), UID);
         } catch (Throwable t) {
             WitcheryCompanion.logger.error(t);
         }
