@@ -7,6 +7,7 @@ witcherycompanion.poppetitem.restrictiontooltip.pve=This Poppet won't affect §4
 witcherycompanion.poppetitem.restrictiontooltip.pvp=This Poppet won't affect §4Creatures§r
 
 # JEI plugins
+witcherycompanion.gui.altar.name=Altar Power Sources
 witcherycompanion.gui.bark_belt.name=Bark Belt
 witcherycompanion.gui.goblin_trade.name=Hobgoblin Trades
 witcherycompanion.gui.imp_shiny.name=Flame Imp Shinies

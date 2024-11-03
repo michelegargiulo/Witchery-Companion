@@ -16,6 +16,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.msrandom.witchery.init.WitcheryBlocks;
+import net.msrandom.witchery.init.items.WitcheryEquipmentItems;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -31,7 +33,6 @@ public class AltarCategory extends BaseRecipeCategory<AltarWrapper> {
 
     public AltarCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(backgroundTexture, 0, 0, 124, 144, 124, 144);
-        icon = guiHelper.createDrawable(iconTexture, 0, 0, 16, 16, 16, 16);
         localizedName = I18n.format("witcherycompanion.gui.altar.name");
     }
 
@@ -53,6 +54,7 @@ public class AltarCategory extends BaseRecipeCategory<AltarWrapper> {
             IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
             registry.addRecipes(getRecipes(guiHelper), UID);
+            registry.addRecipeCatalyst(new ItemStack(WitcheryBlocks.ALTAR), UID);
         } catch (Throwable t) {
             WitcheryCompanion.logger.error(t);
         }

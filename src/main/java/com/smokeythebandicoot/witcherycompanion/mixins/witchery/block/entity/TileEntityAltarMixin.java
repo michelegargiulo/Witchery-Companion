@@ -37,12 +37,6 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     private long lastPowerUpdate;
 
     @Shadow(remap = false)
-    private int enhancementLevel;
-
-    @Shadow(remap = false)
-    private Set<Block> extraNatureIDs;
-
-    @Shadow(remap = false)
     private float maxPower;
 
     @Shadow(remap = false) @Final

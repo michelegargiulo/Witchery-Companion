@@ -37,8 +37,8 @@ public class AltarApi {
         blocks.put(Blocks.REEDS, new AltarPowerSource(3, 50, Ingredient.fromItem(Items.REEDS)));
         blocks.put(Blocks.PUMPKIN, new AltarPowerSource(4, 20));
         blocks.put(Blocks.PUMPKIN_STEM, new AltarPowerSource(3, 20, Ingredient.fromItem(Items.PUMPKIN_SEEDS)));
-        blocks.put(Blocks.BROWN_MUSHROOM_BLOCK, new AltarPowerSource(3, 20, Ingredient.EMPTY));
-        blocks.put(Blocks.RED_MUSHROOM_BLOCK, new AltarPowerSource(3, 20, Ingredient.EMPTY));
+        blocks.put(Blocks.BROWN_MUSHROOM_BLOCK, new AltarPowerSource(3, 20, Ingredient.fromStacks(new ItemStack(Blocks.BROWN_MUSHROOM_BLOCK))));
+        blocks.put(Blocks.RED_MUSHROOM_BLOCK, new AltarPowerSource(3, 20, Ingredient.fromStacks(new ItemStack(Blocks.RED_MUSHROOM_BLOCK))));
         blocks.put(Blocks.MELON_BLOCK, new AltarPowerSource(4, 20));
         blocks.put(Blocks.MELON_STEM, new AltarPowerSource(3, 20, Ingredient.fromItem(Items.MELON_SEEDS)));
         blocks.put(Blocks.VINE, new AltarPowerSource(2, 50));
@@ -84,6 +84,16 @@ public class AltarApi {
     /** Registers a new Blockstate as a valid block that recharges Altar */
     public static void registerBlockstate(IBlockState state, int factor, int limit) {
         validStates.put(state, new AltarPowerSource(factor, limit));
+    }
+
+    /** Registers a new Block as a valid block that recharges Altar */
+    public static void registerBlock(Block block, int factor, int limit, Ingredient representativeItem) {
+        validBlocks.put(block, new AltarPowerSource(factor, limit, representativeItem));
+    }
+
+    /** Registers a new Blockstate as a valid block that recharges Altar */
+    public static void registerBlockstate(IBlockState state, int factor, int limit, Ingredient representativeItem) {
+        validStates.put(state, new AltarPowerSource(factor, limit, representativeItem));
     }
 
     /** Registers a new Class as a valid block that recharges Altar */

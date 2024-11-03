@@ -181,6 +181,7 @@ jar in the resource packs folder.
         - Hooks into Witchery extended data to expose various progress and capability of the player so that it can be used to customize recipes and events in CraftTweaker. For example, current form, bottling skill, familiar info, etc. More info on the Wiki
 
 - **Just Enough Items**
+  - **[Altar]** Show power sources
   - **[Goblin]** Show possible Goblin trades
   - **[Flame Imp]** Show items that the Imp accepts as gifts and their respective affection boost
   - **[Flame Imp]** show items that the Imp will gift to the player and the level required to have that item gifted (requires Just Enough Resources)
