@@ -20,6 +20,8 @@ jar in the resource packs folder.
   - **[Cursed Blocks]** Fix crash when using trigger dispersal. ~They still don't work, but they should not crash the game~ Now it works, even on supported Tile Entities! Try cursing chests, pressure plates, doors and even Beds and Tripwires! More info on the Wiki
   - **[Fetish]** Fix fetish blocks not having drops (Scarecrows, Trent Effiges, Vines)
   - **[Fetish]** Fix fetishes forgetting data on world reload, including the players they are bound to
+  - **[Garlic Garland]** Fix the Garlic Garland being placed with the wrong facing upon placement
+  - **[Garlic Garland]** Fix inconsistent Bounding Box
   - **[Kettle]** Fix throwing splash brews immediately after brewing them
   - **[Mandrake Crop]** Fix spawning mandrakes even when not fully mature
   - **[Poppet Shelf]** Fix upside-down poppet rendering
