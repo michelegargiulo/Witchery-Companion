@@ -39,8 +39,8 @@ jar in the resource packs folder.
   - **[Herbology Book]** Fix plants being rendered above text
 - **Brews**
   - **[Common]** Fix Liquid Dispersal having no effect
-  - **[Common]** Completely overhaul the Triggered Dispersal system, fixing crashes, broken rendering, making it work on some modded blocks with possibility to add compats, both by mod authors and thirt parties
-  - **[Common]** Fix Nether Star not removing power ceiling (Brews that include Nether Stars can have an unlimited amount of effects with full strength and duration modifiers) (non configurable)
+  - **[Common]** Completely overhaul the Triggered Dispersal system, fixing crashes, broken rendering, making it work on some modded blocks with possibility to add compats, both by mod authors and third parties
+  - **[Common]** Fix Nether Star not removing power ceiling (Brews that include Nether Stars can have an unlimited amount of effects with full strength and duration modifiers) (not configurable)
   - **[Brew of Blast]** Fix breaking terrain even if the 'ignore blocks' modifier was added
   - **[Brew of Erosion]** Fix random integer crash
   - **[Brew of Frog's Tongue]** Fix crash when the brew pulls a null entity
@@ -62,6 +62,7 @@ jar in the resource packs folder.
 - **Fluids**
   - **[Soul Brews]** Enable Forge Universal Bucket, otherwise fluids like Flowing Spirit could not be picked up (non configurable)
 - **Items**
+  - **[Cane Sword]** Fix regaining full durability upon sheathing/unsheathing
   - **[Icy Needle]** Fix having an effect only when right-clicking on a block
   - **[Rowan Boat]** Fix Rowan Boat not having texture (not configurable)
   - **[Spectral Stone]** Fix NBT being retained after entity is released, effectively duping it
@@ -110,6 +111,7 @@ jar in the resource packs folder.
   - **[Cat Familiar]** Separate their loot table from Vanilla ocelots loot table
   - **[Coven Witch]** Separate their loot table from Vanilla witches loot table
   - **[Demon]** Tweak to give them their own loot table instead of hard-coded loot
+  - **[Duplicate]** Tweak to configure custom lifespan (in ticks) of duplicates
   - **[Flame Imp]** Tweak to add CraftTweaker compat to manipulate items that can be given to him (shinies) and gifts that it gives in exchange
   - **[Flame Imp]** Tweak to modify Shiny cooldown  
   - **[Flame Imp]** Tweak to not consume shinies given to it while on cooldown  
@@ -124,8 +126,10 @@ jar in the resource packs folder.
   - **[Owl]** Tweak to change the model slightly when the owl is sitting
   - **[Owl]** Tweak to render children Owls smaller
   - **[Spectre]** Tweak to add its own loot table
-  - **[Spectre]** Tweak to wait a minimum delay before despawning
+  - **[Spectre]** Tweak to wait a minimum delay before de-spawning
   - **[Spectre]** Tweak to modify spectre attributes (Follow range, Movement speed, Attack damage)
+- **Infusion**
+  - **[Common]** Tweak Infusion Energy Bar and Creature Charge bar position
 - **Items**
   - **[Chalk]** Tweak Chalk max stack size to 1, to avoid weird item loss due to stacking problems
   - **[Creative Medallion]** Tweak to enable non-creative mode players to use the medallion
@@ -164,31 +168,42 @@ jar in the resource packs folder.
 - **CraftTweaker**
     - **[Altar]** 
         - Register or un-register Blocks nearby the altar that can power the Altar (power sources)
+    - **[Bark Belt]**
+      - Customize blocks on which the player can stand on to recharge
+    - **[Brazier]**
+      - Custom recipes (Summoning and Potion Effects)
+    - **[Distillery]**
+      - Custom recipes
     - **[Kettle]**
-        - Add / Remove Heatsources
-          - Add / Remove recipes
+        - Add / Remove Heat sources
+        - Custom recipes
     - **[Witch's Cauldron]** 
-        - Register or un-register Blocks underneath the cauldron that can act as a heat
-      source. Supports fluids
+        - Register or un-register Blocks underneath the cauldron that can act as a heat source. Supports fluids
+        - Custom recipes
     - **[Brew of Erosion]** 
-        - Customize what the brew can mine, destroy or ignore, including
-      a maximum harvest level
+        - Customize what the brew can mine, destroy or ignore, including a maximum harvest level
     - **[Hobgoblin trades]** 
         - Customize trades and various aspects related to them
+    - **[Mutandis]** 
+        - Custom mutations (Grass-type, Clay-type and plants)
+    - **[Spinning Wheel]** 
+        - Custom recipes
     - **[Flame Imps]**
         - Customize gifts for each level with custom criteria
         - Customize items that can be donated to them (shinies) and their affection boost
-    - **[Bark Belt]** 
-        - Customize blocks on which the player can stand on to recharge
     - **[Player]**
         - Hooks into Witchery extended data to expose various progress and capability of the player so that it can be used to customize recipes and events in CraftTweaker. For example, current form, bottling skill, familiar info, etc. More info on the Wiki
 
 - **Just Enough Items**
   - **[Altar]** Show power sources
+  - **[Bark Belt]** Show blocks that can recharge Bark Charges
   - **[Goblin]** Show possible Goblin trades
   - **[Flame Imp]** Show items that the Imp accepts as gifts and their respective affection boost
-  - **[Flame Imp]** show items that the Imp will gift to the player and the level required to have that item gifted (requires Just Enough Resources)
-  - **[Bark Belt]** show blocks that recharge the Bark Belt
+  - **[Flame Imp]** Show items that the Imp will gift to the player and the level required to have that item gifted (requires Just Enough Resources)
+  - **[Mirror]** Show Duplication Grenade recipe
+  - **[Mutandis]** Show mutations (grass, clay and plants)
+  - **[Sun Collector]** Show Sun Grenade recipe
+  - **[Wolf Altar]** Show Moon Charm recipe
 
 - **Just Enough Resources**
   - **[Entities]** Integration to register many entities and their loot in entity drops category
@@ -196,10 +211,14 @@ jar in the resource packs folder.
 - **The One Probe**
   - **[Altar]** Shows Available power, Max power and recharge rate
   - **[Witch's Cauldron]** Shows whether the cauldron is boiling and has enough power for the current ingredients, among with the ingredients themselves
+  - **[Crystal Ball]** Shows Owner and Cooldown
   - **[Hobgoblin]** Shows current profession name
-  - **[Flame Imp]** Shows whether the Imp has a contract and with who, it's trade level and cooldown status (extended information)
+  - **[Flame Imp]** Shows whether the Imp has a contract and with whom, it's trade level and cooldown status (extended information)
   - **[Grassper]** Shows current held item
   - **[Kettle]** Shows if the Kettle has enough power for the recipe and if it's ruined. Also shows inserted items, shows dimension and familiar requirements and, in case of correct recipe, its output.
+  - **[Mirror]** Show if the Mirror is the exit for the Overworld.
+  - **[Sun Collector]** Show charge progress.
+  - **[Statue of Hobgoblin Patron]** Show Owner and worship level.
 
 - **Enchantment Descriptions**
   - Add Enchantment descriptions for all enchantments added by Witchery

@@ -7,9 +7,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 import net.msrandom.witchery.block.BlockAltar;
 import net.msrandom.witchery.block.entity.TileEntityAltar;
 
@@ -47,6 +49,15 @@ public class Utils {
         return block.getStateFromMeta(meta == null ? stack.getMetadata() : meta);
     }
 
+    public static List<Block> getBlocksForOre(String name) {
+        List<Block> blockList = new ArrayList<>();
+        NonNullList<ItemStack> items = OreDictionary.getOres(name);
+        for (ItemStack item : items) {
+            blockList.add(Block.getBlockFromItem(item.getItem()));
+        }
+        return blockList;
+    }
+
     public static void logException(String message, Throwable t) {
         WitcheryCompanion.logger.error(message);
         WitcheryCompanion.logger.error(t.getMessage());
@@ -59,13 +70,6 @@ public class Utils {
 
     public static ResourceLocation generateRandomRecipeId(String pathPrefix) {
         return new ResourceLocation(WitcheryCompanion.MODID, pathPrefix + UUID.randomUUID().toString().replace("-", ""));
-    }
-
-    public static int argbToInt(byte a, byte r, byte g, byte b) {
-        return ((a & 0xFF) << 24) |
-               ((r & 0xFF) << 16) |
-               ((g & 0xFF) << 8)  |
-               (b & 0xFF);
     }
 
 

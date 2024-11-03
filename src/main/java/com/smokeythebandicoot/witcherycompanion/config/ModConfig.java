@@ -235,6 +235,22 @@ public class ModConfig {
             @Config.Name("Twister Effect - Tweak Cooldown")
             public static int infusedSpiritTwister_tweakCooldown = 10;
 
+            @Config.Comment("Sets the amount of ticks between Twister effect activations")
+            @Config.Name("Infusion Energy Bar - Offset X")
+            public static float infusion_tweakEnergyBarOffsetX = 0;
+
+            @Config.Comment("Sets the amount of ticks between Twister effect activations")
+            @Config.Name("Infusion Energy Bar - Offset Y")
+            public static float infusion_tweakEnergyBarOffsetY = 0;
+
+            @Config.Comment("Sets the amount of ticks between Twister effect activations")
+            @Config.Name("Infusion Creature Energy Bar - Offset X")
+            public static float infusion_tweakCreatureBarOffsetX = 0;
+
+            @Config.Comment("Sets the amount of ticks between Twister effect activations")
+            @Config.Name("Infusion Creature Energy Bar - Offset Y")
+            public static float infusion_tweakCreatureBarOffsetY = 0;
+
         }
 
         public static class CommonTweaks {
@@ -253,13 +269,6 @@ public class ModConfig {
             @Config.Comment("Fix crash when loot function is applied and a Null Random is passed to it (JER does this)")
             @Config.Name("Loot Utils - Fix NPE on JER Integration")
             public static boolean levelledRandomEnchant_fixCrashNullRandom = true;
-
-            @Config.Comment("If true, Witchery:Resurrected won't disable flight when the player is not in a Creature " +
-                    "form  that is capable to fly (eg. Vampire in bat form) but is still capable to fly due to other " +
-                    "mods (Avaritia infinity armor, Morph flying mobs, etc) when certain events happen (dimension " +
-                    "change), player change form, etc")
-            @Config.Name("Flight - Preserve Flight Capability")
-            public static boolean flight_preserveFlightCapability = true;
 
             @Config.Comment("Fix crash an Entity (such as Lord of Torment, or Lilith) uses a Spell that has been disabled. " +
                     "As a side effect of enabling this, spell projectiles will have a default size and a random color.")
@@ -362,6 +371,14 @@ public class ModConfig {
             @Config.Name("Coffin - Fix Crash When Moved By Piston")
             public static boolean coffin_fixPistonMoveCrash = true;
 
+            @Config.Comment("Fix the Garlic Garland having incorrect Bounding Boxes.")
+            @Config.Name("Garlic Garland - Fix Bounding Box")
+            public static boolean garlicGarland_fixBoundingBox = true;
+
+            @Config.Comment("Fix the Garlic Garland being placed with the wrong facing upon placement.")
+            @Config.Name("Garlic Garland - Fix Facing on Placement")
+            public static boolean garlicGarland_fixFacingOnPlacement = true;
+
             @Config.Comment("If true, enables Crafttweaker integration for Kettle. Defaults to true, " +
                     "as if enabled and not used does not alter Witchery behaviour")
             @Config.Name("Kettle - Tweak Enable Crafttweaker Integration")
@@ -462,6 +479,11 @@ public class ModConfig {
             @Config.Name("Witches Oven - Fix Burning Particles")
             public static boolean witchesOven_fixBurningParticlesHeight = true;
 
+            @Config.Comment("If true, fixes fences connecting to the statue, and buttons and levers cannot be placed " +
+                    "anymore on the statue")
+            @Config.Name("Wolf Altar - Fix Face Shape")
+            public static boolean wolfAltar_fixFaceShape = true;
+
             @Config.Comment("If true, when the Wolf Trap is activated, warns the player about approaching werewolves")
             @Config.Name("Wolf Trap - Tweak Warn Players")
             public static boolean wolfTrap_warnPlayers = false;
@@ -514,6 +536,10 @@ public class ModConfig {
             @Config.Comment("If true, allows CraftTweaker integration with Bark Belt")
             @Config.Name("Bark Belt - Tweak Enable Crafttweaker Integration")
             public static boolean barkBelt_tweakCraftTweakerIntegration = true;
+
+            @Config.Comment("If true, Cane Sword will retain its damage when sheathing/unsheathing")
+            @Config.Name("Cane Sword - Fix Preserve Damage on Unsheathing")
+            public static boolean caneSword_fixDamageOnSheathe = true;
 
             @Config.Comment("If true, players will be able to use the Creative Medallion even if not in creative mode")
             @Config.Name("Creative Medallion - Tweak Disable Creative Requirement")
@@ -730,6 +756,11 @@ public class ModConfig {
             @Config.Name("Coven Witch - Tweak Fight Quests Peaceful Rerolls")
             @Config.RangeInt(min = 0, max = 10)
             public static int covenWitch_tweakFightQuestsPeacefulRerolls = 0;
+
+            @Config.Comment("Sets the total lifespan (in ticks) of a Duplicate entity (spawned by Duplication Grenades). " +
+                    "Default Witchery is 200 ticks (10 seconds)")
+            @Config.RangeInt(min = 1, max = 10000000)
+            public static int duplicate_tweakTickLifespan = 200;
 
             @Config.Comment("If true, fixes a freeze when the Broom breaks due to not dismounting passengers")
             @Config.Name("Enchanted Broom - Fix Freeze On Break")

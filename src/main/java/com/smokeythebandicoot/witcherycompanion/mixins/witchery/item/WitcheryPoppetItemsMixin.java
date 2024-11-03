@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  [Bugfix] Fix crash when player that is cursed is protected by voodoo protection poppet
  */
 @Mixin(WitcheryPoppetItems.class)
-public abstract class WitcheryPoppetItemMixin {
+public abstract class WitcheryPoppetItemsMixin {
 
     @Shadow(remap = false)
     public static ItemStack findBoundPoppetInWorld(WitcheryPoppetItems.ItemPoppet poppetType,
