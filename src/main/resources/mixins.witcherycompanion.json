@@ -25,6 +25,7 @@
     "witchery.block.BlockStockadeMixin",
     "witchery.block.BlockSunCollectorMixin",
     "witchery.block.BlockWitchCauldronMixin",
+    "witchery.block.BlockWolfAltarMixin",
     "witchery.block.WitcheryBlockButtonMixin",
     "witchery.block.WitcheryBlockDoorMixin",
     "witchery.block.entity.TileEntityAlderDoorMixin",
