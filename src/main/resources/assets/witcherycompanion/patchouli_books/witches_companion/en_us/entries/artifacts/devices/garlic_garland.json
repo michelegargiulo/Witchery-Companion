@@ -1,0 +1,13 @@
+{
+  "name": "Garlic Garland",
+  "icon": "witchery:garlic_garland",
+  "category": "artifacts/devices",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:garlic_garland",
+      "text": "A Garlic Garland is more than a mere decoration. It can be placed in the world to keep lesser vampires at bay, but players affected by $(l:observations/vampirism)Vampirism$(/l) are too strong to be kept away, even if not even them can destroy placed Garlands, and will burn when they attempt to break them."
+    }
+  ]
+}
