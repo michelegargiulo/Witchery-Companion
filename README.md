@@ -32,6 +32,7 @@ jar in the resource packs folder.
   - **[Spirit Portal Block]** Fix Spirit Portal Block having wrong collision box when placed along the Z-axis
   - **[Statue of Broken Curses]** Tweak to reduce the bounding box volume
   - **[Statue of Goddess]** Fix being kicked from servers for flying when standing on top of the statue
+  - **[Statue of Hobgoblin Patron]** Tweak to reduce the bounding box volume
   - **[Statue of Occluded Summons]** Tweak to reduce the bounding box volume
   - **[Witch's Cauldron]** Fix bottling skill being impossible to increase
   - **[Witch's Cauldron]** Fix right-clicking with an empty Bucket voiding the brew inside
@@ -43,7 +44,7 @@ jar in the resource packs folder.
   - **[Herbology Book]** Fix plants being rendered above text
 - **Brews**
   - **[Common]** Fix Liquid Dispersal having no effect
-  - **[Common]** Completely overhaul the Triggered Dispersal system, fixing crashes, broken rendering, making it work on some modded blocks with possibility to add compats, both by mod authors and third parties
+  - **[Common]** Completely overhaul the Triggered Dispersal system, fixing crashes, broken rendering, making it work on some modded blocks with an api that is easy to adopt and implement
   - **[Common]** Fix Nether Star not removing power ceiling (Brews that include Nether Stars can have an unlimited amount of effects with full strength and duration modifiers) (not configurable)
   - **[Brew of Blast]** Fix breaking terrain even if the 'ignore blocks' modifier was added
   - **[Brew of Erosion]** Fix random integer crash
