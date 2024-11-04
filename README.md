@@ -30,7 +30,9 @@ jar in the resource packs folder.
   - **[Spirit Portal Block]** Fix Spirit Portal Block not being completely broken when there are no longer the conditions to stay lit
   - **[Spirit Portal Block]** Fix Spirit Portal Block being able to support buttons, levers, etc on its surface
   - **[Spirit Portal Block]** Fix Spirit Portal Block having wrong collision box when placed along the Z-axis
+  - **[Statue of Broken Curses]** Tweak to reduce the bounding box volume
   - **[Statue of Goddess]** Fix being kicked from servers for flying when standing on top of the statue
+  - **[Statue of Occluded Summons]** Tweak to reduce the bounding box volume
   - **[Witch's Cauldron]** Fix bottling skill being impossible to increase
   - **[Witch's Cauldron]** Fix right-clicking with an empty Bucket voiding the brew inside
   - **[Witch's Cauldron]** Fix right-clicking with an Empty Bucket on an empty Cauldron giving a water bucket

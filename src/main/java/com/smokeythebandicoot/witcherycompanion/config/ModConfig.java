@@ -352,6 +352,10 @@ public class ModConfig {
             @Config.Name("Coffin - Fix Edge Case Crash")
             public static boolean coffin_fixEdgeCrash = true;
 
+            @Config.Comment("Tightens bounding boxes around the Statue of Broken Curse and Statue of Occluded Summons.")
+            @Config.Name("Creative Statues - Tweak Tighten Bounding Boxes")
+            public static boolean creativeStatues_tweakTightenBoundingBoxes = true;
+
             @Config.Comment("Sets the Altar Power required for a Crystal Ball prediciton. Witchery default is 500.")
             @Config.Name("Crystal Ball - Tweak Required Power")
             @Config.RangeInt(min = 1, max = 10000)
