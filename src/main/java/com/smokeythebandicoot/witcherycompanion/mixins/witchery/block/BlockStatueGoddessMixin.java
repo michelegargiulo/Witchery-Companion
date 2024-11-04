@@ -1,7 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -10,7 +9,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.msrandom.witchery.block.BlockWolfAltar;
+import net.msrandom.witchery.block.BlockStatueGoddess;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -24,18 +23,18 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * Mixins:
- * [Bugfix] Fix Fences, Buttons etc. connecting to the wolf altar
  * [Bugfix] Fix AABB being too high causing players standing on the statue being kicked out of a server for flying
  */
 @ParametersAreNonnullByDefault
-@Mixin(BlockWolfAltar.class)
-public abstract class BlockWolfAltarMixin extends BlockContainer {
+@Mixin(BlockStatueGoddess.class)
+public abstract class BlockStatueGoddessMixin extends BlockContainer {
 
-    @Shadow(remap = false) @Final @Mutable
+    @Shadow(remap = false) @Final
+    @Mutable
     private static AxisAlignedBB AABB;
 
 
-    private BlockWolfAltarMixin(Material materialIn) {
+    private BlockStatueGoddessMixin(Material materialIn) {
         super(materialIn);
     }
 
@@ -44,7 +43,7 @@ public abstract class BlockWolfAltarMixin extends BlockContainer {
      * Also buttons, levers, etc., except for the bottom side. **/
     @Override @Nonnull
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
-        if (BlockTweaks.wolfAltar_fixFaceShape) {
+        if (ModConfig.PatchesConfiguration.BlockTweaks.wolfAltar_fixFaceShape) {
             return face == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
         }
         return super.getBlockFaceShape(worldIn, state, pos, face);
@@ -54,8 +53,8 @@ public abstract class BlockWolfAltarMixin extends BlockContainer {
      * being kicked from for flying **/
     @Inject(method = "<clinit>", remap = false, at = @At("TAIL"))
     private static void reduceAABBHeight(CallbackInfo ci) {
-        if (ModConfig.PatchesConfiguration.BlockTweaks.wolfAltar_fixFlyingOnServers) {
-            AABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.6, 1.0);
+        if (ModConfig.PatchesConfiguration.BlockTweaks.goddessStatue_fixFlyingOnServers) {
+            AABB = new AxisAlignedBB(0.15, 0.0, 0.15, 0.85, 1.6, 0.85);
         }
     }
 

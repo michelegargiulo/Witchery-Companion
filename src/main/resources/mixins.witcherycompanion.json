@@ -22,6 +22,7 @@
     "witchery.block.BlockRemovedBlockMixin",
     "witchery.block.BlockRowanDoorMixin",
     "witchery.block.BlockSpiritPortalMixin",
+    "witchery.block.BlockStatueGoddessMixin",
     "witchery.block.BlockStockadeMixin",
     "witchery.block.BlockSunCollectorMixin",
     "witchery.block.BlockWitchCauldronMixin",

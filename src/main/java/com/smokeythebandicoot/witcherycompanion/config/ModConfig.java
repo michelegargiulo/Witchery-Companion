@@ -379,6 +379,12 @@ public class ModConfig {
             @Config.Name("Garlic Garland - Fix Facing on Placement")
             public static boolean garlicGarland_fixFacingOnPlacement = true;
 
+            @Config.Comment("Fixes a problem with the bounding box of the Statue of Goddess. Being two blocks high, when a " +
+                    "player stands on top of it on a server it will be kicked for flying. If this config is true, the bounding " +
+                    "box height will be reduced to 1.6, the maximum allowed without being kicked")
+            @Config.Name("Statue of Goddess - Fix Flying On Servers")
+            public static boolean goddessStatue_fixFlyingOnServers = true;
+
             @Config.Comment("If true, enables Crafttweaker integration for Kettle. Defaults to true, " +
                     "as if enabled and not used does not alter Witchery behaviour")
             @Config.Name("Kettle - Tweak Enable Crafttweaker Integration")
@@ -483,6 +489,13 @@ public class ModConfig {
                     "anymore on the statue")
             @Config.Name("Wolf Altar - Fix Face Shape")
             public static boolean wolfAltar_fixFaceShape = true;
+
+            @Config.Comment("Fixes a problem with the bounding box of the Wolf Altar. Being two blocks high, when a " +
+                    "player stands on top of it on a server it will be kicked for flying. If this config is true, the bounding " +
+                    "box height will be reduced to 1.6, the maximum allowed without being kicked")
+            @Config.Name("Wolf Altar - Fix Flying On Servers")
+            @Config.RequiresMcRestart
+            public static boolean wolfAltar_fixFlyingOnServers = true;
 
             @Config.Comment("If true, when the Wolf Trap is activated, warns the player about approaching werewolves")
             @Config.Name("Wolf Trap - Tweak Warn Players")
