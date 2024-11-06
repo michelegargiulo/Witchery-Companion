@@ -142,7 +142,10 @@
     "witchery.client.gui.book.GuiHerbologyBookMixin",
     "witchery.client.renderer.entity.RenderSpellEffectMixin",
     "witchery.client.renderer.entity.block.RenderDisguisedAlderDoorMixin",
+    "witchery.client.renderer.entity.block.RenderGoddessMixin",
     "witchery.client.renderer.entity.block.RenderPoppetShelfMixin",
+    "witchery.client.renderer.entity.block.RenderWolfAltarMixin",
+    "witchery.client.renderer.entity.block.RenderWorshipStatueMixin",
     "witchery.client.renderer.entity.model.ModelOwlMixin"
   ],
   "minVersion": "0.8"

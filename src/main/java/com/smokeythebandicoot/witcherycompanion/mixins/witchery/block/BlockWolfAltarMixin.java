@@ -55,7 +55,7 @@ public abstract class BlockWolfAltarMixin extends BlockContainer {
     @Inject(method = "<clinit>", remap = false, at = @At("TAIL"))
     private static void reduceAABBHeight(CallbackInfo ci) {
         if (ModConfig.PatchesConfiguration.BlockTweaks.wolfAltar_fixFlyingOnServers) {
-            AABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.6, 1.0);
+            AABB = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 1.6, 0.9);
         }
     }
 

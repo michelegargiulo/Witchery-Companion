@@ -389,6 +389,11 @@ public class ModConfig {
             @Config.Name("Statue of Goddess - Fix Flying On Servers")
             public static boolean goddessStatue_fixFlyingOnServers = true;
 
+            @Config.Comment("Fixes a problem with rendering of the statue, where the skin of the bound player is visible " +
+                    "without the overlay due to W:R using the original (no longer working) Witchery texture for the statue")
+            @Config.Name("Statue of Hobgoblin Patron - Fix Rendering")
+            public static boolean hobgoblinPatronStatue_fixRendering = true;
+
             @Config.Comment("If true, enables Crafttweaker integration for Kettle. Defaults to true, " +
                     "as if enabled and not used does not alter Witchery behaviour")
             @Config.Name("Kettle - Tweak Enable Crafttweaker Integration")
@@ -496,7 +501,7 @@ public class ModConfig {
 
             @Config.Comment("Fixes a problem with the bounding box of the Wolf Altar. Being two blocks high, when a " +
                     "player stands on top of it on a server it will be kicked for flying. If this config is true, the bounding " +
-                    "box height will be reduced to 1.6, the maximum allowed without being kicked")
+                    "box height will be reduced to 1.6, the maximum allowed without being kicked.")
             @Config.Name("Wolf Altar - Fix Flying On Servers")
             @Config.RequiresMcRestart
             public static boolean wolfAltar_fixFlyingOnServers = true;
