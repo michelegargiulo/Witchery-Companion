@@ -1057,9 +1057,9 @@ public class ModConfig {
 
     public static class IntegrationConfigurations {
 
-        @Config.Comment("Configuration related to Construct Armory integration")
-        @Config.Name("Construct Armory Integration - Configuration")
-        public static ConarmIntegration conarmIntegrationConfig;
+        @Config.Comment("Configuration related to Botania integration")
+        @Config.Name("Baubles Integration - Configuration")
+        public static BaublesIntegration baublesIntegrationConfig;
 
         @Config.Comment("Configuration related to Just Enough Resources integration")
         @Config.Name("JER Integration - Configuration")
@@ -1090,13 +1090,12 @@ public class ModConfig {
         public static ThaumcraftIntegration ThaumcraftIntegrationConfig;
 
 
-        public static class ConarmIntegration {
+        public static class BaublesIntegration {
 
-            @Config.Comment("If true, enabled Baba's Touch Trait. When applied on Helmets, it gives the " +
-                    "same effects as if the player was wearing Baba Yaga's Hat")
-            @Config.Name("Conarm Integration - Enable Baba Yaga's Touch Trait")
+            @Config.Comment("Fixes a crash when Baubles is installed and Botania is not, the player is a Vampire and dies")
+            @Config.Name("Botania Integration - Fix Crash On Vampire Death")
             @Config.RequiresMcRestart
-            public static boolean babaYagasTouchTrait_enable = false;
+            public static boolean fixCrashOnVampireDeath = true;
         }
 
         public static class JerIntegration {

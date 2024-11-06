@@ -93,6 +93,7 @@
     "witchery.infusion.symbol.ColloportusSymbolEffectMixin",
     "witchery.infusion.symbol.SymbolEffectMixin",
     "witchery.init.items.WitcheryIngredientItemsMixin",
+    "witchery.integration.BaublesIntegrationMixin",
     "witchery.integration.jei.SpinningWheelRecipeCategory.CompanionMixin",
     "witchery.integration.ThaumcraftIntegration.IntegrateThaumcraftMixin",
     "witchery.item.ItemCaneSwordMixin",

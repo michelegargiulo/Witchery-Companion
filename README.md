@@ -92,6 +92,7 @@ jar in the resource packs folder.
 - **Dimensions**
   - **[Spirit World] Fix endless spawn of Nightmares
 - **Integrations**
+  - **[Botania]** Fix crash when a vampire player dies and Baubles is installed but Botania is not
   - **[Thaumcraft]** Fix Thaumcraft Integration registering aspects too early
 
 ### Tweaks
