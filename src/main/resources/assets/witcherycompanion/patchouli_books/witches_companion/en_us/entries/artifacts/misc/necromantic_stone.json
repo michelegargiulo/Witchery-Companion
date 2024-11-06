@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "witchery:necromantic_stone",
-      "text": "Created using the $(l:circle_magic/necromancy/necromantic_stone)Rite of Necromancy$(/l), it can be used to control $(item)undead$() monsters raised by a $(l:)Brew of Raising$() or bound ghosts released from a $(l:)Spectral Stone$()."
+      "text": "Created using the $(l:circle_magic/necromancy/necromantic_stone)Rite of Necromancy$(/l), it can be used to control $(item)undead$() monsters raised by a $(l:kettle/kettle_intro#raising)Brew of Raising$(/l) or bound ghosts released from a $(l:)Spectral Stone$()."
     },
     {
       "type": "text",

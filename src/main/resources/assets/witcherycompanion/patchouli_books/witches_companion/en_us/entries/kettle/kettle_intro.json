@@ -101,7 +101,7 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_love",
-      "description": "Farm animals and $(item)Villagers$() will start breeding. Hit pairs of $(item)Zombies$() created with $(l:)Brew of Raising$(/l) or enthralled with the $(l:)Infernal Infusion Power$(/l) will produce a $(item)Baby Zombie$() and become $(item)Zombie Villagers$()."
+      "description": "Farm animals and $(item)Villagers$() will start breeding. Hit pairs of $(item)Zombies$() created with $(l:kettle/kettle_intro#raising)Brew of Raising$(/l) or enthralled with the $(l:kettle/infernal_infusion)Infernal Infusion Power$(/l) will produce a $(item)Baby Zombie$() and become $(item)Zombie Villagers$()."
     },
     {
       "type": "kettle/kettle_brew",

@@ -48,6 +48,9 @@ public abstract class WitcheryProgressEvent extends Event {
         /** Player has drawn a secret symbol **/
         MYSTIC_BRANCH("mystic_branch"),
 
+        /** Player has summoned Mog and Gulg by having too many worshippers **/
+        SUMMON_GOBLIN_GODS("goblin_gods_summoned"),
+
         /** Player has used a Torn Page for the Observations of an Immortal book **/
         USE_VAMPIRE_PAGE("torn_page_use"),
 

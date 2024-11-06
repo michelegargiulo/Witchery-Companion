@@ -15,6 +15,17 @@
       "text": "$(8)1.$() Throw the ingredients into a heated, water-filled Kettle. $(l:altar/altar)Altars$(/l) provide power, if needed.$(p)$(8)2.$() Fill the brew into an empty $(item)Glass Bottle$().$(p)$(8)3.$() For infusions, use them in a Rite of Infusion ($(l:circle_magic/infusion/light_infusion)Light$(/l), $(l:circle_magic/infusion/earth_infusion)Earth$(/l), $(l:circle_magic/infusion/infernal_infusion)Infernal$(/l), $(l:circle_magic/infusion/otherwhere_infusion)Otherwhere$(/l)); but remember, death is almost always assured."
     },
     {
+      "type": "text",
+      "title": "Infusion Power",
+      "text": "Every type of Infusion comes with great powers. Some are $(item)passive$(), meaning that are active all the time, while others require a $(l:artifacts/tools/witch_hand)Witches Hand$(/l) to focus them.$(p)Using active powers drains the energy the infused creature has, and when they run out of it, most powers cease to function.$(br)The energy level is indicated by the Infusion energy bar.",
+      "anchor": "power"
+    },
+    {
+      "type": "text",
+      "title": "Recharging Power",
+      "text": "All infusions will draw from the magical energy imbued at the time of the $(l:circle_magic/infusion/light_infusion)Rite of Infusion$(/l). To recharge the infusion energy the infused creature can perform the $(l:circle_magic/infusion/charge_infusion)Rite of Charging$(/l).$(p)For those who seek alternative ways, it might be possible to slowly recharge infusion energy by being worshipped by a sufficiently large number of $(l:creatures/hobgoblin#worship)Hobgoblins$(/l)."
+    },
+    {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/flying_ointment",
       "description": "Crafting ingredient. If drunk, causes the creature to be affected by Poison III potion effect for one minute."

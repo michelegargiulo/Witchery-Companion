@@ -1,6 +1,10 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
 import com.smokeythebandicoot.witcherycompanion.api.worshipstatue.ITileEntityWorshipStatueAccessor;
+import net.minecraft.entity.player.EntityPlayer;
 import net.msrandom.witchery.block.entity.TileEntityWorshipStatue;
 import net.msrandom.witchery.block.entity.WitcheryTileEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /**
  * Mixins:
  * [Feature] Accessor for worship level
+ * [Feature] Progress when players summons goblin Gods
  */
 @Mixin(TileEntityWorshipStatue.class)
 public abstract class TileEntityWorshipStatueMixin extends WitcheryTileEntity implements ITileEntityWorshipStatueAccessor {
@@ -31,5 +36,13 @@ public abstract class TileEntityWorshipStatueMixin extends WitcheryTileEntity im
     @Override
     public int getWorshipLevel() {
         return this.witchery_Patcher$worshipLevel;
+    }
+
+    /** This Mixin unlocks a progress secret for hobgoblins when the player summons Mog and Gulg **/
+    @Inject(method = "summonGoblinGods", remap = true, at = @At(value = "INVOKE", remap = true, ordinal = 1,
+            target = "Lnet/minecraft/entity/EntityCreature;setAttackTarget(Lnet/minecraft/entity/EntityLivingBase;)V"))
+    private void unlockSecretOnGodsSpawn(EntityPlayer player, double detectDistance, int spawnDistance, CallbackInfoReturnable<Boolean> cir) {
+        ProgressUtils.unlockProgress(player, WitcheryCompanion.prefix("creatures/hobgoblin_worship"),
+                WitcheryProgressEvent.EProgressTriggerActivity.SUMMON_GOBLIN_GODS.activityTrigger);
     }
 }

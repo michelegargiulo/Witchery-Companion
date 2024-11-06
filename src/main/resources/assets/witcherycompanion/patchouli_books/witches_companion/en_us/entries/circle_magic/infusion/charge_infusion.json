@@ -1,0 +1,15 @@
+{
+  "name": "Rite of Infusion Recharge",
+  "icon": "witchery:charged_attuned_stone",
+  "category": "circle_magic/infusion",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:infusion_charging",
+      "title": "Recharge Infusion",
+      "description": "Recharges infusion power by standing in the circle. Lasts indefinitely.",
+      "note": "Requires 40 power/second"
+    }
+  ]
+}
