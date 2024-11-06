@@ -389,6 +389,10 @@ public class ModConfig {
             @Config.Name("Statue of Goddess - Fix Flying On Servers")
             public static boolean goddessStatue_fixFlyingOnServers = true;
 
+            @Config.Comment("If true, when the player holds any block and right-clicks the statue, it won't place the block")
+            @Config.Name("Statue of Hobgoblin Patron - Fix Block Placing")
+            public static boolean hobgoblinPatronStatue_fixBlockPlacing = true;
+
             @Config.Comment("Fixes a problem with rendering of the statue, where the skin of the bound player is visible " +
                     "without the overlay due to W:R using the original (no longer working) Witchery texture for the statue")
             @Config.Name("Statue of Hobgoblin Patron - Fix Rendering")

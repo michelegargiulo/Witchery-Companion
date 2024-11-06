@@ -33,6 +33,8 @@ jar in the resource packs folder.
   - **[Statue of Broken Curses]** Tweak to reduce the bounding box volume
   - **[Statue of Goddess]** Fix being kicked from servers for flying when standing on top of the statue
   - **[Statue of Hobgoblin Patron]** Tweak to reduce the bounding box volume
+  - **[Statue of Hobgoblin Patron]** Fix placing blocks when right-clicking the statue
+  - **[Statue of Hobgoblin Patron]** Fix rendering
   - **[Statue of Occluded Summons]** Tweak to reduce the bounding box volume
   - **[Witch's Cauldron]** Fix bottling skill being impossible to increase
   - **[Witch's Cauldron]** Fix right-clicking with an empty Bucket voiding the brew inside
