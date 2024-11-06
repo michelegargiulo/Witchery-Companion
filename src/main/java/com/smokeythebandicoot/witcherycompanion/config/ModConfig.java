@@ -913,7 +913,7 @@ public class ModConfig {
 
             @Config.Comment("If true, removes Witchery: Resurrected Back-ported AI for Villagers")
             @Config.Name("Villager - Tweak Remove Backported AI")
-            public static boolean villager_disablePackportedAI = false;
+            public static boolean villager_disableBackportedAI = false;
         }
 
         public static class BookTweaks {

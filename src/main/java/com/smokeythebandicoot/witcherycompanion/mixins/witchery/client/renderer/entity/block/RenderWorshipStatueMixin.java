@@ -89,14 +89,14 @@ public abstract class RenderWorshipStatueMixin extends TileEntitySpecialRenderer
             this.fake = new EntityOtherPlayerMP(this.getWorld(), owner == null ? MINECRAFT : owner.getGameProfile());
         }
 
-        mainModel.render(this.fake, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        mainModel.render(this.fake, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625f);
         GlStateManager.shadeModel(7424);
         GlStateManager.disableAlpha();
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         this.bindTexture(TEXTURE_FIXED);
         GlStateManager.color(0.8F, 0.8F, 0.8F);
-        mainModel.render(this.fake, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        mainModel.render(this.fake, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625f);
         GlStateManager.popMatrix();
         ci.cancel();
     }

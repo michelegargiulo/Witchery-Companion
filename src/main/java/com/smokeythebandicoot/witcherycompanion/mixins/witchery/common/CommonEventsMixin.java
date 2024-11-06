@@ -93,7 +93,7 @@ public abstract class CommonEventsMixin {
     @Inject(method = "onEntityJoinWorld", remap = false, cancellable = true, at = @At(value = "INVOKE", ordinal = 1,
             target = "Lnet/minecraft/entity/ai/EntityAITasks;addTask(ILnet/minecraft/entity/ai/EntityAIBase;)V", remap = true))
     private static void removeInjectedAIs(EntityJoinWorldEvent event, CallbackInfo ci) {
-        if (ModConfig.PatchesConfiguration.EntityTweaks.villager_disablePackportedAI) {
+        if (ModConfig.PatchesConfiguration.EntityTweaks.villager_disableBackportedAI) {
             ci.cancel();
         }
     }
