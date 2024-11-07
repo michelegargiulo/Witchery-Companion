@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.rite.effect;
 
+import com.smokeythebandicoot.witcherycompanion.api.ritemovingearth.RiteOfMovingEarthApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.utils.BlockPredicateCircle;
 import net.minecraft.block.Block;
@@ -200,14 +201,8 @@ public abstract class RiteEffectMovingEarthMixin {
             return true;
         }
 
-
-        if (!BlockUtil.isMovableBlock(block)) {
-            witchery_Patcher$failRitual(world, pos);
-            return true;
-        }
-
         IBlockState state = world.getBlockState(pos);
-        if (ModConfig.PatchesConfiguration.RitesTweaks.movingEarth_stateBlacklist.contains(state)) {
+        if (!RiteOfMovingEarthApi.canBeMoved(state)) {
             witchery_Patcher$failRitual(world, pos);
             return true;
         }

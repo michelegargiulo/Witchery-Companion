@@ -701,9 +701,6 @@ public class ModConfig {
             @Config.Name("Rite of Prior Incarnation - Fix NBT Persisting After Pickup")
             @Config.RequiresMcRestart
             public static boolean ritePriorIncarnation_fixNbtNotRemoved = true;
-
-            @Config.Ignore
-            public static HashSet<IBlockState> movingEarth_stateBlacklist = new HashSet<>();
         }
 
         public static class PotionTweaks {
@@ -1487,8 +1484,6 @@ public class ModConfig {
         }
 
         public static void reloadConfig() {
-            reloadRiteOfMovingEarthBlacklist();
-
             // Flags are always reloaded, but Book Contents won't be triggered
             // Content is reloaded only when PatchouliAPIIntegration 'readyToReload'
             // is true, which is set as such only on PlayerJoinedWorldEvent
@@ -1496,30 +1491,6 @@ public class ModConfig {
                 IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
             }
 
-        }
-
-        private static void reloadRiteOfMovingEarthBlacklist() {
-            // Clear current configuration
-            PatchesConfiguration.RitesTweaks.movingEarth_stateBlacklist = new HashSet<>();
-
-            // Re-add configuration
-            for (String entry : PatchesConfiguration.RitesTweaks.movingEarth_tweakBlockBlacklist) {
-                String[] metaSplit = entry.split("@");
-                int meta = 0;
-                try {
-                    meta = metaSplit.length > 1 ? Integer.parseInt(metaSplit[1]) : 0;
-                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                    WitcheryCompanion.logger.warn("Could not parse blockstate - Invalid meta for entry: {}. Please fix your configs", entry);
-                }
-
-                ResourceLocation rl = new ResourceLocation(metaSplit[0]);
-                if (!ForgeRegistries.BLOCKS.containsKey(rl)) {
-                    WitcheryCompanion.logger.warn("Could not parse blockstate - Block not found: {}. Please fix your configs", entry);
-                }
-
-                Block block = ForgeRegistries.BLOCKS.getValue(rl);
-                PatchesConfiguration.RitesTweaks.movingEarth_stateBlacklist.add(block.getStateFromMeta(meta));
-            }
         }
 
     }
