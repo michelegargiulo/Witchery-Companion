@@ -908,8 +908,52 @@ public class ModConfig {
             @Config.Name("Spectre - Tweak Tick Delay Before Despawn")
             public static int spectre_tweakDelayTicksBeforeDespawn = 60;
 
+            @Config.Comment("If true, Treefyd will require to be given a Creeper Heart before they can be given a Demon " +
+                    "Heart, which further improves their strength and health")
+            @Config.Name("Treefyd - Tweak Overhaul Upgrades")
+            public static boolean treefyd_tweakOverhaulUpgrades = false;
+
+            @Config.Comment("Tweaks the speed of Treefyd when it's not boosted. Defaults to 0.25")
+            @Config.Name("Treefyd - Tweak Speed Unboosted")
+            @Config.RangeDouble()
+            @Config.RequiresMcRestart
+            public static double treefyd_tweakSpeedUnboosted = 0.25;
+
+            @Config.Comment("Tweaks the health of Treefyd when it's not boosted. Defaults to 50.0")
+            @Config.Name("Treefyd - Tweak Health Unboosted")
+            @Config.RangeDouble()
+            @Config.RequiresMcRestart
+            public static double treefyd_tweakHealthUnboosted = 50.0;
+
+            @Config.Comment("Tweaks the damage of Treefyd when it's not boosted. Defaults to 3.0")
+            @Config.Name("Treefyd - Tweak Damage Unboosted")
+            @Config.RangeDouble(min = 0.1, max = 100.0)
+            @Config.RequiresMcRestart
+            public static double treefyd_tweakDamageUnboosted = 3.0;
+
+            @Config.Comment("Tweaks the health of Treefyd when given a Creeper Heart. Defaults to 100")
+            @Config.Name("Treefyd - Tweak Health Creeper Heart")
+            @Config.RangeDouble(min = 1, max = 1000)
+            public static double treefyd_tweakHealthWithCreeperHeart = 100.0;
+
+            @Config.Comment("Tweaks the damage of Treefyd when given a Creeper Heart. Defaults to 4.0")
+            @Config.Name("Treefyd - Tweak Damage Creeper Heart")
+            @Config.RangeDouble(min = 0.1, max = 100.0)
+            public static double treefyd_tweakDamageWithCreeperHeart = 4.0;
+
+            @Config.Comment("Tweaks the health of Treefyd when given a Demon Heart. Defaults to 150")
+            @Config.Name("Treefyd - Tweak Health Demon Heart")
+            @Config.RangeDouble(min = 1, max = 1000)
+            public static double treefyd_tweakHealthWithDemonHeart = 150.0;
+
+            @Config.Comment("Tweaks the damage of Treefyd when given a Demon Heart. Defaults to 5.0")
+            @Config.Name("Treefyd - Tweak Damage Demon Heart")
+            @Config.RangeDouble(min = 0.1, max = 100.0)
+            public static double treefyd_tweakDamageWithDemonHeart = 5.0;
+
             @Config.Comment("If true, removes Witchery: Resurrected Back-ported AI for Villagers")
             @Config.Name("Villager - Tweak Remove Backported AI")
+            @Config.RequiresMcRestart
             public static boolean villager_disableBackportedAI = false;
         }
 

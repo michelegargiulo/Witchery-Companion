@@ -72,6 +72,7 @@
     "witchery.entity.EntityLeonardMixin",
     "witchery.entity.EntityLordOfTormentMixin",
     "witchery.entity.EntitySpectreMixin",
+    "witchery.entity.EntityTreefydMixin",
     "witchery.entity.familiar.FamiliarMixin",
     "witchery.entity.familiar.FamiliarsMixin",
     "witchery.entity.item.EntityQuartzGrenadeMixin",
