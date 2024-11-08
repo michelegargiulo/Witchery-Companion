@@ -89,16 +89,57 @@ public abstract class RenderWorshipStatueMixin extends TileEntitySpecialRenderer
             this.fake = new EntityOtherPlayerMP(this.getWorld(), owner == null ? MINECRAFT : owner.getGameProfile());
         }
 
-        mainModel.render(this.fake, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625f);
+        modelPlayerRender(mainModel, this.fake, 0.0f, 0.0f, -0.1f, 0.0f, 0.0f, 0.0625f);
+        //mainModel.render(this.fake, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625f);
         GlStateManager.shadeModel(7424);
         GlStateManager.disableAlpha();
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         this.bindTexture(TEXTURE_FIXED);
         GlStateManager.color(0.8F, 0.8F, 0.8F);
-        mainModel.render(this.fake, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625f);
+        modelPlayerRender(mainModel, this.fake, 0.0f, 0.0f, -0.1f, 0.0f, 0.0f, 0.0625f);
+        //mainModel.render(this.fake, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625f);
         GlStateManager.popMatrix();
         ci.cancel();
+    }
+
+    private void modelPlayerRender(ModelPlayer modelPlayer, Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+
+        modelBipedRender(modelPlayer, entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+
+        GlStateManager.pushMatrix();
+
+        GlStateManager.scale(0.5F, 0.5F, 0.5F);
+        GlStateManager.translate(0.0F, 24.0F * scale, 0.0F);
+        modelPlayer.bipedLeftLegwear.render(scale);
+        modelPlayer.bipedRightLegwear.render(scale);
+        modelPlayer.bipedLeftArmwear.render(scale);
+        modelPlayer.bipedRightArmwear.render(scale);
+        modelPlayer.bipedBodyWear.render(scale);
+
+        GlStateManager.popMatrix();
+    }
+
+    public void modelBipedRender(ModelBiped modelBiped, Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+        modelBiped.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
+
+        GlStateManager.pushMatrix();
+
+        GlStateManager.scale(0.75F, 0.75F, 0.75F);
+        GlStateManager.translate(0.0F, 16.0F * scale, 0.0F);
+        modelBiped.bipedHead.render(scale);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.scale(0.5F, 0.5F, 0.5F);
+        GlStateManager.translate(0.0F, 24.0F * scale, 0.0F);
+        modelBiped.bipedBody.render(scale);
+        modelBiped.bipedRightArm.render(scale);
+        modelBiped.bipedLeftArm.render(scale);
+        modelBiped.bipedRightLeg.render(scale);
+        modelBiped.bipedLeftLeg.render(scale);
+        modelBiped.bipedHeadwear.render(scale);
+
+        GlStateManager.popMatrix();
     }
 
 
