@@ -37,12 +37,15 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_hitchcock",
-      "description": "Causes a flock or $(l:creatures/owl)Owls$(/l) to descent on and attack the target. The Owls will disappear if the victim dies."
+      "description": "Causes a flock or $(l:creatures/owl)Owls$(/l) to descent on and attack the target. The Owls will disappear if the victim dies.",
+      "note": "Requires $(l:artifacts/familiars/owl_familiar)Owl Familiar$(/l)",
+      "anchor": "bodega"
     },
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_sprouting",
-      "description": "Causes a branch to grow on the impact location. Direction of the branch depends on the side of the block hit. Can be used to quickly create bridges or, if thrown at the feet, to ascend rapidly."
+      "description": "Causes a branch to grow on the impact location. Direction of the branch depends on the side of the block hit. Can be used to quickly create bridges or, if thrown at the feet, to ascend rapidly.",
+      "anchor": "sprouting"
     },
     {
       "type": "kettle/kettle_brew",
@@ -53,7 +56,8 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_raising",
-      "description": "Summons undead creatures from the ground. If it hits a wall, it will bounce and can be collected again. Undeads won't attack the summoner and can be ordered to attack using a $(l:)Necromantic Stone$(/l)"
+      "description": "Summons undead creatures from the ground. If it hits a wall, it will bounce and can be collected again. Undeads won't attack the summoner and can be ordered to attack using a $(l:)Necromantic Stone$(/l)",
+      "anchor": "raising"
     },
     {
       "type": "kettle/kettle_brew",
@@ -65,18 +69,21 @@
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/flowing_spirit_brew",
       "description": "When thrown on the ground, the liquid will burst out. Standing in the liquid will heal most creatuers, weaken $(l:creatures/demon)Demons$(/l) and undeads. $(l:creatures/nightmare)Nightmares$(/l) will become vulnerable while standing in the liquid.",
-      "note": "Only brewed in the $(l:dimensions/spirit_world)Spirit world$(/l).",
+      "note": "Only brewed in $(l:dimensions/spirit_world)Spirit world$(/l)",
       "anchor": "flowing_spirit"
     },
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/thorns_brew",
-      "description": "Causes a high $(item)Cactus$() to grow where it lands. If it hits a creature, it will be surrounded by four 1-block high cacti. Bounces off walls and can be picked-up again. Hitting cacti will cause them to grow higher."
+      "description": "Causes a high $(item)Cactus$() to grow where it lands. If it hits a creature, it will be surrounded by four 1-block high cacti. Bounces off walls and can be picked-up again. Hitting cacti will cause them to grow higher.",
+      "anchor": "thorns"
     },
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_cursed_leaping",
-      "description": "Causes the hit creature to be thrown far into the sky. Also gives them $(item)Jumping Boost IV$() potion effect."
+      "description": "Causes the hit creature to be thrown far into the sky. Also gives them $(item)Jumping Boost IV$() potion effect.",
+      "note": "Requires $(l:artifacts/familiars/cat_familiar)Cat Familiar$(/l)",
+      "anchor": "cursed_leaping"
     },
     {
       "type": "kettle/kettle_brew",
@@ -96,7 +103,8 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/vines_brew",
-      "description": "Causes $(item)Vines$() to grow instantly from the surface it hits. The vines can climb or descend walls that are flat enough. $(l:)Toad Familiars$(/l) augment its effects. The brew bounces off of flat terrain."
+      "description": "Causes $(item)Vines$() to grow instantly from the surface it hits. The vines can climb or descend walls that are flat enough. $(l:)Toad Familiars$(/l) augment its effects. The brew bounces off of flat terrain.",
+      "anchor": "vines"
     },
     {
       "type": "kettle/kettle_brew",
@@ -122,7 +130,9 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_frogs_tongue",
-      "description": "Explodes when it hits anything, causing all creatures in its area of effect to be pulled towards the thrower."
+      "description": "Explodes when it hits anything, causing all creatures in its area of effect to be pulled towards the thrower.",
+      "note": "Requires $(l:artifacts/familiars/toad_familiar)Toad Familiar$(/l)",
+      "anchor": "frogs_tongue"
     },
     {
       "type": "kettle/kettle_brew",

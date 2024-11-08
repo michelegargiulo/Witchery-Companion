@@ -1,0 +1,18 @@
+{
+  "name": "Owl Familiar",
+  "icon": "witchery:owlets_wing",
+  "category": "artifacts/familiars",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Owl Familiar",
+      "text": "Owl familiar require a tamed $(l:creatures/owl)Owl$(/l) to be present in the $(l:circle_magic/binding/familiar)Rite of Binding$(/l). An owl familiar allows a witch to master the art of flying with an $(l:creatures/enchanted_broom)Enchanted Broom$(/l)"
+    },
+    {
+      "type": "text",
+      "title": "Broom Mastery",
+      "text": "A witch with an Owl familiar that flies with an Enchanted Broom will have better control over the broom, faster acceleration and deceleration, and increased top speed. The effects stack with the $(l:kettle/infusion_intro#soaring)Infused Brew of Soaring$(/l). Witches with an owl familiar are able to prepare the $(l:kettle/kettle_intro#bodega)Brew of Bodega$(/l)."
+    }
+  ]
+}

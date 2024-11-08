@@ -56,4 +56,5 @@ item.witchery.witches_brews_book.modifiers.general.disable_power_limit=Disable p
 # Missing Witchery Block Names
 tile.witchery.torment_stone.name=Torment Stone
 tile.witchery.mirror_wall.name=Mirror Wall
+tile.witchery.spirit_portal.name=Spirit Portal
 

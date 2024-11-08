@@ -248,16 +248,11 @@ jar in the resource packs folder.
 - Implement a Progress System. Tracks what the player does (completes a brew, discovers a new recipe, levels up as werewolf or vampire) and fires an event. Also supports commands and unlocks pages in Patchouli book, if installed
 
 ### Future Plans
-- Add CraftTweaker integration for main recipe categories (Cauldron, Distillery, Kettle)
 - Add CraftTweaker integration for Brew of Sprouting, to specify valid trees to spawn
 - Finish JER Integration
 - Squishing all bugs
 - Tinkers Construct / Construct Armory integration (Armor traits or tools that can be used in place of Witchery ones)
-    for modpacks where Tinkers is the only way to make tools and armors
-  - Death robes
-  - Vampire clothing
-  - Hunter clothing
-  - Withes robes
+    for modpacks where Tinkers is the only way to make tools and armors, similar to what Tinkers Evolution does for some mods
 - JEI Handlers for as many things as possible (Altar Power providers, Baba Yaga drops, etc.)
 - More Tweaks
   - Modify Rite/Curse strength, to fine-tune how much damage poppets take for the given Rite/Curse

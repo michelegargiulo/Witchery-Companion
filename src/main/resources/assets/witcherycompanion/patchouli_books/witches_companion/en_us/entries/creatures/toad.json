@@ -1,0 +1,19 @@
+{
+  "name": "Toad",
+  "icon": "witchery:frogs_toe",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:toad",
+      "text": "Swampy ambient creatures $(l:mutations/toad)mutated$(/l) from $(item)Ocelots$() and $(item)Slimes$().",
+      "offset": 0.12,
+      "scale": 0.95
+    },
+    {
+      "type": "text",
+      "text": "Toads are small, non-hostile ambient creatures. They can be tamed by giving them $(item)Rotten Flesh$(). Once tamed, they will follow their owner, unless instructed to sit by interacting with them.$(p)Two tamed toads will breed if fed with Rotten Flesh when they have full health, and if they have not full health, Rotten Flesh will heal them.$(p)A tamed toad's skin color can be changed by using $(item)Dye$() on it."
+    }
+  ]
+}

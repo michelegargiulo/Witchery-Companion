@@ -68,6 +68,20 @@
       "brew_id": "witchery:kettle/spirit_of_otherwhere",
       "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute.",
       "anchor": "otherwhere_infusion"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:infused_soaring_brew",
+      "title": "Inf. Brew of Soaring",
+      "text": "Can be drunk to allow significantly better control when flying with an $(l:creatures/enchanted_broom)Enchanted Broom$(/l), increasing top speed, turning and deceleration for 120 minutes. Bonuses stack with the ones of an $(l:artifacts/familiars/owl_familiar)Owl Familiar$(/l). Can be made with the proper $(l:circle_magic/infusion/soaring_infusion)Rite of Infusion$(/l).",
+      "anchor": "soaring"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:infused_grave_brew",
+      "title": "Inf. Brew of the Grave",
+      "text": "Can be drunk to extend $(l:artifact/misc/necromantic_stone)Necromantic Stone$(/l)'s control on all undead creatures. This ability can be used once every 30 seconds.$(p)Additionally, when killing animals, $(item)Villagers$() or other players, the witch will regain hunger and a little health, as they feed off the victim. This effect lasts 120 minutes.",
+      "anchor": "grave"
     }
   ]
 }

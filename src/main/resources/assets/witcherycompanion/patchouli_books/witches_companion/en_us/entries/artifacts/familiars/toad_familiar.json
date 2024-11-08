@@ -1,0 +1,18 @@
+{
+  "name": "Toad Familiar",
+  "icon": "witchery:frogs_toe",
+  "category": "artifacts/familiars",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Toad Familiar",
+      "text": "Toad familiar require a tamed $(l:creatures/toad)Toad$(/l) to be present in the $(l:circle_magic/binding/familiar)Rite of Binding$(/l). A toad familiar allows a witch to master the art of $(l:brewing/brewing)Brewing$(/l) and their usage. When such a witch prepares brews, there is a 5% chance that an extra brew will be produced. This chance stacks with $(l:artifacts/clothing/witches_clothing)Witches Clothing$(/l). When such a witch uses a brew, its effects will be stronger, and ones that affect an area will have that area extended"
+    },
+    {
+      "type": "text",
+      "title": "Brew Mastery",
+      "text": "Some brews will also have improved effects.$(l:kettle/kettle_intro#sprouting)Brew of Sprouting$(/l) and $(l:kettle/kettle_intro#thorns)Brew of Thorns$(/l) will grow slightly larger plants. $(l:kettle/kettle_intro#vines)Brew of Vines$(/l) will allow more horizontal traversal. $(l:kettle/kettle_intro#erosion)Brew of Erosion$(/l) will do more damage to creatures. Brew Mastery affects less brews associated with $(l:kettle/kettle_intro#raising)Necromancy$(/l) or other Familiars.$(br)Witches with a toad familiar are also able to prepare the $(l:kettle/kettle_intro#frogs_tongue)Brew of Frog's Tongue$(/l)."
+    }
+  ]
+}

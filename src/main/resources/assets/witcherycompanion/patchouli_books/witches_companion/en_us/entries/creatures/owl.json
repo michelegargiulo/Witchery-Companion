@@ -1,0 +1,28 @@
+{
+  "name": "Owl",
+  "icon": "witchery:owlets_wing",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:owl",
+      "text": "Nocturnal ambient creatures $(l:mutations/owl)mutated$(/l) from $(item)Wolves$() and $(item)Bats$().",
+      "offset": 0.12,
+      "scale": 0.7
+    },
+    {
+      "type": "text",
+      "text": "Toads are flying, non-hostile ambient creatures. They can be tamed by giving them $(item)Raw Porkchop$() or $(item)Raw Beef$(), but tend to fly off if a player moves too close. Once tamed, they will follow their owner, unless sitting.$(p)Two tamed owls will breed if fed with Raw Porkchop or Beef when they are at full health, and if they aren't, the meat will heal them.$(p)A tamed toad's skin color can be changed by using $(item)Dye$() on it."
+    },
+    {
+      "type": "text",
+      "title": "Delivering Items",
+      "text": "Tamed Owls can also be used to deliver an item to a location or player. Use the item on the Owl to get it take the item. Next use a $(l:)Bound Waystone$(/l) or $(l:)Blooded Waystone$(/l) on the Owl to tell it where to go. The Waystone is not consumed. As soon as it's standing, the Owl will fly to the target location, drop off the item and return back to where it started. If the target creature or location is not loaded, the Owl will not take "
+    },
+    {
+      "type": "text",
+      "text": "flight. In case a $(l:)Throwable Brew$(/l) is given to the Owl, it will throw it instead of dropping it."
+    }
+  ]
+}

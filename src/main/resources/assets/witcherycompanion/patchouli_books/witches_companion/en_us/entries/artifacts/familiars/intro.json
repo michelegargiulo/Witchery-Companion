@@ -1,0 +1,32 @@
+{
+  "name": "Familiars",
+  "icon": "witchery:wolf_head",
+  "category": "artifacts/familiars",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Familiars",
+      "text": "Familiars are supernatural beings that assist witches in their witchcraft practising.$(p)While there are records of familiars attracted to practitioners, the most effective way to acquire a Familiar is to bind a minor Demon or Spirit to an animal.$(br)As part of such binding, a sympathetic link is created between the familiar and the witch."
+    },
+    {
+      "type": "text",
+      "title": "Binding a Familiar",
+      "text": "A familiar is summoned and bound to an animal using the appropriate $(l:circle_magic/binding/familiar)Rite of Binding$(/l).$(p)Both the player and the tamed animal must stand in the $(l:circle_magic/intro#circles)Circle$(/l) during the execution of the Rite.$(p)Upon success, the animal will be inhabited by the familiar entity. Only a few types of animal can withstand the process."
+    },
+    {
+      "type": "text",
+      "title": "Common Effects",
+      "text": "As the animal is inhabited by a supernatural creature, it is far stronger than their normal counterparts.$(br)They enjoy a significantly increased $(item)health$() and gain a bit of $(item)natural armor$().$(p)The sympathetic link all familiars have with the witch is strong enough that when the witch receives damage, a portion of it goes to the familiar as well."
+    },
+    {
+      "type": "text",
+      "text": "The closer the familiar, the larger portion of damage it receives. If the familiar 'dies', so will the witch."
+    },
+    {
+      "type": "text",
+      "title": "Dismissing & Killing",
+      "text": "As supernatural beings, familiar never really die. When they are killed or dismissed, they can be summoned again using the appropriate $(l:circle_magic/banishing/summon_familiar)Rite of Summoning$(/l).$(p)To dismiss a familiar interact with it while sneaking and the familiar is sitting.$(br)When a witch dies, their familiar will automatically be dismissed."
+    }
+  ]
+}

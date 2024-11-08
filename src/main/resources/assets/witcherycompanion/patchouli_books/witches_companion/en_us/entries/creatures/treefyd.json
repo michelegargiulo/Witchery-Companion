@@ -1,0 +1,34 @@
+{
+  "name": "Treefyd",
+  "icon": "witchery:treefyd_seeds",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:treefyd",
+      "text": "Plant Golems",
+      "offset": 0.12,
+      "scale": 0.95
+    },
+    {
+      "type": "text",
+      "text": "Treefyds are the result of mutating a plant to give it a degree of sentience and mobility. The seed must first be mutated, then planted to grow into a Treefyd.$(p)Alternatively, a seed can be used on another Treefyd to clone it, including their knowledge."
+    },
+    {
+      "type": "text",
+      "title": "Resilient Guardians",
+      "text": "A Treefyd will remember it creator, acting with no hostility towards him and other specimens. All other creatures are met instead with merciless attacks.$(p)Treefyds are not particularly fast and do not cause huge amounts of damage, but are resilient and may apply $(item)Blindness$() to their preys. The seeds can only be planted on $(item)Grass$()."
+    },
+    {
+      "type": "text",
+      "title": "Learning",
+      "text": "Using a $(l:artifacts/misc/taglock_kit)Taglock Kit$(/l) bound to another player or creature on an owned Treefyd will impart the command to treat the creature with no hostility. To revoke this command use the same Taglock Kit on the Treefyd while sneaking.$(br)Interacting with a Treefyd will show the list of creatures that the it is currently ignoring.$(br)Using a $(item)Villager$() or animal-bound Taglock Kit will cause the Treefyd to ignore all the creatures of the same kind."
+    },
+    {
+      "type": "text",
+      "title": "Enhancements",
+      "text": "Using a $(l:resources/creeper_heart)Creeper Heart$(/l) on a Treefyd will significantly increase their health and slightly increase their damage.$(p)Using a $(l:)Demon Heart$(/l) on the Treefyd will increase their health and damage even more.$(p)Using a $(l:artifacts/tools/boline)Boline$(/l) will stop them from wandering randomly, altough they will still move to attack. Using the Boline again will resume their random movements."
+    }
+  ]
+}
