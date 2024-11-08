@@ -21,16 +21,13 @@ public class JERIntegration {
 
     public static void init() {
 
-        // Api Fetching
+        /** --- Api fetching --- **/
         IJERAPI jerApi = JERAPI.getInstance();
         IMobRegistry jerMobRegistry = jerApi.getMobRegistry();
         World jerWorld = jerApi.getWorld();
 
 
-        // ==================================================================================
-        // ================================ Default Witchery ================================
-        // ==================================================================================
-
+        /** --- Default Witchery --- **/
         jerMobRegistry.register(new EntityHellhound(jerWorld), LootTables.HELLHOUND);
 
         jerMobRegistry.register(new EntityDemon(jerWorld), LootTables.DEMON);
@@ -48,7 +45,6 @@ public class JERIntegration {
         jerMobRegistry.register(new EntityToad(jerWorld), LootTables.TOAD);
         jerMobRegistry.registerRenderHook(EntityToad.class, (renderInfo, entityLivingBase) -> {
             GlStateManager.scale(2.0f, 2.0f, 2.0f);
-            GlStateManager.translate(0.0f, -0.5f, 0.0f);
             return renderInfo;
         });
 
@@ -69,11 +65,7 @@ public class JERIntegration {
         jerMobRegistry.register(new EntityWitchHunter(jerWorld), LootTables.WITCH_HUNTER);
 
 
-
-        // ==================================================================================
-        // ================================ Custom registers ================================
-        // ==================================================================================
-
+        /** --- Custom Registers --- **/
         jerMobRegistry.register(new EntityAttackBat(jerWorld), LootTables.ATTACK_BAT);
 
         jerMobRegistry.register(new EntityBabaYaga(jerWorld), LootTables.BABA_YAGA_DEATH);
