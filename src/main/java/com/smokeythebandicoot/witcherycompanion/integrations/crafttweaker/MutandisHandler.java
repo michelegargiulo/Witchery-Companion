@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker;
 
-import com.smokeythebandicoot.witcherycompanion.api.mutandis.MutandisApi;
+import com.smokeythebandicoot.witcherycompanion.api.MutandisApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;

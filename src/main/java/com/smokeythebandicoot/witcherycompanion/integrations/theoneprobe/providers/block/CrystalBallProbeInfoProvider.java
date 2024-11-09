@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.crystalball.ITileEntityCrystalBallAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.crystalball.ITileEntityCrystalBallAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;

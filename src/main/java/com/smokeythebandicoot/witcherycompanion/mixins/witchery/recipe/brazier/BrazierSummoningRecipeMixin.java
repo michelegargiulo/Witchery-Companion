@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.recipe.brazier;
 
-import com.smokeythebandicoot.witcherycompanion.api.brazier.IBrazierSummoningRecipeAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.brazier.IBrazierSummoningRecipeAccessor;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.crafting.Ingredient;

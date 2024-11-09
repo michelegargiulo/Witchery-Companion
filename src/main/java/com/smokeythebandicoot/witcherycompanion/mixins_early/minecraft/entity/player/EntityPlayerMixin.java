@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.entity.p
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.player.IEntityPlayerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.entity.EntityLivingBase;

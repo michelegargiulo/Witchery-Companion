@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.jei.mutandis;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.mutandis.MutandisApi;
+import com.smokeythebandicoot.witcherycompanion.api.MutandisApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeCategory;
 import mezz.jei.api.IGuiHelper;

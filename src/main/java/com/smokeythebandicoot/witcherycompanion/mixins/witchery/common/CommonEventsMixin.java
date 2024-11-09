@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.common;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.barkbelt.BarkBeltApi;
+import com.smokeythebandicoot.witcherycompanion.api.BarkBeltApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.WorldGenTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.ItemTweaks;

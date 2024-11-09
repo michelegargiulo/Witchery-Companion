@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.brewing.action;
 
-import com.smokeythebandicoot.witcherycompanion.api.brewing.ICapacityBrewActionAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.brewing.ICapacityBrewActionAccessor;
 import net.msrandom.witchery.brewing.action.CapacityBrewAction;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

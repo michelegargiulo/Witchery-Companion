@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.mutation;
 
-import com.smokeythebandicoot.witcherycompanion.api.mutations.IMutationPatternAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.mutations.IMutationPatternAccessor;
 import kotlin.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

@@ -1,7 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker;
 
-import com.smokeythebandicoot.witcherycompanion.api.cauldron.CauldronApi;
-import com.smokeythebandicoot.witcherycompanion.api.kettle.KettleApi;
+import com.smokeythebandicoot.witcherycompanion.api.KettleApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;
@@ -13,9 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-import javax.annotation.Nullable;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 @ModOnly(value = "witchery")
 @ZenClass("mods.smokeythebandicoot.witcherycompanion.Kettle")

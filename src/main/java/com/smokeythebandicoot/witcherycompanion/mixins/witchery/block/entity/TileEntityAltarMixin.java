@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
-import com.smokeythebandicoot.witcherycompanion.api.altar.AltarApi;
-import com.smokeythebandicoot.witcherycompanion.api.altar.ITileEntityAltarAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.AltarApi;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.altar.ITileEntityAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -22,7 +22,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  Mixins:

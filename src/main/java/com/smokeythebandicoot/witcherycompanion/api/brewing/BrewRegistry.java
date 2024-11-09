@@ -1,11 +1,12 @@
 package com.smokeythebandicoot.witcherycompanion.api.brewing;
 
+import com.smokeythebandicoot.witcherycompanion.api.accessors.brewing.IIncrementBrewActionAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.brewing.IUpgradeBrewActionAccessor;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.msrandom.witchery.brewing.*;
 import net.msrandom.witchery.brewing.action.*;
-import net.msrandom.witchery.brewing.action.effect.BrewActionEffect;
 import net.msrandom.witchery.brewing.action.effect.BrewEffect;
 import net.msrandom.witchery.resources.BrewActionManager;
 

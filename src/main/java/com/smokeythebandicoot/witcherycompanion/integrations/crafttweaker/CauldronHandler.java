@@ -1,21 +1,16 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker;
 
-import com.smokeythebandicoot.witcherycompanion.api.brazier.BrazierApi;
-import com.smokeythebandicoot.witcherycompanion.api.cauldron.CauldronApi;
+import com.smokeythebandicoot.witcherycompanion.api.CauldronApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 @ModOnly(value = "witchery")
 @ZenClass("mods.smokeythebandicoot.witcherycompanion.Cauldron")

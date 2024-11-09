@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.item;
 
-import com.smokeythebandicoot.witcherycompanion.api.mutandis.MutandisApi;
+import com.smokeythebandicoot.witcherycompanion.api.MutandisApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.ItemTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;

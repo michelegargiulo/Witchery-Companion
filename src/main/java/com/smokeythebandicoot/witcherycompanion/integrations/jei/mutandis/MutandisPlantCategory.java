@@ -1,12 +1,9 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.jei.mutandis;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.barkbelt.BarkBeltApi;
-import com.smokeythebandicoot.witcherycompanion.api.mutandis.MutandisApi;
+import com.smokeythebandicoot.witcherycompanion.api.MutandisApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeCategory;
-import com.smokeythebandicoot.witcherycompanion.integrations.jei.barkbelt.BarkBeltWrapper;
-import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
@@ -19,12 +16,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.msrandom.witchery.init.items.WitcheryEquipmentItems;
 import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 
 import javax.annotation.Nonnull;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class MutandisPlantCategory extends BaseRecipeCategory<MutandisPlantWrapper> {
 

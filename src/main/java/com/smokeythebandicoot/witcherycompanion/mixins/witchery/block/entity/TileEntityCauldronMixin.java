@@ -2,9 +2,9 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.cauldron.ITileEntityCauldronAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.cauldron.ITileEntityCauldronAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
-import com.smokeythebandicoot.witcherycompanion.api.cauldron.CauldronApi;
+import com.smokeythebandicoot.witcherycompanion.api.CauldronApi;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

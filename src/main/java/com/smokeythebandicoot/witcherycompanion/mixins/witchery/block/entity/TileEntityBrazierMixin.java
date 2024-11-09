@@ -1,7 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
-import com.smokeythebandicoot.witcherycompanion.api.brazier.ITileEntityBrazierAccessor;
-import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.brazier.ITileEntityBrazierAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,8 +13,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import static com.smokeythebandicoot.witcherycompanion.api.progress.CapabilityWitcheryProgress.WITCHERY_PROGRESS_CAPABILITY;
 
 /**
  * Mixins:

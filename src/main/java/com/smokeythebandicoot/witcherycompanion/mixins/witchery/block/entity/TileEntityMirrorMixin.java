@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
-import com.smokeythebandicoot.witcherycompanion.api.mirror.ITileEntityMirrorAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.mirror.ITileEntityMirrorAccessor;
 import net.msrandom.witchery.block.entity.TileEntityMirror;
 import net.msrandom.witchery.block.entity.WitcheryTileEntity;
 import org.spongepowered.asm.mixin.Mixin;

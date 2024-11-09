@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.recipe;
 
-import com.smokeythebandicoot.witcherycompanion.api.kettle.IKettleRecipeAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.kettle.IKettleRecipeAccessor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.msrandom.witchery.block.entity.TileEntityKettle;

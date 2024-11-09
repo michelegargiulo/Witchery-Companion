@@ -3,19 +3,14 @@ package com.smokeythebandicoot.witcherycompanion.config;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 @Config(modid = WitcheryCompanion.MODID, name = "witchery_patches")
 @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)
@@ -1041,6 +1036,10 @@ public class ModConfig {
             @Config.Comment("If true, Spectre will drop loot according to its Loot Table (witchery:entities/spectre)")
             @Config.Name("Spectre - Tweak Drop Loot by Table")
             public static boolean spectre_tweakLootTable = false;
+
+            @Config.Comment("If true, Treefyd will drop loot according to its Loot Table (witchery:entities/treefyd)")
+            @Config.Name("Treefyd - Tweak Drop Loot by Table")
+            public static boolean treefyd_tweakOwnLootTable = false;
         }
 
         public static class DimensionTweaks {
@@ -1248,6 +1247,10 @@ public class ModConfig {
             @Config.Comment("If true, enables TOP integration for Flame Imp")
             @Config.Name("TOP Integration - Flame Imp")
             public static EProbeElementIntegrationConfig imp = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Treefyd")
+            @Config.Name("TOP Integration - Treefyd")
+            public static EProbeElementIntegrationConfig treefyd = EProbeElementIntegrationConfig.DEFAULT;
 
             public enum EProbeElementIntegrationConfig {
                 // Only enable basic information

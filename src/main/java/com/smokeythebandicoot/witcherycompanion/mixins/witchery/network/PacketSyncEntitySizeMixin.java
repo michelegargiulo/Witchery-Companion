@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.network;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.player.IEntityPlayerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.player.IEntityPlayerAccessor;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.PacketBuffer;
 import net.msrandom.witchery.network.PacketSyncEntitySize;

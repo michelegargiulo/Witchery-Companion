@@ -1,8 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.jei.altar;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.altar.AltarApi;
-import com.smokeythebandicoot.witcherycompanion.api.infernalimp.InfernalImpApi;
+import com.smokeythebandicoot.witcherycompanion.api.AltarApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeCategory;
 import mezz.jei.api.IGuiHelper;
@@ -17,7 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.init.WitcheryBlocks;
-import net.msrandom.witchery.init.items.WitcheryEquipmentItems;
 
 import javax.annotation.Nonnull;
 import java.util.*;

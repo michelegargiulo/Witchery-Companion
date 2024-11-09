@@ -4,6 +4,7 @@ import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConf
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block.*;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.entity.HobgoblinProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.entity.ImpProbeInfoProvider;
+import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.entity.TreefydProbeInfoProvider;
 import mcjty.theoneprobe.api.ITheOneProbe;
 
 import java.util.function.Function;
@@ -53,6 +54,9 @@ public class TOPPlugin implements Function<ITheOneProbe, Void> {
 
                 // Flame Imp
                 probe.registerEntityProvider(ImpProbeInfoProvider.getInstance());
+
+                // Treefyd
+                probe.registerEntityProvider(TreefydProbeInfoProvider.getInstance());
             }
         }
         return null;

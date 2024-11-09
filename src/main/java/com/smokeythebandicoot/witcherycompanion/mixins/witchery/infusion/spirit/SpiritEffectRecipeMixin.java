@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.infusion.spirit;
 
-import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.ISpiritEffectRecipeAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.spiriteffect.ISpiritEffectRecipeAccessor;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.infusion.spirit.InfusedSpiritEffect;

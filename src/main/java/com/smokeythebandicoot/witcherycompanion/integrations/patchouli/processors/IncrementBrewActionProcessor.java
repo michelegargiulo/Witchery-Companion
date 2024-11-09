@@ -5,7 +5,6 @@ import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.Processor
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BrewActionProcessor;
 import com.smokeythebandicoot.witcherycompanion.utils.RomanNumbers;
 import net.msrandom.witchery.brewing.action.IncrementBrewAction;
-import net.msrandom.witchery.brewing.action.UpgradeBrewAction;
 import vazkii.patchouli.api.IVariableProvider;
 import vazkii.patchouli.common.util.ItemStackUtil;
 

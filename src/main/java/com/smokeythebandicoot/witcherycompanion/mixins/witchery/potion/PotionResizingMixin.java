@@ -1,19 +1,14 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.potion;
 
-import com.smokeythebandicoot.witcherycompanion.api.player.IEntityPlayerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.PotionTweaks;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.msrandom.witchery.network.PacketSyncEntitySize;
-import net.msrandom.witchery.network.WitcheryNetworkChannel;
 import net.msrandom.witchery.potion.PotionResizing;
-import net.msrandom.witchery.resources.CreatureFormStatManager;
-import net.msrandom.witchery.transformation.CreatureForm;
 import net.msrandom.witchery.util.EntitySizeInfo;
 import net.msrandom.witchery.util.ResizingUtils;
-import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

@@ -3,7 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
-import com.smokeythebandicoot.witcherycompanion.api.worshipstatue.ITileEntityWorshipStatueAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.worshipstatue.ITileEntityWorshipStatueAccessor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.msrandom.witchery.block.entity.TileEntityWorshipStatue;
 import net.msrandom.witchery.block.entity.WitcheryTileEntity;

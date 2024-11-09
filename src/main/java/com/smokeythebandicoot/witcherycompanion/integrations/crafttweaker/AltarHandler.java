@@ -1,7 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker;
 
-import com.smokeythebandicoot.witcherycompanion.api.altar.AltarApi;
-import com.smokeythebandicoot.witcherycompanion.api.altar.AltarApi.AltarPowerSource;
+import com.smokeythebandicoot.witcherycompanion.api.AltarApi;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
@@ -11,15 +10,9 @@ import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.oredict.IOreDictEntry;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.oredict.OreDictionary;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @ModOnly(value = "witchery")
