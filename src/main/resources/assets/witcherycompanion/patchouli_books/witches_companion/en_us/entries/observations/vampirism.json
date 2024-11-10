@@ -16,7 +16,7 @@
     },
     {
       "type": "generic/secret_text",
-      "title": "Dying in the Sun",
+      "title": "Lvl. 1 - Dying in the Sun",
       "description": "Vampires will die almost instantly in the sun. If out in the open at night, take a clock! Especially if the vampire's respawn point is itself sunlit.",
       "secret_key": "witcherycompanion:traits/vampirism/level_1",
       "flag": "witcherycompanion:observations/show_vampirism_progress",
@@ -45,63 +45,63 @@
     },
     {
       "type": "generic/secret_text",
-      "title": "Transfix",
+      "title": "Lvl. 2 - Transfix",
       "description": "The vampire acquires the ability to $(item)Transfix$(): the victim cannot move while the vampire drains its blood. Draining less than half of the victim's blood does not damage it, even if awake. Costs blood itself to activate.$(br)Vampire also gains $(item)Night Vision$() if it sneak-uses during transfix.",
       "secret_key": "witcherycompanion:traits/vampirism/level_2",
       "flag": "witcherycompanion:observations/show_vampirism_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Knockback",
+      "title": "Lvl. 3 - Knockback",
       "description": "Normal attacks have knockback effect.",
       "secret_key": "witcherycompanion:traits/vampirism/level_3",
       "flag": "witcherycompanion:observations/show_vampirism_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Speed Increase",
+      "title": "Lvl. 4 - Speed Increase",
       "description": "Costs blood to activate, but boosts for a short duration the vampire's speed and jump abilities. More experienced vampires can activate it multiple times for a cumulative buff.",
       "secret_key": "witcherycompanion:traits/vampirism/level_4",
       "flag": "witcherycompanion:observations/show_vampirism_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Sunlight Resistance",
+      "title": "Lvl. 5 - Sunlight Resistance",
       "description": "Sunlight burns away blood at a slower rate, resulting in some tolerance to sunlight, although the vampire's capabilities will be significantly reduced. Tolerance increases for more experienced vampires.",
       "secret_key": "witcherycompanion:traits/vampirism/level_5",
       "flag": "witcherycompanion:observations/show_vampirism_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Smash Stone",
+      "title": "Lvl. 6 - Smash Stone",
       "description": "Hitting $(item)Stone$() while sneaking breaks it instantly if not holding a stone-breaking tool. Causes a large amount of exhaustion.",
       "secret_key": "witcherycompanion:traits/vampirism/level_6",
       "flag": "witcherycompanion:observations/show_vampirism_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Batswarm Form ",
+      "title": "Lvl. 7 - Batswarm Form ",
       "description": "Turn into a swarm of bats and fly around, costs blood to activate and drains blood while active. Massive damage debuff when active and blood drinking rate massively reduced.",
       "secret_key": "witcherycompanion:traits/vampirism/level_7",
       "flag": "witcherycompanion:observations/show_vampirism_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Mesmerize",
+      "title": "Lvl. 8 - Mesmerize",
       "description": "Transfix ability will now cause $(item)Villagers$() and $(l:creatures/village_guard)Village Guards$(/l) to follow the vampire.",
       "secret_key": "witcherycompanion:traits/vampirism/level_8",
       "flag": "witcherycompanion:observations/show_vampirism_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Create vampires",
+      "title": "Lvl. 9 - Create vampires",
       "description": "Player can now turn $(item)Villagers$(), $(l:creatures/village_guard)Village Guards$(/l) and other players into vampires using a $(l:)Glass Goblet$(/l) to collect their own demon tainted blood. Drain completely a $(item)mesmerized$() Villager or Guard of its $(item)blood$(), then use a Glass Goblet filled with your blood on them to turn them into Vampires. A $(l:artifacts/devices/coffin)Coffin$(/l) must be very close to the creature. Created Vampires will deposit blood in a $(l:artifacts/devices/blood_crucible)Blood Crucible$(/l) when drinking blood.",
       "secret_key": "witcherycompanion:traits/vampirism/level_9",
       "flag": "witcherycompanion:observations/show_vampirism_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Blood power",
+      "title": "Lvl. 10 - Blood power",
       "description": "Child vampires can now donate their blood into a $(l:artifacts/devices/blood_crucible)Blood Crucible$(/l) as they return from a nights feeding, when full a player can consume this blood with an ingredient to gain 5 charges of one of the following powers:$(p)$(8)> $()Call Storm to make it rain and hide from the sun$(br)$(8)> $()Teleport to spawn bed if far away from it, to nearest $(item)Village$() otherwise.",
       "secret_key": "witcherycompanion:traits/vampirism/level_10",
       "flag": "witcherycompanion:observations/show_vampirism_progress",
