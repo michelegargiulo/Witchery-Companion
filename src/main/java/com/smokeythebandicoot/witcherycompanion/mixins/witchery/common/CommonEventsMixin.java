@@ -21,6 +21,11 @@ import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.msrandom.witchery.common.CommonEvents;
 import net.msrandom.witchery.config.WitcheryConfigOptions;
+import net.msrandom.witchery.extensions.PlayerExtendedData;
+import net.msrandom.witchery.init.WitcheryCreatureTraits;
+import net.msrandom.witchery.init.data.WitcheryAlternateForms;
+import net.msrandom.witchery.transformation.CreatureForm;
+import net.msrandom.witchery.transformation.WerewolfCreatureTrait;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -31,6 +36,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  [Bugfix] Fixes Crash on Village Worldgen, when Witchery attempts to generate items inside chests or item frames and
    tries to add duplicate loot pools (pools with the same name)
  [Tweak] Disable PvP and PvE for Poppets
+ [Tweak] Transform to Wolfman form if level >= 5 werewolf is forced to transform
  */
 @Mixin(CommonEvents.class)
 public abstract class CommonEventsMixin {
@@ -96,6 +102,21 @@ public abstract class CommonEventsMixin {
         if (ModConfig.PatchesConfiguration.EntityTweaks.villager_disableBackportedAI) {
             ci.cancel();
         }
+    }
+
+    /** This Mixin injects into the part of codes that forces a WOLF transformation. Changes the target CreatureForm just
+     * before the setCurrentForm call, swapping WOLF form with WOLFMAN if player is Werewolf level 5 or higher **/
+    @WrapOperation(method = "onLivingUpdate", remap = false, at = @At(value = "INVOKE", remap = false, ordinal = 1,
+            target = "Lnet/msrandom/witchery/extensions/PlayerExtendedData;setCurrentForm(Lnet/msrandom/witchery/transformation/CreatureForm;)V"))
+    private static void changeToBetterForm(PlayerExtendedData instance, CreatureForm creatureForm, Operation<Void> original) {
+        if (ModConfig.PatchesConfiguration.TransformationTweaks.werewolf_tweakTransformToWolfman) {
+            WerewolfCreatureTrait werewolfTrait = instance.getTransformation(WitcheryCreatureTraits.WEREWOLF);
+            if (werewolfTrait.getLevel() >= 5) {
+                original.call(instance, WitcheryAlternateForms.WOLFMAN);
+                return;
+            }
+        }
+        original.call(instance, WitcheryAlternateForms.WOLF);
     }
 
 }

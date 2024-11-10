@@ -1087,6 +1087,11 @@ public class ModConfig {
             @Config.Name("No Form - Fix Default Step Height")
             public static boolean noForm_fixDefaultStepHeight = true;
 
+            @Config.Comment("If true, a level 6 or higher werewolf without a Moon Charm will transform into WOLFMAN form instead " +
+                    "of WOLF form. Lesser levels will transform into WOLF form regardless")
+            @Config.Name("Werewolf - Tweak Transform to Wolfman")
+            public static boolean werewolf_tweakTransformToWolfman = false;
+
         }
 
         public static class WorldGenTweaks {
