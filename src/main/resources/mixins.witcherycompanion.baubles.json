@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.smokeythebandicoot.witcherycompanion.integrations.baubles.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "${mixin_refmap}",
+  "mixins": [
+    "common.CommonEventsMixin",
+    "entity.EntityNightmareMixin",
+    "init.items.WitcheryIngredientItemsMixin",
+    "item.ItemMoonCharmMixin"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8"
+}

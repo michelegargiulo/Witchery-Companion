@@ -2,7 +2,9 @@ package com.smokeythebandicoot.witcherycompanion;
 
 import com.smokeybandicoot.witcherycompanion.Tags;
 import com.smokeythebandicoot.witcherycompanion.proxy.CommonProxy;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -85,7 +87,14 @@ public class WitcheryCompanion implements ILateMixinLoader {
     @Override
     public List<String> getMixinConfigs() {
         List<String> configs = new ArrayList<>();
+
+        // Base
         configs.add("mixins.witcherycompanion.json");
+
+        // Baubles
+        if (Loader.isModLoaded(Mods.BAUBLES))
+            configs.add("mixins.witcherycompanion.baubles.json");
+
         return configs;
     }
 
