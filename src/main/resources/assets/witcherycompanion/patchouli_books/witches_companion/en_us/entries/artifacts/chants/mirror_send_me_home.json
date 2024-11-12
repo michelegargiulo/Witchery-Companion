@@ -7,7 +7,7 @@
     {
       "type": "text",
       "title": "Mirror Send Me Home",
-      "text": "This Chant will save a wandering player trapped by their own curiosity, recklessness, or both. The Chant only works in the $(l:dimensions/mirror)Mirror$(/l) dimension, and will teleport back the lost traveller to their original $(l:dimensions/mirror#room_travel)Mirror$(/l) room."
+      "text": "This Chant will save a wandering player trapped by their own curiosity, recklessness, or both. The Chant only works in the $(l:dimensions/mirror)Mirror$(/l) dimension, and will teleport back the lost traveller to their original $(l:dimensions/mirror#room_travel)Mirror$(/l) room. A short cooldown is needed before this Chant can be used again."
     }
   ]
 }
