@@ -76,6 +76,7 @@
     "witchery.entity.familiar.FamiliarMixin",
     "witchery.entity.familiar.FamiliarsMixin",
     "witchery.entity.item.EntityQuartzGrenadeMixin",
+    "witchery.entity.item.ItemPolynesiaCharm.AnimalMerchantMixin",
     "witchery.entity.monster.EntityAttackBatMixin",
     "witchery.entity.monster.EntityLilithMixin",
     "witchery.entity.passive.EntityCatFamiliarMixin",

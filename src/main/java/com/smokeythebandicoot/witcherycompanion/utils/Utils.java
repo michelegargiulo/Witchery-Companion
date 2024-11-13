@@ -49,6 +49,10 @@ public class Utils {
         return block.getStateFromMeta(meta == null ? stack.getMetadata() : meta);
     }
 
+    public static boolean doItemStacksMatch(ItemStack first, ItemStack second) {
+        return first.getItem() == second.getItem() && first.getMetadata() == second.getMetadata();
+    }
+
     public static List<Block> getBlocksForOre(String name) {
         List<Block> blockList = new ArrayList<>();
         NonNullList<ItemStack> items = OreDictionary.getOres(name);
