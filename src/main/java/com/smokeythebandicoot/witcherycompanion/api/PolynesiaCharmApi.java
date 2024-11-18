@@ -13,13 +13,13 @@ import java.util.*;
 
 public class PolynesiaCharmApi {
 
-    private static final Map<Class<? extends EntityLiving>, AnimalTrades> animalTrades;
+    private static final Map<Class<? extends EntityLiving>, AnimalTradesOld> animalTrades;
 
     static {
         animalTrades = new HashMap<>();
 
         // Common items available for all trades
-        AnimalTrades entityLiving = new AnimalTrades();
+        AnimalTradesOld entityLiving = new AnimalTradesOld();
         // All Entity Livings have one trade with one of those items, so trade chance is 100% and
         // the item is selected randomly from this list
         entityLiving.addGoods(
@@ -47,7 +47,7 @@ public class PolynesiaCharmApi {
         animalTrades.put(EntityLiving. class,entityLiving);
 
         // PIG
-        AnimalTrades pig = entityLiving.clone();
+        AnimalTradesOld pig = entityLiving.clone();
         pig.addCurrency(new ItemStack(Items.CARROT));
         pig.addCurrency(new ItemStack(Items.APPLE));
         pig.addCurrency(new ItemStack(Items.POTATO));
@@ -55,7 +55,7 @@ public class PolynesiaCharmApi {
     }
 
 
-    private static AnimalTrades getData(EntityLiving entity) {
+    private static AnimalTradesOld getData(EntityLiving entity) {
         Class<?> current = entity.getClass();
         while (current != null) {
             if (animalTrades.containsKey(current)) {
@@ -67,7 +67,7 @@ public class PolynesiaCharmApi {
     }
 
     public static MerchantRecipeList generateTradesFor(EntityLiving entity) {
-        AnimalTrades trades = getData(entity);
+        AnimalTradesOld trades = getData(entity);
         if (trades != null) {
             return trades.generateTrades(entity.getEntityWorld().rand);
         }
@@ -76,7 +76,36 @@ public class PolynesiaCharmApi {
 
 
 
-    public static class AnimalTrades implements Cloneable {
+    public static class AnimalTrades {
+
+        public ArrayList<ItemStack> currencies;
+
+        public ArrayList<ItemStack> fallbackGoods;
+
+        public HashMap<ItemStack, Double> goods;
+
+
+        public AnimalTrades() {
+            currencies = new ArrayList<>();
+            fallbackGoods = new ArrayList<>();
+            goods = new HashMap<>();
+        }
+
+        public MerchantRecipeList generateTrades(Random rand) {
+            /** Process starts with a list of items (FALLBACK items)
+             * An item is randomly selected from the FALLBACK items and added to GOODS list
+             * Treefyd seeds are added to the GOODS list with 3% chance
+             *
+             * For each animal:
+             * - currencies are added to the CURRENCY list
+             * - items are added to the GOODS list with certain probability
+             */
+        }
+
+    }
+
+
+    public static class AnimalTradesOld implements Cloneable {
 
         public Map<MerchantRecipe, Double> fixedTrades;
 
@@ -89,7 +118,7 @@ public class PolynesiaCharmApi {
         public double secondBuyChance;
 
 
-        public AnimalTrades() {
+        public AnimalTradesOld() {
             fixedTrades = new HashMap<>();
             currencies = new ArrayList<>();
             goods = new HashMap<>();
@@ -281,12 +310,12 @@ public class PolynesiaCharmApi {
         }
 
         @Override
-        public AnimalTrades clone() {
-            AnimalTrades trades;
+        public AnimalTradesOld clone() {
+            AnimalTradesOld trades;
             try {
-                trades = (AnimalTrades) super.clone();
+                trades = (AnimalTradesOld) super.clone();
             } catch (Exception ex) {
-                trades = new AnimalTrades();
+                trades = new AnimalTradesOld();
             }
             trades.setMaxRandomTrades(this.getMaxRandomTrades());
             trades.setSecondBuyChance(this.getSecondBuyChance());
