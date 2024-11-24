@@ -1101,6 +1101,10 @@ public class ModConfig {
             @Config.Name("Item Frame - Fix Crash While Generating Book In Village")
             public static boolean frameWithBook_fixCrashOnVillageGen = true;
 
+            @Config.Comment("If true, fixes an Out of Memory crash when Cubic Chunks is installed")
+            @Config.Name("Chunk Points of Interest - Fix Crash with Cubic Chunks")
+            public static boolean chunkPOI_fixCubicChunksIncompat = true;
+
         }
     }
 

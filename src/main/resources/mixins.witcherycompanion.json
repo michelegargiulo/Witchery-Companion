@@ -137,6 +137,7 @@
     "witchery.util.EntityUtilMixin",
     "witchery.util.ResizingUtilsMixin",
     "witchery.world.dimension.spirit.WorldProviderSpiritWorldMixin",
+    "witchery.world.gen.structure.ChunkPointsOfInterestMixin",
     "witchery.world.loot.functions.LevelledRandomEnchantmentMixin"
   ],
   "client": [
