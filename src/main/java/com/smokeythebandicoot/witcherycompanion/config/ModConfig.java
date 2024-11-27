@@ -416,6 +416,16 @@ public class ModConfig {
             @Config.RangeDouble(min = 1.0, max = 10000.0)
             public static float mirror_inMirrorPowerConsumption = 3000;
 
+            @Config.Comment("Fix Perpetual Ice block having the same appearance of Vanilla Ice, making it have the same " +
+                    "appearance as other Perpetual Ice blocks (fences, slabs, etc.).")
+            @Config.Name("Perpetual Ice - Fix Inconsistent Appearance")
+            public static boolean perpetualIce_fixInconsistentAppearance = true;
+
+            @Config.Comment("Fix Perpetual Ice Stairs having translucent cut-out texture, giving it a solid renderLayer instead. " +
+                    "Will fix X-Ray and will give the Stairs a consistent look with other Perpetual Ice blocks (fences, slabs, etc.).")
+            @Config.Name("Perpetual Ice Stairs - Fix X-Ray")
+            public static boolean perpetualIceStairs_fixXRay = true;
+
             @Config.Comment("Fix Arthana, Pentacle and other items placed on top of the altar not dropping when " +
                     "the altar block below them is broken.")
             @Config.Name("Placed Items - Fix No Drops")
