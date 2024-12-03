@@ -262,7 +262,17 @@ public class PolynesiaCharmApi {
         if (trades != null) {
             return trades.generateTrades(entity);
         }
-        return null;
+        return new MerchantRecipeList();
+    }
+
+    /** Removes all trades, goods and currencies for an EntityLiving **/
+    public static void removeAllForAnimal(Class<? extends EntityLiving> entityClass) {
+        animalTrades.remove(entityClass);
+    }
+
+    /** Removes everything from the API, including the built-in trades **/
+    public static void clearAll() {
+        animalTrades.clear();
     }
 
 

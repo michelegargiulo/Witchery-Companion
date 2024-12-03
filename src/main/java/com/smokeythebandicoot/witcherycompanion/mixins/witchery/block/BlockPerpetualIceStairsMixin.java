@@ -5,6 +5,7 @@ import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -60,6 +61,7 @@ public abstract class BlockPerpetualIceStairsMixin extends BlockStairs {
 
         // If connected to perpetual ice blocks that have full faces or matching faces, return false
         cir.setReturnValue(
+                opposingBlock.getBlock() != Blocks.ICE &&
                 opposingBlock.getBlock() != WitcheryBlocks.PERPETUAL_ICE &&
                 opposingBlock.getBlock() != WitcheryBlocks.PERPETUAL_ICE_SLAB_DOUBLE &&
                 opposingBlock.getBlock() != WitcheryBlocks.PERPETUAL_ICE_STAIRS
