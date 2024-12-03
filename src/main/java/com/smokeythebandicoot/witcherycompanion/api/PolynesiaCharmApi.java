@@ -1,9 +1,11 @@
 package com.smokeythebandicoot.witcherycompanion.api;
 
-import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 
 public class PolynesiaCharmApi {
 
+    private static boolean climbHierarchy = true;
     private static final Map<Class<? extends EntityLiving>, AnimalTrades> animalTrades;
 
     static {
@@ -41,99 +44,291 @@ public class PolynesiaCharmApi {
         entityLiving.addFallbackTrade(new ItemStack(Items.POISONOUS_POTATO, 2), 1);
         entityLiving.addFallbackTrade(new ItemStack(Items.CARROT, 5), 3);
         entityLiving.addFallbackTrade(new ItemStack(Items.CLAY_BALL, 10), 3);
-        );
+
         // Every living entity has a 3% chance to have an additional trade with Treefyd Seeds
-        entityLiving.addGoods(0.03, new ItemStack(WitcheryIngredientItems.TREEFYD_SEEDS));
-        animalTrades.put(EntityLiving. class,entityLiving);
+        entityLiving.addGood(new ItemStack(WitcheryIngredientItems.TREEFYD_SEEDS), 0, 0.03, true);
+        animalTrades.put(EntityLiving.class, entityLiving);
+
+        // All Mobs
+        AnimalTrades mobs = new AnimalTrades();
+        mobs.addCurrency(new ItemStack(Items.BONE), 3);
+        animalTrades.put(EntityZombie.class, mobs);
+
+        // All Animals
+        AnimalTrades animals = new AnimalTrades();
+        animals.addCurrency((new ItemStack(Items.BEEF)), 3);
+        animals.addCurrency((new ItemStack(Items.PORKCHOP)), 3);
+        animals.addCurrency((new ItemStack(Items.CHICKEN)), 3);
+        animals.addCurrency((new ItemStack(Items.FISH)), 3);
+        animals.addCurrency((new ItemStack(Items.WHEAT)), 3);
+        animals.addCurrency((new ItemStack(Items.WHEAT_SEEDS)), 3);
+        animals.addCurrency((new ItemStack(Items.CARROT)), 3);
+        animals.addCurrency((new ItemStack(Items.APPLE)), 3);
+        animals.addCurrency((new ItemStack(Items.POTATO)), 3);
+        animalTrades.put(EntityAnimal.class, animals);
 
         // PIG
-        AnimalTradesOld pig = entityLiving.clone();
-        pig.addCurrency(new ItemStack(Items.CARROT));
-        pig.addCurrency(new ItemStack(Items.APPLE));
-        pig.addCurrency(new ItemStack(Items.POTATO));
+        AnimalTrades pig = new AnimalTrades();
+        pig.addCurrency(new ItemStack(Items.CARROT), 3);
+        pig.addCurrency(new ItemStack(Items.APPLE), 3);
+        pig.addCurrency(new ItemStack(Items.POTATO), 3);
+        pig.addGood(new ItemStack(Blocks.RED_MUSHROOM, 5), 4);
+        pig.addGood(new ItemStack(Blocks.BROWN_MUSHROOM, 5), 4);
+        pig.addGood(new ItemStack(Items.EMERALD, 1), 1, 0.02, true);
+        pig.addGood(new ItemStack(Items.DIAMOND, 1), 1, 0.01, true);
+        animalTrades.put(EntityPig.class, pig);
+
+        // Horse
+        AnimalTrades horse = new AnimalTrades();
+        horse.addCurrency(new ItemStack(Items.CARROT), 3);
+        horse.addCurrency(new ItemStack(Items.APPLE), 3);
+        horse.addCurrency(new ItemStack(Items.WHEAT), 3);
+        horse.addGood(new ItemStack(Items.SADDLE), 1, 0.01, true);
+        animalTrades.put(EntityHorse.class, horse);
+
+        // Wolf
+        AnimalTrades wolf = new AnimalTrades();
+        wolf.addCurrency(new ItemStack(Items.BEEF), 3);
+        wolf.addCurrency(new ItemStack(Items.PORKCHOP), 3);
+        wolf.addCurrency(new ItemStack(Items.CHICKEN), 3);
+        wolf.addGood(new ItemStack(Items.BONE, 5), 4);
+        wolf.addGood(new ItemStack(Items.EMERALD, 1), 1, 0.02, true);
+        wolf.addGood(new ItemStack(Items.DIAMOND, 1), 1, 0.01, true);
+        animalTrades.put(EntityWolf.class, wolf);
+
+        // Ocelot
+        AnimalTrades ocelot = new AnimalTrades();
+        ocelot.addCurrency(new ItemStack(Items.MILK_BUCKET), 1);
+        ocelot.addCurrency(new ItemStack(Items.FISH), 3);
+        animalTrades.put(EntityOcelot.class, ocelot);
+
+        // Mooshroom
+        AnimalTrades mooshroom = new AnimalTrades();
+        mooshroom.addCurrency(new ItemStack(Blocks.RED_MUSHROOM), 3);
+        mooshroom.addCurrency(new ItemStack(Blocks.BROWN_MUSHROOM), 3);
+        animalTrades.put(EntityMooshroom.class, mooshroom);
+
+        // Cow
+        AnimalTrades cow = new AnimalTrades();
+        cow.addCurrency(new ItemStack(Items.WHEAT), 3);
+        animalTrades.put(EntityCow.class, cow);
+
+        // Chicken
+        AnimalTrades chicken = new AnimalTrades();
+        chicken.addCurrency(new ItemStack(Items.WHEAT_SEEDS), 3);
+        chicken.addGood(new ItemStack(Items.FEATHER, 10), 5);
+        chicken.addGood(new ItemStack(Items.EGG, 5), 5);
+        animalTrades.put(EntityChicken.class, chicken);
+
+        // Sheep
+        AnimalTrades sheep = new AnimalTrades();
+        sheep.addCurrency(new ItemStack(Items.WHEAT), 3);
+        animalTrades.put(EntitySheep.class, sheep);
+
+        // Squid
+        AnimalTrades squid = new AnimalTrades();
+        squid.addCurrency(new ItemStack(Items.FISH), 3);
+        squid.addGood(new ItemStack(Items.DYE, 10, EnumDyeColor.BLACK.getDyeDamage()), 5);
+        animalTrades.put(EntitySquid.class, squid);
+
+        // Bat
+        AnimalTrades bat = new AnimalTrades();
+        bat.addCurrency(new ItemStack(Items.WHEAT_SEEDS), 3);
+        bat.addCurrency(new ItemStack(Items.WHEAT), 3);
+        bat.addCurrency(new ItemStack(Items.BEEF), 3);
+        bat.addCurrency(new ItemStack(Items.PORKCHOP), 3);
+        bat.addGood(new ItemStack(WitcheryIngredientItems.BAT_WOOL, 5), 3);
+        animalTrades.put(EntityBat.class, bat);
+
+        // Spider
+        AnimalTrades spider = new AnimalTrades();
+        spider.addCurrency(new ItemStack(Items.BEEF), 3);
+        spider.addCurrency(new ItemStack(Items.PORKCHOP), 3);
+        spider.addCurrency(new ItemStack(Items.CHICKEN), 3);
+        spider.addCurrency(new ItemStack(Items.FISH), 3);
+        spider.addGood(new ItemStack(Items.STRING, 8), 5);
+        spider.addGood(new ItemStack(WitcheryIngredientItems.WEB, 4), 3);
+        animalTrades.put(EntitySpider.class, spider);
+
+        // Creeper
+        AnimalTrades creeper = new AnimalTrades();
+        creeper.addCurrency(new ItemStack(Items.GUNPOWDER), 3);
+        creeper.addCurrency(new ItemStack(Items.FISH), 3);
+        creeper.addGood(new ItemStack(WitcheryIngredientItems.SPECTRAL_DUST, 2), 1, 0.05);
+        creeper.addGood(new ItemStack(WitcheryIngredientItems.TREEFYD_SEEDS), 1, 0.1);
+        creeper.addGood(new ItemStack(WitcheryIngredientItems.CREEPER_HEART), 1, 0.1);
+        animalTrades.put(EntityCreeper.class, creeper);
+
+        // Zombies, Skeletons
+        AnimalTrades undead = new AnimalTrades();
+        undead.addGood(new ItemStack(WitcheryIngredientItems.SPECTRAL_DUST, 2), 1, 0.05);
+        animalTrades.put(EntityZombie.class, undead);
+        animalTrades.put(AbstractSkeleton.class, undead);
+        animalTrades.put(EntityWitherSkeleton.class, undead);
+        animalTrades.put(EntityZombieHorse.class, undead);
+        animalTrades.put(EntitySkeletonHorse.class, undead);
 
     }
 
 
-    private static AnimalTradesOld getData(EntityLiving entity) {
+    private static AnimalTrades getData(EntityLiving entity) {
         Class<?> current = entity.getClass();
         AnimalTrades trades = null;
-        while (current != null) {
-            if (animalTrades.containsKey(current)) {
-                if (trades == null)
-                    trades = animalTrades.get(current);
-                else
-                    trades.merge(animalTrades.get(current));
+        if (climbHierarchy) {
+            while (current != null) {
+                if (animalTrades.containsKey(current)) {
+                    if (trades == null)
+                        trades = animalTrades.get(current);
+                    else
+                        trades.merge(animalTrades.get(current));
+                }
+                current = current.getSuperclass();
             }
-            current = current.getSuperclass();
+        } else {
+            return animalTrades.getOrDefault(current, null);
         }
         return null;
     }
 
+
+
+    /** Adds a fallback trade to the class. Good is the item to sell, range specifies a maximum variation in the amount from the
+     * good ItemStack's count. If isPrecious is true, the good will require a second item to buy to be sold **/
+    public static void addFallbackTrade(Class<? extends EntityLiving> entityClass, ItemStack good, int range, boolean isPrecious) {
+        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addFallbackTrade(
+                good, range, isPrecious
+        );
+    }
+
+    public static void addFallbackTrade(Class<? extends EntityLiving> entityClass, ItemStack good, int range) {
+        addFallbackTrade(entityClass, good, range, false);
+    }
+
+    public static void addFallbackTrade(Class<? extends EntityLiving> entityClass, ItemStack good) {
+        addFallbackTrade(entityClass, good, 1, false);
+    }
+
+    /** Removes a fallback trade for an animal class if there's an animal-specific trade corresponding to the good.
+     * The item might still be present in the hierarchy **/
+    public static void removeFallbackTrade(Class<? extends EntityLiving> entityClass, ItemStack good) {
+        if (animalTrades.containsKey(entityClass)) {
+            animalTrades.get(entityClass).removeFallbackTrade(good);
+        }
+    }
+
+    /** Adds a good that can be sold. Range indicates the variation in amount with respect to the good ItemStack's count, chance
+     * is the chance to appear as a trade, and if isPrecious is true the good requires a second item to buy for it to be sold **/
+    public static void addGood(Class<? extends EntityLiving> entityClass, ItemStack good, int range, double chance, boolean isPrecious) {
+        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addGood(good, range, chance, isPrecious);
+    }
+
+    public static void addGood(Class<? extends EntityLiving> entityClass, ItemStack good, int range, double chance) {
+        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addGood(good, range, chance, false);
+    }
+
+    public static void addGood(Class<? extends EntityLiving> entityClass, ItemStack good, int range) {
+        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addGood(good, range, 1.0, false);
+    }
+
+    public static void addGood(Class<? extends EntityLiving> entityClass, ItemStack good) {
+        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addGood(good, 1, 1.0, false);
+    }
+
+    /** Removes a good for an animal class if there's an animal-specific trade corresponding to the good.
+     * The item might still be present in the hierarchy  **/
+    public static void removeGood(Class<? extends EntityLiving> entityClass, ItemStack good) {
+        animalTrades.getOrDefault(entityClass, new AnimalTrades()).removeGood(good);
+    }
+
+    /** Adds a currency, that represents an item that the animal is interested to buy. Range indicates the variation in amount
+     * with respect to the good ItemStack's count  **/
+    public static void addCurrency(Class<? extends EntityLiving> entityClass, ItemStack currency, int range) {
+        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addCurrency(currency, range);
+    }
+
+    public static void addCurrency(Class<? extends EntityLiving> entityClass, ItemStack currency) {
+        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addCurrency(currency, 1);
+    }
+
+    /** Removes a currency for an animal class if there's an animal-specific trade corresponding to the currency.
+     * The item might still be present in the hierarchy  **/
+    public static void removeCurrency(Class<? extends EntityLiving> entityClass, ItemStack currency) {
+        animalTrades.getOrDefault(entityClass, new AnimalTrades()).removeCurrency(currency);
+    }
+
+    /** Actually generates trades for a living entity based on its class and world (for randomness) **/
     public static MerchantRecipeList generateTradesFor(EntityLiving entity) {
-        AnimalTradesOld trades = getData(entity);
+        AnimalTrades trades = getData(entity);
         if (trades != null) {
-            return trades.generateTrades(entity.getEntityWorld().rand);
+            return trades.generateTrades(entity);
         }
         return null;
     }
 
 
 
-    public static class AnimalTrades implements Cloneable {
+    private static class AnimalTrades {
 
         // Initial list of goods. One always gets selected from this list
-        public ArrayList<AnimalTradeStackInfo> fallbackGoods;
+        private ArrayList<AnimalTradeStackInfo> fallbackGoods;
 
         // Currencies for the trades
-        public ArrayList<AnimalTradeStackInfo> currencies;
+        private ArrayList<AnimalTradeStackInfo> currencies;
 
         // Goods are added with a chance
-        public ArrayList<AnimalTradeStackInfo> goods;
+        private ArrayList<AnimalTradeStackInfo> goods;
 
         // Chance that each animal requires a second currency for the trade
         private double secondBuyChance;
 
 
-        public AnimalTrades() {
+        private AnimalTrades() {
             currencies = new ArrayList<>();
             fallbackGoods = new ArrayList<>();
             goods = new ArrayList<>();
             secondBuyChance = 0.5;
         }
 
-        public void addFallbackTrade(ItemStack good, int range, boolean precious) {
+        private void addFallbackTrade(ItemStack good, int range, boolean precious) {
             fallbackGoods.add(new AnimalTradeStackInfo(good, range, 1.0, precious));
         }
 
-        public void addFallbackTrade(ItemStack good, int range) {
+        private void addFallbackTrade(ItemStack good, int range) {
             addFallbackTrade(good, range, false);
         }
 
-        public void removeFallbackTrade(ItemStack good) {
+        private void removeFallbackTrade(ItemStack good) {
             fallbackGoods.removeIf(trade -> trade.stack.getItem() == good.getItem() &&
                     trade.stack.getMetadata() == good.getMetadata());
         }
 
-        public void addCurrency(ItemStack currency, int range) {
+        private void addCurrency(ItemStack currency, int range) {
             currencies.add(new AnimalTradeStackInfo(currency, range, 1.0, false));
         }
 
-        public void removeCurrency(ItemStack currency) {
+        private void removeCurrency(ItemStack currency) {
             currencies.removeIf(trade -> trade.stack.getItem() == currency.getItem() &&
                     trade.stack.getMetadata() == currency.getMetadata());
         }
 
-        public void addGood(ItemStack good, int range, double chance, boolean precious) {
+        private void addGood(ItemStack good, int range, double chance, boolean precious) {
             fallbackGoods.add(new AnimalTradeStackInfo(good, range, chance, precious));
         }
 
-        public void removeGood(ItemStack good) {
+        private void addGood(ItemStack good, int range, double chance) {
+            fallbackGoods.add(new AnimalTradeStackInfo(good, range, chance, false));
+        }
+
+        private void addGood(ItemStack good, int range) {
+            fallbackGoods.add(new AnimalTradeStackInfo(good, range, 1.0, false));
+        }
+
+        private void removeGood(ItemStack good) {
             fallbackGoods.removeIf(trade -> trade.stack.getItem() == good.getItem() &&
                     trade.stack.getMetadata() == good.getMetadata());
         }
 
-        public List<ItemStack> getPossibleGoods() {
+        private List<ItemStack> getPossibleGoods() {
             List<ItemStack> stacks = new ArrayList<>();
             for (AnimalTradeStackInfo stackInfo : this.fallbackGoods) {
                 stacks.add(stackInfo.stack);
@@ -144,33 +339,29 @@ public class PolynesiaCharmApi {
             return stacks;
         }
 
-        public List<ItemStack> getPossibleCurrencies() {
+        private List<ItemStack> getPossibleCurrencies() {
             return currencies.stream()
                     .map(currency -> currency.stack)
                     .collect(Collectors.toList());
         }
 
-        public void merge(AnimalTrades otherTrades) {
-            // Merge fallback trades
-
+        /** Merge allows for duplicate entries! **/
+        private void merge(AnimalTrades otherTrades) {
+            this.fallbackGoods.addAll(otherTrades.fallbackGoods);
+            this.goods.addAll(otherTrades.goods);
+            this.currencies.addAll(otherTrades.currencies);
         }
 
-        private ArrayList<AnimalTradeStackInfo> mergeStackInfos(ArrayList<AnimalTradeStackInfo> starting, ArrayList<AnimalTradeStackInfo> additional) {
-            for (AnimalTradeStackInfo other : additional) {
-
-            }
-        }
-
-        public double getSecondBuyChance() {
+        private double getSecondBuyChance() {
             return secondBuyChance;
         }
 
-        public void setSecondBuyChance(double secondBuyChance) {
+        private void setSecondBuyChance(double secondBuyChance) {
             this.secondBuyChance = Math.min(Math.max(0.0, secondBuyChance), 1.0);
         }
 
         /** Generates the actual trades based on chances, constraints, etc **/
-        public MerchantRecipeList generateTrades(EntityLiving animal) {
+        private MerchantRecipeList generateTrades(EntityLiving animal) {
             /** Process starts with a list of items (FALLBACK items)
              * An item is randomly selected from the FALLBACK items and added to GOODS list
              * Treefyd seeds are added to the GOODS list with 3% chance
@@ -241,21 +432,6 @@ public class PolynesiaCharmApi {
             protected AnimalTradeStackInfo clone() {
                 return new AnimalTradeStackInfo(this.stack.copy(), this.range, this.chance, this.precious);
             }
-        }
-
-        @Override
-        public AnimalTrades clone() {
-            AnimalTrades trades;
-            try {
-                trades = (AnimalTrades) super.clone();
-            } catch (Exception ex) {
-                trades = new AnimalTrades();
-            }
-            trades.setSecondBuyChance(this.getSecondBuyChance());
-            trades.goods = cloneAnimalTradeInfos(this.goods);
-            trades.currencies = cloneAnimalTradeInfos(this.currencies);
-            trades.fallbackGoods = cloneAnimalTradeInfos(this.fallbackGoods);
-            return trades;
         }
 
         private ArrayList<AnimalTradeStackInfo> cloneAnimalTradeInfos(ArrayList<AnimalTradeStackInfo> stackInfos) {
