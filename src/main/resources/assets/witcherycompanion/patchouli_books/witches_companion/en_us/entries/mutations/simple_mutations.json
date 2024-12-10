@@ -2,7 +2,7 @@
   "name": "Simple Mutations",
   "icon": "minecraft:mycelium",
   "category": "mutations",
-  "sortnum": 0,
+  "sortnum": 1,
   "pages": [
     {
       "type": "text",

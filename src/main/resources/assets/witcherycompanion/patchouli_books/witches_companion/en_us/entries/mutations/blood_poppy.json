@@ -2,7 +2,7 @@
   "name": "Blood Poppy",
   "icon": "witchery:blood_poppy",
   "category": "mutations",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "multiblock",

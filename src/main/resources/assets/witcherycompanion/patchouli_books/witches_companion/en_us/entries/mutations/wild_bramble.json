@@ -2,7 +2,7 @@
   "name": "Wild Bramble",
   "icon": "witchery:wild_bramble",
   "category": "mutations",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "multiblock",

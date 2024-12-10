@@ -1,0 +1,47 @@
+{
+  "name": "Witches' Clothes",
+  "icon": "witchery:witches_hat",
+  "category": "artifacts/clothing",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Witch Hunter Armor",
+      "ingredients": "witchery:witch_hunter_hat;witchery:witch_hunter_chest;witchery:witch_hunter_legs;witchery:witch_hunter_boots",
+      "description": "Witch hunters need to have protection from their prey, and to this end they have developed a curing process for leather that makes it inherently resistant to magics, especially black magic. The only caveat being that the entire body must be covered for the protection to have its effect. Witch Hunter Armor offers the same protection as leather armor but is much more durable. It is repaired in an anvil with $(item)Leather$() and can also be dyed.",
+      "anchor": "normal"
+    },
+    {
+      "type": "text",
+      "title": "Special Properties",
+      "text": "Witch Hunter Armor offers varying degrees of magical mitigation:$(br)$(8)> $() 25% chance to mitigate general $(item)Magic Damage$()$(br)$(8)> $()25% chance to mitigate the effects of a $(l:artifacts/poppets#voodoo)Voodoo Poppet$(/l)$(br)$(8)> $()90% chance to mitigate the $(l:circle_magic/curses/waking_nightmare)Curse of Waking Nightmare$(/l)$(br)$(8)> $()90%chance to mitigate the $(l:circle_magic/curses/misfortune)Curse of Misfortune$(/l)$(br)$(8)> $()90% chance to resist being summoned with a $(l:circle_magic/transposition/summon_creature)Rite of Transposition$(/l)$(br)$(8)> $()100% chance to mitigate the effects of a $(l:artifacts/poppets/vampiric)Vampiric Poppet$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Other Properties",
+      "text": "The Witch Hunter Armor causes all $(l:)Protection Poppets$(/l) to not function.$(p)The effects of $(l:)Nullifying Bolts$(/l) can only occur if the shooter is fully clad in Wtich Hunter Armor."
+    },
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Silvered Hunter Armor",
+      "ingredients": "witchery:silvered_witch_hunter_hat;witchery:silvered_witch_hunter_chest;witchery:silvered_witch_hunter_legs;witchery:silvered_witch_hunter_boots",
+      "description": "The Silvered Hunter Armor is an upgrade to the normal Witch Hunter Armor which adds significant protection from $(l:creatures/werewolf)Werewolves$(/l). For obvious reasons, players affected by $(l:observations/lycanthropy)Curse of the Wolf$(/l) will receive $(item)Fire Damage$() when wearing this armor."
+    },
+    {
+      "type": "text",
+      "title": "Special Properties",
+      "text": "When the wearer is attacked by a Werewolf:$(br)$(8)> $()The armor rating of the armor is doubled$(br)$(8) >$()The attacker will take a small amount of $(item)Fire Damage$()$(br)$(8)> $()The armor will take next to no damage from the attack."
+    },
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Hunter Dawn Armor",
+      "ingredients": "witchery:hunter_dawn_hat;witchery:hunter_dawn_chest;witchery:hunter_dawn_legs;witchery:hunter_dawn_boots",
+      "description": "The Hunter Dawn Armor is an upgrade to the Silvered Hunter Armor which adds significant protection from $(l:creatures/vampire)Vampires$(/l). For obvious reasons, players affected by $(l:observations/vampirism)Vampirism$(/l) will receive $(item)Fire Damage$() when wearing this armor."
+    },
+    {
+      "type": "text",
+      "title": "Special Properties",
+      "text": "When the wearer is attacked by a Vampire:$(br)$(8)> $()The armor rating of the armor is doubled$(br)$(8) >$()The attacker will take a small amount of $(item)Fire Damage$()$(br)$(8)> $()The armor will take next to no damage from the attack."
+    }
+  ]
+}

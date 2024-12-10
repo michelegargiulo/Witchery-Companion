@@ -69,17 +69,20 @@
     {
       "type": "spotlight",
       "item": "witchery:death_protection_poppet",
-      "text": "The Death Protection Poppet will protect its owner to almost any form of damage. When the bound creature is about to die, the poppet will partially restore its health, give a brief immunity appropriate to the damage received. The poppet is destroyed in the process."
+      "text": "The Death Protection Poppet will protect its owner to almost any form of damage. When the bound creature is about to die, the poppet will partially restore its health, give a brief immunity appropriate to the damage received. The poppet is destroyed in the process.",
+      "anchor": "death"
     },
     {
       "type": "spotlight",
       "item": "witchery:vampiric_poppet",
-      "text": "The Vampiric Poppet redirects most forms of damage from the first bound creature to the second. Each time the damage is redirected through the poppet, it will take damage. Once the target dies, the poppet will remain inert until re-bound. The effect persists until the protected creature holds the poppet in their inventory or poppet shelf."
+      "text": "The Vampiric Poppet redirects most forms of damage from the first bound creature to the second. Each time the damage is redirected through the poppet, it will take damage. Once the target dies, the poppet will remain inert until re-bound. The effect persists until the protected creature holds the poppet in their inventory or poppet shelf.",
+      "anchor": "vampiric"
     },
     {
       "type": "spotlight",
       "item": "witchery:voodoo_poppet",
-      "text": "The Voodoo Poppet is a way to cause negative effects on the target creature. Using the poppet will throw violently the linked being around. This action can be charged to amplify the effect. "
+      "text": "The Voodoo Poppet is a way to cause negative effects on the target creature. Using the poppet will throw violently the linked being around. This action can be charged to amplify the effect. ",
+      "anchor": "voodoo"
     },
     {
       "type": "text",

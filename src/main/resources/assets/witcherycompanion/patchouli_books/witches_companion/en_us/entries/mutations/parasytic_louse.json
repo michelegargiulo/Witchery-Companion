@@ -2,7 +2,7 @@
   "name": "Parasytic Louse",
   "icon": "witchery:parasytic_louse",
   "category": "mutations",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "multiblock",

@@ -2,7 +2,7 @@
   "name": "Ender Bramble",
   "icon": "witchery:ender_bramble",
   "category": "mutations",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "multiblock",

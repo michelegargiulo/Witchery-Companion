@@ -1,0 +1,26 @@
+{
+  "name": "Crossbow Pistol",
+  "icon": "witchery:crossbow_pistol",
+  "category": "artifacts/weapons",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:crossbow_pistol",
+      "text": "The weapon of choice for $(l:)Witch Hunters$(/l) is the Crossbow Pistol. Easy to conceal and flexible to use. The weapon gives the Witch Hunter the ability to launch surprise attacks on their targets, often allow multiple shots in quick succession from several preloaded Crossbow Pistols. The other advantage of fighting at range, is that it overcomes the inherent weakness of the $(l:artifacts/clohing/witch_hunter_clothing)armor$(/l) a witch hunter typically uses."
+    },
+    {
+      "type": "text",
+      "text": "For the Crossbows Pistol to function, a supply of bolts needs to be in the player's inventory. The Crossbow Pistol can be loaded with one of the following types of bolts:$(br)$(8)> $()$(l:artifacts/weapons/pistol_bolts#wooden)Wooden Bolts$(/l)$(br)$(8)> $()$(l:artifacts/weapons/pistol_bolts#splitting)Splitting Bolts$(/l)$(br)$(8)> $()$(l:artifacts/weapons/pistol_bolts#bone)Bone Bolts$(/l)$(br)$(8)> $()$(l:artifacts/weapons/pistol_bolts#silver)Silver Bolts$(/l)$(br)$(8)> $()$(l:artifacts/weapons/pistol_bolts#nullifying)Nullifying Bolts$(/l)"
+    },
+    {
+      "type": "text",
+      "text": "The crossbow is loaded by holding use (right-click) for a couple of seconds while sneaking. If a bolt is already loaded, loading a second time will replace it with a bolt of a different type.$(p)The loaded Crossbow Pistol is fired by pressing and releasing the use button. To get a critical hit, the use key must be held for a longer duration (about the same as a bow)."
+    },
+    {
+      "type": "text",
+      "title": "Enchanting the Pistol",
+      "text": "The Crossbow Pistol can be enchanted in an $(item)Enchanting Table$(), but the $(item)Infinity Enchantment$() halves the durability loss of the Crossbow Pistol instead of granting unlimited bolts."
+    }
+  ]
+}

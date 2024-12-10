@@ -7,7 +7,8 @@
     {
       "type": "spotlight",
       "item": "witchery:biting_belt",
-      "text": "The Biting Belt is worn in the legs slot, offers low levels of protection and can be dyed and $(item)enchanted$().$(br)Being made from a $(l:creatures/parasytic_louse)Parasytic Louse$(/l), can be fed the same way with up to two $(item)Potions$(), and will also react in the same way to attacks.$(br)The Biting Belt will only bite if the wearer is not under the effect of that Potion."
+      "text": "The Biting Belt is worn in the legs slot, offers low levels of protection and can be dyed and $(item)enchanted$().$(br)Being made from a $(l:creatures/parasytic_louse)Parasytic Louse$(/l), can be fed the same way with up to two $(item)Potions$(), and will also react in the same way to attacks.$(br)The Biting Belt will only bite if the wearer is not under the effect of that Potion.",
+      "anchor": "biting_belt"
     },
     {
       "type": "text",
@@ -17,7 +18,8 @@
     {
       "type": "spotlight",
       "item": "witchery:bark_belt",
-      "text": "The Bark Belt is worn in the legs slot, offers low levels of protection and can be dyed and $(item)enchanted$().$(br)The Bark Belt is infused with the spirit of nature and will grow pieces of protective bark on the wearer if they stand on $(item)Grass$() or $(item)Mycelium$(). Bark can only grow on clothing made of $(l:resources/impregnated_leather)Impregnated Leather$(/l). "
+      "text": "The Bark Belt is worn in the legs slot, offers low levels of protection and can be dyed and $(item)enchanted$().$(br)The Bark Belt is infused with the spirit of nature and will grow pieces of protective bark on the wearer if they stand on $(item)Grass$() or $(item)Mycelium$(). Bark can only grow on clothing made of $(l:resources/impregnated_leather)Impregnated Leather$(/l). ",
+      "anchor": "bark_belt"
     },
     {
       "type": "text",
@@ -27,7 +29,7 @@
     {
       "type": "text",
       "title": "Other Properties",
-      "text": "The Biting Belt will turn invisible when the player is invisible, and can be repaired by crafting them with four $(l:resources/impregnated_leather)Impregnated Leather$(/l) or by combining them with $(item)Leather$() into an $(item)Anvil$()."
+      "text": "The Bark Belt will turn invisible when the player is invisible, and can be repaired by crafting them with four $(l:resources/impregnated_leather)Impregnated Leather$(/l) or by combining them with $(item)Leather$() into an $(item)Anvil$()."
     }
   ]
 }

@@ -1,0 +1,13 @@
+{
+  "name": "Null Catalyst",
+  "icon": "witchery:null_catalyst",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:null_catalyst",
+      "text": "Witch Hunter's long sought the answer to reducing the risk of fighting witches. It was the discovery of Null Catalyst, that enabled them to create a new generation of weapons to combat their foe."
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "name": "Grassper",
   "icon": "witchery:grassper",
   "category": "mutations",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "multiblock",

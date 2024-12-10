@@ -1,0 +1,13 @@
+{
+  "name": "Mutating Sprig",
+  "icon": "witchery:mutating_sprig",
+  "category": "artifacts/tools",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:mutating_sprig",
+      "text": "The Mutating Sprig brings a degree of order to the chaotic nature of $(l:artifacts/misc/mutandis)Mutandis$(/l), allowing more limited, but also more predictable effects. It is a key tool in the art of $(l:mutations/intro)Mutations$(/l)"
+    }
+  ]
+}

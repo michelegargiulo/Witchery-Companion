@@ -1,0 +1,13 @@
+{
+  "name": "Wormy Apple",
+  "icon": "witchery:wormy_apple",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:wormy_apple",
+      "text": "A Wormy Apple is an apple that has one or more worms living within it. Eating such an apple will most likely poison the eater. The Apple is an ingredient for other recipes."
+    }
+  ]
+}

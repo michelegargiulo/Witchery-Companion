@@ -2,7 +2,7 @@
   "name": "Winged Monkey",
   "icon": "witchery:owlets_wing",
   "category": "mutations",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "multiblock",

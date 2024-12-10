@@ -33,7 +33,8 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/mystic_unguent",
-      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Weakness II potion effect for one minute"
+      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Weakness II potion effect for one minute",
+      "anchor": "mystic_unguent"
     },
     {
       "type": "kettle/kettle_brew",

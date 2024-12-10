@@ -1,0 +1,13 @@
+{
+  "name": "Apple of Sleeping",
+  "icon": "witchery:sleeping_apple",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:sleeping_apple",
+      "text": "An Apple of Sleeping can be eaten to allow a player to enter the $(l:dimensions/spirit_world#entering)Spirit World$(/l). The dreamer will always experience a nightmare after eating this apple."
+    }
+  ]
+}
