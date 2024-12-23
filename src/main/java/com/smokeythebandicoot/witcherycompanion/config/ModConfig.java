@@ -1120,9 +1120,13 @@ public class ModConfig {
 
     public static class IntegrationConfigurations {
 
-        @Config.Comment("Configuration related to Botania integration")
+        @Config.Comment("Configuration related to Baubles integration")
         @Config.Name("Baubles Integration - Configuration")
         public static BaublesIntegration baublesIntegrationConfig;
+
+        @Config.Comment("Configuration related to CraftTweaker integration")
+        @Config.Name("CraftTweaker Integration - Configuration")
+        public static CraftTweakerIntegration crafttweakerIntegrationConfig;
 
         @Config.Comment("Configuration related to Just Enough Resources integration")
         @Config.Name("JER Integration - Configuration")
@@ -1159,6 +1163,17 @@ public class ModConfig {
             @Config.Name("Botania Integration - Fix Crash On Vampire Death")
             @Config.RequiresMcRestart
             public static boolean fixCrashOnVampireDeath = true;
+
+        }
+
+
+        public static class CraftTweakerIntegration {
+
+            @Config.Comment("If true enables CraftTweaker integration for PolynesiaCharm (Animal trades). Alters default trades")
+            @Config.Name("CraftTweaker Integration - Enable Polynesia Charm")
+            @Config.RequiresMcRestart
+            public static boolean enablePolynesiaCharm = true;
+
         }
 
         public static class JerIntegration {

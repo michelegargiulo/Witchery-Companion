@@ -187,16 +187,24 @@ public class PolynesiaCharmApi {
         } else {
             return animalTrades.getOrDefault(current, null);
         }
-        return null;
+        return trades;
     }
 
 
+    /** If true, the API will combine the trades for the animal type, going up in the hierarchy.
+     * For example, if there are trades for EntityChicken, EntityAnimal and EntityLiving, a chicken
+     * would have all the trades, while a Pig would only have the ones from EntityAnimal and EntityLiving.
+     * If false, every animal must be explicitly present in the hierarchy and have its own trades **/
+    public static void setClimbHierarchy(boolean climbHierarchy) {
+        climbHierarchy = climbHierarchy;
+    }
 
     /** Adds a fallback trade to the class. Good is the item to sell, range specifies a maximum variation in the amount from the
      * good ItemStack's count. If isPrecious is true, the good will require a second item to buy to be sold **/
     public static void addFallbackTrade(Class<? extends EntityLiving> entityClass, ItemStack good, int range, boolean isPrecious) {
-        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addFallbackTrade(
-                good, range, isPrecious
+        animalTrades.putIfAbsent(entityClass, new AnimalTrades());
+        animalTrades.get(entityClass).addFallbackTrade(
+            good, range, isPrecious
         );
     }
 
@@ -219,41 +227,46 @@ public class PolynesiaCharmApi {
     /** Adds a good that can be sold. Range indicates the variation in amount with respect to the good ItemStack's count, chance
      * is the chance to appear as a trade, and if isPrecious is true the good requires a second item to buy for it to be sold **/
     public static void addGood(Class<? extends EntityLiving> entityClass, ItemStack good, int range, double chance, boolean isPrecious) {
-        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addGood(good, range, chance, isPrecious);
+        animalTrades.putIfAbsent(entityClass, new AnimalTrades());
+        animalTrades.get(entityClass).addGood(good, range, chance, isPrecious);
     }
 
     public static void addGood(Class<? extends EntityLiving> entityClass, ItemStack good, int range, double chance) {
-        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addGood(good, range, chance, false);
+        addGood(entityClass, good, range, chance, false);
     }
 
     public static void addGood(Class<? extends EntityLiving> entityClass, ItemStack good, int range) {
-        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addGood(good, range, 1.0, false);
+        addGood(entityClass, good, range, 1.0, false);
     }
 
     public static void addGood(Class<? extends EntityLiving> entityClass, ItemStack good) {
-        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addGood(good, 1, 1.0, false);
+        addGood(entityClass, good, 0, 1.0, false);
     }
 
     /** Removes a good for an animal class if there's an animal-specific trade corresponding to the good.
      * The item might still be present in the hierarchy  **/
     public static void removeGood(Class<? extends EntityLiving> entityClass, ItemStack good) {
-        animalTrades.getOrDefault(entityClass, new AnimalTrades()).removeGood(good);
+        if (animalTrades.containsKey(entityClass)) {
+            animalTrades.get(entityClass).removeGood(good);
+        }
     }
 
     /** Adds a currency, that represents an item that the animal is interested to buy. Range indicates the variation in amount
      * with respect to the good ItemStack's count  **/
     public static void addCurrency(Class<? extends EntityLiving> entityClass, ItemStack currency, int range) {
-        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addCurrency(currency, range);
+        animalTrades.putIfAbsent(entityClass, new AnimalTrades());
+        animalTrades.get(entityClass).addCurrency(currency, range);
     }
 
     public static void addCurrency(Class<? extends EntityLiving> entityClass, ItemStack currency) {
-        animalTrades.getOrDefault(entityClass, new AnimalTrades()).addCurrency(currency, 1);
+        addCurrency(entityClass, currency, 1);
     }
 
     /** Removes a currency for an animal class if there's an animal-specific trade corresponding to the currency.
      * The item might still be present in the hierarchy  **/
     public static void removeCurrency(Class<? extends EntityLiving> entityClass, ItemStack currency) {
-        animalTrades.getOrDefault(entityClass, new AnimalTrades()).removeCurrency(currency);
+        animalTrades.putIfAbsent(entityClass, new AnimalTrades());
+        animalTrades.get(entityClass).removeCurrency(currency);
     }
 
     /** Actually generates trades for a living entity based on its class and world (for randomness) **/
@@ -322,19 +335,19 @@ public class PolynesiaCharmApi {
         }
 
         private void addGood(ItemStack good, int range, double chance, boolean precious) {
-            fallbackGoods.add(new AnimalTradeStackInfo(good, range, chance, precious));
+            goods.add(new AnimalTradeStackInfo(good, range, chance, precious));
         }
 
         private void addGood(ItemStack good, int range, double chance) {
-            fallbackGoods.add(new AnimalTradeStackInfo(good, range, chance, false));
+            addGood(good, range, chance, false);
         }
 
         private void addGood(ItemStack good, int range) {
-            fallbackGoods.add(new AnimalTradeStackInfo(good, range, 1.0, false));
+            addGood(good, range, 1.0, false);
         }
 
         private void removeGood(ItemStack good) {
-            fallbackGoods.removeIf(trade -> trade.stack.getItem() == good.getItem() &&
+            goods.removeIf(trade -> trade.stack.getItem() == good.getItem() &&
                     trade.stack.getMetadata() == good.getMetadata());
         }
 
@@ -383,11 +396,12 @@ public class PolynesiaCharmApi {
             Random rand = animal.getEntityWorld().rand;
             MerchantRecipeList list = new MerchantRecipeList();
             MerchantRecipeList finalList = new MerchantRecipeList();
-            List<ItemStack> items = new ArrayList<>();
-            items.add(fallbackGoods.get(rand.nextInt(fallbackGoods.size())).stack);
+            List<AnimalTradeStackInfo> items = new ArrayList<>();
+            items.add(fallbackGoods.get(rand.nextInt(fallbackGoods.size())));
+            items.addAll(goods);
 
             // This is the same Witchery code, but ported for the new info
-            Iterator<AnimalTradeStackInfo> it = goods.iterator();
+            Iterator<AnimalTradeStackInfo> it = items.iterator();
             while(true) {
                 AnimalTradeStackInfo trade;
                 do {
@@ -407,7 +421,7 @@ public class PolynesiaCharmApi {
 
                 // Copy stack and set count
                 ItemStack good = trade.stack.copy();
-                good.setCount(Math.min(rand.nextInt(trade.stack.getCount()) + trade.range, good.getMaxStackSize()));
+                good.setCount(Math.min(rand.nextInt(trade.stack.getCount()) + trade.range + 1, good.getMaxStackSize()));
 
                 ItemStack currency = currencies.get(rand.nextInt(currencies.size())).stack;
                 ItemStack cost = currency.copy();
@@ -417,7 +431,7 @@ public class PolynesiaCharmApi {
                 }
 
                 int factor = good.getCount() > 4 ? 1 : 2;
-                cost.setCount(Math.min(rand.nextInt(2) + good.getCount() * multiplier * (rand.nextInt(2) + factor), currency.getMaxStackSize()));
+                cost.setCount(Math.min(rand.nextInt(2) + 1 + good.getCount() * multiplier * (rand.nextInt(2) + factor), currency.getMaxStackSize()));
                 MerchantRecipe recipe = new MerchantRecipe(cost, good);
                 recipe.increaseMaxTradeUses(-(6 - rand.nextInt(2)));
                 list.add(recipe);
@@ -442,14 +456,6 @@ public class PolynesiaCharmApi {
             protected AnimalTradeStackInfo clone() {
                 return new AnimalTradeStackInfo(this.stack.copy(), this.range, this.chance, this.precious);
             }
-        }
-
-        private ArrayList<AnimalTradeStackInfo> cloneAnimalTradeInfos(ArrayList<AnimalTradeStackInfo> stackInfos) {
-            ArrayList<AnimalTradeStackInfo> result = new ArrayList<>();
-            result.addAll(stackInfos.stream()
-                    .map(item -> item.clone())
-                    .collect(Collectors.toList()));
-            return result;
         }
 
     }
