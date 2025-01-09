@@ -207,6 +207,47 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean alohomora_fixOnRowanDoors = true;
 
+            @Config.Comment("If true, players in creative can kill everything with Avada Kedavra")
+            @Config.Name("Avada Kadavra Symbol Effect - Tweak Creative Instakill")
+            @Config.RequiresMcRestart
+            public static boolean avadaKedavra_tweakAlwaysInstakillWhenInCreative = true;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits Players. Set to -1 to insta-kill, 0 to do " +
+                    "nothing, or specify an amount of damage. Default -1")
+            @Config.Name("Avada Kadavra Symbol Effect - Player Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakPlayerDamage = -1.0f;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits Golems. Set to -1 to insta-kill, 0 to do " +
+                    "nothing, or specify an amount of damage. Default 200")
+            @Config.Name("Avada Kadavra Symbol Effect - Golem Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakGolemDamage = 200.0f;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits Witches. Set to -1 to insta-kill, 0 to do " +
+                    "nothing, or specify an amount of damage. Default -1")
+            @Config.Name("Avada Kadavra Symbol Effect - Witch Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakWitchDamage = 200.0f;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits Demons. Set to -1 to insta-kill, 0 to do " +
+                    "nothing, or specify an amount of damage")
+            @Config.Name("Avada Kadavra Symbol Effect - Demon Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakDemonDamage = 25.0f;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits Bosses. Set to -1 to insta-kill, 0 to do " +
+                    "nothing, or specify an amount of damage")
+            @Config.Name("Avada Kadavra Symbol Effect - Boss Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakBossDamage = 25.0f;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits anything else from the above. Set to -1 " +
+                    "to insta-kill, 0 to do nothing, or specify an amount of damage")
+            @Config.Name("Avada Kadavra Symbol Effect - Standard Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakNormalDamage = 200.0f;
+
             @Config.Comment("Fixes doors having different hinge position and facing on transformation")
             @Config.Name("Colloportus Symbol Effect - Fix Preserve Door Properties")
             @Config.RequiresMcRestart

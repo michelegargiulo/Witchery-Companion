@@ -98,6 +98,7 @@
     "witchery.infusion.spirit.InfusedSpiritTwisterEffectMixin",
     "witchery.infusion.spirit.SpiritEffectRecipeMixin",
     "witchery.infusion.symbol.AlohomoraSymbolEffectMixin",
+    "witchery.infusion.symbol.AvadaKedavraSymbolEffectMixin",
     "witchery.infusion.symbol.ColloportusSymbolEffectMixin",
     "witchery.infusion.symbol.SymbolEffectMixin",
     "witchery.init.items.WitcheryIngredientItemsMixin",
