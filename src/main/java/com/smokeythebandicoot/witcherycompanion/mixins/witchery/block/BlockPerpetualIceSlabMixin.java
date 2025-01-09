@@ -26,6 +26,7 @@ public abstract class BlockPerpetualIceSlabMixin extends WitcheryBlockSlab {
 
     private BlockPerpetualIceSlabMixin(Function1<? super BlockSlab, ? extends BlockSlab> singleSlab) {
         super(Material.ICE, singleSlab);
+        this.setDefaultSlipperiness(0.98F);
         this.setLightOpacity(3);
         this.setHardness(2.0F);
         this.setResistance(5.0F);
