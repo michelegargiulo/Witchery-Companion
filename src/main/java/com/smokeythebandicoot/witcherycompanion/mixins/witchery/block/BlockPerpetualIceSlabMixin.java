@@ -57,11 +57,22 @@ public abstract class BlockPerpetualIceSlabMixin extends WitcheryBlockSlab {
             return false;
         }
 
-        // Perpetual ice slabs with the same face
+        // Perpetual ice slabs with the same face or is double
         if (opposingBlock.getBlock() == WitcheryBlocks.PERPETUAL_ICE_SLAB) {
-            if (opposingBlock.getValue(HALF) == blockState.getValue(HALF)) {
+
+            // Other is double, so we never render our side (regardless if we're double or which half)
+            if (((BlockPerpetualIceSlab) opposingBlock.getBlock()).isDouble()) {
                 return false;
             }
+
+            // We are double and other is not, so we always render regardless of other's half
+            if (((BlockPerpetualIceSlab) blockState.getBlock()).isDouble()) {
+                return true;
+            }
+
+            // Both are single, so render if halves are different
+            return opposingBlock.getValue(HALF) != blockState.getValue(HALF);
+
         }
 
         // Perpetual ice blocks that cover the same faces
@@ -69,8 +80,7 @@ public abstract class BlockPerpetualIceSlabMixin extends WitcheryBlockSlab {
             ( // Stairs and Slab top half or Stairs and Slab bottom half. Since opposingBlock is BlockStairs and this is BlockSlab, there shouldn't be any invalid properties
                 (opposingBlock.getValue(BlockStairs.HALF) == BlockStairs.EnumHalf.TOP && blockState.getValue(HALF) == EnumBlockHalf.TOP) ||
                 (opposingBlock.getValue(BlockStairs.HALF) == BlockStairs.EnumHalf.BOTTOM && blockState.getValue(HALF) == EnumBlockHalf.BOTTOM)
-            ))
-        {
+            )) {
             return false;
         }
 
