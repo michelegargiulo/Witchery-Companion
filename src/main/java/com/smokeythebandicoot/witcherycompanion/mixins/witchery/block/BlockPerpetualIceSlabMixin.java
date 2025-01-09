@@ -49,6 +49,7 @@ public abstract class BlockPerpetualIceSlabMixin extends WitcheryBlockSlab {
      **/
     @Override
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+
         // Opposing block is solid and stops rendering: avoid rendering the face
         IBlockState opposingBlock = blockAccess.getBlockState(pos.offset(side));
         if (opposingBlock.doesSideBlockRendering(blockAccess, pos, side.getOpposite())) {

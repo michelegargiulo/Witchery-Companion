@@ -258,11 +258,6 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean soulBrews_fixPersistency = true;
 
-            @Config.Comment("Fixes crashes due to bosses using disabled spells")
-            @Config.Name("Symbol Effects - Fix Bosses Using Disabled Spells")
-            @Config.RequiresMcRestart
-            public static boolean symbolEffects_fixBossesUsingDisabledSpells = true;
-
             @Config.Comment("Sets the amount of ticks between Sentinel effect activations")
             @Config.Name("Sentinel Effect - Tweak Cooldown")
             public static int infusedSpiritSentinel_tweakCooldown = 600;
@@ -456,16 +451,6 @@ public class ModConfig {
             @Config.Name("Mirror - Tweak MiM Power Requirement")
             @Config.RangeDouble(min = 1.0, max = 10000.0)
             public static float mirror_inMirrorPowerConsumption = 3000;
-
-            @Config.Comment("Fix Perpetual Ice block having the same appearance of Vanilla Ice, making it have the same " +
-                    "appearance as other Perpetual Ice blocks (fences, slabs, etc.).")
-            @Config.Name("Perpetual Ice - Fix Inconsistent Appearance")
-            public static boolean perpetualIce_fixInconsistentAppearance = true;
-
-            @Config.Comment("Fix Perpetual Ice Stairs having translucent cut-out texture, giving it a solid renderLayer instead. " +
-                    "Will fix X-Ray and will give the Stairs a consistent look with other Perpetual Ice blocks (fences, slabs, etc.).")
-            @Config.Name("Perpetual Ice Stairs - Fix X-Ray")
-            public static boolean perpetualIceStairs_fixXRay = true;
 
             @Config.Comment("Fix Arthana, Pentacle and other items placed on top of the altar not dropping when " +
                     "the altar block below them is broken.")
@@ -737,11 +722,6 @@ public class ModConfig {
                     "2: refund only if the rite has not moved any block")
             @Config.Name("Rite of Moving Earth - Tweak Rite Refund Policy")
             public static int movingEarth_tweakRefundPolicy = 0;
-
-            @Config.Comment("A list of blockstates that the Rite of Moving earth won't be able to move.\n" +
-                    "Can only restrict more blocks, so Altars, Bedrock and some others won't be moved regardless")
-            @Config.Name("Rite of Moving Earth - Tweak Block Blacklist")
-            public static String[] movingEarth_tweakBlockBlacklist = new String[] { };
 
             @Config.Comment("If true, smoke particles and sounds will be played for blocks that won't be moved")
             @Config.Name("Rite of Moving Earth - Tweak Show Particles On Failure")

@@ -59,38 +59,38 @@ public abstract class AvadaKedavraSymbolEffectMixin extends ProjectileSymbolEffe
             // Else, if hit entity is not player, tweak damages
             else if (target instanceof EntityLiving) {
 
-                if (InfusionTweaks.avadaKedavra_tweakAlwaysInstakillWhenInCreative) {
-
+                // Caster is a creative-mode player and creative-mode instakill is active
+                if (InfusionTweaks.avadaKedavra_tweakAlwaysInstakillWhenInCreative &&
+                        caster instanceof EntityPlayer && ((EntityPlayer)caster).capabilities.isCreativeMode) {
+                    EntityUtil.instantDeath((EntityLivingBase)target, caster, spell);
                 }
 
-                if (target.isNonBoss()) {
-                    if (target instanceof EntityGolem) {
+                // Non bosses
+                else if (target.isNonBoss()) {
+                    // Golems (EntityDemon extend EntityGolem)
+                    if (target instanceof EntityGolem && !(target instanceof EntityDemon)) {
                         witchery_Patcher$performDamage(target, caster, spell, InfusionTweaks.avadaKedavra_tweakGolemDamage);
                     }
 
+                    // Witches and Coven Witches
                     else if (target instanceof EntityWitch || target instanceof EntityCovenWitch) {
                         witchery_Patcher$performDamage(target, caster, spell, InfusionTweaks.avadaKedavra_tweakWitchDamage);
                     }
 
+                    // Demons and Imps
                     else if (target instanceof EntityDemon || target instanceof EntityImp) {
                         witchery_Patcher$performDamage(target, caster, spell, InfusionTweaks.avadaKedavra_tweakDemonDamage);
                     }
 
+                    // Else
                     else {
                         witchery_Patcher$performDamage(target, caster, spell, InfusionTweaks.avadaKedavra_tweakNormalDamage);
                     }
                 }
 
+                // Bosses
                 else {
-                    witchery_Patcher$performDamage(target, caster, spell, InfusionTweaks.avadaKedavra_ossDamage);
-                }
-
-                if (caster instanceof EntityPlayer && ((EntityPlayer)caster).capabilities.isCreativeMode) {
-                    EntityUtil.instantDeath((EntityLivingBase)target, caster, spell);
-                } else if ((PotionEnslaved.canCreatureBeEnslaved((EntityLivingBase)target) || target instanceof EntityWitch || target instanceof EntityEnt || target instanceof EntityGolem) && ((EntityLiving)target).getMaxHealth() <= 200.0F) {
-                    target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(spell, caster), 200.0F);
-                } else {
-                    target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(spell, caster), 25.0F);
+                    witchery_Patcher$performDamage(target, caster, spell, InfusionTweaks.avadaKedavra_tweakBossDamage);
                 }
             }
         }
