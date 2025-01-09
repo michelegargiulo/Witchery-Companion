@@ -635,6 +635,11 @@ public class ModConfig {
             @Config.Name("Brew of Erosion Item - Tweak Emulate Erosion Brew")
             public static boolean itemErosionBrew_tweakEmulateBrewEffects = false;
 
+            @Config.Comment("If true, the Brew of Frost will correctly generate Ice Shields when they hit the upper face of solid ground, " +
+                    "instead of generating 3 floating blocks of ice.")
+            @Config.Name("Brew of Frost Item - Fix Ice Column Generation")
+            public static boolean itemFrostBrew_fixIceColumn = true;
+
             @Config.Comment("If true, enables CraftTweaker integration for all types of Mutandis conversions")
             @Config.Name("Mutandis - Tweak Enable CraftTweaker Integration")
             public static boolean mutandis_tweakEnableCraftTweaker = true;
