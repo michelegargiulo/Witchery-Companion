@@ -452,6 +452,11 @@ public class ModConfig {
             @Config.RangeDouble(min = 1.0, max = 10000.0)
             public static float mirror_inMirrorPowerConsumption = 3000;
 
+            @Config.Comment("If true, fixes slipperiness of Perpetual Ice Slabs (and Double Slabs). NOTE: That might not " +
+                    "work on lower-half ice slabs due to a bug in Vanilla Minecraft")
+            @Config.Name("Perpetual Ice Slab - Fix No Slipperiness")
+            public static boolean perpetualIceSlabs_fixSlipperiness = true;
+
             @Config.Comment("Fix Arthana, Pentacle and other items placed on top of the altar not dropping when " +
                     "the altar block below them is broken.")
             @Config.Name("Placed Items - Fix No Drops")

@@ -22,6 +22,7 @@
     "witchery.block.BlockPerpetualIceDoorMixin",
     "witchery.block.BlockPerpetualIceFenceMixin",
     "witchery.block.BlockPerpetualIceGateMixin",
+    "witchery.block.BlockPerpetualIceMixin",
     "witchery.block.BlockPerpetualIcePressurePlateMixin",
     "witchery.block.BlockPerpetualIceSlabMixin",
     "witchery.block.BlockPerpetualIceStairsMixin",

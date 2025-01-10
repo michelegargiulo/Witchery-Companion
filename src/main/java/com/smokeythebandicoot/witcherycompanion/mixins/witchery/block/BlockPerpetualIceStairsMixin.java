@@ -1,17 +1,14 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block;
 
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.msrandom.witchery.block.BlockPerpetualIceStairs;
 import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.init.items.WitcheryGeneralItems;
@@ -54,17 +51,44 @@ public abstract class BlockPerpetualIceStairsMixin extends BlockStairs {
     @Inject(method = "shouldSideBeRendered", remap = true, cancellable = true, at = @At("HEAD"))
     private void fixNonRenderedSides(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side, CallbackInfoReturnable<Boolean> cir) {
         // Opposing block is solid and stops rendering: avoid rendering the face
-        IBlockState opposingBlock = blockAccess.getBlockState(pos.offset(side));
-        if (opposingBlock.doesSideBlockRendering(blockAccess, pos, side.getOpposite())) {
+        IBlockState opposingState = blockAccess.getBlockState(pos.offset(side));
+        if (opposingState.doesSideBlockRendering(blockAccess, pos, side.getOpposite())) {
             cir.setReturnValue(false);
+        }
+
+        Block oppositeBlock = opposingState.getBlock();
+
+        // Opposing block is Full Ice
+        if (oppositeBlock == WitcheryBlocks.PERPETUAL_ICE_SLAB_DOUBLE || oppositeBlock == WitcheryBlocks.PERPETUAL_ICE || oppositeBlock == Blocks.ICE) {
+
+            if (// If touching full ice block and side
+                    (side == EnumFacing.UP && blockState.getValue(HALF) == EnumHalf.TOP) ||
+                    (side == EnumFacing.DOWN && blockState.getValue(HALF) == EnumHalf.BOTTOM)) {
+                cir.setReturnValue(false);
+                return;
+            }
+
+            // Adjacent horizontally: cull if correct facing
+            cir.setReturnValue(blockState.getValue(FACING) == side.getOpposite());
+            return;
+        }
+
+        // Opposing block is Slab
+        if (oppositeBlock == WitcheryBlocks.PERPETUAL_ICE_SLAB) {
+            // Render only if full stairs side and full slab side touch
+            cir.setReturnValue(
+                    (side != EnumFacing.UP || blockState.getValue(HALF) != EnumHalf.TOP || opposingState.getValue(BlockSlab.HALF) != BlockSlab.EnumBlockHalf.BOTTOM) &&
+                    (side != EnumFacing.DOWN || blockState.getValue(HALF) != EnumHalf.BOTTOM || opposingState.getValue(BlockSlab.HALF) != BlockSlab.EnumBlockHalf.TOP)
+            );
+            return;
         }
 
         // If connected to perpetual ice blocks that have full faces or matching faces, return false
         cir.setReturnValue(
-                opposingBlock.getBlock() != Blocks.ICE &&
-                opposingBlock.getBlock() != WitcheryBlocks.PERPETUAL_ICE &&
-                opposingBlock.getBlock() != WitcheryBlocks.PERPETUAL_ICE_SLAB_DOUBLE &&
-                opposingBlock.getBlock() != WitcheryBlocks.PERPETUAL_ICE_STAIRS
+                opposingState.getBlock() != Blocks.ICE &&
+                opposingState.getBlock() != WitcheryBlocks.PERPETUAL_ICE &&
+                opposingState.getBlock() != WitcheryBlocks.PERPETUAL_ICE_SLAB_DOUBLE &&
+                opposingState.getBlock() != WitcheryBlocks.PERPETUAL_ICE_STAIRS
         );
     }
 
