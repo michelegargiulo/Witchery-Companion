@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.entity;
 
 import com.mojang.authlib.GameProfile;
+import com.smokeythebandicoot.witcherycompanion.api.TreefydApi;
 import com.smokeythebandicoot.witcherycompanion.api.accessors.treefyd.IEntityTreefydAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseEntityProbeInfoProvider;
@@ -35,8 +36,6 @@ public class TreefydProbeInfoProvider extends BaseEntityProbeInfoProvider<Entity
         return INSTANCE;
     }
 
-    private static final ItemStack CREEPER_HEART = new ItemStack(WitcheryIngredientItems.CREEPER_HEART);
-    private static final ItemStack DEMON_HEART = new ItemStack(Item.getItemFromBlock(WitcheryBlocks.DEMON_HEART));
 
     private static PlayerProfileCache playerCache = null;
 
@@ -72,10 +71,10 @@ public class TreefydProbeInfoProvider extends BaseEntityProbeInfoProvider<Entity
             int boostLevel = accessor.getBoostLevel();
             List<ItemStack> boosts = new ArrayList<>();
             if (boostLevel > 0) {
-                boosts.add(CREEPER_HEART);
+                boosts.add(new ItemStack(TreefydApi.getLevel1BoostItem()));
             }
             if (boostLevel > 1) {
-                boosts.add(DEMON_HEART);
+                boosts.add(new ItemStack(TreefydApi.getLevel2BoostItem()));
             }
             TOPHelper.itemStacks(iProbeInfo, boosts, 10);
         }
