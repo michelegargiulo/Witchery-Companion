@@ -3,19 +3,14 @@ package com.smokeythebandicoot.witcherycompanion.config;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 @Config(modid = WitcheryCompanion.MODID, name = "witchery_patches")
 @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)
@@ -212,6 +207,47 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean alohomora_fixOnRowanDoors = true;
 
+            @Config.Comment("If true, players in creative can kill everything with Avada Kedavra")
+            @Config.Name("Avada Kadavra Symbol Effect - Tweak Creative Instakill")
+            @Config.RequiresMcRestart
+            public static boolean avadaKedavra_tweakAlwaysInstakillWhenInCreative = true;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits Players. Set to -1 to insta-kill, 0 to do " +
+                    "nothing, or specify an amount of damage. Default -1")
+            @Config.Name("Avada Kadavra Symbol Effect - Player Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakPlayerDamage = -1.0f;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits Golems. Set to -1 to insta-kill, 0 to do " +
+                    "nothing, or specify an amount of damage. Default 200")
+            @Config.Name("Avada Kadavra Symbol Effect - Golem Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakGolemDamage = 200.0f;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits Witches. Set to -1 to insta-kill, 0 to do " +
+                    "nothing, or specify an amount of damage. Default -1")
+            @Config.Name("Avada Kadavra Symbol Effect - Witch Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakWitchDamage = 200.0f;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits Demons. Set to -1 to insta-kill, 0 to do " +
+                    "nothing, or specify an amount of damage")
+            @Config.Name("Avada Kadavra Symbol Effect - Demon Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakDemonDamage = 25.0f;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits Bosses. Set to -1 to insta-kill, 0 to do " +
+                    "nothing, or specify an amount of damage")
+            @Config.Name("Avada Kadavra Symbol Effect - Boss Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakBossDamage = 25.0f;
+
+            @Config.Comment("Sets the behavior for when an Avada Kedavra hits anything else from the above. Set to -1 " +
+                    "to insta-kill, 0 to do nothing, or specify an amount of damage")
+            @Config.Name("Avada Kadavra Symbol Effect - Standard Damage")
+            @Config.RequiresMcRestart
+            public static float avadaKedavra_tweakNormalDamage = 200.0f;
+
             @Config.Comment("Fixes doors having different hinge position and facing on transformation")
             @Config.Name("Colloportus Symbol Effect - Fix Preserve Door Properties")
             @Config.RequiresMcRestart
@@ -222,11 +258,6 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean soulBrews_fixPersistency = true;
 
-            @Config.Comment("Fixes crashes due to bosses using disabled spells")
-            @Config.Name("Symbol Effects - Fix Bosses Using Disabled Spells")
-            @Config.RequiresMcRestart
-            public static boolean symbolEffects_fixBossesUsingDisabledSpells = true;
-
             @Config.Comment("Sets the amount of ticks between Sentinel effect activations")
             @Config.Name("Sentinel Effect - Tweak Cooldown")
             public static int infusedSpiritSentinel_tweakCooldown = 600;
@@ -234,6 +265,22 @@ public class ModConfig {
             @Config.Comment("Sets the amount of ticks between Twister effect activations")
             @Config.Name("Twister Effect - Tweak Cooldown")
             public static int infusedSpiritTwister_tweakCooldown = 10;
+
+            @Config.Comment("Sets the amount of ticks between Twister effect activations")
+            @Config.Name("Infusion Energy Bar - Offset X")
+            public static float infusion_tweakEnergyBarOffsetX = 0;
+
+            @Config.Comment("Sets the amount of ticks between Twister effect activations")
+            @Config.Name("Infusion Energy Bar - Offset Y")
+            public static float infusion_tweakEnergyBarOffsetY = 0;
+
+            @Config.Comment("Sets the amount of ticks between Twister effect activations")
+            @Config.Name("Infusion Creature Energy Bar - Offset X")
+            public static float infusion_tweakCreatureBarOffsetX = 0;
+
+            @Config.Comment("Sets the amount of ticks between Twister effect activations")
+            @Config.Name("Infusion Creature Energy Bar - Offset Y")
+            public static float infusion_tweakCreatureBarOffsetY = 0;
 
         }
 
@@ -253,13 +300,6 @@ public class ModConfig {
             @Config.Comment("Fix crash when loot function is applied and a Null Random is passed to it (JER does this)")
             @Config.Name("Loot Utils - Fix NPE on JER Integration")
             public static boolean levelledRandomEnchant_fixCrashNullRandom = true;
-
-            @Config.Comment("If true, Witchery:Resurrected won't disable flight when the player is not in a Creature " +
-                    "form  that is capable to fly (eg. Vampire in bat form) but is still capable to fly due to other " +
-                    "mods (Avaritia infinity armor, Morph flying mobs, etc) when certain events happen (dimension " +
-                    "change), player change form, etc")
-            @Config.Name("Flight - Preserve Flight Capability")
-            public static boolean flight_preserveFlightCapability = true;
 
             @Config.Comment("Fix crash an Entity (such as Lord of Torment, or Lilith) uses a Spell that has been disabled. " +
                     "As a side effect of enabling this, spell projectiles will have a default size and a random color.")
@@ -343,6 +383,10 @@ public class ModConfig {
             @Config.Name("Coffin - Fix Edge Case Crash")
             public static boolean coffin_fixEdgeCrash = true;
 
+            @Config.Comment("Tightens bounding boxes around the Statue of Broken Curse and Statue of Occluded Summons.")
+            @Config.Name("Creative Statues - Tweak Tighten Bounding Boxes")
+            public static boolean creativeStatues_tweakTightenBoundingBoxes = true;
+
             @Config.Comment("Sets the Altar Power required for a Crystal Ball prediciton. Witchery default is 500.")
             @Config.Name("Crystal Ball - Tweak Required Power")
             @Config.RangeInt(min = 1, max = 10000)
@@ -361,6 +405,29 @@ public class ModConfig {
             @Config.Comment("Fix crash when one of the coffin pieces is moved by a piston.")
             @Config.Name("Coffin - Fix Crash When Moved By Piston")
             public static boolean coffin_fixPistonMoveCrash = true;
+
+            @Config.Comment("Fix the Garlic Garland having incorrect Bounding Boxes.")
+            @Config.Name("Garlic Garland - Fix Bounding Box")
+            public static boolean garlicGarland_fixBoundingBox = true;
+
+            @Config.Comment("Fix the Garlic Garland being placed with the wrong facing upon placement.")
+            @Config.Name("Garlic Garland - Fix Facing on Placement")
+            public static boolean garlicGarland_fixFacingOnPlacement = true;
+
+            @Config.Comment("Fixes a problem with the bounding box of the Statue of Goddess. Being two blocks high, when a " +
+                    "player stands on top of it on a server it will be kicked for flying. If this config is true, the bounding " +
+                    "box height will be reduced to 1.6, the maximum allowed without being kicked")
+            @Config.Name("Statue of Goddess - Fix Flying On Servers")
+            public static boolean goddessStatue_fixFlyingOnServers = true;
+
+            @Config.Comment("If true, when the player holds any block and right-clicks the statue, it won't place the block")
+            @Config.Name("Statue of Hobgoblin Patron - Fix Block Placing")
+            public static boolean hobgoblinPatronStatue_fixBlockPlacing = true;
+
+            @Config.Comment("Fixes a problem with rendering of the statue, where the skin of the bound player is visible " +
+                    "without the overlay due to W:R using the original (no longer working) Witchery texture for the statue")
+            @Config.Name("Statue of Hobgoblin Patron - Fix Rendering")
+            public static boolean hobgoblinPatronStatue_fixRendering = true;
 
             @Config.Comment("If true, enables Crafttweaker integration for Kettle. Defaults to true, " +
                     "as if enabled and not used does not alter Witchery behaviour")
@@ -384,6 +451,11 @@ public class ModConfig {
             @Config.Name("Mirror - Tweak MiM Power Requirement")
             @Config.RangeDouble(min = 1.0, max = 10000.0)
             public static float mirror_inMirrorPowerConsumption = 3000;
+
+            @Config.Comment("If true, fixes slipperiness of Perpetual Ice Slabs (and Double Slabs). NOTE: That might not " +
+                    "work on lower-half ice slabs due to a bug in Vanilla Minecraft")
+            @Config.Name("Perpetual Ice Slab - Fix No Slipperiness")
+            public static boolean perpetualIceSlabs_fixSlipperiness = true;
 
             @Config.Comment("Fix Arthana, Pentacle and other items placed on top of the altar not dropping when " +
                     "the altar block below them is broken.")
@@ -462,6 +534,18 @@ public class ModConfig {
             @Config.Name("Witches Oven - Fix Burning Particles")
             public static boolean witchesOven_fixBurningParticlesHeight = true;
 
+            @Config.Comment("If true, fixes fences connecting to the statue, and buttons and levers cannot be placed " +
+                    "anymore on the statue")
+            @Config.Name("Wolf Altar - Fix Face Shape")
+            public static boolean wolfAltar_fixFaceShape = true;
+
+            @Config.Comment("Fixes a problem with the bounding box of the Wolf Altar. Being two blocks high, when a " +
+                    "player stands on top of it on a server it will be kicked for flying. If this config is true, the bounding " +
+                    "box height will be reduced to 1.6, the maximum allowed without being kicked.")
+            @Config.Name("Wolf Altar - Fix Flying On Servers")
+            @Config.RequiresMcRestart
+            public static boolean wolfAltar_fixFlyingOnServers = true;
+
             @Config.Comment("If true, when the Wolf Trap is activated, warns the player about approaching werewolves")
             @Config.Name("Wolf Trap - Tweak Warn Players")
             public static boolean wolfTrap_warnPlayers = false;
@@ -515,6 +599,10 @@ public class ModConfig {
             @Config.Name("Bark Belt - Tweak Enable Crafttweaker Integration")
             public static boolean barkBelt_tweakCraftTweakerIntegration = true;
 
+            @Config.Comment("If true, Cane Sword will retain its damage when sheathing/unsheathing")
+            @Config.Name("Cane Sword - Fix Preserve Damage on Unsheathing")
+            public static boolean caneSword_fixDamageOnSheathe = true;
+
             @Config.Comment("If true, players will be able to use the Creative Medallion even if not in creative mode")
             @Config.Name("Creative Medallion - Tweak Disable Creative Requirement")
             public static boolean creativeMedallion_tweakDisableCreativeRequirement = false;
@@ -536,6 +624,11 @@ public class ModConfig {
                     "Brew of Erosion crafted into the Witch's Cauldron")
             @Config.Name("Brew of Erosion Item - Tweak Emulate Erosion Brew")
             public static boolean itemErosionBrew_tweakEmulateBrewEffects = false;
+
+            @Config.Comment("If true, the Brew of Frost will correctly generate Ice Shields when they hit the upper face of solid ground, " +
+                    "instead of generating 3 floating blocks of ice.")
+            @Config.Name("Brew of Frost Item - Fix Ice Column Generation")
+            public static boolean itemFrostBrew_fixIceColumn = true;
 
             @Config.Comment("If true, enables CraftTweaker integration for all types of Mutandis conversions")
             @Config.Name("Mutandis - Tweak Enable CraftTweaker Integration")
@@ -635,11 +728,6 @@ public class ModConfig {
             @Config.Name("Rite of Moving Earth - Tweak Rite Refund Policy")
             public static int movingEarth_tweakRefundPolicy = 0;
 
-            @Config.Comment("A list of blockstates that the Rite of Moving earth won't be able to move.\n" +
-                    "Can only restrict more blocks, so Altars, Bedrock and some others won't be moved regardless")
-            @Config.Name("Rite of Moving Earth - Tweak Block Blacklist")
-            public static String[] movingEarth_tweakBlockBlacklist = new String[] { };
-
             @Config.Comment("If true, smoke particles and sounds will be played for blocks that won't be moved")
             @Config.Name("Rite of Moving Earth - Tweak Show Particles On Failure")
             public static boolean movingEarth_tweakFailIndicators = false;
@@ -649,9 +737,6 @@ public class ModConfig {
             @Config.Name("Rite of Prior Incarnation - Fix NBT Persisting After Pickup")
             @Config.RequiresMcRestart
             public static boolean ritePriorIncarnation_fixNbtNotRemoved = true;
-
-            @Config.Ignore
-            public static HashSet<IBlockState> movingEarth_stateBlacklist = new HashSet<>();
         }
 
         public static class PotionTweaks {
@@ -730,6 +815,11 @@ public class ModConfig {
             @Config.Name("Coven Witch - Tweak Fight Quests Peaceful Rerolls")
             @Config.RangeInt(min = 0, max = 10)
             public static int covenWitch_tweakFightQuestsPeacefulRerolls = 0;
+
+            @Config.Comment("Sets the total lifespan (in ticks) of a Duplicate entity (spawned by Duplication Grenades). " +
+                    "Default Witchery is 200 ticks (10 seconds)")
+            @Config.RangeInt(min = 1, max = 10000000)
+            public static int duplicate_tweakTickLifespan = 200;
 
             @Config.Comment("If true, fixes a freeze when the Broom breaks due to not dismounting passengers")
             @Config.Name("Enchanted Broom - Fix Freeze On Break")
@@ -854,9 +944,53 @@ public class ModConfig {
             @Config.Name("Spectre - Tweak Tick Delay Before Despawn")
             public static int spectre_tweakDelayTicksBeforeDespawn = 60;
 
+            @Config.Comment("If true, Treefyd will require to be given a Creeper Heart before they can be given a Demon " +
+                    "Heart, which further improves their strength and health")
+            @Config.Name("Treefyd - Tweak Overhaul Upgrades")
+            public static boolean treefyd_tweakOverhaulUpgrades = false;
+
+            @Config.Comment("Tweaks the speed of Treefyd when it's not boosted. Defaults to 0.25")
+            @Config.Name("Treefyd - Tweak Speed Unboosted")
+            @Config.RangeDouble()
+            @Config.RequiresMcRestart
+            public static double treefyd_tweakSpeedUnboosted = 0.25;
+
+            @Config.Comment("Tweaks the health of Treefyd when it's not boosted. Defaults to 50.0")
+            @Config.Name("Treefyd - Tweak Health Unboosted")
+            @Config.RangeDouble()
+            @Config.RequiresMcRestart
+            public static double treefyd_tweakHealthUnboosted = 50.0;
+
+            @Config.Comment("Tweaks the damage of Treefyd when it's not boosted. Defaults to 3.0")
+            @Config.Name("Treefyd - Tweak Damage Unboosted")
+            @Config.RangeDouble(min = 0.1, max = 100.0)
+            @Config.RequiresMcRestart
+            public static double treefyd_tweakDamageUnboosted = 3.0;
+
+            @Config.Comment("Tweaks the health of Treefyd when given a Creeper Heart. Defaults to 100")
+            @Config.Name("Treefyd - Tweak Health Creeper Heart")
+            @Config.RangeDouble(min = 1, max = 1000)
+            public static double treefyd_tweakHealthWithCreeperHeart = 100.0;
+
+            @Config.Comment("Tweaks the damage of Treefyd when given a Creeper Heart. Defaults to 4.0")
+            @Config.Name("Treefyd - Tweak Damage Creeper Heart")
+            @Config.RangeDouble(min = 0.1, max = 100.0)
+            public static double treefyd_tweakDamageWithCreeperHeart = 4.0;
+
+            @Config.Comment("Tweaks the health of Treefyd when given a Demon Heart. Defaults to 150")
+            @Config.Name("Treefyd - Tweak Health Demon Heart")
+            @Config.RangeDouble(min = 1, max = 1000)
+            public static double treefyd_tweakHealthWithDemonHeart = 150.0;
+
+            @Config.Comment("Tweaks the damage of Treefyd when given a Demon Heart. Defaults to 5.0")
+            @Config.Name("Treefyd - Tweak Damage Demon Heart")
+            @Config.RangeDouble(min = 0.1, max = 100.0)
+            public static double treefyd_tweakDamageWithDemonHeart = 5.0;
+
             @Config.Comment("If true, removes Witchery: Resurrected Back-ported AI for Villagers")
             @Config.Name("Villager - Tweak Remove Backported AI")
-            public static boolean villager_disablePackportedAI = false;
+            @Config.RequiresMcRestart
+            public static boolean villager_disableBackportedAI = false;
         }
 
         public static class BookTweaks {
@@ -943,6 +1077,10 @@ public class ModConfig {
             @Config.Comment("If true, Spectre will drop loot according to its Loot Table (witchery:entities/spectre)")
             @Config.Name("Spectre - Tweak Drop Loot by Table")
             public static boolean spectre_tweakLootTable = false;
+
+            @Config.Comment("If true, Treefyd will drop loot according to its Loot Table (witchery:entities/treefyd)")
+            @Config.Name("Treefyd - Tweak Drop Loot by Table")
+            public static boolean treefyd_tweakOwnLootTable = false;
         }
 
         public static class DimensionTweaks {
@@ -990,6 +1128,11 @@ public class ModConfig {
             @Config.Name("No Form - Fix Default Step Height")
             public static boolean noForm_fixDefaultStepHeight = true;
 
+            @Config.Comment("If true, a level 6 or higher werewolf without a Moon Charm will transform into WOLFMAN form instead " +
+                    "of WOLF form. Lesser levels will transform into WOLF form regardless")
+            @Config.Name("Werewolf - Tweak Transform to Wolfman")
+            public static boolean werewolf_tweakTransformToWolfman = false;
+
         }
 
         public static class WorldGenTweaks {
@@ -999,10 +1142,22 @@ public class ModConfig {
             @Config.Name("Item Frame - Fix Crash While Generating Book In Village")
             public static boolean frameWithBook_fixCrashOnVillageGen = true;
 
+            @Config.Comment("If true, fixes an Out of Memory crash when Cubic Chunks is installed")
+            @Config.Name("Chunk Points of Interest - Fix Crash with Cubic Chunks")
+            public static boolean chunkPOI_fixCubicChunksIncompat = true;
+
         }
     }
 
     public static class IntegrationConfigurations {
+
+        @Config.Comment("Configuration related to Baubles integration")
+        @Config.Name("Baubles Integration - Configuration")
+        public static BaublesIntegration baublesIntegrationConfig;
+
+        @Config.Comment("Configuration related to CraftTweaker integration")
+        @Config.Name("CraftTweaker Integration - Configuration")
+        public static CraftTweakerIntegration crafttweakerIntegrationConfig;
 
         @Config.Comment("Configuration related to Just Enough Resources integration")
         @Config.Name("JER Integration - Configuration")
@@ -1034,6 +1189,25 @@ public class ModConfig {
         @Config.Name("Thaumcraft Integration - Configuration")
         public static ThaumcraftIntegration ThaumcraftIntegrationConfig;
 
+
+        public static class BaublesIntegration {
+
+            @Config.Comment("Fixes a crash when Baubles is installed and Botania is not, the player is a Vampire and dies")
+            @Config.Name("Botania Integration - Fix Crash On Vampire Death")
+            @Config.RequiresMcRestart
+            public static boolean fixCrashOnVampireDeath = true;
+
+        }
+
+
+        public static class CraftTweakerIntegration {
+
+            @Config.Comment("If true enables CraftTweaker integration for PolynesiaCharm (Animal trades). Alters default trades")
+            @Config.Name("CraftTweaker Integration - Enable Polynesia Charm")
+            @Config.RequiresMcRestart
+            public static boolean enablePolynesiaCharm = true;
+
+        }
 
         public static class JerIntegration {
 
@@ -1140,6 +1314,10 @@ public class ModConfig {
             @Config.Comment("If true, enables TOP integration for Flame Imp")
             @Config.Name("TOP Integration - Flame Imp")
             public static EProbeElementIntegrationConfig imp = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Treefyd")
+            @Config.Name("TOP Integration - Treefyd")
+            public static EProbeElementIntegrationConfig treefyd = EProbeElementIntegrationConfig.DEFAULT;
 
             public enum EProbeElementIntegrationConfig {
                 // Only enable basic information
@@ -1478,8 +1656,6 @@ public class ModConfig {
         }
 
         public static void reloadConfig() {
-            reloadRiteOfMovingEarthBlacklist();
-
             // Flags are always reloaded, but Book Contents won't be triggered
             // Content is reloaded only when PatchouliAPIIntegration 'readyToReload'
             // is true, which is set as such only on PlayerJoinedWorldEvent
@@ -1487,30 +1663,6 @@ public class ModConfig {
                 IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
             }
 
-        }
-
-        private static void reloadRiteOfMovingEarthBlacklist() {
-            // Clear current configuration
-            PatchesConfiguration.RitesTweaks.movingEarth_stateBlacklist = new HashSet<>();
-
-            // Re-add configuration
-            for (String entry : PatchesConfiguration.RitesTweaks.movingEarth_tweakBlockBlacklist) {
-                String[] metaSplit = entry.split("@");
-                int meta = 0;
-                try {
-                    meta = metaSplit.length > 1 ? Integer.parseInt(metaSplit[1]) : 0;
-                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                    WitcheryCompanion.logger.warn("Could not parse blockstate - Invalid meta for entry: {}. Please fix your configs", entry);
-                }
-
-                ResourceLocation rl = new ResourceLocation(metaSplit[0]);
-                if (!ForgeRegistries.BLOCKS.containsKey(rl)) {
-                    WitcheryCompanion.logger.warn("Could not parse blockstate - Block not found: {}. Please fix your configs", entry);
-                }
-
-                Block block = ForgeRegistries.BLOCKS.getValue(rl);
-                PatchesConfiguration.RitesTweaks.movingEarth_stateBlacklist.add(block.getStateFromMeta(meta));
-            }
         }
 
     }

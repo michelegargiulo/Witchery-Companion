@@ -13,7 +13,6 @@
     },
     {
       "type": "text",
-      "title": "",
       "text": "They may send their avatars to pay witches a visit who exploit their worship with a $(l:artifacts/statues/hobgoblin_patron)Statue of Hobgoblin Patron$(/l). Rumor has it that using a $(item)Nether Star$() may make them take immediate notice.$(p)The avatars of Mog and Gulg should not be left close to one another! $(l:artifacts/clothing/gulgs_gurdle)Gulg's Gurdle$(/l) and $(l:artifacts/clothing/mogs_quiver)Mog's Quiver$(/l) are rumored to be powerful artifacts."
     }
   ]

@@ -16,7 +16,7 @@
     },
     {
       "type": "generic/secret_text",
-      "title": "Novice Werewolves",
+      "title": "Lvl. 1 - Novice Werewolves",
       "description": "The curse can progress through many stages as the power of the lycanthrope grows. But at the initial stages, the werewolf has not even control over the form of its own body. Each night of a full moon, the player will be forcefully transformed to a $(item)Wolf$(): the so called $(l:observations/lycanthropy#wolf_form)Wolf Form$(/l). A werewolf in Wolf Form will have the following changes to their body and abilities:",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_1",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress",
@@ -32,28 +32,28 @@
     },
     {
       "type": "generic/secret_text",
-      "title": "Moon Charm",
+      "title": "Lvl. 2 - Moon Charm",
       "description": "Player can carry a $(l:)Moon Charm$(/l) to prevent forced transformations, and use it to force transformation at will. Killing $(item)Sheeps$() in non-human forms may result in $(item)Raw Mutton$() being dropped.",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_2",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Quick Dig",
+      "title": "Lvl. 3 - Quick Dig",
       "description": "Wolf Form gains the ability to instantly dig $(item)Earth$() and $(item)Sand$(), and can occasionally find $(item)Bones$().",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_3",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Corpse Eating",
+      "title": "Lvl. 4 - Corpse Eating",
       "description": "Kills in non-human forms will now be eaten, replenishing hunger loss.",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_4",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Wolfman Form",
+      "title": "Lvl. 5 - Wolfman Form",
       "description": "Player can now transform into the $(item)Wolfman Form$() using a $(l:)Moon Charm$(/l) while sneaking.$(br)A werewolf in Wolfman Form will have the following changes to their body and abilities:$(br)$(8)> $()Cannot wear armor$(br)$(8)> $()Will drop held object$(br)$(8)> $()Faster movement and better jump and leap$(br)$(8)> $()Increased step height$(br)$(8)> $()Night vision$(br)$(8)> $()Immunity to poison and disease",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_5",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress",
@@ -69,35 +69,35 @@
     },
     {
       "type": "generic/secret_text",
-      "title": "Sprint Critic",
+      "title": "Lvl. 6 - Sprint Critic",
       "description": "Hitting while sprinting in Wolf or Wolfman form will now cause additional damage, and critting while in air will further increase it.",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_6",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Stunning Howl",
+      "title": "Lvl. 7 - Stunning Howl",
       "description": "Wolfman Form gains the ability to sneak use while looking straight up to howl and stun nearby creatures.",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_7",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Wolf Allies",
+      "title": "Lvl. 8 - Wolf Allies",
       "description": "Wolfman Form gains the ability to sneak use while looking straight up to howl to summon Wolf allies.",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_8",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Tearing Armors",
+      "title": "Lvl. 9 - Tearing Armors",
       "description": "Wolfman Form gains the ability to rend armor.",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_9",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress"
     },
     {
       "type": "generic/secret_text",
-      "title": "Infection Spread",
+      "title": "Lvl. 10 - Infection Spread",
       "description": "Causing almost-fatal damage while in Wolfman or Wolf Forms can spread the curse to players and $(item)Villagers$().",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_10",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress"

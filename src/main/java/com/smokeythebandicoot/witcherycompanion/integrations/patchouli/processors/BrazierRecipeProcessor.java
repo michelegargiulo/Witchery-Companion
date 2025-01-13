@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
-import com.smokeythebandicoot.witcherycompanion.api.brazier.IBrazierSummoningRecipeAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.brazier.IBrazierSummoningRecipeAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BaseProcessor;

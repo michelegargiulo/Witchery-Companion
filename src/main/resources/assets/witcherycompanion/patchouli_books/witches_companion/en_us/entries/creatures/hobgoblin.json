@@ -17,24 +17,22 @@
       "text": "Hobgoblins are friendly creatures often found in forested biomes in groups, especially nearby $(l:dimensions/goblin_hut)Hobgoblin Huts$(/l) structures.$(2br)They are neutral, but will attack back if provoked."
     },
     {
-      "type": "generic/secret_text",
+      "type": "text",
       "title": "Hobgoblins and Villages",
-      "description": "Hobgoblins will raid and take over villages. When a village is nearby, they also tend to offer trades in a manner not too dissimilar from villager trading.",
-      "secret_key": "witcherycompanion:creatures/hobgoblin_villages"
+      "text": "Hobgoblins will raid and take over villages. When a village is nearby, they also tend to offer trades in a manner not too dissimilar from $(item)Villager$() trading.$(p)Like Villagers, they have different specializations, and some of them may know the secret to forge $(l:resources/koboldite)Koboldite$(/l) into other forms, like Nuggets and Ingots."
     },
     {
-      "type": "generic/secret_text",
+      "type": "text",
       "title": "Koboldite source",
-      "description": "Using a $(item)Lead$() on a Hobgoblin will incline them to perform manual labor. When leashed, they will pick up dropped items and drop them into nearby chests.$(2br)Giving a Hobgoblin a pickaxe will make it begin mining. Occasionally, they can find $(item)Koboldite Dust$().",
-      "secret_key": "witcherycompanion:creatures/hobgoblin_mining",
-      "_comment": "Unlocked when an hobgoblin gets a pickaxe thrown from a player"
+      "text": "Using a $(item)Lead$() on a Hobgoblin will incline them to perform manual labor. When leashed, they will pick up dropped items and drop them into nearby chests.$(p)Giving a Hobgoblin a $(item)Pickaxe$() will make it begin mining. Occasionally, they can find $(l:resources/koboldite)Koboldite Dust$(/l).$(br)The chance increases when they mine using a $(l:artifacts/tools/koboldite_pickaxe)Koboldite Pickaxe$(/l)."
     },
     {
-      "type": "generic/secret_text",
+      "type": "text",
       "title": "Hobgoblin worshipping",
-      "description": "Hobgoblins worship their gods, $(item)Mog$() and $(item)Gulg$(). If a bound $(item)Statue of Hobgoblin Patron$() is nearby, they will begin worshipping it, recharging $(item)Infusion Power$() of the player the statue is bound to.$(br)Worshipping Hobgoblins also increase the power of the $(item)Mystic Branch$() and its effects, but remember, if too many Hobgoblins worship the statue, Mog and Gulg will descend to slay the player.",
+      "text": "Hobgoblins worship their gods, $(item)Mog$() and $(item)Gulg$(). If a bound $(l:artifacts/statues/hobgoblin_patron)Statue of Hobgoblin Patron$(/l) is nearby, they will begin worshipping it, recharging $(l:kettle/infusion_intro#power)Infusion Power$(/l) of the player the statue is bound to.$(br)Worshipping Hobgoblins also increase the power of the $(item)Mystic Branch$() and its effects, but remember, if too many Hobgoblins worship the statue, Mog and Gulg will descend to slay the player.",
       "secret_key": "witcherycompanion:creatures/hobgoblin_worship",
-      "_comment": "Unlocked when a player crafts a Statue of Hobgoblin patron"
+      "_comment": "Unlocked when Mog and Gulg descend",
+      "anchor": "worship"
     }
   ]
 }

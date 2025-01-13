@@ -2,7 +2,7 @@
   "name": "Owl",
   "icon": "minecraft:feather",
   "category": "mutations",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "multiblock",

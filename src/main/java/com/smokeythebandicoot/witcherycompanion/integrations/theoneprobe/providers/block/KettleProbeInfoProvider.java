@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.kettle.ITileEntityKettleAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.kettle.ITileEntityKettleAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;

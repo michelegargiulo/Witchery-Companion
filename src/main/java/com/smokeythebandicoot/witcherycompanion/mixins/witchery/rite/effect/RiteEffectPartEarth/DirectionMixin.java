@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  Mixins:
  [Bugfix] (Partial, complementary to RiteEffectPartEarthMixin) Fix NPE when destination location is null
  */
-@Mixin(targets = "net/msrandom/witchery/rite/effect/RiteEffectPartEarth$Direction")
+@Mixin(targets = "net.msrandom.witchery.rite.effect.RiteEffectPartEarth$Direction")
 public class DirectionMixin {
 
     /** This Mixin prevents an NPE from occurring when companion passes NULL as destination param. This is due to

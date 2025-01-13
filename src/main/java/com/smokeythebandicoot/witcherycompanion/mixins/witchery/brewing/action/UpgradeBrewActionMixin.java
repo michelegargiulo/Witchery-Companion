@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.brewing.action;
 
-import com.smokeythebandicoot.witcherycompanion.api.brewing.IUpgradeBrewActionAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.brewing.IUpgradeBrewActionAccessor;
 import kotlin.jvm.functions.Function1;
 import net.msrandom.witchery.brewing.ItemKey;
 import net.msrandom.witchery.brewing.action.BrewActionSerializer;

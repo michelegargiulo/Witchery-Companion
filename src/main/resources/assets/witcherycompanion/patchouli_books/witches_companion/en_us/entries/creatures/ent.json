@@ -1,0 +1,19 @@
+{
+  "name": "Ent",
+  "icon": "witchery:ent",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:goblin_gulg",
+      "text": "Embodied Woodland Spirits",
+      "offset": 0.12,
+      "scale": 0.95
+    },
+    {
+      "type": "text",
+      "text": "An Ent is a tree that has been animated by a woodland spirit, often disturbed by the destruction of other trees. They will appear occasionally when trees such as $(l:herbology/herbology#rowan)Rowan$(/l), $(l:herbology/herbology#hawthorn)Hawthorn$(/l) and $(l:herbology/herbology#alder)Alder$(/l) are felled in large quantities.$(p)Ents are rather hard to kill by normal means, but they do have a healthy hatred of certain tools for some reason or another."
+    }
+  ]
+}

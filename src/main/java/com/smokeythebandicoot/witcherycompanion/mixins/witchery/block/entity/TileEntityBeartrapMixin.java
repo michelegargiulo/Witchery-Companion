@@ -1,11 +1,9 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.msrandom.witchery.block.entity.TileEntityBeartrap;
 import net.msrandom.witchery.block.entity.WitcheryTileEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,7 +24,7 @@ public abstract class TileEntityBeartrapMixin extends WitcheryTileEntity {
         if (ModConfig.PatchesConfiguration.BlockTweaks.wolfTrap_warnPlayers) {
             BlockPos pos = this.getPos();
             for (EntityPlayer player : this.world.getPlayers(EntityPlayer.class, player -> player.getDistanceSq(pos) < 256.0)) {
-                player.sendMessage(new TextComponentString(I18n.format("witcherycompanion.message.wolftrap.approaching")));
+                player.sendMessage(new TextComponentTranslation("witcherycompanion.message.wolftrap.approaching"));
             }
         }
     }

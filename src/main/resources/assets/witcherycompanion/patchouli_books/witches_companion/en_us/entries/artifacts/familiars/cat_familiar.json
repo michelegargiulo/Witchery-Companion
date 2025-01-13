@@ -1,0 +1,18 @@
+{
+  "name": "Cat Familiar",
+  "icon": "minecraft:cooked_fish",
+  "category": "artifacts/familiars",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Cat Familiar",
+      "text": "Cat familiar require a tamed $(item)Ocelot$() to be present in the $(l:circle_magic/binding/familiar)Rite of Binding$(/l). A cat familiar allows a witch to master the art of $(l:circle_magic/curses/blight)Curses$(/l) and $(item)Curse Removal$(). All Curses cast by such a witch will be stronger, yielding more debilitating effects and being harder for other witches to remove.$(br)Likewise, such witches will find it easier to remove curses that afflict them."
+    },
+    {
+      "type": "text",
+      "title": "Curse Mastery",
+      "text": "Witches with a cat familiar can also perform the $(l:circle_magic/curses/corrupt_poppet)Curse of Corrupt Poppet$(/l), allowing them to destroy $(l:artifacts/poppets/poppets#voodoo_protection)Voodoo Protection Poppets$(/l) unless the player has a $(l:artifacts/poppets/poppets#poppet_protection)Poppet Protection Poppet$(/l).$(p)Finally, a cat familiar gives the witch the power to prepare the $(l:kettle/kettle_intro#cursed_leaping)Brew of Cursed Leaping$(/l) in a $(l:kettle/kettle_intro)Kettle$(/l)."
+    }
+  ]
+}

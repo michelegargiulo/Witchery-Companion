@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.rite.effect;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.erosionbrew.ErosionBrewApi;
+import com.smokeythebandicoot.witcherycompanion.api.ErosionBrewApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.RitesTweaks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;

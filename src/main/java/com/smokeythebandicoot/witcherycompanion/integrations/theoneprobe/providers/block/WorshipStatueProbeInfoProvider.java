@@ -1,7 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.suncollector.IBlockSunCollectorAccessor;
-import com.smokeythebandicoot.witcherycompanion.api.worshipstatue.ITileEntityWorshipStatueAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.worshipstatue.ITileEntityWorshipStatueAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
@@ -10,11 +9,9 @@ import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.ProbeMode;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.msrandom.witchery.block.BlockStatueOfWorship;
-import net.msrandom.witchery.block.BlockSunCollector;
 import net.msrandom.witchery.block.entity.TileEntityWorshipStatue;
 
 public class WorshipStatueProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockStatueOfWorship, TileEntityWorshipStatue> {

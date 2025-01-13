@@ -2,7 +2,7 @@
   "name": "Critter Snare",
   "icon": "witchery:empty_critter_snare",
   "category": "mutations",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "multiblock",

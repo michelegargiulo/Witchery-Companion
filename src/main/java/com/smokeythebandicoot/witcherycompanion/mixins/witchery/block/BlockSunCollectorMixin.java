@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.suncollector.IBlockSunCollectorAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.suncollector.IBlockSunCollectorAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;

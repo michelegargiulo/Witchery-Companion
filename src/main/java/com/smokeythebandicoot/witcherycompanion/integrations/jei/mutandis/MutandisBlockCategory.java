@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.jei.mutandis;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.mutandis.MutandisApi;
+import com.smokeythebandicoot.witcherycompanion.api.MutandisApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeCategory;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;
@@ -16,7 +16,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 

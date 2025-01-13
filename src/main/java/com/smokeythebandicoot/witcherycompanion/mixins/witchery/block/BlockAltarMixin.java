@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.altar.IBlockAltarAccessor;
-import com.smokeythebandicoot.witcherycompanion.api.altar.ITileEntityAltarAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.altar.IBlockAltarAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.altar.ITileEntityAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;

@@ -3,7 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.common;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.player.IEntityPlayerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
@@ -94,25 +94,6 @@ public abstract class ShapeShiftMixin {
         if (Loader.isModLoaded(Mods.MORPH) && ModConfig.IntegrationConfigurations.MorphIntegration.fixSizeDesyncOnDimChange) {
             MorphIntegration.INSTANCE.handleMorphOnShapeShift(player);
         }
-    }
-
-    /** This Mixin preserves the capability to fly to be restored later */
-    @Inject(method = "initCurrentShift(Lnet/minecraft/entity/player/EntityPlayer;)V", remap = false,
-        at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/transformation/CreatureForm$Stats;canFly()Z", remap = false))
-    public void preserveFlyingCapability(EntityPlayer player, CallbackInfo ci) {
-        witchery_Patcher$prevFlightCapability = player.capabilities.allowFlying;
-    }
-
-    /** Witchery sets the capability to fly depending ONLY on if the player's current form allows flight (eg. Vampire
-     * in bat form). Other mods might exist that allow flight, so let's be less bully and listen to what other mods
-     * have to say */
-    @WrapOperation(method = "initCurrentShift(Lnet/minecraft/entity/player/EntityPlayer;)V", remap = false,
-        at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/transformation/CreatureForm$Stats;canFly()Z", remap = false))
-    public boolean removeFlyingStatHegemony(CreatureForm.Stats instance, Operation<Boolean> original) {
-        if (CommonTweaks.flight_preserveFlightCapability) {
-            return witchery_Patcher$prevFlightCapability || original.call(instance);
-        }
-        return original.call(instance);
     }
 
     /** This Mixin saves a reference to the Shifting player and its health percentage immediately before the

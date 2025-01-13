@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
-import com.smokeythebandicoot.witcherycompanion.api.goblintrade.GoblinTradeApi;
+import com.smokeythebandicoot.witcherycompanion.api.GoblinTradeApi;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;

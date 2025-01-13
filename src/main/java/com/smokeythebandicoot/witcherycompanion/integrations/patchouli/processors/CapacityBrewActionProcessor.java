@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
 import com.smokeythebandicoot.witcherycompanion.api.brewing.BrewRegistry;
-import com.smokeythebandicoot.witcherycompanion.api.brewing.ICapacityBrewActionAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.brewing.ICapacityBrewActionAccessor;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BrewActionProcessor;
 import net.msrandom.witchery.brewing.action.CapacityBrewAction;

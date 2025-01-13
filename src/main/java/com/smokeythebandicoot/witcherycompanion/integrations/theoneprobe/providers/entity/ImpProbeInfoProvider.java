@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.entity;
 
-import com.smokeythebandicoot.witcherycompanion.api.infernalimp.IEntityImpAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.infernalimp.IEntityImpAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseEntityProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;

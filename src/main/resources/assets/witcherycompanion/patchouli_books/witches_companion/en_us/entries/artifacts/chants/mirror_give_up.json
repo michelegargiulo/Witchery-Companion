@@ -1,0 +1,13 @@
+{
+  "name": "Mirror Give Up",
+  "icon": "minecraft:beacon",
+  "category": "artifacts/chants",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Mirror Give Up",
+      "text": "This Chant is the last hope for travellers stuck in the $(l:dimensions/mirror)Mirror$(/l) dimension, and will teleport back the lost traveller to their spawn location. This Chant only works in the aforementioned dimension. The cooldown is much longer than the $(l:artifacts/chants/mirror_send_me_home)Send me Home$(/l) Chant."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker;
 
-import com.smokeythebandicoot.witcherycompanion.api.kettle.KettleApi;
+import com.smokeythebandicoot.witcherycompanion.api.KettleApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;
@@ -13,7 +13,6 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 @ModOnly(value = "witchery")
 @ZenClass("mods.smokeythebandicoot.witcherycompanion.Kettle")
@@ -52,9 +51,9 @@ public class KettleHandler {
 
     @ZenMethod
     @ZenDoc(value="Registers a new recipe to the Kettle. Refer to Witchery: Companion wiki on Github for details")
-    public static void registerRecipe(String id, IItemStack result, float requiredPower, int hatBonus, String familiarPower, Integer dimension, boolean isSpecial, IIngredient... inputs) {
+    public static void registerRecipe(IItemStack result, float requiredPower, int hatBonus, String familiarPower, Integer dimension, boolean isSpecial, IIngredient... inputs) {
         KettleApi.registerRecipe(
-                id == null ? null : new ResourceLocation(id),
+                null,
                 CraftTweakerMC.getItemStack(result),
                 requiredPower,
                 hatBonus,
@@ -63,6 +62,12 @@ public class KettleHandler {
                 isSpecial,
                 Arrays.stream(inputs).map(CraftTweakerMC::getIngredient).toArray(Ingredient[]::new)
                 );
+    }
+
+    @ZenMethod
+    @ZenDoc(value="Removes a Kettle Recipe")
+    public static void removeRecipe(String resourceLocation) {
+        KettleApi.removeRecipe(new ResourceLocation(resourceLocation));
     }
 
 }

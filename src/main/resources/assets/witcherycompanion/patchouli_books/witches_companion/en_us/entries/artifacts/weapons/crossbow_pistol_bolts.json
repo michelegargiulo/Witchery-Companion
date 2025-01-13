@@ -1,0 +1,42 @@
+{
+  "name": "Crossbow Pistol",
+  "icon": "witchery:wooden_bolt",
+  "category": "artifacts/weapons",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:wooden_bolt",
+      "text": "Wooden Bolts are the classic ammunition for the Witch Hunter $(l:artifacts/weapons/crossbow_pistol)Crossbow Pistol$(/l). It can penetrate the protection of the $(l:artifacts/clothing/belts#bark_betl)Bark Belt$(/l) and $(l:creatures/baba_yaga)Baba Yaga$(/l)'s thorns.",
+      "anchor": "wooden"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:splitting_bolt",
+      "text": "Upon firing Splitting Bolts they will split in three $(item)Wooden Bolts$(), each dealing half as much damage as a classic Wooden Bolt.",
+      "anchor": "splitting"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:bone_bolt",
+      "text": "Bone Bolts will deal more damage to $(item)Undead$(), $(l:creatures/demon)Demons$(/l) and other $(item)Demonic creatures$().",
+      "anchor": "bone"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:silver_bolt",
+      "text": "Silver Bolts are particularly effective against $(l:creatures/werewolf)Werewolves$(/l), as they deal double damage to them and their natural resistance is ineffective against this ammunition.",
+      "anchor": "silver"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:nullifying_bolt",
+      "text": "This type of ammunition is particularly liked by Witch Hunters. These Bolts act just like their Wooden counterpars, except when a full set of $(l:artifacts/clothing/witch_hunter_clothing)Witch Hunter Armor$(/l) is worn.",
+      "anchor": "nullifying"
+    },
+    {
+      "type": "text",
+      "text": "In such case, the bolts will drain 1/3 of target's $(l:kettle/infusion_intro#power)Magical Power$(/l) and any of their $(l:artifacts/poppets/poppets#death)Poppet$(/l)-based protection is ignored. All $(item)Potion Effects$() are also removed from the target, except $(item)Poison$() and $(item)Wither$().$(p)Lastly, firing such a Bolt will also completely drain the shooter's Magical Power, if they have any."
+    }
+  ]
+}

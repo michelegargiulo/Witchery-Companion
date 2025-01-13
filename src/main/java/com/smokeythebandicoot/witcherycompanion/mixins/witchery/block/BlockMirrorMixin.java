@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.mirror.IBlockMirrorAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.mirror.IBlockMirrorAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;

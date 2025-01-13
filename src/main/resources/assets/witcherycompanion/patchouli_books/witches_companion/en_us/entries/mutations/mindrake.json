@@ -2,7 +2,7 @@
   "name": "Mindrake Bulb",
   "icon": "witchery:mindrake_bulb",
   "category": "mutations",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "multiblock",

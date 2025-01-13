@@ -5,7 +5,7 @@ import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressLockEvent;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressResetEvent;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
-import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.SpiritEffectApi;
+import com.smokeythebandicoot.witcherycompanion.api.SpiritEffectApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.bookcomponents.ColorableImage;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.items.ItemTornPage;

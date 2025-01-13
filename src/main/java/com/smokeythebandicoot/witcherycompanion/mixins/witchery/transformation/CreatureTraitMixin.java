@@ -1,10 +1,8 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.transformation;
 
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
-import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
-import com.smokeythebandicoot.witcherycompanion.utils.ContentUtils;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.Loader;
@@ -17,7 +15,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import vazkii.patchouli.api.PatchouliAPI;
 
 /**
  * Mixins:
@@ -52,7 +49,7 @@ public abstract class CreatureTraitMixin {
         if (Loader.isModLoaded(Mods.PATCHOULI)) {
             for (int i = 1; i <= 10; i++) {
                 String flagId = ProgressUtils.getCreatureTraitSecret(type, i);
-                PatchouliAPI.instance.setConfigFlag(flagId, i <= newLevel);
+                PatchouliApiIntegration.updateFlag(flagId, i <= newLevel);
             }
         }
 
@@ -82,7 +79,7 @@ public abstract class CreatureTraitMixin {
 
         // Reload book
         if (Loader.isModLoaded(Mods.PATCHOULI)) {
-            PatchouliAPI.instance.reloadBookContents();
+            PatchouliApiIntegration.reloadBook();
         }
     }
 

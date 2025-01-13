@@ -2,10 +2,10 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.infernalimp.IEntityImpAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.infernalimp.IEntityImpAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.LootTweaks;
-import com.smokeythebandicoot.witcherycompanion.api.infernalimp.InfernalImpApi;
+import com.smokeythebandicoot.witcherycompanion.api.InfernalImpApi;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;

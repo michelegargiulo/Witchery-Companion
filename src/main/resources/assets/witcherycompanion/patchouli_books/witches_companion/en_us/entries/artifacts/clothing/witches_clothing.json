@@ -7,7 +7,8 @@
     {
       "type": "spotlight",
       "item": "witchery:witches_hat",
-      "text": "A wearable item that offers a small amount of protection and can be $(item)enchanted$(). It can be repaired by using $(item)Leather$() in an $(item)Anvil$() or by crafting with three $(l:resources/impregnated_leather)Impregnated Leather$(/l)."
+      "text": "A wearable item that offers a small amount of protection and can be $(item)enchanted$(). It can be repaired by using $(item)Leather$() in an $(item)Anvil$() or by crafting with three $(l:resources/impregnated_leather)Impregnated Leather$(/l).",
+      "anchor": "hat"
     },
     {
       "type": "text",
@@ -17,7 +18,8 @@
     {
       "type": "spotlight",
       "item": "witchery:witches_robes",
-      "text": "When worn in the chest slot it provides a small amount of protection. The robes can be dyed and $(item)enchanted$(). It can be repaired by using $(item)Leather$() in an $(item)Anvil$() or by crafting with four $(l:resources/impregnated_leather)Impregnated Leather$(/l)."
+      "text": "When worn in the chest slot it provides a small amount of protection. The robes can be dyed and $(item)enchanted$(). It can be repaired by using $(item)Leather$() in an $(item)Anvil$() or by crafting with four $(l:resources/impregnated_leather)Impregnated Leather$(/l).",
+      "anchor": "robes"
     },
     {
       "type": "text",

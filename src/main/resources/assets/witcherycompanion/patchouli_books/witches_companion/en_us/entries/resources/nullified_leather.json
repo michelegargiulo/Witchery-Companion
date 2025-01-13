@@ -1,0 +1,13 @@
+{
+  "name": "Nullified Leather",
+  "icon": "witchery:nullified_leather",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:nullified_leather",
+      "text": "Nullified Leather is an extremely durable form of leather that has a neutralizing effect on magic."
+    }
+  ]
+}

@@ -138,14 +138,14 @@ public class WitcheryProgressCommand implements ICommand {
         return index == 1;
     }
 
-    @Override
-    public int compareTo(ICommand o) {
-        return 0;
-    }
-
     private boolean isArgsLengthCorrect(String[] args) {
         if (args.length < 2) return false;
         if (args[1].equals("reset") || args[1].equals("list")) return args.length == 2;
         return args.length == 3;
+    }
+
+    @Override
+    public int compareTo(ICommand o) {
+        return this.getName().compareTo(o.getName());
     }
 }

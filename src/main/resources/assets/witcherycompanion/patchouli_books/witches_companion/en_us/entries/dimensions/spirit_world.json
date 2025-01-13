@@ -13,7 +13,7 @@
       "type": "spotlight",
       "title": "Entering the Spirit World",
       "item": "witchery:sleeping_brew",
-      "text": "To enter the spirit world, the Witch must use a $(l:)Brew of Sleeping$(/l) or a $(l:)Sleeping Apple$(/l). When entering the realm, a Witch can either experience a Dream or a Nightmare. In the first case, the world will be at daytime, while for nightmares it will be at night time.",
+      "text": "To enter the spirit world, the Witch must use a $(l:kettle/kettle_intro#sleeping)Brew of Sleeping$(/l) or a $(l:artifacts/misc/apple_of_sleeping)Sleeping Apple$(/l). When entering the realm, a Witch can either experience a Dream or a Nightmare. In the first case, the world will be at daytime, while for nightmares it will be at night time.",
       "anchor": "entering"
     },
     {

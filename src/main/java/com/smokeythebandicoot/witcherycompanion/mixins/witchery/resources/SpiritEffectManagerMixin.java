@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.resources;
 
 import com.google.gson.Gson;
-import com.smokeythebandicoot.witcherycompanion.api.spiriteffect.SpiritEffectApi;
+import com.smokeythebandicoot.witcherycompanion.api.SpiritEffectApi;
 import net.minecraft.resources.JsonReloadListener;
 import net.msrandom.witchery.infusion.spirit.SpiritEffectRecipe;
 import net.msrandom.witchery.resources.SpiritEffectManager;

@@ -1,11 +1,9 @@
 package com.smokeythebandicoot.witcherycompanion.utils;
 
-import com.smokeythebandicoot.witcherycompanion.api.recipes.IRecipeManagerAccessor;
-import net.minecraft.inventory.IInventory;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.recipes.IRecipeManagerAccessor;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.resources.RecipeManager;
 import net.minecraft.util.ResourceLocation;
-import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 import net.msrandom.witchery.recipe.WitcheryRecipe;
 import net.msrandom.witchery.transformation.CreatureTraitType;
 import net.msrandom.witchery.util.WitcheryUtils;

@@ -2,7 +2,7 @@
   "name": "Leech Chest",
   "icon": "witchery:leech_chest",
   "category": "mutations",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "multiblock",

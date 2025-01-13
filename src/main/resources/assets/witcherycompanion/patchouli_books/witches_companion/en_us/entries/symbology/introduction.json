@@ -7,18 +7,18 @@
     {
       "type": "text",
       "title": "Symbology",
-      "text": "Drawing symbols with a $(item)Mystic Branch$() allows a practitioner to sculpt natural energies.$(2br)Only $(italic)Infused$() practitioners can use this type of magic.$(2br)Forbidden curses require the $(italic)Infernal Infusion$()"
+      "text": "Drawing symbols with a $(l:artifacts/tool/mystic_branch)Mystic Branch$(/l) allows a practitioner to sculpt natural energies.$(p)Only $(italic)Infused$() practitioners can use this type of magic.$(p)Forbidden curses require the $(italic)Infernal Infusion$()"
     },
     {
       "type": "text",
       "title": "Introduction",
-      "text": "First off, start by performing a $(item)Rite of Infusion$() to combine $(item)Mystic Unguent$() and an $(item)Ent Twig$() to get a $(item)Mystic Branch$().$(2br)To cast a spell, use and hold the Mystic Branch in the air, then wave it in a direction to draw a $(item)Symbol$(). If the symbols drawn represent the pattern of a spell, it will be casted upon release of the Mystic Branch.$(2br)Left click with the branch to deflect a spell projectile.",
+      "text": "First off, start by performing a $(l:circle_magic/infusion/mysticbranch_infusion)Rite of Infusion$(/l) to combine $(l:kettle/infusion_intro#mystic_unguent)Mystic Unguent$(/l) and an $(l:resources/ent_twig)Ent Twig$(/l) to get a $(item)Mystic Branch$().$(p)To cast a spell, use and hold the Mystic Branch in the air, then wave it in a direction to draw a $(item)Symbol$(). If the symbols drawn represent the pattern of a spell, it will be casted upon release of the Mystic Branch.$(p)Left click with the branch to deflect a spell projectile.",
       "flag": "witcherycompanion:symbology/extended_intro"
     },
     {
       "type": "text",
       "title": "Boosting power",
-      "text": "Spell power can be boosted by binding a $(l:artifacts/statues/hobgolin_patron)Statue of Hobgoblin Patron$(/l) and getting $(l:creatures/hobgoblins)Hobgoblins$() to worship it instead of their $(l:creatures/mog)Mog$(/l) and $(l:creatures/gulg)Gulg$(/l). This worship gives the Witch more power but too many Hobgoblins may cause Mog and Gulg to notice and attack the witch.",
+      "text": "Spell power can be boosted by binding a $(l:artifacts/statues/hobgolin_patron)Statue of Hobgoblin Patron$(/l) and getting $(l:creatures/hobgoblins)Hobgoblins$() to worship it instead of their $(l:creatures/mog)Mog$(/l) and $(l:creatures/gulg)Gulg$(/l). This worship gives the Witch more power but too many Hobgoblins may cause $(l:creatures/mog)Mog$(/l) and $(l:creatures/gulg)Gulg$(/l) to notice and attack the witch.",
       "flag": "witcherycompanion:symbology/extended_intro"
     },
     {

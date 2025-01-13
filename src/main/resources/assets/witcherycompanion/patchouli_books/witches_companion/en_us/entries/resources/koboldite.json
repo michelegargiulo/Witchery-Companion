@@ -1,0 +1,23 @@
+{
+  "name": "Koboldite",
+  "icon": "witchery:koboldite_ingot",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:koboldite_dust",
+      "text": "Koboldite is a rare material that can only really be found by $(l:creatures/hobgoblin)Hobgoblins$(/l) when they dig. The chance of finding this resource increases when they dig with a $(l:artifacts/tools/koboldite_pickaxe)Koboldite Pickaxe$(/l)."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:koboldite_nugget",
+      "text": "Koboldite Dust can be then forged first into Koboldite Nuggets, and then into Koboldite Ingots by Hobgoblins that know the secret. You can trade with those creatures, but the trade often includes a payment for their help."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:koboldite_ingot",
+      "text": "Koboldite Ingot is the final form of Koboldite, and is usually the one required to craft artifacts that require this resource."
+    }
+  ]
+}

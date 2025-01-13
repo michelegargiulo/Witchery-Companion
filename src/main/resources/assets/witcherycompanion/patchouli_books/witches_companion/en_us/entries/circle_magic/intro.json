@@ -18,7 +18,8 @@
       "type": "circle_magic/circles",
       "page_title": "Circle Sizes",
       "circles": "small_ritual,medium_infernal,large_otherwhere",
-      "description": "Rite circles can be of three sizes: Small (7x7), Medium (11x11) and Large (15x15). Each rite must have both the correct type and size."
+      "description": "Rite circles can be of three sizes: Small (7x7), Medium (11x11) and Large (15x15). Each rite must have both the correct type and size.",
+      "anchor": "circles"
     },
     {
       "type": "spotlight",

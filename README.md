@@ -18,8 +18,11 @@ jar in the resource packs folder.
   - **[Coffin]** Fix edge-case crash when placing the Coffin across chunk boundaries
   - **[Coffin]** Fix crash when piston moves the top block of the coffin
   - **[Cursed Blocks]** Fix crash when using trigger dispersal. ~They still don't work, but they should not crash the game~ Now it works, even on supported Tile Entities! Try cursing chests, pressure plates, doors and even Beds and Tripwires! More info on the Wiki
+  - **[Wolf Altar]** Fix fences connecting to the statue and buttons being able to be placed on it
   - **[Fetish]** Fix fetish blocks not having drops (Scarecrows, Trent Effiges, Vines)
   - **[Fetish]** Fix fetishes forgetting data on world reload, including the players they are bound to
+  - **[Garlic Garland]** Fix the Garlic Garland being placed with the wrong facing upon placement
+  - **[Garlic Garland]** Fix inconsistent Bounding Box
   - **[Kettle]** Fix throwing splash brews immediately after brewing them
   - **[Mandrake Crop]** Fix spawning mandrakes even when not fully mature
   - **[Poppet Shelf]** Fix upside-down poppet rendering
@@ -27,17 +30,24 @@ jar in the resource packs folder.
   - **[Spirit Portal Block]** Fix Spirit Portal Block not being completely broken when there are no longer the conditions to stay lit
   - **[Spirit Portal Block]** Fix Spirit Portal Block being able to support buttons, levers, etc on its surface
   - **[Spirit Portal Block]** Fix Spirit Portal Block having wrong collision box when placed along the Z-axis
+  - **[Statue of Broken Curses]** Tweak to reduce the bounding box volume
+  - **[Statue of Goddess]** Fix being kicked from servers for flying when standing on top of the statue
+  - **[Statue of Hobgoblin Patron]** Tweak to reduce the bounding box volume
+  - **[Statue of Hobgoblin Patron]** Fix placing blocks when right-clicking the statue
+  - **[Statue of Hobgoblin Patron]** Fix rendering
+  - **[Statue of Occluded Summons]** Tweak to reduce the bounding box volume
   - **[Witch's Cauldron]** Fix bottling skill being impossible to increase
   - **[Witch's Cauldron]** Fix right-clicking with an empty Bucket voiding the brew inside
   - **[Witch's Cauldron]** Fix right-clicking with an Empty Bucket on an empty Cauldron giving a water bucket
   - **[Witch's Cauldron]** Fix right-clicking with a Forge fluid handler voiding the brew inside
   - **[Witches Oven]** Fix particles spawning too low
+  - **[Wolf Altar]** Fix being kicked from servers for flying when standing on top of the statue
 - **Books**
   - **[Herbology Book]** Fix plants being rendered above text
 - **Brews**
   - **[Common]** Fix Liquid Dispersal having no effect
-  - **[Common]** Completely overhaul the Triggered Dispersal system, fixing crashes, broken rendering, making it work on some modded blocks with possibility to add compats, both by mod authors and thirt parties
-  - **[Common]** Fix Nether Star not removing power ceiling (Brews that include Nether Stars can have an unlimited amount of effects with full strength and duration modifiers) (non configurable)
+  - **[Common]** Completely overhaul the Triggered Dispersal system, fixing crashes, broken rendering, making it work on some modded blocks with an api that is easy to adopt and implement
+  - **[Common]** Fix Nether Star not removing power ceiling (Brews that include Nether Stars can have an unlimited amount of effects with full strength and duration modifiers) (not configurable)
   - **[Brew of Blast]** Fix breaking terrain even if the 'ignore blocks' modifier was added
   - **[Brew of Erosion]** Fix random integer crash
   - **[Brew of Frog's Tongue]** Fix crash when the brew pulls a null entity
@@ -59,6 +69,7 @@ jar in the resource packs folder.
 - **Fluids**
   - **[Soul Brews]** Enable Forge Universal Bucket, otherwise fluids like Flowing Spirit could not be picked up (non configurable)
 - **Items**
+  - **[Cane Sword]** Fix regaining full durability upon sheathing/unsheathing
   - **[Icy Needle]** Fix having an effect only when right-clicking on a block
   - **[Rowan Boat]** Fix Rowan Boat not having texture (not configurable)
   - **[Spectral Stone]** Fix NBT being retained after entity is released, effectively duping it
@@ -83,6 +94,7 @@ jar in the resource packs folder.
 - **Dimensions**
   - **[Spirit World] Fix endless spawn of Nightmares
 - **Integrations**
+  - **[Botania]** Fix crash when a vampire player dies and Baubles is installed but Botania is not
   - **[Thaumcraft]** Fix Thaumcraft Integration registering aspects too early
 
 ### Tweaks
@@ -107,6 +119,7 @@ jar in the resource packs folder.
   - **[Cat Familiar]** Separate their loot table from Vanilla ocelots loot table
   - **[Coven Witch]** Separate their loot table from Vanilla witches loot table
   - **[Demon]** Tweak to give them their own loot table instead of hard-coded loot
+  - **[Duplicate]** Tweak to configure custom lifespan (in ticks) of duplicates
   - **[Flame Imp]** Tweak to add CraftTweaker compat to manipulate items that can be given to him (shinies) and gifts that it gives in exchange
   - **[Flame Imp]** Tweak to modify Shiny cooldown  
   - **[Flame Imp]** Tweak to not consume shinies given to it while on cooldown  
@@ -121,8 +134,10 @@ jar in the resource packs folder.
   - **[Owl]** Tweak to change the model slightly when the owl is sitting
   - **[Owl]** Tweak to render children Owls smaller
   - **[Spectre]** Tweak to add its own loot table
-  - **[Spectre]** Tweak to wait a minimum delay before despawning
+  - **[Spectre]** Tweak to wait a minimum delay before de-spawning
   - **[Spectre]** Tweak to modify spectre attributes (Follow range, Movement speed, Attack damage)
+- **Infusion**
+  - **[Common]** Tweak Infusion Energy Bar and Creature Charge bar position
 - **Items**
   - **[Chalk]** Tweak Chalk max stack size to 1, to avoid weird item loss due to stacking problems
   - **[Creative Medallion]** Tweak to enable non-creative mode players to use the medallion
@@ -161,30 +176,42 @@ jar in the resource packs folder.
 - **CraftTweaker**
     - **[Altar]** 
         - Register or un-register Blocks nearby the altar that can power the Altar (power sources)
+    - **[Bark Belt]**
+      - Customize blocks on which the player can stand on to recharge
+    - **[Brazier]**
+      - Custom recipes (Summoning and Potion Effects)
+    - **[Distillery]**
+      - Custom recipes
     - **[Kettle]**
-        - Add / Remove Heatsources
-          - Add / Remove recipes
+        - Add / Remove Heat sources
+        - Custom recipes
     - **[Witch's Cauldron]** 
-        - Register or un-register Blocks underneath the cauldron that can act as a heat
-      source. Supports fluids
+        - Register or un-register Blocks underneath the cauldron that can act as a heat source. Supports fluids
+        - Custom recipes
     - **[Brew of Erosion]** 
-        - Customize what the brew can mine, destroy or ignore, including
-      a maximum harvest level
+        - Customize what the brew can mine, destroy or ignore, including a maximum harvest level
     - **[Hobgoblin trades]** 
         - Customize trades and various aspects related to them
+    - **[Mutandis]** 
+        - Custom mutations (Grass-type, Clay-type and plants)
+    - **[Spinning Wheel]** 
+        - Custom recipes
     - **[Flame Imps]**
         - Customize gifts for each level with custom criteria
         - Customize items that can be donated to them (shinies) and their affection boost
-    - **[Bark Belt]** 
-        - Customize blocks on which the player can stand on to recharge
     - **[Player]**
         - Hooks into Witchery extended data to expose various progress and capability of the player so that it can be used to customize recipes and events in CraftTweaker. For example, current form, bottling skill, familiar info, etc. More info on the Wiki
 
 - **Just Enough Items**
+  - **[Altar]** Show power sources
+  - **[Bark Belt]** Show blocks that can recharge Bark Charges
   - **[Goblin]** Show possible Goblin trades
   - **[Flame Imp]** Show items that the Imp accepts as gifts and their respective affection boost
-  - **[Flame Imp]** show items that the Imp will gift to the player and the level required to have that item gifted (requires Just Enough Resources)
-  - **[Bark Belt]** show blocks that recharge the Bark Belt
+  - **[Flame Imp]** Show items that the Imp will gift to the player and the level required to have that item gifted (requires Just Enough Resources)
+  - **[Mirror]** Show Duplication Grenade recipe
+  - **[Mutandis]** Show mutations (grass, clay and plants)
+  - **[Sun Collector]** Show Sun Grenade recipe
+  - **[Wolf Altar]** Show Moon Charm recipe
 
 - **Just Enough Resources**
   - **[Entities]** Integration to register many entities and their loot in entity drops category
@@ -192,10 +219,14 @@ jar in the resource packs folder.
 - **The One Probe**
   - **[Altar]** Shows Available power, Max power and recharge rate
   - **[Witch's Cauldron]** Shows whether the cauldron is boiling and has enough power for the current ingredients, among with the ingredients themselves
+  - **[Crystal Ball]** Shows Owner and Cooldown
   - **[Hobgoblin]** Shows current profession name
-  - **[Flame Imp]** Shows whether the Imp has a contract and with who, it's trade level and cooldown status (extended information)
+  - **[Flame Imp]** Shows whether the Imp has a contract and with whom, it's trade level and cooldown status (extended information)
   - **[Grassper]** Shows current held item
   - **[Kettle]** Shows if the Kettle has enough power for the recipe and if it's ruined. Also shows inserted items, shows dimension and familiar requirements and, in case of correct recipe, its output.
+  - **[Mirror]** Show if the Mirror is the exit for the Overworld.
+  - **[Sun Collector]** Show charge progress.
+  - **[Statue of Hobgoblin Patron]** Show Owner and worship level.
 
 - **Enchantment Descriptions**
   - Add Enchantment descriptions for all enchantments added by Witchery
@@ -217,16 +248,11 @@ jar in the resource packs folder.
 - Implement a Progress System. Tracks what the player does (completes a brew, discovers a new recipe, levels up as werewolf or vampire) and fires an event. Also supports commands and unlocks pages in Patchouli book, if installed
 
 ### Future Plans
-- Add CraftTweaker integration for main recipe categories (Cauldron, Distillery, Kettle)
 - Add CraftTweaker integration for Brew of Sprouting, to specify valid trees to spawn
 - Finish JER Integration
 - Squishing all bugs
 - Tinkers Construct / Construct Armory integration (Armor traits or tools that can be used in place of Witchery ones)
-    for modpacks where Tinkers is the only way to make tools and armors
-  - Death robes
-  - Vampire clothing
-  - Hunter clothing
-  - Withes robes
+    for modpacks where Tinkers is the only way to make tools and armors, similar to what Tinkers Evolution does for some mods
 - JEI Handlers for as many things as possible (Altar Power providers, Baba Yaga drops, etc.)
 - More Tweaks
   - Modify Rite/Curse strength, to fine-tune how much damage poppets take for the given Rite/Curse

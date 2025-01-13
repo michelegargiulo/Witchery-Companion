@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.api.player;
 
+import com.smokeythebandicoot.witcherycompanion.api.accessors.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.symboleffect.ISymbolEffectAccessor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

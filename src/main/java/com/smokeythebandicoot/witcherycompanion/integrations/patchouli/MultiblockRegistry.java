@@ -1,7 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli;
 
-import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.mutations.MutationRegistry;
+import com.smokeythebandicoot.witcherycompanion.api.MutationRegistry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import vazkii.patchouli.api.PatchouliAPI;
