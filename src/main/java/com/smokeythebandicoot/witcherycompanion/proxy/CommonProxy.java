@@ -39,8 +39,6 @@ public class CommonProxy {
 
         registerNetworkHandlers();
 
-        registerOreDicts();
-
 
         TinkersUtils.isTicLoaded = Loader.isModLoaded(Mods.TINKERS_CONSTRUCT);
         TinkersUtils.isCoALoaded = Loader.isModLoaded(Mods.CONSTRUCT_ARMORY);
@@ -64,14 +62,6 @@ public class CommonProxy {
                 Loader.isModLoaded(Mods.THAUMCRAFT))
             MinecraftForge.EVENT_BUS.register(ThaumcraftIntegration.class);
 
-        if (ModConfig.IntegrationConfigurations.TinkersIntegration.TinkersConstructIntegration.enableTinkersIntegration &&
-                Loader.isModLoaded(Mods.TINKERS_CONSTRUCT))
-            Integration.registerTinkers();
-
-        if (ModConfig.IntegrationConfigurations.TinkersIntegration.ConstructArmoryIntegration.enableConarmIntegration &&
-                Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
-            Integration.registerConarm();
-
         if (ModConfig.IntegrationConfigurations.ThaumcraftIntegration.enableThaumcraftIntegration &&
                 Loader.isModLoaded(Mods.THAUMCRAFT))
             MinecraftForge.EVENT_BUS.register(ThaumcraftIntegration.class);
@@ -82,6 +72,9 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
+
+        registerOreDicts();
+
         // Reload configs
         ModConfig.ConfigSyncHandler.reloadConfig();
 
@@ -97,6 +90,16 @@ public class CommonProxy {
         if (Loader.isModLoaded(Mods.PATCHOULI)) {
             MinecraftForge.EVENT_BUS.register(PatchouliApiIntegration.class);
         }
+
+        // Enables integration with TiC
+        if (ModConfig.IntegrationConfigurations.TinkersIntegration.TinkersConstructIntegration.enableTinkersIntegration &&
+                Loader.isModLoaded(Mods.TINKERS_CONSTRUCT))
+            Integration.registerTinkers();
+
+        // Enables integration with ConArm
+        if (ModConfig.IntegrationConfigurations.TinkersIntegration.ConstructArmoryIntegration.enableConarmIntegration &&
+                Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
+            Integration.registerConarm();
     }
 
     public void load(FMLLoadCompleteEvent event) {

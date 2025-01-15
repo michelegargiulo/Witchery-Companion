@@ -12,6 +12,7 @@ import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.init.items.WitcheryEquipmentItems;
 import net.msrandom.witchery.init.items.WitcheryGeneralItems;
 import net.msrandom.witchery.init.items.WitcheryIngredientItems;
+import slimeknights.tconstruct.library.TinkerRegistry;
 
 public class Integration {
 
@@ -24,7 +25,7 @@ public class Integration {
     }
 
     /** ========== TINKERS CONSTUCT ========== **/
-    // Tools
+    // Traits
     public static final TraitToolSilvered TRAIT_TOOL_SILVERED = new TraitToolSilvered();
 
     // Modifiers
@@ -46,6 +47,9 @@ public class Integration {
 
     public static void registerTinkers() {
         // TinkerRegistry.addMaterial();
+        TinkerRegistry.addTrait(TRAIT_ARMOR_BARKED);
+        TinkerRegistry.addTrait(TRAIT_ARMOR_WITCH_CLOTHING);
+        TinkerRegistry.addTrait(TRAIT_ARMOR_WITCH_VEIL);
     }
 
     public static void registerConarm() {
