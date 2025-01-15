@@ -47,7 +47,8 @@
     {
       "type": "spotlight",
       "item": "witchery:rebirth_hint",
-      "text": "A whisper of life reborn, extracted from the essence of nature's endless cycle. Embrace its renewal. Common crafting ingredient."
+      "text": "A whisper of life reborn, extracted from the essence of nature's endless cycle. Embrace its renewal. Common crafting ingredient.",
+      "anchor": "hint_of_rebirth"
     },
     {
       "type": "spotlight",

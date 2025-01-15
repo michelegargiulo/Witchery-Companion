@@ -1,0 +1,13 @@
+{
+  "name": "Silver Sword",
+  "icon": "witchery:silver_sword",
+  "category": "artifacts/weapons",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:sun_grenade",
+      "text": "A Silver Sword is a special Sword. While having a similar durability as $(item)Golden Swords$() while being less enchantable, it is very effective against $(l:creatures/werewolves)Werewolves$(/l). When a Werewolf is hit by such a sword, the damage will be doubled and the resistance a werewolf has to normal damage will be ignored."
+    }
+  ]
+}

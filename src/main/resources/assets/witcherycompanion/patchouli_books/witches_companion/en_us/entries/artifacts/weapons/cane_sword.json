@@ -1,0 +1,18 @@
+{
+  "name": "Cane Sword",
+  "icon": "witchery:cane_sword",
+  "category": "artifacts/weapons",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:cane_sword",
+      "text": "A Cane Sword is essentially a Cane with a Sword hidden inside of it, used by $(l:observations/vampirism)Vampires$(/l) to further their dual nature: normal on the outside and a monster within. A Cane Sword contains a small reservoir that will collect the blood of any suitable victim, that can be consumed by the vampire when needed."
+    },
+    {
+      "type": "text",
+      "title": "Using the Sword",
+      "text": "Sneak-use the Cane to draw the sword. When deployed, it behaves just like a mundane Sword. Sneak-use the drawn Sword to sheathe it. A sheathed Cane Sword will only deal very little damage.$(br)To consume any collected blood, use the Cane Sword when it's sheathed.$(br)The Sword can be repaired with $(item)Diamonds$()."
+    }
+  ]
+}

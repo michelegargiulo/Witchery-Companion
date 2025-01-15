@@ -1,0 +1,18 @@
+{
+  "name": "Woven Cruor",
+  "icon": "witchery:woven_cruor",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:woven_cruor",
+      "text": "Woven Cruor is a special material that is infused with the Blood of a $(l:observations/vampirism)Vampire$(/l). It is a tough materials, that can offer benefits to Vampires when made into $(l:artifacts/clothing/vampire_clothing)Clothing$(/l)"
+    },
+    {
+      "type": "text",
+      "title": "Making Woven Cruor",
+      "text": "The Player must be a Vampire of Level 4 or above, and have enough blood available in their blood pool$(p)$(8)1 > $()Place a block of $(item)White Wool$()$(br)$(8)2 > $()Use a $(l:resources/bone_needle)Bone Needle$(/l) on the block of Wool to make $(l:resources/blood_stained_wool)Blood-stained Wool$(/l)$(br)$(8)3 > $()Break the Blood-stained Wool and smelt it."
+    }
+  ]
+}

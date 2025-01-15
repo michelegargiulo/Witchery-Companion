@@ -1,0 +1,17 @@
+{
+  "name": "Koboldite Pickaxe",
+  "icon": "witchery:koboldite_pickaxe",
+  "category": "artifacts/tools",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:koboldite_pickaxe",
+      "text": "A Pickaxe made from $(l:resources/koboldite)Koboldite$(/l) is a very robust and reliable tool, but remains quite mundane in the hands of a Player. When given to a $(l:creatures/hobgoblin)Hobgoblin$(/l) its true properties become evident, slicing through materials like they were liquid."
+    },
+    {
+      "type": "text",
+      "text": "Additionally, ores mined by Hobgoblins wielding the Koboldite Pickaxe are autosmelted, often at an increased yield. There is also a boost in the drop rate of $(l:resources/koboldite#dust)Koboldite Dust$(/l)."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Death Scythe",
+  "icon": "witchery:death_scythe",
+  "category": "artifacts/weapons",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:death_scythe",
+      "text": "The Death Scythe is the preferred weapon of $(l:creatures/death)Death$(/l). It can be summoned by a player in full deathwear by using a $(l:artifacts/misc/hand_of_death)Death's Hand$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Special Properties",
+      "text": "The Scythe can hit multiple creatures and cause the $(item)Chill Touch$() on each. The Scythe deals more damage the lower the wielder's $(item)Hunger$(). Also, Hunger and Health may be restored to the player if a creature is hit, based on how low the wielder's Hunger is."
+    }
+  ]
+}

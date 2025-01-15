@@ -1,0 +1,13 @@
+{
+  "name": "Frozen Heart",
+  "icon": "witchery:frozen_heart",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:frozen_heart",
+      "text": "This uncommon item's chilling power goes beyond physical, casting a cold presence so profound it can quell even the fiercest demons."
+    }
+  ]
+}

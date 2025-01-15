@@ -1,0 +1,38 @@
+{
+  "name": "Death's Clothes",
+  "icon": "witchery:death_hood",
+  "category": "artifacts/clothing",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:death_hood",
+      "text": "Part of $(l:creatures/death)Death$(/l)'s accoutrements, Death Hood changes the wearer's face to resemble that of Death. Can be repaired in an $(item)Anvil$() using $(item)Iron Ingots$()."
+    },
+    {
+      "type": "text",
+      "title": "Special Properties",
+      "text": "If the wearer stares at a creature of player, it will feel Death's gaze and will find it much harder to move.$(br)Additionally, the wearer will be able to see much easier in dark places."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:death_hood",
+      "text": "Part of $(l:creatures/death)Death$(/l)'s accoutrements, Death Hood changes the wearer's torso to resemble that of Death. Can be repaired in an $(item)Anvil$() using $(item)Iron Ingots$()."
+    },
+    {
+      "type": "text",
+      "title": "Special Properties",
+      "text": "Death's Robe grants immunity to $(item)Fire$() and $(item)Lava$() to whoever wears it."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:death_footwear",
+      "text": "Part of $(l:creatures/death)Death$(/l)'s accoutrements, Death Hood changes the wearer's legs and feet to resemble that of Death. Can be repaired in an $(item)Anvil$() using $(item)Iron Ingots$()."
+    },
+    {
+      "type": "text",
+      "title": "Special Properties",
+      "text": "While wearing Death's Footwear, one can walk on water and other liquids. This ability is precarious since it requires concentration: getting hit may result in the magic being temporarily broken."
+    }
+  ]
+}
