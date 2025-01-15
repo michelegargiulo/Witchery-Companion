@@ -1,0 +1,13 @@
+{
+  "name": "Bone Needle",
+  "icon": "witchery:bone_needle",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:bone_needle",
+      "text": "Bone Needles are mundane crafting ingredients used for the creation of$(l:artifacts/poppets#basic_doll)Poppets$(/l) and $(l:artifacts/misc/taglock_kit)Taglock Kits$(/l), or used in combination of $(l:artifacts/poppets#voodoo)Voodoo Poppets$(/l)."
+    }
+  ]
+}

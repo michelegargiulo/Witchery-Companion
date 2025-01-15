@@ -1,0 +1,13 @@
+{
+  "name": "Universal Antidote",
+  "icon": "witchery:universal_antidote",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:universal_antidote",
+      "text": "Universal Antidote is the $(item)Witch Hunter$()'s answer to witch's use of $(item)Poison Potions$(). It is a potion that when drunk will instantly cure poison and wither effect."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Binky's Skull",
+  "icon": "witchery:binky_skull",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:binky_skull",
+      "text": "Binky is $(l:creatures/death)Death$(/l)'s steed, and can be summoned by using his $(item)Skull$() on the ground. When Binky is killed, his skull will again fall to the floor, ready to be summoned once again.$(p)Binky is a $(item)Skeleton Horse$() with a lot of health and slightly faster than a normal $(item)Horse$()."
+    }
+  ]
+}
