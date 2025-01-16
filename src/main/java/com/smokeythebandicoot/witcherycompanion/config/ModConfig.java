@@ -387,6 +387,12 @@ public class ModConfig {
             @Config.Name("Creative Statues - Tweak Tighten Bounding Boxes")
             public static boolean creativeStatues_tweakTightenBoundingBoxes = true;
 
+            @Config.Comment("If true, Crystal Ball divination feature camera-based approach will be replaced by a system that uses " +
+                    "the Vanilla Spectator Mode. This will grant the ability to divinate anywhere in the same dimension, loading chunks as needed.\n" +
+                    "More info on the wiki https://github.com/michelegargiulo/Witchery-Companion/wiki/Config-Details#crystal-ball---tweak-rework-with-spectator")
+            @Config.Name("Crystal Ball - Tweak Rework With Spectator")
+            public static boolean crystalBall_tweakSpectatorRework = true;
+
             @Config.Comment("Sets the Altar Power required for a Crystal Ball prediciton. Witchery default is 500.")
             @Config.Name("Crystal Ball - Tweak Required Power")
             @Config.RangeInt(min = 1, max = 10000)
@@ -660,6 +666,12 @@ public class ModConfig {
                     "as it is a mechanic not yet implemented in Witchery: Resurrected")
             @Config.Name("Seer Stone - Tweak Unprint Throwing Skills")
             public static boolean seerStone_tweakUnprintThrowingSkill = false;
+
+            @Config.Comment("Tweaks the max item use duration (how many ticks can the item be used for) for Taglock Kits. Used only in conjunction " +
+                    "with Crystal Balls divining feature. Larger values will allow divining a creature for longer")
+            @Config.Name("Seer Stone - Tweak Unprint Throwing Skills")
+            @Config.RangeInt(min = 1, max = 12000)
+            public static int tweakMaxItemUseDuration = 1200;
 
             @Config.Comment("If true, fixes a crash that happens when a Voodoo Protection Poppet protects its owner")
             @Config.Name("Voodoo Protection Poppet - Fix Crash on Protect")
