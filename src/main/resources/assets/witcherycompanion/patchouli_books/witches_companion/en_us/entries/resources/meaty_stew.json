@@ -1,0 +1,18 @@
+{
+  "name": "Meaty Stew",
+  "icon": "witchery:meaty_stew",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:raw_meaty_stew",
+      "text": "Raw Meaty Stew is made by mixing most raw meats or fish, with Carrot, Potato, Brown Mushroom and $(l:herbology/herbology#garlic)Garlic$(/l) in a $(item)Bowl$(). The result must then be cooked in a Furnace or $(l:fumes/fumes)Witches' Oven$(/l)."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:meaty_stew",
+      "text": "While eating Raw Meaty Stew will still recover a minor amount of Hunger, cooking it will recover a significant amount of Hunger and Saturation."
+    }
+  ]
+}

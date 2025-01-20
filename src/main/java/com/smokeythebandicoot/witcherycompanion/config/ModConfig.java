@@ -1363,6 +1363,18 @@ public class ModConfig {
                 @Config.Name("Altar - Show Infinity Booster")
                 public static boolean altar_enableInfinity = false;
 
+                @Config.Comment("If true, shows a page describing the Bottle of Warm Blood. Non-craftable item")
+                @Config.Name("Artifacts - Enable Bottle of Warm Blood")
+                public static boolean artifacts_enableBottleWarmBlood = false;
+
+                @Config.Comment("If true, shows a page describing the Bottle of Lilith's Blood. Non-craftable item")
+                @Config.Name("Artifacts - Enable Lilith's Blood")
+                public static boolean artifacts_enableLilithsBlood = false;
+
+                @Config.Comment("If true, shows a page describing the workings of the Silver Vat")
+                @Config.Name("Artifacts - Enable Silver Vat")
+                public static boolean artifacts_enableSilverVat = false;
+
                 @Config.Comment("If true, shows more info for Bottling Skill and Expertise")
                 @Config.Name("Brewing - Expertise Extension")
                 public static boolean brewing_enableExpertiseExtension = false;
@@ -1466,6 +1478,10 @@ public class ModConfig {
                 @Config.Name("Observations - Add Vampirism Progress")
                 public static boolean observations_enableVampirismProgress = false;
 
+                @Config.Comment("If true, adds an entry to the Resources section, describing Silver Deposits.")
+                @Config.Name("Resources - Enable Silver Deposits")
+                public static boolean resources_enableSilverDeposits = false;
+
                 @Config.Comment("If true, adds a page regarding the Statue of The Goddess. Being considered an almost-creative item, some pack makers " +
                         "might want to disable its recipe or hide it altogether. Keep this flag to false if it's the case.")
                 @Config.Name("Statues - Show Statue of The Goddess")
@@ -1554,6 +1570,9 @@ public class ModConfig {
 
                 // Companion Flags
                 flags.put("altar/show_infinity", Flags.altar_enableInfinity);
+                flags.put("artifacts/devices/enable_silver_vat", Flags.artifacts_enableSilverVat);
+                flags.put("artifacts/misc/enable_bottle_warm_blood", Flags.artifacts_enableBottleWarmBlood);
+                flags.put("artifacts/misc/enable_bottle_lilith_blood", Flags.artifacts_enableLilithsBlood);
                 flags.put("brewing/expertise", Flags.brewing_enableExpertiseExtension);
                 flags.put("brewing/extended_dispersal", Flags.brewing_extendedDispersal);
                 flags.put("brewing/rituals", Flags.brewing_enableRitualsExtension);
@@ -1580,6 +1599,7 @@ public class ModConfig {
                 flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
                 flags.put("observations/show_vampirism_intro", Flags.observations_enableVampirismIntro);
                 flags.put("observations/show_vampirism_progress", Flags.observations_enableVampirismProgress);
+                flags.put("resources/enable_silver_deposits", Flags.resources_enableSilverDeposits);
                 flags.put("statues/show_goddess", Flags.statues_showGoddess);
                 flags.put("statues/show_broken_curses", Flags.statues_showBrokenCurses);
                 flags.put("statues/show_occluded_summons", Flags.statues_showOccludedSummons);

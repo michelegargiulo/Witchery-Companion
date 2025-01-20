@@ -95,9 +95,10 @@
     {
       "type": "generic/secret_text",
       "title": "Lvl. 9 - Create vampires",
-      "description": "Player can now turn $(item)Villagers$(), $(l:creatures/village_guard)Village Guards$(/l) and other players into vampires using a $(l:)Glass Goblet$(/l) to collect their own demon tainted blood. Drain completely a $(item)mesmerized$() Villager or Guard of its $(item)blood$(), then use a Glass Goblet filled with your blood on them to turn them into Vampires. A $(l:artifacts/devices/coffin)Coffin$(/l) must be very close to the creature. Created Vampires will deposit blood in a $(l:artifacts/devices/blood_crucible)Blood Crucible$(/l) when drinking blood.",
+      "description": "Player can now turn $(item)Villagers$(), $(l:creatures/village_guard)Village Guards$(/l) and other players into vampires using a $(l:resources/glass_goblet)Glass Goblet$(/l) to collect their own demon tainted blood. Drain completely a $(item)mesmerized$() Villager or Guard of its $(item)blood$(), then use the $(l:artifacts/misc/filled_glass_goblet)Glass Goblet$(/l) filled with your blood on them to turn them into Vampires. A $(l:artifacts/devices/coffin)Coffin$(/l) must be very close to the creature. Created Vampires will deposit blood in a $(l:artifacts/devices/blood_crucible)Blood Crucible$(/l) when drinking blood.",
       "secret_key": "witcherycompanion:traits/vampirism/level_9",
-      "flag": "witcherycompanion:observations/show_vampirism_progress"
+      "flag": "witcherycompanion:observations/show_vampirism_progress",
+      "anchor": "level9"
     },
     {
       "type": "generic/secret_text",

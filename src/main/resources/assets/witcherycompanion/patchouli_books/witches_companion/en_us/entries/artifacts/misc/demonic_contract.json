@@ -12,28 +12,22 @@
     {
       "type": "text",
       "title": "Creation and Binding",
-      "text": "A Demonic Contract can be crafted using $(item)Paper$(), $(item)String$() and $(l:)Raw Porkchop?$(/l). To bind the Contract, craft it with a $(l:artifacts/misc/taglock_kit)Taglock Kit$(/l) containing the blood of the witch or warlock."
+      "text": "A Demonic Contract can be crafted using $(item)Paper$(), $(item)String$() and $(l:resources/raw_porkchop)Raw Porkchop?$(/l). To bind the Contract, craft it with a $(l:artifacts/misc/taglock_kit)Taglock Kit$(/l) containing the blood of the witch or warlock."
     },
     {
-      "type": "artifacts/decorative_set",
+      "type": "artifacts/contract_set",
       "title": "Types of Contracts",
-      "ingredients": "witchery:fiery_contract;witchery:melting_contract;witchery:living_flame_contract;witchery:evaporation_contract;witchery:fiery_tolerance_contract",
-      "description": "$(8)> $()$(item)Fiery Touch$() ($(item)Blaze Rod$(), $(l:herbology/herbology#ember_moss)Ember Moss$(/l)): Causes random fires to erupt when the victim interacts with objects.$(br)$(8)> $()$(item)Melting Touch$() ($(item)Lava Bucket$()): Causes harvested blocks to be instantly smelted. May double (item)Ores$()."
+      "ingredients": "witchery:living_flame_contract;witchery:fiery_tolerance_contract;witchery:evaporation_contract;witchery:fiery_touch_contract;witchery:melting_touch_contract",
+      "description": "$(8)> $()$(item)Fiery Touch$() ($(item)Blaze Rod$(), $(l:herbology/herbology#ember_moss)Ember Moss$(/l)): Causes random fires to erupt when the victim interacts with objects.$(p)$(8)> $()$(item)Melting Touch$() ($(item)Lava Bucket$()): Causes harvested blocks to be instantly smelted. May double $(item)Ores$()."
     },
     {
       "type": "text",
-      "text": "$(8)> $()$(item)Living Flame$() ($(item)Blaze Rod$(), $(l:resources/clay_jars#hint_of_rebirth)Hint of Rebirth$(/l)): Summons a $(item)Blaze$() to attack the victim$(br)$(8)> $()$(item)Evaporation$() ($(item)Blaze Rod$(), $(item)Magma Cream$()): Causes the victim to evaporate nearby Water$(br)$(8)> $()$(item)Fiery Tolerance$() ((item)Blaze Powder$()): Grants a long duration resistance to heat and fire.$(p)"
-    },
-    {
-      "type": "text",
-      "title": "Types of Contracts",
-      "ingredients": "witchery:fiery_contract;witchery:melting_contract;witchery:living_flame_contract;witchery:evaporation_contract;witchery:fiery_tolerance_contract",
-      "description": "Fiery Touch ($(item)Blaze Rod$(), $(l:herbology/herbology#ember_moss)Ember Moss$(/l)): Causes random fires to erupt when the victim interacts with objects.$(br)Melting Touch ($(item)Lava Bucket$()): Causes harvested blocks to be instantly smelted. May double (item)Ores$()."
+      "text": "$(8)> $()$(item)Living Flame$() ($(item)Blaze Rod$(), $(l:resources/clay_jars#hint_of_rebirth)Hint of Rebirth$(/l)): Summons a $(item)Blaze$() to attack the victim$(p)$(8)> $()$(item)Evaporation$() ($(item)Blaze Rod$(), $(item)Magma Cream$()): Causes the victim to evaporate nearby Water$(p)$(8)> $()$(item)Fiery Tolerance$() ($(item)Blaze Powder$()): Grants a long duration resistance to heat and fire."
     },
     {
       "type": "text",
       "title": "Imp Magic",
-      "text": "Imp Magic is used to make Imps cast fire-related spells at the request of their masters. Craft with a $(l:artifacts/misc/demonic_contract)Demonic Contract$(/l) with the items for the spell, then bound it using a $(l:artifacts/misc)Taglock Kit$(). Once given to the Imp, it will start casting the spell if their master is not too far away.$(p)Imp Magic effects can be removed by dying or eating a $(l:)Frozen Heart$(/l)."
+      "text": "Imp Magic is used to make Imps cast fire-related spells at the request of their masters. Craft with a $(l:artifacts/misc/demonic_contract)Demonic Contract$(/l) with the items for the spell, then bound it using a $(l:artifacts/misc/taglock_kit)Taglock Kit$(). Once given to the Imp, it will start casting the spell if their master is not too far away.$(p)Imp Magic effects can be removed by dying or eating a $(l:resources/frozen_heart)Frozen Heart$(/l)."
     }
   ]
 }

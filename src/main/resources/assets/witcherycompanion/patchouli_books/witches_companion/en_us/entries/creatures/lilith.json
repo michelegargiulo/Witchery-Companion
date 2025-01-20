@@ -1,0 +1,20 @@
+{
+  "name": "Lilith",
+  "icon": "witchery:liliths_blood",
+  "category": "creatures",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:lilith",
+      "text": "Bearer of misfortune, disease and death.",
+      "offset": 3.5,
+      "scale": 0.3
+    },
+    {
+      "type": "text",
+      "title": "Lilith",
+      "text": "Lilith is a figure who crops up throughout folklore in various incarnations. She is purported to be the origin of the vampire curse, it being her $(l:artifacts/misc/bottle_of_lilith_blood)Blood$(/l) that taints the original vampire in any family. Many have sought out her favor, only to disappear during the journey. It is rumored that she will grant a boon to whoever proves themselves worthy."
+    }
+  ]
+}

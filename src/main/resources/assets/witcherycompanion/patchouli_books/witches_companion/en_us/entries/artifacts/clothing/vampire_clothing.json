@@ -1,28 +1,42 @@
 {
-  "name": "Witches' Clothes",
-  "icon": "witchery:witches_hat",
+  "name": "Vampire Clothing",
+  "icon": "witchery:vampire_corset",
   "category": "artifacts/clothing",
   "read_by_default": true,
   "pages": [
     {
-      "type": "spotlight",
-      "item": "witchery:witches_hat",
-      "text": "A wearable item that offers a small amount of protection and can be $(item)enchanted$(). It can be repaired by using $(item)Leather$() in an $(item)Anvil$() or by crafting with three $(l:resources/impregnated_leather)Impregnated Leather$(/l)."
+      "type": "text",
+      "title": "Vampire Clothing",
+      "text": "Vampires have a thing about looking dapper, and they have a few clothing options available to them that is made from a special material that gives some bonuses to their normal skills. Vampire clothing is made from $(l:resources/woven_cruor)Woven Cruor$(/l). Vampires often accompany their special clothing with a $(l:artifacts/weapons/cane_sword)Cane Sword$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Light & Medium Armors",
+      "text": "Vampire clothing falls into two categories, either $(l:artifacts/clothing/vampire_clothing#light)Light Armor$() or $(l:artifacts/clothing/vampire_clothing#medium)Medium Armor$(). Medium armor gives more protection, but offers less bonuses than a full set of light armor. A Vampire may wear normal heavy armor but then they will have no bonuses in exchange for better armor protection. "
+    },
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Light Armor",
+      "ingredients": "witchery:vampire_top_hat;witchery:vampire_coat;witchery:vampire_trousers;witchery:vampire_shoes;witchery:vampire_veil_hat;witchery:vampire_corset;witchery:vampire_skirt;witchery:vampire_heels",
+      "description": "Armor values like $(item)Leather$(), durability of $(item)Iron$(), repaired with $(item)Leather$(). Chest and Hat can be dyed.",
+      "anchor": "light"
     },
     {
       "type": "text",
       "title": "Special Properties",
-      "text": "When worn, the Witches' Hat provides an improved chance of creating an additional brew when using the $(l:kettle/kettle_intro)Kettle$(/l).$(p)The piece becomes invisible when the creature that wears it is invisible."
+      "text": "This set has the following bonuses depending on the number of pieces worn:$(p)$(8)> $()$(bold)2 Pieces$(): Drink Speed Boost$(br)$(8)> $()$(bold)3 Pieces$(): Basic Fire Resistance & Mesmerize Duration Boost$(br)$(8)> $()$(bold)4 Pieces$(): Enhanced Fire Resistance."
     },
     {
-      "type": "spotlight",
-      "item": "witchery:witches_robes",
-      "text": "When worn in the chest slot it provides a small amount of protection. The robes can be dyed and $(item)enchanted$(). It can be repaired by using $(item)Leather$() in an $(item)Anvil$() or by crafting with four $(l:resources/impregnated_leather)Impregnated Leather$(/l)."
+      "type": "artifacts/decorative_set",
+      "title": "Medium Armor",
+      "ingredients": "witchery:vampire_helmet;witchery:vampire_chestplate;witchery:vampire_leggings;witchery:vampire_boots",
+      "description": "Armor values like $(item)Chain$(), durability of $(item)Iron$(), repaired with $(item)Leather$(). Chest can be dyed.",
+      "anchor": "medium"
     },
     {
       "type": "text",
       "title": "Special Properties",
-      "text": "When worn, the Witches Robes provide an improved chance of creating an additional brew when using the $(l:kettle/kettle_intro)Kettle$(/l).$(p)Moreover, the creature that wears the piece is ignored by $(item)Creepers$().$(p)The piece becomes invisible when the creature that wears it is invisible."
+      "text": "This set has the following bonuses depending on the number of pieces worn:$(p)$(8)> $()$(bold)2 Pieces$(): Basic Flame Protection."
     }
   ]
 }

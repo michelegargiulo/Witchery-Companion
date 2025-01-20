@@ -1,13 +1,13 @@
 {
   "name": "Leonard's Urn",
-  "icon": "witchery:leonard_urn",
+  "icon": "witchery:leonards_urn1",
   "category": "artifacts/devices",
   "sortnum": 0,
   "pages": [
     {
       "type": "spotlight",
-      "item": "witchery:leonard_urn",
-      "text": "$(l:creatures/shade_of_leonard)Leonard$(/l)'s Urns are magical artifacts that are rumored to allow the properties of a $(l:brews/brewing#brew_definition)Brew$(/l) that they filled with to be repeatedly cast using $(l:artifacts/tools/mystic_branch)Mystic Branch$(/l).$(br) Tales have even been told, that urns can be combined together to allow up to four Brews to be added at a time. It seems that only a single Urn can be used at a time though."
+      "item": "witchery:leonards_urn1",
+      "text": "$(l:creatures/shade_of_leonard)Leonard$(/l)'s Urns are magical artifacts that are rumored to allow the properties of a $(l:brews/brewing#brew_definition)Brew$(/l) that they filled with to be repeatedly cast using $(l:artifacts/tools/mystic_branch)Mystic Branch$(/l).$(br)Tales have even been told, that urns can be combined together to allow up to four Brews to be added at a time. It seems that only a single Urn can be used at a time though."
     }
   ]
 }

@@ -1,0 +1,13 @@
+{
+  "name": "Full Glass Goblet",
+  "icon": "witchery:full_glass_goblet",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:full_glass_goblet",
+      "text": "The Goblet contains $(item)Blood$() for various uses.$(p)Most commonly it is used by a high-level $(l:observations/vampirism#level9)Vampire$(/l) to infect $(item)Villagers$() or other Players."
+    }
+  ]
+}

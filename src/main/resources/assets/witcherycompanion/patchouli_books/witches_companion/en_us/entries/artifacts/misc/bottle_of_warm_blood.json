@@ -1,0 +1,14 @@
+{
+  "name": "Bottle of Warm Blood",
+  "icon": "witchery:warm_blood",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "flag": "witcherycompanion:artifacts/misc/enable_bottle_warm_blood",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:warm_blood",
+      "text": "The Bottle of Warm Blood is a special container that can preserve $(item)Blood$(). Drinking such blood as a $(l:observations/vampirism)Vampire$(/l) will restore 2 droplets of Blood. Otherwise, the player gets $(item)Hunger$() potion effect."
+    }
+  ]
+}

@@ -4,19 +4,19 @@
       "type": "header",
       "text": "#title",
       "centered": true,
-      "scale": 0.9,
+      "scale": 1,
       "x": -1,
       "y": -1
     },
     {
       "type": "separator",
-      "y": 12
+      "y": 16
     },
     {
       "type": "text",
       "text": "#description",
       "x": 0,
-      "y": 66
+      "y": 48
     },
     {
       "type": "custom",
@@ -25,10 +25,10 @@
         "#ingredients"
       ],
       "output": "",
-      "input_spacing": 8,
-      "line_length": 4,
-      "x": 12,
-      "y": 21
+      "input_spacing": 6,
+      "line_length": 5,
+      "x": 4,
+      "y": 26
     }
   ]
 }

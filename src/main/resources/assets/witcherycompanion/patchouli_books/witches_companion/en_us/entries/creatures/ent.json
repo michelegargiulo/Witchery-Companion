@@ -1,15 +1,15 @@
 {
   "name": "Ent",
-  "icon": "witchery:ent",
+  "icon": "witchery:ent_twig",
   "category": "creatures",
   "sortnum": 1,
   "pages": [
     {
       "type": "entity",
-      "entity": "witchery:goblin_gulg",
+      "entity": "witchery:ent",
       "text": "Embodied Woodland Spirits",
-      "offset": 0.12,
-      "scale": 0.95
+      "offset": 1,
+      "scale": 0.65
     },
     {
       "type": "text",

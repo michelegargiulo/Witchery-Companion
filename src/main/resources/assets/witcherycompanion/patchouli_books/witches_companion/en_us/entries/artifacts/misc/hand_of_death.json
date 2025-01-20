@@ -1,17 +1,17 @@
 {
   "name": "Hand of Death",
-  "icon": "witchery:death_hand",
+  "icon": "witchery:deaths_hand",
   "category": "artifacts/misc",
   "read_by_default": true,
   "pages": [
     {
       "type": "spotlight",
-      "item": "witchery:death_hand",
-      "text": "Part of $(creatures/death)Death$(/l)'s accoutrements, the Hand of Death grants the user $(item)Chill Touch$() when they strike a creature with the hand. $(item)Chill Touch$() causes damage equal to 15% of the targets maximum health and ignores Armor."
+      "item": "witchery:deaths_hand",
+      "text": "Part of $(l:creatures/death)Death$(/l)'s accoutrements, the Hand of Death grants the user $(item)Chill Touch$() when they strike a creature with the hand. $(item)Chill Touch$() causes damage equal to 15% of the targets maximum health and ignores Armor."
     },
     {
       "type": "text",
-      "text": "If the Hand of Death is used while the player is wearing $(l:artifacts/clothing/death_clothing#hood)Death's Hood$(/l), $(l:artifacts/clothing/death_clothing#robe)Death's Robe$(/l) and $(l:artifacts/clothing/death_clothing#footwear)Death's Footwear$(/l), $(l:artifacts/weapons)Death's Scythe$(/l) will be summoned. Using the Hand of Death a second time will dismiss the Scythe.$(br)Every second that Death's Scythe is held, a point of $(item)Hunger$() will be lost."
+      "text": "If the Hand of Death is used while the player is wearing $(l:artifacts/clothing/death_clothing#hood)Death's Hood$(/l), $(l:artifacts/clothing/death_clothing#robe)Death's Robe$(/l) and $(l:artifacts/clothing/death_clothing#footwear)Death's Footwear$(/l), $(l:artifacts/weapons/death_scythe)Death's Scythe$(/l) will be summoned. Using the Hand of Death a second time will dismiss the Scythe.$(br)Every second that Death's Scythe is held, a point of $(item)Hunger$() will be lost."
     }
   ]
 }

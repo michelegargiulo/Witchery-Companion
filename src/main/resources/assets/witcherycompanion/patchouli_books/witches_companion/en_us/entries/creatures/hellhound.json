@@ -1,0 +1,24 @@
+{
+  "name": "Hellhound",
+  "icon": "witchery:hellhound_head",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:hellhound",
+      "text": "Fiendish Canines",
+      "offset": 0.3,
+      "scale": 0.65
+    },
+    {
+      "type": "text",
+      "text": "A Hellhound is an aggressive creature found in $(item)The Nether$(), often in packs. It will attack remorselessly, and its bite can cause its victim to catch fire. Hellhounds will ignore players unless they attack or get too close."
+    },
+    {
+      "type": "text",
+      "title": "Converting Hellhounds",
+      "text": "Hellhounds can be turned into normal $(item)Wolves$(), by first inflicting them with a $(item)Potion of Weakness$() and then feeding them a $(item)Golden Apple$(). After some time, the conversion will occur, accelerated if the Hellhound is in a cage made of $(item)Iron Bars$() wide at most 7 blocks."
+    }
+  ]
+}
