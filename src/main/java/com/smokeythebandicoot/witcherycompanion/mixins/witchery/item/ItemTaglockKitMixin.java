@@ -2,9 +2,11 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.item;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.api.player.DivinationData;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.ItemTweaks;
 import com.smokeythebandicoot.witcherycompanion.utils.DiviningUtils;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -34,7 +36,7 @@ public abstract class ItemTaglockKitMixin extends Item implements BloodStorage {
 
     @Inject(method = "getMaxItemUseDuration", remap = false, cancellable = true, at = @At("HEAD"))
     private void tweakMaxUseDuration(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        cir.setReturnValue(ItemTweaks.tweakMaxItemUseDuration);
+        cir.setReturnValue(ItemTweaks.taglockKit_tweakMaxItemUseDuration);
     }
 
 
@@ -53,10 +55,14 @@ public abstract class ItemTaglockKitMixin extends Item implements BloodStorage {
         if (BlockTweaks.crystalBall_tweakSpectatorRework && witchery_Patcher$entityToSpectate != null) {
 
             if (!DiviningUtils.isDivining(player)) {
-                player.sendMessage(new TextComponentString("head" + player.rotationYawHead));
-                player.sendMessage(new TextComponentString("yaw" + player.rotationYaw));
-                player.sendMessage(new TextComponentString("pitch" + player.rotationPitch));
                 DiviningUtils.startDivination(player, witchery_Patcher$entityToSpectate);
+            }
+            // Player is already divining: check if entity is still alive, otherwise terminate divination
+            else {
+                Entity divinedEntity = DiviningUtils.getDivinedEntity(player);
+                if (divinedEntity == null || divinedEntity.isDead) {
+                    DiviningUtils.terminateDivination(player);
+                }
             }
 
             // TODO:

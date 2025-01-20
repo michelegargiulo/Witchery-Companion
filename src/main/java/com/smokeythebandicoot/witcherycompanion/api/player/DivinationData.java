@@ -17,7 +17,8 @@ public class DivinationData {
     private float yawHead;
     private GameType gameType;
     private long startTime;
-    private UUID entityUuid; // Also act as a discriminant for whether the player was divining or not
+    private UUID entityUuid;
+    private boolean isDivining;
 
     private static final String DIVINATION_DATA_KEY = "DivinationData";
 
@@ -31,6 +32,7 @@ public class DivinationData {
         gameType = GameType.SURVIVAL;
         startTime = 0L;
         entityUuid = null;
+        isDivining = false;
     }
 
     public static void writeToNBT(DivinationData data, NBTTagCompound tag) {
@@ -56,6 +58,9 @@ public class DivinationData {
 
         // GameType
         divinationTag.setInteger("GameType", data.gameType.getID());
+
+        // Divination
+        divinationTag.setBoolean("IsDivining", data.isDivining);
 
         // StartTime and DivinatedEntity are not saved, as divination should be interrupted if player leaves,
         // thus they should not persist across world reloads or left and rejoining servers
@@ -86,6 +91,9 @@ public class DivinationData {
 
         // GameType
         data.gameType = GameType.getByID(divinationData.getInteger("GameType"));
+
+        // Divination
+        data.isDivining = divinationData.getBoolean("IsDivining");
 
         return data;
     }
@@ -166,5 +174,13 @@ public class DivinationData {
 
     public void setEntityUuid(UUID entityUuid) {
         this.entityUuid = entityUuid;
+    }
+
+    public boolean isDivining() {
+        return isDivining;
+    }
+
+    public void setDivining(boolean divining) {
+        isDivining = divining;
     }
 }

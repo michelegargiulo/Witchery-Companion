@@ -669,9 +669,9 @@ public class ModConfig {
 
             @Config.Comment("Tweaks the max item use duration (how many ticks can the item be used for) for Taglock Kits. Used only in conjunction " +
                     "with Crystal Balls divining feature. Larger values will allow divining a creature for longer")
-            @Config.Name("Seer Stone - Tweak Unprint Throwing Skills")
+            @Config.Name("Taglock Kit - Tweak Tweak Max Item Use Duration")
             @Config.RangeInt(min = 1, max = 12000)
-            public static int tweakMaxItemUseDuration = 1200;
+            public static int taglockKit_tweakMaxItemUseDuration = 1200;
 
             @Config.Comment("If true, fixes a crash that happens when a Voodoo Protection Poppet protects its owner")
             @Config.Name("Voodoo Protection Poppet - Fix Crash on Protect")

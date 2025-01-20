@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.utils;
 
 import com.smokeythebandicoot.witcherycompanion.api.player.DivinationData;
 import com.smokeythebandicoot.witcherycompanion.api.player.IPlayerExtendedDataAccessor;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -36,6 +37,7 @@ public class DiviningUtils {
         data.setGameType(player.interactionManager.getGameType());
         data.setStartTime(world.getTotalWorldTime());
         data.setEntityUuid(entity.getUniqueID());
+        data.setDivining(true);
 
         PlayerExtendedData playerEx = WitcheryUtils.getExtension(player);
         IPlayerExtendedDataAccessor accessor = (IPlayerExtendedDataAccessor) playerEx;
@@ -49,7 +51,7 @@ public class DiviningUtils {
 
     }
 
-    public static void terminateDivination(EntityPlayer player) {
+    public static void terminateDivination(EntityPlayerMP player) {
         if (player == null) {
             return;
         }
@@ -61,10 +63,26 @@ public class DiviningUtils {
         IPlayerExtendedDataAccessor accessor = (IPlayerExtendedDataAccessor) playerEx;
         DivinationData divinationData = accessor.getDivinationData();
 
-        return divinationData != null && divinationData.getEntityUuid() != null;
+        return divinationData != null && divinationData.isDivining();
     }
 
-    public static void setPlayerFromData(EntityPlayer player) {
+    public static Entity getDivinedEntity(EntityPlayer player) {
+        PlayerExtendedData playerEx = WitcheryUtils.getExtension(player);
+        IPlayerExtendedDataAccessor accessor = (IPlayerExtendedDataAccessor) playerEx;
+        DivinationData divinationData = accessor.getDivinationData();
+
+        if (divinationData.getEntityUuid() == null || player.world.isRemote) {
+            return null;
+        }
+
+        // World must be WorldServer and must be the same dimension, so
+        // we can skip checking all dimensions
+        WorldServer worldServer = (WorldServer) player.world;
+
+        return worldServer.getEntityFromUuid(divinationData.getEntityUuid());
+    }
+
+    public static void setPlayerFromData(EntityPlayerMP player) {
 
         PlayerExtendedData playerEx = WitcheryUtils.getExtension(player);
         IPlayerExtendedDataAccessor accessor = (IPlayerExtendedDataAccessor) playerEx;
@@ -76,10 +94,14 @@ public class DiviningUtils {
         }
 
         // Divination data found. May be leftovers or player was divining:
-        if (divinationData.getEntityUuid() == null) {
+        if (!divinationData.isDivining()) {
             // Leftovers, do nothing
             return;
         }
+
+        // Reset divination data
+        accessor.setDivinationData(new DivinationData()); // Important: isDivining is set to false in constructor
+        playerEx.processSync();
 
         // Else, player was divining: reset player pos, rotation, gametype, etc. and remove data
         player.setPositionAndRotation(
@@ -94,12 +116,7 @@ public class DiviningUtils {
         player.setRotationYawHead(divinationData.getYawHead());
         player.setGameType(divinationData.getGameType());
 
-        // Reset divination data
-        accessor.setDivinationData(new DivinationData());
-        playerEx.processSync();
+        player.sendPlayerAbilities();
     }
-
-    //TODO:
-    // OnPlayerJoinWorld, check if player was divining. If it was, return to previous game mode
 
 }
