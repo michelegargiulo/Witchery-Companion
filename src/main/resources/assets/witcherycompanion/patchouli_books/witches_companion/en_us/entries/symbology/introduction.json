@@ -7,7 +7,7 @@
     {
       "type": "text",
       "title": "Symbology",
-      "text": "Drawing symbols with a $(l:artifacts/tool/mystic_branch)Mystic Branch$(/l) allows a practitioner to sculpt natural energies.$(p)Only $(italic)Infused$() practitioners can use this type of magic.$(p)Forbidden curses require the $(italic)Infernal Infusion$()"
+      "text": "Drawing symbols with a $(l:artifacts/tools/mystic_branch)Mystic Branch$(/l) allows a practitioner to sculpt natural energies.$(p)Only $(italic)Infused$() practitioners can use this type of magic.$(p)Forbidden curses require the $(italic)Infernal Infusion$()"
     },
     {
       "type": "text",
@@ -18,7 +18,7 @@
     {
       "type": "text",
       "title": "Boosting power",
-      "text": "Spell power can be boosted by binding a $(l:artifacts/statues/hobgolin_patron)Statue of Hobgoblin Patron$(/l) and getting $(l:creatures/hobgoblins)Hobgoblins$() to worship it instead of their $(l:creatures/mog)Mog$(/l) and $(l:creatures/gulg)Gulg$(/l). This worship gives the Witch more power but too many Hobgoblins may cause $(l:creatures/mog)Mog$(/l) and $(l:creatures/gulg)Gulg$(/l) to notice and attack the witch.",
+      "text": "Spell power can be boosted by binding a $(l:artifacts/statues/hobgoblin_patron)Statue of Hobgoblin Patron$(/l) and getting $(l:creatures/hobgoblin)Hobgoblins$() to worship it instead of their $(l:creatures/mog)Mog$(/l) and $(l:creatures/gulg)Gulg$(/l). This worship gives the Witch more power but too many Hobgoblins may cause $(l:creatures/mog)Mog$(/l) and $(l:creatures/gulg)Gulg$(/l) to notice and attack the witch.",
       "flag": "witcherycompanion:symbology/extended_intro"
     },
     {

@@ -1,12 +1,13 @@
 {
-  "name": "Death Scythe",
-  "icon": "witchery:death_scythe",
+  "name": "Death's Scythe",
+  "icon": "witchery:deployed_deaths_hand",
   "category": "artifacts/weapons",
   "read_by_default": true,
   "pages": [
     {
       "type": "spotlight",
-      "item": "witchery:death_scythe",
+      "title": "Death's Scythe",
+      "item": "witchery:deployed_deaths_hand",
       "text": "The Death Scythe is the preferred weapon of $(l:creatures/death)Death$(/l). It can be summoned by a player in full deathwear by using a $(l:artifacts/misc/hand_of_death)Death's Hand$(/l)."
     },
     {

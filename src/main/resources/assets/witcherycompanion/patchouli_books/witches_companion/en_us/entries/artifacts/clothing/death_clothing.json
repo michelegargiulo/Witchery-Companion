@@ -1,13 +1,14 @@
 {
   "name": "Death's Clothes",
-  "icon": "witchery:death_hood",
+  "icon": "witchery:deaths_hood",
   "category": "artifacts/clothing",
   "read_by_default": true,
   "pages": [
     {
       "type": "spotlight",
-      "item": "witchery:death_hood",
-      "text": "Part of $(l:creatures/death)Death$(/l)'s accoutrements, Death Hood changes the wearer's face to resemble that of Death. Can be repaired in an $(item)Anvil$() using $(item)Iron Ingots$()."
+      "item": "witchery:deaths_hood",
+      "text": "Part of $(l:creatures/death)Death$(/l)'s accoutrements, Death Hood changes the wearer's face to resemble that of Death. Can be repaired in an $(item)Anvil$() using $(item)Iron Ingots$().",
+      "anchor": "hood"
     },
     {
       "type": "text",
@@ -16,8 +17,9 @@
     },
     {
       "type": "spotlight",
-      "item": "witchery:death_hood",
-      "text": "Part of $(l:creatures/death)Death$(/l)'s accoutrements, Death Hood changes the wearer's torso to resemble that of Death. Can be repaired in an $(item)Anvil$() using $(item)Iron Ingots$()."
+      "item": "witchery:deaths_robe",
+      "text": "Part of $(l:creatures/death)Death$(/l)'s accoutrements, Death Robe changes the wearer's torso to resemble that of Death. Can be repaired in an $(item)Anvil$() using $(item)Iron Ingots$().",
+      "anchor": "robe"
     },
     {
       "type": "text",
@@ -26,8 +28,9 @@
     },
     {
       "type": "spotlight",
-      "item": "witchery:death_footwear",
-      "text": "Part of $(l:creatures/death)Death$(/l)'s accoutrements, Death Hood changes the wearer's legs and feet to resemble that of Death. Can be repaired in an $(item)Anvil$() using $(item)Iron Ingots$()."
+      "item": "witchery:deaths_footwear",
+      "text": "Part of $(l:creatures/death)Death$(/l)'s accoutrements, Death Hood changes the wearer's legs and feet to resemble that of Death. Can be repaired in an $(item)Anvil$() using $(item)Iron Ingots$().",
+      "anchor": "footwear"
     },
     {
       "type": "text",

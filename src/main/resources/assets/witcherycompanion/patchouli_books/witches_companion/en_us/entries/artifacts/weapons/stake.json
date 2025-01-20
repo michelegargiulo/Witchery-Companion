@@ -1,0 +1,13 @@
+{
+  "name": "Wooden Stake",
+  "icon": "witchery:stake",
+  "category": "artifacts/weapons",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:stake",
+      "text": "A Wooden Stake through the heart is one of the few ways a $(l:observations/vampirism)Vampire$(/l) may be killed, although it is not so easy to get them in a position where such a precise strike can be applied. The most effective way, is to use the Wooden Stake on a Vampire when it is sleeping, as it will instantly kill the Vampire."
+    }
+  ]
+}

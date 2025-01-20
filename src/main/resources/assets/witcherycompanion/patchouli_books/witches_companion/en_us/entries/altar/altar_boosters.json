@@ -30,7 +30,7 @@
     },
     {
       "type": "spotlight",
-      "item": "witchery:candelabra",
+      "item": "witchery:arthana",
       "title": "Others",
       "text": "$(item)Arthana$():$(br)+16 Range$(p)$(item)Mystic Branch$():$(br)+1 Enchantment Level$(p)$(item)Pentacle$():$(br)x2 Recharge Rate (applied after all other effects)$(p)The effect of these items are not mutually exclusive."
     },

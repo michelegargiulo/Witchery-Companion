@@ -4,7 +4,7 @@
       "type": "header",
       "text": "#title",
       "centered": true,
-      "scale": 0.9,
+      "scale": 1,
       "x": -1,
       "y": -1
     },
@@ -25,9 +25,9 @@
         "#ingredients"
       ],
       "output": "",
-      "input_spacing": 8,
-      "line_length": 4,
-      "x": 12,
+      "input_spacing": 4,
+      "line_length": 5,
+      "x": 9,
       "y": 21
     }
   ]

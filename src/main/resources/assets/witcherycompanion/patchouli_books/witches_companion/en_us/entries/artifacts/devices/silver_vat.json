@@ -1,0 +1,18 @@
+{
+  "name": "Silver Vat",
+  "icon": "witchery:silver_vat",
+  "category": "artifacts/devices",
+  "flag": "witcherycompanion:artifacts/devices/enable_silver_vat",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:silver_vat",
+      "text": "A Silver Vat is an attachment for a $(item)Furnace$() that is used to capture any $(l:resources/silver_deposits)Silver Deposits$(/l) that are left over when smelting $(item)Gold Ore$(). Simply place one or more on the side of a Furnace and begin smelting. Occasionally, some $(item)Silver$() will be captured in the vat. Right-click on the vat to pick up the collected Deposits."
+    },
+    {
+      "type": "text",
+      "text": "For space efficiency reasons, multiple Furnaces can be placed next to a single Vat.$(br)$(item)Hoppers$() can be used to automatically extract any collected Silver."
+    }
+  ]
+}
