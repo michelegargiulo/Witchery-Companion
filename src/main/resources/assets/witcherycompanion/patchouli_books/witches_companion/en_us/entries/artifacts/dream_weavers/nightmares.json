@@ -1,0 +1,23 @@
+{
+  "name": "Dream Weaver of Nightmares",
+  "icon": "witchery:nightmares_dream_weaver",
+  "category": "artifacts/weavers",
+  "read_by_default": false,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:nightmares_dream_weaver",
+      "text": "This Dream Weaver has two effects. First, it will add a short $(item)Weakness$() effect to a player when they wake up from a good nights sleep. Second, it will corrupt any nearby Dream Weavers so that their effect is inverted."
+    },
+    {
+      "type": "text",
+      "title": "Corrupting the Nightmares",
+      "text": "If the Dream Weaver of Nightmares itself is corrupted by another Dream Weaver of Nightmares, a short $(item)Blindness$() potion effect is given to waking up players instead of $(item)Nausea$()"
+    },
+    {
+      "type": "text",
+      "title": "Bane of Nightmares",
+      "text": "The Dream Weaver of Nightmares can also be used to fend off nightmares when a $(l:kettle/kettle_intro#sleeping)Brew of Sleeping$(/l) is drunk. Having the Dream Weaver nearby will reduce the chance of a nightmare to 50%."
+    }
+  ]
+}

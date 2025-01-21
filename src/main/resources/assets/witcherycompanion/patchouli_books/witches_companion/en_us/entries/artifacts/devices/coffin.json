@@ -1,0 +1,18 @@
+{
+  "name": "Coffin",
+  "icon": "witchery:coffin",
+  "category": "artifacts/devices",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:coffin",
+      "text": "A coffin can be used by $(l:observations/vampirism)Vampires$(/l) to sleep in. They differ from $(item)Beds$(), for they allow the Vampire player to sleep thought the day.$(br)In order to sleep in a Coffin, the player must first open it, by sneak-using it, and then right clicking on it as normal. $(l:artifacts/misc/taglock_kit)Taglock Kits$(/l) work on a Coffin in the same way as they do on beds."
+    },
+    {
+      "type": "text",
+      "title": "Additional Info",
+      "text": "Sleeping in the Coffin sets the player spawn point to its location, and sleeping through the day on a multiplayer server requires all players to sleep.$(p)A Vampire may sleep in a $(item)Bed$() to skip the night as usual on a multiplayer server."
+    }
+  ]
+}

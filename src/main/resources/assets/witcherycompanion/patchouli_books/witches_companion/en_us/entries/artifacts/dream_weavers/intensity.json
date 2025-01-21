@@ -1,0 +1,18 @@
+{
+  "name": "Dream Weaver of Intensity",
+  "icon": "witchery:intensity_dream_weaver",
+  "category": "artifacts/weavers",
+  "read_by_default": false,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:intensity_dream_weaver",
+      "text": "When hung next to a $(item)Bed$(), this Dream Weaver will add $(item)Night Vision$() to a player when they wake up from a good nights sleep. If the Dream Weaver is corrupted by a nearby $(l:artifacts/dream_weavers/nightmares)Dream Weaver of Nightmares$(/l) the Weaver will instead inflict $(item)Blindness$()."
+    },
+    {
+      "type": "text",
+      "title": "Secondary effects",
+      "text": "The Dream Weaver of Intensity also has the secondary effect of boosting the effect of the other Dream Weavers (except the $(l:artifacts/dream_weavers/nightmares)Dream Weaver of Nightmares$(/l)) so that either they grant a stronger but shorter-lasting effect or their effects' duration is increased."
+    }
+  ]
+}

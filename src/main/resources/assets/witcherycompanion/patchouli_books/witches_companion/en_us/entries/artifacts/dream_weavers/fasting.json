@@ -1,5 +1,5 @@
 {
-  "name": "Fasting Dream Weaver",
+  "name": "Dream Weaver of Fasting",
   "icon": "witchery:fasting_dream_weaver",
   "category": "artifacts/weavers",
   "read_by_default": true,
@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "witchery:fasting_dream_weaver",
-      "text": "When hanged nearby a bed, it will provide a saturation boost to the creature that wakes up in its vicinity.$(p)When close to a $(l:artifacts/dream_weavers/nightmare)Nightmare Dream Weaver$(/l) it will inflict hunger instead."
+      "text": "When hung next to a $(item)Bed$(), this Dream Weaver will add a saturation boost to a player when they wake up from a good nights sleep. If the Dream Weaver is corrupted by a nearby $(l:artifacts/dream_weavers/nightmares)Dream Weaver of Nightmares$(/l) the Weaver will instead inflict $(item)Hunger$()."
     }
   ]
 }
