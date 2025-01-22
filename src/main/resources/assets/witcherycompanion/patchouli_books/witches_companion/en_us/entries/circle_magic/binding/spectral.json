@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:spectral_binding",
       "title": "Spectral Binding",
-      "description": "Bind up to three spectral creatures of the same type into a $(l:)Spectral Stone$(/l)."
+      "description": "Bind up to three spectral creatures of the same type into a $(l:artifacts/misc/spectral_stone)Spectral Stone$(/l)."
     }
   ]
 }

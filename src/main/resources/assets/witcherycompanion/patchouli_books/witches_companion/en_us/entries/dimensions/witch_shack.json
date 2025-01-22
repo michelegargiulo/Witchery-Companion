@@ -7,7 +7,7 @@
     {
       "type": "text",
       "title": "Witch Shack",
-      "text": "The Witch Shack is a small structure found around the world, usually inhabited by a $(l:creatures/coven_witch)Coven Witch$(/l) and their $(l:)Familiar$(/l)."
+      "text": "The Witch Shack is a small structure found around the world, usually inhabited by a $(l:creatures/coven_witch)Coven Witch$(/l) and their $(l:artifacts/familiars/intro)Familiar$(/l)."
     },
     {
       "type": "multiblock",

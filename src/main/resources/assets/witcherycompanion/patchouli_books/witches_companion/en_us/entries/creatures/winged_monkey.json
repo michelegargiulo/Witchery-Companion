@@ -1,0 +1,38 @@
+{
+  "name": "Winged Monkey",
+  "icon": "witchery:winged_monkey",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:winged_monkey",
+      "text": "Monkeys with Wings.",
+      "offset": 0,
+      "scale": 1
+    },
+    {
+      "type": "text",
+      "text": "Winged Monkeys are quite literally Monkeys with wings. They are useful for fetching creatures or carrying their owner to places. A Winged Monkey will defend its owner to the death. The creature can be dyed by right-clicking on it with a dye."
+    },
+    {
+      "type": "text",
+      "title": "Creating Winged Monkeys",
+      "text": "A Winged Monkey is by $(l:mutations/winged_monkey)mutating$(/l) an $(l:creatures/owl)Owl$(/l) and a $(item)Wolf$(). After the mutation the Winged Monkey has to be tamed."
+    },
+    {
+      "type": "text",
+      "title": "Taming Winged Monkeys",
+      "text": "A Winged Monkey can be tamed by giving it $(item)Raw Porkchop$() or $(item)Beef$(). Once tamed, it can be instructed to sit by right-clicking it, do so again to make it stand. A tamed Winged Monkey that is not sitting will always follow their owner and fight for them."
+    },
+    {
+      "type": "text",
+      "title": "Useful Behaviors",
+      "text": "Giving a Winged Monkey a $(l:artifacts/misc/taglock_kit)Taglock Kit$(/l) bound to a creature or player, will cause the monkey to fly towards that entity, pick them up and carry them back to the location where they were given the Taglock. The entity will then be dropped and the monkey will sit. The Taglock is consumed in the process."
+    },
+    {
+      "type": "text",
+      "text": "Giving a Winged Monkey a $(l:artifacts/misc/waystone#bound)Bound Waystone$(/l) or a $(l:l:artifacts/misc/waystone#blooded)Blooded Waystone$(/l) will cause the monkey to pick up the player and then fly to the bound location with the player. When the bound location is reached, the player will be dropped off and the monkey will sit. The Waystone will not be consumed."
+    }
+  ]
+}

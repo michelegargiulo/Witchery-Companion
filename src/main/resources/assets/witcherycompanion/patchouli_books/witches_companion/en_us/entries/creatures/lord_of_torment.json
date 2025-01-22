@@ -14,7 +14,7 @@
     {
       "type": "text",
       "title": "Lord of Torment",
-      "text": "Undisputed rules of the $(l:dimensions/torment)Torment$(/l) dimension, this mighty demon is able to create prisons to Torment its victims.$(br)Once summoned, the demon will start flying and shooting fireballs that can inflict $(item)Slowness$()$(br)When half of its health is depleted, it will teleport itself and the fighting players to the $(item)Torment$(). There, it will sit in the center waiting for the player to come to it. Once reached, the fight resumes."
+      "text": "Undisputed ruler of the $(l:dimensions/torment)Torment$(/l) dimension, this mighty demon is able to create prisons to Torment its victims.$(br)Once summoned, the demon will start flying and shooting fireballs that can inflict $(item)Slowness$()$(br)When half of its health is depleted, it will teleport itself and the fighting players to the $(item)Torment$(). There, it will sit in the center waiting for the player to come to it. Once reached, the fight resumes."
     },
     {
       "type": "spotlight",

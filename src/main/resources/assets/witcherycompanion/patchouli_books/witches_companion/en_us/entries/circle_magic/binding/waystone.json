@@ -31,14 +31,16 @@
     {
       "type": "circle_magic/rite",
       "rite_id": "witchery:player_waystone_binding",
-      "title": "Bind Creature",
-      "description": "Create a $(l:)Bounded Waystone$(/l) bound to the location of a creature."
+      "title": "Bind Player",
+      "description": "Create a $(l:)Bounded Waystone$(/l) bound to the location of a player.",
+      "anchor": "bind_player"
     },
     {
       "type": "circle_magic/rite",
       "rite_id": "witchery:portable_player_waystone_binding",
       "title": "Bind Creature",
-      "description": "Create a $(l:)Bounded Waystone$(/l) bound to the location of a creature."
+      "description": "Create a $(l:)Bounded Waystone$(/l) bound to the location of a creature.",
+      "anchor": "bind_creature"
     }
   ]
 }

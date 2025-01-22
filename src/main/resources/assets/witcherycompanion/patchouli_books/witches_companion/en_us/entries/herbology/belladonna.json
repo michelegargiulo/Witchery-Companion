@@ -1,0 +1,13 @@
+{
+  "name": "Belladonna Flower",
+  "icon": "witchery:belladonna_flower",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:belladonna_flower",
+      "text": "Deadly nightshade, so is this plant known, and deadly poisons from it grown. It grows in tilled earth in stages. Tall grass yields seeds."
+    }
+  ]
+}

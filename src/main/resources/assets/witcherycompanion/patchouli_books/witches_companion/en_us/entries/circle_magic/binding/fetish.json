@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:fetish_binding",
       "title": "Bind Fetish",
-      "description": "Bind spectral creatures to a $(l:)Trent Effigy$(/l), $(l:)Scarecrow$(/l) or $(l:)Witch's Ladder$(/l) for an effect."
+      "description": "Bind spectral creatures to a $(l:conjuration/fetish#fetish_hosts)Trent Effigy$(/l), $(l:conjuration/fetish#fetish_hosts)Scarecrow$(/l) or $(l:conjuration/fetish#fetish_hosts)Witch's Ladder$(/l) for an effect."
     }
   ]
 }

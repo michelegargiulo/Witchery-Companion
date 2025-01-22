@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:necromantic_stone_necromancy",
       "title": "Necromantic Stone",
-      "description": "Creates a $(l:)Necromantic Stone$(/l). Perform at night."
+      "description": "Creates a $(l:artifacts/misc/necromantic_stone)Necromantic Stone$(/l). Perform at night."
     }
   ]
 }

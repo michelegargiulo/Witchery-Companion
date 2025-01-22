@@ -1,0 +1,13 @@
+{
+  "name": "Mindrake",
+  "icon": "witchery:mindrake_bulb",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:mindrake_bulb",
+      "text": "The insane result of $(l:mutations/mindrake)mutating$(/l) a Creeper and a $(l:creatures/mandrake)Mandrake$(/l) together. A Minedrake Bulb dropped on the ground will spawn a Minedrake after a few seconds. Bulbs can also be planted in $(item)Farmland$(), but grow slower than most crops."
+    }
+  ]
+}

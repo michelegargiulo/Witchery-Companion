@@ -12,12 +12,12 @@
     {
       "type": "text",
       "title": "Step-by-Step",
-      "text": "$(8)1.$() Throw the ingredients into a heated, water-filled Kettle. $(l:altar/altar)Altars$(/l) provide power, if needed.$(p)$(8)2.$() Fill the brew into an empty $(item)Glass Bottle$().$(p)Some brews require having a $(l:)Familiar$(/l) or being in a given $(item)dimension$()."
+      "text": "$(8)1.$() Throw the ingredients into a heated, water-filled Kettle. $(l:altar/altar)Altars$(/l) provide power, if needed.$(p)$(8)2.$() Fill the brew into an empty $(item)Glass Bottle$().$(p)Some brews require having a $(l:artifacts/familiars/intro)Familiar$(/l) or being in a given $(item)dimension$()."
     },
     {
       "type": "text",
       "title": "Brew Yield",
-      "text": "Proper clothing can increase the yield of brews the Kettle can output from a single recipe. Wearing $(l:)Witches Hat$(/l) and $(l:)Witches Robes$(/l) or having the $(l:brewing/brew_effects/decanting)Decanting$(/l) potion effect can increase the average yield."
+      "text": "Proper clothing can increase the yield of brews the Kettle can output from a single recipe. Wearing $(l:artifacts/clothing/witches_clothing#hat)Witches Hat$(/l) and $(l:artifacts/clothing/witches_clothes#robes)Witches Robes$(/l) or having the $(l:brewing/brew_effects/decanting)Decanting$(/l) potion effect can increase the average yield."
     },
     {
       "type": "text",
@@ -32,7 +32,7 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_congealed_spirit",
-      "description": "Crafting ingredient for $(l:)Spectral Stone$(/l)."
+      "description": "Crafting ingredient for $(l:artifacts/misc/spectral_stone)Spectral Stone$(/l)."
     },
     {
       "type": "kettle/kettle_brew",
@@ -56,7 +56,7 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_raising",
-      "description": "Summons undead creatures from the ground. If it hits a wall, it will bounce and can be collected again. Undeads won't attack the summoner and can be ordered to attack using a $(l:)Necromantic Stone$(/l)",
+      "description": "Summons undead creatures from the ground. If it hits a wall, it will bounce and can be collected again. Undeads won't attack the summoner and can be ordered to attack using a $(l:artifacts/misc/necromantic_stone)Necromantic Stone$(/l)",
       "anchor": "raising"
     },
     {
@@ -98,12 +98,13 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_ice",
-      "description": "Will spawn a small sheet of $(item)Ice$() at the impact location, or, if thrown in water, it will cause it to freeze. Hit creatures will be encased in ice, but some unexpected effects may happen if used on certain creatures."
+      "description": "Will spawn a small sheet of $(item)Ice$() at the impact location, or, if thrown in water, it will cause it to freeze. Hit creatures will be encased in ice, but some unexpected effects may happen if used on certain creatures.",
+      "anchor": "frost"
     },
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/vines_brew",
-      "description": "Causes $(item)Vines$() to grow instantly from the surface it hits. The vines can climb or descend walls that are flat enough. $(l:)Toad Familiars$(/l) augment its effects. The brew bounces off of flat terrain.",
+      "description": "Causes $(item)Vines$() to grow instantly from the surface it hits. The vines can climb or descend walls that are flat enough. $(l:artifacts/familiars/toad_familiar)Toad Familiars$(/l) augment its effects. The brew bounces off of flat terrain.",
       "anchor": "vines"
     },
     {

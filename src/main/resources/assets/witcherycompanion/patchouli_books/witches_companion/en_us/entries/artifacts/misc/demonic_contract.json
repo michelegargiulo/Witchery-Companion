@@ -18,7 +18,7 @@
       "type": "artifacts/contract_set",
       "title": "Types of Contracts",
       "ingredients": "witchery:living_flame_contract;witchery:fiery_tolerance_contract;witchery:evaporation_contract;witchery:fiery_touch_contract;witchery:melting_touch_contract",
-      "description": "$(8)> $()$(item)Fiery Touch$() ($(item)Blaze Rod$(), $(l:herbology/herbology#ember_moss)Ember Moss$(/l)): Causes random fires to erupt when the victim interacts with objects.$(p)$(8)> $()$(item)Melting Touch$() ($(item)Lava Bucket$()): Causes harvested blocks to be instantly smelted. May double $(item)Ores$()."
+      "description": "$(8)> $()$(item)Fiery Touch$() ($(item)Blaze Rod$(), $(l:herbology/ember_moss)Ember Moss$(/l)): Causes random fires to erupt when the victim interacts with objects.$(p)$(8)> $()$(item)Melting Touch$() ($(item)Lava Bucket$()): Causes harvested blocks to be instantly smelted. May double $(item)Ores$()."
     },
     {
       "type": "text",

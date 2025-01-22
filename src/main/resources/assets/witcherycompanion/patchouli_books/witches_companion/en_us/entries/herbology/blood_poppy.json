@@ -1,0 +1,13 @@
+{
+  "name": "Blood Poppy",
+  "icon": "witchery:blood_poppy",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:blood_poppy",
+      "text": "In a witches garden keep in mind, a scratch from this rose leaves your blood behind. $(l:mutations/blood_poppy)Mutate$(/l) this plant from $(item)Poppies$() and a $(l:artifacts/traps/leech_chest)Leech Chest$(/l)."
+    }
+  ]
+}

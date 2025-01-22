@@ -17,7 +17,7 @@
     {
       "type": "text",
       "title": "Making a Poppet",
-      "text": "Creating a Poppet involves three steps:$(p)$(8)1.$() First, a $(l:artifacts/poppets/poppets#basic_doll)Basic Doll$(/l) is made.$(p)$(8)2.$() Next the doll must be filled with items appropriate to the desired magic effect$(p)$(8)3.$() Finally, the sympathetic connection between the Poppet and a living being must be established by crafting it together with a $(l:artifacts/misc/taglock_kit)Taglock$(/l)."
+      "text": "Creating a Poppet involves three steps:$(p)$(8)1.$() First, a $(l:artifacts/poppets/poppets#basic_doll)Basic Doll$(/l) is made.$(p)$(8)2.$() Next the doll must be filled with items appropriate to the desired magic effect$(p)$(8)3.$() Finally, the sympathetic connection between the Poppet and a living being must be established by crafting it together with a $(l:artifacts/misc/taglock_kit#taglock)Taglock$(/l)."
     },
     {
       "type": "text",
@@ -27,7 +27,8 @@
     {
       "type": "spotlight",
       "item": "witchery:earth_protection_poppet",
-      "text": "The Earth Protection Poppet will redirect deadly falling damage from the bound player or creature to the poppet, destroying it in the process. Only deadly damage will be redirected to the poppet."
+      "text": "The Earth Protection Poppet will redirect deadly falling damage from the bound player or creature to the poppet, destroying it in the process. Only deadly damage will be redirected to the poppet.",
+      "anchor": "earth_protection"
     },
     {
       "type": "spotlight",
@@ -47,7 +48,7 @@
     {
       "type": "spotlight",
       "item": "witchery:voodoo_protection_poppet",
-      "text": "The Voodoo Protection Poppet will protect its owner from $(l:)Voodoo Poppets$(/l), $(l:)Vampiric Poppets$(/l) and $(l:)Curses$(/l). When the bound creature is about to be attacked, the effect is prevented, the attacking creature is struck by lightning and the poppet is destroyed. This poppet, however, is not immune from the $(l:)Curse of Corrupt Poppet$(/l).",
+      "text": "The Voodoo Protection Poppet will protect its owner from $(l:artifacts/poppets/poppets#voodoo)Voodoo Poppets$(/l), $(l:artifacts/poppets/poppets#vampiric)Vampiric Poppets$(/l) and $(l:circle_magic/curses/blindness)Curses$(/l). When the bound creature is about to be attacked, the effect is prevented, the attacking creature is struck by lightning and the poppet is destroyed. This poppet, however, is not immune from the $(l:circle_magic/curses/corrupt_poppet)Curse of Corrupt Poppet$(/l).",
       "anchor": "voodoo_protection"
     },
     {
@@ -63,7 +64,7 @@
     {
       "type": "spotlight",
       "item": "witchery:poppet_protection_poppet",
-      "text": "The Poppet Protection Poppet will protect other poppets by the same owner from the $(l:)Curse of Corrupt Poppet$(/l). The magic will be reflected back to the attacker in the form of a lightning, causing some damage to the poppet.",
+      "text": "The Poppet Protection Poppet will protect other poppets by the same owner from the $(l:circle_magic/curses/corrupt_poppet)Curse of Corrupt Poppet$(/l). The magic will be reflected back to the attacker in the form of a lightning, causing some damage to the poppet.",
       "anchor": "poppet_protection"
     },
     {
@@ -86,7 +87,7 @@
     },
     {
       "type": "text",
-      "text": "Sneaking and using $(l:)Bone Needles$(/l) will cause a small amount of magic damage to the target. Holding the poppet underwater will cause drowning damage, and throwing it in lava will set the target on fire, but the poppet will be destroyed instantly. All offensive actions done to the poppet will cause it to take small amounts of damage."
+      "text": "Sneaking and using $(l:resources/bone_needle)Bone Needles$(/l) will cause a small amount of magic damage to the target. Holding the poppet underwater will cause drowning damage, and throwing it in lava will set the target on fire, but the poppet will be destroyed instantly. All offensive actions done to the poppet will cause it to take small amounts of damage."
     }
   ]
 }

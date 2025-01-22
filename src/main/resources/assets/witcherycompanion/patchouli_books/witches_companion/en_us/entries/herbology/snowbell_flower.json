@@ -1,0 +1,13 @@
+{
+  "name": "Snowbell Flower",
+  "icon": "witchery:snowbell_flower",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:snowbell_flower",
+      "text": "A curious plant, cold as the snow, freezes moisture as it grows. It grows in tilled earth in stages. Tall grass yields seeds."
+    }
+  ]
+}

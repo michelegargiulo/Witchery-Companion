@@ -1,0 +1,19 @@
+{
+  "name": "Attuned Stone",
+  "icon": "witchery:attuned_stone",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:attuned_stone",
+      "text": "An Attuned Stone is used to create various magical artifacts and devices.$(p)The Attuned Stone is significantly valued in whichcraft, as it has the property to store $(l:altar/altar#power)Altar Power$(/l), acting as a portable source for $(l:circle_magic/intro)Circle Magic$(/l)."
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:charged_attuned_stone",
+      "text": "Before one can use the Attuned Stone for Rituals, the Stone must be charging using the appropriate $(l:circle_magic/other/charge_attuned_stone)Rite$(/l)",
+      "anchor": "charged"
+    }
+  ]
+}
