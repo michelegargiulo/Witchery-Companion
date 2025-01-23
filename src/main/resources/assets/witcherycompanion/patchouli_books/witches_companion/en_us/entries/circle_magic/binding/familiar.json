@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:familiar_binding",
       "title": "Bind Familiar",
-      "description": "Bind a tamed $(l:artifacts/familiars/owl_familiar)Owl$(/l), $(l:artifacts/familiars/toad_familiar)Toad$(/l) or $(l:artifacts/familiars/cat_familiar)Cat$(/l) as a familiar."
+      "description": "Bind a tamed $(l:)Owl$(/l), $(l:)Toad$(/l) or $(l:)Cat$(/l) as a familiar."
     }
   ]
 }

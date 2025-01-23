@@ -1,6 +1,6 @@
 {
-  "name": "Witch Hunter Clothing",
-  "icon": "witchery:witch_hunter_hat",
+  "name": "Witches' Clothes",
+  "icon": "witchery:witches_hat",
   "category": "artifacts/clothing",
   "read_by_default": true,
   "pages": [
@@ -14,12 +14,12 @@
     {
       "type": "text",
       "title": "Special Properties",
-      "text": "Witch Hunter Armor offers varying degrees of magical mitigation:$(br)$(8)> $() 25% chance to mitigate general $(item)Magic Damage$()$(br)$(8)> $()25% chance to mitigate the effects of a $(l:artifacts/poppets/poppets#voodoo)Voodoo Poppet$(/l)$(br)$(8)> $()90% chance to mitigate the $(l:circle_magic/curses/waking_nightmare)Curse of Waking Nightmare$(/l)$(br)$(8)> $()90%chance to mitigate the $(l:circle_magic/curses/misfortune)Curse of Misfortune$(/l)$(br)$(8)> $()90% chance to resist being summoned with a $(l:circle_magic/transposition/summon_creature)Rite of Transposition$(/l)$(br)$(8)> $()100% chance to mitigate the effects of a $(l:artifacts/poppets/vampiric)Vampiric Poppet$(/l)."
+      "text": "Witch Hunter Armor offers varying degrees of magical mitigation:$(br)$(8)> $() 25% chance to mitigate general $(item)Magic Damage$()$(br)$(8)> $()25% chance to mitigate the effects of a $(l:artifacts/poppets#voodoo)Voodoo Poppet$(/l)$(br)$(8)> $()90% chance to mitigate the $(l:circle_magic/curses/waking_nightmare)Curse of Waking Nightmare$(/l)$(br)$(8)> $()90%chance to mitigate the $(l:circle_magic/curses/misfortune)Curse of Misfortune$(/l)$(br)$(8)> $()90% chance to resist being summoned with a $(l:circle_magic/transposition/summon_creature)Rite of Transposition$(/l)$(br)$(8)> $()100% chance to mitigate the effects of a $(l:artifacts/poppets/vampiric)Vampiric Poppet$(/l)."
     },
     {
       "type": "text",
       "title": "Other Properties",
-      "text": "The Witch Hunter Armor causes all $(l:artifacts/poppets/poppets#earth_protection)Protection Poppets$(/l) to not function.$(p)The effects of $(l:artifacts/weapons/crossbow_pistol_bolts#nullifying)Nullifying Bolts$(/l) can only occur if the shooter is fully clad in Wtich Hunter Armor."
+      "text": "The Witch Hunter Armor causes all $(l:)Protection Poppets$(/l) to not function.$(p)The effects of $(l:)Nullifying Bolts$(/l) can only occur if the shooter is fully clad in Wtich Hunter Armor."
     },
     {
       "type": "artifacts/decorative_set",

@@ -12,8 +12,7 @@
     {
       "type": "text",
       "title": "Collecting Taglocks",
-      "text": "Use a taglock kit on a creature, or the used bed of a player, to collect some taglocks from that being. Repeated use on the same bed will cycle taglocks for each player who has used that bed.$(p)The kit can also be used on a $(l:artifacts/traps/leech_chest)Leech Chest$(/l) to collect taglocks from users who have opened the chest or on a $(l:artifacts/traps/blood_rose)Blood Poppy$(/l) to collect the taglock of the player that walked over it.",
-      "anchor": "taglock"
+      "text": "Use a taglock kit on a creature, or the used bed of a player, to collect some taglocks from that being. Repeated use on the same bed will cycle taglocks for each player who has used that bed.$(p)The kit can also be used on a $(l:)Leech Chest$(/l) to collect taglocks from users who have opened the chest or on a $(l:)Blood Rose$(/l) to collect the taglock of the player that walked over it."
     },
     {
       "type": "spotlight",

@@ -11,7 +11,7 @@
     },
     {
       "type": "text",
-      "text": "For a mutation to work, it requires a certain setup of blocks around a central plant. Some mutations may also involve $(item)Living Creatures$() or $(item)Items$().$(br)For creatures, they can usually be trapped into $(item)Cobwebs$(), while Items can be placed on $(l:herbology/grassper)Grasspers$(/l).$(br)Use the Mutating Sprig on the central plant to perform the mutation. If the setup is correct, it will happen instantly. Some blocks are also transformed or preserved after the mutation."
+      "text": "For a mutation to work, it requires a certain setup of blocks around a central plant. Some mutations may also involve $(item)Living Creatures$() or $(item)Items$().$(br)For creatures, they can usually be trapped into $(item)Cobwebs$(), while Items can be placed on $(l:herbology/herbology#grassper)Grasspers$(/l).$(br)Use the Mutating Sprig on the central plant to perform the mutation. If the setup is correct, it will happen instantly. Some blocks are also transformed or preserved after the mutation."
     }
   ]
 }

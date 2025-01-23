@@ -28,7 +28,7 @@
     {
       "type": "text",
       "title": "Enhancements",
-      "text": "Using a $(l:resources/creeper_heart)Creeper Heart$(/l) on a Treefyd will significantly increase their health and slightly increase their damage.$(p)Using a $(l:artifacts/devices/demon_heart)Demon Heart$(/l) on the Treefyd will increase their health and damage even more.$(p)Using a $(l:artifacts/tools/boline)Boline$(/l) will stop them from wandering randomly, altough they will still move to attack. Using the Boline again will resume their random movements."
+      "text": "Using a $(l:resources/creeper_heart)Creeper Heart$(/l) on a Treefyd will significantly increase their health and slightly increase their damage.$(p)Using a $(l:)Demon Heart$(/l) on the Treefyd will increase their health and damage even more.$(p)Using a $(l:artifacts/tools/boline)Boline$(/l) will stop them from wandering randomly, altough they will still move to attack. Using the Boline again will resume their random movements."
     }
   ]
 }

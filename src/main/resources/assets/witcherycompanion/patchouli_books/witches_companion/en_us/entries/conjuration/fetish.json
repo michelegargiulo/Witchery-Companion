@@ -13,8 +13,7 @@
       "type": "text",
       "title": "Hosts",
       "text": "Hosts are small blocks that can be bound to spectral entities to have supernatural powers.$(br2)Very few artifacts are able to trap such volatile beings.",
-      "flag": "witcherycompanion:conjuring/extended_fetish",
-      "anchor": "fetish_hosts"
+      "flag": "witcherycompanion:conjuring/extended_fetish"
     },
     {
       "type": "crafting",

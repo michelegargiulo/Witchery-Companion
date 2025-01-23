@@ -8,7 +8,7 @@
     {
       "type": "text",
       "title": "Coven Witches",
-      "text": "$(l:creatures/coven_witch)Coven Witches$(/l) are $(item)Witches$() that have joined a Coven, a group that unites to augment their witchcraft skills and power. They usually recognize other practitioners of the magic, and might be interested into them if they have a minimum of skill. Usually having a $(l:artifacts/familiars/intro)Familiar$(/l) is enough."
+      "text": "$(l:creatures/coven_witch)Coven Witches$(/l) are $(item)Witches$() that have joined a Coven, a group that unites to augment their witchcraft skills and power. They usually recognize other practitioners of the magic, and might be interested into them if they have a minimum of skill. Usually having a $(l:)Familiar$(/l) is enough."
     },
     {
       "type": "text",

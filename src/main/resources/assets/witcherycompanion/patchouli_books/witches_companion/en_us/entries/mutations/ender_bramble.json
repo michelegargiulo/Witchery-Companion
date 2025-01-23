@@ -13,7 +13,7 @@
     {
       "type": "text",
       "title": "Mutation Details",
-      "text": "Notes:$(br)All $(l:herbology/grassper)Grasspers$(/l) need to hold an $(item)Ender Pearl$().$(p)All $(item)Sugar Canes$() up to height 15 will be mutated."
+      "text": "Notes:$(br)All $(l:herbology/herbology#grassper)Grasspers$(/l) need to hold an $(item)Ender Pearl$().$(p)All $(item)Sugar Canes$() up to height 15 will be mutated."
     }
   ]
 }

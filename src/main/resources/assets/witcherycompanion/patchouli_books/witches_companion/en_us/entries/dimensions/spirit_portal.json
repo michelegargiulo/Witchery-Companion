@@ -7,7 +7,7 @@
     {
       "type": "text",
       "title": "Spirit Portal",
-      "text": "The Spirit Portal can only be created in the $(l:dimensions/spirit_world)Spirit world$(/l). It can be used by witches to $(l:dimensions/spirit_world#manifestation)Manifest$(/l) in the $(item)Overworld$() for a short time.$(br)Traversing the Spirit Portal won't bring any items over, with rare exceptions such as $(l:resources/icy_needle)Icy Needles$(/l)."
+      "text": "The Spirit Portal can only be created in the $(l:dimensions/spirit_world)Spirit world$(/l). It can be used by witches to $(l:dimensions/spirit_world#manifestation)Manifest$(/l) in the $(item)Overworld$() for a short time.$(br)Traversing the Spirit Portal won't bring any items over, with rare exceptions such as $(l:)Icy Needles$(/l)."
     },
     {
       "type": "multiblock",

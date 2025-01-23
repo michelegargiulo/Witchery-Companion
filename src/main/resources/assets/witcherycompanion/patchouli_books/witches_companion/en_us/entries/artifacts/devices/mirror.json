@@ -25,12 +25,6 @@
       "title": "Linked Mirrors",
       "text": "Hollow Mirrors can be used as a short-distance teleportation option. By placing two Hollow Mirrors within 16 blocks of distance and with opposite facings, they will link together. They won't teleport players to the Mirror dimension, but rather from the position of one to the other's. Also works vertically.",
       "anchor": "linked_mirror"
-    },
-    {
-      "type": "text",
-      "title": "Mirrors within Mirrors",
-      "text": "Placing a Mirror on the wall while inside another Mirror and $(l:altar/altar#altar_power)power$(/l) it allows one to break the barrier between two mirror spaces. Don't forget to bring a second Mirror for the way back (it won't require power). You can only exit mirror spaces by the Mirror that you entered. If you find yourself stuck, a $(l:artifacts/chants/mirror_send_me_home)Chant$(/l) may help",
-      "anchor": "mirror_in_mirror"
     }
   ]
 }
