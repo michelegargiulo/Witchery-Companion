@@ -13,7 +13,7 @@
     {
       "type": "text",
       "title": "Mutation Details",
-      "text": "Entities:$(br)$(8)>$() 1 Ocelot$(br)$(p)Notes:$(br)One $(l:herbology/grassper)Grassper$(/l) needs to hold a $(l:artifacts/misc/attuned_stone#charged)Charged Attuned Stone$(/l), and the other three $(l:artifacts/misc/mutandis#extremis)Mutandis Extremis$(/l)$(p)Snares must be $(l:herbology/critter_snare)Slime Critter Snare$(/l)."
+      "text": "Entities:$(br)$(8)>$() 1 Ocelot$(br)$(p)Notes:$(br)One $(l:herbology/herbology#grassper)Grassper$(/l) needs to hold a $(l:)Charged Attuned Stone$(/l), and the other three $(l:)Mutandis Extremis$(/l)$(p)Snares must be $(l:herbology/herbology#critter_snare)Slime Critter Snare$(/l)."
     }
   ]
 }

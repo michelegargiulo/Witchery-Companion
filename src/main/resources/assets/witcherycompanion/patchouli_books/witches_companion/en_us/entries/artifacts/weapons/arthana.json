@@ -17,7 +17,7 @@
     {
       "type": "text",
       "title": "Other usages",
-      "text": "The Arthana is also one of the $(l:artifacts/altar/altar)Altar$(/l) boosting items, and finds some usages also in $(l:circle_magic/intro)Circle Magic$(/l). When the Arthana is used as a $(item)foci$() in Circle Magic, it is not consumed."
+      "text": "The Arthana is also one of the $(l:artifacts/altar/altar)Altar$(/l) boosting items, and finds some usages also in $(l:)Circle Magic$(/l). When the Arthana is used as a $(item)foci$() in Circle Magic, it is not consumed."
     }
   ]
 }

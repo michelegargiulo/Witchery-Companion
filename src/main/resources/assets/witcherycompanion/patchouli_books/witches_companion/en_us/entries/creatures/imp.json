@@ -39,7 +39,7 @@
     {
       "type": "generic/secret_text",
       "title": "Demon Hearts",
-      "description": "Using a $(l:artifacts/devices/demon_heart)Demon Heart$(/l) on an Imp will cause it to temporarily greatly grow in both size and strength. In this state the Imp cannot trade or perform Imp Magic. Using an $(l:resource/icy_needle)Icy Needle$(/l) on the creature will make it return to their normal size again.",
+      "description": "Using a $(l:)Demon Heart$(/l) on an Imp will cause it to temporarily greatly grow in both size and strength. In this state the Imp cannot trade or perform Imp Magic. Using an $(l:)Icy Needle$(/l) on the creature will make it return to their normal size again.",
       "secret_key": "witcherycompanion:creatures/imp_boost",
       "_comment": "Unlocked when a player uses a Demon Heart on an Imp"
     }

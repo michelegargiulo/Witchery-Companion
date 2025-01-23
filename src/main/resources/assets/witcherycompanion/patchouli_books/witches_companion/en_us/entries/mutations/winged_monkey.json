@@ -13,7 +13,7 @@
     {
       "type": "text",
       "title": "Mutation Details",
-      "text": "Entities:$(br)$(8)>$() 1 Wolf$(br)$(8)>$() 1 $(l:creatures/owl)Owl$(/l)$(p)Notes:$(br)One $(l:herbology/grassper)Grassper$(/l) needs to hold a $(l:artifacts/misc/attuned_stone#charged)Charged Attuned Stone$(/l), one a $(item)Poppy$() and the other two $(l:artifacts/misc/mutandis#extremis)Mutandis Extremis$(/l)$(p)Cocoa must be fully mature."
+      "text": "Entities:$(br)$(8)>$() 1 Wolf$(br)$(8)>$() 1 $(l:creatures/owl)Owl$(/l)$(p)Notes:$(br)One $(l:herbology/herbology#grassper)Grassper$(/l) needs to hold a $(l:)Charged Attuned Stone$(/l), one a $(item)Poppy$() and the other two $(l:)Mutandis Extremis$(/l)$(p)Cocoa must be fully mature."
     }
   ]
 }

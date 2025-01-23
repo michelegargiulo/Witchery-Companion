@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "witchery:poppet_shelf_compass",
-      "text": "Long ago, $(l:creatures/witch_hunter)Witch Hunters$(/l) realized that a great advantage of Witches was their use of $(l:artifacts/poppets/poppets)Poppets$(/l) combined with $(l:artifacts/poppets/poppet_shelf)Poppet Shelves$(/l).$(br)Hunters developed a rudimental but effective way to localize such devices with the goal of destroying them."
+      "text": "Long ago, $(l:)Witch Hunters$() realized that a great advantage of Witches was their use of $(l:artifacts/poppets/poppets)Poppets$(/l) combined with $(l:artifacts/poppets/poppet_shelf)Poppet Shelves$(/l).$(br)Hunters developed a rudimental but effective way to localize such devices with the goal of destroying them."
     },
     {
       "type": "text",

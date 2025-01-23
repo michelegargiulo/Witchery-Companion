@@ -8,7 +8,7 @@
       "type": "spotlight",
       "title": "Rituals",
       "item": "witchery:dog_tongue",
-      "text": "Instead of bottling a brew, a full cauldron may instead be used to cast the effects as a ritual. Ritual casting requires the witch to add either a $(l:artifacts/misc/taglock_kit#taglock)Taglock$(/l) of the target or $(item)Tongue of Dog$() to cast it at the cauldron's location."
+      "text": "Instead of bottling a brew, a full cauldron may instead be used to cast the effects as a ritual. Ritual casting requires the witch to add either a $(item)Taglock$() of the target or $(item)Tongue of Dog$() to cast it at the cauldron's location."
     },
     {
       "type": "spotlight",
@@ -25,7 +25,7 @@
       "type": "spotlight",
       "title": "Dispersal",
       "item": "witchery:bound_taglock_kit",
-      "text": "Using a $(l:artifacts/misc/taglock_kit)Taglock Kit$(/l) to start a ritual targets the bound creature. Otherwise a $(l:brewing/dispersal)dispersal$() must be added before the $(item)Tongue of Dog$(). Instant splash remains unchanged, but gas become an expanding effect and liquid produces rain."
+      "text": "Using a $(item)Taglock$() to start a ritual targets the bound creature. Otherwise a $(l:brewing/dispersal)dispersal$() must be added before the $(item)Tongue of Dog$(). Instant splash remains unchanged, but gas become an expanding effect and liquid produces rain."
     },
     {
       "type": "text",

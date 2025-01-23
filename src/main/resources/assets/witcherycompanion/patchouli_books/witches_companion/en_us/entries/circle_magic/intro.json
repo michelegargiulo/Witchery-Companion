@@ -12,7 +12,7 @@
     {
       "type": "text",
       "title": "Introduction",
-      "text": "Some rites may require sacrifices in form of power or items. Power may be provided by a nearby $(l:altar/altar)Altar$(/l), while items can be thrown on the ground inside the circles or placed on $(l:herbology/grassper)Grasspers$(/l). After drawing the circles, dropping items and providing power, the rite can be started by activating the $(l:circle_magic/intro#golden_chalk)Heart Circle Glyph$(/l) by right-clicking it or with a $(item)Redstone Signal$()."
+      "text": "Some rites may require sacrifices in form of power or items. Power may be provided by a nearby $(l:altar/altar)Altar$(/l), while items can be thrown on the ground inside the circles or placed on $(l:herbology/herbology#grassper)Grasspers$(/l). After drawing the circles, dropping items and providing power, the rite can be started by activating the $(l:circle_magic/intro#golden_chalk)Heart Circle Glyph$(/l) by right-clicking it or with a $(item)Redstone Signal$()."
     },
     {
       "type": "circle_magic/circles",
