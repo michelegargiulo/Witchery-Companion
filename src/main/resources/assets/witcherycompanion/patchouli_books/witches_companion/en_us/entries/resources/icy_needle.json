@@ -1,0 +1,13 @@
+{
+  "name": "Icy Needle",
+  "icon": "witchery:icy_needle",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:icy_needle",
+      "text": "An Icy Needle is an occasional drop when a $(l:herbology/snowbell)Snowbell$(/l) plant is harvested. Icy Needles are used to make $(l:kettle/kettle_intro#frost)Brew of Frost$(/l) and $(l:resources/frozen_heart)Frozen Hearts$(/l)."
+    }
+  ]
+}

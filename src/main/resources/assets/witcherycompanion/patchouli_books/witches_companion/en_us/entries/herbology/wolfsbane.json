@@ -1,0 +1,13 @@
+{
+  "name": "Wolfsbane",
+  "icon": "witchery:wolfsbane",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:wolfsbane",
+      "text": "Its name is the clue, the $(l:observations/lycanthropy)Werewolf$(/l)'s secret it does undo. It grows in Tilled Earth in stages. Tall grass yields seeds."
+    }
+  ]
+}

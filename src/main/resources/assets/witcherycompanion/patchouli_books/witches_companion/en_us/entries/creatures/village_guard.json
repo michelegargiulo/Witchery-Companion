@@ -1,0 +1,33 @@
+{
+  "name": "Village Guard",
+  "icon": "witchery:village_guard",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:village_guard",
+      "text": "Protectors of Villages",
+      "offset": 0.4,
+      "scale": 0.8
+    },
+    {
+      "type": "text",
+      "text": "A Village Guards are, like $(item)Iron Golems$(), the protectors of larger villages. They look like armored villagers and carry a bow, which they use to attack threats to the Village. When not engaged in handling a threat, they will patrol their town."
+    },
+    {
+      "type": "text",
+      "text": "Village Guards will attack most hostile mobs and any player who attacks villagers, or have a too low reputation. They will also keep an eye out for other suspicious activities.$(br)Players with very high reputation will also be protected by the Guards, who might attack other players who attack them."
+    },
+    {
+      "type": "text",
+      "title": "Finding Village Guards",
+      "text": "Village Guards normally patrol their Villages, usually around $(item)Town Keeps$(), $(item)Watchtowers$() and $(item)Town Walls$()."
+    },
+    {
+      "type": "text",
+      "title": "Promoting Villagers",
+      "text": "Players may assign guard duty to a $(item)Villager$() if they are have maximum reputation in the Village. The Player has to give the Villager a $(item)Leather jacket$(). The Villager might refuse, so persistence may be required. A villager is more likely to refuse the more trades it has available. Other Villagers will always refuse. The promotion to Village Guard is permanent."
+    }
+  ]
+}

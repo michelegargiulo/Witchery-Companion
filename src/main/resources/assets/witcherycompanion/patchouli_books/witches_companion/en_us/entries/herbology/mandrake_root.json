@@ -1,0 +1,13 @@
+{
+  "name": "Mandrake Root",
+  "icon": "witchery:mandrake_root",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:mandrake_root",
+      "text": "It's parsnip-shaped root has the look of a man. Harvest at night, lest it waken and scream. It grows in tilled earth in stages. Tall grass yields seeds."
+    }
+  ]
+}

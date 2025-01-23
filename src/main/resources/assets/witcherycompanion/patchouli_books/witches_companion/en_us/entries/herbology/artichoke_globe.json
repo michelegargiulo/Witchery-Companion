@@ -1,0 +1,13 @@
+{
+  "name": "Artichoke Globe",
+  "icon": "witchery:artichoke_globe",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:artichoke_globe",
+      "text": "A water-bred plant with strange effect, fills the belly then empties it. It grows on still water in stages. Tall grass yields seeds."
+    }
+  ]
+}
