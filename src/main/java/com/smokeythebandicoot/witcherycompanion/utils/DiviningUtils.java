@@ -84,9 +84,14 @@ public class DiviningUtils {
 
     public static void setPlayerFromData(EntityPlayerMP player) {
 
+        if (!(player instanceof EntityPlayerMP)) {
+            return;
+        }
+
         PlayerExtendedData playerEx = WitcheryUtils.getExtension(player);
         IPlayerExtendedDataAccessor accessor = (IPlayerExtendedDataAccessor) playerEx;
         DivinationData divinationData = accessor.getDivinationData();
+        EntityPlayerMP serverPlayer = (EntityPlayerMP) player;
 
         // No divination data, simply return
         if (divinationData == null) {
@@ -114,7 +119,8 @@ public class DiviningUtils {
 
         // Set rotation head and game type
         player.setRotationYawHead(divinationData.getYawHead());
-        player.setGameType(divinationData.getGameType());
+        serverPlayer.setSpectatingEntity(serverPlayer);
+        serverPlayer.setGameType(divinationData.getGameType());
 
         player.sendPlayerAbilities();
     }
