@@ -3,6 +3,8 @@ package com.smokeythebandicoot.witcherycompanion.patches.blocks;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.player.DivinationData;
 import com.smokeythebandicoot.witcherycompanion.api.player.IPlayerExtendedDataAccessor;
+import com.smokeythebandicoot.witcherycompanion.network.CompanionNetworkChannel;
+import com.smokeythebandicoot.witcherycompanion.network.divination.PacketWitcheryDivination;
 import com.smokeythebandicoot.witcherycompanion.utils.DiviningUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,10 +27,7 @@ public class CrystalBallRework {
         Entity entity = event.getEntity();
         if (entity instanceof EntityPlayerMP) {
             EntityPlayerMP player = (EntityPlayerMP) entity;
-            //DiviningUtils.setPlayerFromData(player);
-            if (DiviningUtils.isDivining(player)) {
-                DiviningUtils.terminateDivination(player);
-            }
+            DiviningUtils.terminateDivination(player);
         }
     }
 
@@ -36,6 +35,7 @@ public class CrystalBallRework {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEntityLivingDeath(LivingDeathEvent event) {
         Entity entity = event.getEntityLiving();
+
         if (entity instanceof EntityPlayerMP) {
             EntityPlayerMP player = (EntityPlayerMP) entity;
             if (DiviningUtils.isDivining(player)) {
@@ -63,9 +63,10 @@ public class CrystalBallRework {
                 IPlayerExtendedDataAccessor cloneAccessor = (IPlayerExtendedDataAccessor) cloneExtendedData;
 
                 cloneAccessor.setDivinationData(originalData);
-                cloneExtendedData.processSync();
 
-                //DiviningUtils.terminateDivination(player);
+                CompanionNetworkChannel.NETWORK_CHANNEL.sendTo(
+                        new PacketWitcheryDivination.Message(player), (EntityPlayerMP) player
+                );
             }
         }
     }

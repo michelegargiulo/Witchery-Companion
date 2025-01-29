@@ -12,11 +12,12 @@ public class DivinationData {
     private double posX;
     private double posY;
     private double posZ;
+
     private float pitch;
     private float yaw;
     private float yawHead;
+
     private GameType gameType;
-    private long startTime;
     private UUID entityUuid;
     private boolean isDivining;
 
@@ -30,45 +31,43 @@ public class DivinationData {
         yaw = 0f;
         yawHead = 0f;
         gameType = GameType.SURVIVAL;
-        startTime = 0L;
         entityUuid = null;
         isDivining = false;
     }
 
-    public static void writeToNBT(DivinationData data, NBTTagCompound tag) {
+    public NBTTagCompound writeToNBT() {
 
-        if (data == null) {
-            return;
-        }
+        NBTTagCompound tag = new NBTTagCompound();
         NBTTagCompound divinationTag = new NBTTagCompound();
 
         // Position
         NBTTagCompound posTag = new NBTTagCompound();
-        posTag.setDouble("X", data.posX);
-        posTag.setDouble("Y", data.posY);
-        posTag.setDouble("Z", data.posZ);
+        posTag.setDouble("X", this.posX);
+        posTag.setDouble("Y", this.posY);
+        posTag.setDouble("Z", this.posZ);
         divinationTag.setTag("Position", posTag);
 
         // Rotation
         NBTTagCompound rotTag = new NBTTagCompound();
-        rotTag.setFloat("Pitch", data.pitch);
-        rotTag.setFloat("Yaw", data.yaw);
-        rotTag.setFloat("YawHead", data.yawHead);
+        rotTag.setFloat("Pitch", this.pitch);
+        rotTag.setFloat("Yaw", this.yaw);
+        rotTag.setFloat("YawHead", this.yawHead);
         rotTag.setTag("Rotation", rotTag);
 
         // GameType
-        divinationTag.setInteger("GameType", data.gameType.getID());
+        divinationTag.setInteger("GameType", this.gameType.getID());
 
         // Divination
-        divinationTag.setBoolean("IsDivining", data.isDivining);
+        divinationTag.setBoolean("IsDivining", this.isDivining);
 
         // StartTime and DivinatedEntity are not saved, as divination should be interrupted if player leaves,
         // thus they should not persist across world reloads or left and rejoining servers
 
         tag.setTag(DIVINATION_DATA_KEY, divinationTag);
+        return tag;
     }
 
-    public static DivinationData readFromNBT(NBTTagCompound tag) {
+    public DivinationData readFromNBT(NBTTagCompound tag) {
 
         if (tag == null || !tag.hasKey(DIVINATION_DATA_KEY)) {
             return null;
@@ -158,14 +157,6 @@ public class DivinationData {
 
     public void setGameType(GameType gameType) {
         this.gameType = gameType;
-    }
-
-    public long getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
     }
 
     public UUID getEntityUuid() {

@@ -58,12 +58,12 @@ public abstract class ItemTaglockKitMixin extends Item implements BloodStorage {
                 DiviningUtils.startDivination(player, witchery_Patcher$entityToSpectate);
             }
             // Player is already divining: check if entity is still alive, otherwise terminate divination
-            else {
+            /*else {
                 Entity divinedEntity = DiviningUtils.getDivinedEntity(player);
                 if (divinedEntity == null || divinedEntity.isDead) {
                     DiviningUtils.terminateDivination(player);
                 }
-            }
+            }*/
 
             // TODO:
             // Save extended data:

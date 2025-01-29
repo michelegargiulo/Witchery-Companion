@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.api.progress;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
+import com.smokeythebandicoot.witcherycompanion.network.progress.ProgressSync;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

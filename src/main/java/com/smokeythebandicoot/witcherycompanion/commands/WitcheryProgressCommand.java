@@ -5,7 +5,7 @@ import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressLockEvent;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressUnlockEvent;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressResetEvent;
-import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
+import com.smokeythebandicoot.witcherycompanion.network.progress.ProgressSync;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;

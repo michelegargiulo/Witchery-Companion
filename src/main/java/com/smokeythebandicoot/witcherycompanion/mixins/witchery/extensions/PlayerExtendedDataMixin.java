@@ -53,17 +53,17 @@ public abstract class PlayerExtendedDataMixin extends WitcheryExtendedData<Entit
         cir.setReturnValue(throwingSkill);
     }
 
-    /** This Mixin saves divination information to NBT data **/
-    @Inject(method = "write", remap = false, at = @At("HEAD"))
+
+    /*@Inject(method = "write", remap = false, at = @At("HEAD"))
     private void writeDivinationData(NBTTagCompound tag, CallbackInfo ci) {
         DivinationData.writeToNBT(witchery_Patcher$divinationData, tag);
     }
 
-    /** This Mixin reads divination information from NBT **/
+
     @Inject(method = "read", remap = false, at = @At("HEAD"))
     private void readDivinationData(NBTTagCompound tag, CallbackInfo ci) {
         witchery_Patcher$divinationData = DivinationData.readFromNBT(tag);
-    }
+    }*/
 
     @Override
     public void setDivinationData(DivinationData data) {

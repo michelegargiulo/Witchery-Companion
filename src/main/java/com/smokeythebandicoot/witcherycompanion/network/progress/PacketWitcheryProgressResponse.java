@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.network;
+package com.smokeythebandicoot.witcherycompanion.network.progress;
 
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgress;
@@ -44,7 +44,6 @@ public class PacketWitcheryProgressResponse {
         // Then deserialized (on the client)
         @Override
         public void fromBytes(ByteBuf buf) {
-            // Loop through buffer stream to build nutrition data
             progress = new WitcheryProgress();
             while(buf.isReadable()) {
                 String unlockedSecret = ByteBufUtils.readUTF8String(buf);

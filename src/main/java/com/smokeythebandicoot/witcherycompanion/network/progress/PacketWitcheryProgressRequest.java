@@ -1,5 +1,6 @@
-package com.smokeythebandicoot.witcherycompanion.network;
+package com.smokeythebandicoot.witcherycompanion.network.progress;
 
+import com.smokeythebandicoot.witcherycompanion.network.CompanionNetworkChannel;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.FMLCommonHandler;

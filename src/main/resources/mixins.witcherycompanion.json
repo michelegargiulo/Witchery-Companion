@@ -121,6 +121,7 @@
     "witchery.item.brews.ItemErosionBrewMixin",
     "witchery.item.WitcheryPoppetItems.ItemPoppetMixin",
     "witchery.mutation.MutationPatternMixin",
+    "witchery.network.PacketExtendedPlayerSyncMixin",
     "witchery.network.PacketSyncEntitySizeMixin",
     "witchery.network.medallion.PacketSummonFamiliarMixin",
     "witchery.network.resources.PacketUpdateBrewActionsMixin",

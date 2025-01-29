@@ -1,9 +1,13 @@
 package com.smokeythebandicoot.witcherycompanion.proxy;
 
+import com.smokeythebandicoot.witcherycompanion.api.player.DivinationData;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import vazkii.patchouli.api.PatchouliAPI;
@@ -36,6 +40,18 @@ public class ClientProxy extends CommonProxy {
             localWitcheryProgress = new WitcheryProgress();
         }
         return localWitcheryProgress;
+    }
+
+    public static void updateLocalDivinationStatus(DivinationData data) {
+        EntityPlayerSP player = Minecraft.getMinecraft().player;
+        player.setGameType(data.getGameType());
+        player.setPositionAndRotation(
+                data.getPosX(),
+                data.getPosY(),
+                data.getPosZ(),
+                data.getYaw(),
+                data.getPitch()
+        );
     }
 
     @Override

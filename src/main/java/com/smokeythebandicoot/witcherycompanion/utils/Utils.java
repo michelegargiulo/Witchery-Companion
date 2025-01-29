@@ -11,6 +11,12 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.ForgeInternalHandler;
+import net.minecraftforge.common.network.ForgeNetworkHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import net.msrandom.witchery.block.BlockAltar;
 import net.msrandom.witchery.block.entity.TileEntityAltar;
@@ -21,7 +27,17 @@ public class Utils {
 
     public static void logChat(Object msg) {
         WitcheryCompanion.logger.info(msg);
+
+        if (FMLCommonHandler.instance().getSide() != Side.CLIENT ||
+                Minecraft.getMinecraft().getIntegratedServer() == null) {
+            return;
+        }
+
         MinecraftServer server = Minecraft.getMinecraft().getIntegratedServer().getServer();
+
+        if (server == null)
+            return;
+
         server.commandManager.executeCommand(server, "/say " + msg.toString());
     }
 
