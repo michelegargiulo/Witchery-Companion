@@ -49,7 +49,6 @@ public class PacketWitcheryDivination {
             }
 
             ByteBufUtils.writeTag(buf, tag);
-            Utils.logChat("toBytes");
         }
 
         @Override
@@ -57,7 +56,6 @@ public class PacketWitcheryDivination {
             NBTTagCompound tag = ByteBufUtils.readTag(buf);
             this.data = new DivinationData();
             this.data.readFromNBT(tag);
-            Utils.logChat("fromBytes");
         }
 
     }
@@ -66,7 +64,6 @@ public class PacketWitcheryDivination {
 
         @Override
         public IMessage onMessage(final PacketWitcheryDivination.Message message, final MessageContext context) {
-            Utils.logChat("onMessage");
             FMLCommonHandler.instance().getWorldThread(context.netHandler).addScheduledTask(() -> {
                 // Update local player status
                 ClientProxy.updateLocalDivinationStatus(message.data);

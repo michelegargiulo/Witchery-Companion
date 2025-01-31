@@ -52,7 +52,7 @@ public class DivinationData {
         rotTag.setFloat("Pitch", this.pitch);
         rotTag.setFloat("Yaw", this.yaw);
         rotTag.setFloat("YawHead", this.yawHead);
-        rotTag.setTag("Rotation", rotTag);
+        divinationTag.setTag("Rotation", rotTag);
 
         // GameType
         divinationTag.setInteger("GameType", this.gameType.getID());
@@ -67,34 +67,31 @@ public class DivinationData {
         return tag;
     }
 
-    public DivinationData readFromNBT(NBTTagCompound tag) {
+    public void readFromNBT(NBTTagCompound tag) {
 
         if (tag == null || !tag.hasKey(DIVINATION_DATA_KEY)) {
-            return null;
+            return;
         }
 
         NBTTagCompound divinationData = tag.getCompoundTag(DIVINATION_DATA_KEY);
-        DivinationData data = new DivinationData();
 
         // Position
         NBTTagCompound positionData = divinationData.getCompoundTag("Position");
-        data.posX = positionData.getInteger("X");
-        data.posX = positionData.getInteger("Y");
-        data.posX = positionData.getInteger("Z");
+        this.posX = positionData.getInteger("X");
+        this.posY = positionData.getInteger("Y");
+        this.posZ = positionData.getInteger("Z");
 
         // Rotation
         NBTTagCompound rotationData = divinationData.getCompoundTag("Rotation");
-        data.pitch = rotationData.getFloat("Pitch");
-        data.yaw = rotationData.getFloat("Yaw");
-        data.yawHead = rotationData.getFloat("YawHead");
+        this.pitch = rotationData.getFloat("Pitch");
+        this.yaw = rotationData.getFloat("Yaw");
+        this.yawHead = rotationData.getFloat("YawHead");
 
         // GameType
-        data.gameType = GameType.getByID(divinationData.getInteger("GameType"));
+        this.gameType = GameType.getByID(divinationData.getInteger("GameType"));
 
         // Divination
-        data.isDivining = divinationData.getBoolean("IsDivining");
-
-        return data;
+        this.isDivining = divinationData.getBoolean("IsDivining");
     }
 
     public void setPositionFromVec3d(Vec3d vector) {

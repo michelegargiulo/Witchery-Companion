@@ -60,12 +60,6 @@ public class DiviningUtils {
         player.setGameType(GameType.SPECTATOR);
         serverPlayer.setSpectatingEntity(entity);
 
-        // Update client with the new data
-        Utils.logChat("divination start");
-        CompanionNetworkChannel.NETWORK_CHANNEL.sendTo(
-                new PacketWitcheryDivination.Message(player), serverPlayer
-        );
-
     }
 
     public static void terminateDivination(EntityPlayer player) {
@@ -89,18 +83,12 @@ public class DiviningUtils {
 
             // Set rotation head and game type
             player.setRotationYawHead(divinationData.getYawHead());
-            ((EntityPlayerMP) player).setSpectatingEntity(player);
+            //((EntityPlayerMP) player).setSpectatingEntity(player);
             player.setGameType(divinationData.getGameType());
         }
 
         // Reset divination data
-        accessor.setDivinationData(new DivinationData()); // Important: isDivining is set to false in constructor
-
-        Utils.logChat("divination end");
-        // Update client for new data
-        CompanionNetworkChannel.NETWORK_CHANNEL.sendTo(
-                new PacketWitcheryDivination.Message(player), (EntityPlayerMP) player
-        );
+        accessor.setDivinationData(null); // Important: isDivining is set to false in constructor
     }
 
     public static boolean isDivining(EntityPlayer player) {
@@ -116,7 +104,7 @@ public class DiviningUtils {
         IPlayerExtendedDataAccessor accessor = (IPlayerExtendedDataAccessor) playerEx;
         DivinationData divinationData = accessor.getDivinationData();
 
-        if (divinationData.getEntityUuid() == null || player.world.isRemote) {
+        if (divinationData == null || divinationData.getEntityUuid() == null || player.world.isRemote) {
             return null;
         }
 

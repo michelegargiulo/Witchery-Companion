@@ -12,12 +12,12 @@
     {
       "type": "text",
       "title": "Step-by-Step",
-      "text": "$(8)1.$() Throw the ingredients into a heated, water-filled Kettle. $(l:altar/altar)Altars$(/l) provide power, if needed.$(p)$(8)2.$() Fill the brew into an empty $(item)Glass Bottle$().$(p)Some brews require having a $(l:)Familiar$(/l) or being in a given $(item)dimension$()."
+      "text": "$(8)1.$() Throw the ingredients into a heated, water-filled Kettle. $(l:altar/altar)Altars$(/l) provide power, if needed.$(p)$(8)2.$() Fill the brew into an empty $(item)Glass Bottle$().$(p)Some brews require having a $(l:artifacts/familiars/intro)Familiar$(/l) or being in a given $(item)dimension$()."
     },
     {
       "type": "text",
       "title": "Brew Yield",
-      "text": "Proper clothing can increase the yield of brews the Kettle can output from a single recipe. Wearing $(l:)Witches Hat$(/l) and $(l:)Witches Robes$(/l) or having the $(l:brewing/brew_effects/decanting)Decanting$(/l) potion effect can increase the average yield."
+      "text": "Proper clothing can increase the yield of brews the Kettle can output from a single recipe. Wearing $(l:artifacts/clothing/witches_clothing#hat)Witches' Hat$(/l) and $(l:)Witches Robes$(/l) or having the $(l:brewing/brew_effects/decanting)Decanting$(/l) potion effect can increase the average yield."
     },
     {
       "type": "text",
@@ -32,7 +32,7 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_congealed_spirit",
-      "description": "Crafting ingredient for $(l:)Spectral Stone$(/l)."
+      "description": "Crafting ingredient for $(l:artifacts/misc/spectral_stone)Spectral Stone$(/l)."
     },
     {
       "type": "kettle/kettle_brew",

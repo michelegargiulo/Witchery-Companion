@@ -35,9 +35,7 @@ public abstract class EntityUtilMixin {
     private static void instantDeathFixDesync(EntityLivingBase instance, float v, Operation<Void> original) {
         if (instance instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) instance;
-            if (DiviningUtils.isDivining(player)) {
-                DiviningUtils.terminateDivination(player);
-            }
+            DiviningUtils.terminateDivination(player);
         }
         instance.setDead();
         original.call(instance, v);

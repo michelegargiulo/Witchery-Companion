@@ -38,9 +38,9 @@ public class CrystalBallRework {
 
         if (entity instanceof EntityPlayerMP) {
             EntityPlayerMP player = (EntityPlayerMP) entity;
-            if (DiviningUtils.isDivining(player)) {
+            //if (DiviningUtils.isDivining(player)) {
                 DiviningUtils.terminateDivination(player);
-            }
+            //}
         }
     }
 
@@ -52,7 +52,7 @@ public class CrystalBallRework {
             EntityPlayer player = (EntityPlayer) entity;
             EntityPlayer original = event.getOriginal();
 
-            if (DiviningUtils.isDivining(original)) {
+            //if (DiviningUtils.isDivining(original)) {
 
                 // Copy the data over and terminate the divination
                 PlayerExtendedData originalExtendedData = WitcheryUtils.getExtension(original);
@@ -63,11 +63,7 @@ public class CrystalBallRework {
                 IPlayerExtendedDataAccessor cloneAccessor = (IPlayerExtendedDataAccessor) cloneExtendedData;
 
                 cloneAccessor.setDivinationData(originalData);
-
-                CompanionNetworkChannel.NETWORK_CHANNEL.sendTo(
-                        new PacketWitcheryDivination.Message(player), (EntityPlayerMP) player
-                );
-            }
+            //}
         }
     }
 

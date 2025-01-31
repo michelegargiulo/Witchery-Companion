@@ -5,6 +5,7 @@ import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
+import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,14 +45,16 @@ public class ClientProxy extends CommonProxy {
 
     public static void updateLocalDivinationStatus(DivinationData data) {
         EntityPlayerSP player = Minecraft.getMinecraft().player;
+        Utils.logChat("From PROXY");
+        Utils.logChat(data.writeToNBT().toString());
         player.setGameType(data.getGameType());
-        player.setPositionAndRotation(
+        /*player.setPositionAndRotation(
                 data.getPosX(),
                 data.getPosY(),
                 data.getPosZ(),
                 data.getYaw(),
                 data.getPitch()
-        );
+        );*/
     }
 
     @Override
