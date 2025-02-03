@@ -1,0 +1,49 @@
+{
+  "name": "Shade of Leonard",
+  "icon": "witchery:leonards_urn1",
+  "category": "creatures",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:leonard",
+      "text": "Demon Brewer",
+      "offset": 0.15,
+      "scale": 0.95
+    },
+    {
+      "type": "text",
+      "title": "Shade of Leonard",
+      "text": "Leonard is the demonic being who is rumored to have taught a cadre of German witches their trade, and often presided over their sabbats."
+    },
+    {
+      "type": "text",
+      "title": "Summoning Leonard",
+      "text": "A coven skilled with the $(l:brewing/introduction#anointing_paste)Witches' Cauldron$(/l) can summon a Shade of the Demon by using the appropriate $(l:brewing/effects/summon_leonard)Brew$(/l). Once summoned, the Shade of Leonard will not be hostile, but won't leave without being forcefully removed, which is by no means an easy task."
+    },
+    {
+      "type": "text",
+      "title": "Special Effects",
+      "text": "Leonard will significantly increase the range of spells cast from a $(l:)Witch's Cauldron$() (removing the dimensional restriction of such castings). He will also increase the risk of side effects."
+    },
+    {
+      "type": "text",
+      "title": "Fighting Leonard",
+      "text": "Leonard is a Demon so powerful it does not perceive any physical being as a treat. When it's shade is summoned, it is not hostile, but if hit will respond accordingly. Leonard is a very skilled brewer and will use its arsenal of weapons in combat."
+    },
+    {
+      "type": "text",
+      "text": "Leonard might apply $(item)Death Coil$() potion effect: it has no side effects, but once it expires, the victim dies, unless the Shade has been defeated.$(br)It may also apply $(item)Heavy$() IV, $(item)Madness$() IV or $(item)Overhead$() IV potion effects, or clear the player of any positive Potion Effects. $(br)When on low health, it may also apply $(item)Resizing$(/l) Potion Effect.$(br)Leonard will also periodically clear the battlefield of any $(l:brewing/dispersal#liquid)Liquid$(/l) or $(l:brewing/dispersal#gas)Gas$(/l) Brews in a small radius around it."
+    },
+    {
+      "type": "text",
+      "title": "Lost Souls",
+      "text": "When Leonard has less than half of its health, it will start summoning $(l:creatures/lost_soul)Lost Souls$(/l). Each Lost Soul will last naturally for a short time span, but as long as they exist, Leonard cannot be harmed."
+    },
+    {
+      "type": "text",
+      "title": "Spells",
+      "text": "Last, Leonard is also capable of casting certain $(l:symbology/introduction)Spells$(/l) during the fight, such as Ignianima, Expelliarmus, Flipendo, Impedimenta and Confundus."
+    }
+  ]
+}

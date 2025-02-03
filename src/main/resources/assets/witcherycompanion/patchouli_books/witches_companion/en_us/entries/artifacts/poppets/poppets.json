@@ -27,7 +27,8 @@
     {
       "type": "spotlight",
       "item": "witchery:earth_protection_poppet",
-      "text": "The Earth Protection Poppet will redirect deadly falling damage from the bound player or creature to the poppet, destroying it in the process. Only deadly damage will be redirected to the poppet."
+      "text": "The Earth Protection Poppet will redirect deadly falling damage from the bound player or creature to the poppet, destroying it in the process. Only deadly damage will be redirected to the poppet.",
+      "anchor": "earth"
     },
     {
       "type": "spotlight",

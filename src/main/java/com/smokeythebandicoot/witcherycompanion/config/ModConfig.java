@@ -387,6 +387,12 @@ public class ModConfig {
             @Config.Name("Creative Statues - Tweak Tighten Bounding Boxes")
             public static boolean creativeStatues_tweakTightenBoundingBoxes = true;
 
+            @Config.Comment("If true, Crystal Ball divination feature camera-based approach will be replaced by a system that uses " +
+                    "the Vanilla Spectator Mode. This will grant the ability to divinate anywhere in the same dimension, loading chunks as needed.\n" +
+                    "More info on the wiki https://github.com/michelegargiulo/Witchery-Companion/wiki/Config-Details#crystal-ball---tweak-rework-with-spectator")
+            @Config.Name("Crystal Ball - Tweak Rework With Spectator")
+            public static boolean crystalBall_tweakSpectatorRework = true;
+
             @Config.Comment("Sets the Altar Power required for a Crystal Ball prediciton. Witchery default is 500.")
             @Config.Name("Crystal Ball - Tweak Required Power")
             @Config.RangeInt(min = 1, max = 10000)
@@ -661,6 +667,12 @@ public class ModConfig {
             @Config.Name("Seer Stone - Tweak Unprint Throwing Skills")
             public static boolean seerStone_tweakUnprintThrowingSkill = false;
 
+            @Config.Comment("Tweaks the max item use duration (how many ticks can the item be used for) for Taglock Kits. Used only in conjunction " +
+                    "with Crystal Balls divining feature. Larger values will allow divining a creature for longer")
+            @Config.Name("Seer Stone - Tweak Unprint Throwing Skills")
+            @Config.RangeInt(min = 1, max = 12000)
+            public static int tweakMaxItemUseDuration = 1200;
+
             @Config.Comment("If true, fixes a crash that happens when a Voodoo Protection Poppet protects its owner")
             @Config.Name("Voodoo Protection Poppet - Fix Crash on Protect")
             public static boolean voodooProtectionPoppet_fixCrashOnCurseProtect = true;
@@ -748,6 +760,10 @@ public class ModConfig {
             @Config.Comment("Fixes Potion of Fortune not working because of wrong TileEntity check")
             @Config.Name("Fortune Potion - Fix No Effect")
             public static boolean fortunePotion_fixNoEffect = true;
+
+            @Config.Comment("If true, player in Spectator Mode won't be killed by the Mortal Coil potion, like players in Creative mode")
+            @Config.Name("Mortal Coil - Tweak Spare Spectators")
+            public static boolean mortalCoil_tweakSpareSpectators = false;
 
             @Config.Comment("Fixes Potion of Resizing not working on players")
             @Config.Name("Resizing Potion - Fix No Effect On Players")
@@ -1353,6 +1369,18 @@ public class ModConfig {
                 @Config.Name("Altar - Show Infinity Booster")
                 public static boolean altar_enableInfinity = false;
 
+                @Config.Comment("If true, shows a page describing the Bottle of Warm Blood. Non-craftable item")
+                @Config.Name("Artifacts - Enable Bottle of Warm Blood")
+                public static boolean artifacts_enableBottleWarmBlood = false;
+
+                @Config.Comment("If true, shows a page describing the Bottle of Lilith's Blood. Non-craftable item")
+                @Config.Name("Artifacts - Enable Lilith's Blood")
+                public static boolean artifacts_enableLilithsBlood = false;
+
+                @Config.Comment("If true, shows a page describing the workings of the Silver Vat")
+                @Config.Name("Artifacts - Enable Silver Vat")
+                public static boolean artifacts_enableSilverVat = false;
+
                 @Config.Comment("If true, shows more info for Bottling Skill and Expertise")
                 @Config.Name("Brewing - Expertise Extension")
                 public static boolean brewing_enableExpertiseExtension = false;
@@ -1456,6 +1484,10 @@ public class ModConfig {
                 @Config.Name("Observations - Add Vampirism Progress")
                 public static boolean observations_enableVampirismProgress = false;
 
+                @Config.Comment("If true, adds an entry to the Resources section, describing Silver Deposits.")
+                @Config.Name("Resources - Enable Silver Deposits")
+                public static boolean resources_enableSilverDeposits = false;
+
                 @Config.Comment("If true, adds a page regarding the Statue of The Goddess. Being considered an almost-creative item, some pack makers " +
                         "might want to disable its recipe or hide it altogether. Keep this flag to false if it's the case.")
                 @Config.Name("Statues - Show Statue of The Goddess")
@@ -1544,6 +1576,9 @@ public class ModConfig {
 
                 // Companion Flags
                 flags.put("altar/show_infinity", Flags.altar_enableInfinity);
+                flags.put("artifacts/devices/enable_silver_vat", Flags.artifacts_enableSilverVat);
+                flags.put("artifacts/misc/enable_bottle_warm_blood", Flags.artifacts_enableBottleWarmBlood);
+                flags.put("artifacts/misc/enable_bottle_lilith_blood", Flags.artifacts_enableLilithsBlood);
                 flags.put("brewing/expertise", Flags.brewing_enableExpertiseExtension);
                 flags.put("brewing/extended_dispersal", Flags.brewing_extendedDispersal);
                 flags.put("brewing/rituals", Flags.brewing_enableRitualsExtension);
@@ -1570,6 +1605,7 @@ public class ModConfig {
                 flags.put("observations/revamp_book", PatchouliIntegration.common_replaceImmortalsBook);
                 flags.put("observations/show_vampirism_intro", Flags.observations_enableVampirismIntro);
                 flags.put("observations/show_vampirism_progress", Flags.observations_enableVampirismProgress);
+                flags.put("resources/enable_silver_deposits", Flags.resources_enableSilverDeposits);
                 flags.put("statues/show_goddess", Flags.statues_showGoddess);
                 flags.put("statues/show_broken_curses", Flags.statues_showBrokenCurses);
                 flags.put("statues/show_occluded_summons", Flags.statues_showOccludedSummons);

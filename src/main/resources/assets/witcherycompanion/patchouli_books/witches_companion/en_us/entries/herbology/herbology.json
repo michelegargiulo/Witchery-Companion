@@ -17,7 +17,8 @@
     {
       "type": "spotlight",
       "item": "witchery:ember_moss",
-      "text": "A plant with a unique defense, when disturbed it bursts into flames. Harvest with shears. It can live anywhere, but spreads only on $(item)grass$(), $(item)dirt$() and $(item)sand$(). Mutate this plant from another with $(item)Mutandis$()."
+      "text": "A plant with a unique defense, when disturbed it bursts into flames. Harvest with shears. It can live anywhere, but spreads only on $(item)grass$(), $(item)dirt$() and $(item)sand$(). Mutate this plant from another with $(item)Mutandis$().",
+      "anchor": "ember_moss"
     },
     {
       "type": "spotlight",
@@ -98,7 +99,8 @@
     {
       "type": "spotlight",
       "item": "witchery:garlic",
-      "text": "A flavor for food at day, at night it keeps vampires away. It grows in tilled earth in stages. Tall grass yields seeds."
+      "text": "A flavor for food at day, at night it keeps vampires away. It grows in tilled earth in stages. Tall grass yields seeds.",
+      "anchor": "garlic"
     },
     {
       "type": "spotlight",

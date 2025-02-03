@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:spectral_stone_necromancy",
       "title": "Spectral Stone",
-      "description": "Creates a $(l:)Spectral Stone$(/l). Perform at night."
+      "description": "Creates a $(l:artifacts/misc/spectral_stone)Spectral Stone$(/l). Perform at night."
     }
   ]
 }

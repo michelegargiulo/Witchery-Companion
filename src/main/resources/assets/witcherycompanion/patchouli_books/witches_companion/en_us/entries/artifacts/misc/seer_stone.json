@@ -17,7 +17,7 @@
     {
       "type": "text",
       "title": "Divinate Players",
-      "text": "The Seer Stone can be used on other players to reveal if they are afflicted by a $(item)Curse$() like the $(l:circle_magic/curses/wolf)Curse of the Wolf$(/l).$(br)It will also show more information about them, like if they have a Coven or $(l:)Familiar$(/l), how much time they can $(l:dimensions/spirit_world#manifestation)Manifest$(/l) and their skills.$(p)Sneak-using the stone will show the same information for the bearer of the Seer Stone."
+      "text": "The Seer Stone can be used on other players to reveal if they are afflicted by a $(item)Curse$() like the $(l:circle_magic/curses/wolf)Curse of the Wolf$(/l).$(br)It will also show more information about them, like if they have a Coven or $(l:artifacts/familiars/intro)Familiar$(/l), how much time they can $(l:dimensions/spirit_world#manifestation)Manifest$(/l) and their skills.$(p)Sneak-using the stone will show the same information for the bearer of the Seer Stone."
     }
   ]
 }

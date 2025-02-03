@@ -1,0 +1,13 @@
+{
+  "name": "Silver Deposits",
+  "icon": "witchery:silver_deposits",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:silver_deposits",
+      "text": "Silver Deposits are small nuggets of Silver that are collected by $(l:artifacts/devices/silver_vat)Silver Vats$(/l) when smelting $(item)Gold Ore$(). They are mostly used for offensive and defensive measures against $(l:observations/lycanthropy)Werewolves$(/l)."
+    }
+  ]
+}

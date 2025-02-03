@@ -1,0 +1,15 @@
+{
+  "name": "Disturbed Cotton",
+  "icon": "witchery:disturbed_cotton",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "generic/secret_spotlight",
+      "item": "witchery:disturbed_cotton",
+      "description": "Disturbed cotton is obtained by harvesting $(l:herbology/wispy_cotton)Wispy Cotton$(/l) in the $(l:dimensions/spirit_world)Spirit World$(/l) when one or more players are experiencing nightmares. This cotton can be spun into $(l:resources/tormented_twine)Tormented Twine$(/l) in the $(l:artifacts/devices/spinning_wheel)Spinning Wheel$(/l), and cannot be replanted.",
+      "secret_key": "witcherycompanion:dimensions/spirit_world",
+      "_comment": "Unlocked when the player enters the Spirit World"
+    }
+  ]
+}

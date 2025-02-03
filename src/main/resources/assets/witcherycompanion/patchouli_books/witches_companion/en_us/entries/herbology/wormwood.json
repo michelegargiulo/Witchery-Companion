@@ -1,0 +1,13 @@
+{
+  "name": "Wormwood",
+  "icon": "witchery:wormwood",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:wormwood",
+      "text": "Grows in a tall plant on tilled earth. The plant is renewable, but initially it must be $(l:mutations/wormwood_seeds)mutated$(/l) from $(item)Wheat$() and $(l:herbology/wispy_cotton)Wispy Cotton$(/l)."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Dream Weaver of Fleet Foot",
+  "icon": "witchery:fleet_foot_dream_weaver",
+  "category": "artifacts/weavers",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:fleet_foot_dream_weaver",
+      "text": "When hung next to a $(item)Bed$(), this Dream Weaver will add $(item)Swiftness$() to a player when they wake up from a good nights sleep. If the Dream Weaver is corrupted by a nearby $(l:artifacts/dream_weavers/nightmares)Dream Weaver of Nightmares$(/l) the Weaver will instead inflict $(item)Slowness$()."
+    }
+  ]
+}

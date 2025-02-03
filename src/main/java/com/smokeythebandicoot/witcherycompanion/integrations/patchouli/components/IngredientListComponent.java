@@ -173,7 +173,7 @@ public class IngredientListComponent implements ICustomComponent {
 
                 curX += 16 + this.spacing;
                 lineIndex++;
-                if (lineIndex >= lineLength) {
+                if (lineIndex > lineLength) {
                     lineIndex = 1;
                     curX = this.x;
                     curY += 16 + this.spacing;

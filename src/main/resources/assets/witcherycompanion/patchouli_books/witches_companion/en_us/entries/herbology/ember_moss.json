@@ -1,0 +1,13 @@
+{
+  "name": "Ember Moss",
+  "icon": "witchery:ember_moss",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:ember_moss",
+      "text": "A plant with a unique defense, when disturbed it bursts into flames. Harvest with shears. It can live anywhere, but spreads only on $(item)grass$(), $(item)dirt$() and $(item)sand$(). Mutate this plant from another with $(item)Mutandis$()."
+    }
+  ]
+}

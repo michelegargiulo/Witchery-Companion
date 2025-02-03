@@ -5,8 +5,9 @@
   "sortnum": 0,
   "pages": [
     {
-      "type": "text",
-      "title": "Collecting Fumes",
+      "type": "spotlight",
+      "title": "Witches' Oven",
+      "item": "witchery:witches_oven",
       "text": "The $(item)Witches Oven$() gives a practitioner of the art the opportunity to collect the fumes that may be produced when cooking.$(2br)Remember that the oven cannot smelt $(item)ore$(), but it does cook a little faster than a $(item)furnace$()."
     },
     {

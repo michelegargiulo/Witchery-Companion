@@ -8,6 +8,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.recipe.brazier.BrazierEffectRecipe;
+import net.msrandom.witchery.recipe.brazier.BrazierGraveyardMistRecipe;
 import net.msrandom.witchery.recipe.brazier.BrazierRecipe;
 import net.msrandom.witchery.recipe.brazier.BrazierSummoningRecipe;
 
@@ -58,6 +59,23 @@ public class BrazierApi {
         inputs.add(input3);
 
         BrazierEffectRecipe recipe = new BrazierEffectRecipe(id, inputs, burnTime, needsPower, false, potion, radius);
+        recipesToAdd.put(id, recipe);
+    }
+
+    public static void registerGraveyardMistRecipe(Ingredient input1, Ingredient input2, Ingredient input3, int burnTime, boolean needsPower) {
+        registerGraveyardMistRecipe(null, input1, input2, input3, burnTime, needsPower);
+    }
+
+    public static void registerGraveyardMistRecipe(@Nullable ResourceLocation id, Ingredient input1, Ingredient input2, Ingredient input3, int burnTime, boolean needsPower) {
+        // Generate random id if one is not provided
+        if (id == null) id = Utils.generateRandomRecipeId("braziergraveyardmist_");
+
+        NonNullList<Ingredient> inputs = NonNullList.create();
+        inputs.add(input1);
+        inputs.add(input2);
+        inputs.add(input3);
+
+        BrazierGraveyardMistRecipe recipe = new BrazierGraveyardMistRecipe(id, inputs, burnTime, needsPower, false);
         recipesToAdd.put(id, recipe);
     }
 

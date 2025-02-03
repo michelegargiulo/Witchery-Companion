@@ -1,0 +1,14 @@
+{
+  "name": "Alder",
+  "icon": "witchery:alder_sapling",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:alder_sapling",
+      "text": "The alder wood appears to bleed when cut, this tree brings misfortune to all. Mutate the sapling from another plant with $(l:artifacts/misc/mutandis)Mutandis$(/l).",
+      "anchor": "alder"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Vampire Clothing",
+  "icon": "witchery:vampire_corset",
+  "category": "artifacts/clothing",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Vampire Clothing",
+      "text": "Vampires have a thing about looking dapper, and they have a few clothing options available to them that is made from a special material that gives some bonuses to their normal skills. Vampire clothing is made from $(l:resources/woven_cruor)Woven Cruor$(/l). Vampires often accompany their special clothing with a $(l:artifacts/weapons/cane_sword)Cane Sword$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Light & Medium Armors",
+      "text": "Vampire clothing falls into two categories, either $(l:artifacts/clothing/vampire_clothing#light)Light Armor$() or $(l:artifacts/clothing/vampire_clothing#medium)Medium Armor$(). Medium armor gives more protection, but offers less bonuses than a full set of light armor. A Vampire may wear normal heavy armor but then they will have no bonuses in exchange for better armor protection. "
+    },
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Light Armor",
+      "ingredients": "witchery:vampire_top_hat;witchery:vampire_coat;witchery:vampire_trousers;witchery:vampire_shoes;witchery:vampire_veil_hat;witchery:vampire_corset;witchery:vampire_skirt;witchery:vampire_heels",
+      "description": "Armor values like $(item)Leather$(), durability of $(item)Iron$(), repaired with $(item)Leather$(). Chest and Hat can be dyed.",
+      "anchor": "light"
+    },
+    {
+      "type": "text",
+      "title": "Special Properties",
+      "text": "This set has the following bonuses depending on the number of pieces worn:$(p)$(8)> $()$(bold)2 Pieces$(): Drink Speed Boost$(br)$(8)> $()$(bold)3 Pieces$(): Basic Fire Resistance & Mesmerize Duration Boost$(br)$(8)> $()$(bold)4 Pieces$(): Enhanced Fire Resistance."
+    },
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Medium Armor",
+      "ingredients": "witchery:vampire_helmet;witchery:vampire_chestplate;witchery:vampire_leggings;witchery:vampire_boots",
+      "description": "Armor values like $(item)Chain$(), durability of $(item)Iron$(), repaired with $(item)Leather$(). Chest can be dyed.",
+      "anchor": "medium"
+    },
+    {
+      "type": "text",
+      "title": "Special Properties",
+      "text": "This set has the following bonuses depending on the number of pieces worn:$(p)$(8)> $()$(bold)2 Pieces$(): Basic Flame Protection."
+    }
+  ]
+}

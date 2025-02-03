@@ -11,13 +11,14 @@
     {
       "type": "crafting",
       "recipe": "witchery:anointing_paste",
-      "text": "A Witch's Cauldron is made by placing a normal $(o)Cauldron$() in the world and using $(thing)$(o)Anointing Paste$() on it"
+      "text": "A Witch's Cauldron is made by placing a normal $(item)Cauldron$() in the world and using $(l:resources/anointing_paste)Anointing Paste$(/l) on it",
+      "anchor": "anointing_paste"
     },
     {
       "type": "brewing/cauldron_clear",
       "title": "Cauldron: Emptying",
       "top_text": "Empty a cauldron by dropping in one of the following:",
-      "bottom_text": "$(italic)The witch and nearby structures will not be damaged$()",
+      "bottom_text": "$(italic)The Witch and nearby structures will not be damaged$()",
       "item1": "witchery:gypsum",
       "item1_desc": "Clear cauldron",
       "item2": "witchery:quicklime",

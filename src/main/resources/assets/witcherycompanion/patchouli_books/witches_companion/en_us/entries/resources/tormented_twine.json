@@ -1,0 +1,13 @@
+{
+  "name": "Tormented Twine",
+  "icon": "witchery:tormented_twine",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:tormented_twine",
+      "text": "A mystical fiber used as a crafting ingredient for $(l:artifacts/dream_weavers/nightmares)Dream Weavers$(/l) and $(l:conjuration/fetish)Fetishes$(/l)."
+    }
+  ]
+}

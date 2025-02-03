@@ -1,0 +1,13 @@
+{
+  "name": "Spanish Moss",
+  "icon": "witchery:spanish_moss",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:spanish_moss",
+      "text": "A Creeper-like moss that grows best on trees, forms the best $(l:artifacts/poppets/poppets)Poppets$(/l) that can be. Harvest with $(item)Shears$() to keep it intact. Mutate this plant from another with $(l:artifacts/misc/mutandis)Mutandis$(/l)."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Glint Weed",
+  "icon": "witchery:glint_weed",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:glint_weed",
+      "text": "Emits an unearthly glow that illuminates it's surround. It can live anywhere, but spreads only on $(item)grass$(), $(item)dirt$() and $(item)sand$(). Mutate this plant from another with $(item)Mutandis$()."
+    }
+  ]
+}

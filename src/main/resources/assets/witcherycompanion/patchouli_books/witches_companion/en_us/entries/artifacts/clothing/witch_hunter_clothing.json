@@ -19,7 +19,7 @@
     {
       "type": "text",
       "title": "Other Properties",
-      "text": "The Witch Hunter Armor causes all $(l:)Protection Poppets$(/l) to not function.$(p)The effects of $(l:)Nullifying Bolts$(/l) can only occur if the shooter is fully clad in Wtich Hunter Armor."
+      "text": "The Witch Hunter Armor causes all $(l:artifacts/poppets/poppets#earth)Protection Poppets$(/l) to not function.$(p)The effects of $(l:artifacts/weapons/crossbow_pistol_bolts#nullifying)Nullifying Bolts$(/l) can only occur if the shooter is fully clad in Wtich Hunter Armor."
     },
     {
       "type": "artifacts/decorative_set",
