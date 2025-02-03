@@ -43,32 +43,46 @@ public class CommonProxy {
         TinkersUtils.isTicLoaded = Loader.isModLoaded(Mods.TINKERS_CONSTRUCT);
         TinkersUtils.isCoALoaded = Loader.isModLoaded(Mods.CONSTRUCT_ARMORY);
 
+        // Soul bres fix
         if (ModConfig.PatchesConfiguration.InfusionTweaks.soulBrews_fixPersistency)
             MinecraftForge.EVENT_BUS.register(SymbolEffectPatch.INSTANCE);
 
+        // rite of Prior Incarnation fix
         if (ModConfig.PatchesConfiguration.RitesTweaks.ritePriorIncarnation_fixNbtNotRemoved)
             MinecraftForge.EVENT_BUS.register(CommonEventsPatch.INSTANCE);
 
+        // Patch familiars
         if (ModConfig.PatchesConfiguration.EntityTweaks.familiarCat_fixOwnerDisconnect ||
             ModConfig.PatchesConfiguration.EntityTweaks.familiarOwl_fixOwnerDisconnect ||
             ModConfig.PatchesConfiguration.EntityTweaks.familiarToad_fixOwnerDisconnect)
             MinecraftForge.EVENT_BUS.register(FamiliarPatches.getInstance());
 
+        // Quark fix
         if (ModConfig.IntegrationConfigurations.QuarkIntegration.fixMandrakesRightClickHarvest &&
                 Loader.isModLoaded(Mods.QUARK))
             MinecraftForge.EVENT_BUS.register(BlockMandrakeCropIntegration.INSTANCE);
 
+        // Thaumcraft fix
         if (ModConfig.IntegrationConfigurations.ThaumcraftIntegration.enableThaumcraftIntegration &&
                 Loader.isModLoaded(Mods.THAUMCRAFT))
             MinecraftForge.EVENT_BUS.register(ThaumcraftIntegration.class);
 
-        if (ModConfig.IntegrationConfigurations.ThaumcraftIntegration.enableThaumcraftIntegration &&
-                Loader.isModLoaded(Mods.THAUMCRAFT))
-            MinecraftForge.EVENT_BUS.register(ThaumcraftIntegration.class);
-
+        // TheOneProbe
         if (ModConfig.IntegrationConfigurations.TopIntegration.enableTopIntegration && Loader.isModLoaded(Mods.TOP))
             FMLInterModComms.sendFunctionMessage(Mods.TOP, "getTheOneProbe", TOPPlugin.class.getName());
 
+        // Tinkers + ConArm
+        if (ModConfig.IntegrationConfigurations.TinkersIntegration.TinkersConstructIntegration.enableTinkersIntegration &&
+                Loader.isModLoaded(Mods.TINKERS_CONSTRUCT)) {
+
+            // Integrate Tinkers
+            Integration.registerTinkers();
+
+            // If ConArm enabled and installed, also integrate it
+            if (ModConfig.IntegrationConfigurations.TinkersIntegration.ConstructArmoryIntegration.enableConarmIntegration &&
+                    Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
+                Integration.registerConarm();
+        }
     }
 
     public void init(FMLInitializationEvent event) {
@@ -90,16 +104,6 @@ public class CommonProxy {
         if (Loader.isModLoaded(Mods.PATCHOULI)) {
             MinecraftForge.EVENT_BUS.register(PatchouliApiIntegration.class);
         }
-
-        // Enables integration with TiC
-        if (ModConfig.IntegrationConfigurations.TinkersIntegration.TinkersConstructIntegration.enableTinkersIntegration &&
-                Loader.isModLoaded(Mods.TINKERS_CONSTRUCT))
-            Integration.registerTinkers();
-
-        // Enables integration with ConArm
-        if (ModConfig.IntegrationConfigurations.TinkersIntegration.ConstructArmoryIntegration.enableConarmIntegration &&
-                Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
-            Integration.registerConarm();
     }
 
     public void load(FMLLoadCompleteEvent event) {

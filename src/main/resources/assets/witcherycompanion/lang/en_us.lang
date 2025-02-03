@@ -52,3 +52,12 @@ witcherycompanion.probe.familiar_power.curse_mastery.name=Curse Mastery (Cat Fam
 
 ## Optional string for optional items in Rites
 witcherycompanion.tooltip.optional=§r (Optional)
+
+# Tinkers Integration
+material.koboldite.name=Koboldite
+material.impregnated_leather.name=Impregnated Leather
+material.nullified_leather.name=Nullified Leather
+material.woven_cruor.name=Woven Cruor
+material.silver.name=Silver
+
+modifier.witcherycompanion:goblins_favor_armor.name=Goblin's Favor

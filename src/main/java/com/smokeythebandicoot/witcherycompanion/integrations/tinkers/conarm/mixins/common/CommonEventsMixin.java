@@ -3,7 +3,6 @@ package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.mix
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
-import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.TinkersUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.msrandom.witchery.common.CommonEvents;
@@ -24,7 +23,7 @@ public abstract class CommonEventsMixin {
     @WrapOperation(method = "onLivingSetAttackTarget", remap = false, at = @At(value = "INVOKE",
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;", ordinal = 0))
     private static Item witchClothingTraitIgnoreCreeper(ItemStack instance, Operation<Item> original) {
-        if (TinkerUtil.hasTrait(instance.getTagCompound(), Integration.TRAIT_ARMOR_WITCH_CLOTHING.identifier)) {
+        if (TinkerUtil.hasTrait(instance.getTagCompound(), Integration.TRAIT_WITCH_CLOTHING.identifier)) {
             return WitcheryEquipmentItems.WITCH_ROBES;
         }
         return original.call(instance);
@@ -34,7 +33,7 @@ public abstract class CommonEventsMixin {
     @WrapOperation(method = "onLivingSetAttackTarget", remap = false, at = @At(value = "INVOKE",
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;", ordinal = 1))
     private static Item necromancerClothingTraitIgnoreCreeper(ItemStack instance, Operation<Item> original) {
-        if (TinkerUtil.hasTrait(instance.getTagCompound(), Integration.TRAIT_ARMOR_WITCH_CLOTHING.identifier)) {
+        if (TinkerUtil.hasTrait(instance.getTagCompound(), Integration.TRAIT_WITCH_CLOTHING.identifier)) {
             return WitcheryEquipmentItems.NECROMANCERS_ROBES;
         }
         return original.call(instance);

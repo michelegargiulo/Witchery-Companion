@@ -32,7 +32,7 @@ public abstract class ItemWitchesClothesMixin extends ItemArmor implements Invis
                 headStack.getItem() instanceof ItemWitchesClothes ||
                         TinkerUtil.hasTrait(
                                 headStack.getTagCompound(),
-                                Integration.TRAIT_ARMOR_WITCH_CLOTHING.getIdentifier()
+                                Integration.TRAIT_WITCH_CLOTHING.getIdentifier()
                         )
         );
     }
@@ -44,11 +44,11 @@ public abstract class ItemWitchesClothesMixin extends ItemArmor implements Invis
                 chestStack.getItem() instanceof ItemWitchesClothes ||
                         TinkerUtil.hasTrait(
                                 chestStack.getTagCompound(),
-                                Integration.TRAIT_ARMOR_WITCH_CLOTHING.getIdentifier()
+                                Integration.TRAIT_WITCH_CLOTHING.getIdentifier()
                         ) ||
                         TinkerUtil.hasModifier(
                                 chestStack.getTagCompound(),
-                                Integration.MODIFIER_ARMOR_NECROMANCER.getIdentifier()
+                                Integration.TRAIT_NECROMANCER.getIdentifier()
                         )
         );
     }
@@ -71,7 +71,7 @@ public abstract class ItemWitchesClothesMixin extends ItemArmor implements Invis
         }) {
             ItemStack stack = entity.getItemStackFromSlot(slot);
             if (stack.getItem() instanceof ItemWitchesClothes ||
-                    TinkerUtil.hasTrait(stack.getTagCompound(), Integration.TRAIT_ARMOR_BARKED.getIdentifier())
+                    TinkerUtil.hasTrait(stack.getTagCompound(), Integration.TRAIT_BARKED.getIdentifier())
             ) {
                 level += 2;
             }

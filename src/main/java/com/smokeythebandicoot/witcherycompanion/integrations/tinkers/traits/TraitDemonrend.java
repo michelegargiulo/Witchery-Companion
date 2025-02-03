@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.modifiers;
+package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.traits;
 
 import c4.conarm.lib.modifiers.ArmorModifierTrait;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
@@ -10,9 +10,9 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.msrandom.witchery.util.CreatureUtil;
 import slimeknights.tconstruct.library.modifiers.IToolMod;
 
-public class ModifierArmorDemonrend extends ArmorModifierTrait {
+public class TraitDemonrend extends ArmorModifierTrait {
 
-    public ModifierArmorDemonrend() {
+    public TraitDemonrend() {
         super(WitcheryCompanion.prefix("demonrend"), 0xdb2100, 1, 1);
     }
 
@@ -30,8 +30,8 @@ public class ModifierArmorDemonrend extends ArmorModifierTrait {
     @Override
     public boolean canApplyTogether(IToolMod otherModifier) {
         return super.canApplyTogether(otherModifier) &&
-                !(otherModifier instanceof ModifierArmorGarliced) &&
-                !(otherModifier instanceof ModifierArmorSilvered)
+                !(otherModifier instanceof TraitGarliced) &&
+                !(otherModifier instanceof TraitSilvered)
                 ;
     }
 

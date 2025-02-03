@@ -1,10 +1,11 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.modifiers;
+package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.traits;
 
 import c4.conarm.common.items.armor.Helmet;
 import c4.conarm.lib.modifiers.ArmorModifierTrait;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import net.minecraft.item.ItemStack;
 import slimeknights.tconstruct.library.modifiers.IToolMod;
+import slimeknights.tconstruct.tools.tools.Pickaxe;
 
 
 /**
@@ -12,17 +13,17 @@ import slimeknights.tconstruct.library.modifiers.IToolMod;
  * and if it is, its effects will be applied:
  * - Unlock Baba's bonus when brewing in Kettle
  * **/
-public class ModifierArmorBabasBless extends ArmorModifierTrait {
+public class TraitGoblinsFavor extends ArmorModifierTrait {
 
-    public static final String id = WitcheryCompanion.prefix("babas_bless");
+    public static final String id = WitcheryCompanion.prefix("goblins_favor");
 
-    public ModifierArmorBabasBless() {
-        super(id, 0xdd20dd);
+    public TraitGoblinsFavor() {
+        super(id, 0x61aadf);
     }
 
     @Override
     public boolean canApplyCustom(ItemStack stack) {
-        return stack.getItem() instanceof Helmet; // Can only be applied to helmets
+        return stack.getItem() instanceof Pickaxe; // Can only be applied to helmets
     }
 
     @Override

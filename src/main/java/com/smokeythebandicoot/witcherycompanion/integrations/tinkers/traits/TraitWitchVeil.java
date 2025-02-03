@@ -1,13 +1,13 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.traits;
+package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.traits;
 
 import c4.conarm.lib.traits.AbstractArmorTrait;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class TraitArmorWitchVeil extends AbstractArmorTrait {
+public class TraitWitchVeil extends AbstractArmorTrait {
 
-    public TraitArmorWitchVeil() {
+    public TraitWitchVeil() {
         super(WitcheryCompanion.prefix("witchs_veil"), 0xe36ea8);
     }
 

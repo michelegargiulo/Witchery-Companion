@@ -30,7 +30,7 @@ public abstract class BlockKettleMixin extends BlockContainer {
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
     private Item checkWitchHatTrait(ItemStack instance, Operation<Item> original) {
         if (instance != null && TinkerUtil.hasTrait(instance.getTagCompound(),
-                Integration.TRAIT_ARMOR_WITCH_CLOTHING.getIdentifier())) {
+                Integration.TRAIT_WITCH_CLOTHING.getIdentifier())) {
             return WitcheryEquipmentItems.WITCH_HAT;
         }
         return original.call(instance);
@@ -42,7 +42,7 @@ public abstract class BlockKettleMixin extends BlockContainer {
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
     private Item checkBabasHatTrait(ItemStack instance, Operation<Item> original) {
         if (instance != null && TinkerUtil.hasTrait(instance.getTagCompound(),
-                Integration.MODIFIER_ARMOR_BABAS_BLESS.getIdentifier())) {
+                Integration.TRAIT_BABAS_BLESS.getIdentifier())) {
             return WitcheryEquipmentItems.BABAS_HAT;
         }
         return original.call(instance);
@@ -55,7 +55,7 @@ public abstract class BlockKettleMixin extends BlockContainer {
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
     private Item checkBabasHatTraitWithFamiliar(ItemStack instance, Operation<Item> original) {
         if (instance != null && TinkerUtil.hasTrait(instance.getTagCompound(),
-                Integration.MODIFIER_ARMOR_BABAS_BLESS.getIdentifier())) {
+                Integration.TRAIT_BABAS_BLESS.getIdentifier())) {
             return WitcheryEquipmentItems.BABAS_HAT;
         }
         return original.call(instance);

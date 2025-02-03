@@ -14,7 +14,7 @@ public class TinkersUtils {
     public static boolean isBabaHatWorn(EntityPlayer player) {
         ItemStack helmet = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
         return helmet.getItem() == WitcheryEquipmentItems.WITCH_HAT ||
-                isCoALoaded && TinkerUtil.hasModifier(helmet.getTagCompound(), Integration.MODIFIER_ARMOR_BABAS_BLESS.getModifierIdentifier());
+                isCoALoaded && TinkerUtil.hasModifier(helmet.getTagCompound(), Integration.TRAIT_BABAS_BLESS.getModifierIdentifier());
 
     }
 

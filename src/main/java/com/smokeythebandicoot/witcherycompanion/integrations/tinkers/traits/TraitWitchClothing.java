@@ -1,12 +1,12 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.traits;
+package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.traits;
 
 import c4.conarm.lib.traits.AbstractArmorTrait;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 
 
-public class TraitArmorWitchClothing extends AbstractArmorTrait {
+public class TraitWitchClothing extends AbstractArmorTrait {
 
-    public TraitArmorWitchClothing() {
+    public TraitWitchClothing() {
         super(WitcheryCompanion.prefix("witch_clothing"), 0xBB11BB);
     }
 
