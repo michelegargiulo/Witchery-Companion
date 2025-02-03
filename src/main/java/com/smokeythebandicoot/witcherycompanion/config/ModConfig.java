@@ -761,6 +761,10 @@ public class ModConfig {
             @Config.Name("Fortune Potion - Fix No Effect")
             public static boolean fortunePotion_fixNoEffect = true;
 
+            @Config.Comment("If true, player in Spectator Mode won't be killed by the Mortal Coil potion, like players in Creative mode")
+            @Config.Name("Mortal Coil - Tweak Spare Spectators")
+            public static boolean mortalCoil_tweakSpareSpectators = false;
+
             @Config.Comment("Fixes Potion of Resizing not working on players")
             @Config.Name("Resizing Potion - Fix No Effect On Players")
             public static boolean resizing_fixEffectOnPlayers = true;
