@@ -1,11 +1,15 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.mixins.item;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.msrandom.witchery.init.items.WitcheryEquipmentItems;
 import net.msrandom.witchery.item.ItemWitchesClothes;
 import net.msrandom.witchery.item.traits.Invisible;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,13 +20,23 @@ import slimeknights.tconstruct.library.utils.TinkerUtil;
 
 /**
  * Mixins:
- * [Feature] Add compat for Witch Clothing tcon traits
+ * [Feature] Seeping TiC Trait
  */
 @Mixin(ItemWitchesClothes.class)
 public abstract class ItemWitchesClothesMixin extends ItemArmor implements Invisible {
 
     private ItemWitchesClothesMixin(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
         super(materialIn, renderIndexIn, equipmentSlotIn);
+    }
+
+    /** This Mixin tricks witchery into thinking that TiC boots with Homing trait are Witchery's Ruby Slippers **/
+    @WrapOperation(method = "noPlaceLikeHome", remap = false, at = @At(value = "INVOKE", ordinal = 0,
+            target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;", remap = false))
+    private static Item handleSeepingShoesTrait(ItemStack instance, Operation<Item> original) {
+        if (TinkerUtil.hasModifier(instance.getTagCompound(), Integration.MODIFIER_HOMING.identifier)) {
+            return WitcheryEquipmentItems.RUBY_SLIPPERS;
+        }
+        return original.call(instance);
     }
 
     @Inject(method = "isHatWorn", remap = false, cancellable = true, at = @At("HEAD"))

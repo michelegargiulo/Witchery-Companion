@@ -8,25 +8,27 @@
 
 ### Traits
 - [ ] Brew Affinity
-- [X] Witch's veil
-- [ ] Goblin's Favor
+- [ ] Witch's veil
+- [X] Goblin's Favor
 - [ ] Fireblooded
 - [ ] Nullified
 - [ ] Silvered (Weapons)
-- [X] Silvered (Armor)
+- [ ] Silvered (Armor)
 - [ ] Garliced (Weapons)
-- [X] Garliced (Armor)
+- [ ] Garliced (Armor)
 - [ ] Demonrend (Weapons)
-- [X] Demonrend (Armor)
+- [ ] Demonrend (Armor)
 - [ ] Wolfsbane
 - [ ] Baba's Bless
 - [ ] Bloodthirst
 - [ ] Creeper Repellent
 - [ ] Necromantic
-- [ ] Homing
-- [ ] Seeping
 - [ ] Nullifying
 - [ ] Barked
+
+### Modifiers
+- [X] Seeping
+- [X] Homing
 
 
 
@@ -114,14 +116,14 @@ Creepers ignore you (mimics witch's robes). Only on chestplate, incompatible wit
 [On Armor (Chest only)]
 Brew bonus for brewing the Brew of Raisin (mimics Necromancer's robes) + Undead ignore you (mimics Necromancer's robes). Only on chestplate, incompatible with Creeper Repellent. Only applicable to Impregnated Leather material
 
-### Nostalgic [Ruby Slippers]
+### Nostalgic [Ruby Slippers] or Homing
 [On Armor (Boots only)]
 Allows the player to use the chant /chant there's no place like home. Player needs to be infused, and is teleported to their spawn point. Costs 40% infusion power if same dimension, 60% otherwise. Cooldown: 30 minutes. 
 Allows the player to drop a bound waystone nearby and use the same chant to teleport to the waystone's location (waystone will be consumed). Costs 20% of infused power if same dimension, 40% otherwise. Saving having to draw a circle for the Rite of Transposition. Only on footwear, incompatible with Seeping. Only applicable to Impregnated Leather material
 
 ### Seeping [Seeping Shoes]
 [On Armor (Boots only)]
-Whenever the player has Poison status effect, it will make it sip into the soil, negating the Poison and applying a Bone Meal effect. Only on footwear, incompatible with Seeping. Only applicable to Impregnated Leather material
+Whenever the player has Poison status effect, it will make it sip into the soil, negating the Poison and applying a Bone Meal effect. Only on footwear, incompatible with Homing
 
 ### Nullifying [Nullifying Bolts]
 [On Weapons (Bolts and Arrows only)]

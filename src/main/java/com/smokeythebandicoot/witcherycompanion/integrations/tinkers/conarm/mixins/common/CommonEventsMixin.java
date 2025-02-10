@@ -39,4 +39,14 @@ public abstract class CommonEventsMixin {
         return original.call(instance);
     }
 
+    /** This Mixin tricks witchery into thinking that TiC boots with Seeping trait are Witchery's Seeping Shoes **/
+    @WrapOperation(method = "handleSeepingShoesEffect", remap = false, at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;", remap = false))
+    private static Item handleSeepingShoesTrait(ItemStack instance, Operation<Item> original) {
+        if (TinkerUtil.hasModifier(instance.getTagCompound(), Integration.MODIFIER_SEEPING.identifier)) {
+            return WitcheryEquipmentItems.SEEPING_SHOES;
+        }
+        return original.call(instance);
+    }
+
 }

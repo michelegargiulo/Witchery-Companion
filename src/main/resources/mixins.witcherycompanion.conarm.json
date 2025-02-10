@@ -5,7 +5,10 @@
   "refmap": "${mixin_refmap}",
   "mixins": [
     "block.BlockKettleMixin",
+    "block.entity.TileEntityWorshipStatueMixin",
     "common.CommonEventsMixin",
+    "entity.EntityGoblinMixin",
+    "entity.ai.EntityAIDigBlocksMixin",
     "item.ItemWitchesClothesMixin"
   ],
   "client": [

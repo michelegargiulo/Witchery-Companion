@@ -76,12 +76,12 @@ public class CommonProxy {
                 Loader.isModLoaded(Mods.TINKERS_CONSTRUCT)) {
 
             // Integrate Tinkers
-            Integration.registerTinkers();
+            Integration.ticPreInit();
 
             // If ConArm enabled and installed, also integrate it
             if (ModConfig.IntegrationConfigurations.TinkersIntegration.ConstructArmoryIntegration.enableConarmIntegration &&
                     Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
-                Integration.registerConarm();
+                Integration.conarmPreInit();
         }
     }
 
@@ -103,6 +103,20 @@ public class CommonProxy {
         // Does not have a config to disable, as it just registers the flags
         if (Loader.isModLoaded(Mods.PATCHOULI)) {
             MinecraftForge.EVENT_BUS.register(PatchouliApiIntegration.class);
+        }
+
+        // Tinkers + ConArm
+        if (ModConfig.IntegrationConfigurations.TinkersIntegration.TinkersConstructIntegration.enableTinkersIntegration &&
+                Loader.isModLoaded(Mods.TINKERS_CONSTRUCT)) {
+
+            // Integrate Tinkers
+            Integration.ticInit();
+
+            // If ConArm enabled and installed, also integrate it
+            if (ModConfig.IntegrationConfigurations.TinkersIntegration.ConstructArmoryIntegration.enableConarmIntegration &&
+                    Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
+                Integration.conarmInit();
+
         }
     }
 
