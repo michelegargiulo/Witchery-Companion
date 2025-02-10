@@ -861,6 +861,36 @@ public class ModConfig {
             @Config.Name("Goblin - Remove Village Requirement")
             public static boolean goblin_tweakRemoveTradingVillageRequirements = false;
 
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a mundane Pickaxe")
+            @Config.Name("Goblin - Tweak Koboldite Initial Chance Any Pick. Default 0.01 (1%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakKobolditeInitialChanceNoPick = 0.01;
+
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a Koboldite Pickaxe")
+            @Config.Name("Goblin - Tweak Koboldite Initial Chance Koboldite Pick. Default 0.02 (2%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakKobolditeInitialChancePick = 0.02;
+
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a Koboldite Pickaxe and the Goblin smelted ores")
+            @Config.Name("Goblin - Tweak Koboldite Additional Chance Any Pick. Default 0.05 (5%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakKobolditeAdditionalChanceNoPick = 0.05;
+
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a Koboldite Pickaxe and the Goblin smelted ores")
+            @Config.Name("Goblin - Tweak Koboldite Additional Chance Koboldite Pick. Default 0.08 (8%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakKobolditeAdditionalChancePick = 0.08;
+
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to smelt ores (and double them)")
+            @Config.Name("Goblin - Tweak Smelt Initial Chance. Default 0.5 (50%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakSmeltingInitialChance = 0.5;
+
+            @Config.Comment("Tweak to modify the additional chance that the Hobgoblin has to create an additional drop for a smelted ore")
+            @Config.Name("Goblin - Tweak Smelt Additional Chance. Default 0.25 (25%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakSmeltingAdditionalChance = 0.25;
+
             @Config.Comment("Fix players losing Cat familiars on World reload")
             @Config.Name("Cat Familiar - Fix Owner on World Reload")
             @Config.RequiresMcRestart
