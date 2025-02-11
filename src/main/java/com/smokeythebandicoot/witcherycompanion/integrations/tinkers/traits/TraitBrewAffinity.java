@@ -4,10 +4,10 @@ import c4.conarm.lib.traits.AbstractArmorTrait;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 
 
-public class TraitWitchClothing extends AbstractArmorTrait {
+public class TraitBrewAffinity extends AbstractArmorTrait {
 
-    public TraitWitchClothing() {
-        super(WitcheryCompanion.prefix("witch_clothing"), 0xBB11BB);
+    public TraitBrewAffinity() {
+        super(WitcheryCompanion.prefix("brew_affinity"), 0xBB11BB);
     }
 
 }

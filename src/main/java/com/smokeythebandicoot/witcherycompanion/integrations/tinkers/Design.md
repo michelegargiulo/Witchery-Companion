@@ -1,34 +1,32 @@
 ## List and Progress:
 ### Materials
-- [ ] Koboldite
-- [ ] Impregnated Leather
-- [ ] Woven Cruor
-- [ ] Nullified Leather
-- [ ] Silver?
+- [O] Koboldite
+- [O] Impregnated Leather
+- [O] Woven Cruor
+- [O] Nullified Leather
+- [O] Silver?
 
 ### Traits
-- [ ] Brew Affinity
-- [ ] Witch's veil
+- [O] Brew Affinity
+- [O] Witch's veil
 - [X] Goblin's Favor
-- [ ] Fireblooded
+- [O] Vampiric
 - [ ] Nullified
-- [ ] Silvered (Weapons)
-- [ ] Silvered (Armor)
-- [ ] Garliced (Weapons)
-- [ ] Garliced (Armor)
-- [ ] Demonrend (Weapons)
-- [ ] Demonrend (Armor)
-- [ ] Wolfsbane
-- [ ] Baba's Bless
 - [ ] Bloodthirst
-- [ ] Creeper Repellent
-- [ ] Necromantic
 - [ ] Nullifying
-- [ ] Barked
+- [O] Barkable
 
 ### Modifiers
 - [X] Seeping
 - [X] Homing
+- [O] Baba's Bless
+- [O] Creeper Repellent
+- [O] Undead Repellent
+- [O] Silvered
+- [O] Garliced
+- [O] Demonrend
+- [O] Wolfsbane
+- [O] Barked
 
 
 
@@ -51,7 +49,7 @@ Traits: Silvered (Armor, Weapons and Projectiles)
 
 ## Traits / Modifiers:
 ### Brew Affinity 
-[On Armor (Helmet and Chest only)]
+[On Armor]
 Increases brew yield for Kettle. Equals to firstBonus of kettle (mimics witch's robes)
 
 ### Witch's Veil
@@ -62,7 +60,7 @@ Armor piece becomes invisible when entity wearing it is invisible (mimics witch'
 [On Armor]
 When retrieving worship power to check for symbol effect spell, it will be cast as if the player has 1 more worshippers per held piece (so up to five if player is wearing full set + pickaxe in offhand, with mystic branch in main hand). Does not increase the chance of having Mog and Gulg coming to you. Number of actual worshipped is considered there instead
 
-### Fireblooded
+### Vampiric
 [On Armor]
 Provides some benefits to vampires the more pieces are worn. Incompatible with other Resistance modifiers and traits on armor pieces.
 2 Pieces: Increased blood-drinking speed; 3 Pieces: Basic flame protection and Mesmerize duration boost; 4 Pieces: Enhanced flame protection
@@ -110,11 +108,15 @@ Adds a blood reservoir. Sword-like weapons only. Upon kill, stores blood in it a
 
 ### Creeper Repellent [Creeper Heart]
 [On Armor (Chest only)]
-Creepers ignore you (mimics witch's robes). Only on chestplate, incompatible with Necromantic. Only applicable to Impregnated Leather material
+Mimics some properties of the Witch's Robes
+- Creepers won't attack
+- Enables Polynesia Charm to trade with Creepers
 
-### Necromantic [Necromantic Stone]
+### Undead Repellent [Necromantic Stone]
 [On Armor (Chest only)]
-Brew bonus for brewing the Brew of Raisin (mimics Necromancer's robes) + Undead ignore you (mimics Necromancer's robes). Only on chestplate, incompatible with Creeper Repellent. Only applicable to Impregnated Leather material
+Mimics some properties of the Necromancer's Robes
+- Undead won't attack
+- Enables Polynesia Charm to trade with Undead
 
 ### Nostalgic [Ruby Slippers] or Homing
 [On Armor (Boots only)]
@@ -130,9 +132,13 @@ Whenever the player has Poison status effect, it will make it sip into the soil,
 Ignores Bark Belt and Baba Yaga's torns when doing damage. When shoot by a player that is wearing the full Nullified armor, on hit, the target is drained of 1/3 of their magical power (infusion power?) and Poppet-based protections won't work (Vampiric and Death). Also removes magical potion effects, except poison and wither. Shooter is drained of all their magical power, if they have any
 
 ### Barked [Bark Belt]
-[On Armor]
-Armor provides protection AND Bark Belt charges, that, as long as the attacking weapon is not made out of wood, will protect the wearer by consuming the belt charges instead of doing damage. Belt charges will recharge by simply standing on grass or mycelium (CraftTweaker support already added)
+[On Armor (Legs only)]
+Mimics the Bark properties of the Bark Belt
 
+
+### Barkable [Bark Belt]
+[On Armor (All pieces)]
+Bark Belt and Barked modifier will add two Barks for each piece with this trait
 
 
 ## Discarded Content:

@@ -15,7 +15,6 @@ import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch
 import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.FamiliarPatches;
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
-import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.TinkersUtils;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -38,10 +37,6 @@ public class CommonProxy {
         registerCapabilities();
 
         registerNetworkHandlers();
-
-
-        TinkersUtils.isTicLoaded = Loader.isModLoaded(Mods.TINKERS_CONSTRUCT);
-        TinkersUtils.isCoALoaded = Loader.isModLoaded(Mods.CONSTRUCT_ARMORY);
 
         // Soul bres fix
         if (ModConfig.PatchesConfiguration.InfusionTweaks.soulBrews_fixPersistency)
@@ -72,15 +67,14 @@ public class CommonProxy {
             FMLInterModComms.sendFunctionMessage(Mods.TOP, "getTheOneProbe", TOPPlugin.class.getName());
 
         // Tinkers + ConArm
-        if (ModConfig.IntegrationConfigurations.TinkersIntegration.TinkersConstructIntegration.enableTinkersIntegration &&
+        if (ModConfig.IntegrationConfigurations.TinkersIntegration.enableTinkersIntegration &&
                 Loader.isModLoaded(Mods.TINKERS_CONSTRUCT)) {
 
             // Integrate Tinkers
             Integration.ticPreInit();
 
             // If ConArm enabled and installed, also integrate it
-            if (ModConfig.IntegrationConfigurations.TinkersIntegration.ConstructArmoryIntegration.enableConarmIntegration &&
-                    Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
+            if (Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
                 Integration.conarmPreInit();
         }
     }
@@ -106,15 +100,14 @@ public class CommonProxy {
         }
 
         // Tinkers + ConArm
-        if (ModConfig.IntegrationConfigurations.TinkersIntegration.TinkersConstructIntegration.enableTinkersIntegration &&
+        if (ModConfig.IntegrationConfigurations.TinkersIntegration.enableTinkersIntegration &&
                 Loader.isModLoaded(Mods.TINKERS_CONSTRUCT)) {
 
             // Integrate Tinkers
             Integration.ticInit();
 
-            // If ConArm enabled and installed, also integrate it
-            if (ModConfig.IntegrationConfigurations.TinkersIntegration.ConstructArmoryIntegration.enableConarmIntegration &&
-                    Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
+            // If ConArm installed, also integrate it
+            if (Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
                 Integration.conarmInit();
 
         }

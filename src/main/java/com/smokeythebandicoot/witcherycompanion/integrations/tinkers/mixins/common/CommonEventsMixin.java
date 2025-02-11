@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.mixins.common;
+package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins.common;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -23,7 +23,7 @@ public abstract class CommonEventsMixin {
     @WrapOperation(method = "onLivingSetAttackTarget", remap = false, at = @At(value = "INVOKE",
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;", ordinal = 0))
     private static Item witchClothingTraitIgnoreCreeper(ItemStack instance, Operation<Item> original) {
-        if (TinkerUtil.hasTrait(instance.getTagCompound(), Integration.TRAIT_WITCH_CLOTHING.identifier)) {
+        if (TinkerUtil.hasModifier(instance.getTagCompound(), Integration.MODIFIER_CREEPER_REPELLENT.identifier)) {
             return WitcheryEquipmentItems.WITCH_ROBES;
         }
         return original.call(instance);
@@ -33,8 +33,18 @@ public abstract class CommonEventsMixin {
     @WrapOperation(method = "onLivingSetAttackTarget", remap = false, at = @At(value = "INVOKE",
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;", ordinal = 1))
     private static Item necromancerClothingTraitIgnoreCreeper(ItemStack instance, Operation<Item> original) {
-        if (TinkerUtil.hasTrait(instance.getTagCompound(), Integration.TRAIT_WITCH_CLOTHING.identifier)) {
+        if (TinkerUtil.hasModifier(instance.getTagCompound(), Integration.MODIFIER_UNDEAD_REPELLENT.identifier)) {
             return WitcheryEquipmentItems.NECROMANCERS_ROBES;
+        }
+        return original.call(instance);
+    }
+
+    /** This Mixin emulates the Baba's hat capability to teleport the player randomly upon receiving some types of damage **/
+    @WrapOperation(method = "onLivingHurt", remap = false, at = @At(value = "INVOKE", ordinal = 1,
+            target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+    private static Item babasBlessTeleportOnHurt(ItemStack instance, Operation<Item> original) {
+        if (TinkerUtil.hasTrait(instance.getTagCompound(), Integration.TRAIT_BREW_AFFINITY.identifier)) {
+            return WitcheryEquipmentItems.BABAS_HAT;
         }
         return original.call(instance);
     }
@@ -45,6 +55,15 @@ public abstract class CommonEventsMixin {
     private static Item handleSeepingShoesTrait(ItemStack instance, Operation<Item> original) {
         if (TinkerUtil.hasModifier(instance.getTagCompound(), Integration.MODIFIER_SEEPING.identifier)) {
             return WitcheryEquipmentItems.SEEPING_SHOES;
+        }
+        return original.call(instance);
+    }
+
+    @WrapOperation(method = "onLivingUpdate", remap = false, at = @At(value = "INVOKE", remap = false, ordinal = 1,
+            target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+    private static Item checkBarkedTraitOnLegs(ItemStack instance, Operation<Item> original) {
+        if (TinkerUtil.hasModifier(instance.getTagCompound(), Integration.MODIFIER_BARKED.identifier)) {
+            return WitcheryEquipmentItems.BARK_BELT;
         }
         return original.call(instance);
     }

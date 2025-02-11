@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.traits;
+package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers;
 
 import c4.conarm.common.items.armor.Helmet;
 import c4.conarm.lib.modifiers.ArmorModifierTrait;
@@ -12,11 +12,11 @@ import slimeknights.tconstruct.library.modifiers.IToolMod;
  * and if it is, its effects will be applied:
  * - Unlock Baba's bonus when brewing in Kettle
  * **/
-public class TraitBabasBless extends ArmorModifierTrait {
+public class ModifierBabasBless extends ArmorModifierTrait {
 
     public static final String id = WitcheryCompanion.prefix("babas_bless");
 
-    public TraitBabasBless() {
+    public ModifierBabasBless() {
         super(id, 0xdd20dd);
     }
 

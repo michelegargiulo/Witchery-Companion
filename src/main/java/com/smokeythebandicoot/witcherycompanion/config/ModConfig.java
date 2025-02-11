@@ -1625,58 +1625,51 @@ public class ModConfig {
 
             @Config.Comment("Master switch for all Tinkers Construct integrations")
             @Config.Name("Tinkers Construct Integration - Enabled")
-            public static TinkersConstructIntegration tinkersIntegration;
+            public static boolean enableTinkersIntegration = true;
 
-            @Config.Comment("Master switch for all Construct Armory integrations")
-            @Config.Name("Construct Armory Integration - Enabled")
-            public static ConstructArmoryIntegration conarmIntegration;
+            public static class ModifiersConfig {
 
-            public static class TinkersConstructIntegration {
+                @Config.Comment("Multiplier for damage dealt to Demons")
+                @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                @Config.Name("Demonrend - Damage Boost")
+                public static float demonrend_damageBoost = 2.0f;
 
-                @Config.Comment("Master switch for all Tinkers Construct integrations")
-                @Config.Name("Tinkers Construct Integration - Enabled")
-                public static boolean enableTinkersIntegration = true;
+                @Config.Comment("Multiplier for damage received from Demons")
+                @Config.RangeDouble(min = 0.01f, max = 1.0f)
+                @Config.Name("Demonrend - Damage Reduction")
+                public static float demonrend_damageReduction = 0.5f;
 
-                public static class ModifiersConfig {
+                @Config.Comment("Multiplier for damage dealt to Vampires")
+                @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                @Config.Name("Garliced - Damage Boost")
+                public static float garliced_damageBoost = 2.0f;
 
-                    @Config.Comment("Multiplier for damage dealt to Werewolves")
-                    @Config.RangeDouble(min = 0.1f, max = 8.0f)
-                    @Config.Name("Silvered - Damage Multiplier")
-                    public static float silvered_werewolfDamageMultiplier = 2.0f;
+                @Config.Comment("Multiplier for damage received from Vampires")
+                @Config.RangeDouble(min = 0.01f, max = 1.0f)
+                @Config.Name("Garliced - Damage Reduction")
+                public static float garliced_damageReduction = 0.5f;
 
-                    @Config.Comment("Multiplier for damage dealt to Werewolves")
-                    @Config.RangeDouble(min = 0.1f, max = 8.0f)
-                    @Config.Name("Wolfsbane - Damage Multiplier")
-                    public static float wolfsbane_werewolfDamageMultiplier = 2.5f;
+                @Config.Comment("Multiplier for damage dealt to Werewolves")
+                @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                @Config.Name("Silvered - Damage Boost")
+                public static float silvered_damageBoost = 2.0f;
 
-                    @Config.Comment("Multiplier for damage dealt to non-Werewolves")
-                    @Config.RangeDouble(min = 0.1f, max = 8.0f)
-                    @Config.Name("Wolfsbane - Damage Penalty")
-                    public static float wolfsbane_nonWerewolfDamageMultiplier = 0.8f;
+                @Config.Comment("Multiplier for damage received from Werewolves")
+                @Config.RangeDouble(min = 0.01f, max = 1.0f)
+                @Config.Name("Silvered - Damage Reduction")
+                public static float silvered_damageReduction = 0.5f;
 
-                }
+                @Config.Comment("Multiplier for damage dealt to Werewolves")
+                @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                @Config.Name("Wolfsbane - Damage Boost")
+                public static float wolfsbane_werewolfDamageMultiplier = 2.5f;
 
-            }
-
-            public static class ConstructArmoryIntegration {
-
-                @Config.Comment("Master switch for all Construct Armory integrations")
-                @Config.Name("Construct Armory Integration - Enabled")
-                public static boolean enableConarmIntegration = true;
-
-                public static class ModifiersConfig {
-
-
-                    @Config.Comment("If true, enabled Baba's Touch Trait. When applied on Helmets, it gives the " +
-                            "same effects as if the player was wearing Baba Yaga's Hat")
-                    @Config.Name("Conarm Integration - Enable Baba Yaga's Touch Trait")
-                    @Config.RequiresMcRestart
-                    public static boolean babaYagasTouchTrait_enable = false;
-
-                }
+                @Config.Comment("Multiplier for damage dealt to non-Werewolves")
+                @Config.RangeDouble(min = 0.1f, max = 8.0f)
+                @Config.Name("Wolfsbane - Damage Penalty")
+                public static float wolfsbane_nonWerewolfDamageMultiplier = 0.8f;
 
             }
-
         }
     }
 

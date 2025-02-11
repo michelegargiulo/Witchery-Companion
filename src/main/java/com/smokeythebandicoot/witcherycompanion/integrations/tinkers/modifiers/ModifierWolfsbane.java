@@ -1,6 +1,7 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.traits;
+package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers;
 
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TinkersIntegration.TinkersConstructIntegration.ModifiersConfig;
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TinkersIntegration.ModifiersConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.msrandom.witchery.util.CreatureUtil;
@@ -8,10 +9,10 @@ import slimeknights.tconstruct.library.modifiers.IToolMod;
 import slimeknights.tconstruct.library.modifiers.ModifierTrait;
 import slimeknights.tconstruct.library.tools.SwordCore;
 
-public class TraitWolfsbane extends ModifierTrait {
+public class ModifierWolfsbane extends ModifierTrait {
 
-    public TraitWolfsbane() {
-        super("witchery_silvered", 0xCDCDCD, 1, 32);
+    public ModifierWolfsbane() {
+        super(WitcheryCompanion.prefix("wolfsbane"), 0xebe62c);
     }
 
     @Override
@@ -24,11 +25,12 @@ public class TraitWolfsbane extends ModifierTrait {
         super.onHit(tool, player, target, damage, isCritical);
     }
 
-    // Incompatible with Silvered
     @Override
     public boolean canApplyTogether(IToolMod otherModifier) {
         return super.canApplyTogether(otherModifier) &&
-                !(otherModifier instanceof TraitSilvered)
+                !(otherModifier instanceof ModifierSilvered) &&
+                !(otherModifier instanceof ModifierDemonrend) &&
+                !(otherModifier instanceof ModifierGarliced)
                 ;
     }
 

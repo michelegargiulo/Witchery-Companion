@@ -1,14 +1,18 @@
 {
   "required": true,
-  "package": "com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.mixins",
+  "package": "com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins",
   "compatibilityLevel": "JAVA_8",
   "refmap": "${mixin_refmap}",
   "mixins": [
     "block.BlockKettleMixin",
+    "block.BlockWitchCauldronMixin",
     "block.entity.TileEntityWorshipStatueMixin",
     "common.CommonEventsMixin",
     "entity.EntityGoblinMixin",
     "entity.ai.EntityAIDigBlocksMixin",
+    "item.ItemHunterClothesMixin",
+    "item.ItemPolynesiaCharmMixin",
+    "item.ItemVampireClothesMixin",
     "item.ItemWitchesClothesMixin"
   ],
   "client": [

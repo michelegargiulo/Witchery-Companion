@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.mixins.entity.ai;
+package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins.entity.ai;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;

@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.mixins.item;
+package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins.item;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -46,7 +46,7 @@ public abstract class ItemWitchesClothesMixin extends ItemArmor implements Invis
                 headStack.getItem() instanceof ItemWitchesClothes ||
                         TinkerUtil.hasTrait(
                                 headStack.getTagCompound(),
-                                Integration.TRAIT_WITCH_CLOTHING.getIdentifier()
+                                Integration.TRAIT_BREW_AFFINITY.getIdentifier()
                         )
         );
     }
@@ -58,11 +58,7 @@ public abstract class ItemWitchesClothesMixin extends ItemArmor implements Invis
                 chestStack.getItem() instanceof ItemWitchesClothes ||
                         TinkerUtil.hasTrait(
                                 chestStack.getTagCompound(),
-                                Integration.TRAIT_WITCH_CLOTHING.getIdentifier()
-                        ) ||
-                        TinkerUtil.hasModifier(
-                                chestStack.getTagCompound(),
-                                Integration.TRAIT_NECROMANCER.getIdentifier()
+                                Integration.TRAIT_BREW_AFFINITY.getIdentifier()
                         )
         );
     }
@@ -85,7 +81,8 @@ public abstract class ItemWitchesClothesMixin extends ItemArmor implements Invis
         }) {
             ItemStack stack = entity.getItemStackFromSlot(slot);
             if (stack.getItem() instanceof ItemWitchesClothes ||
-                    TinkerUtil.hasTrait(stack.getTagCompound(), Integration.TRAIT_BARKED.getIdentifier())
+                    TinkerUtil.hasTrait(stack.getTagCompound(), Integration.TRAIT_BARKABLE.identifier) ||
+                    TinkerUtil.hasModifier(stack.getTagCompound(), Integration.MODIFIER_BARKED.identifier)
             ) {
                 level += 2;
             }

@@ -1,4 +1,4 @@
-package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.conarm.mixins.block;
+package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins.block;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -30,7 +30,7 @@ public abstract class BlockKettleMixin extends BlockContainer {
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
     private Item checkWitchHatTrait(ItemStack instance, Operation<Item> original) {
         if (instance != null && TinkerUtil.hasTrait(instance.getTagCompound(),
-                Integration.TRAIT_WITCH_CLOTHING.getIdentifier())) {
+                Integration.TRAIT_BREW_AFFINITY.getIdentifier())) {
             return WitcheryEquipmentItems.WITCH_HAT;
         }
         return original.call(instance);
@@ -41,8 +41,8 @@ public abstract class BlockKettleMixin extends BlockContainer {
     @WrapOperation(method = "onBlockActivated", remap = true, at = @At(value = "INVOKE", remap = false, ordinal = 2,
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
     private Item checkBabasHatTrait(ItemStack instance, Operation<Item> original) {
-        if (instance != null && TinkerUtil.hasTrait(instance.getTagCompound(),
-                Integration.TRAIT_BABAS_BLESS.getIdentifier())) {
+        if (instance != null && TinkerUtil.hasModifier(instance.getTagCompound(),
+                Integration.MODIFIER_BABAS_BLESS.getIdentifier())) {
             return WitcheryEquipmentItems.BABAS_HAT;
         }
         return original.call(instance);
@@ -54,8 +54,8 @@ public abstract class BlockKettleMixin extends BlockContainer {
     @WrapOperation(method = "onBlockActivated", remap = true, at = @At(value = "INVOKE", remap = false, ordinal = 5,
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
     private Item checkBabasHatTraitWithFamiliar(ItemStack instance, Operation<Item> original) {
-        if (instance != null && TinkerUtil.hasTrait(instance.getTagCompound(),
-                Integration.TRAIT_BABAS_BLESS.getIdentifier())) {
+        if (instance != null && TinkerUtil.hasModifier(instance.getTagCompound(),
+                Integration.MODIFIER_BABAS_BLESS.getIdentifier())) {
             return WitcheryEquipmentItems.BABAS_HAT;
         }
         return original.call(instance);

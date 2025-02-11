@@ -92,8 +92,8 @@ public class WitcheryCompanion implements ILateMixinLoader {
         configs.add("mixins.witcherycompanion.json");
 
         // Add ConArm Patches
-        if (Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
-            configs.add("mixins.witcherycompanion.conarm.json");
+        if (Loader.isModLoaded(Mods.TINKERS_CONSTRUCT))
+            configs.add("mixins.witcherycompanion.tinkers.json");
 
         return configs;
     }
