@@ -51,12 +51,13 @@ public abstract class EntityBansheeMixin extends EntitySummonedUndead {
     /** This mixin overrides superclass' dropFewItems, that is hardcoded to drop spectral dust **/
     @Override
     protected void dropFewItems(boolean recentlyHit, int lootingModifier) {
-        int chance = this.rand.nextInt(Math.max(4 - lootingModifier, 2));
-        int quantity = chance == 0 ? 1 : 0;
-        if (quantity > 0) {
-            this.entityDropItem(new ItemStack(WitcheryIngredientItems.SPECTRAL_DUST, quantity), 0.0F);
+        if (!ModConfig.PatchesConfiguration.LootTweaks.banshee_tweakLootTable) {
+            int chance = this.rand.nextInt(Math.max(4 - lootingModifier, 2));
+            int quantity = chance == 0 ? 1 : 0;
+            if (quantity > 0) {
+                this.entityDropItem(new ItemStack(WitcheryIngredientItems.SPECTRAL_DUST, quantity), 0.0F);
+            }
         }
-
     }
 
     @Override

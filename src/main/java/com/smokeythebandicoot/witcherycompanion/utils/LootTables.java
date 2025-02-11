@@ -33,7 +33,10 @@ public class LootTables {
     public static ResourceLocation HOBGOBLIN = new ResourceLocation("witchery", "entities/hobgoblin");
     public static ResourceLocation IMP_DEATH = new ResourceLocation("witchery", "entities/imp_death");
     public static ResourceLocation IMP_GIFT = new ResourceLocation("witchery", "entities/imp_gift");
+    public static ResourceLocation LEONARD = new ResourceLocation("witchery", "entities/leonard");
     public static ResourceLocation LORD_OF_TORMENT = new ResourceLocation("witchery", "entities/lord_of_torment");
+    public static ResourceLocation LOST_SOUL = new ResourceLocation("witchery", "entities/lost_soul");
+    public static ResourceLocation MINDRAKE = new ResourceLocation("witchery", "entities/mindrake");
     public static ResourceLocation SPECTRE = new ResourceLocation("witchery", "entities/spectre");
 
 }

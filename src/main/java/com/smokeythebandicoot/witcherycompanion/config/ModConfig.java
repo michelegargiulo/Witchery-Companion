@@ -1116,9 +1116,21 @@ public class ModConfig {
             @Config.Name("Mog - Tweak Drop Loot by Table")
             public static boolean goblinMog_tweakLootTable = true;
 
+            @Config.Comment("If true, Shade of Leonard will drop loot according to its Loot Table (witchery:entities/leonard)")
+            @Config.Name("Shade of Leonard - Tweak Drop Loot by Table")
+            public static boolean leonard_tweakLootTable = false;
+
             @Config.Comment("If true, Lord of Torment will drop loot according to its Loot Table (witchery:entities/lord_of_torment)")
             @Config.Name("Lord of Torment - Tweak Drop Loot by Table")
             public static boolean lordOfTorment_tweakLootTable = false;
+
+            @Config.Comment("If true, Lost Souls will drop loot according to its Loot Table (witchery:entities/lost_soul)")
+            @Config.Name("Lost Soul - Tweak Drop Loot by Table")
+            public static boolean lostSoul_tweakLootTable = false;
+
+            @Config.Comment("If true, Mindrakes will drop loot according to its Loot Table (witchery:entities/mindrake)")
+            @Config.Name("Mindrake - Tweak Drop Loot by Table")
+            public static boolean mindrake_tweakLootTable = false;
 
             @Config.Comment("If true, Spectre will drop loot according to its Loot Table (witchery:entities/spectre)")
             @Config.Name("Spectre - Tweak Drop Loot by Table")

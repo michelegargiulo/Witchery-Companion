@@ -78,6 +78,8 @@
     "witchery.entity.EntityImpMixin",
     "witchery.entity.EntityLeonardMixin",
     "witchery.entity.EntityLordOfTormentMixin",
+    "witchery.entity.EntityLostSoulMixin",
+    "witchery.entity.EntityMindrakeMixin",
     "witchery.entity.EntitySpectreMixin",
     "witchery.entity.EntityTreefydMixin",
     "witchery.entity.EntityWitchProjectileMixin",
