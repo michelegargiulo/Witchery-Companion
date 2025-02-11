@@ -80,6 +80,7 @@
     "witchery.entity.EntityLordOfTormentMixin",
     "witchery.entity.EntityLostSoulMixin",
     "witchery.entity.EntityMindrakeMixin",
+    "witchery.entity.EntityNightmareMixin",
     "witchery.entity.EntitySpectreMixin",
     "witchery.entity.EntityTreefydMixin",
     "witchery.entity.EntityWitchProjectileMixin",

@@ -1132,6 +1132,10 @@ public class ModConfig {
             @Config.Name("Mindrake - Tweak Drop Loot by Table")
             public static boolean mindrake_tweakLootTable = false;
 
+            @Config.Comment("If true, Nightmare will drop loot according to its Loot Table (witchery:entities/nightmare)")
+            @Config.Name("Nightmare - Tweak Drop Loot by Table")
+            public static boolean nightmare_tweakLootTable = false;
+
             @Config.Comment("If true, Spectre will drop loot according to its Loot Table (witchery:entities/spectre)")
             @Config.Name("Spectre - Tweak Drop Loot by Table")
             public static boolean spectre_tweakLootTable = false;

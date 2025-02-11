@@ -37,6 +37,7 @@ public class LootTables {
     public static ResourceLocation LORD_OF_TORMENT = new ResourceLocation("witchery", "entities/lord_of_torment");
     public static ResourceLocation LOST_SOUL = new ResourceLocation("witchery", "entities/lost_soul");
     public static ResourceLocation MINDRAKE = new ResourceLocation("witchery", "entities/mindrake");
+    public static ResourceLocation NIGHTMARE = new ResourceLocation("witchery", "entities/nightmare");
     public static ResourceLocation SPECTRE = new ResourceLocation("witchery", "entities/spectre");
 
 }

@@ -1,0 +1,68 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "name": "demon_heart",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "witchery:demon_heart",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            },
+            {
+              "function": "looting_enchant",
+              "count": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "leonard_urn",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "witchery:leonards_urn0",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "witchery:killed_in_spirit_world"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "enchanted_book_1",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:book",
+          "functions": [
+            {
+              "function": "witchery:levelled_random_enchantment",
+              "level": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
