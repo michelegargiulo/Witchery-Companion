@@ -1136,6 +1136,14 @@ public class ModConfig {
             @Config.Name("Nightmare - Tweak Drop Loot by Table")
             public static boolean nightmare_tweakLootTable = false;
 
+            @Config.Comment("If true, Poltergeist will drop loot according to its Loot Table (witchery:entities/poltergeist)")
+            @Config.Name("Poltergeist - Tweak Drop Loot by Table")
+            public static boolean poltergeist_tweakLootTable = false;
+
+            @Config.Comment("If true, Spectral Familiar will drop loot according to its Loot Table (witchery:entities/spectral_familiar)")
+            @Config.Name("Spectral Familiar - Tweak Drop Loot by Table")
+            public static boolean spectralFamiliar_tweakLootTable = false;
+
             @Config.Comment("If true, Spectre will drop loot according to its Loot Table (witchery:entities/spectre)")
             @Config.Name("Spectre - Tweak Drop Loot by Table")
             public static boolean spectre_tweakLootTable = false;
@@ -1143,6 +1151,26 @@ public class ModConfig {
             @Config.Comment("If true, Treefyd will drop loot according to its Loot Table (witchery:entities/treefyd)")
             @Config.Name("Treefyd - Tweak Drop Loot by Table")
             public static boolean treefyd_tweakOwnLootTable = false;
+
+            @Config.Comment("If true, Vampires will drop loot according to its Loot Table (witchery:entities/vampire)")
+            @Config.Name("Vampire - Tweak Drop Loot by Table")
+            public static boolean vampire_tweakLootTable = false;
+
+            @Config.Comment("If true, Village Guards will drop loot according to its Loot Table (witchery:entities/village_guard)")
+            @Config.Name("Village Guard - Tweak Drop Loot by Table")
+            public static boolean villageGuard_tweakLootTable = false;
+
+            @Config.Comment("If true, Werewolves will drop loot according to its Loot Table (witchery:entities/werewolf)")
+            @Config.Name("Werewolf - Tweak Drop Loot by Table")
+            public static boolean werewolf_tweakLootTable = false;
+
+            @Config.Comment("If true, Winged Monkeys will drop loot according to its Loot Table (witchery:entities/winged_monkey)")
+            @Config.Name("Winged Monkey - Tweak Drop Loot by Table")
+            public static boolean wingedMonkey_tweakLootTable = false;
+
+            @Config.Comment("If true, Witch Hunters will drop loot according to its Loot Table (witchery:entities/witch_hunter)")
+            @Config.Name("Witch Hunter - Tweak Drop Loot by Table")
+            public static boolean witchHunter_tweakLootTable = false;
         }
 
         public static class DimensionTweaks {

@@ -2,24 +2,19 @@
   "type": "minecraft:entity",
   "pools": [
     {
-      "name": "mellifluous_hunger",
+      "name": "shears",
       "rolls": 1,
       "entries": [
         {
           "type": "item",
-          "name": "witchery:mellifluous_hunger",
+          "name": "minecraft:shears",
           "functions": [
             {
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 2
+                "max": 1
               }
-            }
-          ],
-          "conditions": [
-            {
-              "condition": "witcherycompanion:killed_in_spirit_world"
             }
           ]
         }

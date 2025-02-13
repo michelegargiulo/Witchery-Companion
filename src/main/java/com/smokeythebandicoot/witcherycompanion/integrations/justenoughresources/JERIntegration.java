@@ -66,8 +66,6 @@ public class JERIntegration {
 
 
         /** --- Custom Registers --- **/
-        jerMobRegistry.register(new EntityAttackBat(jerWorld), LootTables.ATTACK_BAT);
-
         jerMobRegistry.register(new EntityBanshee(jerWorld), LootTables.BANSHEE);
 
         jerMobRegistry.register(new EntityBabaYaga(jerWorld), LootTables.BABA_YAGA_DEATH);
@@ -126,7 +124,19 @@ public class JERIntegration {
 
         jerMobRegistry.register(new EntityMindrake(jerWorld), LootTables.MINDRAKE);
 
+        jerMobRegistry.register(new EntityNightmare(jerWorld), LootTables.NIGHTMARE);
+        jerMobRegistry.registerRenderHook(EntityNightmare.class, (renderInfo, entityLivingBase) -> {
+            GlStateManager.translate(0.0f, -0.45f, 0.0f);
+            return renderInfo;
+        });
+
+        jerMobRegistry.register(new EntityPoltergeist(jerWorld), LootTables.POLTERGEIST);
+
+        jerMobRegistry.register(new EntitySpectralFamiliar(jerWorld), LootTables.SPECTRAL_FAMILIAR);
+
         jerMobRegistry.register(new EntitySpectre(jerWorld), LootTables.SPECTRE);
+
+        jerMobRegistry.register(new EntityWingedMonkey(jerWorld), LootTables.WINGED_MONKEY);
 
     }
 

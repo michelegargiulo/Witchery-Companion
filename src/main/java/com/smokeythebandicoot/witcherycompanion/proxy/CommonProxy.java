@@ -14,10 +14,12 @@ import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch
 import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.FamiliarPatches;
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
+import com.smokeythebandicoot.witcherycompanion.utils.LootConditionKilledInSpiritWorld;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
@@ -37,6 +39,8 @@ public class CommonProxy {
         registerCapabilities();
 
         registerNetworkHandlers();
+
+        registerLootConditions();
 
 
         if (ModConfig.PatchesConfiguration.InfusionTweaks.soulBrews_fixPersistency)
@@ -104,6 +108,10 @@ public class CommonProxy {
 
     protected void registerCommands(FMLServerStartingEvent event) {
         event.registerServerCommand(new WitcheryProgressCommand());
+    }
+
+    protected void registerLootConditions() {
+        LootConditionManager.registerCondition(new LootConditionKilledInSpiritWorld.Serializer());
     }
 
     protected void registerRecipes() {
