@@ -13,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.world.World;
+import net.msrandom.witchery.config.WitcheryConfigOptions;
 import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.init.WitcheryDimensions;
 import net.msrandom.witchery.init.WitcheryWoodTypes;
@@ -94,6 +95,10 @@ public class MutandisApi {
         setMutandisConversion(Blocks.POTATOES.getDefaultState(), true, Ingredient.fromItem(Items.POTATO));
         setMutandisConversion(Blocks.REEDS.getDefaultState(), true, Ingredient.fromItem(Items.REEDS));
         setMutandisConversion(Blocks.NETHER_WART.getDefaultState(), true, WitcheryDimensions.SPIRIT_WORLD.getType().getId(), Ingredient.fromItem(Items.NETHER_WART));
+
+        for (IBlockState state : WitcheryConfigOptions.mutandisExtras) {
+            setMutandisConversion(getAgeAgnosticBlockState(state), false);
+        }
 
         /**
          * mutandisExtremis.add(Blocks.CARROTS.getDefaultState().withProperty(BlockCrops.AGE, Math.min(currentAge, 7)));
