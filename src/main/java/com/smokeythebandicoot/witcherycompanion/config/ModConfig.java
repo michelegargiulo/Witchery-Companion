@@ -861,6 +861,36 @@ public class ModConfig {
             @Config.Name("Goblin - Remove Village Requirement")
             public static boolean goblin_tweakRemoveTradingVillageRequirements = false;
 
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a mundane Pickaxe")
+            @Config.Name("Goblin - Tweak Koboldite Initial Chance Any Pick. Default 0.01 (1%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakKobolditeInitialChanceNoPick = 0.01;
+
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a Koboldite Pickaxe")
+            @Config.Name("Goblin - Tweak Koboldite Initial Chance Koboldite Pick. Default 0.02 (2%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakKobolditeInitialChancePick = 0.02;
+
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a Koboldite Pickaxe and the Goblin smelted ores")
+            @Config.Name("Goblin - Tweak Koboldite Additional Chance Any Pick. Default 0.05 (5%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakKobolditeAdditionalChanceNoPick = 0.05;
+
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a Koboldite Pickaxe and the Goblin smelted ores")
+            @Config.Name("Goblin - Tweak Koboldite Additional Chance Koboldite Pick. Default 0.08 (8%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakKobolditeAdditionalChancePick = 0.08;
+
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to smelt ores (and double them)")
+            @Config.Name("Goblin - Tweak Smelt Initial Chance. Default 0.5 (50%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakSmeltingInitialChance = 0.5;
+
+            @Config.Comment("Tweak to modify the additional chance that the Hobgoblin has to create an additional drop for a smelted ore")
+            @Config.Name("Goblin - Tweak Smelt Additional Chance. Default 0.25 (25%)")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double goblin_tweakSmeltingAdditionalChance = 0.25;
+
             @Config.Comment("Fix players losing Cat familiars on World reload")
             @Config.Name("Cat Familiar - Fix Owner on World Reload")
             @Config.RequiresMcRestart
@@ -1086,9 +1116,33 @@ public class ModConfig {
             @Config.Name("Mog - Tweak Drop Loot by Table")
             public static boolean goblinMog_tweakLootTable = true;
 
+            @Config.Comment("If true, Shade of Leonard will drop loot according to its Loot Table (witchery:entities/leonard)")
+            @Config.Name("Shade of Leonard - Tweak Drop Loot by Table")
+            public static boolean leonard_tweakLootTable = false;
+
             @Config.Comment("If true, Lord of Torment will drop loot according to its Loot Table (witchery:entities/lord_of_torment)")
             @Config.Name("Lord of Torment - Tweak Drop Loot by Table")
             public static boolean lordOfTorment_tweakLootTable = false;
+
+            @Config.Comment("If true, Lost Souls will drop loot according to its Loot Table (witchery:entities/lost_soul)")
+            @Config.Name("Lost Soul - Tweak Drop Loot by Table")
+            public static boolean lostSoul_tweakLootTable = false;
+
+            @Config.Comment("If true, Mindrakes will drop loot according to its Loot Table (witchery:entities/mindrake)")
+            @Config.Name("Mindrake - Tweak Drop Loot by Table")
+            public static boolean mindrake_tweakLootTable = false;
+
+            @Config.Comment("If true, Nightmare will drop loot according to its Loot Table (witchery:entities/nightmare)")
+            @Config.Name("Nightmare - Tweak Drop Loot by Table")
+            public static boolean nightmare_tweakLootTable = false;
+
+            @Config.Comment("If true, Poltergeist will drop loot according to its Loot Table (witchery:entities/poltergeist)")
+            @Config.Name("Poltergeist - Tweak Drop Loot by Table")
+            public static boolean poltergeist_tweakLootTable = false;
+
+            @Config.Comment("If true, Spectral Familiar will drop loot according to its Loot Table (witchery:entities/spectral_familiar)")
+            @Config.Name("Spectral Familiar - Tweak Drop Loot by Table")
+            public static boolean spectralFamiliar_tweakLootTable = false;
 
             @Config.Comment("If true, Spectre will drop loot according to its Loot Table (witchery:entities/spectre)")
             @Config.Name("Spectre - Tweak Drop Loot by Table")
@@ -1097,6 +1151,26 @@ public class ModConfig {
             @Config.Comment("If true, Treefyd will drop loot according to its Loot Table (witchery:entities/treefyd)")
             @Config.Name("Treefyd - Tweak Drop Loot by Table")
             public static boolean treefyd_tweakOwnLootTable = false;
+
+            @Config.Comment("If true, Vampires will drop loot according to its Loot Table (witchery:entities/vampire)")
+            @Config.Name("Vampire - Tweak Drop Loot by Table")
+            public static boolean vampire_tweakLootTable = false;
+
+            @Config.Comment("If true, Village Guards will drop loot according to its Loot Table (witchery:entities/village_guard)")
+            @Config.Name("Village Guard - Tweak Drop Loot by Table")
+            public static boolean villageGuard_tweakLootTable = false;
+
+            @Config.Comment("If true, Werewolves will drop loot according to its Loot Table (witchery:entities/werewolf)")
+            @Config.Name("Werewolf - Tweak Drop Loot by Table")
+            public static boolean werewolf_tweakLootTable = false;
+
+            @Config.Comment("If true, Winged Monkeys will drop loot according to its Loot Table (witchery:entities/winged_monkey)")
+            @Config.Name("Winged Monkey - Tweak Drop Loot by Table")
+            public static boolean wingedMonkey_tweakLootTable = false;
+
+            @Config.Comment("If true, Witch Hunters will drop loot according to its Loot Table (witchery:entities/witch_hunter)")
+            @Config.Name("Witch Hunter - Tweak Drop Loot by Table")
+            public static boolean witchHunter_tweakLootTable = false;
         }
 
         public static class DimensionTweaks {

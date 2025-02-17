@@ -129,14 +129,13 @@ public class Integration {
         );*/
         TinkerRegistry.integrate(WOVEN_CRUOR).preInit();
 
-        if (TinkerRegistry.getMaterial("silver") != null) {
+        if (TinkerRegistry.getMaterial("silver") == null) {
             SILVER = new Material("silver", 0xdbdadf);
             SILVER.addItem(WitcheryIngredientItems.SILVER_DUST, 1, Material.VALUE_Ingot);
             SILVER.addItem("ingotSilver", 1, Material.VALUE_Ingot);
             SILVER.setCraftable(false);
             SILVER.setCastable(true);
             SILVER.setRepresentativeItem(WitcheryIngredientItems.SILVER_DUST);
-            SILVER.addTrait((ArmorModifierTrait)MODIFIER_SILVERED);
             TinkerRegistry.addMaterialStats(
                     KOBOLDITE,
                     new HeadMaterialStats(232, 6.4f, 3.9f, 1),
@@ -148,7 +147,6 @@ public class Integration {
         }
         else {
             SILVER = TinkerRegistry.getMaterial("silver");
-            SILVER.addTrait((ArmorModifierTrait)MODIFIER_SILVERED);
         }
 
     }
@@ -187,12 +185,6 @@ public class Integration {
                 new PlatesMaterialStats(1.3f, 6.5f, 1.0f)
         );
 
-        TinkerRegistry.addMaterialStats(
-                SILVER,
-                new CoreMaterialStats(22, 13),
-                new TrimMaterialStats(3.0f),
-                new PlatesMaterialStats(1.1f, 8.0f, 2.0f)
-        );
     }
 
     public static void conarmInit() {
@@ -267,6 +259,12 @@ public class Integration {
                         new ItemStack(WitcheryIngredientItems.ENT_TWIG),
                         new ItemStack(WitcheryIngredientItems.CREEPER_HEART)
                 ));
+
+        // Add Silvered Modifier
+        Material silver = TinkerRegistry.getMaterial("silver");
+        if (silver != null) {
+            silver.addTrait((ArmorModifierTrait)MODIFIER_SILVERED);
+        }
     }
 
 }

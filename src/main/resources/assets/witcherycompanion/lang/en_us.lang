@@ -2,6 +2,9 @@
 enchantment.witcherycompanion_dummy=Randomly Enchanted
 enchantment.witcherycompanion_dummy.desc=This item might be enchanted with random Enchantments
 
+# Attack Bat
+Entity.witchery.attack_bat.name=Bat
+
 # Tooltips for Poppets
 witcherycompanion.poppetitem.restrictiontooltip.pve=This Poppet won't affect §4Players§r
 witcherycompanion.poppetitem.restrictiontooltip.pvp=This Poppet won't affect §4Creatures§r
