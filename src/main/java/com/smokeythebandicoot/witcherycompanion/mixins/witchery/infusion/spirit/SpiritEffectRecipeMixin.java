@@ -30,7 +30,7 @@ public abstract class SpiritEffectRecipeMixin implements ISpiritEffectRecipeAcce
     }
 
     @Override
-    public ResourceLocation getId() {
+    public ResourceLocation witcherycompanion$accessor$getId() {
         return this.witchery_Patcher$key;
     }
 }

@@ -21,7 +21,7 @@ public class SpiritEffectApi {
         for (SpiritEffectRecipe effectRecipe : effects) {
             if ((Object)effectRecipe instanceof ISpiritEffectRecipeAccessor) {
                 ISpiritEffectRecipeAccessor accessor = (ISpiritEffectRecipeAccessor) (Object) effectRecipe;
-                ResourceLocation id = accessor.getId();
+                ResourceLocation id = accessor.witcherycompanion$accessor$getId();
                 spiritEffectRecipeMap.put(id, effectRecipe);
             }
         }
@@ -39,7 +39,7 @@ public class SpiritEffectApi {
     public static ResourceLocation getId(SpiritEffectRecipe recipe) {
         if ((Object)recipe instanceof ISpiritEffectRecipeAccessor) {
             ISpiritEffectRecipeAccessor accessor = (ISpiritEffectRecipeAccessor) (Object) recipe;
-            return accessor.getId();
+            return accessor.witcherycompanion$accessor$getId();
         }
         return null;
     }

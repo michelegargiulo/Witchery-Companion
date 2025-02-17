@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IMutationPatternAccessor {
 
-    IBlockState[][][] getMatrix();
+    IBlockState[][][] witcherycompanion$accessor$getMatrix();
 
-    List<Class<? extends EntityLiving>> getEntities();
+    List<Class<? extends EntityLiving>> witcherycompanion$accessor$getEntities();
 
 }

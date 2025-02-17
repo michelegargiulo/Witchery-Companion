@@ -2,17 +2,16 @@ package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.client.r
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.patches.mixin_invokers.IRenderItemInvoker;
+import com.smokeythebandicoot.witcherycompanion.api.vanillaaccessors.renderitem.IRenderItemAccessor;
 import com.smokeythebandicoot.witcherycompanion.utils.RenderItemUtils;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(RenderItem.class)
-public abstract class RenderItemMixin implements IRenderItemInvoker {
+public abstract class RenderItemMixin implements IRenderItemAccessor {
 
     //@Unique
     //private Integer witchery_Patcher$color = null;
@@ -25,13 +24,13 @@ public abstract class RenderItemMixin implements IRenderItemInvoker {
     }
 
     @Override
-    public void setColor(int color) {
+    public void witcherycompanion$accessor$setColor(int color) {
         //this.witchery_Patcher$color = color;
         RenderItemUtils.nextStackColor = color;
     }
 
     @Override
-    public int getColor() {
+    public int witcherycompanion$accessor$getColor() {
         //return this.witchery_Patcher$color;
         return RenderItemUtils.nextStackColor;
     }

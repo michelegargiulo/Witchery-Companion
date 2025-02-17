@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.worshipstatue.ITileEntityWorshipStatueAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.worshipstatue.ITileEntityWorshipStatueAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
@@ -47,7 +47,7 @@ public class WorshipStatueProbeInfoProvider extends BaseBlockProbeInfoProvider<B
         }
         if (tile instanceof ITileEntityWorshipStatueAccessor) {
             ITileEntityWorshipStatueAccessor accessor = (ITileEntityWorshipStatueAccessor) tile;
-            TOPHelper.addText(iProbeInfo, "Worship Level", String.valueOf(accessor.getWorshipLevel()), TextFormatting.DARK_PURPLE);
+            TOPHelper.addText(iProbeInfo, "Worship Level", String.valueOf(accessor.witcherycompanion$accessor$getWorshipLevel()), TextFormatting.DARK_PURPLE);
         }
     }
 }

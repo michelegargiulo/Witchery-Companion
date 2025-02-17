@@ -2,8 +2,8 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.accessors.kettle.IKettleRecipeAccessor;
-import com.smokeythebandicoot.witcherycompanion.api.accessors.kettle.ITileEntityKettleAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.kettle.IKettleRecipeAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.kettle.ITileEntityKettleAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.KettleApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.block.material.Material;
@@ -58,22 +58,22 @@ public abstract class TileEntityKettleMixin extends WitcheryTileEntity implement
     }
 
     @Override
-    public boolean getIsRuined() {
+    public boolean witcherycompanion$accessor$getIsRuined() {
         return isRuined;
     }
 
     @Override
-    public float getCurrentPowerNeeded() {
+    public float witcherycompanion$accessor$getCurrentPowerNeeded() {
         return witchery_Patcher$currentPowerNeeded;
     }
 
     @Override
-    public NonNullList<ItemStack> getItems() {
+    public NonNullList<ItemStack> witcherycompanion$accessor$getItems() {
         return items;
     }
 
     @Override
-    public String requiredFamiliar() {
+    public String witcherycompanion$accessor$requiredFamiliar() {
         if (this.recipe != null && this.recipe.getFamiliarPower() != null) {
             return this.recipe.getFamiliarPower().getPath();
         }
@@ -82,15 +82,15 @@ public abstract class TileEntityKettleMixin extends WitcheryTileEntity implement
     }
 
     @Override
-    public boolean satisfyFamiliar(EntityPlayer player) {
+    public boolean witcherycompanion$accessor$satisfyFamiliar(EntityPlayer player) {
         return recipe != null && (recipe.getFamiliarPower() == null || Familiars.hasFamiliarPower(player, recipe.getFamiliarPower()));
     }
 
     @Override
-    public Integer requiredDimension() {
+    public Integer witcherycompanion$accessor$requiredDimension() {
         if ((Object)this.recipe instanceof IKettleRecipeAccessor) {
             IKettleRecipeAccessor accessor = (IKettleRecipeAccessor) (Object) this.recipe;
-            return accessor.getDimension();
+            return accessor.witcherycompanion$accessor$getDimension();
         }
         return null;
     }

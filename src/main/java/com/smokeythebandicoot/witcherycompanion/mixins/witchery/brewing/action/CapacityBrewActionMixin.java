@@ -13,7 +13,7 @@ public abstract class CapacityBrewActionMixin implements ICapacityBrewActionAcce
     private boolean removeCeiling;
 
     @Override
-    public boolean getRemoveCeiling() {
+    public boolean witcherycompanion$accessor$getRemoveCeiling() {
         return this.removeCeiling;
     }
 

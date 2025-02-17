@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
 import com.smokeythebandicoot.witcherycompanion.api.AltarApi;
-import com.smokeythebandicoot.witcherycompanion.api.accessors.altar.ITileEntityAltarAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.altar.ITileEntityAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -109,7 +109,7 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     }
 
     @Override
-    public void accessor_setCore(boolean isCore) {
+    public void witcherycompanion$accessor$setCore(boolean isCore) {
         this.core = isCore;
     }
 

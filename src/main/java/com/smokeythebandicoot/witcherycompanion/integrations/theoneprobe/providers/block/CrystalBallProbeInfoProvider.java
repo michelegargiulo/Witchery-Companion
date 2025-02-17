@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.crystalball.ITileEntityCrystalBallAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.crystalball.ITileEntityCrystalBallAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
@@ -45,7 +45,7 @@ public class CrystalBallProbeInfoProvider extends BaseBlockProbeInfoProvider<Blo
     public void addBasicInfo(BlockCrystalBall block, TileEntityCrystalBall tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
         if (tile instanceof ITileEntityCrystalBallAccessor) {
             ITileEntityCrystalBallAccessor accessor = (ITileEntityCrystalBallAccessor) tile;
-            long remainingCooldown = (accessor.getLastUsedTime() + BlockTweaks.crystalBall_tweakCooldown) - tile.getWorld().getTotalWorldTime();
+            long remainingCooldown = (accessor.witcherycompanion$accessor$getLastUsedTime() + BlockTweaks.crystalBall_tweakCooldown) - tile.getWorld().getTotalWorldTime();
             TOPHelper.addText(iProbeInfo, "Cooldown", remainingCooldown <= 0 ? "Ready" : String.valueOf(remainingCooldown), TextFormatting.DARK_PURPLE);
         }
     }

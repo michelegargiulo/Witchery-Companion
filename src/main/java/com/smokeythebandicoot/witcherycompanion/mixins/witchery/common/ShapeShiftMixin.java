@@ -3,7 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.common;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.accessors.player.IEntityPlayerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.vanillaaccessors.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
@@ -173,10 +173,10 @@ public abstract class ShapeShiftMixin {
             CreatureForm.Stats stats = this.getFormStats(WitcheryUtils.getExtension(player));
             // Since we are computing just a scaling factor, we compare the creature target dimensions w.r.t.
             // the default player's sizes. Even if other mods chance them, it shouldn't affect this computation
-            accessor.accessor_setCurrentFormWidthScale(stats.getWidth() / 0.6f);
-            accessor.accessor_setCurrentFormHeightScale(stats.getHeight() / 1.8f);
-            accessor.accessor_setCurrentFormEyeHeightScale(stats.getEyeHeight() / stats.getHeight());
-            accessor.accessor_setCurrentFormStepHeightScale(stats.getStepHeight() / 0.6f);
+            accessor.witcherycompanion$accessor$setCurrentFormWidthScale(stats.getWidth() / 0.6f);
+            accessor.witcherycompanion$accessor$setCurrentFormHeightScale(stats.getHeight() / 1.8f);
+            accessor.witcherycompanion$accessor$setCurrentFormEyeHeightScale(stats.getEyeHeight() / stats.getHeight());
+            accessor.witcherycompanion$accessor$setCurrentFormStepHeightScale(stats.getStepHeight() / 0.6f);
             // Send the new size to all players
             WitcheryNetworkChannel.sendToAll(new PacketSyncEntitySize(player));
         }

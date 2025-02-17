@@ -3,7 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.entity;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.api.TreefydApi;
-import com.smokeythebandicoot.witcherycompanion.api.accessors.treefyd.IEntityTreefydAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.entities.treefyd.IEntityTreefydAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.LootTweaks;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
@@ -57,7 +57,7 @@ public abstract class EntityTreefydMixin extends EntityMob implements IEntityOwn
     }
 
     @Override
-    public int getBoostLevel() {
+    public int witcherycompanion$accessor$getBoostLevel() {
         return this.dataManager.get(BOOST_LEVEL);
     }
 

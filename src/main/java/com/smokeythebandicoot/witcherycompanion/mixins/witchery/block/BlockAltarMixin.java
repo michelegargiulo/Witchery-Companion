@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.altar.IBlockAltarAccessor;
-import com.smokeythebandicoot.witcherycompanion.api.accessors.altar.ITileEntityAltarAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.altar.IBlockAltarAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.altar.ITileEntityAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -86,7 +86,7 @@ public abstract class BlockAltarMixin extends BlockContainer implements IBlockAl
                         if (partPos.equals(corePos)) {
                             // Use Accessor to set core to true for the part
                             ITileEntityAltarAccessor altarAccessor = (ITileEntityAltarAccessor)altarPart;
-                            altarAccessor.accessor_setCore(true);
+                            altarAccessor.witcherycompanion$accessor$setCore(true);
                             altarPart.updatePower();
                         } else {
                             altarPart.setInvalid();
@@ -118,7 +118,7 @@ public abstract class BlockAltarMixin extends BlockContainer implements IBlockAl
 
     /** Accessor Mixin for the getCore function. Used by The One Probe */
     @Override
-    public BlockPos accessor_getCore(IBlockAccess world, BlockPos pos) {
+    public BlockPos witcherycompanion$accessor$getCore(IBlockAccess world, BlockPos pos) {
         return getCore(world ,pos);
     }
 

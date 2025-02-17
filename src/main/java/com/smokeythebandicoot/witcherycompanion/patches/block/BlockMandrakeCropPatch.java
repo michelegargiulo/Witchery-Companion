@@ -1,9 +1,8 @@
 package com.smokeythebandicoot.witcherycompanion.patches.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.invokers.mandrakecrop.IBlockMandrakeCropInvoker;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.mandrakecrop.IBlockMandrakeCropAccessor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -22,7 +21,7 @@ public class BlockMandrakeCropPatch {
             return;
         }
 
-        IBlockMandrakeCropInvoker invoker = (IBlockMandrakeCropInvoker) event.blockState.getBlock();
+        IBlockMandrakeCropAccessor invoker = (IBlockMandrakeCropAccessor) event.blockState.getBlock();
 
         // Gather event params
         World world = event.world;
@@ -32,8 +31,8 @@ public class BlockMandrakeCropPatch {
         ItemStack stack = event.itemStack;
 
         // If Mandrake is spawned, seeds should not be replanted, so cancel this event
-        if (invoker.shouldSpawnMandrake(world, player, pos, state, stack)) {
-            invoker.spawnMandrake(world, player, pos, state, stack);
+        if (invoker.witcherycompanion$accessor$shouldSpawnMandrake(world, player, pos, state, stack)) {
+            invoker.witcherycompanion$accessor$spawnMandrake(world, player, pos, state, stack);
             event.setResult(Event.Result.DENY);
             world.setBlockToAir(pos);
             return;

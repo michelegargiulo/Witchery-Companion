@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.recipe;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.kettle.IKettleRecipeAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.kettle.IKettleRecipeAccessor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.msrandom.witchery.block.entity.TileEntityKettle;
@@ -27,7 +27,7 @@ public abstract class KettleRecipeMixin extends WitcheryRecipe<TileEntityKettle>
     }
 
     @Override
-    public Integer getDimension() {
+    public Integer witcherycompanion$accessor$getDimension() {
         if (this.dimension == null) return null;
         return this.dimension.getId();
     }

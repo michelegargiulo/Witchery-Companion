@@ -1,12 +1,10 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.extensions;
 
 import com.smokeythebandicoot.witcherycompanion.api.player.DivinationData;
-import com.smokeythebandicoot.witcherycompanion.api.player.IPlayerExtendedDataAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.entities.player.IPlayerExtendedDataAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameType;
 import net.msrandom.witchery.extensions.PlayerExtendedData;
 import net.msrandom.witchery.extensions.WitcheryExtendedData;
 import org.spongepowered.asm.mixin.Mixin;
@@ -66,12 +64,12 @@ public abstract class PlayerExtendedDataMixin extends WitcheryExtendedData<Entit
     }
 
     @Override
-    public void setDivinationData(DivinationData data) {
+    public void witcherycompanion$accessor$setDivinationData(DivinationData data) {
         this.witchery_Patcher$divinationData = data;
     }
 
     @Override
-    public DivinationData getDivinationData() {
+    public DivinationData witcherycompanion$accessor$getDivinationData() {
         return this.witchery_Patcher$divinationData;
     }
 }

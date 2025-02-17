@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.crystalball.ITileEntityCrystalBallAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.crystalball.ITileEntityCrystalBallAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.tileentity.TileEntity;
 import net.msrandom.witchery.block.entity.TileEntityCrystalBall;
@@ -26,7 +26,7 @@ public abstract class TileEntityCrystalBallMixin extends TileEntity implements I
     }
 
     @Override
-    public long getLastUsedTime() {
+    public long witcherycompanion$accessor$getLastUsedTime() {
         return this.lastUsedTime;
     }
 }

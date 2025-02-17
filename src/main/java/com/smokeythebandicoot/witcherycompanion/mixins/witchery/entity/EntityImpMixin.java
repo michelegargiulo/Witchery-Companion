@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.accessors.infernalimp.IEntityImpAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.entities.infernalimp.IEntityImpAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.LootTweaks;
 import com.smokeythebandicoot.witcherycompanion.api.InfernalImpApi;
@@ -224,12 +224,12 @@ public abstract class EntityImpMixin extends EntityTameable implements IEntityIm
     }
 
     @Override
-    public long accessor_getCooldown() {
+    public long witcherycompanion$accessor$getCooldown() {
         return witchery_Patcher$getCooldown();
     }
 
     @Override
-    public int accessor_getSecretsShared() {
+    public int witcherycompanion$accessor$getSecretsShared() {
         return secretsShared;
     }
 

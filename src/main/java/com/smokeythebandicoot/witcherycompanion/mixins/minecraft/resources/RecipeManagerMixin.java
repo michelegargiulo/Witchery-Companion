@@ -45,7 +45,7 @@ public abstract class RecipeManagerMixin extends JsonReloadListener implements I
 
     /** This Mixin implements the accessor function to retrieve a recipe given a Type and an ID **/
     @Override
-    public WitcheryRecipe<IInventory> getRecipeForType(RecipeType<WitcheryRecipe<IInventory>> recipeType, ResourceLocation id) {
+    public WitcheryRecipe<IInventory> witcherycompanion$accessor$getRecipeForType(RecipeType<WitcheryRecipe<IInventory>> recipeType, ResourceLocation id) {
         Map<ResourceLocation, WitcheryRecipe<IInventory>> recipeMap = this.getRecipes(recipeType);
         return recipeMap.getOrDefault(id, null);
     }

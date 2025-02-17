@@ -99,7 +99,7 @@ public abstract class MutationManagerMixin extends JsonReloadListener implements
     }
 
     @Override
-    public MutationPattern getMutation(ResourceLocation id) {
+    public MutationPattern witcherycompanion$accessor$getMutation(ResourceLocation id) {
         return witchery_Patcher$mutations.getOrDefault(id, null);
     }
 

@@ -15,7 +15,7 @@ public class ContentUtils {
         RecipeManager recipeManager = WitcheryUtils.getRecipeManager(null);
         if ((Object)recipeManager instanceof IRecipeManagerAccessor) {
             IRecipeManagerAccessor accessor = (IRecipeManagerAccessor) (Object) recipeManager;
-            return accessor.getRecipeForType(recipeType, recipeId);
+            return accessor.witcherycompanion$accessor$getRecipeForType(recipeType, recipeId);
         }
         return null;
     }
@@ -25,7 +25,7 @@ public class ContentUtils {
         RecipeManager recipeManager = WitcheryUtils.getRecipeManager(null);
         if ((Object)recipeManager instanceof IRecipeManagerAccessor) {
             IRecipeManagerAccessor accessor = (IRecipeManagerAccessor) (Object) recipeManager;
-            return (T)accessor.getRecipeForType(recipeType, new ResourceLocation(recipeId));
+            return (T)accessor.witcherycompanion$accessor$getRecipeForType(recipeType, new ResourceLocation(recipeId));
         }
         return null;
     }

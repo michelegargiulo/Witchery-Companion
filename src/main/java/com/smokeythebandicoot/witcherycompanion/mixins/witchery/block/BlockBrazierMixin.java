@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.brazier.ITileEntityBrazierAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.brazier.ITileEntityBrazierAccessor;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -35,7 +35,7 @@ public abstract class BlockBrazierMixin extends BlockContainer {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof ITileEntityBrazierAccessor) {
             ITileEntityBrazierAccessor brazier = (ITileEntityBrazierAccessor) tile;
-            brazier.setRecipeOwner(player);
+            brazier.witcherycompanion$accessor$setRecipeOwner(player);
         }
     }
 }

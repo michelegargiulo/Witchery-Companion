@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.potion;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.player.IEntityPlayerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.vanillaaccessors.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.PotionTweaks;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,7 +68,7 @@ public abstract class PotionResizingMixin {
             if (entity instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer)entity;
                 IEntityPlayerAccessor playerResizeInfo = (IEntityPlayerAccessor) player;
-                float currentScale = playerResizeInfo.accessor_getCurrentResizingScale();
+                float currentScale = playerResizeInfo.witcherycompanion$accessor$getCurrentResizingScale();
                 // Current player height should be defaultHeight * currentScale;
                 // Update current scale, then update player size
                 if (currentScale != targetResizingScale) {
@@ -82,7 +82,7 @@ public abstract class PotionResizingMixin {
                 }
                 // Set this parameter in EntityPlayer. This scale will be
                 // accounted for in EntityPlayer.updateSize()
-                playerResizeInfo.accessor_setCurrentResizingScale(currentScale);
+                playerResizeInfo.witcherycompanion$accessor$setCurrentResizingScale(currentScale);
 
             }
             else {

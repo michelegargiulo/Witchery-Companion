@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.invokers.mandrakecrop.IBlockMandrakeCropInvoker;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.mandrakecrop.IBlockMandrakeCropAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
@@ -32,18 +32,18 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 @ParametersAreNonnullByDefault
 @Mixin(BlockMandrakeCrop.class)
-public abstract class BlockMandrakeCropMixin extends BlockCrops implements IBlockMandrakeCropInvoker {
+public abstract class BlockMandrakeCropMixin extends BlockCrops implements IBlockMandrakeCropAccessor {
 
     /** This mixin replaces the harvestBlock function to improve with a custom shouldSpawnMandrake function */
     @Inject(method = "harvestBlock", remap = false, cancellable = true,
             at = @At(value = "HEAD"))
     private void fixMandrakeSpawnConditions(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack, CallbackInfo ci) {
         if (BlockTweaks.mandrakeCrop_fixMandrakeSpawningNotMature) {
-            if (shouldSpawnMandrake(world, player, pos, state, stack)) {
+            if (witcherycompanion$accessor$shouldSpawnMandrake(world, player, pos, state, stack)) {
                 super.harvestBlock(world, player, pos, state, te, stack);
             }
             else {
-                spawnMandrake(world, player, pos, state, stack);
+                witcherycompanion$accessor$spawnMandrake(world, player, pos, state, stack);
             }
             ci.cancel();
         }
@@ -51,7 +51,7 @@ public abstract class BlockMandrakeCropMixin extends BlockCrops implements IBloc
 
 
     @Override
-    public boolean shouldSpawnMandrake(World world, EntityPlayer player, BlockPos pos, IBlockState state, ItemStack stack) {
+    public boolean witcherycompanion$accessor$shouldSpawnMandrake(World world, EntityPlayer player, BlockPos pos, IBlockState state, ItemStack stack) {
 
         // Pre-conditions
         if (!this.isMaxAge(state) ||
@@ -69,7 +69,7 @@ public abstract class BlockMandrakeCropMixin extends BlockCrops implements IBloc
     }
 
     @Override
-    public void spawnMandrake(World world,EntityPlayer player,BlockPos pos, IBlockState state, ItemStack stack) {
+    public void witcherycompanion$accessor$spawnMandrake(World world, EntityPlayer player, BlockPos pos, IBlockState state, ItemStack stack) {
         EntityMandrake mandrake = new EntityMandrake(world);
         mandrake.setLocationAndAngles((double)pos.getX() + 0.5, (double)pos.getY() + 0.05, (double)pos.getZ() + 0.5, 0.0F, 0.0F);
         world.spawnEntity(mandrake);

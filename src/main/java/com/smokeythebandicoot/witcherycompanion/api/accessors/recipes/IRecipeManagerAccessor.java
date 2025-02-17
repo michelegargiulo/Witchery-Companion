@@ -7,6 +7,6 @@ import net.msrandom.witchery.recipe.WitcheryRecipe;
 
 public interface IRecipeManagerAccessor {
 
-    WitcheryRecipe<IInventory> getRecipeForType(RecipeType<WitcheryRecipe<IInventory>> recipeType, ResourceLocation id);
+    WitcheryRecipe<IInventory> witcherycompanion$accessor$getRecipeForType(RecipeType<WitcheryRecipe<IInventory>> recipeType, ResourceLocation id);
 
 }

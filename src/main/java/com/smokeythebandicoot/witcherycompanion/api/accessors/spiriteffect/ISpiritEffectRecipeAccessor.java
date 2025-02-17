@@ -4,6 +4,6 @@ import net.minecraft.util.ResourceLocation;
 
 public interface ISpiritEffectRecipeAccessor {
 
-    ResourceLocation getId();
+    ResourceLocation witcherycompanion$accessor$getId();
 
 }

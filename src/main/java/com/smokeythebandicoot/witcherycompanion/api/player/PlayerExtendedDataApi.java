@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.api.player;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.player.IEntityPlayerAccessor;
-import com.smokeythebandicoot.witcherycompanion.api.symboleffect.ISymbolEffectAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.vanillaaccessors.player.IEntityPlayerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.symboleffect.ISymbolEffectAccessor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -122,7 +122,7 @@ public class PlayerExtendedDataApi {
     /** Returns the current size set by Potion of Resizing */
     public static float getResizingPotionScale(EntityPlayer player) {
         IEntityPlayerAccessor playerResize = (IEntityPlayerAccessor) player;
-        return playerResize.accessor_getCurrentResizingScale();
+        return playerResize.witcherycompanion$accessor$getCurrentResizingScale();
     }
 
     /** Returns true if the Player is able to use a Crystal Ball */

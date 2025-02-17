@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.suncollector.IBlockSunCollectorAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.suncollector.IBlockSunCollectorAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
@@ -44,7 +44,7 @@ public class SunCollectorProbeInfoProvider extends BaseBlockProbeInfoProvider<Bl
     public void addBasicInfo(BlockSunCollector block, TileEntity tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
         if (block instanceof IBlockSunCollectorAccessor) {
             IBlockSunCollectorAccessor accessor = (IBlockSunCollectorAccessor) block;
-            int power = accessor.getPower(iBlockState);
+            int power = accessor.witcherycompanion$accessor$getPower(iBlockState);
             TOPHelper.addText(iProbeInfo, "Power", String.valueOf(power), TextFormatting.DARK_PURPLE);
         }
     }

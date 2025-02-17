@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.cauldron.ITileEntityCauldronAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.cauldron.ITileEntityCauldronAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
@@ -53,7 +53,7 @@ public class CauldronProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockW
     public void addExtendedInfo(BlockWitchCauldron block, TileEntityCauldron tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
 
         ITileEntityCauldronAccessor cauldronTileAccessor = (ITileEntityCauldronAccessor) tile;
-        float requiredPower = cauldronTileAccessor.accessor_getNeededPower();
+        float requiredPower = cauldronTileAccessor.witcherycompanion$accessor$getNeededPower();
         // requiredPower does not update if the Cauldron is not boiling, so simply hide it
         if (requiredPower > 0 && tile.isBoiling())
             TOPHelper.addText(iProbeInfo, "Required Power", String.valueOf(requiredPower), TextFormatting.GOLD);

@@ -7,6 +7,6 @@ import javax.annotation.Nullable;
 
 public interface IMutationManagerAccessor {
 
-    @Nullable MutationPattern getMutation(ResourceLocation id);
+    @Nullable MutationPattern witcherycompanion$accessor$getMutation(ResourceLocation id);
 
 }
