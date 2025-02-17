@@ -10,6 +10,7 @@ import com.smokeythebandicoot.witcherycompanion.integrations.quark.BlockMandrake
 import com.smokeythebandicoot.witcherycompanion.integrations.thaumcraft.ThaumcraftIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPPlugin;
 import com.smokeythebandicoot.witcherycompanion.network.CompanionNetworkChannel;
+import com.smokeythebandicoot.witcherycompanion.patches.block.BlockMandrakeCropPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.FamiliarPatches;
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
@@ -64,6 +65,10 @@ public class CommonProxy {
 
         if (ModConfig.IntegrationConfigurations.TopIntegration.enableTopIntegration && Loader.isModLoaded(Mods.TOP))
             FMLInterModComms.sendFunctionMessage(Mods.TOP, "getTheOneProbe", TOPPlugin.class.getName());
+
+        if (ModConfig.PatchesConfiguration.BlockTweaks.mandrakeCrop_fixMandrakeSpawningTicKama &&
+                Loader.isModLoaded(Mods.TINKERS_CONSTRUCT))
+            MinecraftForge.EVENT_BUS.register(BlockMandrakeCropPatch.class);
 
     }
 

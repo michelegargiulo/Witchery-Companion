@@ -444,9 +444,25 @@ public class ModConfig {
             @Config.Name("Kettle - Fix Brews Thrown Upon Creation")
             public static boolean kettle_fixThrowBrewsUponCreation = true;
 
-            @Config.Comment("Fix true, it will prevent Mandrake entities from spawning when harvesting non-mature mandrake crops.")
+            @Config.Comment("If true, it will prevent Mandrake entities from spawning when harvesting non-mature mandrake crops.")
             @Config.Name("Mandrake Crop - Fix Drop Even When Not Mature")
             public static boolean mandrakeCrop_fixMandrakeSpawningNotMature = true;
+
+            @Config.Comment("If true, it will fix Mandrake spawning and harvesting when using Tinkers Construct Kama right-click to replant feature.")
+            @Config.Name("Mandrake Crop - Fix On TiC Harvest")
+            public static boolean mandrakeCrop_fixMandrakeSpawningTicKama = true;
+
+            @Config.Comment("Tweaks the chance for Mandrakes to spawn at night. Witchery default is 0.9 (90%). " +
+                    "Requires 'Mandrake Crop - Fix Drop Even When Not Mature' to be enabled")
+            @Config.Name("Mandrake Crop - Tweak Daytime Spawn Chance")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double mandrakeCrop_tweakDaytimeSpawnChance = 0.9;
+
+            @Config.Comment("Tweaks the chance for Mandrakes to spawn at night. Witchery default is 0.09 (9%). " +
+                    "Requires 'Mandrake Crop - Fix Drop Even When Not Mature' to be enabled")
+            @Config.Name("Mandrake Crop - Tweak Nighttime Spawn Chance")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double mandrakeCrop_tweakNighttimeSpawnChance = 0.09;
 
             @Config.Comment("Fixes the Mirror in Mirror (MiM) feature.")
             @Config.Name("Mirror - Fix MiM")

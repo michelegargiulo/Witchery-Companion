@@ -12,6 +12,7 @@ public class Mods {
     public static final String MORPH = "morph";
     public static final String PATCHOULI = "patchouli";
     public static final String QUARK = "quark";
+    public static final String TINKERS_CONSTRUCT = "tconstruct";
     public static final String THAUMCRAFT = "thaumcraft";
     public static final String TOP = "theoneprobe";
 
