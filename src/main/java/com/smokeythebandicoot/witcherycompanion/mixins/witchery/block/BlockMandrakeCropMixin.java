@@ -10,19 +10,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.msrandom.witchery.block.BlockMandrakeCrop;
 import net.msrandom.witchery.entity.monster.EntityMandrake;
 import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Random;
 
 /**
  Mixins:
@@ -49,7 +53,22 @@ public abstract class BlockMandrakeCropMixin extends BlockCrops implements IBloc
         }
     }
 
+    /** Overwrites the getDrops function to use doubles as chance **/
+    @Inject(method = "getDrops", remap = false, at = @At("HEAD"), cancellable = true)
+    private void tweakMandrakeRootDropChance(NonNullList<ItemStack> ret, IBlockAccess access, BlockPos pos, IBlockState state, int fortune, CallbackInfo ci) {
+        if (this.isMaxAge(state)) {
+            Random random = access instanceof World ? ((World)access).rand : new Random();
+            ret.add(new ItemStack(this));
+            if (random.nextDouble() < BlockTweaks.mandrakeCrop_tweakRootDropChance) {
+                ret.add(new ItemStack(this.getCrop()));
+            }
+        } else {
+            super.getDrops(ret, access, pos, state, fortune);
+        }
+        ci.cancel();
+    }
 
+    /** Checks all conditions to see if mandrakes should spawn. Does not spawn the mandrake **/
     @Override
     public boolean witcherycompanion$accessor$shouldSpawnMandrake(World world, EntityPlayer player, BlockPos pos, IBlockState state, ItemStack stack) {
 
@@ -68,6 +87,7 @@ public abstract class BlockMandrakeCropMixin extends BlockCrops implements IBloc
         return world.rand.nextDouble() < chance;
     }
 
+    /** Spawns the mandrake. Code is basically the same as Witchery **/
     @Override
     public void witcherycompanion$accessor$spawnMandrake(World world, EntityPlayer player, BlockPos pos, IBlockState state, ItemStack stack) {
         EntityMandrake mandrake = new EntityMandrake(world);

@@ -464,6 +464,11 @@ public class ModConfig {
             @Config.RangeDouble(min = 0.0, max = 1.0)
             public static double mandrakeCrop_tweakNighttimeSpawnChance = 0.09;
 
+            @Config.Comment("Tweaks the chance for fully-grown Mandrake crops to drop a Mandrake root. Default Witchery chance is 0.25 (25%)")
+            @Config.Name("Mandrake Crop - Tweak Root Drop Chance")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double mandrakeCrop_tweakRootDropChance = 0.25;
+
             @Config.Comment("Fixes the Mirror in Mirror (MiM) feature.")
             @Config.Name("Mirror - Fix MiM")
             public static boolean mirror_fixMirrorInMirror = true;
