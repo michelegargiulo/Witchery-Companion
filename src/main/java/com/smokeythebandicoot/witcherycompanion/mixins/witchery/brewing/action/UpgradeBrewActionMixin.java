@@ -28,7 +28,7 @@ public abstract class UpgradeBrewActionMixin implements IUpgradeBrewActionAccess
     }
 
     @Override
-    public boolean increasesPower() {
+    public boolean witcherycompanion$accessor$increasesPower() {
         return this.witchery_Patcher$power;
     }
 }

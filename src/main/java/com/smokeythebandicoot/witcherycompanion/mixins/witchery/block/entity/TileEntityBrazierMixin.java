@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.brazier.ITileEntityBrazierAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.brazier.ITileEntityBrazierAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
 import net.minecraft.entity.player.EntityPlayer;
@@ -46,12 +46,12 @@ public abstract class TileEntityBrazierMixin extends WitcheryTileEntity implemen
     }
 
     @Override
-    public EntityPlayer getRecipeOwner() {
+    public EntityPlayer witcherycompanion$accessor$getRecipeOwner() {
         return this.witchery_Patcher$recipeOwner;
     }
 
     @Override
-    public void setRecipeOwner(EntityPlayer player) {
+    public void witcherycompanion$accessor$setRecipeOwner(EntityPlayer player) {
         this.witchery_Patcher$recipeOwner = player;
     }
 

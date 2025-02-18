@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.mirror.ITileEntityMirrorAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.mirror.ITileEntityMirrorAccessor;
 import net.msrandom.witchery.block.entity.TileEntityMirror;
 import net.msrandom.witchery.block.entity.WitcheryTileEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,12 +16,12 @@ public abstract class TileEntityMirrorMixin extends WitcheryTileEntity implement
     public boolean demonKilled;
 
     @Override
-    public long getCooldown() {
+    public long witcherycompanion$accessor$getCooldown() {
         return Math.max(this.cooldown - ticks, 0);
     }
 
     @Override
-    public boolean isHollow() {
+    public boolean witcherycompanion$accessor$isHollow() {
         return this.demonKilled;
     }
 

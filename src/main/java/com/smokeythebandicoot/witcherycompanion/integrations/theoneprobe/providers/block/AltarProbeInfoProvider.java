@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.altar.IBlockAltarAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.altar.IBlockAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
@@ -71,7 +71,7 @@ public class AltarProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockAlta
 
     private TileEntityAltar findCoreAltar(World world, BlockPos pos, BlockAltar altarBlock) {
         IBlockAltarAccessor altarAccessor = (IBlockAltarAccessor)(Object)altarBlock;
-        BlockPos corePos = altarAccessor.accessor_getCore(world, pos);
+        BlockPos corePos = altarAccessor.witcherycompanion$accessor$getCore(world, pos);
         if (corePos == null) return null;
         TileEntity te = world.getTileEntity(corePos);
         if (!(te instanceof TileEntityAltar)) return null;

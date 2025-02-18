@@ -64,7 +64,7 @@ public class CapacityBrewActionProcessor extends BrewActionProcessor {
                 // Get removes ceiling using Mixins instead of reflection
                 if ((Object) capacityBrewAction instanceof ICapacityBrewActionAccessor) {
                     ICapacityBrewActionAccessor accessor = (ICapacityBrewActionAccessor) (Object) capacityBrewAction;
-                    this.removesCeiling = accessor.getRemoveCeiling();
+                    this.removesCeiling = accessor.witcherycompanion$accessor$getRemoveCeiling();
                 }
 
                 // Description (at the end because other fields need to be set)

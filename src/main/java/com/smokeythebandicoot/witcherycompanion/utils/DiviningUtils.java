@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.utils;
 
 import com.smokeythebandicoot.witcherycompanion.api.player.DivinationData;
-import com.smokeythebandicoot.witcherycompanion.api.player.IPlayerExtendedDataAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.entities.player.IPlayerExtendedDataAccessor;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -40,7 +40,7 @@ public class DiviningUtils {
         PlayerExtendedData playerEx = WitcheryUtils.getExtension(player);
         IPlayerExtendedDataAccessor accessor = (IPlayerExtendedDataAccessor) playerEx;
 
-        accessor.setDivinationData(data);
+        accessor.witcherycompanion$accessor$setDivinationData(data);
         playerEx.processSync();
 
         // Now set the player to spectator and spectate target entity
@@ -59,7 +59,7 @@ public class DiviningUtils {
     public static boolean isDivining(EntityPlayer player) {
         PlayerExtendedData playerEx = WitcheryUtils.getExtension(player);
         IPlayerExtendedDataAccessor accessor = (IPlayerExtendedDataAccessor) playerEx;
-        DivinationData divinationData = accessor.getDivinationData();
+        DivinationData divinationData = accessor.witcherycompanion$accessor$getDivinationData();
 
         return divinationData != null && divinationData.getEntityUuid() != null;
     }
@@ -68,7 +68,7 @@ public class DiviningUtils {
 
         PlayerExtendedData playerEx = WitcheryUtils.getExtension(player);
         IPlayerExtendedDataAccessor accessor = (IPlayerExtendedDataAccessor) playerEx;
-        DivinationData divinationData = accessor.getDivinationData();
+        DivinationData divinationData = accessor.witcherycompanion$accessor$getDivinationData();
 
         // No divination data, simply return
         if (divinationData == null) {
@@ -95,7 +95,7 @@ public class DiviningUtils {
         player.setGameType(divinationData.getGameType());
 
         // Reset divination data
-        accessor.setDivinationData(new DivinationData());
+        accessor.witcherycompanion$accessor$setDivinationData(new DivinationData());
         playerEx.processSync();
     }
 

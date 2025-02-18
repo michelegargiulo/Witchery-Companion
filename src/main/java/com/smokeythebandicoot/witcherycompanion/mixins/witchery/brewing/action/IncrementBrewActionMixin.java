@@ -24,7 +24,7 @@ public abstract class IncrementBrewActionMixin implements IIncrementBrewActionAc
     }
 
     @Override
-    public boolean increasesExtent() {
+    public boolean witcherycompanion$accessor$increasesExtent() {
         return this.witchery_Patcher$extent;
     }
 

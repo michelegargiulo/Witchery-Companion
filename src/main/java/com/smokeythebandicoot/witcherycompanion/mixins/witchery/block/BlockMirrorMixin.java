@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.mirror.IBlockMirrorAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.mirror.IBlockMirrorAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -79,7 +79,7 @@ public abstract class BlockMirrorMixin extends BlockContainer implements IBlockM
 
 
     @Override
-    public boolean isExit() {
+    public boolean witcherycompanion$accessor$isExit() {
         return this.unbreakable;
     }
 

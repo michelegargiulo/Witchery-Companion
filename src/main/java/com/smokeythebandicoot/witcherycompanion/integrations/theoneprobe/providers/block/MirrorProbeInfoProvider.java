@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.mirror.IBlockMirrorAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.mirror.IBlockMirrorAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import mcjty.theoneprobe.api.IProbeHitData;
@@ -44,7 +44,7 @@ public class MirrorProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockMir
 
         if (block instanceof IBlockMirrorAccessor) {
             IBlockMirrorAccessor blockAccessor = (IBlockMirrorAccessor) block;
-            if (blockAccessor.isExit()) {
+            if (blockAccessor.witcherycompanion$accessor$isExit()) {
                 iProbeInfo.text(TextFormatting.GREEN + "Exit");
             }
         }

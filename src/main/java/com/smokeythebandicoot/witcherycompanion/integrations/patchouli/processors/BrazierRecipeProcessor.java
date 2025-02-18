@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.brazier.IBrazierSummoningRecipeAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.brazier.IBrazierSummoningRecipeAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BaseProcessor;
@@ -54,7 +54,7 @@ public class BrazierRecipeProcessor extends BaseProcessor {
         // Extra entity
         if (recipe instanceof IBrazierSummoningRecipeAccessor) {
             IBrazierSummoningRecipeAccessor summonRecipe = (IBrazierSummoningRecipeAccessor) recipe;
-            Class<EntityCreature> creatureClass = summonRecipe.getExtraSpawnedEntity().getEntityClass();
+            Class<EntityCreature> creatureClass = summonRecipe.witcherycompanion$accessor$getExtraSpawnedEntity().getEntityClass();
 
             ResourceLocation entityRegName = EntityList.getKey(creatureClass);
             if (entityRegName != null) {

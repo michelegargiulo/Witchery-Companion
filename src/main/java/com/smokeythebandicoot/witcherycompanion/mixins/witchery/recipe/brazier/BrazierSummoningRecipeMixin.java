@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.recipe.brazier;
 
-import com.smokeythebandicoot.witcherycompanion.api.accessors.brazier.IBrazierSummoningRecipeAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.brazier.IBrazierSummoningRecipeAccessor;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.crafting.Ingredient;
@@ -32,12 +32,12 @@ public abstract class BrazierSummoningRecipeMixin extends BrazierRecipe implemen
     }
 
     @Override
-    public EntityType<EntityCreature> getSpawnedEntity() {
+    public EntityType<EntityCreature> witcherycompanion$accessor$getSpawnedEntity() {
         return this.entityType;
     }
 
     @Override
-    public EntityType<EntityCreature> getExtraSpawnedEntity() {
+    public EntityType<EntityCreature> witcherycompanion$accessor$getExtraSpawnedEntity() {
         return this.extra;
     }
 }

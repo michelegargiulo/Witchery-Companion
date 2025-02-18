@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.infusion.symbol;
 
-import com.smokeythebandicoot.witcherycompanion.api.symboleffect.ISymbolEffectAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.symboleffect.ISymbolEffectAccessor;
 import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

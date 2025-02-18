@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IItemRiteSacrificeAccessor {
 
-    List<ItemRiteSacrifice.ItemRequirement> getRequirements();
+    List<ItemRiteSacrifice.ItemRequirement> witcherycompanion$accessor$getRequirements();
 
 }

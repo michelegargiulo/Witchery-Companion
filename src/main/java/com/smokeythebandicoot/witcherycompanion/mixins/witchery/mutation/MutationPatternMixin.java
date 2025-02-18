@@ -26,7 +26,7 @@ public abstract class MutationPatternMixin implements IMutationPatternAccessor {
     public Map<Character, IBlockState> charMap;
 
     @Override
-    public IBlockState[][][] getMatrix() {
+    public IBlockState[][][] witcherycompanion$accessor$getMatrix() {
 
 
         int yLength = matrix.length;
@@ -64,7 +64,7 @@ public abstract class MutationPatternMixin implements IMutationPatternAccessor {
     }
 
     @Override
-    public List<Class<? extends EntityLiving>> getEntities() {
+    public List<Class<? extends EntityLiving>> witcherycompanion$accessor$getEntities() {
         return Collections.emptyList();
     }
 }

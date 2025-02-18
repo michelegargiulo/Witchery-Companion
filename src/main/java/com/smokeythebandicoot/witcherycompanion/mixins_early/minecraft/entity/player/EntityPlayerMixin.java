@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.entity.p
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.accessors.player.IEntityPlayerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.vanillaaccessors.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.entity.EntityLivingBase;
@@ -124,52 +124,52 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
     }
 
     @Override
-    public float accessor_getCurrentResizingScale() {
+    public float witcherycompanion$accessor$getCurrentResizingScale() {
         return witchery_Patcher$currentResizingScale;
     }
 
     @Override
-    public void accessor_setCurrentResizingScale(float scale) {
+    public void witcherycompanion$accessor$setCurrentResizingScale(float scale) {
         this.witchery_Patcher$currentResizingScale = scale;
     }
 
     @Override
-    public float accessor_getCurrentFormWidthScale() {
+    public float witcherycompanion$accessor$getCurrentFormWidthScale() {
         return witchery_Patcher$currentFormWidthScale;
     }
 
     @Override
-    public void accessor_setCurrentFormWidthScale(float scale) {
+    public void witcherycompanion$accessor$setCurrentFormWidthScale(float scale) {
         this.witchery_Patcher$currentFormWidthScale = scale;
     }
 
     @Override
-    public float accessor_getCurrentFormHeightScale() {
+    public float witcherycompanion$accessor$getCurrentFormHeightScale() {
         return witchery_Patcher$currentFormHeightScale;
     }
 
     @Override
-    public void accessor_setCurrentFormHeightScale(float scale) {
+    public void witcherycompanion$accessor$setCurrentFormHeightScale(float scale) {
         this.witchery_Patcher$currentFormHeightScale = scale;
     }
 
     @Override
-    public float accessor_getCurrentFormEyeHeightScale() {
+    public float witcherycompanion$accessor$getCurrentFormEyeHeightScale() {
         return witchery_Patcher$currentFormEyeHeightScale;
     }
 
     @Override
-    public void accessor_setCurrentFormEyeHeightScale(float scale) {
+    public void witcherycompanion$accessor$setCurrentFormEyeHeightScale(float scale) {
         this.witchery_Patcher$currentFormEyeHeightScale = scale;
     }
 
     @Override
-    public float accessor_getCurrentFormStepHeightScale() {
+    public float witcherycompanion$accessor$getCurrentFormStepHeightScale() {
         return witchery_Patcher$currentFormStepHeightScale;
     }
 
     @Override
-    public void accessor_setCurrentFormStepHeightScale(float scale) {
+    public void witcherycompanion$accessor$setCurrentFormStepHeightScale(float scale) {
         this.witchery_Patcher$currentFormStepHeightScale = scale;
     }
 

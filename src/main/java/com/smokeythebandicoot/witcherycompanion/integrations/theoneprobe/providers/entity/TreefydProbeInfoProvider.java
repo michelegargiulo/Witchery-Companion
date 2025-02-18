@@ -1,8 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.entity;
 
-import com.mojang.authlib.GameProfile;
 import com.smokeythebandicoot.witcherycompanion.api.TreefydApi;
-import com.smokeythebandicoot.witcherycompanion.api.accessors.treefyd.IEntityTreefydAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.entities.treefyd.IEntityTreefydAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseEntityProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
@@ -11,19 +10,14 @@ import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.ProbeMode;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.management.PlayerProfileCache;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.msrandom.witchery.entity.EntityTreefyd;
-import net.msrandom.witchery.init.WitcheryBlocks;
-import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class TreefydProbeInfoProvider extends BaseEntityProbeInfoProvider<EntityTreefyd> {
 
@@ -68,7 +62,7 @@ public class TreefydProbeInfoProvider extends BaseEntityProbeInfoProvider<Entity
         if (entity instanceof IEntityTreefydAccessor) {
             // Boost
             IEntityTreefydAccessor accessor = (IEntityTreefydAccessor) entity;
-            int boostLevel = accessor.getBoostLevel();
+            int boostLevel = accessor.witcherycompanion$accessor$getBoostLevel();
             List<ItemStack> boosts = new ArrayList<>();
             if (boostLevel > 0) {
                 boosts.add(new ItemStack(TreefydApi.getLevel1BoostItem()));

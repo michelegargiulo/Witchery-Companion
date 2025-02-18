@@ -40,7 +40,7 @@ public abstract class ItemRiteSacrificeMixin extends RiteSacrifice implements II
     }
 
     @Override
-    public List<ItemRiteSacrifice.ItemRequirement> getRequirements() {
+    public List<ItemRiteSacrifice.ItemRequirement> witcherycompanion$accessor$getRequirements() {
         return this.requirements;
     }
 

@@ -11,6 +11,7 @@ import com.smokeythebandicoot.witcherycompanion.integrations.thaumcraft.Thaumcra
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPPlugin;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
 import com.smokeythebandicoot.witcherycompanion.network.CompanionNetworkChannel;
+import com.smokeythebandicoot.witcherycompanion.patches.block.BlockMandrakeCropPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.FamiliarPatches;
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
@@ -75,6 +76,10 @@ public class CommonProxy {
         if (ModConfig.IntegrationConfigurations.TinkersIntegration.enableTinkersIntegration &&
                 Loader.isModLoaded(Mods.TINKERS_CONSTRUCT)) {
 
+            // Mandrake Crop fix for TConstruct Kama
+            if (ModConfig.PatchesConfiguration.BlockTweaks.mandrakeCrop_fixMandrakeSpawningTicKama)
+                MinecraftForge.EVENT_BUS.register(BlockMandrakeCropPatch.class);
+
             // Integrate Tinkers
             Integration.ticPreInit();
 
@@ -82,6 +87,7 @@ public class CommonProxy {
             if (Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
                 Integration.conarmPreInit();
         }
+
     }
 
     public void init(FMLInitializationEvent event) {

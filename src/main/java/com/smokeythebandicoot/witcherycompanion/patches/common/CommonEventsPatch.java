@@ -1,8 +1,5 @@
 package com.smokeythebandicoot.witcherycompanion.patches.common;
 
-import com.smokeythebandicoot.witcherycompanion.api.player.DivinationData;
-import com.smokeythebandicoot.witcherycompanion.api.player.IPlayerExtendedDataAccessor;
-import com.smokeythebandicoot.witcherycompanion.api.player.PlayerExtendedDataApi;
 import com.smokeythebandicoot.witcherycompanion.utils.DiviningUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -10,14 +7,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.msrandom.witchery.extensions.PlayerExtendedData;
-import net.msrandom.witchery.util.WitcheryUtils;
 
 /**
  Patches:

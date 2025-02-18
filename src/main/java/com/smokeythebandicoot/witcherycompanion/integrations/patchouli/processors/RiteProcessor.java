@@ -63,7 +63,7 @@ public class RiteProcessor extends BaseProcessor {
         for (RiteSacrifice sacrifice : rite.getSacrifices()) {
             if (sacrifice instanceof ItemRiteSacrifice && sacrifice instanceof IItemRiteSacrificeAccessor) {
                 IItemRiteSacrificeAccessor accessor = (IItemRiteSacrificeAccessor) sacrifice;
-                Iterator<ItemRiteSacrifice.ItemRequirement> it = accessor.getRequirements().iterator();
+                Iterator<ItemRiteSacrifice.ItemRequirement> it = accessor.witcherycompanion$accessor$getRequirements().iterator();
                 while (it.hasNext()) {
                     ItemRiteSacrifice.ItemRequirement req = it.next();
                     ingredients.add(req.getIngredient());

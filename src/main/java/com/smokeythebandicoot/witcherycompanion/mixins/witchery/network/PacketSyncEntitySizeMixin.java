@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.network;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.accessors.player.IEntityPlayerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.vanillaaccessors.player.IEntityPlayerAccessor;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.PacketBuffer;
 import net.msrandom.witchery.network.PacketSyncEntitySize;
@@ -44,19 +44,19 @@ public abstract class PacketSyncEntitySizeMixin implements WitcheryNetworkPacket
         if (entity instanceof IEntityPlayerAccessor) {
             IEntityPlayerAccessor accessor = (IEntityPlayerAccessor) entity;
             if (this.playerResizingPotionScale != -1.0f) {
-                accessor.accessor_setCurrentResizingScale(this.playerResizingPotionScale);
+                accessor.witcherycompanion$accessor$setCurrentResizingScale(this.playerResizingPotionScale);
             }
             if (this.playerTransformWidthScale != -1.0f) {
-                accessor.accessor_setCurrentFormWidthScale(this.playerTransformWidthScale);
+                accessor.witcherycompanion$accessor$setCurrentFormWidthScale(this.playerTransformWidthScale);
             }
             if (this.playerTransformHeightScale != -1.0f) {
-                accessor.accessor_setCurrentFormHeightScale(this.playerTransformHeightScale);
+                accessor.witcherycompanion$accessor$setCurrentFormHeightScale(this.playerTransformHeightScale);
             }
             if (this.playerTransformEyeHeightScale != -1.0f) {
-                accessor.accessor_setCurrentFormEyeHeightScale(this.playerTransformEyeHeightScale);
+                accessor.witcherycompanion$accessor$setCurrentFormEyeHeightScale(this.playerTransformEyeHeightScale);
             }
             if (this.playerTransformStepHeightScale != -1.0f) {
-                accessor.accessor_setCurrentFormStepHeightScale(this.playerTransformStepHeightScale);
+                accessor.witcherycompanion$accessor$setCurrentFormStepHeightScale(this.playerTransformStepHeightScale);
             }
         }
     }
@@ -66,11 +66,11 @@ public abstract class PacketSyncEntitySizeMixin implements WitcheryNetworkPacket
     private void initNewFieldsFromEntity(Entity entity, CallbackInfo ci) {
         if (entity instanceof IEntityPlayerAccessor) {
             IEntityPlayerAccessor accessor = (IEntityPlayerAccessor) entity;
-            this.playerResizingPotionScale = accessor.accessor_getCurrentResizingScale();
-            this.playerTransformWidthScale = accessor.accessor_getCurrentFormWidthScale();
-            this.playerTransformHeightScale = accessor.accessor_getCurrentFormHeightScale();
-            this.playerTransformEyeHeightScale = accessor.accessor_getCurrentFormEyeHeightScale();
-            this.playerTransformStepHeightScale = accessor.accessor_getCurrentFormStepHeightScale();
+            this.playerResizingPotionScale = accessor.witcherycompanion$accessor$getCurrentResizingScale();
+            this.playerTransformWidthScale = accessor.witcherycompanion$accessor$getCurrentFormWidthScale();
+            this.playerTransformHeightScale = accessor.witcherycompanion$accessor$getCurrentFormHeightScale();
+            this.playerTransformEyeHeightScale = accessor.witcherycompanion$accessor$getCurrentFormEyeHeightScale();
+            this.playerTransformStepHeightScale = accessor.witcherycompanion$accessor$getCurrentFormStepHeightScale();
         } else {
             this.playerResizingPotionScale = -1.0f;
             this.playerTransformWidthScale = -1.0f;

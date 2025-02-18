@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker;
 
 import com.smokeythebandicoot.witcherycompanion.api.player.FamiliarInfo;
 import com.smokeythebandicoot.witcherycompanion.api.player.PlayerExtendedDataApi;
-import com.smokeythebandicoot.witcherycompanion.api.symboleffect.ISymbolEffectAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.symboleffect.ISymbolEffectAccessor;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;

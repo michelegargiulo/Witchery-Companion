@@ -57,7 +57,7 @@ public class BrewRegistry {
             else if (action instanceof UpgradeBrewAction && action instanceof IUpgradeBrewActionAccessor) {
                 UpgradeBrewAction upgradeBrewAction = (UpgradeBrewAction) action;
                 IUpgradeBrewActionAccessor accessor = (IUpgradeBrewActionAccessor) action;
-                if (accessor.increasesPower()) {
+                if (accessor.witcherycompanion$accessor$increasesPower()) {
                     powerBrews.add((UpgradeBrewAction) action);
                 } else {
                     durationBrews.add((UpgradeBrewAction) action);
@@ -82,7 +82,7 @@ public class BrewRegistry {
             else if (action instanceof IncrementBrewAction && action instanceof IIncrementBrewActionAccessor) {
                 IncrementBrewAction incrementBrewAction = (IncrementBrewAction) action;
                 IIncrementBrewActionAccessor accessor = (IIncrementBrewActionAccessor) action;
-                if (accessor.increasesExtent()) {
+                if (accessor.witcherycompanion$accessor$increasesExtent()) {
                     extentBrews.add((IncrementBrewAction) action);
                 } else {
                     lingeringBrews.add((IncrementBrewAction) action);
