@@ -12,7 +12,7 @@
     {
       "type": "text",
       "title": "Introduction",
-      "text": "Some rites may require sacrifices in form of power or items. Power may be provided by a nearby $(l:altar/altar)Altar$(/l), while items can be thrown on the ground inside the circles or placed on $(l:herbology/herbology#grassper)Grasspers$(/l). After drawing the circles, dropping items and providing power, the rite can be started by activating the $(l:circle_magic/intro#golden_chalk)Heart Circle Glyph$(/l) by right-clicking it or with a $(item)Redstone Signal$()."
+      "text": "Some rites may require sacrifices in form of power or items. Power may be provided by a nearby $(l:altar/altar)Altar$(/l), while items can be thrown on the ground inside the circles or placed on $(l:herbology/grassper)Grasspers$(/l). After drawing the circles, dropping items and providing power, the rite can be started by activating the $(l:circle_magic/intro#golden_chalk)Heart Circle Glyph$(/l) by right-clicking it or with a $(item)Redstone Signal$()."
     },
     {
       "type": "circle_magic/circles",
@@ -24,7 +24,7 @@
     {
       "type": "spotlight",
       "item": "witchery:heart_circle_glyph",
-      "text": "Represents the center of the rite. $(l:altar/altar)Altar$(/l) power has to be provided to this glyph. For more advanced Rites, a witch may need the help of their $(l:)Coven$(/l). In such case, they must use a $(l:artifacts/misc/seer_stone)Seer Stone$(/l) on the heart glyph. Such rites tend to require a minimum amount of witches, and will increase in power the larger the coven.",
+      "text": "Represents the center of the rite. $(l:altar/altar)Altar$(/l) power has to be provided to this glyph. For more advanced Rites, a witch may need the help of their $(l:artifacts/coven/coven_intro)Coven$(/l). In such case, they must use a $(l:artifacts/misc/seer_stone)Seer Stone$(/l) on the heart glyph. Such rites tend to require a minimum amount of witches, and will increase in power the larger the coven.",
       "anchor": "golden_chalk"
     },
     {

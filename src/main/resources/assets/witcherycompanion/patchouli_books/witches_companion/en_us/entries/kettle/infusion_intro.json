@@ -15,17 +15,6 @@
       "text": "$(8)1.$() Throw the ingredients into a heated, water-filled Kettle. $(l:altar/altar)Altars$(/l) provide power, if needed.$(p)$(8)2.$() Fill the brew into an empty $(item)Glass Bottle$().$(p)$(8)3.$() For infusions, use them in a Rite of Infusion ($(l:circle_magic/infusion/light_infusion)Light$(/l), $(l:circle_magic/infusion/earth_infusion)Earth$(/l), $(l:circle_magic/infusion/infernal_infusion)Infernal$(/l), $(l:circle_magic/infusion/otherwhere_infusion)Otherwhere$(/l)); but remember, death is almost always assured."
     },
     {
-      "type": "text",
-      "title": "Infusion Power",
-      "text": "Every type of Infusion comes with great powers. Some are $(item)passive$(), meaning that are active all the time, while others require a $(l:artifacts/tools/witch_hand)Witches Hand$(/l) to focus them.$(p)Using active powers drains the energy the infused creature has, and when they run out of it, most powers cease to function.$(br)The energy level is indicated by the Infusion energy bar.",
-      "anchor": "power"
-    },
-    {
-      "type": "text",
-      "title": "Recharging Power",
-      "text": "All infusions will draw from the magical energy imbued at the time of the $(l:circle_magic/infusion/light_infusion)Rite of Infusion$(/l). To recharge the infusion energy the infused creature can perform the $(l:circle_magic/infusion/charge_infusion)Rite of Charging$(/l).$(p)For those who seek alternative ways, it might be possible to slowly recharge infusion energy by being worshipped by a sufficiently large number of $(l:creatures/hobgoblin#worship)Hobgoblins$(/l)."
-    },
-    {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/flying_ointment",
       "description": "Crafting ingredient. If drunk, causes the creature to be affected by Poison III potion effect for one minute."
@@ -33,8 +22,7 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/mystic_unguent",
-      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Weakness II potion effect for one minute",
-      "anchor": "mystic_unguent"
+      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Weakness II potion effect for one minute"
     },
     {
       "type": "kettle/kettle_brew",
@@ -44,7 +32,8 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/infusion_base",
-      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Wither IV potion effect for 10 seconds."
+      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Wither IV potion effect for 10 seconds.",
+      "anchor": "infusion_base"
     },
     {
       "type": "kettle/kettle_brew",
@@ -71,18 +60,25 @@
       "anchor": "otherwhere_infusion"
     },
     {
+      "type": "text",
+      "title": "Infused Brews",
+      "text": "Some special Brews require the further infusion of $(l:kettle/infusion_intro#infusion_base)Infused Brew Base$(/l) using $(l:circle_magic/intro)Circle Magic$(/l) "
+    },
+    {
       "type": "spotlight",
       "item": "witchery:infused_soaring_brew",
-      "title": "Inf. Brew of Soaring",
-      "text": "Can be drunk to allow significantly better control when flying with an $(l:creatures/enchanted_broom)Enchanted Broom$(/l), increasing top speed, turning and deceleration for 120 minutes. Bonuses stack with the ones of an $(l:artifacts/familiars/owl_familiar)Owl Familiar$(/l). Can be made with the proper $(l:circle_magic/infusion/soaring_infusion)Rite of Infusion$(/l).",
+      "text": "Infused with the proper $(l:circle_magic/infusion/soaring_infusion)Rite of Infusion$(/l). It can be drunk to allow significantly better $(l:creatures/enchanted_broom)Enchanted Broom$(/l) controls, top speed, turning and deceleration for 120 minutes. The benefits stack with those of an $(l:artifacts/familiars/owl)Owl Familiar$(/l). Only a single Infused Brew can be active at a time, with the newer one replacing the old one.",
       "anchor": "soaring"
     },
     {
       "type": "spotlight",
       "item": "witchery:infused_grave_brew",
-      "title": "Inf. Brew of the Grave",
-      "text": "Can be drunk to extend $(l:artifact/misc/necromantic_stone)Necromantic Stone$(/l)'s control on all undead creatures. This ability can be used once every 30 seconds.$(p)Additionally, when killing animals, $(item)Villagers$() or other players, the witch will regain hunger and a little health, as they feed off the victim. This effect lasts 120 minutes.",
-      "anchor": "grave"
+      "text": "Infused with the proper $(l:circle_magic/infusion/grave_brew_infusion)Rite of Infusion$(/l). It can be drunk to allow a $(l:artifacts/misc/necromantic_stone)Necromantic Stone$(/l) to be used to take control of normal $(item)Undead creatures$(), and not just those raised with a $(l:kettle/kettle_intro#raising)Brew of Raising$(/l). This ability can be used once every 30 seconds.",
+      "anchor": "infused_grave"
+    },
+    {
+      "type": "text",
+      "text": "Additionally, when a Witch under the influence of the Infused Brew of the Grave kills an animal, $(item)Villager$() or another $(item)Player$(), they will regain $(item)Hunger$() and a little life as they feed off their victim.$(p)The brew lasts 120 minutes, and only a single Infused Brew can be active at a time, with the newer one replacing the old one."
     }
   ]
 }

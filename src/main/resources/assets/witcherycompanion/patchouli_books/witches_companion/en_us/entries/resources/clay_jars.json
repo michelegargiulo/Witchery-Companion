@@ -93,7 +93,8 @@
     {
       "type": "spotlight",
       "item": "witchery:focused_will",
-      "text": "A concentrated essence of determination, distilled from the unwavering resolve of heroes past. Guard its strength. Common crafting ingredient."
+      "text": "A concentrated essence of determination, distilled from the unwavering resolve of heroes past. Guard its strength. Common crafting ingredient.",
+      "anchor": "focused_will"
     },
     {
       "type": "spotlight",

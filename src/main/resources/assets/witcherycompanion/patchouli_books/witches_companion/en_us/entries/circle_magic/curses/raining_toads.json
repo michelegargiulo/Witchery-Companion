@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:raining_toads_curse",
       "title": "Curse of Raining Toads",
-      "description": "Rain poisonous toads. Requires a $(l:)Coven$(/l) of 1 or more."
+      "description": "Rain poisonous $(l:creatures/toad)Toads$(/l). Requires a $(l:artifacts/coven/coven_intro)Coven$(/l) of 1 or more."
     }
   ]
 }

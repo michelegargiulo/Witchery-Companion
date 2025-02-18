@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:seer_stone_infusion",
       "title": "Stone Infusion",
-      "description": "Infuse a $(item)Quartz Sphere$() to communicate in a $(l:)Coven$(/l). Perform at night."
+      "description": "Infuse a $(l:resources/quartz_sphere)Quartz Sphere$(/l) to communicate in a $(l:artifacts/coven/coven_intro)Coven$(/l). Perform at night."
     }
   ]
 }

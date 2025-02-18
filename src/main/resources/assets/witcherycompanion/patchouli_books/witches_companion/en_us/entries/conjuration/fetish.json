@@ -7,7 +7,7 @@
     {
       "type": "text",
       "title": "Fetish Binding",
-      "text": "A witch may use the $(item)Rite of Binding$() to bind spectral creatures to a $(item)fetish$() to create permanent effects.$(2br)The following pages show which beings must be bound for which effect."
+      "text": "A witch may use the $(item)Rite of Binding$() to bind spectral creatures to a $(item)Fetish$() to create permanent effects.$(2br)The following pages show which beings must be bound for which effect."
     },
     {
       "type": "text",
@@ -19,13 +19,15 @@
       "type": "crafting",
       "recipe": "witchery:scarecrow",
       "recipe2": "witchery:trent",
-      "flag": "witcherycompanion:conjuring/extended_fetish"
+      "flag": "witcherycompanion:conjuring/extended_fetish",
+      "anchor": "scarecrow"
     },
     {
       "type": "crafting",
       "text": "$(p)Even though the fetishes are different, the effects manifested will be the same, as they depend on the beings and not the fetish itself.",
       "recipe": "witchery:witchsladder",
-      "flag": "witcherycompanion:conjuring/extended_fetish"
+      "flag": "witcherycompanion:conjuring/extended_fetish",
+      "anchor": "witchsladder"
     },
     {
       "type": "conjuration/spirit_effect",

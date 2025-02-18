@@ -8,37 +8,37 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:waystone_binding",
       "title": "Binding Waystone",
-      "description": "Binds the $(l:)Waystone$(/l) to the location of the ritual."
+      "description": "Binds the $(l:artifacts/misc/waystone)Waystone$(/l) to the location of the ritual."
     },
     {
       "type": "circle_magic/rite",
       "rite_id": "witchery:portable_waystone_binding",
       "title": "Binding Waystone",
-      "description": "Binds the $(l:)Waystone$(/l) to the location of the ritual."
+      "description": "Binds the $(l:artifacts/misc/waystone)Waystone$(/l) to the location of the ritual."
     },
     {
       "type": "circle_magic/rite",
       "rite_id": "witchery:waystone_copy_binding",
       "title": "Copy Waystone",
-      "description": "Binds the $(l:)Waystone$(/l) location on one waystone to another waystone."
+      "description": "Binds the $(l:artifacts/misc/waystone)Waystone$(/l) location on one waystone to another waystone."
     },
     {
       "type": "circle_magic/rite",
       "rite_id": "witchery:portable_waystone_copy_binding",
       "title": "Copy Waystone",
-      "description": "Binds the $(l:)Waystone$(/l) location on one waystone to another waystone."
+      "description": "Binds the $(l:artifacts/misc/waystone#bound)Waystone$(/l) location on one waystone to another waystone."
     },
     {
       "type": "circle_magic/rite",
       "rite_id": "witchery:player_waystone_binding",
       "title": "Bind Creature",
-      "description": "Create a $(l:)Bounded Waystone$(/l) bound to the location of a creature."
+      "description": "Create a $(l:artifacts/misc/waystone#blooded)Bound Waystone$(/l) bound to the location of a creature."
     },
     {
       "type": "circle_magic/rite",
       "rite_id": "witchery:portable_player_waystone_binding",
       "title": "Bind Creature",
-      "description": "Create a $(l:)Bounded Waystone$(/l) bound to the location of a creature."
+      "description": "Create a $(l:artifacts/misc/waystone#bound)Bound Waystone$(/l) bound to the location of a creature."
     }
   ]
 }

@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:shifting_seasons",
       "title": "Rite of Shifting Seasons",
-      "description": "Pick Biome with biome foci and $(item)Glowstone$(). Requires a $(l:)Coven$(/l) of 4 or more."
+      "description": "Pick Biome with biome foci and $(item)Glowstone$(). Requires a $(l:artifacts/coven/coven_intro)Coven$(/l) of 4 or more."
     },
     {
       "type": "circle_magic/shifting_seasons_details",

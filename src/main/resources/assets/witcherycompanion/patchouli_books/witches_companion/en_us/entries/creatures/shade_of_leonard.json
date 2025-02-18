@@ -24,7 +24,7 @@
     {
       "type": "text",
       "title": "Special Effects",
-      "text": "Leonard will significantly increase the range of spells cast from a $(l:)Witch's Cauldron$() (removing the dimensional restriction of such castings). He will also increase the risk of side effects."
+      "text": "Leonard will significantly increase the range of spells cast from a $(l:brewing/introduction)Witch's Cauldron$(/l) (removing the dimensional restriction of such castings). It will also increase the risk of side effects."
     },
     {
       "type": "text",

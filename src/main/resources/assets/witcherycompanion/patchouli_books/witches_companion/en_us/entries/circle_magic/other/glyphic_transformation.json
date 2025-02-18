@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:glyphic_transformation",
       "title": "Glyphic Transformation",
-      "description": "Drop $(l:)Chalk$(/l) of the desired color. 1 = small, 2 = medium, 3 = large.",
+      "description": "Drop $(l:circle_magic/intro#ritual_chalk)Chalk$(/l) of the desired color. 1 = small, 2 = medium, 3 = large.",
       "note": "Any circles allowed"
     }
   ]

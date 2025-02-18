@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:position_waystone_transposition",
       "title": "Waystone Transposition",
-      "description": "Teleport to the $(l:)Bound Waystone$(/l) location."
+      "description": "Teleport to the $(l:artifacts/misc/waystone#bound)Bound Waystone$(/l) location."
     }
   ]
 }

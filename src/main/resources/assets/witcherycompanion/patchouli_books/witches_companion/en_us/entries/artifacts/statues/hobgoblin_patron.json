@@ -18,7 +18,7 @@
     {
       "type": "text",
       "title": "Effects",
-      "text": "Having Hobgoblins that worship the statue, will increase the witch's $(l:)Mystic Branch$(/l) powers. The more worshippers, the greater the power directed to the witch.$(p)For a small number of worshippers, the witch's $(l:)infusion$(/l) power will recharge within 64 blocks of the statue.$(br)For a larger number of worshippers, the witch may draw larger versions of a Symbol, and the effect's"
+      "text": "Having Hobgoblins that worship the statue, will increase the witch's $(l:artifacts/tools/mystic_branch)Mystic Branch$(/l) powers. The more worshippers, the greater the power directed to the witch.$(p)For a small number of worshippers, the witch's $(l:kettle/infusion_intro)Infusion$(/l) power will recharge within 64 blocks of the statue.$(br)For a larger number of worshippers, the witch may draw larger versions of a Symbol, and the effect's"
     },
     {
       "type": "text",

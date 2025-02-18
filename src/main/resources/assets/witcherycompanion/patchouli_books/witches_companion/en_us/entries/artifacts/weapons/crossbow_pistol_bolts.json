@@ -36,7 +36,7 @@
     },
     {
       "type": "text",
-      "text": "In such case, the bolts will drain 1/3 of target's $(l:kettle/infusion_intro#power)Magical Power$(/l) and any of their $(l:artifacts/poppets/poppets#death)Poppet$(/l)-based protection is ignored. All $(item)Potion Effects$() are also removed from the target, except $(item)Poison$() and $(item)Wither$().$(p)Lastly, firing such a Bolt will also completely drain the shooter's Magical Power, if they have any."
+      "text": "In such case, the bolts will drain 1/3 of target's $(l:kettle/infusion_intro#power)Magical Power$(/l) and any of their $(l:artifacts/poppets/poppets#death_protection)Poppet$(/l)-based protection is ignored. All $(item)Potion Effects$() are also removed from the target, except $(item)Poison$() and $(item)Wither$().$(p)Lastly, firing such a Bolt will also completely drain the shooter's Magical Power, if they have any."
     }
   ]
 }

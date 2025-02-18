@@ -18,11 +18,11 @@
     {
       "type": "text",
       "title": "Delivering Items",
-      "text": "Tamed Owls can also be used to deliver an item to a location or player. Use the item on the Owl to get it take the item. Next use a $(l:)Bound Waystone$(/l) or $(l:)Blooded Waystone$(/l) on the Owl to tell it where to go. The Waystone is not consumed. As soon as it's standing, the Owl will fly to the target location, drop off the item and return back to where it started. If the target creature or location is not loaded, the Owl will not take "
+      "text": "Tamed Owls can also be used to deliver an item to a location or player. Use the item on the Owl to get it take the item. Next use a $(l:artifacts/misc/waystone#bound)Bound Waystone$(/l) or $(l:artifacts/misc/waystone#blooded)Blooded Waystone$(/l) on the Owl to tell it where to go. The Waystone is not consumed. As soon as it's standing, the Owl will fly to the target location, drop off the item and return back to where it started. If the target creature or location is not loaded, the Owl will not take "
     },
     {
       "type": "text",
-      "text": "flight. In case a $(l:)Throwable Brew$(/l) is given to the Owl, it will throw it instead of dropping it."
+      "text": "flight. In case a $(l:brewing/dispersal#instant)Throwable Brew$(/l) is given to the Owl, it will throw it instead of dropping it."
     }
   ]
 }

@@ -12,7 +12,7 @@
     {
       "type": "text",
       "title": "Mutation Details",
-      "text": "Notes:$(br)Two $(l:herbology/herbology#grassper)Grasspers$(/l) need to hold $(item)Bonemeal$(), the other two $(item)Blaze Powder$().$(p)All $(item)Cacti$() up to height 3 will be converted to $(item)Wild Brambles$()."
+      "text": "Notes:$(br)Two $(l:herbology/grassper)Grasspers$(/l) need to hold $(item)Bonemeal$(), the other two $(item)Blaze Powder$().$(p)All $(item)Cacti$() up to height 3 will be converted to $(item)Wild Brambles$()."
     }
   ]
 }

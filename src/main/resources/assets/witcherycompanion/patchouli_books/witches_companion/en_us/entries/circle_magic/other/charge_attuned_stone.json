@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:attuned_stone_charging",
       "title": "Charge Attuned Stone",
-      "description": "Charges the $(l:)Attuned Stone$(/l)."
+      "description": "Charges the $(l:artifacts/misc/attuned_stone)Attuned Stone$(/l)."
     }
   ]
 }

@@ -13,7 +13,7 @@
       "type": "brewing/cauldron_dispersal",
       "instant_description": "$(l:brewing/dispersal#instant)Instant$(/l)",
       "liquid_description": "$(l:brewing/dispersal#liquid)Liquid$(/l)",
-      "gas_description": "$(l:brewing/dispersal#gas)Gas",
+      "gas_description": "$(l:brewing/dispersal#gas)Gas$(/l)",
       "triggered_description": "$(l:brewing/dispersal#triggered)Triggered$(/l)"
     },
     {

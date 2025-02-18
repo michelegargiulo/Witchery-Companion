@@ -8,7 +8,7 @@
       "type": "spotlight",
       "title": "Demonbane",
       "item": "minecraft:ice",
-      "text": "Causes a lot of damage to $(l:creatures/demon)Demons$() and a little damage to other creatures."
+      "text": "Causes a lot of damage to $(l:creatures/demon)Demons$(/l) and a little damage to other creatures."
     }
   ]
 }

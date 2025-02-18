@@ -13,7 +13,7 @@
     {
       "type": "text",
       "title": "Mutation Details",
-      "text": "Entities:$(br)$(8)>$() 1 Creeper$(br)$(8)>$() 1 $(l:creatures/mandrake)Mandrake$(/l)$(p)Notes:$(br)One $(l:herbology/herbology#grassper)Grassper$(/l) needs to hold a $(l:)Charged Attuned Stone$(/l), one a $(l:)Focused Will$() and the other two $(l:)Mutandis Extremis$(/l)$(p)$(l:)Mandrake$(/l) crops must be fully mature."
+      "text": "Entities:$(br)$(8)>$() 1 Creeper$(br)$(8)>$() 1 $(l:creatures/mandrake)Mandrake$(/l)$(p)Notes:$(br)One $(l:herbology/grassper)Grassper$(/l) needs to hold a $(l:artifacts/misc/attuned_stone#charged)Charged Attuned Stone$(/l), one a $(l:resources/clay_jars#focused_will)Focused Will$(/l) and the other two $(l:artifacts/misc/mutandis#extremis)Mutandis Extremis$(/l)$(p)$(l:herbology/mandrake_root)Mandrake$(/l) crops must be fully mature."
     }
   ]
 }

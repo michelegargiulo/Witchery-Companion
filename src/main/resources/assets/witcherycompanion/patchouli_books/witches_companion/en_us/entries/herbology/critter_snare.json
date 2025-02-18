@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "witchery:empty_critter_snare",
-      "text": "Small creatures are this plants' prey, it snaps them up - never to get away. $(l:mutations/critter_snare)Mutate$(/l) this plant from $(l:herbology/alder)alder saplings$(), a $(item)Web$() and a $(item)Zombie$()."
+      "text": "Small creatures are this plants' prey, it snaps them up - never to get away. $(l:mutations/critter_snare)Mutate$(/l) this plant from $(l:herbology/alder)alder saplings$(/l), a $(item)Web$() and a $(item)Zombie$()."
     }
   ]
 }

@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:soaring_brew_infusion",
       "title": "Soaring Brew Infusion",
-      "description": "Infuse the $(l:)Brew of Soaring$(/l)."
+      "description": "Infuse the $(l:kettle/infusion_intro#soaring)Brew of Soaring$(/l)."
     }
   ]
 }

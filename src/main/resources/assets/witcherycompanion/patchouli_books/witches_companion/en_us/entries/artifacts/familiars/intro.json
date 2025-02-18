@@ -26,7 +26,7 @@
     {
       "type": "text",
       "title": "Dismissing & Killing",
-      "text": "As supernatural beings, familiar never really die. When they are killed or dismissed, they can be summoned again using the appropriate $(l:circle_magic/banishing/summon_familiar)Rite of Summoning$(/l).$(p)To dismiss a familiar interact with it while sneaking and the familiar is sitting.$(br)When a witch dies, their familiar will automatically be dismissed."
+      "text": "As supernatural beings, familiar never really die. When they are killed or dismissed, they can be summoned again using the appropriate $(l:circle_magic/banishing/summon_familiar#familiar)Rite of Summoning$(/l).$(p)To dismiss a familiar interact with it while sneaking and the familiar is sitting.$(br)When a witch dies, their familiar will automatically be dismissed."
     }
   ]
 }
