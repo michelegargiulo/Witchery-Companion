@@ -130,6 +130,11 @@ public class ModConfig {
             @Config.Name("Brew of Erosion - Tweak Effect With Crafttweaker")
             public static boolean erosion_tweakEnableCrafttweaker = true;
 
+            @Config.Comment("If true, gives CraftTweaker integration total control about which blocks are considered flowers and " +
+                    "can be spawned by the brew. Crafttweaker also gives control about which biomes can spawn which flowers.")
+            @Config.Name("Brew of Flowers - Tweak Effect With Crafttweaker")
+            public static boolean flowers_tweakEnableCrafttweakerCompat = true;
+
             @Config.Comment("Fixes crash if players accidentally drink the potion instead of throwing it")
             @Config.Name("Brew of Frogs Tongue - Fix Pull Null Entity Crash")
             public static boolean frogsTongue_fixPullNullEntity = true;
