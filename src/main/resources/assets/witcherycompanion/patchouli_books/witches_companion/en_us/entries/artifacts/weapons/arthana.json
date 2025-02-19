@@ -12,7 +12,7 @@
     {
       "type": "text",
       "title": "Harvesting Ingredients",
-      "text": "The main purpose of the dagger, is to collect special ingredients from some creatures, as it greatly increases the chance of dropping such ingredients when killing them. Typical examples are $(item)Tognue of Dogs$() and $(item)Wool of Bat$(), but also $(item)Skulls$() (except Wither Skeletons') and $(l:resources/spectral_dust)Spectral Dust$(/l) from spectral beings. All changes further increase when the Arthana is enchanted."
+      "text": "The main purpose of the dagger, is to collect special ingredients from some creatures, as it greatly increases the chance of dropping such ingredients when killing them. Typical examples are $(l:resources/tongue_of_dog)Tongue of Dogs$(/l) and $(l:resources/wool_of_bat)Wool of Bat$(/l), but also $(item)Skulls$() (except Wither Skeletons') and $(l:resources/spectral_dust)Spectral Dust$(/l) from spectral beings. All changes further increase when the Arthana is enchanted."
     },
     {
       "type": "text",

@@ -1,6 +1,6 @@
 {
   "name": "Village Guard",
-  "icon": "witchery:village_guard",
+  "icon": "minecraft:leather_chestplate",
   "category": "creatures",
   "sortnum": 1,
   "pages": [

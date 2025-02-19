@@ -1,6 +1,6 @@
 {
   "name": "Winged Monkey",
-  "icon": "witchery:winged_monkey",
+  "icon": "witchery:waystone",
   "category": "creatures",
   "sortnum": 1,
   "pages": [
@@ -8,8 +8,8 @@
       "type": "entity",
       "entity": "witchery:winged_monkey",
       "text": "Monkeys with Wings.",
-      "offset": 0,
-      "scale": 1
+      "offset": 0.4,
+      "scale": 0.6
     },
     {
       "type": "text",
@@ -32,7 +32,7 @@
     },
     {
       "type": "text",
-      "text": "Giving a Winged Monkey a $(l:artifacts/misc/waystone#bound)Bound Waystone$(/l) or a $(l:l:artifacts/misc/waystone#blooded)Blooded Waystone$(/l) will cause the monkey to pick up the player and then fly to the bound location with the player. When the bound location is reached, the player will be dropped off and the monkey will sit. The Waystone will not be consumed."
+      "text": "Giving a Winged Monkey a $(l:artifacts/misc/waystone#bound)Bound Waystone$(/l) or a $(l:artifacts/misc/waystone#blooded)Blooded Waystone$(/l) will cause the monkey to pick up the player and then fly to the bound location with the player. When the bound location is reached, the player will be dropped off and the monkey will sit. The Waystone will not be consumed."
     }
   ]
 }

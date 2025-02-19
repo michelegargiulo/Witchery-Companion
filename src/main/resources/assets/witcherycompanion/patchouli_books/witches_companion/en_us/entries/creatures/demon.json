@@ -1,0 +1,25 @@
+{
+  "name": "Demon",
+  "icon": "witchery:demon_heart",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:demon",
+      "text": "Infernal Dwellers"
+    },
+    {
+      "type": "text",
+      "text": "Demons are powerful, evil beings who dwell in the infernal dimensions. To date, none have been seen roaming the Nether, where their minions: $(item)Ghasts$(), $(item)Blazes$() and their ilk dominates.$(br)To meet a Demon without a way to protect oneself is almost certain death; they are known to hit like a proverbial truck, and require a significant amount of damage to kill. Some Demons have even been seen shooting fireballs! They are, of course, also immune to fire themselves."
+    },
+    {
+      "type": "text",
+      "text": "Why then, you may ask, would someone who has studied the rites, even consider trying to summon one of these terrible creatures with the $(l:circle_magic/banishing/summon_demon)Rite of Summoning$(/l)? Because of what they can offer as a deal when they have no other choice. Trapped Demons, when interacted with, may offer powerful magical knowledge or rare ingredients for a small price."
+    },
+    {
+      "type": "text",
+      "text": "Indeed, bargaining with a demon is one of only two ways to obtain a $(l:artifacts/devices/demon_heart)Demon Heart$(/l); the main ingredient for an $(l:kettle/infernal_infusion)Infernal infusion$(/l). The other way is of course to slay a Demon, preferably with an $(l:artifacts/weapons/arthana)Arthana$(/l).$(p)Beware of making bargains with Demons... they may try to trick you!"
+    }
+  ]
+}
