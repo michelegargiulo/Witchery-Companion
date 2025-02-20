@@ -7,7 +7,7 @@
     {
       "type": "text",
       "title": "Herbology",
-      "text": "Many common plants are used in the preparation of $(l:brewing/brewing)brews$() and magicks, this section details those rare or exceptional plants not known to the common folk."
+      "text": "Many common plants are used in the preparation of $(l:brewing/brewing)brews$(/l) and magicks, this section details those rare or exceptional plants not known to the common folk."
     }
   ]
 }

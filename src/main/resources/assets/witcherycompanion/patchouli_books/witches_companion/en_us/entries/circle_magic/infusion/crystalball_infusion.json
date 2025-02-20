@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:future_crystal_ball_infusion",
       "title": "Crystal Ball Infusion",
-      "description": "Infuse a $(l:)Crystal Ball$(/l) to see the future. Perform at night."
+      "description": "Infuse a $(l:artifacts/devices/crystal_ball)Crystal Ball$(/l) to see the future. Perform at night."
     }
   ]
 }

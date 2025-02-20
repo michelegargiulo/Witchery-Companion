@@ -32,7 +32,7 @@
     {
       "type": "generic/secret_text",
       "title": "Growing in power",
-      "description": "$(8)> $()No Fire resistance$(br)$(8)> $()$(l:)Vampiric$(/l) and $(l:)Death Protection$(/l) poppets will have no effects on the vampire",
+      "description": "$(8)> $()No Fire resistance$(br)$(8)> $()$(l:artifacts/poppets/poppets#vampiric)Vampiric$(/l) and $(l:artifacts/poppets/poppets#death_protection)Death Protection$(/l) poppets will have no effects on the vampire",
       "secret_key": "witcherycompanion:traits/vampirism/level_1",
       "flag": "witcherycompanion:observations/show_vampirism_progress"
     },

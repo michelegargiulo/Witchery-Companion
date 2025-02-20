@@ -25,7 +25,7 @@
       "type": "spotlight",
       "title": "Dispersal",
       "item": "witchery:bound_taglock_kit",
-      "text": "Using a $(item)Taglock$() to start a ritual targets the bound creature. Otherwise a $(l:brewing/dispersal)dispersal$() must be added before the $(item)Tongue of Dog$(). Instant splash remains unchanged, but gas become an expanding effect and liquid produces rain."
+      "text": "Using a $(item)Taglock$() to start a ritual targets the bound creature. Otherwise a $(l:brewing/dispersal)dispersal$(/l) must be added before the $(l:resources/tongue_of_dog)Tongue of Dog$(/l). Instant splash remains unchanged, but gas become an expanding effect and liquid produces rain."
     },
     {
       "type": "text",

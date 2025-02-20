@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:beastial_call",
       "title": "Bestial Call",
-      "description": "Calls animals. Requires a $(l:)Coven$(/l) of at least 3 members"
+      "description": "Calls animals. Requires a $(l:artifacts/coven/coven_intro)Coven$(/l) of at least 3 members"
     }
   ]
 }

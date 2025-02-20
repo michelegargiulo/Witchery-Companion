@@ -23,7 +23,7 @@
     {
       "type": "text",
       "title": "Other Properties",
-      "text": "Just like mundane $(l:)Brooms$(/l), an Enchanted Broom can be used to quickly remove $(l:)Circle Glyphs$(/l).$(br)It is also worth nothing that they can be renamed in an $(item)Anvil$() and dyed by using a $(item)Dye$() when placed in the world.$(br)Lastly, it is important to know that if the creature in control of the Enchanted Broom has a $(l:)Owl Familiar$(/l) the Broom will be much easier to control, with better deceleration and the ability to strafe."
+      "text": "Just like mundane $(l:artifacts/tools/broom)Brooms$(/l), an Enchanted Broom can be used to quickly remove $(l:circle_magic/intro)Circle Glyphs$(/l).$(br)It is also worth nothing that they can be renamed in an $(item)Anvil$() and dyed by using a $(item)Dye$() when placed in the world.$(br)Lastly, it is important to know that if the creature in control of the Enchanted Broom has a $(l:artifacts/familiars/owl)Owl Familiar$(/l) the Broom will be much easier to control, with better deceleration and the ability to strafe."
     }
   ]
 }

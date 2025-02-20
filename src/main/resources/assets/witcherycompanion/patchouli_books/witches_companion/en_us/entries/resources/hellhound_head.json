@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "witchery:hellhound_head",
-      "text": "Hellhound Heads can be dropped when a $(l:creatures/hellhound)Hellhound$() is killed. It can be used in some crafting recipes or can be placed in the world as decoration, much like $(item)Skulls$()."
+      "text": "Hellhound Heads can be dropped when a $(l:creatures/hellhound)Hellhound$(/l) is killed. It can be used in some crafting recipes or can be placed in the world as decoration, much like $(item)Skulls$()."
     }
   ]
 }

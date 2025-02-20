@@ -10,14 +10,16 @@
       "text": "A Waystone is an etched piece of $(item)Flint$() that is an important foci for $(l:circle_magic/intro)Circle Magic$(/l), especially if it involves $(l:circle_magic/transposition/to_waystone)Transposition$(/l)."
     },
     {
-      "type": "text",
-      "title": "Bound Waystone",
-      "text": "A Bound Waystone is a Waystone that is bound to a specific location. A Waystone can be bound either by using the appropriate $(l:circle_magic/binding/waystone)Rite of Binding$(/l) or its $(l:circle_magic/other/bind_waystone)alternate version$(/l)."
+      "type": "spotlight",
+      "item": "witchery:bound_waystone",
+      "text": "A Bound Waystone is a Waystone that is bound to a specific location. A Waystone can be bound either by using the appropriate $(l:circle_magic/binding/waystone)Rite of Binding$(/l) or its $(l:circle_magic/other/bind_waystone)alternate version$(/l).",
+      "anchor": "bound"
     },
     {
-      "type": "text",
-      "title": "Blooded Waystone",
-      "text": "A Blooded Waystone is a Waystone that is bound with the appropriate Rite of Binding, to either $(l:circle_magic/binding/waystone#bind_player)players$(/l) or $(l:circle_magic/binding/waystone#bind_creature)other creatures$(/l). "
+      "type": "spotlight",
+      "item": "witchery:blooded_waystone",
+      "text": "A Blooded Waystone is a Waystone that is bound with the appropriate Rite of Binding, to either $(l:circle_magic/binding/waystone#bind_player)players$(/l) or $(l:circle_magic/binding/waystone#bind_creature)other creatures$(/l).",
+      "anchor": "blooded"
     }
   ]
 }

@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:wolf_curse",
       "title": "Curse of the Wolf",
-      "description": "Perform under a full moon with a full $(l:)Coven$(/l)."
+      "description": "Perform under a full moon with a full $(l:artifacts/coven/coven_intro)Coven$(/l)."
     },
     {
       "type": "circle_magic/rite",

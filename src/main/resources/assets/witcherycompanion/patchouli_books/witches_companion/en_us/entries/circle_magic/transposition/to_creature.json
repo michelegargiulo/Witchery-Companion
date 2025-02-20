@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:creature_waystone_transposition",
       "title": "Creature Transposition",
-      "description": "Teleport to the $(l:)Blooded Waystone$(/l) location."
+      "description": "Teleport to the $(l:artifacts/misc/waystone#blooded)Blooded Waystone$(/l) location."
     }
   ]
 }

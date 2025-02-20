@@ -19,7 +19,7 @@
     {
       "type": "text",
       "title": "Naked Nightmares",
-      "text": "In addition to their enhanced physical strengths, each hit received from a Nightmare will tend to remove armor and clothing, making the victim feel naked. Protection against this comes in the form of $(l:)Charm of Fanciful Thoughts$(/l)."
+      "text": "In addition to their enhanced physical strengths, each hit received from a Nightmare will tend to remove armor and clothing, making the victim feel naked. Protection against this comes in the form of $(l:artifacts/charms/fanciful_thinking)Charm of Fanciful Thoughts$(/l)."
     }
   ]
 }

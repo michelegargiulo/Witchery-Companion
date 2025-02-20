@@ -17,7 +17,7 @@
     {
       "type": "text",
       "title": "Mirror in Mirror",
-      "text": "It is possible to use $(l:artifacts/devices/mirror#linked_mirror)Mirror Linking$(/l) to travel across the rooms of the dimension. Using a Mirror inside of the Mirror dimension is called 'Mirror in Mirror'.$(p)Place a Mirror down and $(l:altar/altar)Power$(/l) it with an Altar placed inside the room. The mirror will search for rooms in the direction the Mirror points to. "
+      "text": "It is possible to use $(l:artifacts/devices/mirror#linked_mirror)Mirror Linking$(/l) to travel across the rooms of the dimension. Using a Mirror inside of the Mirror dimension is called 'Mirror in Mirror'.$(p)Place a Mirror down and $(l:altar/altar#power)Power$(/l) it with an Altar placed inside the room. The mirror will search for rooms in the direction the Mirror points to. "
     },
     {
       "type": "text",

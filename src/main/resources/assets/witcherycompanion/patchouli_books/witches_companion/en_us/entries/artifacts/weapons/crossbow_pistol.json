@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "witchery:crossbow_pistol",
-      "text": "The weapon of choice for $(l:)Witch Hunters$(/l) is the Crossbow Pistol. Easy to conceal and flexible to use. The weapon gives the Witch Hunter the ability to launch surprise attacks on their targets, often allow multiple shots in quick succession from several preloaded Crossbow Pistols. The other advantage of fighting at range, is that it overcomes the inherent weakness of the $(l:artifacts/clohing/witch_hunter_clothing)armor$(/l) a witch hunter typically uses."
+      "text": "The weapon of choice for $(l:creatures/witch_hunter)Witch Hunters$(/l) is the Crossbow Pistol. Easy to conceal and flexible to use. The weapon gives the Witch Hunter the ability to launch surprise attacks on their targets, often allow multiple shots in quick succession from several preloaded Crossbow Pistols. The other advantage of fighting at range, is that it overcomes the inherent weakness of the $(l:artifacts/clohing/witch_hunter_clothing)armor$(/l) a witch hunter typically uses."
     },
     {
       "type": "text",

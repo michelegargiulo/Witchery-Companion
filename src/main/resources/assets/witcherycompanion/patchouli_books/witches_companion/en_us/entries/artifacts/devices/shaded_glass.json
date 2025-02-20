@@ -1,17 +1,19 @@
 {
   "name": "Shaded Glass",
-  "icon": "witchery:shaded_glass",
+  "icon": "witchery:black_shaded_glass",
   "category": "artifacts/devices",
   "sortnum": 0,
   "pages": [
     {
       "type": "artifacts/decorative_set",
-      "ingredients": "witchery:shaded_glass:0;witchery:shaded_glass:1;witchery:shaded_glass:2;witchery:shaded_glass:3;witchery:shaded_glass:4;witchery:shaded_glass:5;witchery:shaded_glass:6;witchery:shaded_glass:7;",
+      "title": "Shaded Glass",
+      "ingredients": "witchery:white_shaded_glass;witchery:orange_shaded_glass;witchery:magenta_shaded_glass;witchery:light_blue_shaded_glass;witchery:yellow_shaded_glass;witchery:lime_shaded_glass;witchery:pink_shaded_glass;witchery:gray_shaded_glass;",
       "description": "An enhanced version on the normal $(item)Stained Glass$(), as when it gets powered by a $(item)Redstone Signal$() it stops light from passing through."
     },
     {
       "type": "artifacts/decorative_set",
-      "ingredients": "witchery:shaded_glass:8;witchery:shaded_glass:9;witchery:shaded_glass:10;witchery:shaded_glass:11;witchery:shaded_glass:12;witchery:shaded_glass:13;witchery:shaded_glass:14;witchery:shaded_glass:15;",
+      "title": "Shaded Glass",
+      "ingredients": "witchery:silver_shaded_glass;witchery:cyan_shaded_glass;witchery:purple_shaded_glass;witchery:blue_shaded_glass;witchery:brown_shaded_glass;witchery:green_shaded_glass;witchery:red_shaded_glass;witchery:black_shaded_glass;",
       "description": "It can be used to control light levels in rooms, or to create effective daytime protection if you happen to be $(l:observations/vampirism)allergic to the sun$(/l)."
     }
   ]

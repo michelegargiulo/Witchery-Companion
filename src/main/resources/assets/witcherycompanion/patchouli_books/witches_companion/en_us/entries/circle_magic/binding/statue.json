@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:player_statue_binding",
       "title": "Bind Statue",
-      "description": "Bind a player in the circle to the $(l:)Statue$(/l)."
+      "description": "Bind a player in the circle to the $(l:artifacts/statues/hobgoblin_patron)Statue$(/l)."
     }
   ]
 }

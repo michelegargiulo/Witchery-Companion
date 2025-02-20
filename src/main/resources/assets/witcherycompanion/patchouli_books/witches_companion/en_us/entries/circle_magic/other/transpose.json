@@ -8,7 +8,7 @@
       "type": "circle_magic/other_rites",
       "circles": "mini_otherwhere",
       "title": "Transpose",
-      "description": "Transpose to a bound $(l:)Waystones$(/l)",
+      "description": "Transpose to a $(l:artifacts/misc/waystone#bound)Bound Waystones$(/l)",
       "ingredients": "witchery:bound_waystone,witchery:blooded_waystone",
       "note": "You must stand in the circle"
     }

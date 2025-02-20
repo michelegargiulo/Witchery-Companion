@@ -7,7 +7,7 @@
     {
       "type": "spotlight",
       "item": "witchery:ender_bramble",
-      "text": "This strange bramble keeps creatures at bay; for when they get close it teleports them away. $(l:mutations/ender_bramble)Mutate$(/l) this plant from $(item)Sugar Cane$() and $(l:herbology/spanish_moss)Spanish Moss$()."
+      "text": "This strange bramble keeps creatures at bay; for when they get close it teleports them away. $(l:mutations/ender_bramble)Mutate$(/l) this plant from $(item)Sugar Cane$() and $(l:herbology/spanish_moss)Spanish Moss$(/l)."
     }
   ]
 }

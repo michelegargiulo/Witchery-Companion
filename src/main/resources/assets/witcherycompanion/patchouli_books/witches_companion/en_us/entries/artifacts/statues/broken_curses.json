@@ -8,7 +8,7 @@
     {
       "type": "spotlight",
       "item": "witchery:broken_curses_statue",
-      "text": "The Statue of Broken Curses can remove directed curses, like $(l:circle_magic/curses/misfortune)Misfortune$(/l), $(l:circle_magic/curses/insanity)Insanity$(/l), $(l:circle_magic/curses/sinking)Sinking(/l) and others. If a player murders another within the area of effect of the statue, they will no longer receive its protection."
+      "text": "The Statue of Broken Curses can remove directed curses, like $(l:circle_magic/curses/misfortune)Misfortune$(/l), $(l:circle_magic/curses/insanity)Insanity$(/l), $(l:circle_magic/curses/sinking)Sinking$(/l) and others. If a player murders another within the area of effect of the statue, they will no longer receive its protection."
     }
   ]
 }

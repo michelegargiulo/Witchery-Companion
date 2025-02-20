@@ -1,0 +1,30 @@
+{
+  "name": "Spectral Familiar",
+  "icon": "minecraft:diamond",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:spectral_familiar",
+      "text": "Ethereal Friends.",
+      "offset": 0.4,
+      "scale": 0.6
+    },
+    {
+      "type": "text",
+      "title": "Spectral Familiar",
+      "text": "Spectral Familiars are helpful spirits that can be summoned using the $(l:circle_magic/banishing/summon_familiar#search_familiar)Rite of Summoning$(/l). It is very tough, altough it does very little, if any, damage.$(p)A summoned Spectral Familiar will follow its owner unless when sitting."
+    },
+    {
+      "type": "text",
+      "title": "Searching for Ores",
+      "text": "If given an $(item)Iron Ingot$(), $(item)Gold Ingot$(), $(item)Lapis Lazuli$(), $(item)Redstone Dust$(), $(item)Coal$(), $(item)Emerald$() or a $(item)Diamond$() it will try to sniff out ore containing the given material. If it finds any, the familiar will sit and make a noise. The ore will be located somewhere below where the familiar is sitting. It may also take a slightly different coloration when searching for ores."
+    },
+    {
+      "type": "text",
+      "title": "Helpful but not Tireless",
+      "text": "The searching skill may be used multiple times, but each time it costs one of the materials, and after the first time there is an increasing chance that the familiar will simply disappear, taking a potentially valuable item with it!"
+    }
+  ]
+}

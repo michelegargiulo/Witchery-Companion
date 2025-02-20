@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "A werewolf, also known as lycanthrope, is a human being with the ability to shapeshift into a $(item)Wolf$() or $(item)Wolf-Human$() hybrid forms, either purposely or after being placed under a curse or affliction (from a bite or scratch from another werewolf).$(p)A $(l:)Coven$(/l) of witches may perform the $(l:circle_magic/curses/wolf)Curse of the Wolf$(/l) to inflict lycanthropy on a player or $(item)Villager$()."
+      "text": "A werewolf, also known as lycanthrope, is a human being with the ability to shapeshift into a $(item)Wolf$() or $(item)Wolf-Human$() hybrid forms, either purposely or after being placed under a curse or affliction (from a bite or scratch from another werewolf).$(p)A $(l:artifacts/coven/coven_intro)Coven$(/l) of witches may perform the $(l:circle_magic/curses/wolf)Curse of the Wolf$(/l) to inflict lycanthropy on a player or $(item)Villager$()."
     },
     {
       "type": "text",
@@ -33,7 +33,7 @@
     {
       "type": "generic/secret_text",
       "title": "Lvl. 2 - Moon Charm",
-      "description": "Player can carry a $(l:)Moon Charm$(/l) to prevent forced transformations, and use it to force transformation at will. Killing $(item)Sheeps$() in non-human forms may result in $(item)Raw Mutton$() being dropped.",
+      "description": "Player can carry a $(l:artifacts/charms/moon_charm)Moon Charm$(/l) to prevent forced transformations, and use it to force transformation at will. Killing $(item)Sheeps$() in non-human forms may result in $(item)Raw Mutton$() being dropped.",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_2",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress"
     },
@@ -54,7 +54,7 @@
     {
       "type": "generic/secret_text",
       "title": "Lvl. 5 - Wolfman Form",
-      "description": "Player can now transform into the $(item)Wolfman Form$() using a $(l:)Moon Charm$(/l) while sneaking.$(br)A werewolf in Wolfman Form will have the following changes to their body and abilities:$(br)$(8)> $()Cannot wear armor$(br)$(8)> $()Will drop held object$(br)$(8)> $()Faster movement and better jump and leap$(br)$(8)> $()Increased step height$(br)$(8)> $()Night vision$(br)$(8)> $()Immunity to poison and disease",
+      "description": "Player can now transform into the $(item)Wolfman Form$() using a $(l:artifacts/charms/moon_charm)Moon Charm$(/l) while sneaking.$(br)A werewolf in Wolfman Form will have the following changes to their body and abilities:$(br)$(8)> $()Cannot wear armor$(br)$(8)> $()Will drop held object$(br)$(8)> $()Faster movement and better jump and leap$(br)$(8)> $()Increased step height$(br)$(8)> $()Night vision$(br)$(8)> $()Immunity to poison and disease",
       "secret_key": "witcherycompanion:traits/lycanthropy/level_5",
       "flag": "witcherycompanion:observations/show_lycanthropy_progress",
       "anchor": "wolfman_form"

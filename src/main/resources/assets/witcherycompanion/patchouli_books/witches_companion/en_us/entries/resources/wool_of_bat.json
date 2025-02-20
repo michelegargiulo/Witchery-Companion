@@ -1,0 +1,13 @@
+{
+  "name": "Wool of Bat",
+  "icon": "witchery:bat_wool",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:bat_wool",
+      "text": "A common resource that can be dropped when a $(item)Bat$() is killed. Using an $(l:artifacts/weapons/arthana)Arthana$(/l) increases its drop rate."
+    }
+  ]
+}

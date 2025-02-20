@@ -18,7 +18,7 @@
     {
       "type": "spotlight",
       "item": "witchery:bark_belt",
-      "text": "The Bark Belt is worn in the legs slot, offers low levels of protection and can be dyed and $(item)enchanted$().$(br)The Bark Belt is infused with the spirit of nature and will grow pieces of protective bark on the wearer if they stand on $(item)Grass$() or $(item)Mycelium$(). Bark can only grow on clothing made of $(l:resources/impregnated_leather)Impregnated Leather$(/l). ",
+      "text": "The Bark Belt is worn in the legs slot, offers low levels of protection and can be dyed and $(item)enchanted$().$(br)The Bark Belt is infused with the spirit of nature and will grow pieces of protective bark on the wearer if they stand on $(item)Grass$() or $(item)Mycelium$(). Bark can only grow on clothing made of $(l:resources/impregnated_leather)Impregnated Leather$(/l).",
       "anchor": "bark_belt"
     },
     {

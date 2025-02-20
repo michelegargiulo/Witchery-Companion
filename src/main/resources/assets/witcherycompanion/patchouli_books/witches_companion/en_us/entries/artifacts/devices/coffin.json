@@ -1,13 +1,20 @@
 {
   "name": "Coffin",
-  "icon": "witchery:coffin",
+  "icon": "witchery:red_coffin",
   "category": "artifacts/devices",
   "sortnum": 0,
   "pages": [
     {
-      "type": "spotlight",
-      "item": "witchery:coffin",
-      "text": "A coffin can be used by $(l:observations/vampirism)Vampires$(/l) to sleep in. They differ from $(item)Beds$(), for they allow the Vampire player to sleep thought the day.$(br)In order to sleep in a Coffin, the player must first open it, by sneak-using it, and then right clicking on it as normal. $(l:artifacts/misc/taglock_kit)Taglock Kits$(/l) work on a Coffin in the same way as they do on beds."
+      "type": "artifacts/decorative_set",
+      "title": "Coffin",
+      "ingredients": "witchery:white_coffin;witchery:orange_coffin;witchery:magenta_coffin;witchery:light_blue_coffin;witchery:yellow_coffin;witchery:lime_coffin;witchery:pink_coffin;witchery:gray_coffin",
+      "description": "A coffin can be used by $(l:observations/vampirism)Vampires$(/l) to sleep in. They differ from $(item)Beds$(), for they allow the Vampire player to sleep thought the day.$(p)In order to sleep in a Coffin, the player must first open it"
+    },
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Coffin",
+      "ingredients": "witchery:silver_coffin;witchery:cyan_coffin;witchery:purple_coffin;witchery:blue_coffin;witchery:brown_coffin;witchery:green_coffin;witchery:red_coffin;witchery:black_coffin",
+      "description": "by sneak-using it, and then right clicking on it as normal.$(p)$(l:artifacts/misc/taglock_kit)Taglock Kits$(/l) work on a Coffin in the same way as they do on beds."
     },
     {
       "type": "text",

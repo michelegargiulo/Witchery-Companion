@@ -12,7 +12,7 @@
     {
       "type": "text",
       "title": "Recipes",
-      "text": "> $(l:brewing/crafting#nether_wart)Nether Wart$(/l)$(br)> $(l:brewing/crafting#boiled_meat)Boiled Meat$(/l)$(br)> $(l:brewing/crafting#pit_traps)Pit Traps$(/l)$(br)> $(l:brewing/crafting#drop_of_luck)Drop of Luck$(/l)$(br)> $(l:brewing/crafting#mutating_sprig)Mutating Sprig$(/l)$(br)> $(l:brewing/crafting#rotten_flesh)Rotten Flesh$(/l)$(br)> $(l:brewing/crafting#golden_chalk)Golden Chalk$(/l)$(br)> $(l:brewing/crafting#infernal_chalk)Infernal Chalk$(/l)$(br)> $(l:brewing/crafting#mutandis_extremis)Mutandis Extremis$(/l)$(br)> $(l:brewing/crafting#mutandis)Mutandis$(/l)$(br)> $(l:brewing/crafting#otherwhere_chalk)Otherwhere Chalk$(/l)$(br)> $(l:brewing/crafting#end_stone)End Stone$(/l)$(br)> $(l:brewing/crafting#player_compass)Player Compass$(/l)$(br)"
+      "text": "> $(l:brewing/crafting#nether_wart)Nether Wart$(/l)$(br)> $(l:brewing/crafting#boiled_meat)Boiled Meat$(/l)$(br)> $(l:brewing/crafting#pit_traps)Pit Traps$(/l)$(br)> $(l:brewing/crafting#drop_of_luck)Drop of Luck$(/l)$(br)> $(l:brewing/crafting#mutating_sprig)Mutating Sprig$(/l)$(br)> $(l:brewing/crafting#rotten_flesh)Rotten Flesh$(/l)$(br)> $(l:brewing/crafting#golden_chalk)Golden Chalk$(/l)$(br)> $(l:brewing/crafting#infernal_chalk)Infernal Chalk$(/l)$(br)> $(l:brewing/crafting#mutandis)Mutandis$(/l)$(br)> $(l:brewing/crafting#mutandis_extremis)Mutandis Extremis$(/l)$(br)> $(l:brewing/crafting#otherwhere_chalk)Otherwhere Chalk$(/l)$(br)> $(l:brewing/crafting#end_stone)End Stone$(/l)$(br)> $(l:brewing/crafting#player_compass)Player Compass$(/l)$(br)"
     },
     {
       "type": "brewing/cauldron_recipe",
@@ -89,17 +89,17 @@
     },
     {
       "type": "brewing/cauldron_recipe",
-      "title": "Mutandis Extremis",
-      "description": "Use on plants to mutate them. Grass creates mycelium. Underwater dirt creates clay.",
-      "first_recipe_id": "witchery:cauldron/mutandis_extremis",
-      "anchor": "mutandis_extremis"
-    },
-    {
-      "type": "brewing/cauldron_recipe",
       "title": "Mutandis",
       "description": "Use $(item)Mutandis$() on simple plants to mutate them into another, perhaps undiscovered, species.",
       "first_recipe_id": "witchery:cauldron/mutandis",
       "anchor": "mutandis"
+    },
+    {
+      "type": "brewing/cauldron_recipe",
+      "title": "Mutandis Extremis",
+      "description": "Use on plants to mutate them. Grass creates mycelium. Underwater dirt creates clay.",
+      "first_recipe_id": "witchery:cauldron/mutandis_extremis",
+      "anchor": "mutandis_extremis"
     },
     {
       "type": "brewing/cauldron_recipe",

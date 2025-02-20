@@ -235,12 +235,6 @@ processResources {
 }
 
 jar {
-    // Copy Patchouli Book contents from in-game reloadable /run folder to /resources folder
-    copy {
-        from("run/patchouli_books")
-        into("src/main/resources/assets/" + propertyString('mod_id') + "/patchouli_books")
-    }
-
     manifest {
         def attribute_map = [:]
         if (propertyBool('is_coremod')) {
@@ -280,6 +274,9 @@ idea {
                 }
                 "4. Run Obfuscated Server"(Gradle) {
                     taskNames = ["runObfServer"]
+                }
+                "5. Copy Patchouli Books"(Gradle) {
+                    taskNames = ["copyPatchouliBooks"]
                 }
             }
             compiler.javac {
@@ -339,6 +336,24 @@ tasks.withType(JavaCompile).configureEach {
 tasks.register('cleanroomAfterSync') {
     group 'cleanroom helpers'
     dependsOn 'injectTags', 'generateMixinJson'
+}
+
+tasks.register('copyPatchouliBooksToResources') {
+    group 'build'
+    // Copy Patchouli Book contents from in-game reloadable /run folder to /resources folder
+    copy {
+        from("run/patchouli_books")
+        into("src/main/resources/assets/" + propertyString('mod_id') + "/patchouli_books")
+    }
+}
+
+tasks.register('copyPatchouliBooksToRunFolder') {
+    group 'build'
+    // Copy Patchouli Book contents from in-game reloadable /run folder to /resources folder
+    copy {
+        into("run/patchouli_books")
+        from("src/main/resources/assets/" + propertyString('mod_id') + "/patchouli_books")
+    }
 }
 
 if (propertyBool('use_modern_java_syntax')) {

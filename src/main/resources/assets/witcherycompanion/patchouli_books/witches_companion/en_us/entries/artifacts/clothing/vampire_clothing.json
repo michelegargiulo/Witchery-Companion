@@ -12,7 +12,7 @@
     {
       "type": "text",
       "title": "Light & Medium Armors",
-      "text": "Vampire clothing falls into two categories, either $(l:artifacts/clothing/vampire_clothing#light)Light Armor$() or $(l:artifacts/clothing/vampire_clothing#medium)Medium Armor$(). Medium armor gives more protection, but offers less bonuses than a full set of light armor. A Vampire may wear normal heavy armor but then they will have no bonuses in exchange for better armor protection. "
+      "text": "Vampire clothing falls into two categories, either $(l:artifacts/clothing/vampire_clothing#light)Light Armor$(/l) or $(l:artifacts/clothing/vampire_clothing#medium)Medium Armor$(/l). Medium armor gives more protection, but offers less bonuses than a full set of light armor. A Vampire may wear normal heavy armor but then they will have no bonuses in exchange for better armor protection. "
     },
     {
       "type": "artifacts/decorative_set",

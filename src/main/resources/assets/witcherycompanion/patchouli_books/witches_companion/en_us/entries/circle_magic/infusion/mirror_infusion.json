@@ -8,7 +8,7 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:mirror_infusion",
       "title": "Mirror Infusion",
-      "description": "Trap a $(l:)Demon$(/l) into a $(l:)Mirror$(/l)."
+      "description": "Trap a $(l:creatures/demon)Demon$(/l) into a $(l:artifacts/devices/mirror)Mirror$(/l)."
     }
   ]
 }
