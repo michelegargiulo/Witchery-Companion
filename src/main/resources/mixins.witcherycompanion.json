@@ -157,6 +157,7 @@
     "witchery.rite.sacrifice.ItemRiteSacrificeMixin",
     "witchery.transformation.CreatureTraitMixin",
     "witchery.transformation.CreatureForm.StatsMixin",
+    "witchery.util.EarthItemsMixin",
     "witchery.util.EntityUtilMixin",
     "witchery.util.ResizingUtilsMixin",
     "witchery.world.dimension.spirit.WorldProviderSpiritWorldMixin",

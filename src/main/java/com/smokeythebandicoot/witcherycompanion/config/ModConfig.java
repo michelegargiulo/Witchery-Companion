@@ -263,6 +263,17 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean soulBrews_fixPersistency = true;
 
+            @Config.Comment("If true, enables CraftTweaker compat for Earth Infusion")
+            @Config.Name("Earth Infusion - Tweak Enable Crafttweaker Compat")
+            @Config.RequiresMcRestart
+            public static boolean earthInfusion_tweakEnableCrafttweakerCompat = true;
+
+            @Config.Comment("If true, adds more items that are considered 'metallic' and thus can be stolen from other entities/players " +
+                    "using Earth Infusion powers. CraftTweaker compat can remove the added items. Complete list in the Wiki")
+            @Config.Name("Earth Infusion - Tweak Attract Extra Items")
+            @Config.RequiresMcRestart
+            public static boolean earthInfusion_tweakAttractExtraItems = true;
+
             @Config.Comment("Sets the amount of ticks between Sentinel effect activations")
             @Config.Name("Sentinel Effect - Tweak Cooldown")
             public static int infusedSpiritSentinel_tweakCooldown = 600;
