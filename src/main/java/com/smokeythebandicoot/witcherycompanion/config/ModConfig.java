@@ -786,6 +786,12 @@ public class ModConfig {
             @Config.Name("Rite of Prior Incarnation - Fix NBT Persisting After Pickup")
             @Config.RequiresMcRestart
             public static boolean ritePriorIncarnation_fixNbtNotRemoved = true;
+
+            @Config.Comment("If true, the Rite of Prior Incarnation won't be registered at all. Useful if you have other " +
+                    "mods that provide the same functionality (Open Blocks, Tomb Many Graves, etc)")
+            @Config.Name("Rite of Prior Incarnation - Tweak Disable Rite")
+            @Config.RequiresMcRestart
+            public static boolean priorIncarnation_tweakDisableRite = false;
         }
 
         public static class PotionTweaks {

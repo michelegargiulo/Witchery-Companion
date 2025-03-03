@@ -144,6 +144,7 @@
     "witchery.recipe.brazier.BrazierSummoningRecipeMixin",
     "witchery.registry.RegistryWrapper.DimensionsMixin",
     "witchery.resources.MutationManagerMixin",
+    "witchery.resources.RiteManagerMixin",
     "witchery.resources.SpiritEffectManagerMixin",
     "witchery.resources.SymbolEffectManagerMixin",
     "witchery.rite.effect.RiteEffectBindSpiritsToFetishMixin",
