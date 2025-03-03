@@ -1,6 +1,8 @@
 package com.smokeythebandicoot.witcherycompanion.api;
 
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.InfusionTweaks;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -11,15 +13,19 @@ import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.init.items.WitcheryEquipmentItems;
 import net.msrandom.witchery.init.items.WitcheryGeneralItems;
 
-import java.util.HashSet;
+import java.util.TreeSet;
 
 
 public class EarthInfusionApi {
 
-    private static HashSet<ItemStack> earthItems;
+    private static TreeSet<ItemStack> earthItems;
 
     private static void initEarthItems() {
-        earthItems = new HashSet<>();
+        earthItems = new TreeSet<>((o1, o2) -> {
+            if (o1.isItemEqual(o2))
+                return 0;
+            return o1.toString().compareTo(o2.toString()); // Not important
+        });
 
         // Swords
         addMetalItem(Items.IRON_SWORD);
@@ -125,6 +131,10 @@ public class EarthInfusionApi {
         }
     }
 
+    static {
+        initEarthItems();
+    }
+
     public static void addMetalItem(ItemStack stack) {
         ItemStack s = stack.copy();
         s.setCount(1);
@@ -152,7 +162,10 @@ public class EarthInfusionApi {
     public static boolean isMetalItem(ItemStack stack) {
         if (stack == null || stack.isEmpty())
             return false;
-        return earthItems.contains(stack);
+        return earthItems.contains(stack) ||
+                (Loader.isModLoaded(Mods.TINKERS_CONSTRUCT) &&
+                ModConfig.IntegrationConfigurations.TinkersIntegration.EarthInfusionConfig.earthInfusion_tweakEnableTicMetalMaterials &&
+                Integration.isMetalMaterial(stack));
     }
 
 }

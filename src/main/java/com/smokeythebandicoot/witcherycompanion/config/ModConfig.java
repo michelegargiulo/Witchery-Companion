@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.config;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -1306,6 +1307,8 @@ public class ModConfig {
         @Config.Name("Patchouli Integration - Configuration")
         public static PatchouliIntegration patchouliIntegrationConfig;
 
+        @Config.Comment("Configuration related to Tinkers Construct")
+        @Config.Name("Tinkers Construct Integration - Configuration")
         public static TinkersIntegration tinkersIntegrationConfig;
 
         @Config.Comment("Configuration related to The One Probe integration")
@@ -1738,6 +1741,22 @@ public class ModConfig {
             @Config.Name("Tinkers Construct Integration - Enabled")
             public static boolean enableTinkersIntegration = true;
 
+            public static class EarthInfusionConfig {
+
+                @Config.Comment("If true, Earth Infusion can disarm TiC tools, weapons and armors in which one component is made of a castable (metallic) material")
+                @Config.Name("Tinkers Construct Integration - Tweak TiC Integration for Earth Infusion")
+                public static boolean earthInfusion_tweakEnableTicMetalMaterials = true;
+
+                @Config.Comment("A Blacklist for all the TiC materials that Earth Infusion should not be able to disarm.")
+                @Config.Name("Tinkers Construct Integration - Earth Infusion Materials Blacklist")
+                public static String[] earthInfusion_blacklistMaterials = new String[] { };
+
+                @Config.Comment("If true, Earth Infusion TiC material blacklist has to be considered a whitelist")
+                @Config.Name("Tinkers Construct Integration - Earth Infusion Materials is Whitelist")
+                public static boolean earthInfusion_earthInfusionIsWhitelist = false;
+
+            }
+
             public static class ModifiersConfig {
 
                 @Config.Comment("Multiplier for damage dealt to Demons")
@@ -1801,6 +1820,10 @@ public class ModConfig {
             // is true, which is set as such only on PlayerJoinedWorldEvent
             if (Loader.isModLoaded(Mods.PATCHOULI)) {
                 IntegrationConfigurations.PatchouliIntegration.reloadPatchouliFlags();
+            }
+
+            if (Loader.isModLoaded(Mods.TINKERS_CONSTRUCT)) {
+                Integration.reloadEarthInfusionDisarmableMaterials();
             }
 
         }

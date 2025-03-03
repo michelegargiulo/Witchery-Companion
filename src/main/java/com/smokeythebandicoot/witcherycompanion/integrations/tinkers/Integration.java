@@ -6,6 +6,7 @@ import c4.conarm.lib.materials.PlatesMaterialStats;
 import c4.conarm.lib.materials.TrimMaterialStats;
 import c4.conarm.lib.modifiers.ArmorModifierTrait;
 import c4.conarm.lib.utils.RecipeMatchHolder;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers.*;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.traits.*;
 import net.minecraft.init.Items;
@@ -16,17 +17,24 @@ import slimeknights.mantle.util.RecipeMatch;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.*;
 import slimeknights.tconstruct.library.modifiers.Modifier;
+import slimeknights.tconstruct.library.utils.TagUtil;
+import slimeknights.tconstruct.library.utils.TinkerUtil;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 
 public class Integration {
 
-    public static final Integration INSTANCE;
+    /** ========== CONFIG ========== **/
+    private static final HashSet<String> earthInfusionMaterialBlacklist = new HashSet<>();
 
-    private Integration() { }
-
-    static {
-        INSTANCE = new Integration();
+    public static void reloadEarthInfusionDisarmableMaterials() {
+        earthInfusionMaterialBlacklist.clear();
+        earthInfusionMaterialBlacklist.addAll(Arrays.asList(
+                ModConfig.IntegrationConfigurations.TinkersIntegration.EarthInfusionConfig.earthInfusion_blacklistMaterials)
+        );
     }
 
     /** ========== TINKERS CONSTUCT ========== **/
@@ -265,6 +273,25 @@ public class Integration {
         if (silver != null) {
             silver.addTrait((ArmorModifierTrait)MODIFIER_SILVERED);
         }
+    }
+
+
+    /** Utils **/
+
+    /** Returns true if any of the Materials that compose the Tinker armor/tool/weapon etc is made of a castable material (so metallic) **/
+    public static boolean isMetalMaterial(ItemStack stack) {
+        List<Material> materials = TinkerUtil.getMaterialsFromTagList(TagUtil.getBaseMaterialsTagList(stack));
+        for (Material mat : materials) {
+            if (mat.isCastable() && canMaterialBeDisarmed(mat.getIdentifier())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean canMaterialBeDisarmed(String materialId) {
+        // Either is whitelist and contains, or is blacklist and does not contain in
+        return ModConfig.IntegrationConfigurations.TinkersIntegration.EarthInfusionConfig.earthInfusion_earthInfusionIsWhitelist == earthInfusionMaterialBlacklist.contains(materialId);
     }
 
 }
