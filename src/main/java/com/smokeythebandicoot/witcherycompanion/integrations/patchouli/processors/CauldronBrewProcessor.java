@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors;
 
-import com.smokeythebandicoot.witcherycompanion.api.brewing.BrewBuilder;
+import com.smokeythebandicoot.witcherycompanion.api.brewing.BrewBuilder_OLD;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.ProcessorUtils;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.base.BrewActionProcessor;
 import net.minecraft.item.crafting.Ingredient;
@@ -23,7 +23,7 @@ public class CauldronBrewProcessor extends BrewActionProcessor {
             EffectBrewAction action = (EffectBrewAction) currentAction;
             this.effectLevel = action.getEffectLevel();
 
-            this.ingredients = BrewBuilder.create().forAction(action)
+            this.ingredients = BrewBuilder_OLD.create().forAction(action)
                     .withMinimumCapacity().withDispersal(InstantDispersal.class).build();
         }
     }
