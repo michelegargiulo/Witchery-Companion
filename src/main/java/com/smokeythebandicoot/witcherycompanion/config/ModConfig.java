@@ -97,6 +97,13 @@ public class ModConfig {
             @Config.Name("Common - Disable Strength Ceiling")
             public static boolean common_tweakDisableStrengthCeiling = true;
 
+            @Config.Comment("By default, Witchery puts a hard cap to the total amount of power (number and strength of effects) that can " +
+                    "be put into a brew. After such amount, a Nether Star (by default) is required to disable this ceiling. Witchery Default Ceiling is 7. " +
+                    "Can be set to Integer.MAX_VALUE (" + Integer.MAX_VALUE + ") to disable Power Ceiling altogether")
+            @Config.Name("Common - Tweak Custom Power Ceiling")
+            @Config.RangeInt(min = 1)
+            public static int common_tweakCustomPowerCeiling = 7;
+
             @Config.Comment("If true, completes implementation of the throwing skill, that is used to throw splash brews further. To improve " +
                     "this skill, launch more splash brews. Max distance is controlled by the Tweak Throwing Skill Max Power config")
             @Config.Name("Common - Fix Throwing Skill")
