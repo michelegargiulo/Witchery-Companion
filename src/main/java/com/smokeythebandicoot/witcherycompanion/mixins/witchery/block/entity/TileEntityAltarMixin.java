@@ -4,13 +4,25 @@ import com.smokeythebandicoot.witcherycompanion.api.AltarApi;
 import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.altar.ITileEntityAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSkull;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.math.BlockPos;
+import net.msrandom.witchery.block.BlockChalice;
+import net.msrandom.witchery.block.BlockPlacedItem;
 import net.msrandom.witchery.block.entity.TileEntityAltar;
+import net.msrandom.witchery.block.entity.TileEntityPlacedItem;
 import net.msrandom.witchery.block.entity.WitcheryTileEntity;
 import net.msrandom.witchery.common.IPowerSource;
 import net.msrandom.witchery.common.PowerSources;
+import net.msrandom.witchery.init.WitcheryBlocks;
+import net.msrandom.witchery.init.WitcheryTileEntities;
+import net.msrandom.witchery.init.items.WitcheryGeneralItems;
+import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 import net.msrandom.witchery.util.BlockUtil;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,13 +33,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  Mixins:
  [Bugfix] Fixes PowerSources being lost upon world load/reload, requiring them to be interacted or
     broken and re-placed to be registered correctly again
  [Tweak] Great performance gain by caching Altar PowerSourceTable
+ [Integration] Thaumcraft candles are better than Witchery Candelabra
  */
 @Mixin(value = TileEntityAltar.class)
 public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements IPowerSource, ITileEntityAltarAccessor {
@@ -56,8 +69,17 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     @Shadow(remap = true)
     public abstract void invalidate();
 
-    @Unique
-    private static final HashMap<Block, AltarApi.AltarPowerSource> witchery_Patcher$powerObjectTable = null;
+    @Shadow(remap = false)
+    private int rechargeScale;
+
+    @Shadow(remap = false)
+    private int powerScale;
+
+    @Shadow(remap = false)
+    private int rangeScale;
+
+    @Shadow(remap = false)
+    private int enhancementLevel;
 
 
     /** Triggers a TileEntity sync when power is consumed, as Witchery only updated it when the power increases.
@@ -106,6 +128,123 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
                 else this.invalidate();
             }
         }
+    }
+
+    //TODO: Migrate entirely towards API, including Placed Items
+    /** This Mixin injects the Altar Boosters Api inside Artifacts logic **/
+    @Inject(method = "updateArtifacts", remap = false, at = @At("HEAD"), cancellable = true)
+    private void injectNewArtifacts(CallbackInfo ci) {
+        Set<BlockPos> visited = new HashSet<>();
+        List<BlockPos> toVisit = new ArrayList<>();
+        toVisit.add(getPos());
+
+        AltarApi.AltarBoosterFunc<Block, TileEntity> skullBooster = null;
+        AltarApi.AltarBoosterFunc<Block, TileEntity> candleBooster = null;
+        AltarApi.AltarBoosterFunc<Block, TileEntity> chaliceBooster = null;
+
+        boolean knifeFound = false;
+        boolean wandFound = false;
+        boolean pentacleFound = false;
+        boolean infinityFound = false;
+
+        AltarApi.AltarBoosterInfo info = new AltarApi.AltarBoosterInfo();
+
+        // Iterate over blocks to visit
+        while (!toVisit.isEmpty()) {
+            BlockPos coord = toVisit.get(0);
+            toVisit.remove(0);
+            for (BlockPos newCoord : new BlockPos[] {coord.north(), coord.south(), coord.east(), coord.west()}) {
+                if (this.world.getBlockState(newCoord).getBlock() == WitcheryBlocks.ALTAR && !visited.contains(newCoord) && !toVisit.contains(newCoord)) {
+                    toVisit.add(newCoord);
+                }
+            }
+            visited.add(coord);
+
+            // Retrieve information
+            BlockPos offset = coord.up();
+            IBlockState state = this.world.getBlockState(offset);
+            Block block = state.getBlock();
+            TileEntity tile = this.world.getTileEntity(offset);
+
+            // Inject API
+            // SKULL
+            if (AltarApi.isAltarBooster(state, AltarApi.EAltarBoosterType.SKULL)) {
+                AltarApi.AltarBoosterFunc<Block, TileEntity> booster = AltarApi.getBooster(state, AltarApi.EAltarBoosterType.SKULL);
+                if (skullBooster == null || booster.priority > skullBooster.priority) {
+                    skullBooster = booster;
+                }
+            }
+
+            // CANDELABRA
+            else if (AltarApi.isAltarBooster(state, AltarApi.EAltarBoosterType.CANDLE)) {
+                AltarApi.AltarBoosterFunc<Block, TileEntity> booster = AltarApi.getBooster(state, AltarApi.EAltarBoosterType.CANDLE);
+                if (candleBooster == null || booster.priority > candleBooster.priority) {
+                    candleBooster = booster;
+                }
+            }
+
+            // PLACED ITEMS
+            else if (block instanceof BlockPlacedItem) {
+                TileEntityPlacedItem item = WitcheryTileEntities.PLACED_ITEM.getAt(world, offset);
+                if (item != null) {
+                    ItemStack placedStack = item.getStack();
+                    if (!knifeFound && placedStack.getItem() == WitcheryGeneralItems.getArthana()) {
+                        knifeFound = true;
+                        ++info.newRangeScale;
+                    } else if (!wandFound && placedStack.getItem() == WitcheryGeneralItems.MYSTIC_BRANCH) {
+                        wandFound = true;
+                        ++info.newEnhancementLevel;
+                    } else {
+                        if (pentacleFound || placedStack.getItem() != WitcheryIngredientItems.KOBOLDITE_PENTACLE) {
+                            continue;
+                        }
+                        pentacleFound = true;
+                    }
+                }
+            }
+
+            // CANDELABRA
+            else if (AltarApi.isAltarBooster(state, AltarApi.EAltarBoosterType.CHALICE)) {
+                AltarApi.AltarBoosterFunc<Block, TileEntity> booster = AltarApi.getBooster(state, AltarApi.EAltarBoosterType.CHALICE);
+                if (chaliceBooster == null || booster.priority > chaliceBooster.priority) {
+                    chaliceBooster = booster;
+                }
+            }
+
+            // INFINITY EGG
+            else if (!infinityFound && block == WitcheryBlocks.INFINITY_EGG) {
+                infinityFound = true;
+            }
+        }
+
+        // Pentacle (applied after everything except Infinity)
+        if (pentacleFound) {
+            info.newRechargeScale *= 2;
+        }
+
+        // Infinity Egg (applied after everything)
+        if (infinityFound) {
+            info.newRechargeScale *= 10;
+            info.newPowerScale *= 10;
+        }
+
+        if ( // Only send Block Update if something has changed
+                info.newRechargeScale != this.rechargeScale ||
+                info.newPowerScale != this.powerScale ||
+                info.newRangeScale != this.rangeScale ||
+                info.newEnhancementLevel != this.enhancementLevel
+        ) {
+            this.rechargeScale = info.newRechargeScale;
+            this.powerScale = info.newPowerScale;
+            this.rangeScale = info.newRangeScale;
+            this.enhancementLevel = info.newEnhancementLevel;
+            if (!this.world.isRemote) {
+                BlockUtil.notifyBlockUpdate(world, getPos());
+            }
+        }
+
+        ci.cancel();
+
     }
 
     @Override

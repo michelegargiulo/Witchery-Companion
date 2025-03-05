@@ -6,6 +6,7 @@ import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.block.IBlock;
+import crafttweaker.api.block.IBlockState;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.oredict.IOreDictEntry;
@@ -14,6 +15,7 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 import java.util.List;
+
 
 @ModOnly(value = "witchery")
 @ZenClass("mods.smokeythebandicoot.witcherycompanion.Altar")
@@ -64,6 +66,25 @@ public class AltarHandler {
             AltarApi.removeBlock(block);
         }
     }
+
+    @ZenMethod
+    @ZenDoc(value="Registers a new Altar Booster of the specified type and Altar boosting increments")
+    public static void registerAltarBooster(IBlockState state, int priority, String boosterType, int rechargeIncrement, int powerIncrement, int rangeIncrement, int enhancementIncrement) {
+        AltarApi.registerAltarBooster(
+                CraftTweakerMC.getBlockState(state),
+                Enum.valueOf(AltarApi.EAltarBoosterType.class, boosterType.toUpperCase()),
+                new AltarApi.AltarBoosterFunc<>(priority,
+                    (blockstate, block, tile, info) -> {
+                        info.newRechargeScale += rechargeIncrement;
+                        info.newPowerScale += powerIncrement;
+                        info.newRangeScale += rangeIncrement;
+                        info.newEnhancementLevel += enhancementIncrement;
+                    }
+                )
+        );
+    }
+
+
 
 
 }
