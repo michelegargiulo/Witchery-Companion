@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -32,15 +31,17 @@ public abstract class RiteManagerMixin {
     /** Injects into while iteration that uses iterator to check if the current element has the
      * Rite of Prior Incarnation key and skips the iteration calling iterator.next() if the rite is disabled **/
     @WrapOperation(method = "apply(Ljava/util/Map;Lnet/minecraft/resources/ResourceManager;)V", remap = false,
-            at = @At(value = "INVOKE", target = "Ljava/util/Iterator;next()Ljava/lang/Object;", remap = false))
+            at = @At(value = "INVOKE", target = "Ljava/util/Iterator;next()Ljava/lang/Object;", remap = false,ordinal = 0))
     private Object skipPriorIncarnationWithTMG(Iterator<Map.Entry<ResourceLocation, ? extends JsonElement>> instance, Operation<Map.Entry<ResourceLocation, ?>> original) {
         Object result = original.call(instance);
 
-        if (ModConfig.PatchesConfiguration.RitesTweaks.priorIncarnation_tweakDisableRite &&
-                ((Map.Entry<ResourceLocation, ?>) result).getKey().getPath().equals("curse/prior_incarnation")) {
+        if (ModConfig.PatchesConfiguration.RitesTweaks.priorIncarnation_tweakDisableRite) {
+            Map.Entry<ResourceLocation, ?> entry = (Map.Entry<ResourceLocation, ?>) result;
+            if (entry.getKey().getPath().equals("curse/prior_incarnation")) {
 
-            // Skip the rite and continue to next iteration calling iterator.next()
-            return original.call(instance);
+                // Skip the rite and continue to next iteration calling iterator.next()
+                return instance.next();
+            }
         }
         return result;
     }
