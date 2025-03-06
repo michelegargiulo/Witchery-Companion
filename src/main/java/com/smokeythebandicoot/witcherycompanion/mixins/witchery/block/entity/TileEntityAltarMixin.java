@@ -4,15 +4,11 @@ import com.smokeythebandicoot.witcherycompanion.api.AltarApi;
 import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.altar.ITileEntityAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSkull;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.math.BlockPos;
-import net.msrandom.witchery.block.BlockChalice;
 import net.msrandom.witchery.block.BlockPlacedItem;
 import net.msrandom.witchery.block.entity.TileEntityAltar;
 import net.msrandom.witchery.block.entity.TileEntityPlacedItem;
@@ -82,6 +78,8 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     private int enhancementLevel;
 
 
+    /** ========== ALTAR POWER SOURCES ========== **/
+
     /** Triggers a TileEntity sync when power is consumed, as Witchery only updated it when the power increases.
      * This causes a desync in what appears in the Altar GUI and the actual power levels */
     @Inject(method = "consumePower", at = @At("RETURN"), remap = false)
@@ -109,7 +107,7 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
         if (BlockTweaks.altar_tweakCachePowerMap) {
             if (!this.world.isRemote && (!throttle || this.ticks - this.lastPowerUpdate <= 0L || this.ticks - this.lastPowerUpdate > 100L)) {
                 this.lastPowerUpdate = this.ticks;
-                witchery_Patcher$scanSurroundings();
+                witcherycompanion$scanSurroundings();
             }
             ci.cancel();
         }
@@ -130,6 +128,47 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
         }
     }
 
+    @Override
+    public void witcherycompanion$accessor$setCore(boolean isCore) {
+        this.core = isCore;
+    }
+
+    @Unique
+    private void witcherycompanion$scanSurroundings() {
+
+        HashMap<IBlockState, Integer> sourceCount = new HashMap<>();
+
+        for(int y = this.getPos().getY() - SCAN_DISTANCE; y <= this.getPos().getY() + SCAN_DISTANCE; ++y) {
+            for(int z = this.getPos().getZ() + SCAN_DISTANCE; z >= this.getPos().getZ() - SCAN_DISTANCE; --z) {
+                for(int x = this.getPos().getX() - SCAN_DISTANCE; x <= this.getPos().getX() + SCAN_DISTANCE; ++x) {
+
+                    IBlockState state = this.world.getBlockState(new BlockPos(x, y, z));
+                    AltarApi.AltarPowerSource source = AltarApi.getPowerSource(state);
+
+                    if (source != null) {
+                        sourceCount.merge(state, 1, (a, b) -> Math.min(a + b, source.getLimit()));
+                    }
+
+                }
+            }
+        }
+
+        float newMax = 0.0F;
+
+        for (IBlockState foundState : sourceCount.keySet()) {
+            AltarApi.AltarPowerSource altarPowerSource = AltarApi.getPowerSource(foundState);
+            newMax += Math.min(sourceCount.get(foundState), altarPowerSource.getLimit()) * altarPowerSource.getFactor();
+        }
+
+        if (newMax != this.maxPower) {
+            this.maxPower = newMax;
+            BlockUtil.notifyBlockUpdate(this.world, this.getPos());
+        }
+    }
+
+
+    /** ========== ALTAR BOOSTERS ========== **/
+
     //TODO: Migrate entirely towards API, including Placed Items
     /** This Mixin injects the Altar Boosters Api inside Artifacts logic **/
     @Inject(method = "updateArtifacts", remap = false, at = @At("HEAD"), cancellable = true)
@@ -138,9 +177,13 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
         List<BlockPos> toVisit = new ArrayList<>();
         toVisit.add(getPos());
 
-        AltarApi.AltarBoosterFunc<Block, TileEntity> skullBooster = null;
-        AltarApi.AltarBoosterFunc<Block, TileEntity> candleBooster = null;
-        AltarApi.AltarBoosterFunc<Block, TileEntity> chaliceBooster = null;
+        AltarApi.AltarBoosterFunc skullBooster = null;
+        AltarApi.AltarBoosterFunc candleBooster = null;
+        AltarApi.AltarBoosterFunc chaliceBooster = null;
+
+        BlockPos bestSkullPos = null;
+        BlockPos bestCandlePos = null;
+        BlockPos bestChalicePos = null;
 
         boolean knifeFound = false;
         boolean wandFound = false;
@@ -164,22 +207,23 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
             BlockPos offset = coord.up();
             IBlockState state = this.world.getBlockState(offset);
             Block block = state.getBlock();
-            TileEntity tile = this.world.getTileEntity(offset);
 
             // Inject API
             // SKULL
             if (AltarApi.isAltarBooster(state, AltarApi.EAltarBoosterType.SKULL)) {
-                AltarApi.AltarBoosterFunc<Block, TileEntity> booster = AltarApi.getBooster(state, AltarApi.EAltarBoosterType.SKULL);
+                AltarApi.AltarBoosterFunc booster = AltarApi.getBooster(state, AltarApi.EAltarBoosterType.SKULL);
                 if (skullBooster == null || booster.priority > skullBooster.priority) {
                     skullBooster = booster;
+                    bestSkullPos = offset;
                 }
             }
 
             // CANDELABRA
             else if (AltarApi.isAltarBooster(state, AltarApi.EAltarBoosterType.CANDLE)) {
-                AltarApi.AltarBoosterFunc<Block, TileEntity> booster = AltarApi.getBooster(state, AltarApi.EAltarBoosterType.CANDLE);
+                AltarApi.AltarBoosterFunc booster = AltarApi.getBooster(state, AltarApi.EAltarBoosterType.CANDLE);
                 if (candleBooster == null || booster.priority > candleBooster.priority) {
                     candleBooster = booster;
+                    bestCandlePos = offset;
                 }
             }
 
@@ -203,11 +247,12 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
                 }
             }
 
-            // CANDELABRA
+            // CHALICE
             else if (AltarApi.isAltarBooster(state, AltarApi.EAltarBoosterType.CHALICE)) {
-                AltarApi.AltarBoosterFunc<Block, TileEntity> booster = AltarApi.getBooster(state, AltarApi.EAltarBoosterType.CHALICE);
+                AltarApi.AltarBoosterFunc booster = AltarApi.getBooster(state, AltarApi.EAltarBoosterType.CHALICE);
                 if (chaliceBooster == null || booster.priority > chaliceBooster.priority) {
                     chaliceBooster = booster;
+                    bestChalicePos = offset;
                 }
             }
 
@@ -216,6 +261,12 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
                 infinityFound = true;
             }
         }
+
+        // Apply boosters
+        witcherycompanion$applyBooster(skullBooster, bestSkullPos, info);
+        witcherycompanion$applyBooster(candleBooster, bestCandlePos, info);
+        witcherycompanion$applyBooster(chaliceBooster, bestChalicePos, info);
+
 
         // Pentacle (applied after everything except Infinity)
         if (pentacleFound) {
@@ -247,41 +298,13 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
 
     }
 
-    @Override
-    public void witcherycompanion$accessor$setCore(boolean isCore) {
-        this.core = isCore;
-    }
-
     @Unique
-    private void witchery_Patcher$scanSurroundings() {
-
-        HashMap<IBlockState, Integer> sourceCount = new HashMap<>();
-
-        for(int y = this.getPos().getY() - SCAN_DISTANCE; y <= this.getPos().getY() + SCAN_DISTANCE; ++y) {
-            for(int z = this.getPos().getZ() + SCAN_DISTANCE; z >= this.getPos().getZ() - SCAN_DISTANCE; --z) {
-                for(int x = this.getPos().getX() - SCAN_DISTANCE; x <= this.getPos().getX() + SCAN_DISTANCE; ++x) {
-
-                    IBlockState state = this.world.getBlockState(new BlockPos(x, y, z));
-                    AltarApi.AltarPowerSource source = AltarApi.getPowerSource(state);
-
-                    if (source != null) {
-                        sourceCount.merge(state, 1, (a, b) -> Math.min(a + b, source.getLimit()));
-                    }
-
-                }
-            }
-        }
-
-        float newMax = 0.0F;
-
-        for (IBlockState foundState : sourceCount.keySet()) {
-            AltarApi.AltarPowerSource altarPowerSource = AltarApi.getPowerSource(foundState);
-            newMax += Math.min(sourceCount.get(foundState), altarPowerSource.getLimit()) * altarPowerSource.getFactor();
-        }
-
-        if (newMax != this.maxPower) {
-            this.maxPower = newMax;
-            BlockUtil.notifyBlockUpdate(this.world, this.getPos());
+    private void witcherycompanion$applyBooster(AltarApi.AltarBoosterFunc booster, BlockPos pos, AltarApi.AltarBoosterInfo info) {
+        if (pos != null && booster != null) {
+            IBlockState state = this.world.getBlockState(pos);
+            TileEntity tile = this.world.getTileEntity(pos);
+            Block block = state.getBlock();
+            booster.consumer.apply(state, block, tile, info);
         }
     }
 

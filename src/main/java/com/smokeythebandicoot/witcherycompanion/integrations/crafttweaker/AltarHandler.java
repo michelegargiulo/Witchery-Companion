@@ -71,16 +71,16 @@ public class AltarHandler {
     @ZenDoc(value="Registers a new Altar Booster of the specified type and Altar boosting increments")
     public static void registerAltarBooster(IBlockState state, int priority, String boosterType, int rechargeIncrement, int powerIncrement, int rangeIncrement, int enhancementIncrement) {
         AltarApi.registerAltarBooster(
-                CraftTweakerMC.getBlockState(state),
-                Enum.valueOf(AltarApi.EAltarBoosterType.class, boosterType.toUpperCase()),
-                new AltarApi.AltarBoosterFunc<>(priority,
-                    (blockstate, block, tile, info) -> {
-                        info.newRechargeScale += rechargeIncrement;
-                        info.newPowerScale += powerIncrement;
-                        info.newRangeScale += rangeIncrement;
-                        info.newEnhancementLevel += enhancementIncrement;
-                    }
-                )
+            CraftTweakerMC.getBlockState(state),
+            Enum.valueOf(AltarApi.EAltarBoosterType.class, boosterType.toUpperCase()),
+            new AltarApi.AltarBoosterFunc(priority,
+                (blockstate, block, tile, info) -> {
+                    info.newRechargeScale += rechargeIncrement;
+                    info.newPowerScale += powerIncrement;
+                    info.newRangeScale += rangeIncrement;
+                    info.newEnhancementLevel += enhancementIncrement;
+                }
+            )
         );
     }
 
