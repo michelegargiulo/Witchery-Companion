@@ -281,6 +281,15 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean earthInfusion_tweakAttractExtraItems = true;
 
+            @Config.Comment("Add here any Ore Dictionary prefixes that might be useful in Ore Transformation. " +
+                    "Witchery only uses 'ingot', which means it transforms oreAbc into ingotAbc. Add more to another fallbacks " +
+                    "so that if ingotAbc does not exist, something else can be returned, like dustAbc. " +
+                    "NOTE: Requires 'Earth Infusion - Tweak Enable Crafttweaker Compat' to be enabled. " +
+                    "NOTE: Blocks transformed by fallback transformation will always be replaced by Stone")
+            @Config.Name("Earth Infusion - Tweak Ore To Ingot Fallbacks")
+            @Config.RequiresMcRestart
+            public static String[] earthInfusion_tweakOreToIngotFallbacks = new String[] { "ingot" };
+
             @Config.Comment("Sets the amount of ticks between Sentinel effect activations")
             @Config.Name("Sentinel Effect - Tweak Cooldown")
             public static int infusedSpiritSentinel_tweakCooldown = 600;

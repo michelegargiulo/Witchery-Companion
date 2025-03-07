@@ -1,22 +1,37 @@
 package com.smokeythebandicoot.witcherycompanion.api;
 
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.InfusionTweaks;
-import com.smokeythebandicoot.witcherycompanion.utils.Mods;
+import com.smokeythebandicoot.witcherycompanion.utils.ComparableItemStack;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Loader;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.init.items.WitcheryEquipmentItems;
 import net.msrandom.witchery.init.items.WitcheryGeneralItems;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 
-public class EarthInfusionApi {
+public class OverworldInfusionApi {
 
-    private static HashSet<ItemStack> earthItems;
+    // Metallic items
+    private static HashSet<ComparableItemStack> earthItems;
+
+    // Blocks and states that can be thrown
+    private static HashSet<IBlockState> throwableStates;
+    private static HashSet<Block> throwableBlocks;
+
+    // Ore Transformation
+    private static HashMap<IBlockState, OreTransformationInfo> oreTransforms;
+
 
     private static void initEarthItems() {
         earthItems = new HashSet<>();
@@ -125,14 +140,58 @@ public class EarthInfusionApi {
         }
     }
 
+    private static void initThrowables() {
+        throwableStates = new HashSet<>();
+
+        throwableBlocks = new HashSet<>();
+        throwableBlocks.add(Blocks.DIRT);
+        throwableBlocks.add(Blocks.GRASS);
+        throwableBlocks.add(Blocks.STONE);
+        throwableBlocks.add(Blocks.COBBLESTONE);
+        throwableBlocks.add(Blocks.SAND);
+        throwableBlocks.add(Blocks.GRAVEL);
+        throwableBlocks.add(Blocks.SANDSTONE);
+        throwableBlocks.add(Blocks.STONE_SLAB);
+        throwableBlocks.add(Blocks.BRICK_BLOCK);
+        throwableBlocks.add(Blocks.MOSSY_COBBLESTONE);
+        throwableBlocks.add(Blocks.STONE_STAIRS);
+        throwableBlocks.add(Blocks.CLAY);
+        throwableBlocks.add(Blocks.SOUL_SAND);
+        throwableBlocks.add(Blocks.STONEBRICK);
+        throwableBlocks.add(Blocks.BRICK_STAIRS);
+        throwableBlocks.add(Blocks.STONE_BRICK_STAIRS);
+        throwableBlocks.add(Blocks.MYCELIUM);
+        throwableBlocks.add(Blocks.NETHER_BRICK);
+        throwableBlocks.add(Blocks.NETHER_BRICK_STAIRS);
+        throwableBlocks.add(Blocks.SANDSTONE_STAIRS);
+        throwableBlocks.add(Blocks.HARDENED_CLAY);
+        throwableBlocks.add(Blocks.COAL_BLOCK);
+        throwableBlocks.add(Blocks.NETHERRACK);
+
+    }
+
+    private static void initOreTransforms() {
+        oreTransforms = new HashMap<>();
+        oreTransforms.put(Blocks.IRON_ORE.getDefaultState(), new OreTransformationInfo(new ItemStack(Items.IRON_INGOT)));
+        oreTransforms.put(Blocks.GOLD_ORE.getDefaultState(), new OreTransformationInfo(new ItemStack(Items.GOLD_INGOT)));
+    }
+
+
+    static {
+        initEarthItems();
+        initThrowables();
+        initOreTransforms();
+    }
+
+
+    /** ========== METAL ITEMS ========== **/
+
     public static void addMetalItem(ItemStack stack) {
-        ItemStack s = stack.copy();
-        s.setCount(1);
-        earthItems.add(s);
+        earthItems.add(new ComparableItemStack(stack));
     }
 
     public static void addMetalItem(Item item, int meta) {
-        earthItems.add(new ItemStack(item, 1, meta));
+        earthItems.add(new ComparableItemStack(item, meta));
     }
 
     public static void addMetalItem(Item item) {
@@ -142,17 +201,93 @@ public class EarthInfusionApi {
     public static void removeMetalItem(ItemStack stack) {
         ItemStack s = stack.copy();
         s.setCount(1);
-        earthItems.remove(stack);
+        earthItems.remove(new ComparableItemStack(stack));
     }
 
     public static void removeMetalItem(Item item, int meta) {
-        earthItems.remove(new ItemStack(item, 1, meta));
+        earthItems.remove(new ComparableItemStack(item, meta));
     }
 
     public static boolean isMetalItem(ItemStack stack) {
         if (stack == null || stack.isEmpty())
             return false;
-        return earthItems.contains(stack);
+        return earthItems.contains(new ComparableItemStack(stack));
+    }
+
+
+    /** ========== THROWABLE BLOCKS ========== **/
+
+    public static void addThrowableState(IBlockState state) {
+        throwableStates.add(state);
+    }
+
+    public static void addThrowableBlock(Block block) {
+        throwableBlocks.add(block);
+    }
+
+    public static void removeThrowableState(IBlockState state) {
+        throwableStates.remove(state);
+    }
+
+    public static void removeThrowableBlock(Block block) {
+        throwableBlocks.remove(block);
+    }
+
+    public static boolean isThrowable(IBlockState state) {
+        if (state == null)
+            return false;
+        return throwableStates.contains(state) || throwableBlocks.contains(state.getBlock());
+    }
+
+    public static boolean isThrowable(Block block) {
+        return throwableBlocks.contains(block);
+    }
+
+
+    /** ========== ORE TRANSFORMATIONS ========== **/
+
+    public static OreTransformationInfo getOreTransformation(World world, BlockPos pos, IBlockState ore) {
+
+        // If contained in map, return the transformation
+        if (oreTransforms.containsKey(ore)) {
+            return oreTransforms.get(ore);
+        }
+
+        // Else, try to retrieve from fallbacks
+        ItemStack oreStack = ore.getBlock().getItem(world, pos, ore);
+        int[] oreIDs = OreDictionary.getOreIDs(oreStack);
+        for (int oreID : oreIDs) {
+            String oreName = OreDictionary.getOreName(oreID);
+            if (oreName.startsWith("ore")) {
+                for (String replacement : InfusionTweaks.earthInfusion_tweakOreToIngotFallbacks) {
+                    String resultName = oreName.replace("ore", replacement);
+                    if (OreDictionary.doesOreNameExist(resultName)) {
+                        List<ItemStack> resultStacks = OreDictionary.getOres(resultName);
+                        if (!resultStacks.isEmpty()) {
+                            return new OreTransformationInfo(resultStacks.get(0), Blocks.STONE.getDefaultState());
+                        }
+                    }
+                }
+            }
+        }
+
+        // Cannot transform
+        return null;
+    }
+
+
+    public static class OreTransformationInfo {
+        public final ItemStack target;
+        public final IBlockState leftOver;
+
+        public OreTransformationInfo(ItemStack target, IBlockState leftOver) {
+            this.target = target;
+            this.leftOver = leftOver;
+        }
+
+        public OreTransformationInfo(ItemStack target) {
+            this(target, Blocks.STONE.getDefaultState());
+        }
     }
 
 }
