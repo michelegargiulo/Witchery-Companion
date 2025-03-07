@@ -77,13 +77,19 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     @Shadow(remap = false)
     private int enhancementLevel;
 
+    @Shadow(remap = false)
+    private float power;
 
-    /** ========== ALTAR POWER SOURCES ========== **/
+    @Shadow(remap = false)
+    public abstract void updatePower();
+
+
+    /** ========== POWER SOURCE PERSISTENCY ========== **/
 
     /** Triggers a TileEntity sync when power is consumed, as Witchery only updated it when the power increases.
      * This causes a desync in what appears in the Altar GUI and the actual power levels */
     @Inject(method = "consumePower", at = @At("RETURN"), remap = false)
-    public void WPconsumePower(float power, CallbackInfoReturnable<Boolean> cir) {
+    private void WPconsumePower(float power, CallbackInfoReturnable<Boolean> cir) {
         if (BlockTweaks.altar_fixPowerSourcePersistency) {
             BlockUtil.notifyBlockUpdate(this.world, this.getPos());
         }
@@ -91,24 +97,12 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
 
     /** This method fixes an inverse condition, as only "core" AltarTEs should update their power */
     @Inject(method = "updatePower()V", remap = false, cancellable = true, at = @At("HEAD"))
-    public void updatePowerCheckValid(CallbackInfo ci) {
+    private void updatePowerCheckValid(CallbackInfo ci) {
         if (BlockTweaks.altar_fixPowerSourcePersistency) {
             if (!this.core) return;
             PowerSources.instance().registerPowerSource(this);
             this.updateArtifacts();
             this.updatePower(true);
-            ci.cancel();
-        }
-    }
-
-    /** Rewrites the Power updating logic to factor in CraftTweaker integration and caching to improve performance by caching */
-    @Inject(method = "updatePower(Z)V", remap = false, cancellable = true, at = @At("HEAD"))
-    private void WPupdatePowerCached(boolean throttle, CallbackInfo ci) {
-        if (BlockTweaks.altar_tweakCachePowerMap) {
-            if (!this.world.isRemote && (!throttle || this.ticks - this.lastPowerUpdate <= 0L || this.ticks - this.lastPowerUpdate > 100L)) {
-                this.lastPowerUpdate = this.ticks;
-                witcherycompanion$scanSurroundings();
-            }
             ci.cancel();
         }
     }
@@ -133,6 +127,46 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
         this.core = isCore;
     }
 
+    @Override
+    public int witcherycompanion$accessor$getEnhancementLevel() {
+        return this.enhancementLevel;
+    }
+
+
+    /** ========== ALTAR POWER SOURCES ========== **/
+
+    /** This Mixin forces the Altar send block updates to notify things like TOP **/
+    @Inject(method = "update", remap = true, at = @At("HEAD"), cancellable = true)
+    private void updateSurroundings(CallbackInfo ci) {
+        super.update();
+        if (!this.world.isRemote) {
+            float maxPowerScaled = this.maxPower * (float) this.powerScale;
+            if (this.core && this.ticks % 20 == 0L) {
+                updatePower();
+                if (this.power < maxPowerScaled) {
+                    this.power = (float) ((int) Math.min(this.power + 10.0f * (float) this.rechargeScale, maxPowerScaled));
+                } else if (this.power > maxPowerScaled) {
+                    this.power = maxPowerScaled;
+                }
+                BlockUtil.notifyBlockUpdate(this.world, this.getPos());
+            }
+        }
+        ci.cancel();
+
+    }
+
+    /** Rewrites the Power updating logic to factor in CraftTweaker integration and caching to improve performance by caching */
+    @Inject(method = "updatePower(Z)V", remap = false, cancellable = true, at = @At("HEAD"))
+    private void WPupdatePowerCached(boolean throttle, CallbackInfo ci) {
+        if (BlockTweaks.altar_tweakEnableCrafttweakerCompat) {
+            if (!this.world.isRemote && (!throttle || this.ticks - this.lastPowerUpdate <= 0L || this.ticks - this.lastPowerUpdate > 75L)) {
+                this.lastPowerUpdate = this.ticks;
+                witcherycompanion$scanSurroundings();
+            }
+            ci.cancel();
+        }
+    }
+
     @Unique
     private void witcherycompanion$scanSurroundings() {
 
@@ -146,7 +180,7 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
                     AltarApi.AltarPowerSource source = AltarApi.getPowerSource(state);
 
                     if (source != null) {
-                        sourceCount.merge(state, 1, (a, b) -> Math.min(a + b, source.getLimit()));
+                        sourceCount.merge(state, 1, (a, b) -> Math.min(a + b, source.getLimit(this.enhancementLevel)));
                     }
 
                 }
@@ -157,7 +191,7 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
 
         for (IBlockState foundState : sourceCount.keySet()) {
             AltarApi.AltarPowerSource altarPowerSource = AltarApi.getPowerSource(foundState);
-            newMax += Math.min(sourceCount.get(foundState), altarPowerSource.getLimit()) * altarPowerSource.getFactor();
+            newMax += Math.min(sourceCount.get(foundState), altarPowerSource.getLimit(this.enhancementLevel)) * altarPowerSource.getFactor();
         }
 
         if (newMax != this.maxPower) {
@@ -173,6 +207,11 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     /** This Mixin injects the Altar Boosters Api inside Artifacts logic **/
     @Inject(method = "updateArtifacts", remap = false, at = @At("HEAD"), cancellable = true)
     private void injectNewArtifacts(CallbackInfo ci) {
+
+        if (!BlockTweaks.altar_tweakEnableCrafttweakerCompat) {
+            return;
+        }
+
         Set<BlockPos> visited = new HashSet<>();
         List<BlockPos> toVisit = new ArrayList<>();
         toVisit.add(getPos());
@@ -303,8 +342,7 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
         if (pos != null && booster != null) {
             IBlockState state = this.world.getBlockState(pos);
             TileEntity tile = this.world.getTileEntity(pos);
-            Block block = state.getBlock();
-            booster.consumer.apply(state, block, tile, info);
+            booster.consumer.apply(state, tile, info);
         }
     }
 

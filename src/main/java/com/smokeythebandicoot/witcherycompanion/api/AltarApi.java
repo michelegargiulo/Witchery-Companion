@@ -89,10 +89,10 @@ public class AltarApi {
     /** INIT ALTAR BOOSTERS **/
     private static void initSkullBoosters() {
         skullBoosters.clear();
-        skullBoosters.put(
-                Blocks.SKULL.getDefaultState(),
-                new AltarBoosterFunc(1,
-                    (IBlockState state, Block skull, TileEntity tile, AltarBoosterInfo info) -> {
+        registerAltarBooster(
+                Blocks.SKULL, EAltarBoosterType.SKULL,
+                new AltarBoosterFunc(100,
+                    (state, tile, info) -> {
                         if (!(tile instanceof TileEntitySkull)) {
                             return;
                         }
@@ -118,32 +118,33 @@ public class AltarApi {
 
     private static void initCandleBoosters() {
         candleBoosters.clear();
-        candleBoosters.put(
-            WitcheryBlocks.CANDELABRA.getDefaultState(),
-            new AltarBoosterFunc(1,
-                (IBlockState state, Block block, TileEntity tile, AltarBoosterInfo info) -> info.newRechargeScale += 2
-            )
+        registerAltarBooster(
+                WitcheryBlocks.CANDELABRA, EAltarBoosterType.CANDLE,
+                new AltarBoosterFunc(200,
+                        (IBlockState state, TileEntity tile, AltarBoosterInfo info) -> info.newRechargeScale += 2
+                )
         );
-        candleBoosters.put(
-            Blocks.TORCH.getDefaultState(),
-            new AltarBoosterFunc(0,
-                (IBlockState state, Block block, TileEntity tile, AltarBoosterInfo info) -> info.newRechargeScale += 1
+        registerAltarBooster(
+            Blocks.TORCH, EAltarBoosterType.CANDLE,
+            new AltarBoosterFunc(100,
+                (IBlockState state, TileEntity tile, AltarBoosterInfo info) -> info.newRechargeScale += 1
             )
         );
     }
 
     private static void initChaliceBoosters() {
         chaliceBoosters.clear();
-        chaliceBoosters.put(
-                WitcheryBlocks.CHALICE.getDefaultState(),
-                new AltarBoosterFunc(1,
-                        (IBlockState state, Block block, TileEntity tile, AltarBoosterInfo info) -> {
-                            if (block instanceof BlockChalice) {
-                                BlockChalice chalice = (BlockChalice)block;
-                                info.newPowerScale += chalice.isFull ? 2 : 1;
-                            }
-                        }
-                )
+        registerAltarBooster(
+            WitcheryBlocks.CHALICE, EAltarBoosterType.CHALICE,
+            new AltarBoosterFunc(100,
+                (IBlockState state, TileEntity tile, AltarBoosterInfo info) -> {
+                Block block = state.getBlock();
+                    if (block instanceof BlockChalice) {
+                        BlockChalice chalice = (BlockChalice)block;
+                        info.newPowerScale += chalice.isFull ? 2 : 1;
+                    }
+                }
+            )
         );
     }
 
@@ -283,13 +284,45 @@ public class AltarApi {
         return map;
     }
 
-    /** Registers a new Altar Booster in the specified category. Support is limited for now **/
+
+    /** ========== ALTAR BOOSTERS ========== **/
+
+    /** Registers a new IBlockState as an Altar Booster of the specified type. Support is limited for now **/
     public static void registerAltarBooster(IBlockState state, EAltarBoosterType type, AltarBoosterFunc booster) {
         if (state == null || type == null || booster == null) {
             WitcheryCompanion.logger.warn("[Altar API] A mod tried to register an Altar Booster with a null State, Type or Booster function");
             return;
         }
         type.supplier.get().put(state, booster);
+    }
+
+    /** Registers all the valid IBlockStates of a block as an Altar Booster of the specified type. Support is limited for now **/
+    public static void registerAltarBooster(Block block, EAltarBoosterType type, AltarBoosterFunc booster) {
+        if (block == null || type == null || booster == null) {
+            WitcheryCompanion.logger.warn("[Altar API] A mod tried to register an Altar Booster with a null State, Type or Booster function");
+            return;
+        }
+        HashMap<IBlockState, AltarBoosterFunc> boosterMap = type.supplier.get();
+        for (IBlockState state : block.getBlockState().getValidStates()) {
+            boosterMap.put(state, booster);
+        }
+    }
+
+    /** Unregisters the specified IBlockState as Altar Booster of the specified type **/
+    public static void unregisterAltarBooster(IBlockState state, EAltarBoosterType type) {
+        if (type != null) {
+            type.supplier.get().remove(state);
+        }
+    }
+
+    /** Unregisters all valid IBlockStates of the Block as Altar Booster of the specified type **/
+    public static void unregisterAltarBooster(Block block, EAltarBoosterType type) {
+        if (type != null) {
+            HashMap<IBlockState, AltarBoosterFunc> boosterMap = type.supplier.get();
+            for (IBlockState state : block.getBlockState().getValidStates()) {
+                boosterMap.remove(state);
+            }
+        }
     }
 
     /** Returns true if the BlockState is a booster of the specified type **/
@@ -336,8 +369,8 @@ public class AltarApi {
             return factor;
         }
 
-        public int getLimit() {
-            return limit;
+        public int getLimit(int enhancementLevel) {
+            return (int)(Math.max(1.18 * enhancementLevel, 1) * limit);
         }
 
         public Ingredient getRepresentativeItem() {
@@ -365,7 +398,7 @@ public class AltarApi {
 
     @FunctionalInterface
     public interface AltarBoosterConsumer {
-        void apply(IBlockState state, Block block, TileEntity tile, AltarBoosterInfo info);
+        void apply(IBlockState state, TileEntity tile, AltarBoosterInfo info);
     }
 
 

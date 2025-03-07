@@ -68,13 +68,13 @@ public class AltarHandler {
     }
 
     @ZenMethod
-    @ZenDoc(value="Registers a new Altar Booster of the specified type and Altar boosting increments")
+    @ZenDoc(value="Registers a new IBlockState as an Altar Booster of the specified type and Altar boosting increments. Valid boosterTypes: SKULL, CANDLE, CHALICE")
     public static void registerAltarBooster(IBlockState state, int priority, String boosterType, int rechargeIncrement, int powerIncrement, int rangeIncrement, int enhancementIncrement) {
         AltarApi.registerAltarBooster(
             CraftTweakerMC.getBlockState(state),
             Enum.valueOf(AltarApi.EAltarBoosterType.class, boosterType.toUpperCase()),
             new AltarApi.AltarBoosterFunc(priority,
-                (blockstate, block, tile, info) -> {
+                (blockstate, tile, info) -> {
                     info.newRechargeScale += rechargeIncrement;
                     info.newPowerScale += powerIncrement;
                     info.newRangeScale += rangeIncrement;
@@ -84,7 +84,39 @@ public class AltarHandler {
         );
     }
 
+    @ZenMethod
+    @ZenDoc(value="Registers all the valid IBlockStates of a block as an Altar Booster of the specified type. Valid boosterTypes: SKULL, CANDLE, CHALICE")
+    public static void registerAltarBooster(IBlock block, int priority, String boosterType, int rechargeIncrement, int powerIncrement, int rangeIncrement, int enhancementIncrement) {
+        AltarApi.registerAltarBooster(
+            CraftTweakerMC.getBlock(block),
+            Enum.valueOf(AltarApi.EAltarBoosterType.class, boosterType.toUpperCase()),
+            new AltarApi.AltarBoosterFunc(priority,
+                (state, tile, info) -> {
+                    info.newRechargeScale += rechargeIncrement;
+                    info.newPowerScale += powerIncrement;
+                    info.newRangeScale += rangeIncrement;
+                    info.newEnhancementLevel += enhancementIncrement;
+                }
+            )
+        );
+    }
 
+    @ZenMethod
+    @ZenDoc(value="Unregisters the specified IBlockState as Altar Booster of the specified type. Valid boosterTypes: SKULL, CANDLE, CHALICE")
+    public static void unregisterAltarBooster(IBlockState state, String boosterType) {
+        AltarApi.unregisterAltarBooster(
+            CraftTweakerMC.getBlockState(state),
+            Enum.valueOf(AltarApi.EAltarBoosterType.class, boosterType.toUpperCase())
+        );
+    }
 
+    @ZenMethod
+    @ZenDoc(value="Unregisters all valid IBlockStates of the Block as Altar Booster of the specified type. Valid boosterTypes: SKULL, CANDLE, CHALICE")
+    public static void unregisterAltarBooster(IBlock block, String boosterType) {
+        AltarApi.unregisterAltarBooster(
+            CraftTweakerMC.getBlock(block),
+            Enum.valueOf(AltarApi.EAltarBoosterType.class, boosterType.toUpperCase())
+        );
+    }
 
 }

@@ -4,4 +4,5 @@ public interface ITileEntityAltarAccessor {
 
     void witcherycompanion$accessor$setCore(boolean isCore);
 
+    int witcherycompanion$accessor$getEnhancementLevel();
 }
