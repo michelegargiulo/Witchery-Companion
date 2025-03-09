@@ -20,11 +20,9 @@ public abstract class EarthItemsMixin {
      * Stops the check against the hard-coded list and redirects towards the API **/
     @Inject(method = "isMatch", remap = false, at = @At("HEAD"), cancellable = true)
     private void injectEarthInfusionApiMetalItems(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        if (ModConfig.PatchesConfiguration.InfusionTweaks.earthInfusion_tweakEnableCrafttweakerCompat) {
+        if (ModConfig.PatchesConfiguration.InfusionTweaks.overworldInfusion_tweakEnableCrafttweakerCompat) {
             cir.setReturnValue(OverworldInfusionApi.isMetalItem(stack));
         }
     }
-
-
 
 }

@@ -1,5 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.infusion;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.api.OverworldInfusionApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.block.state.IBlockState;
@@ -45,10 +47,15 @@ public abstract class OverworldInfusionMixin extends Infusion {
     @Shadow(remap = false)
     protected abstract boolean isThrowableRock(World world, BlockPos pos, EnumFacing sideHit);
 
+
+    @Unique
+    private EntityLivingBase witcherycompanion$capturedLeftClickedEntity = null;
+
+
     /** Injects EarthInfusionAPI for throwable blocks **/
     @Inject(method = "isThrowableRock", remap = false, at = @At("HEAD"), cancellable = true)
     private void injectEarthInfusionApi(World world, BlockPos pos, EnumFacing sideHit, CallbackInfoReturnable<Boolean> cir) {
-        if (ModConfig.PatchesConfiguration.InfusionTweaks.earthInfusion_tweakEnableCrafttweakerCompat) {
+        if (ModConfig.PatchesConfiguration.InfusionTweaks.overworldInfusion_tweakEnableCrafttweakerCompat) {
             cir.setReturnValue(
                     OverworldInfusionApi.isThrowable(world.getBlockState(pos)) && // Is valid material
                     !world.getBlockState(pos.offset(sideHit.getOpposite())).getMaterial().isSolid() // No obstructions
@@ -116,6 +123,32 @@ public abstract class OverworldInfusionMixin extends Infusion {
 
         ci.cancel();
     }
+
+    /** This Mixin captures the left-clicked entity for use in the 'injectMetalEntityPulling' method of this Mixin **/
+    @WrapOperation(method = "onLeftClickEntity", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/minecraft/entity/EntityLivingBase;getItemStackFromSlot(Lnet/minecraft/inventory/EntityEquipmentSlot;)Lnet/minecraft/item/ItemStack;"))
+    private ItemStack captureLeftClickedEntity(EntityLivingBase instance, EntityEquipmentSlot entityEquipmentSlot, Operation<ItemStack> original) {
+        witcherycompanion$capturedLeftClickedEntity = instance;
+        return original.call(instance, entityEquipmentSlot);
+    }
+
+    /** This Mixin into the isMatch call to check if the Entity belongs to a registry of Metal entities that
+     * should be knock-backed even if they are not wearing any metallic armor (for example, Iron golems).
+     * If the entity is metallic, it returns true as if the entity was wearing metal armor
+     * NOTE: the isMatch is mixin-ed itself **/
+    @WrapOperation(method = "onLeftClickEntity", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/util/EarthItems;isMatch(Lnet/minecraft/item/ItemStack;)Z"))
+    private boolean injectMetalEntityPulling(EarthItems instance, ItemStack stack, Operation<Boolean> original) {
+        if (ModConfig.PatchesConfiguration.InfusionTweaks.overworldInfusion_tweakEnableCrafttweakerCompat) {
+            // If entity belongs to registry, then return true
+            // NOTE: no need to check if captured entity is null, as it is done API-side
+            if (OverworldInfusionApi.isMetalEntity(witcherycompanion$capturedLeftClickedEntity)) {
+                return true;
+            }
+        }
+        return original.call(instance, stack);
+    }
+
 
     @Unique
     private void witcherycompanion$performEntityHit(EntityLiving entity) {
@@ -239,4 +272,6 @@ public abstract class OverworldInfusionMixin extends Infusion {
             world.spawnEntity(new EntityItem(world, hit.getBlockPos().getX(), hit.getBlockPos().getY(), hit.getBlockPos().getZ(), info.target));
         }
     }
+
+
 }

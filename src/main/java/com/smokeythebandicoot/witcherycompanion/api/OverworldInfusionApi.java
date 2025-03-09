@@ -4,10 +4,14 @@ import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfigur
 import com.smokeythebandicoot.witcherycompanion.utils.ComparableItemStack;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
@@ -31,6 +35,9 @@ public class OverworldInfusionApi {
 
     // Ore Transformation
     private static HashMap<IBlockState, OreTransformationInfo> oreTransforms;
+
+    // Metal Entity Knockback
+    private static HashSet<ResourceLocation> metalEntities;
 
 
     private static void initEarthItems() {
@@ -64,7 +71,7 @@ public class OverworldInfusionApi {
         addMetalItem(Items.GOLDEN_CHESTPLATE);
         addMetalItem(Items.GOLDEN_HELMET);
 
-        if (InfusionTweaks.earthInfusion_tweakAttractExtraItems) {
+        if (InfusionTweaks.overworldInfusion_tweakAttractExtraItems) {
 
             // Other items
             addMetalItem(Items.SHEARS);
@@ -142,8 +149,8 @@ public class OverworldInfusionApi {
 
     private static void initThrowables() {
         throwableStates = new HashSet<>();
-
         throwableBlocks = new HashSet<>();
+
         throwableBlocks.add(Blocks.DIRT);
         throwableBlocks.add(Blocks.GRASS);
         throwableBlocks.add(Blocks.STONE);
@@ -151,22 +158,26 @@ public class OverworldInfusionApi {
         throwableBlocks.add(Blocks.SAND);
         throwableBlocks.add(Blocks.GRAVEL);
         throwableBlocks.add(Blocks.SANDSTONE);
-        throwableBlocks.add(Blocks.STONE_SLAB);
         throwableBlocks.add(Blocks.BRICK_BLOCK);
         throwableBlocks.add(Blocks.MOSSY_COBBLESTONE);
-        throwableBlocks.add(Blocks.STONE_STAIRS);
         throwableBlocks.add(Blocks.CLAY);
         throwableBlocks.add(Blocks.SOUL_SAND);
         throwableBlocks.add(Blocks.STONEBRICK);
-        throwableBlocks.add(Blocks.BRICK_STAIRS);
-        throwableBlocks.add(Blocks.STONE_BRICK_STAIRS);
         throwableBlocks.add(Blocks.MYCELIUM);
         throwableBlocks.add(Blocks.NETHER_BRICK);
-        throwableBlocks.add(Blocks.NETHER_BRICK_STAIRS);
-        throwableBlocks.add(Blocks.SANDSTONE_STAIRS);
         throwableBlocks.add(Blocks.HARDENED_CLAY);
         throwableBlocks.add(Blocks.COAL_BLOCK);
         throwableBlocks.add(Blocks.NETHERRACK);
+
+        throwableBlocks.add(Blocks.STONE_SLAB);
+        throwableBlocks.add(Blocks.STONE_SLAB2);            // Missing from Witchery
+
+        throwableBlocks.add(Blocks.STONE_STAIRS);
+        throwableBlocks.add(Blocks.STONE_BRICK_STAIRS);
+        throwableBlocks.add(Blocks.BRICK_STAIRS);
+        throwableBlocks.add(Blocks.SANDSTONE_STAIRS);
+        throwableBlocks.add(Blocks.RED_SANDSTONE_STAIRS);   // Missing from Witchery
+        throwableBlocks.add(Blocks.NETHER_BRICK_STAIRS);
 
     }
 
@@ -176,38 +187,53 @@ public class OverworldInfusionApi {
         oreTransforms.put(Blocks.GOLD_ORE.getDefaultState(), new OreTransformationInfo(new ItemStack(Items.GOLD_INGOT)));
     }
 
+    private static void initMetalEntities() {
+        metalEntities = new HashSet<>();
+
+        if (InfusionTweaks.overworldInfusion_tweakKnockbackMetalEntities) {
+            metalEntities.add(EntityList.getKey(EntityIronGolem.class));
+        }
+    }
+
 
     static {
         initEarthItems();
         initThrowables();
         initOreTransforms();
+        initMetalEntities();
     }
 
 
     /** ========== METAL ITEMS ========== **/
 
+    /** The ItemStack with the specified item (count is ignored) is considered metallic **/
     public static void addMetalItem(ItemStack stack) {
         earthItems.add(new ComparableItemStack(stack));
     }
 
+    /** The ItemStack with the specified item is considered metallic **/
     public static void addMetalItem(Item item, int meta) {
         earthItems.add(new ComparableItemStack(item, meta));
     }
 
+    /** The ItemStack with the specified item (meta 0) is considered metallic **/
     public static void addMetalItem(Item item) {
         addMetalItem(new ItemStack(item, 1, 0));
     }
 
+    /** The ItemStack is not considered metallic **/
     public static void removeMetalItem(ItemStack stack) {
         ItemStack s = stack.copy();
         s.setCount(1);
         earthItems.remove(new ComparableItemStack(stack));
     }
 
+    /** The ItemStack is not considered metallic **/
     public static void removeMetalItem(Item item, int meta) {
         earthItems.remove(new ComparableItemStack(item, meta));
     }
 
+    /** Returns true if the ItemStack is considered made out of metal **/
     public static boolean isMetalItem(ItemStack stack) {
         if (stack == null || stack.isEmpty())
             return false;
@@ -217,28 +243,34 @@ public class OverworldInfusionApi {
 
     /** ========== THROWABLE BLOCKS ========== **/
 
-    public static void addThrowableState(IBlockState state) {
+    /** The BlockState can be thrown as rock **/
+    public static void addThrowable(IBlockState state) {
         throwableStates.add(state);
     }
 
-    public static void addThrowableBlock(Block block) {
+    /** The Block can be thrown as rock **/
+    public static void addThrowable(Block block) {
         throwableBlocks.add(block);
     }
 
-    public static void removeThrowableState(IBlockState state) {
+    /** The IBlockState won't be thrown as rock **/
+    public static void removeThrowable(IBlockState state) {
         throwableStates.remove(state);
     }
 
-    public static void removeThrowableBlock(Block block) {
+    /** The Block won't be thrown as rock **/
+    public static void removeThrowable(Block block) {
         throwableBlocks.remove(block);
     }
 
+    /** Returns true if the specified BlockState is throwable as a rock **/
     public static boolean isThrowable(IBlockState state) {
         if (state == null)
             return false;
         return throwableStates.contains(state) || throwableBlocks.contains(state.getBlock());
     }
 
+    /** Returns true if the specified Block is throwable as a rock **/
     public static boolean isThrowable(Block block) {
         return throwableBlocks.contains(block);
     }
@@ -246,9 +278,31 @@ public class OverworldInfusionApi {
 
     /** ========== ORE TRANSFORMATIONS ========== **/
 
+    /** The infusion will transform the specified state into leftover, while spitting result as Item Entity **/
+    public static void addOreTransformation(IBlockState state, ItemStack resultStack, IBlockState leftover) {
+        if (state != null && state.getBlock() != Blocks.AIR && resultStack != null && !resultStack.isEmpty() && leftover != null) {
+            oreTransforms.put(state, new OreTransformationInfo(resultStack, leftover));
+        }
+    }
+
+    /** The infusion will transform the specified state into Stone, while spitting result as Item Entity **/
+    public static void addOreTransformation(IBlockState state, ItemStack resultStack) {
+        if (state != null && state.getBlock() != Blocks.AIR && resultStack != null && !resultStack.isEmpty()) {
+            oreTransforms.put(state, new OreTransformationInfo(resultStack, Blocks.STONE.getDefaultState()));
+        }
+    }
+
+    /** The infusion will no longer have any effect on the specified state **/
+    public static void removeOreTransformation(IBlockState state) {
+        if (state != null) {
+            oreTransforms.remove(state);
+        }
+    }
+
+    /** Returns the ore transformation. Can be null **/
     public static OreTransformationInfo getOreTransformation(World world, BlockPos pos, IBlockState ore) {
 
-        // If contained in map, return the transformation
+        // If contained in map, returns the transformation
         if (oreTransforms.containsKey(ore)) {
             return oreTransforms.get(ore);
         }
@@ -259,7 +313,7 @@ public class OverworldInfusionApi {
         for (int oreID : oreIDs) {
             String oreName = OreDictionary.getOreName(oreID);
             if (oreName.startsWith("ore")) {
-                for (String replacement : InfusionTweaks.earthInfusion_tweakOreToIngotFallbacks) {
+                for (String replacement : InfusionTweaks.overworldInfusion_tweakOreToIngotFallbacks) {
                     String resultName = oreName.replace("ore", replacement);
                     if (OreDictionary.doesOreNameExist(resultName)) {
                         List<ItemStack> resultStacks = OreDictionary.getOres(resultName);
@@ -288,6 +342,55 @@ public class OverworldInfusionApi {
         public OreTransformationInfo(ItemStack target) {
             this(target, Blocks.STONE.getDefaultState());
         }
+    }
+
+
+    /** ========== METAL ENTITIES ========== **/
+
+    /** The specified entity can always be knocked back, regardless of worn armor **/
+    public static void addMetalEntity(EntityLivingBase base) {
+        if (base != null) {
+            ResourceLocation entityId = EntityList.getKey(base);
+            if (entityId != null) {
+                metalEntities.add(entityId);
+            }
+        }
+    }
+
+    /** The specified entity can always be knocked back, regardless of worn armor **/
+    public static void addMetalEntity(ResourceLocation entityID) {
+        metalEntities.add(entityID);
+    }
+
+    /** The specified entity won't be pushed back regardless of armor. Needs metallic armor to be pushed **/
+    public static void removeMetalEntity(EntityLivingBase base) {
+        if (base != null) {
+            ResourceLocation entityId = EntityList.getKey(base);
+            if (entityId != null) {
+                metalEntities.remove(entityId);
+            }
+        }
+    }
+
+    /** The specified entity won't be pushed back regardless of armor. Needs metallic armor to be pushed **/
+    public static void removeMetalEntity(ResourceLocation entityID) {
+        metalEntities.remove(entityID);
+    }
+
+    /** Returns true if the entity is considered by the infusion to be made out of metal **/
+    public static boolean isMetalEntity(EntityLivingBase base) {
+        if (base != null) {
+            ResourceLocation entityId = EntityList.getKey(base);
+            if (entityId != null) {
+                return metalEntities.contains(entityId);
+            }
+        }
+        return false;
+    }
+
+    /** Returns true if the entity is considered by the infusion to be made out of metal **/
+    public static boolean isMetalEntity(ResourceLocation entityID) {
+        return metalEntities.contains(entityID);
     }
 
 }

@@ -271,24 +271,30 @@ public class ModConfig {
             public static boolean soulBrews_fixPersistency = true;
 
             @Config.Comment("If true, enables CraftTweaker compat for Earth Infusion")
-            @Config.Name("Earth Infusion - Tweak Enable Crafttweaker Compat")
+            @Config.Name("Overworld Infusion - Tweak Enable Crafttweaker Compat")
             @Config.RequiresMcRestart
-            public static boolean earthInfusion_tweakEnableCrafttweakerCompat = true;
+            public static boolean overworldInfusion_tweakEnableCrafttweakerCompat = true;
 
             @Config.Comment("If true, adds more items that are considered 'metallic' and thus can be stolen from other entities/players " +
                     "using Earth Infusion powers. CraftTweaker compat can remove the added items. Complete list in the Wiki")
-            @Config.Name("Earth Infusion - Tweak Attract Extra Items")
+            @Config.Name("Overworld Infusion - Tweak Attract Extra Items")
             @Config.RequiresMcRestart
-            public static boolean earthInfusion_tweakAttractExtraItems = true;
+            public static boolean overworldInfusion_tweakAttractExtraItems = true;
+
+            @Config.Comment("If true, the Overworld Infusion can knockback Metal entities (by default only Iron Golems) " +
+                    "even if they are not working any metal armor. More entities can be added using CraftTweaker.")
+            @Config.Name("Overworld Infusion - Tweak Knockback Metal Entities")
+            @Config.RequiresMcRestart
+            public static boolean overworldInfusion_tweakKnockbackMetalEntities = true;
 
             @Config.Comment("Add here any Ore Dictionary prefixes that might be useful in Ore Transformation. " +
                     "Witchery only uses 'ingot', which means it transforms oreAbc into ingotAbc. Add more to another fallbacks " +
                     "so that if ingotAbc does not exist, something else can be returned, like dustAbc. " +
                     "NOTE: Requires 'Earth Infusion - Tweak Enable Crafttweaker Compat' to be enabled. " +
                     "NOTE: Blocks transformed by fallback transformation will always be replaced by Stone")
-            @Config.Name("Earth Infusion - Tweak Ore To Ingot Fallbacks")
+            @Config.Name("Overworld Infusion - Tweak Ore To Ingot Fallbacks")
             @Config.RequiresMcRestart
-            public static String[] earthInfusion_tweakOreToIngotFallbacks = new String[] { "ingot" };
+            public static String[] overworldInfusion_tweakOreToIngotFallbacks = new String[] { "ingot" };
 
             @Config.Comment("Sets the amount of ticks between Sentinel effect activations")
             @Config.Name("Sentinel Effect - Tweak Cooldown")
