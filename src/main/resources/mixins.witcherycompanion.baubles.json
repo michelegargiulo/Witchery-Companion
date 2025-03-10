@@ -6,6 +6,7 @@
   "mixins": [
     "common.CommonEventsMixin",
     "entity.EntityNightmareMixin",
+    "infusion.OverworldInfusionMixin",
     "init.items.WitcheryIngredientItemsMixin",
     "item.ItemMoonCharmMixin"
   ],
