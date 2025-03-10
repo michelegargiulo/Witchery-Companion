@@ -4,7 +4,7 @@ A Companion to Witchery: Resurrected fixing bugs, crashes, patching things and a
 configurability. Witchery: Resurrected is a required dependency, and is the original 1.7.10 Witchery
 jar in the resource packs folder.
 
-## Current Features (as of v0.32.4-beta):
+## Current Features (as of v0.35.0-beta):
 ### Bugfixes:
 - **Common**
   - **[Common]** Fix crash when pulling null entity
@@ -25,6 +25,7 @@ jar in the resource packs folder.
   - **[Garlic Garland]** Fix inconsistent Bounding Box
   - **[Kettle]** Fix throwing splash brews immediately after brewing them
   - **[Mandrake Crop]** Fix spawning mandrakes even when not fully mature
+  - **[Mandrake Crop]** Fix harvesting and mandrake spawning when right-clicking with TiC Kama
   - **[Poppet Shelf]** Fix upside-down poppet rendering
   - **[Stockade]** Fix weird rendering when player head is too close to the stockade
   - **[Spirit Portal Block]** Fix Spirit Portal Block not being completely broken when there are no longer the conditions to stay lit
@@ -105,20 +106,21 @@ jar in the resource packs folder.
     are applied. This is needed for example to make a Brew of Blast, with ignore blocks modifier, to make an explosion when
     hitting a block (but the explosion won't damage terrain). Each brew is then delegated to ignore the effects, depending
     on applied modifiers
+  - **[Common]** Tweak to customize Power Ceiling
 - **Blocks**
   - **[Crystal Ball]** Tweak to customize cooldown 
   - **[Crystal Ball]** Tweak to customize Altar Power consumption for each use
   - **[Fetishes]** Tweak to customize cooldown of Sentinel and Twister spirit effects
+  - **[Mandrake Crop]** Tweak to customize Mandrake Root item drop chance and Mandrake entity spawn chance
   - **[Witch's Cauldron]** Tweak to set glass bottle size to 250mB instead of 333/334mB (depending if draining or filling)
   - **[Spirit Portal Block]** Tweak to change texture and transparency to better reflect the original Witchery texture
 - **Entities**
+  - **[Common]** (For almost all entities) Tweak to give them their own loot table instead of hard-coded loot 
   - **[Baba Yaga]** Tweak to modify gifts given to owners frequency, max distance and max items
-  - **[Baba Yaga]** Tweak to give her own loot table instead of hard-coded loot, both on death and for gifted items
+  - **[Baba Yaga]** Tweak to give them their own loot table for gifted items
   - **[Banshee]** Tweak to make them ignore each-other, to easy some rituals that require them nearby
-  - **[Banshee]** Tweak to give her own loot table instead of hard-coded loot
   - **[Cat Familiar]** Separate their loot table from Vanilla ocelots loot table
   - **[Coven Witch]** Separate their loot table from Vanilla witches loot table
-  - **[Demon]** Tweak to give them their own loot table instead of hard-coded loot
   - **[Duplicate]** Tweak to configure custom lifespan (in ticks) of duplicates
   - **[Flame Imp]** Tweak to add CraftTweaker compat to manipulate items that can be given to him (shinies) and gifts that it gives in exchange
   - **[Flame Imp]** Tweak to modify Shiny cooldown  
@@ -126,14 +128,13 @@ jar in the resource packs folder.
   - **[Flame Imp]** Tweak to give random gifts based on a loot table instead of being hardcoded  
   - **[Hobgoblin]** Tweak to control the maximum number of trades per level (Witchery default is 1)
   - **[Hobgoblin]** Tweak to allow the Hobgoblin to generate trades even when there are no villages nearby
-  - **[Hobgoblin]** Tweak to give her own loot table instead of hard-coded loot
+  - **[Hobgoblin]** Tweak to customize Koboldite drop chance (both with and without Koboldite Pickaxe)
+  - **[Hobgoblin]** Tweak to customize Ore Smelting chance (both with and without Koboldite Pickaxe)
   - **[Lilith]** Tweak to disable enchanting items given to her
   - **[Lord of Torment]** Tweak to disable mid-fight teleportation to Torment dimension
-  - **[Lord of Torment]** Tweak to disable hardcoded loot drops (enchanted books)
   - **[Owl]** Tweak to disable taking items (since flying AI is bugged and might dupe items)
   - **[Owl]** Tweak to change the model slightly when the owl is sitting
   - **[Owl]** Tweak to render children Owls smaller
-  - **[Spectre]** Tweak to add its own loot table
   - **[Spectre]** Tweak to wait a minimum delay before de-spawning
   - **[Spectre]** Tweak to modify spectre attributes (Follow range, Movement speed, Attack damage)
 - **Infusion**
@@ -159,6 +160,7 @@ jar in the resource packs folder.
   - **[Moving Earth]** Tweak to configure a blacklist of blockstates that the ritual should not move
   - **[Moving Earth]** Tweak to configure indicators of failure (smoke particles and sounds) will be generated near the
     unmovable block
+  - **[Prior Incarnation]** Tweak to completely remove this rite from the game (useful if a there's a conflicting mod or one that provides the same or better functionality is installed)
 - **Dimensions**
   - **[Spirit World]** Tweak to modify spawn cap of Nightmare entities around each player
   - **[Spirit World]** Tweak to modify spawn cooldown of Nightmares
@@ -168,32 +170,58 @@ jar in the resource packs folder.
 - **Potions**
   - **[Common]** Elytra cannot be used while resized (enabled by default)
   - **[Common]** Add all missing potion effects Icons and Descriptions
-- **Shape Shifting**
+  - **[Mortal Coil]** Tweak to spare spectators from dying
+  - **[Ill Fitting]** Tweak to configure minimum amplifier to remove armor cursed with Curse of Binding (can be tweaked to prevent removing such armor entirely)
+- **Transformations**
   - **[Common]** Elytra cannot be used while transformed (enabled by default)
   - **[Common]** Tweak to preserve HP percentage on transformation that change players' HP
+  - **[Werewolf]** Tweak to prevent Werewolf transformation to remove armor with Curse of Binding. They can take configurable amount of damage if they happen to wear any armor. WARN: having this enabled with keepInventory can lead to death loops
+  - **[Werewolf]** Tweak to configure certain dimension to always be "full moon", forcing transformations. Useful with space mods that add the Moon/Luna as a dimension, or for dimension mods like Twilight Forest or The Midnight
+  - **[Werewolf]** Tweak to configure certain dimension to never be "full moon". Useful for space mods that add planets that are far away from the solar system/The Overworld 
 
 ### Integrations
+- **Baubles**
+  - **[Charm of Fanciful Thinking]**
+    - Can be worn as a Bauble (CHARM).
+    - Protects you from Nightmares' attacks
+  - **[Moon Charm]**
+    - Can be worn as a Bauble (CHARM)
+    - Will prevent Werewolf transformations
+    - Must be unequipped in order to force transformations
+  - **[Overworld Infusion]**
+    - Can knockback players that are wearing Baubles made out of metal (for example, Moon Charms)
+
 - **CraftTweaker**
     - **[Altar]** 
         - Register or un-register Blocks nearby the altar that can power the Altar (power sources)
+        - Register or un-register Altar Boosters
     - **[Bark Belt]**
-      - Customize blocks on which the player can stand on to recharge
+        - Customize blocks on which the player can stand on to recharge
     - **[Brazier]**
-      - Custom recipes (Summoning and Potion Effects)
+        - Custom recipes (Summoning, Potion Effects, Graveyard Myst)![img.png](img.png)
+    - **[Brew of Erosion]**
+        - Customize what the brew can mine, destroy or ignore, including a maximum harvest level
+    - **[Brew of Flowers]**
+        - Customize which flowers can spawn in which biome types
     - **[Distillery]**
-      - Custom recipes
+        - Custom recipes
+    - **[Overworld Infusion]**
+        - Customize which items (or Tinkers' Construct materials, coming soon) are considered metallic
     - **[Kettle]**
         - Add / Remove Heat sources
         - Custom recipes
     - **[Witch's Cauldron]** 
         - Register or un-register Blocks underneath the cauldron that can act as a heat source. Supports fluids
         - Custom recipes
-    - **[Brew of Erosion]** 
-        - Customize what the brew can mine, destroy or ignore, including a maximum harvest level
     - **[Hobgoblin trades]** 
         - Customize trades and various aspects related to them
     - **[Mutandis]** 
         - Custom mutations (Grass-type, Clay-type and plants)
+    - **[Overworld Infusion]** 
+        - Metal Items (items that can be pulled from the ground. Entities using them can be disarmed or knockbacked)
+        - Custom throwables (blocks that can be thrown as rocks)
+        - Custom ore transformations (ingots can be extracted from such blocks, leaving stone behind)
+        - Metal entities (entities that are considered made out of metal and can be knockbacked)
     - **[Spinning Wheel]** 
         - Custom recipes
     - **[Flame Imps]**
@@ -217,7 +245,7 @@ jar in the resource packs folder.
   - **[Entities]** Integration to register many entities and their loot in entity drops category
 
 - **The One Probe**
-  - **[Altar]** Shows Available power, Max power and recharge rate
+  - **[Altar]** Shows Available power, Max power, Recharge rate and Enhancement Level
   - **[Witch's Cauldron]** Shows whether the cauldron is boiling and has enough power for the current ingredients, among with the ingredients themselves
   - **[Crystal Ball]** Shows Owner and Cooldown
   - **[Hobgoblin]** Shows current profession name
@@ -243,9 +271,10 @@ jar in the resource packs folder.
 - Implement caching for the Altar Power Source map
 
 ### Misc.
-- Implement a Plugin that automatically downloads Witchery 1.7.10 jar and puts it in the resourcepacks folder, 
+- Witchery: Companion implements a Plugin that automatically downloads Witchery 1.7.10 jar and puts it in the resourcepacks folder, 
   as it is a required dependency for Witchery: Resurrected
-- Implement a Progress System. Tracks what the player does (completes a brew, discovers a new recipe, levels up as werewolf or vampire) and fires an event. Also supports commands and unlocks pages in Patchouli book, if installed
+- Witchery: Companion implements a Progress System. Tracks what the player does (completes a brew, discovers a new recipe, levels up as werewolf or vampire) and fires an event. Also supports commands and unlocks pages in Patchouli book, if installed
+- Witchery: Companion provides an API that can build Brews by providing a list of required items depending on the desired effects, their power, dispersal and their modifiers, etc. It is dynamic, meaning that it can provide the correct result even when the user/modpack maker changes or removes Witchery Brews data
 
 ### Future Plans
 - Add CraftTweaker integration for Brew of Sprouting, to specify valid trees to spawn
