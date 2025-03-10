@@ -1304,6 +1304,17 @@ public class ModConfig {
                     "WARNING: having this and gamerule keepInventory enabled might lead to death loops.")
             @Config.Name("Werewolf - Tweak Damage In Cursed Armor")
             public static float werewolf_tweakDamageInBindingCurseArmor = 0.0f;
+
+            @Config.Comment("Specify a list of Dimension IDs that have to be considered always full-moon. " +
+                    "Useful for Space mods that add Moon, or Dimension mods like Twilight Forest and The Midnight")
+            @Config.Name("Werewolf - Tweak Always Transform Dimension")
+            public static int[] werewolf_alwaysFullMoonDimensions = new int[] { };
+
+            @Config.Comment("Specify a list of Dimension IDs where werewolves can never transform." +
+                    "Useful for Space mods that add planets far away from the Overworld / Moon")
+            @Config.Name("Werewolf - Tweak Never Transform Dimension")
+            public static int[] werewolf_neverFullMoonDimensions = new int[] { };
+
         }
 
         public static class WorldGenTweaks {
