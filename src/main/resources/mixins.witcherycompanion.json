@@ -139,6 +139,7 @@
     "witchery.network.resources.PacketUpdateBrewActionsMixin",
     "witchery.potion.PotionEnslavedMixin",
     "witchery.potion.PotionFortuneMixin",
+    "witchery.potion.PotionIllFittingMixin",
     "witchery.potion.PotionInsanityMixin",
     "witchery.potion.PotionMortalCoilMixin",
     "witchery.potion.PotionResizingMixin",

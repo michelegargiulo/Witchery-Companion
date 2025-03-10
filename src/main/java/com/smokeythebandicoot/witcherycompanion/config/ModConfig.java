@@ -826,6 +826,12 @@ public class ModConfig {
             @Config.Name("Insanity Potion - Fix Ghost Entities")
             public static boolean insanity_fixGhostEntities = true;
 
+            @Config.Comment("Tweaks the minimum amplifier level required for the Ill Fitting potion to be able to remove " +
+                    "armor cursed with Curse of Binding. Witchery default is 0 (always able to unequip). Set to -1 to prevent " +
+                    "this potion effect from removing cursed armor.")
+            @Config.Name("Ill Fitting - Tweak Min Strength Curse Of Binding Unequip")
+            public static int illFitting_tweakCurseBindingUnequip = 0;
+
             @Config.Comment("Fixes Potion of Fortune not working because of wrong TileEntity check")
             @Config.Name("Fortune Potion - Fix No Effect")
             public static boolean fortunePotion_fixNoEffect = true;
@@ -1292,6 +1298,12 @@ public class ModConfig {
             @Config.Name("Werewolf - Tweak Transform to Wolfman")
             public static boolean werewolf_tweakTransformToWolfman = false;
 
+            @Config.Comment("If greater than zero, Werewolves that happen to be in armor cursed by Curse of Binding will receive " +
+                    "this much amount of (magic) damage every 2 seconds, and they won't be able to drop armor. Use in combination with " +
+                    "'Ill Fitting - Tweak Min Strength Curse Of Binding Unequip' to offer an escape other than death." +
+                    "WARNING: having this and gamerule keepInventory enabled might lead to death loops.")
+            @Config.Name("Werewolf - Tweak Damage In Cursed Armor")
+            public static float werewolf_tweakDamageInBindingCurseArmor = 0.0f;
         }
 
         public static class WorldGenTweaks {
@@ -1355,7 +1367,6 @@ public class ModConfig {
             public static boolean fixCrashOnVampireDeath = true;
 
         }
-
 
         public static class CraftTweakerIntegration {
 
@@ -1761,6 +1772,7 @@ public class ModConfig {
             }
 
         }
+
     }
 
     @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)
