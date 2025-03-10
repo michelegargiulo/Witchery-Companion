@@ -281,10 +281,14 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean overworldInfusion_tweakAttractExtraItems = true;
 
+            @Config.Comment("If true, adds more blocks that are considered 'rocky' and thus can be thrown as rocks")
+            @Config.Name("Overworld Infusion - Tweak Throw Extra Blocks")
+            @Config.RequiresMcRestart
+            public static boolean overworldInfusion_tweakThrowExtraBlocks = true;
+
             @Config.Comment("If true, the Overworld Infusion can knockback Metal entities (by default only Iron Golems) " +
                     "even if they are not working any metal armor. More entities can be added using CraftTweaker.")
             @Config.Name("Overworld Infusion - Tweak Knockback Metal Entities")
-            @Config.RequiresMcRestart
             public static boolean overworldInfusion_tweakKnockbackMetalEntities = true;
 
             @Config.Comment("Add here any Ore Dictionary prefixes that might be useful in Ore Transformation. " +

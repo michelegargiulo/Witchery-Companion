@@ -151,9 +151,9 @@ public class OverworldInfusionApi {
         throwableStates = new HashSet<>();
         throwableBlocks = new HashSet<>();
 
-        throwableBlocks.add(Blocks.DIRT);
-        throwableBlocks.add(Blocks.GRASS);
         throwableBlocks.add(Blocks.STONE);
+        throwableBlocks.add(Blocks.GRASS);
+        throwableBlocks.add(Blocks.DIRT);
         throwableBlocks.add(Blocks.COBBLESTONE);
         throwableBlocks.add(Blocks.SAND);
         throwableBlocks.add(Blocks.GRAVEL);
@@ -161,23 +161,76 @@ public class OverworldInfusionApi {
         throwableBlocks.add(Blocks.BRICK_BLOCK);
         throwableBlocks.add(Blocks.MOSSY_COBBLESTONE);
         throwableBlocks.add(Blocks.CLAY);
+        throwableBlocks.add(Blocks.NETHERRACK);
         throwableBlocks.add(Blocks.SOUL_SAND);
         throwableBlocks.add(Blocks.STONEBRICK);
         throwableBlocks.add(Blocks.MYCELIUM);
         throwableBlocks.add(Blocks.NETHER_BRICK);
         throwableBlocks.add(Blocks.HARDENED_CLAY);
         throwableBlocks.add(Blocks.COAL_BLOCK);
-        throwableBlocks.add(Blocks.NETHERRACK);
 
         throwableBlocks.add(Blocks.STONE_SLAB);
-        throwableBlocks.add(Blocks.STONE_SLAB2);            // Missing from Witchery
 
         throwableBlocks.add(Blocks.STONE_STAIRS);
         throwableBlocks.add(Blocks.STONE_BRICK_STAIRS);
         throwableBlocks.add(Blocks.BRICK_STAIRS);
         throwableBlocks.add(Blocks.SANDSTONE_STAIRS);
-        throwableBlocks.add(Blocks.RED_SANDSTONE_STAIRS);   // Missing from Witchery
         throwableBlocks.add(Blocks.NETHER_BRICK_STAIRS);
+
+        if (InfusionTweaks.overworldInfusion_tweakThrowExtraBlocks) {
+            // Missing pieces
+            throwableBlocks.add(Blocks.STONE_SLAB2);
+            throwableBlocks.add(Blocks.DOUBLE_STONE_SLAB);
+            throwableBlocks.add(Blocks.DOUBLE_STONE_SLAB2);
+            throwableBlocks.add(Blocks.RED_SANDSTONE_STAIRS);
+
+            // Ores, because they contain rocks
+            throwableBlocks.add(Blocks.COAL_ORE);
+            throwableBlocks.add(Blocks.IRON_ORE);
+            throwableBlocks.add(Blocks.GOLD_ORE);
+            throwableBlocks.add(Blocks.REDSTONE_ORE);
+            throwableBlocks.add(Blocks.LAPIS_ORE);
+            throwableBlocks.add(Blocks.DIAMOND_ORE);
+            throwableBlocks.add(Blocks.EMERALD_ORE);
+            throwableBlocks.add(Blocks.QUARTZ_ORE);
+
+            // Terracotta
+            throwableBlocks.add(Blocks.BLACK_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.BLUE_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.BROWN_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.CYAN_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.GRAY_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.GREEN_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.LIGHT_BLUE_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.LIME_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.MAGENTA_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.PINK_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.ORANGE_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.PURPLE_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.RED_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.SILVER_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.WHITE_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.YELLOW_GLAZED_TERRACOTTA);
+            throwableBlocks.add(Blocks.HARDENED_CLAY);
+            throwableBlocks.add(Blocks.STAINED_HARDENED_CLAY);
+
+            // Concrete
+            throwableBlocks.add(Blocks.CONCRETE);
+            throwableBlocks.add(Blocks.CONCRETE_POWDER);
+
+            // Misc
+            throwableBlocks.add(Blocks.PRISMARINE);
+            throwableBlocks.add(Blocks.RED_NETHER_BRICK);
+            throwableBlocks.add(Blocks.COBBLESTONE_WALL);
+
+            // END
+            throwableBlocks.add(Blocks.PURPUR_BLOCK);
+            throwableBlocks.add(Blocks.PURPUR_PILLAR);
+            throwableBlocks.add(Blocks.PURPUR_SLAB);
+            throwableBlocks.add(Blocks.PURPUR_DOUBLE_SLAB);
+            throwableBlocks.add(Blocks.END_STONE);
+            throwableBlocks.add(Blocks.END_BRICKS);
+        }
 
     }
 
