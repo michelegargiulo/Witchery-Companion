@@ -1,13 +1,9 @@
 package com.smokeythebandicoot.witcherycompanion.patches.common;
 
-import com.smokeythebandicoot.witcherycompanion.utils.DiviningUtils;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -54,15 +50,6 @@ public class CommonEventsPatch {
             }
         }
         item.setItem(pickupStack);
-    }
-
-    @SubscribeEvent
-    public void onEntityJoinWorldEvent(EntityJoinWorldEvent event) {
-        Entity entity = event.getEntity();
-        if (!entity.world.isRemote && entity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) entity;
-            DiviningUtils.setPlayerFromData(player);
-        }
     }
 
 }
