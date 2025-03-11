@@ -1040,6 +1040,21 @@ public class ModConfig {
             @Config.Name("Owl - Tweak Render Small Children")
             public static boolean owl_tweakRenderChildSmaller = false;
 
+            @Config.Comment("Sets the custom scale for the Biggest size of the resizing potion")
+            @Config.Name("Spectral Familiar - Tweak Enable Crafttweaker Compat")
+            public static boolean spectralFamiliar_tweakEnableCrafttweakerCompat = true;
+
+            @Config.Comment("Sets the max amount of times a Spectral Familiar can search before ")
+            @Config.Name("Spectral Familiar - Tweak Max Searches")
+            public static int spectralFamiliar_tweakMaxSearches = 5;
+
+            @Config.Comment("Sets the probability of despawning the familiar when giving it an item " +
+                    "to sniff. The item will still be consumed. Probabilities must be in range 0.0 (0%) " +
+                    "to 1.0 (100%). If the length of this list is less than 'Spectral Familiar - Tweak Max " +
+                    "Searches', the last probability will be used until max searches is reached.")
+            @Config.Name("Spectral Familiar - Tweak Despawn Chances")
+            public static double[] spectralFamiliar_tweakDespawnChances = new double[] { 0.0, 0.6, 0.75, 0.85, 0.95 };
+
             @Config.Comment("If true, Spectre Attributes will be modified according to this config file")
             @Config.Name("Spectre - Tweak Modify Attributes")
             public static boolean spectre_tweakAttributes = false;

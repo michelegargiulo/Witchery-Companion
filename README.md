@@ -222,6 +222,8 @@ jar in the resource packs folder.
         - Custom throwables (blocks that can be thrown as rocks)
         - Custom ore transformations (ingots can be extracted from such blocks, leaving stone behind)
         - Metal entities (entities that are considered made out of metal and can be knockbacked)
+    - **[Spectral Familiar]**
+        - Custom sniffs. Can be used to specify a item <--> block relationship. Make it sniff the item, it tries to find the block
     - **[Spinning Wheel]** 
         - Custom recipes
     - **[Flame Imps]**

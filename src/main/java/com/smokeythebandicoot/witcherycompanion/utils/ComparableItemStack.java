@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.utils;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.Objects;
 
@@ -12,6 +13,7 @@ public class ComparableItemStack {
     public ComparableItemStack(ItemStack stack) {
         this.original = stack;
         this.original.setCount(1);
+        this.original.setTagCompound(null);
     }
 
     public ComparableItemStack(Item item, int meta) {
