@@ -175,6 +175,7 @@ jar in the resource packs folder.
 - **Transformations**
   - **[Common]** Elytra cannot be used while transformed (enabled by default)
   - **[Common]** Tweak to preserve HP percentage on transformation that change players' HP
+  - **[Vampire]** Tweak to configure certain dimension to always be "night" so that vampires are always safe there
   - **[Werewolf]** Tweak to prevent Werewolf transformation to remove armor with Curse of Binding. They can take configurable amount of damage if they happen to wear any armor. WARN: having this enabled with keepInventory can lead to death loops
   - **[Werewolf]** Tweak to configure certain dimension to always be "full moon", forcing transformations. Useful with space mods that add the Moon/Luna as a dimension, or for dimension mods like Twilight Forest or The Midnight
   - **[Werewolf]** Tweak to configure certain dimension to never be "full moon". Useful for space mods that add planets that are far away from the solar system/The Overworld 
@@ -271,6 +272,7 @@ jar in the resource packs folder.
 
 ### Performance
 - Implement caching for the Altar Power Source map
+- Implement caching for the Mutandis plant tranformations
 
 ### Misc.
 - Witchery: Companion implements a Plugin that automatically downloads Witchery 1.7.10 jar and puts it in the resourcepacks folder, 

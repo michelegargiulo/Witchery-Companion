@@ -1308,6 +1308,10 @@ public class ModConfig {
             @Config.Name("No Form - Fix Default Step Height")
             public static boolean noForm_fixDefaultStepHeight = true;
 
+            @Config.Comment("Specify a list of Dimension IDs that have to be considered always-night")
+            @Config.Name("Vampire - Tweak Always Night Dimension")
+            public static int[] vampire_alwaysNightDimensions = new int[] { };
+
             @Config.Comment("If true, a level 6 or higher werewolf without a Moon Charm will transform into WOLFMAN form instead " +
                     "of WOLF form. Lesser levels will transform into WOLF form regardless")
             @Config.Name("Werewolf - Tweak Transform to Wolfman")
