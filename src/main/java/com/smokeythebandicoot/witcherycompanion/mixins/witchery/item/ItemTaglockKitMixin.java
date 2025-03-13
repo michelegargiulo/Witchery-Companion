@@ -19,9 +19,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ItemTaglockKit.class)
 public abstract class ItemTaglockKitMixin extends Item implements BloodStorage {
 
-    @Unique
-    private EntityLivingBase witchery_Patcher$entityToSpectate = null;
-
     @Inject(method = "getMaxItemUseDuration", remap = false, cancellable = true, at = @At("HEAD"))
     private void tweakMaxUseDuration(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
         cir.setReturnValue(ItemTweaks.tweakMaxItemUseDuration);
