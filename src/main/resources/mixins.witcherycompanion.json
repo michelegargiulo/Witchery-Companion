@@ -175,6 +175,7 @@
     "witchery.block.BlockWitchesOvenMixin",
     "witchery.client.ClientEvents.GuiOverlayMixin",
     "witchery.client.gui.book.GuiHerbologyBookMixin",
+    "witchery.client.model.ModelFamiliarPigMixin",
     "witchery.client.renderer.entity.RenderFamiliarMixin",
     "witchery.client.renderer.entity.RenderSpellEffectMixin",
     "witchery.client.renderer.entity.block.RenderDisguisedAlderDoorMixin",

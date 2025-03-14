@@ -178,7 +178,7 @@ public abstract class EntitySpectralFamiliarMixin extends EntityOcelot implement
         if (l == 0) {
             return 0.0;
         }
-        return EntityTweaks.spectralFamiliar_tweakDespawnChances[Math.min(this.searches - 1, l)];
+        return EntityTweaks.spectralFamiliar_tweakDespawnChances[Math.min(this.searches, l) - 1];
     }
 
 

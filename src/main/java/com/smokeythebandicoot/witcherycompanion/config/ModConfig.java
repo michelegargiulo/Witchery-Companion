@@ -1040,6 +1040,10 @@ public class ModConfig {
             @Config.Name("Owl - Tweak Render Small Children")
             public static boolean owl_tweakRenderChildSmaller = false;
 
+            @Config.Comment("Fixes the Spectral Familiar model after un-sitting the familiar")
+            @Config.Name("Spectral Familiar - Fix Incorrect Model")
+            public static boolean spectralFamiliar_fixIncorrectModel = true;
+
             @Config.Comment("Sets the custom scale for the Biggest size of the resizing potion")
             @Config.Name("Spectral Familiar - Tweak Enable Crafttweaker Compat")
             public static boolean spectralFamiliar_tweakEnableCrafttweakerCompat = true;

@@ -65,6 +65,7 @@ jar in the resource packs folder.
   - **[Poppet Protection Poppet]** Fix crash when trying to protect its owner from a poppet
   - **[Villagers]** Fix rare crash when Villagers try to sleep
   - **[Apothecary Villager]** Fix missing Zombified texture
+  - **[Spectral Familiar]** Fix broken model after un-sitting
 - **Infusions**
   - **[Soul Brews]** Fix losing Soul brews (so the Mystic Branch knowledge) upon death
 - **Fluids**
