@@ -9,4 +9,6 @@ public interface IEntitySpectralFamiliarAccessor {
 
     void witcherycompanion$accessor$setSniffedItem(ItemStack stack);
 
+    int witcherycompanion$accessor$getCurrentSearches();
+
 }

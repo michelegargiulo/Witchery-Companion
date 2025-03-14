@@ -28,6 +28,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Set;
+
 
 /**
  * Mixins:
@@ -105,10 +107,10 @@ public abstract class EntitySpectralFamiliarMixin extends EntityOcelot implement
 
             // CraftTweaker compat is enabled: call the API
             if (EntityTweaks.spectralFamiliar_tweakEnableCrafttweakerCompat) {
-                IBlockState ore = SpectralFamiliarApi.getOre(item);
+                Set<IBlockState> ore = SpectralFamiliarApi.getOre(item);
 
                 // Sets item to sniff and proceeds with searches
-                if (ore != null) {
+                if (ore != null && !ore.isEmpty()) {
                     ItemStack sniffed = item.copy();
                     // Clear count and tag
                     sniffed.setCount(1);
@@ -145,7 +147,7 @@ public abstract class EntitySpectralFamiliarMixin extends EntityOcelot implement
             double despawnChance = this.witcherycompanion$getChance();
 
             // Despawn if too many searches or just unlucky
-            if (this.searches > EntityTweaks.spectralFamiliar_tweakMaxSearches || this.world.rand.nextDouble() >= despawnChance) {
+            if (this.searches > EntityTweaks.spectralFamiliar_tweakMaxSearches || this.world.rand.nextDouble() < despawnChance) {
                 this.playSound(
                         SoundEvents.ENTITY_ENDERMEN_TELEPORT,
                         0.5F,
@@ -179,6 +181,9 @@ public abstract class EntitySpectralFamiliarMixin extends EntityOcelot implement
         return EntityTweaks.spectralFamiliar_tweakDespawnChances[Math.min(this.searches - 1, l)];
     }
 
+
+    /** ========== ACCESSOR ========== **/
+
     @Override
     public ItemStack witcherycompanion$accessor$getSniffedItem() {
         return this.dataManager.get(SNIFFED_ITEM);
@@ -189,6 +194,10 @@ public abstract class EntitySpectralFamiliarMixin extends EntityOcelot implement
         this.dataManager.set(SNIFFED_ITEM, stack == null ? ItemStack.EMPTY : stack);
     }
 
+    @Override
+    public int witcherycompanion$accessor$getCurrentSearches() {
+        return this.searches;
+    }
 
     /** ========== TWEAK LOOT TABLE ========== **/
 

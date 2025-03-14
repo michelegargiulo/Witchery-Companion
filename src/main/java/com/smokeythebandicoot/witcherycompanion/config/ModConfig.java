@@ -1517,6 +1517,10 @@ public class ModConfig {
             @Config.Name("TOP Integration - Treefyd")
             public static EProbeElementIntegrationConfig treefyd = EProbeElementIntegrationConfig.DEFAULT;
 
+            @Config.Comment("If true, enables TOP integration for Spectral Familiar")
+            @Config.Name("TOP Integration - Spectral Familiar")
+            public static EProbeElementIntegrationConfig spectralFamiliar = EProbeElementIntegrationConfig.DEFAULT;
+
             public enum EProbeElementIntegrationConfig {
                 // Only enable basic information
                 BASIC_ONLY,

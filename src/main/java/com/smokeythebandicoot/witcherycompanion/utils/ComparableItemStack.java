@@ -20,6 +20,11 @@ public class ComparableItemStack {
         this(new ItemStack(item, 1, meta));
     }
 
+    public ComparableItemStack(Item item) {
+        this.original = new ItemStack(item, 1, 0);
+        this.original.setTagCompound(null);
+    }
+
     public ItemStack getStack() {
         return this.original;
     }
