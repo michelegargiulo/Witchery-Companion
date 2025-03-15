@@ -3,6 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.common;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.api.BarkBeltApi;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.ItemTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.WorldGenTweaks;
@@ -11,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -23,18 +25,24 @@ import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.msrandom.witchery.common.CommonEvents;
 import net.msrandom.witchery.config.WitcheryConfigOptions;
 import net.msrandom.witchery.extensions.PlayerExtendedData;
 import net.msrandom.witchery.init.WitcheryCreatureTraits;
+import net.msrandom.witchery.init.WitcheryPotionEffects;
 import net.msrandom.witchery.init.data.WitcheryAlternateForms;
 import net.msrandom.witchery.init.items.WitcheryGeneralItems;
+import net.msrandom.witchery.potion.IHandlePlayerDrops;
 import net.msrandom.witchery.transformation.CreatureForm;
 import net.msrandom.witchery.transformation.WerewolfCreatureTrait;
+import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Iterator;
 
 /**
  Mixins:
@@ -142,4 +150,44 @@ public abstract class CommonEventsMixin {
         return result;
     }
 
+    /** This Mixin removes the NBT addition of WitcheryPriIncUsr tag to dropped items, but keeps the rest
+     * of the method logic the same. Important for the Vampire extended item expiration **/
+    @Inject(method = "onPlayerDrops", remap = true, at = @At("HEAD"), cancellable = true)
+    private static void removePriorIncarnationAdd(PlayerDropsEvent event, CallbackInfo ci) {
+
+        if (!ModConfig.PatchesConfiguration.RitesTweaks.priorIncarnation_tweakDisableRite) {
+            return;
+        }
+
+        // Cancel the event if there's another thing handling player drops
+        for (IHandlePlayerDrops handler : WitcheryPotionEffects.PLAYER_DROPS) {
+            if (event.isCanceled()) {
+                break;
+            }
+            if (event.getEntityLiving().isPotionActive(handler.getPotion())) {
+                handler.onPlayerDrops(event.getEntityPlayer(), event);
+            }
+        }
+
+        // Cehck if the player has keep inventory potion
+        if (event.getEntityPlayer() != null &&
+            !event.getEntityPlayer().world.isRemote &&
+            event.getEntityPlayer().isPotionActive(WitcheryPotionEffects.KEEP_INVENTORY)) {
+
+            event.setCanceled(true);
+        }
+        else {
+            // Vampire extended item lifespan
+            if (!event.getEntityPlayer().world.isRemote && !event.isCanceled() && WitcheryUtils.getExtension(event.getEntityPlayer()).isTransformation(WitcheryCreatureTraits.VAMPIRE)) {
+                int ticks = (int)(WitcheryConfigOptions.vampireDeathItemKeepAliveMins * 1200.0);
+
+                EntityItem item;
+                for(Iterator<EntityItem> itemIterator = event.getDrops().iterator(); itemIterator.hasNext(); item.lifespan = ticks) {
+                    item = itemIterator.next();
+                }
+            }
+        }
+
+        ci.cancel();
+    }
 }
