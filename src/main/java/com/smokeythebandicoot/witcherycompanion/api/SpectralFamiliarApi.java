@@ -34,8 +34,8 @@ public class SpectralFamiliarApi {
          addOre(new ItemStack(Items.REDSTONE), Blocks.REDSTONE_ORE.getDefaultState(), diamond, emerald);
 
          // By default, Diamond and Emerald are always sittable
-         addOre(new ItemStack(Items.DIAMOND), Blocks.DIAMOND_ORE.getDefaultState());
-         addOre(new ItemStack(Items.EMERALD), Blocks.EMERALD_ORE.getDefaultState());
+         addOre(new ItemStack(Items.DIAMOND), diamond, emerald);
+         addOre(new ItemStack(Items.EMERALD), emerald, diamond);
     }
 
     /**  **/

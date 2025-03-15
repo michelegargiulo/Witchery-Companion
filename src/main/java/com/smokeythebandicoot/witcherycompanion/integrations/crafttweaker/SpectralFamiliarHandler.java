@@ -23,7 +23,7 @@ import java.util.Set;
 public class SpectralFamiliarHandler {
 
     @ZenMethod
-    @ZenDoc(value="Registers a new custom Power Source")
+    @ZenDoc(value="Adds a sniffable item that will trigger a search for any of the specified blockstates")
     public static void addOreToSniff(IItemStack sniff, IBlockState... states) {
         Set<net.minecraft.block.state.IBlockState> ores = new HashSet<>();
         for (IBlockState state : states) {
@@ -33,11 +33,24 @@ public class SpectralFamiliarHandler {
     }
 
     @ZenMethod
-    @ZenDoc(value="Registers a new custom Power Source")
+    @ZenDoc(value="Removes a block from all groups containing that block")
     public static void removeOreToSniff(IBlockState state) {
         SpectralFamiliarApi.removeOre(CraftTweakerMC.getBlockState(state));
     }
 
+    @ZenMethod
+    @ZenDoc(value="Removes a blocks from the set of blocks that the familiar looks for when sniffing the item")
+    public static void removeOreToSniff(IItemStack sniffable, IBlockState state) {
+        SpectralFamiliarApi.removeOre(
+                CraftTweakerMC.getItemStack(sniffable),
+                CraftTweakerMC.getBlockState(state)
+        );
+    }
 
+    @ZenMethod
+    @ZenDoc(value="Removes a sniffable and all the associated blocks")
+    public static void removeSniffable(IItemStack sniffable) {
+        SpectralFamiliarApi.removeSniffable(CraftTweakerMC.getItemStack(sniffable));
+    }
 
 }
