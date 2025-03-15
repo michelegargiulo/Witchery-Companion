@@ -152,7 +152,7 @@ public abstract class CommonEventsMixin {
 
     /** This Mixin removes the NBT addition of WitcheryPriIncUsr tag to dropped items, but keeps the rest
      * of the method logic the same. Important for the Vampire extended item expiration **/
-    @Inject(method = "onPlayerDrops", remap = true, at = @At("HEAD"), cancellable = true)
+    @Inject(method = "onPlayerDrops", remap = false, at = @At("HEAD"), cancellable = true)
     private static void removePriorIncarnationAdd(PlayerDropsEvent event, CallbackInfo ci) {
 
         if (!ModConfig.PatchesConfiguration.RitesTweaks.priorIncarnation_tweakDisableRite) {
@@ -190,4 +190,5 @@ public abstract class CommonEventsMixin {
 
         ci.cancel();
     }
+
 }
