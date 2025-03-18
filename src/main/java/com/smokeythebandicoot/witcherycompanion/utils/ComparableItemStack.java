@@ -11,7 +11,7 @@ public class ComparableItemStack {
     protected final ItemStack original;
 
     public ComparableItemStack(ItemStack stack) {
-        this.original = stack;
+        this.original = stack.copy();
         this.original.setCount(1);
         this.original.setTagCompound(null);
     }

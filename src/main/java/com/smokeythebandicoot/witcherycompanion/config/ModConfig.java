@@ -1044,6 +1044,10 @@ public class ModConfig {
             @Config.Name("Spectral Familiar - Fix Incorrect Model")
             public static boolean spectralFamiliar_fixIncorrectModel = true;
 
+            @Config.Comment("Fixes the Spectral Familiar model after un-sitting the familiar")
+            @Config.Name("Spectral Familiar - Fix Sniffing While Sitting")
+            public static boolean spectralFamiliar_fixSniffingWhileSitting = true;
+
             @Config.Comment("Sets the custom scale for the Biggest size of the resizing potion")
             @Config.Name("Spectral Familiar - Tweak Enable Crafttweaker Compat")
             public static boolean spectralFamiliar_tweakEnableCrafttweakerCompat = true;

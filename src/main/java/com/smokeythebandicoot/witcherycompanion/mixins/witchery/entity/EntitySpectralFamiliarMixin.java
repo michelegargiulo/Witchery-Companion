@@ -101,6 +101,19 @@ public abstract class EntitySpectralFamiliarMixin extends EntityOcelot implement
     /** Refactors the logic of processInteract to inject tweaks and CrT compat **/
     @Inject(method = "processInteract", remap = true, at = @At("HEAD"), cancellable = true)
     private void processInteractToSniff(EntityPlayer player, EnumHand hand, CallbackInfoReturnable<Boolean> cir) {
+        // Fix Familiar not doing anything if right-clicking with a sniffable item while it's sitting
+        if (EntityTweaks.spectralFamiliar_fixSniffingWhileSitting && !this.world.isRemote) {
+            if (this.isSitting()) {
+                this.aiSit.setSitting(false);
+                cir.setReturnValue(true);
+                return;
+            }
+        }
+        else if (this.world.isRemote) {
+            cir.setReturnValue(true);
+            return;
+        }
+
         if (this.isTamed() && this.isOwner(player) && !this.world.isRemote) {
             // Get held item
             ItemStack item = player.getHeldItemMainhand();
@@ -110,7 +123,8 @@ public abstract class EntitySpectralFamiliarMixin extends EntityOcelot implement
                 Set<IBlockState> ore = SpectralFamiliarApi.getOre(item);
 
                 // Sets item to sniff and proceeds with searches
-                if (ore != null && !ore.isEmpty()) {
+                // If sniffed item is the same as given item, simply trigger sitting behavior
+                if (ore != null && !ore.isEmpty() && !witcherycompanion$isSniffedItem(item)) {
                     ItemStack sniffed = item.copy();
                     // Clear count and tag
                     sniffed.setCount(1);
@@ -142,7 +156,10 @@ public abstract class EntitySpectralFamiliarMixin extends EntityOcelot implement
             }
 
             ++this.searches;
-            item.shrink(1);
+            // Decrease if player is in survival
+            if (!player.isCreative()) {
+                item.shrink(1);
+            }
 
             double despawnChance = this.witcherycompanion$getChance();
 
@@ -179,6 +196,12 @@ public abstract class EntitySpectralFamiliarMixin extends EntityOcelot implement
             return 0.0;
         }
         return EntityTweaks.spectralFamiliar_tweakDespawnChances[Math.min(this.searches, l) - 1];
+    }
+
+    @Unique
+    private boolean witcherycompanion$isSniffedItem(ItemStack stack) {
+        ItemStack sniffed = this.dataManager.get(SNIFFED_ITEM);
+        return sniffed.getItem() == stack.getItem() && sniffed.getMetadata() == stack.getMetadata();
     }
 
 
