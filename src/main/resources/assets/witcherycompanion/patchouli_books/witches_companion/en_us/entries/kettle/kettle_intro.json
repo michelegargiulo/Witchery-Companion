@@ -125,7 +125,8 @@
     {
       "type": "kettle/kettle_brew",
       "brew_id": "witchery:kettle/brew_revealing",
-      "description": "Reveals invisible creatures and entities that are affected by $(item)Invisibility$() potion effect. Will also reveal some spectral creatures."
+      "description": "Reveals invisible creatures and entities that are affected by $(item)Invisibility$() potion effect. Will also reveal some spectral creatures.",
+      "anchor": "revealing"
     },
     {
       "type": "kettle/kettle_brew",

@@ -1,0 +1,27 @@
+{
+  "name": "Spectre",
+  "icon": "witchery:scarecrow",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:spectre",
+      "text": "Evil Ghosts.",
+      "offset": 0.12,
+      "scale": 0.9
+    },
+    {
+      "type": "text",
+      "title": "Spectre",
+      "text": "A Spectre is an aggressive spectral creature, hard to see and their chill touch goes straight through armor."
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Unique properties",
+      "description": "Using a $(l:kettle/kettle_intro#revealing)Brew of Revealing$(/l) reveals their true form.$(p)If a player summons a Spectre, they can spray a bit of $(resources/graveyard_dust)Graveyard Dust$(/l) over them to greatly increase their health.",
+      "secret_key": "witcherycompanion:creatures/spectre_properties",
+      "_comment": "Unlocked when player uses Brew of Revealing on a Spectre (TODO)"
+    }
+  ]
+}
