@@ -111,6 +111,7 @@
     "witchery.extensions.VillagerExtendedDataMixin",
     "witchery.infusion.InfusionMixin",
     "witchery.infusion.OverworldInfusionMixin",
+    "witchery.infusion.spirit.InfusedSpiritDeathEffectMixin",
     "witchery.infusion.spirit.InfusedSpiritSentinelEffectMixin",
     "witchery.infusion.spirit.InfusedSpiritTwisterEffectMixin",
     "witchery.infusion.spirit.SpiritEffectRecipeMixin",

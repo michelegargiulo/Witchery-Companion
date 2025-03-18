@@ -35,6 +35,7 @@ import java.util.Set;
  * Mixins:
  * [Tweak] Tweak own loot table
  * [Tweak] CraftTweaker compat for items searching (partial, also requires EntityAIFamiliarFindDiamondsMixin)
+ * [Bugfix] Fix familiar doing nothing if sitting and given a sniffable item
  */
 @Mixin(EntitySpectralFamiliar.class)
 public abstract class EntitySpectralFamiliarMixin extends EntityOcelot implements IEntitySpectralFamiliarAccessor {
