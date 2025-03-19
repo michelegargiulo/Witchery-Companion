@@ -1148,67 +1148,67 @@ public class ModConfig {
 
             @Config.Comment("Attack Bat will drop loot according to its Loot Table (witchery:entities/attack_bat)")
             @Config.Name("Attack Bat - Tweak Give Own Loot Table")
-            public static boolean attackBat_tweakOwnLootTable = false;
+            public static boolean attackBat_tweakOwnLootTable = true;
 
             @Config.Comment("Baba Yaga will drop loot according to its Loot Table (witchery:entities/baba_yaga_death)")
             @Config.Name("Baba Yaga - Tweak Drop Loot by Table")
-            public static boolean babaYaga_tweakLootTable = false;
+            public static boolean babaYaga_tweakLootTable = true;
 
             @Config.Comment("Baba Yaga will give loot to its owner based on a Loot Table (witchery:entities/baba_yaga_owner)")
             @Config.Name("Baba Yaga - Tweak Give By Loot Table")
-            public static boolean babaYaga_tweakGiveDropLootTable = false;
+            public static boolean babaYaga_tweakGiveDropLootTable = true;
 
             @Config.Comment("Banshee will give loot to its owner based on a Loot Table (witchery:entities/banshee)")
             @Config.Name("Banshee - Tweak Give Own Loot Table")
-            public static boolean banshee_tweakLootTable = false;
+            public static boolean banshee_tweakLootTable = true;
 
             @Config.Comment("If true, Coven Witch will drop loot according to its own Loot Table, instead of " +
                     "Vanilla Witch loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
                     "mods to vanilla Witch loot table, will not reflect on Coven Witches")
             @Config.Name("Coven Witch - Tweak Give Own Loot Table")
-            public static boolean covenWitch_tweakOwnLootTable = false;
+            public static boolean covenWitch_tweakOwnLootTable = true;
 
             @Config.Comment("If true, Demon will drop loot according to its Loot Table (witchery:entities/demon)")
             @Config.Name("Demon - Tweak Drop Loot by Table")
-            public static boolean demon_tweakLootTable = false;
+            public static boolean demon_tweakLootTable = true;
 
             @Config.Comment("If true, Duplicate will drop loot according to its Loot Table (witchery:entities/demon)")
             @Config.Name("Duplicate - Tweak Give Own Loot Table")
-            public static boolean duplicate_tweakOwnLootTable = false;
+            public static boolean duplicate_tweakOwnLootTable = true;
 
             @Config.Comment("If true, Ent will drop loot according to its Loot Table (witchery:entities/ent)")
             @Config.Name("Ent - Tweak Drop Loot by Table")
-            public static boolean ent_tweakLootTable = false;
+            public static boolean ent_tweakLootTable = true;
 
             @Config.Comment("If true, Elle will drop loot according to its Loot Table (witchery:entities/elle)")
             @Config.Name("Elle - Tweak Drop Loot by Table")
-            public static boolean elle_tweakLootTable = false;
+            public static boolean elle_tweakLootTable = true;
 
             @Config.Comment("If true, Fairest will drop loot according to its Loot Table (witchery:entities/fairest)")
             @Config.Name("Fairest - Tweak Drop Loot by Table")
-            public static boolean fairest_tweakLootTable = false;
+            public static boolean fairest_tweakLootTable = true;
 
             @Config.Comment("If true, Cat Familiar will drop loot according to its own Loot Table, instead of " +
                     "Vanilla Ocelot loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
                     "mods to vanilla Ocelot loot table, will not reflect on Cat familiars")
             @Config.Name("Cat Familiar - Tweak Give Own Loot Table")
-            public static boolean familiarCat_tweakOwnLootTable = false;
+            public static boolean familiarCat_tweakOwnLootTable = true;
 
             @Config.Comment("If true, Imp will drop loot according to its Loot Table (witchery:entities/imp_death)")
             @Config.Name("Infernal Imp - Tweak Drop Loot By Table")
-            public static boolean infernalImp_tweakLootTable = false;
+            public static boolean infernalImp_tweakLootTable = true;
 
             @Config.Comment("If true, Hobgoblins will drop loot according to its Loot Table (witchery:entities/hobgoblin)")
             @Config.Name("Hobgoblin - Tweak Own Loot By Table")
-            public static boolean hobgoblin_tweakLootTable = false;
+            public static boolean hobgoblin_tweakLootTable = true;
 
             @Config.Comment("If true, Death will drop loot according to its Loot Table (witchery:entities/death)")
             @Config.Name("Death - Tweak Drop Loot by Table")
-            public static boolean death_tweakLootTable = false;
+            public static boolean death_tweakLootTable = true;
 
             @Config.Comment("If true, Goblin Gulg will drop loot according to its Loot Table (witchery:entities/goblin_gulg)")
             @Config.Name("Gulg - Tweak Drop Loot by Table")
-            public static boolean goblinGulg_tweakLootTable = false;
+            public static boolean goblinGulg_tweakLootTable = true;
 
             @Config.Comment("If true, Goblin Mog will drop loot according to its Loot Table (witchery:entities/goblin_mog)")
             @Config.Name("Mog - Tweak Drop Loot by Table")
@@ -1216,59 +1216,59 @@ public class ModConfig {
 
             @Config.Comment("If true, Shade of Leonard will drop loot according to its Loot Table (witchery:entities/leonard)")
             @Config.Name("Shade of Leonard - Tweak Drop Loot by Table")
-            public static boolean leonard_tweakLootTable = false;
+            public static boolean leonard_tweakLootTable = true;
 
             @Config.Comment("If true, Lord of Torment will drop loot according to its Loot Table (witchery:entities/lord_of_torment)")
             @Config.Name("Lord of Torment - Tweak Drop Loot by Table")
-            public static boolean lordOfTorment_tweakLootTable = false;
+            public static boolean lordOfTorment_tweakLootTable = true;
 
             @Config.Comment("If true, Lost Souls will drop loot according to its Loot Table (witchery:entities/lost_soul)")
             @Config.Name("Lost Soul - Tweak Drop Loot by Table")
-            public static boolean lostSoul_tweakLootTable = false;
+            public static boolean lostSoul_tweakLootTable = true;
 
             @Config.Comment("If true, Mindrakes will drop loot according to its Loot Table (witchery:entities/mindrake)")
             @Config.Name("Mindrake - Tweak Drop Loot by Table")
-            public static boolean mindrake_tweakLootTable = false;
+            public static boolean mindrake_tweakLootTable = true;
 
             @Config.Comment("If true, Nightmare will drop loot according to its Loot Table (witchery:entities/nightmare)")
             @Config.Name("Nightmare - Tweak Drop Loot by Table")
-            public static boolean nightmare_tweakLootTable = false;
+            public static boolean nightmare_tweakLootTable = true;
 
             @Config.Comment("If true, Poltergeist will drop loot according to its Loot Table (witchery:entities/poltergeist)")
             @Config.Name("Poltergeist - Tweak Drop Loot by Table")
-            public static boolean poltergeist_tweakLootTable = false;
+            public static boolean poltergeist_tweakLootTable = true;
 
             @Config.Comment("If true, Spectral Familiar will drop loot according to its Loot Table (witchery:entities/spectral_familiar)")
             @Config.Name("Spectral Familiar - Tweak Drop Loot by Table")
-            public static boolean spectralFamiliar_tweakLootTable = false;
+            public static boolean spectralFamiliar_tweakLootTable = true;
 
             @Config.Comment("If true, Spectre will drop loot according to its Loot Table (witchery:entities/spectre)")
             @Config.Name("Spectre - Tweak Drop Loot by Table")
-            public static boolean spectre_tweakLootTable = false;
+            public static boolean spectre_tweakLootTable = true;
 
             @Config.Comment("If true, Treefyd will drop loot according to its Loot Table (witchery:entities/treefyd)")
             @Config.Name("Treefyd - Tweak Drop Loot by Table")
-            public static boolean treefyd_tweakOwnLootTable = false;
+            public static boolean treefyd_tweakOwnLootTable = true;
 
             @Config.Comment("If true, Vampires will drop loot according to its Loot Table (witchery:entities/vampire)")
             @Config.Name("Vampire - Tweak Drop Loot by Table")
-            public static boolean vampire_tweakLootTable = false;
+            public static boolean vampire_tweakLootTable = true;
 
             @Config.Comment("If true, Village Guards will drop loot according to its Loot Table (witchery:entities/village_guard)")
             @Config.Name("Village Guard - Tweak Drop Loot by Table")
-            public static boolean villageGuard_tweakLootTable = false;
+            public static boolean villageGuard_tweakLootTable = true;
 
             @Config.Comment("If true, Werewolves will drop loot according to its Loot Table (witchery:entities/werewolf)")
             @Config.Name("Werewolf - Tweak Drop Loot by Table")
-            public static boolean werewolf_tweakLootTable = false;
+            public static boolean werewolf_tweakLootTable = true;
 
             @Config.Comment("If true, Winged Monkeys will drop loot according to its Loot Table (witchery:entities/winged_monkey)")
             @Config.Name("Winged Monkey - Tweak Drop Loot by Table")
-            public static boolean wingedMonkey_tweakLootTable = false;
+            public static boolean wingedMonkey_tweakLootTable = true;
 
             @Config.Comment("If true, Witch Hunters will drop loot according to its Loot Table (witchery:entities/witch_hunter)")
             @Config.Name("Witch Hunter - Tweak Drop Loot by Table")
-            public static boolean witchHunter_tweakLootTable = false;
+            public static boolean witchHunter_tweakLootTable = true;
         }
 
         public static class DimensionTweaks {
