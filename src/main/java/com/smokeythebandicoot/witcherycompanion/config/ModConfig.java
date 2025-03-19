@@ -1083,10 +1083,14 @@ public class ModConfig {
             @Config.Name("Spectre - Tweak Delay Before Despawn")
             public static boolean spectre_tweakDelayBeforeDespawn = false;
 
-            @Config.Comment("When the Spectre has no attack target (or it's dead) the Spectre waits this amount " +
+            @Config.Comment("When the Spectre has no attack target (or the target died) the Spectre waits this amount " +
                     "of ticks before despawning")
             @Config.Name("Spectre - Tweak Tick Delay Before Despawn")
             public static int spectre_tweakDelayTicksBeforeDespawn = 60;
+
+            @Config.Comment("Tweak the maximum lifespan (in ticks) of the Spectre")
+            @Config.Name("Spectre - Tweak Max Lifetime")
+            public static int spectre_tweakMaxLifetime = 600;
 
             @Config.Comment("If true, Treefyd will require to be given a Creeper Heart before they can be given a Demon " +
                     "Heart, which further improves their strength and health")
@@ -1528,6 +1532,10 @@ public class ModConfig {
             @Config.Comment("If true, enables TOP integration for Spectral Familiar")
             @Config.Name("TOP Integration - Spectral Familiar")
             public static EProbeElementIntegrationConfig spectralFamiliar = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Spectre")
+            @Config.Name("TOP Integration - Spectre")
+            public static EProbeElementIntegrationConfig spectre = EProbeElementIntegrationConfig.DEFAULT;
 
             public enum EProbeElementIntegrationConfig {
                 // Only enable basic information
