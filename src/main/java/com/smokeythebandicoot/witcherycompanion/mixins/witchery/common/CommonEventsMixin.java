@@ -3,6 +3,8 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.common;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.api.BarkBeltApi;
+import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
+import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.ItemTweaks;
@@ -11,6 +13,7 @@ import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfigur
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,8 +29,12 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.msrandom.witchery.common.CommonEvents;
 import net.msrandom.witchery.config.WitcheryConfigOptions;
+import net.msrandom.witchery.entity.EntityPoltergeist;
+import net.msrandom.witchery.entity.EntitySpectre;
+import net.msrandom.witchery.entity.EntitySummonedUndead;
 import net.msrandom.witchery.extensions.PlayerExtendedData;
 import net.msrandom.witchery.init.WitcheryCreatureTraits;
 import net.msrandom.witchery.init.WitcheryPotionEffects;
@@ -51,6 +58,7 @@ import java.util.Iterator;
  [Tweak] Disable PvP and PvE for Poppets
  [Tweak] Transform to Wolfman form if level >= 5 werewolf is forced to transform
  [Tweak] Damage Werewolves that are wearing armor cursed by Curse of Binding
+ [Progress] Unlock progress when player sprays Graveyard Dust on Spectres and Poltergeists
  */
 @Mixin(CommonEvents.class)
 public abstract class CommonEventsMixin {
@@ -189,6 +197,33 @@ public abstract class CommonEventsMixin {
         }
 
         ci.cancel();
+    }
+
+    /** Injects before the call to getEntityAttribute, when it is already checked that entity is of EntitySummonedUndead
+     * type, has less than 50 health and is enslaved by player. Check which entity has been buffed and unlock progress **/
+    @Inject(method = "onEntityInteract", remap = false, at = @At(value = "INVOKE", remap = false, ordinal = 0,
+            target = "Lnet/minecraft/entity/EntityLiving;getEntityAttribute(Lnet/minecraft/entity/ai/attributes/IAttribute;)Lnet/minecraft/entity/ai/attributes/IAttributeInstance;"))
+    private static void unlockProgressSpectralBeingsHealthBuff(PlayerInteractEvent.EntityInteract event, CallbackInfo ci) {
+        EntityPlayer player = event.getEntityPlayer();
+        Entity entity = event.getTarget();
+        Class<? extends EntitySummonedUndead> spectralBeingClass;
+
+        if (player != null) {
+            if (entity instanceof EntitySpectre) {
+                spectralBeingClass = EntitySpectre.class;
+            }
+            else if (entity instanceof EntityPoltergeist) {
+                spectralBeingClass = EntityPoltergeist.class;
+            }
+            else {
+                return;
+            }
+
+            ProgressUtils.unlockProgress(player,
+                    ProgressUtils.getCreatureSecret(spectralBeingClass, "health_buff"),
+                    WitcheryProgressEvent.EProgressTriggerActivity.CREATURE_INTERACT.activityTrigger
+            );
+        }
     }
 
 }

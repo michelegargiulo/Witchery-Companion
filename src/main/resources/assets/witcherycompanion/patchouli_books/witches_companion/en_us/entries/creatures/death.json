@@ -22,8 +22,8 @@
       "type": "generic/secret_text",
       "title": "Impersonating Death",
       "description": "If a player is wearing all of Death's outfit and wields a $(l:artifacts/misc)Hand of Death$(/l), that player will became Death itself, thus being summoned during such rite.$(br)Wearing the full set also caps all incoming damage to 7 points.",
-      "secret_key": "witcherycompanion:creatures/death_player_summon",
-      "_comment": "Unlocked when a player is summoned in place of Death. Unlocked as generic event"
+      "secret_key": "witcherycompanion:conjuring/effect/witchery:death",
+      "_comment": "Unlocked when the player summons Death. It can be unlocked when Death player is summoned, but it would make it unobtainable in single player"
     }
   ]
 }

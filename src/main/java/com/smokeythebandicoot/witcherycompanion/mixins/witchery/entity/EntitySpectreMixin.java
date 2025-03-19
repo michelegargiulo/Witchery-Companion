@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  Mixins:
  [Tweak] Modify Attributes (multiple tweaks)
+ [Tweak] Custom despawn delay when the spectre has no aggro target
  */
 @Mixin(EntitySpectre.class)
 public abstract class EntitySpectreMixin extends EntitySummonedUndead {
@@ -25,12 +26,13 @@ public abstract class EntitySpectreMixin extends EntitySummonedUndead {
     private int lifetime;
 
     @Unique
-    protected int witchery_Patcher$despawnDelay = ModConfig.PatchesConfiguration.EntityTweaks.spectre_tweakDelayTicksBeforeDespawn;
+    protected int witcherycompanion$despawnDelay = ModConfig.PatchesConfiguration.EntityTweaks.spectre_tweakDelayTicksBeforeDespawn;
 
     private EntitySpectreMixin(World world) {
         super(world);
     }
 
+    /** Injects at head to modify entity attributes **/
     @Inject(method = "applyEntityAttributes", remap = false, cancellable = true, at = @At("HEAD"))
     public void WPtweakEntityAttributes(CallbackInfo ci) {
         if (ModConfig.PatchesConfiguration.EntityTweaks.spectre_tweakAttributes) {
@@ -42,19 +44,20 @@ public abstract class EntitySpectreMixin extends EntitySummonedUndead {
         }
     }
 
+    /** This Mixin replaces the updateAITasks logic to include the custom delay despawn **/
     @Inject(method = "updateAITasks", remap = true, cancellable = true, at = @At("HEAD"))
     protected void updateAITasks(CallbackInfo ci) {
         if (ModConfig.PatchesConfiguration.EntityTweaks.spectre_tweakDelayBeforeDespawn) {
             super.updateAITasks();
-            if (this.world != null && !this.isDead && !this.world.isRemote && this.lifetime != -1 && (--this.lifetime == 0 || witchery_Patcher$despawnDelay == 0)) {
+            if (this.world != null && !this.isDead && !this.world.isRemote && this.lifetime != -1 && (--this.lifetime == 0 || witcherycompanion$despawnDelay == 0)) {
                 this.world.setEntityState(this, (byte)5);
                 this.setDead();
             }
 
             if (this.getAttackTarget() == null || this.getAttackTarget().isDead) {
-                witchery_Patcher$despawnDelay -= 1;
+                witcherycompanion$despawnDelay -= 1;
             } else {
-                witchery_Patcher$despawnDelay = ModConfig.PatchesConfiguration.EntityTweaks.spectre_tweakDelayTicksBeforeDespawn;
+                witcherycompanion$despawnDelay = ModConfig.PatchesConfiguration.EntityTweaks.spectre_tweakDelayTicksBeforeDespawn;
             }
 
             ci.cancel();

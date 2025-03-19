@@ -3,12 +3,16 @@ package com.smokeythebandicoot.witcherycompanion.api.progress;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import com.smokeythebandicoot.witcherycompanion.utils.ContentUtils;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 import net.msrandom.witchery.infusion.Infusion;
+import net.msrandom.witchery.init.items.WitcheryGeneralItems;
+import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 import net.msrandom.witchery.transformation.CreatureTraitType;
 
 import javax.annotation.Nonnull;
@@ -77,6 +81,13 @@ public class ProgressUtils {
     // Defined format for Dimensions: MODID:kettle/<recipe_id>
     public static String getKettleSecret(@Nonnull String recipe_id) {
         return WitcheryCompanion.prefix("kettle/" + recipe_id);
+    }
+
+    // Defined format for Creatures: MODID:creature/<creature_id>/<secret_id>
+    public static String getCreatureSecret(@Nonnull Class<? extends EntityLivingBase> entity, String secretId) {
+        ResourceLocation entityId = EntityList.getKey(entity);
+        if (entityId == null) return null;
+        return WitcheryCompanion.prefix(String.format("creature/%s/%s", entityId, secretId));
     }
 
     // Defined format for Trait Types: MODID:traits/<trait_type>/level_<level>
