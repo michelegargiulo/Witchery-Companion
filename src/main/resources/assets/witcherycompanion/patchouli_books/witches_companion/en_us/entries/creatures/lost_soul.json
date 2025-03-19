@@ -8,10 +8,10 @@
       "type": "entity",
       "entity": "witchery:lost_soul",
       "text": "Leonard's Allies.",
-      "offset": -1,
-      "scale": 1,
       "rotate": false,
-      "default_rotation": 90
+      "default_rotation": -80,
+      "offset": -0.9,
+      "scale": 3
     },
     {
       "type": "text",

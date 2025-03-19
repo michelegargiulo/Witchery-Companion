@@ -37,6 +37,7 @@
       ],
       "output": "",
       "input_spacing": 2,
+      "layout": "vertical",
       "x": -2,
       "y": 44
     }
