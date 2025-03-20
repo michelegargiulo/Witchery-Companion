@@ -66,6 +66,8 @@ jar in the resource packs folder.
   - **[Villagers]** Fix rare crash when Villagers try to sleep
   - **[Apothecary Villager]** Fix missing Zombified texture
   - **[Spectral Familiar]** Fix broken model after un-sitting
+  - **[Spectral Familiar]** Fix familiar not doing anything while interacted with sniffable item while sitting
+  - **[Spectral Familiar]** Fix consuming item even when player is in creative
 - **Infusions**
   - **[Soul Brews]** Fix losing Soul brews (so the Mystic Branch knowledge) upon death
 - **Fluids**
@@ -136,6 +138,7 @@ jar in the resource packs folder.
   - **[Owl]** Tweak to disable taking items (since flying AI is bugged and might dupe items)
   - **[Owl]** Tweak to change the model slightly when the owl is sitting
   - **[Owl]** Tweak to render children Owls smaller
+  - **[Spectre]** Tweak to set max lifespan
   - **[Spectre]** Tweak to wait a minimum delay before de-spawning
   - **[Spectre]** Tweak to modify spectre attributes (Follow range, Movement speed, Attack damage)
 - **Infusion**
@@ -273,27 +276,28 @@ jar in the resource packs folder.
 
 ### Performance
 - Implement caching for the Altar Power Source map
-- Implement caching for the Mutandis plant tranformations
+- Implement caching for the Mutandis plant transformations
+
+### API
+- Witchery: Companion provides a package that contains extensive APIs for many aspects. Companion API stands in the middle between Witchery: Resurrected (where Mixins inject API functionality) and external API users. Companion itself uses the API for things like CraftTweaker integration. Check wiki for information about how to use Witchery: Companion API
+- Witchery: Companion provides an API for the following aspects:
+  - **Each and All CraftTweaker handlers**
+    - **Altar Boosters** is the only case among the above that has much more power using the API than CraftTweaker
+  - **Witchery Progress**: keep track of player progress within Witchery
+  - **Triggered Dispersal**: add support for your own Blocks and TileEntities for Triggered Dispersal brews
+  - **Brew Builder**: an API that can build Brews by providing a list of required items depending on the desired effects, their power, dispersal and their modifiers, etc. It is dynamic, meaning that it can provide the correct result even when the user/modpack maker changes or removes Witchery Brews data
 
 ### Misc.
-- Witchery: Companion implements a Plugin that automatically downloads Witchery 1.7.10 jar and puts it in the resourcepacks folder, 
-  as it is a required dependency for Witchery: Resurrected
-- Witchery: Companion implements a Progress System. Tracks what the player does (completes a brew, discovers a new recipe, levels up as werewolf or vampire) and fires an event. Also supports commands and unlocks pages in Patchouli book, if installed
-- Witchery: Companion provides an API that can build Brews by providing a list of required items depending on the desired effects, their power, dispersal and their modifiers, etc. It is dynamic, meaning that it can provide the correct result even when the user/modpack maker changes or removes Witchery Brews data
+- Witchery: Companion implements a Plugin that **automatically downloads Witchery 1.7.10 jar** and puts it in the resourcepacks folder, as it is a required dependency for Witchery: Resurrected
+- Witchery: Companion implements a **Progress System**. Tracks what the player does (complete a brew, discover a new recipe, level up as werewolf or vampire) and fires an event. Also supports commands and unlocks pages in Patchouli book, if installed
+- Compatible with [CleanroomMC](https://github.com/CleanroomMC/Cleanroom)
 
-### Future Plans
-- Add CraftTweaker integration for Brew of Sprouting, to specify valid trees to spawn
-- Finish JER Integration
-- Squishing all bugs
-- Tinkers Construct / Construct Armory integration (Armor traits or tools that can be used in place of Witchery ones)
-    for modpacks where Tinkers is the only way to make tools and armors, similar to what Tinkers Evolution does for some mods
-- JEI Handlers for as many things as possible (Altar Power providers, Baba Yaga drops, etc.)
-- More Tweaks
-  - Modify Rite/Curse strength, to fine-tune how much damage poppets take for the given Rite/Curse
-  - Modify entity attributes, such as Max health, Damage, Speed, etc
+### Bugs, Feature Requests and Future Plans
+- Refer to [Github issue page](https://github.com/michelegargiulo/Witchery-Companion/issues) to report bugs, check the current progress on the mod, request features or simply ask questions
 
 ### Help Wanted
 - Fix Owl AI for transporting items
 - Fix Winged Monkey AI
 - Brew Bucket item does not exist yet. Needs implementation. Will make possible to move brews between cauldrons
 - Groovyscript Integration
+- Cubic Chunks has multiple incompatibilities
