@@ -13,6 +13,7 @@
     "witchery.block.BlockBrazierMixin",
     "witchery.block.BlockCircleGlyphMixin",
     "witchery.block.BlockCrystalBallMixin",
+    "witchery.block.BlockEnderBrambleMixin",
     "witchery.block.BlockGarlicGarlandMixin",
     "witchery.block.BlockGrassperMixin",
     "witchery.block.BlockHawthornMixin",

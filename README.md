@@ -113,6 +113,7 @@ jar in the resource packs folder.
 - **Blocks**
   - **[Crystal Ball]** Tweak to customize cooldown 
   - **[Crystal Ball]** Tweak to customize Altar Power consumption for each use
+  - **[Ender Bramble]** Tweak to configure minimum and maximum teleportation distance
   - **[Fetishes]** Tweak to customize cooldown of Sentinel and Twister spirit effects
   - **[Mandrake Crop]** Tweak to customize Mandrake Root item drop chance and Mandrake entity spawn chance
   - **[Witch's Cauldron]** Tweak to set glass bottle size to 250mB instead of 333/334mB (depending if draining or filling)

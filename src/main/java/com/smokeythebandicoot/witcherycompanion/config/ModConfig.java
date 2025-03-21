@@ -454,6 +454,16 @@ public class ModConfig {
             @Config.Name("Coffin - Fix Crash When Moved By Piston")
             public static boolean coffin_fixPistonMoveCrash = true;
 
+            @Config.Comment("Tweaks the maximum distance an Ender Bramble can teleport an entity")
+            @Config.Name("Ender Bramble - Tweak Min Distance TP")
+            @Config.RangeInt(min = 1, max = 5000)
+            public static int enderBramble_tweakMinDistanceTP = 500;
+
+            @Config.Comment("Tweaks the maximum distance an Ender Bramble can teleport an entity")
+            @Config.Name("Ender Bramble - Tweak Max Distance TP")
+            @Config.RangeInt(min = 2, max = 10000)
+            public static int enderBramble_tweakMaxDistanceTP = 1000;
+
             @Config.Comment("Fix the Garlic Garland having incorrect Bounding Boxes.")
             @Config.Name("Garlic Garland - Fix Bounding Box")
             public static boolean garlicGarland_fixBoundingBox = true;
