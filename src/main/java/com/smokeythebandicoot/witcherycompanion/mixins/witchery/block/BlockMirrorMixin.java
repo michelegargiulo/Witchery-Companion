@@ -1,5 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.mirror.IBlockMirrorAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.block.Block;
@@ -15,6 +17,7 @@ import net.minecraft.network.play.server.SPacketPlayerPosLook;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -37,6 +40,7 @@ import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -48,7 +52,9 @@ import java.util.List;
 /**
  * Mixins:
  * [Bugfix] Fix Mirror in Mirror not working
+ * [Bugfix] Fix Mirrors in Mirror Dimension always teleporting from to Overworld
  * [Tweak] Tweak power requirements for using Mirror in Mirror
+ * [Tweak] Disable splash sound in various cases
  */
 @Mixin(BlockMirror.class)
 public abstract class BlockMirrorMixin extends BlockContainer implements IBlockMirrorAccessor {
@@ -73,6 +79,10 @@ public abstract class BlockMirrorMixin extends BlockContainer implements IBlockM
     @Shadow(remap = false) @Final
     private boolean unbreakable;
 
+    @Unique
+    private Integer witcherycompanion$capturedDim = null;
+
+
     private BlockMirrorMixin(Material materialIn) {
         super(materialIn);
     }
@@ -83,7 +93,8 @@ public abstract class BlockMirrorMixin extends BlockContainer implements IBlockM
         return this.unbreakable;
     }
 
-    /** **/
+    /** Bugfix for world.isAirBlock that was checked against 'pos' instead of the new blockpos 'np'
+     * which caused the check to always be false. Could not find a way to avoid rewriting the whole method **/
     @Inject(method = "onEntityCollision", remap = true, at = @At(value = "HEAD"))
     private void fixMirrorInMirror(World world, BlockPos pos, IBlockState state, Entity entity, CallbackInfo ci) {
         if (!world.isRemote && entity.ticksExisted % 5 == 1 && this.isTransportableEntity(entity)) {
@@ -360,5 +371,46 @@ public abstract class BlockMirrorMixin extends BlockContainer implements IBlockM
                 }
             }
         }
+    }
+
+    @WrapOperation(method = "mirrorGoHome", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/util/TeleportationUtil;teleportToLocation(Lnet/minecraft/util/math/BlockPos;ILnet/minecraft/entity/Entity;ZLnet/minecraft/util/EnumParticleTypes;Lnet/minecraft/util/SoundEvent;)V"))
+    private static void disableSplashSoundMirrorGoHome(BlockPos pos, int dim, Entity entity, boolean presetPos, EnumParticleTypes particles, SoundEvent sound, Operation<Void> original) {
+        if (ModConfig.PatchesConfiguration.BlockTweaks.mirror_tweakDisableSplashSoundMirrorGoHome) {
+            original.call(pos, dim, entity, presetPos, particles, null);
+            return;
+        }
+        original.call(pos, dim, entity, presetPos, particles, sound);
+    }
+
+    @WrapOperation(method = "onEntityCollision", remap = false, at = @At(value = "INVOKE", remap = false, ordinal = 0,
+            target = "Lnet/msrandom/witchery/util/TeleportationUtil;teleportToLocation(DDDILnet/minecraft/entity/Entity;ZLnet/minecraft/util/EnumParticleTypes;Lnet/minecraft/util/SoundEvent;)V"))
+    private void disableSplashSoundOnEntityCollision0(double posX, double posY, double posZ, int dimension, Entity entity, boolean presetPosition, EnumParticleTypes particle, SoundEvent sound, Operation<Void> original) {
+        if (ModConfig.PatchesConfiguration.BlockTweaks.mirror_tweakDisableSplashSoundOnCollision) {
+            original.call(posX, posY, posZ, dimension, entity, presetPosition, particle, null);
+            return;
+        }
+        original.call(posX, posY, posZ, dimension, entity, presetPosition, particle, sound);
+    }
+
+    /** Before setting the dimension of otherMirror, we have to capture it. Inject as late as possible and capture it **/
+    @Inject(method = "onBlockPlacedBy", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/minecraft/tileentity/TileEntityType;getAt(Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/tileentity/TileEntity;"))
+    private void fixAlwaysTpToOverworldCaptureDim(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack, CallbackInfo ci) {
+        witcherycompanion$capturedDim = world.provider.getDimension();
+    }
+
+    /** When being placed, the mirror checks if it is connected to another mirror by checking if Coords are null.
+     * Once the connection to otherMirror is found, sets the coordinates of it, but does not set the dimension.
+     * We set the dimension just after having retrieved the otherMirror TileEntity **/
+    @WrapOperation(method = "onBlockPlacedBy", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/block/entity/TileEntityMirror;notifyBlockUpdate(Z)V"))
+    private void fixAlwaysTpToOverworld(TileEntityMirror instance, boolean b, Operation<Void> original) {
+        if (ModConfig.PatchesConfiguration.BlockTweaks.mirror_fixAlwaysTpToOverworld && witcherycompanion$capturedDim != null) {
+            instance.dim = this.witcherycompanion$capturedDim;
+            witcherycompanion$capturedDim = null;
+        }
+        original.call(instance, b);
+
     }
 }

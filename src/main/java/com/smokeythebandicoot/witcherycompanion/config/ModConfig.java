@@ -429,12 +429,6 @@ public class ModConfig {
             @Config.Name("Creative Statues - Tweak Tighten Bounding Boxes")
             public static boolean creativeStatues_tweakTightenBoundingBoxes = true;
 
-            @Config.Comment("If true, Crystal Ball divination feature camera-based approach will be replaced by a system that uses " +
-                    "the Vanilla Spectator Mode. This will grant the ability to divinate anywhere in the same dimension, loading chunks as needed.\n" +
-                    "More info on the wiki https://github.com/michelegargiulo/Witchery-Companion/wiki/Config-Details#crystal-ball---tweak-rework-with-spectator")
-            @Config.Name("Crystal Ball - Tweak Rework With Spectator")
-            public static boolean crystalBall_tweakSpectatorRework = true;
-
             @Config.Comment("Sets the Altar Power required for a Crystal Ball prediciton. Witchery default is 500.")
             @Config.Name("Crystal Ball - Tweak Required Power")
             @Config.RangeInt(min = 1, max = 10000)
@@ -525,11 +519,25 @@ public class ModConfig {
             @Config.Name("Mirror - Fix MiM")
             public static boolean mirror_fixMirrorInMirror = true;
 
+            @Config.Comment("Fixes Mirrors in Mirror Dimension always teleporting to Overworld dimension.")
+            @Config.Name("Mirror - Fix Always TP To Overworld")
+            public static boolean mirror_fixAlwaysTpToOverworld = true;
+
             @Config.Comment("Tweaks to modify the required power to use the Mirror in Mirror (MiM) feature (traverse the rooms " +
                     "inside of the Mirror dimension. Witchery default is 3000")
             @Config.Name("Mirror - Tweak MiM Power Requirement")
             @Config.RangeDouble(min = 1.0, max = 10000.0)
             public static float mirror_inMirrorPowerConsumption = 3000;
+
+            @Config.Comment("If true, prevents the splash sound from playing when a player uses the 'mirror go home' chant")
+            @Config.Name("Mirror - Tweak Disable Splash Sound Mirror Go Home")
+            @Config.RangeDouble(min = 1.0, max = 10000.0)
+            public static boolean mirror_tweakDisableSplashSoundMirrorGoHome = false;
+
+            @Config.Comment("If true, prevents the splash sound from playing when a player colliders with the mirror and gets teleported")
+            @Config.Name("Mirror - Tweak Disable Splash Sound On Collision")
+            @Config.RangeDouble(min = 1.0, max = 10000.0)
+            public static boolean mirror_tweakDisableSplashSoundOnCollision = false;
 
             @Config.Comment("If true, fixes slipperiness of Perpetual Ice Slabs (and Double Slabs). NOTE: That might not " +
                     "work on lower-half ice slabs due to a bug in Vanilla Minecraft")

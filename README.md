@@ -4,7 +4,7 @@ A Companion to Witchery: Resurrected fixing bugs, crashes, patching things and a
 configurability. Witchery: Resurrected is a required dependency, and is the original 1.7.10 Witchery
 jar in the resource packs folder.
 
-## Current Features (as of v0.35.0-beta):
+## Current Features (as of v0.36.0-beta):
 ### Bugfixes:
 - **Common**
   - **[Common]** Fix crash when pulling null entity
@@ -26,6 +26,7 @@ jar in the resource packs folder.
   - **[Kettle]** Fix throwing splash brews immediately after brewing them
   - **[Mandrake Crop]** Fix spawning mandrakes even when not fully mature
   - **[Mandrake Crop]** Fix harvesting and mandrake spawning when right-clicking with TiC Kama
+  - **[Mirror]** Fix Exit Mirrors in Mirror Dimension always teleporting to the Overworld
   - **[Poppet Shelf]** Fix upside-down poppet rendering
   - **[Stockade]** Fix weird rendering when player head is too close to the stockade
   - **[Spirit Portal Block]** Fix Spirit Portal Block not being completely broken when there are no longer the conditions to stay lit
