@@ -67,6 +67,7 @@
     "witchery.brewing.action.effect.ErosionBrewEffectMixin",
     "witchery.brewing.action.effect.FrogsTongueBrewEffectMixin",
     "witchery.brewing.effect.FlowersBrewEffectMixin",
+    "witchery.client.ClientEventsMixin",
     "witchery.common.CommonEventsMixin",
     "witchery.common.RelativePowerSourceMixin",
     "witchery.common.ShapeShiftMixin",
