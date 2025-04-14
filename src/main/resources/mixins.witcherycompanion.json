@@ -52,6 +52,7 @@
     "witchery.block.entity.TileEntityFetishMixin",
     "witchery.block.entity.TileEntityGrassperMixin",
     "witchery.block.entity.TileEntityKettleMixin",
+    "witchery.block.entity.TileEntityLeechChestMixin",
     "witchery.block.entity.TileEntityMirrorMixin",
     "witchery.block.entity.TileEntityPlacedItemMixin",
     "witchery.block.entity.TileEntityPoppetShelfMixin",
