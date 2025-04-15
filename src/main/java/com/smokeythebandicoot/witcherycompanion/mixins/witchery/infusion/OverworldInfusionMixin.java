@@ -4,12 +4,14 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.api.OverworldInfusionApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -39,7 +41,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * Mixins:
- * [Tweak] Earth Infusion API for throwable rocks
+ * [Tweak] Overworld Infusion API for throwable rocks and ground blocks
  */
 @Mixin(OverworldInfusion.class)
 public abstract class OverworldInfusionMixin extends Infusion {
@@ -51,10 +53,23 @@ public abstract class OverworldInfusionMixin extends Infusion {
     @Unique
     private EntityLivingBase witcherycompanion$capturedLeftClickedEntity = null;
 
+    /** This Mixin allows the manipulation of blocks that the infusion considers "ground". The API uses
+     * the same list as 'throwables'. If the target block is to be considered 'ground', then return GRASS
+     * block, that is considered ground by Witchery. Otherwise return the original result **/
+    @WrapOperation(method = "onFalling", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/minecraft/block/state/IBlockState;getBlock()Lnet/minecraft/block/Block;"))
+    private Block injectEarthInfusionApiOnFalling(IBlockState instance, Operation<Block> original) {
+        if (OverworldInfusionApi.isThrowable(instance)) {
+            return Blocks.GRASS;
+        }
+        else {
+            return original.call(instance);
+        }
+    }
 
     /** Injects EarthInfusionAPI for throwable blocks **/
     @Inject(method = "isThrowableRock", remap = false, at = @At("HEAD"), cancellable = true)
-    private void injectEarthInfusionApi(World world, BlockPos pos, EnumFacing sideHit, CallbackInfoReturnable<Boolean> cir) {
+    private void injectEarthInfusionApiOnThrow(World world, BlockPos pos, EnumFacing sideHit, CallbackInfoReturnable<Boolean> cir) {
         if (ModConfig.PatchesConfiguration.InfusionTweaks.overworldInfusion_tweakEnableCrafttweakerCompat) {
             cir.setReturnValue(
                     OverworldInfusionApi.isThrowable(world.getBlockState(pos)) && // Is valid material
@@ -220,32 +235,6 @@ public abstract class OverworldInfusionMixin extends Infusion {
                 entity2.setPosition(entity2.posX, entity2.posY + 3.0, entity2.posZ);
             }
         }
-
-        /*
-        for(int h = 0; h < 6; ++h) {
-            int originY = origin.getY() - 3;
-            IBlockState state = world.getBlockState(hit.getBlockPos());
-            if (WitcheryUtils.canBreak(state)) {
-                world.setBlockToAir(hit.getBlockPos());
-                BlockPos target = new BlockPos(origin.getX(), originY, origin.getZ());
-                if (WitcheryUtils.canBreak(world.getBlockState(target))) {
-                    world.setBlockState(target, state, 3);
-                }
-
-                AxisAlignedBB bounds = new AxisAlignedBB(
-                        hit.getBlockPos().getX(), hit.getBlockPos().getY(), hit.getBlockPos().getZ(),
-                        (hit.getBlockPos().getX() + 1), (hit.getBlockPos().getY() + 2), (hit.getBlockPos().getZ() + 1));
-
-                for (Entity entity2 : world.getEntitiesWithinAABB(Entity.class, bounds)) {
-                    if (entity2 instanceof EntityLivingBase) {
-                        entity2.setPositionAndUpdate(entity2.posX, entity2.posY + 3.0, entity2.posZ);
-                    } else {
-                        entity2.setPosition(entity2.posX, entity2.posY + 3.0, entity2.posZ);
-                    }
-                }
-            }
-        }
-        */
     }
 
     @Unique
