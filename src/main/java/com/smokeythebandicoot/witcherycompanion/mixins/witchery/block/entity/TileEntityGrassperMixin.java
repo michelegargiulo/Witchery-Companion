@@ -13,6 +13,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.msrandom.witchery.block.entity.TileEntityGrassper;
+import net.msrandom.witchery.util.BlockUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -91,6 +92,15 @@ public class TileEntityGrassperMixin extends TileEntity implements IProxedCursed
     @Inject(method = "writeToNBT", remap = true, at = @At("TAIL"))
     private void injectInnerTriggerWrite(NBTTagCompound tag, CallbackInfoReturnable<NBTTagCompound> cir) {
         this.writeTriggerToNBT(tag);
+    }
+
+    /** This Mixin calls for a Block update after the Grassper's inventory has been updated. Otherwise
+     * a client-server desync happens, where the inv is updated on server but client still thinks that the item
+     * is still in the inventory, causing it to render in RenderGrassper class **/
+    @Inject(method = "decrStackSize", remap = false, at = @At(value = "HEAD"), cancellable = true)
+    private void markDirtyAfterItemChange(int slot, int size, CallbackInfoReturnable<ItemStack> cir) {
+        cir.setReturnValue(slot == 0 ? this.item.splitStack(size) : ItemStack.EMPTY);
+        BlockUtil.notifyBlockUpdate(this.world, this.getPos());
     }
 
 }
