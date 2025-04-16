@@ -1,11 +1,11 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
-import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.IProxedCursedTrigger;
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.msrandom.witchery.block.entity.TileEntityGrassper;
+import net.msrandom.witchery.util.BlockUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -51,6 +51,13 @@ public class TileEntityGrassperMixin extends TileEntity implements IProxedCursed
     @Inject(method = "writeToNBT", remap = true, at = @At("TAIL"))
     private void injectInnerTriggerWrite(NBTTagCompound tag, CallbackInfoReturnable<NBTTagCompound> cir) {
         this.writeTriggerToNBT(tag);
+    }
+
+    /**  **/
+    @Inject(method = "decrStackSize", remap = false, at = @At(value = "HEAD"), cancellable = true)
+    private void markDirtyAfterItemChange(int slot, int size, CallbackInfoReturnable<ItemStack> cir) {
+        cir.setReturnValue(slot == 0 ? this.item.splitStack(size) : ItemStack.EMPTY);
+        BlockUtil.notifyBlockUpdate(this.world, this.getPos());
     }
 
 }
