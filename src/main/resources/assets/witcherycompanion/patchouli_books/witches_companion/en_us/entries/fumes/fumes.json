@@ -13,7 +13,7 @@
     {
       "type": "text",
       "title": "Collecting Fumes",
-      "text": "Place $(item)Clay Jars$() into the oven when cooking to collect the fumes:$(p)Food  $(6)Foul Fume$()$(br)Wood  $(6)Foul Fume$()$(p)Cooking $(item)Saplings$() produces $(item)Wood Ash$() and may also release the gaseous essence of the tree."
+      "text": "Place $(item)Clay Jars$() into the oven when cooking to collect the fumes:$(p)Food  $(6)Foul Fume$()$(br)Wood  $(6)Foul Fume$()$(p)Cooking $(item)Saplings$() produces $(l:resources/wood_ash)Wood Ash$(/l) and may also release the gaseous essence of the tree."
     },
     {
       "type": "oven/oven_recipe_list",
@@ -29,7 +29,7 @@
       "title": "Sapling Fumes",
       "input0": "witchery:hawthorn_sapling",
       "input1": "witchery:alder_sapling",
-      "text": "Most other items can be smelted in the oven and will produce $(item)Foul Fume$()."
+      "text": "Most other items can be smelted in the oven and will produce $(l:resources/clay_jars#foul_fume)Foul Fume$(/l)."
     }
   ]
 }

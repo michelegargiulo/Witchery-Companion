@@ -31,7 +31,8 @@
     {
       "type": "text",
       "title": "Altar Power",
-      "text": "The maximum amount of power an altar can store is determined by how much plant life there is around the Altar. Things like $(item)Trees$(), $(item)Crops$() and other $(item)Plants$(). Even Grass and Dirt blocks contribute, while lifeless blocks like Stone and Sand do not. It is worth noting more of the same plants won't contribute to Altar power after a certain threshold, thus it is important to have a great variety of species and plants around."
+      "text": "The maximum amount of power an altar can store is determined by how much plant life there is around the Altar. Things like $(item)Trees$(), $(item)Crops$() and other $(item)Plants$(). Even Grass and Dirt blocks contribute, while lifeless blocks like Stone and Sand do not. It is worth noting more of the same plants won't contribute to Altar power after a certain threshold, thus it is important to have a great variety of species and plants around.",
+      "anchor": "altar_power"
     },
     {
       "type": "text",

@@ -1,0 +1,18 @@
+{
+  "name": "Brazier",
+  "icon": "witchery:brazier",
+  "category": "conjuration",
+  "sortnum": 0,
+  "flag": "witcherycompanion:conjuring/introduce_brazier",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Fetish Binding",
+      "text": ".$(br)Braziers are typically placed within range of an $(l:altar/altar)Altar$(/l), filled with three ingredients and then lit with a $(item)Flint and Steel$() to produce the desired effect either as the Brazier burns, or when it is burnt."
+    },
+    {
+      "type": "text",
+      "text": "A $(item)Water Bucket$() can be used to extinguish a brazier and clear its current ingredients."
+    }
+  ]
+}
