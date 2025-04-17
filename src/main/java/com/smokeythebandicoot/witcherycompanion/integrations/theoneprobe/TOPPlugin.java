@@ -40,6 +40,9 @@ public class TOPPlugin implements Function<ITheOneProbe, Void> {
                 // Mirror
                 probe.registerProvider(MirrorProbeInfoProvider.getInstance());
 
+                // Silver Vat
+                probe.registerProvider(SilverVatProbeInfoProvider.getInstance());
+
                 // Statue of Hobgoblin Patron
                 probe.registerProvider(WorshipStatueProbeInfoProvider.getInstance());
 
