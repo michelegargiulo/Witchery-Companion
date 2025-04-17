@@ -621,6 +621,10 @@ public class ModConfig {
             @Config.Name("Witches Oven - Fix Burning Particles")
             public static boolean witchesOven_fixBurningParticlesHeight = true;
 
+            @Config.Comment("If true, fixes the voiding of Lava Buckets when used as fuel")
+            @Config.Name("Witches Oven - Fix Lava Buckets Voiding")
+            public static boolean witchesOven_fixVoidingLavaBuckets = true;
+
             @Config.Comment("If true, fixes fences connecting to the statue, and buttons and levers cannot be placed " +
                     "anymore on the statue")
             @Config.Name("Wolf Altar - Fix Face Shape")

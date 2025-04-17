@@ -42,6 +42,7 @@ jar in the resource packs folder.
   - **[Witch's Cauldron]** Fix right-clicking with an empty Bucket voiding the brew inside
   - **[Witch's Cauldron]** Fix right-clicking with an Empty Bucket on an empty Cauldron giving a water bucket
   - **[Witch's Cauldron]** Fix right-clicking with a Forge fluid handler voiding the brew inside
+  - **[Witches Oven]** Fix Lava Buckets and other burnable items in containers being voided
   - **[Witches Oven]** Fix particles spawning too low
   - **[Wolf Altar]** Fix being kicked from servers for flying when standing on top of the statue
 - **Books**

@@ -55,6 +55,7 @@
     "witchery.block.entity.TileEntityMirrorMixin",
     "witchery.block.entity.TileEntityPlacedItemMixin",
     "witchery.block.entity.TileEntityPoppetShelfMixin",
+    "witchery.block.entity.TileEntityWitchesOvenMixin",
     "witchery.block.entity.TileEntityWorshipStatueMixin",
     "witchery.brewing.LiquidDispersalMixin",
     "witchery.brewing.TriggeredDispersalMixin",
