@@ -2,16 +2,24 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.msrandom.witchery.block.entity.TileEntityWitchesOven;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -24,17 +32,59 @@ import javax.annotation.Nullable;
 @Mixin(TileEntityWitchesOven.class)
 public abstract class TileEntityWitchesOvenMixin extends TileEntity implements ICapabilityProvider {
 
+    /**
+     * SLOTS:
+     * 0 -> burned item
+     * 1 -> clay jars
+     * 2 -> fuel slot
+     * 3 -> main output
+     * 4 -> secondary output
+     * */
+
     @Shadow(remap = false)
     private NonNullList<ItemStack> items;
+
+    @Unique
+    private final IItemHandler witcherycompanion$itemHandlerUp = new SidedInvWrapper((TileEntityWitchesOven)(Object)this, EnumFacing.UP);
+
+    @Unique
+    private final IItemHandler witcherycompanion$itemHandlerDown = new SidedInvWrapper((TileEntityWitchesOven)(Object)this, EnumFacing.DOWN);
+
+    @Unique
+    private final IItemHandler witcherycompanion$itemHandlerSides = new SidedInvWrapper((TileEntityWitchesOven)(Object)this, EnumFacing.NORTH);
+
+
+    @Override
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+        return (BlockTweaks.witchesOven_tweakEnableItemHandlerCap && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) || super.hasCapability(capability, facing);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    @Nullable
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY &&
+                BlockTweaks.witchesOven_tweakEnableItemHandlerCap && facing != null) {
+            switch (facing) {
+                case UP:
+                    return (T) witcherycompanion$itemHandlerUp;
+                case DOWN:
+                    return (T) witcherycompanion$itemHandlerDown;
+                default:
+                    return (T) witcherycompanion$itemHandlerSides;
+            }
+        }
+        return super.getCapability(capability, facing);
+    }
 
     /** This Mixin saves the result of getcontainerItem BEFORE the ItemStack gets shrunk to 0, as in that case
      * the item is set to AIR, and getContainerItem returns ItemStack.EMPTY. This wouldn't work without the
      * 'fixVoidedLavaBucketPreventOverride' mixin. Without that, Witchery would override the result we set here
-     * with ItemStack.EMPTY again. **/
+     * with an empty ItemStack again. **/
     @WrapOperation(method = "update", remap = false, at = @At(value = "INVOKE",
             target = "Lnet/minecraft/item/ItemStack;shrink(I)V", remap = true))
     private void fixVoidedLavaBucket(ItemStack instance, int i, Operation<Void> original) {
-        if (ModConfig.PatchesConfiguration.BlockTweaks.witchesOven_fixVoidingLavaBuckets) {
+        if (BlockTweaks.witchesOven_fixVoidingLavaBuckets) {
             ItemStack result = instance.getItem().getContainerItem(instance);
             this.items.set(2, result);
         }
@@ -44,8 +94,8 @@ public abstract class TileEntityWitchesOvenMixin extends TileEntity implements I
     /** This Mixin prevents Witchery from overriding the container item with AIR **/
     @WrapOperation(method = "update", remap = false, at = @At(value = "INVOKE", ordinal = 0,
             target = "Lnet/minecraft/util/NonNullList;set(ILjava/lang/Object;)Ljava/lang/Object;", remap = true))
-    private Object fixVoidedLavaBucketPreventOverride(NonNullList instance, int i, Object o, Operation<Object> original) {
-        if (!ModConfig.PatchesConfiguration.BlockTweaks.witchesOven_fixVoidingLavaBuckets) {
+    private Object fixVoidedLavaBucketPreventOverride(NonNullList<?> instance, int i, Object o, Operation<Object> original) {
+        if (!BlockTweaks.witchesOven_fixVoidingLavaBuckets) {
             return original.call(instance, i, o);
         }
         return null;

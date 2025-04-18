@@ -1,23 +1,63 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
-import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.ICursableTrigger;
 import com.smokeythebandicoot.witcherycompanion.api.dispersaltrigger.IProxedCursedTrigger;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import net.msrandom.witchery.block.entity.TileEntityGrassper;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+/**
+ * Mixins:
+ * [Feature] Implement compat for Triggered Brew Dispersal
+ * [Feature] Implement compat for IItemHandling capability
+ * [Bugfix] Inventory not marked dirty after changing items
+ */
 @Mixin(TileEntityGrassper.class)
-public class TileEntityGrassperMixin extends TileEntity implements IProxedCursedTrigger {
+public class TileEntityGrassperMixin extends TileEntity implements IProxedCursedTrigger, ICapabilityProvider {
+
+    @Shadow(remap = false)
+    private ItemStack item;
 
     @Unique
     protected TileEntityCursedTrigger witchery_Patcher$innerTrigger = null;
+
+    @Unique
+    private final IItemHandler witcherycompanion$itemHandler = new InvWrapper((TileEntityGrassper)(Object)this);
+
+
+    @Override
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+        return (BlockTweaks.grassper_tweakEnableItemHandlerCap && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) || super.hasCapability(capability, facing);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    @Nullable
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY &&
+                BlockTweaks.grassper_tweakEnableItemHandlerCap && facing != null) {
+            return (T) witcherycompanion$itemHandler;
+        }
+        return super.getCapability(capability, facing);
+    }
 
     @Override
     public TileEntityCursedTrigger getInnerTrigger() {
