@@ -625,6 +625,11 @@ public class ModConfig {
             @Config.Name("Witches Oven - Fix Lava Buckets Voiding")
             public static boolean witchesOven_fixVoidingLavaBuckets = true;
 
+            @Config.Comment("If true, makes pipes able to extract both outputs from the sides and non-fuel items from the bottom" +
+                    "NOTE: Requires 'Witches Oven - Tweak Enable Item Handler Capability' tweak to be enabled")
+            @Config.Name("Witches Oven - Fix Inventory Sidedness")
+            public static boolean witchesOven_fixInventorySidedness = true;
+
             @Config.Comment("If true, fixes fences connecting to the statue, and buttons and levers cannot be placed " +
                     "anymore on the statue")
             @Config.Name("Wolf Altar - Fix Face Shape")

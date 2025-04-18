@@ -51,4 +51,19 @@ public abstract class TileEntityWitchesOvenMixin extends TileEntity implements I
         return null;
     }
 
+    /** Fixes the furnace sideness by allowing extracting from the sides BOTH outputs and from the bottom side
+     * any item that is not fuel (for example Empty Buckets after Lava in Lava Bucket has been consumed) **/
+    @Inject(method = "canExtractItem", remap = false, at = @At("HEAD"), cancellable = true)
+    private void fixInventorySideness(int slot, ItemStack stack, EnumFacing side, CallbackInfoReturnable<Boolean> cir) {
+        if (BlockTweaks.witchesOven_fixInventorySidedness) {
+            if (side == EnumFacing.UP) {
+                cir.setReturnValue(false);
+            } else if (side == EnumFacing.DOWN) {
+                cir.setReturnValue(slot == 2 && !TileEntityFurnace.isItemFuel(stack));
+            } else {
+                cir.setReturnValue(slot == 3 || slot == 4);
+            }
+        }
+    }
+
 }
