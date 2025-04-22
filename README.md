@@ -8,7 +8,8 @@ jar in the resource packs folder.
 ### Bugfixes:
 - **Common**
   - **[Common]** Fix crash when pulling null entity
-  - **[Common]** Fix some mispelled language entries (for us_en) and add the few missing ones
+  - **[Common]** Fix some misspelled language entries (for us_en) and add the few missing ones
+  - **[Common]** Fix Spectator players falling into the void after changing dimension or reloading world
   - **[Loot]** Fix crash with Levelled random enchant
 - **Blocks**
   - **[Altar]** Fix Altar not providing power on world load/reload
