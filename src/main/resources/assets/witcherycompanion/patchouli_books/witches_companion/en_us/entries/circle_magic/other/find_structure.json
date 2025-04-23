@@ -8,9 +8,8 @@
       "type": "circle_magic/other_rites",
       "circles": "tiny_ritual",
       "title": "Find Structure",
-      "description": "Summon a spirit that flies towards the closest $(item)Village$() or $(item)Nether Fortress$().",
-      "ingredients": "witchery:attuned_stone,witchery:subdued_spirit",
-      "note": "Circles will explode"
+      "description": "Summon a spirit that flies towards the closest $(item)Village$() or $(item)Nether Fortress$()",
+      "ingredients": "witchery:attuned_stone,witchery:subdued_spirit"
     }
   ]
 }

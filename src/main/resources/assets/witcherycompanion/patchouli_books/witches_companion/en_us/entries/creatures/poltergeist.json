@@ -18,16 +18,9 @@
     },
     {
       "type": "generic/secret_text",
-      "title": "Revealing Poltergeists",
-      "description": "Using a $(l:kettle/kettle_intro#revealing)Brew of Revealing$(/l) reveals their true form, negating their innate invisibility.",
-      "secret_key": "witcherycompanion:creature/witchery:poltergeist/reveal",
-      "_comment": "Unlocked when player uses Brew of Revealing on a Poltergeist (TODO)"
-    },
-    {
-      "type": "generic/secret_text",
-      "title": "Buffing Health",
-      "description": "If a player summons a Poltergeist from a $(l:artifacts/misc/spectral_stone)Spectral Stone$(/l), they can spray a bit of $(l:resources/graveyard_dust)Graveyard Dust$(/l) over them to greatly increase their health. Each Graveyard Dust increases their health by 2 points, up to a maximum of 50.",
-      "secret_key": "witcherycompanion:creature/witchery:poltergeist/health_buff",
+      "title": "Unique properties",
+      "description": "Using a $(item)Brew of Revealing$() reveals their true form.$(p)If a player summons a Poltergeist, they can spray a bit of $(item)Graveyard Dust$() over them to greatly increase their health.",
+      "secret_key": "witcherycompanion:creatures/poltergeist_properties",
       "_comment": "Unlocked when player uses Brew of Revealing on a Poltergeist (TODO)"
     }
   ]

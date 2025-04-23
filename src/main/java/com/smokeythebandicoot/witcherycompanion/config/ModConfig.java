@@ -448,6 +448,10 @@ public class ModConfig {
             @Config.Name("Coffin - Fix Crash When Moved By Piston")
             public static boolean coffin_fixPistonMoveCrash = true;
 
+            @Config.Comment("If true, makes the Distillery interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Distillery - Tweak Enable Item Handler Capability")
+            public static boolean distillery_tweakEnableItemHandlerCap = true;
+
             @Config.Comment("Tweaks the maximum distance an Ender Bramble can teleport an entity")
             @Config.Name("Ender Bramble - Tweak Min Distance TP")
             @Config.RangeInt(min = 1, max = 5000)
@@ -472,6 +476,10 @@ public class ModConfig {
             @Config.Name("Statue of Goddess - Fix Flying On Servers")
             public static boolean goddessStatue_fixFlyingOnServers = true;
 
+            @Config.Comment("If true, makes the Grassper interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Grassper - Tweak Enable Item Handler Capability")
+            public static boolean grassper_tweakEnableItemHandlerCap = true;
+
             @Config.Comment("If true, when the player holds any block and right-clicks the statue, it won't place the block")
             @Config.Name("Statue of Hobgoblin Patron - Fix Block Placing")
             public static boolean hobgoblinPatronStatue_fixBlockPlacing = true;
@@ -489,6 +497,10 @@ public class ModConfig {
             @Config.Comment("Fix brews getting thrown immediately upon right-clicking the Kettle with a single empty bottle.")
             @Config.Name("Kettle - Fix Brews Thrown Upon Creation")
             public static boolean kettle_fixThrowBrewsUponCreation = true;
+
+            @Config.Comment("If true, makes the Leech Chest interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Leech Chest - Tweak Enable Item Handler Capability")
+            public static boolean leechChest_tweakEnableItemHandlerCap = true;
 
             @Config.Comment("If true, it will prevent Mandrake entities from spawning when harvesting non-mature mandrake crops.")
             @Config.Name("Mandrake Crop - Fix Drop Even When Not Mature")
@@ -563,6 +575,10 @@ public class ModConfig {
             @Config.Name("Poppet Shelf - Tweak Disable Chunkloading")
             public static boolean poppetShelf_tweakDisableChunkloading = false;
 
+            @Config.Comment("If true, makes the Silver Vat interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Silver Vat - Tweak Enable Item Handler Capability")
+            public static boolean silverVat_tweakEnableItemHandlerCap = true;
+
             @Config.Comment("Workaround for Stockade blocks. When player head gets too close, the entire" +
                     "screen is rendered as a stockade side texture. This patch enlarges the stockade bounding" +
                     "box to make player head not get as close.")
@@ -582,6 +598,10 @@ public class ModConfig {
             @Config.Comment("If true, fixes JEI Plugin compat for the Spinning Wheel.")
             @Config.Name("Spinning Wheel - Fix JEI Plugin")
             public static boolean spinningWheel_fixJeiPlugin = true;
+
+            @Config.Comment("If true, makes the Spinning Wheel interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Spinning Wheel - Tweak Enable Item Handler Capability")
+            public static boolean spinningWheel_tweakEnableItemHandlerCap = true;
 
             @Config.Comment("If true, fix player bottling skill increase, which won't happen otherwise.")
             @Config.Name("Witch's Cauldron - Fix Bottling Skill Increase")
@@ -620,6 +640,19 @@ public class ModConfig {
             @Config.Comment("If true, backports from 0.6 a fix to spawn burning particles at the correct height")
             @Config.Name("Witches Oven - Fix Burning Particles")
             public static boolean witchesOven_fixBurningParticlesHeight = true;
+
+            @Config.Comment("If true, fixes the voiding of Lava Buckets when used as fuel")
+            @Config.Name("Witches Oven - Fix Lava Buckets Voiding")
+            public static boolean witchesOven_fixVoidingLavaBuckets = true;
+
+            @Config.Comment("If true, makes the Oven interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Witches Oven - Tweak Enable Item Handler Capability")
+            public static boolean witchesOven_tweakEnableItemHandlerCap = true;
+
+            @Config.Comment("If true, makes pipes able to extract both outputs from the sides and non-fuel items from the bottom" +
+                    "NOTE: Requires 'Witches Oven - Tweak Enable Item Handler Capability' tweak to be enabled")
+            @Config.Name("Witches Oven - Fix Inventory Sidedness")
+            public static boolean witchesOven_fixInventorySidedness = true;
 
             @Config.Comment("If true, fixes fences connecting to the statue, and buttons and levers cannot be placed " +
                     "anymore on the statue")
@@ -1552,6 +1585,10 @@ public class ModConfig {
             @Config.Comment("If true, enables TOP integration for Treefyd")
             @Config.Name("TOP Integration - Treefyd")
             public static EProbeElementIntegrationConfig treefyd = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Silver Vat")
+            @Config.Name("TOP Integration - Silver Vat")
+            public static EProbeElementIntegrationConfig silverVat = EProbeElementIntegrationConfig.DEFAULT;
 
             @Config.Comment("If true, enables TOP integration for Spectral Familiar")
             @Config.Name("TOP Integration - Spectral Familiar")

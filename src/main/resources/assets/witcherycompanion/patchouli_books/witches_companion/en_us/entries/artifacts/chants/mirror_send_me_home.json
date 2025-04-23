@@ -1,6 +1,6 @@
 {
   "name": "Mirror Send Me Home",
-  "icon": "minecraft:bed",
+  "icon": "minecraft:sign",
   "category": "artifacts/chants",
   "read_by_default": true,
   "pages": [
