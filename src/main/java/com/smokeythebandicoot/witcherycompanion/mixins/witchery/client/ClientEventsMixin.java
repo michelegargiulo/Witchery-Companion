@@ -1,6 +1,5 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.client;
 
-import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.ScaledResolution;
@@ -19,11 +18,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+
 @Mixin(ClientEvents.class)
 public abstract class ClientEventsMixin {
-
-    @Shadow(remap = false)
-    private static void drawTexturedModalRect(int par1, int par2, int par3, int par4, int par5, int par6) { }
 
     @Shadow(remap = false) @Final
     private static ResourceLocation BARK_TEXTURES;
@@ -31,7 +28,6 @@ public abstract class ClientEventsMixin {
     @Inject(method = "drawBarkBeltCharges", remap = false, at = @At("HEAD"), cancellable = true)
     private static void fixBarkBeltChargesRendering(EntityPlayerSP player, int beltCharges, ScaledResolution screen, CallbackInfo ci) {
 
-        /*
         if (beltCharges > 0 && !player.capabilities.isCreativeMode) {
             Minecraft mc = Minecraft.getMinecraft();
             mc.getTextureManager().bindTexture(BARK_TEXTURES);
@@ -45,13 +41,13 @@ public abstract class ClientEventsMixin {
             int k2 = Math.max(10 - (j2 - 2), 3);
             int l2 = WitcheryResurrected.Companion.isTinkersPresent() ? i2 - 10 : i2 - (j2 - 1) * k2 - 10;
 
-            GlStateManager.disableDepth();
-            GlStateManager.depthMask(false);
-            GlStateManager.enableBlend();
+            // Save GL State
+            GlStateManager.pushMatrix();
 
-            // Courtesy of https://forums.minecraftforge.net/topic/148833-how-can-i-draw-a-transparent-image-on-the-minecraft-hud-screen/
+            GlStateManager.enableBlend();
             GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            GlStateManager.enableAlpha();
+            //GlStateManager.disableDepth();
 
             int iconOffsetX = 0;
             int ICON_WIDTH = 8;
@@ -59,16 +55,12 @@ public abstract class ClientEventsMixin {
             int iconOffsetY = 248;
 
             for(int m = 0; m < beltCharges; ++m) {
-                drawTexturedModalRect(tx + m * ICON_HEIGHT, l2, iconOffsetX, iconOffsetY, ICON_WIDTH, ICON_HEIGHT);
+                mc.ingameGUI.drawTexturedModalRect(tx + m * ICON_HEIGHT, l2, iconOffsetX, iconOffsetY, ICON_WIDTH, ICON_HEIGHT);
             }
 
-            GlStateManager.depthMask(true);
-            GlStateManager.enableDepth();
-            GlStateManager.disableBlend();
+            GlStateManager.popMatrix();
         }
 
-         */
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         ci.cancel();
 
     }
