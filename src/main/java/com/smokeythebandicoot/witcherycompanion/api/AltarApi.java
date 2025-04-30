@@ -140,8 +140,18 @@ public class AltarApi {
                 (IBlockState state, TileEntity tile, AltarBoosterInfo info) -> {
                 Block block = state.getBlock();
                     if (block instanceof BlockChalice) {
-                        BlockChalice chalice = (BlockChalice)block;
-                        info.newPowerScale += chalice.isFull ? 2 : 1;
+                        info.newPowerScale += 1;
+                    }
+                }
+            )
+        );
+        registerAltarBooster(
+            WitcheryBlocks.FULL_CHALICE, EAltarBoosterType.CHALICE,
+            new AltarBoosterFunc(200,
+                (IBlockState state, TileEntity tile, AltarBoosterInfo info) -> {
+                Block block = state.getBlock();
+                    if (block instanceof BlockChalice) {
+                        info.newPowerScale += 2;
                     }
                 }
             )
