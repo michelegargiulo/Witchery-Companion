@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  [Integration] Crafttweaker integration for Cauldron (heat sources)
  [Bugfix] Fix exploit when right-clicking an empty bucket on an empty cauldron, producing a water bucket
  */
-@Mixin(value = TileEntityCauldron.class)
+@Mixin(TileEntityCauldron.class)
 public abstract class TileEntityCauldronMixin implements ITileEntityCauldronAccessor {
 
     @Shadow(remap = false)
@@ -38,17 +38,15 @@ public abstract class TileEntityCauldronMixin implements ITileEntityCauldronAcce
     @Shadow(remap = false)
     public abstract int getLiquidQuantity();
 
-    @Shadow(remap = false)
-    protected abstract float getNeededPower(int currentPower, AtomicInteger risk);
-
     @Unique
     private float witchery_Patcher$currentPowerNeeded = -1.0f;
+
 
     /** Since Witchery has hardcoded check to if the block below is FIRE, we will use this
      * as the "true" return value for the method. Anything else is considered "false" */
     @WrapOperation(method = "update", remap = true,
         at = @At(value = "INVOKE", target = "Lnet/minecraft/block/state/IBlockState;getBlock()Lnet/minecraft/block/Block;", remap = true))
-    public Block WPallowOtherHeatSources(IBlockState instance, Operation<Block> original) {
+    public Block injectHeatSourcesApi(IBlockState instance, Operation<Block> original) {
         if (BlockTweaks.witchsCauldron_tweakCustomHeatSources) {
             return CauldronApi.isHeatSource(instance) ? CauldronApi.getFireBlock() : Blocks.AIR;
         }
