@@ -34,7 +34,7 @@
       "type": "text",
       "title": "Bottling Skill",
       "flag": "witcherycompanion:brewing/expertise",
-      "text": "Expertise is measured by $(o)Bottling Skill$(). To increase expertise, craft complex brews and provide the brew with more capacity and high-level effects.$(p)Use a $(item)Seer Stone$() to check your current Bottling Skill level.$(p)More experienced witches are able to bottle more brews for the same amount of ingredients used."
+      "text": "Expertise is measured by $(o)Bottling Skill$(). To increase expertise, craft complex brews and provide the brew with more capacity and high-level effects.$(p)Use a $(l:artifacts/misc/seer_stone)Seer Stone$(/l) to check your current Bottling Skill level.$(p)More experienced witches are able to bottle more brews for the same amount of ingredients used."
     }
   ]
 }

@@ -18,7 +18,7 @@
     {
       "type": "spotlight",
       "item": "witchery:blooded_waystone",
-      "text": "A Blooded Waystone is a Waystone that is bound with the appropriate Rite of Binding, to either $(l:circle_magic/binding/waystone#bind_player)players$(/l) or $(l:circle_magic/binding/waystone#bind_creature)other creatures$(/l).",
+      "text": "A Blooded Waystone is a Waystone that is bound with the appropriate $(l:circle_magic/binding/waystone#bind_creature)Rite of Binding$(/l), to either players or other creatures.",
       "anchor": "blooded"
     }
   ]
