@@ -68,6 +68,7 @@ jar in the resource packs folder.
   - **[Spectral Familiar]** Fix broken model after un-sitting
   - **[Spectral Familiar]** Fix familiar not doing anything while interacted with sniffable item while sitting
   - **[Spectral Familiar]** Fix consuming item even when player is in creative
+  - **[Winged Monkey]** Fix Fly to Waypoint AI
 - **Infusions**
   - **[Soul Brews]** Fix losing Soul brews (so the Mystic Branch knowledge) upon death
 - **Fluids**
