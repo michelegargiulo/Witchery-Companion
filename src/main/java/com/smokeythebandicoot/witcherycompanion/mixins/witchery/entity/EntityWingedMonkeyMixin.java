@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Mixins:
+ * [Tweak] Introduce own loot table
+ */
 @Mixin(EntityWingedMonkey.class)
 public abstract class EntityWingedMonkeyMixin extends EntityFlyingTameable {
 

@@ -24,12 +24,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 /**
- Mixins:
- [Tweak] Tweak to give loot to owner based on loot table instead of hardcoded items
- [Tweak] Tweak to modify max distance within the owner must stay for Baba to give loot
- [Tweak] Tweak to modify interval in ticks between each loot generation attempt
- [Tweak] Tweak to modify how long in ticks Baba gives loot to their owner before vanishing
- [Tweak] Introduce own loot table
+ * Mixins:
+ * [Tweak] Tweak to give loot to owner based on loot table instead of hardcoded items
+ * [Tweak] Tweak to modify max distance within the owner must stay for Baba to give loot
+ * [Tweak] Tweak to modify interval in ticks between each loot generation attempt
+ * [Tweak] Tweak to modify how long in ticks Baba gives loot to their owner before vanishing
+ * [Tweak] Introduce own loot table
  */
 @Mixin(EntityBabaYaga.class)
 public abstract class EntityBabaYagaMixin extends EntityMob {

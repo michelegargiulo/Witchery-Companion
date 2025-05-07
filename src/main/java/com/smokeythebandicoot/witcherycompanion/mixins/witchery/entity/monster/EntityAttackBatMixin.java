@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 
 /**
  Mixins:
- [Tweak] Introduce own loot table
+ * [Tweak] Introduce own loot table
  */
 @Mixin(EntityAttackBat.class)
 public abstract class EntityAttackBatMixin extends EntityBat {

@@ -19,8 +19,8 @@ import java.util.UUID;
 
 /**
  Mixins:
- [Bugfix] Fix Familiar having null owner after world reload
- [Tweak] Introduce own loot table
+ * [Bugfix] Fix Familiar having null owner after world reload
+ * [Tweak] Introduce own loot table
  */
 @Mixin(value = EntityCatFamiliar.class)
 public abstract class EntityCatFamiliarMixin extends EntityOcelot implements Familiar<EntityOcelot> {

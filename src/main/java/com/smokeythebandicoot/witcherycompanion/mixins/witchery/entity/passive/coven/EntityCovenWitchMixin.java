@@ -36,10 +36,10 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- Mixins:
- [Bugfix] Fix quest number of items needed going into negatives
- [Tweak] Introduce own loot table
- [Feature] Unlock quest secrets
+ * Mixins:
+ * [Bugfix] Fix quest number of items needed going into negatives
+ * [Tweak] Introduce own loot table
+ * [Feature] Unlock quest secrets
  */
 @ParametersAreNonnullByDefault
 @Mixin(value = EntityCovenWitch.class)
