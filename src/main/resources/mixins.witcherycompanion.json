@@ -103,6 +103,7 @@
     "witchery.entity.ai.EntityAIDigBlocksMixin",
     "witchery.entity.ai.EntityAIFamiliarFindDiamondMixin",
     "witchery.entity.ai.EntityAIFlyerFlyToWaypointMixin",
+    "witchery.entity.ai.EntityAIFlyerLandMixin",
     "witchery.entity.familiar.FamiliarMixin",
     "witchery.entity.familiar.FamiliarsMixin",
     "witchery.entity.item.EntityQuartzGrenadeMixin",

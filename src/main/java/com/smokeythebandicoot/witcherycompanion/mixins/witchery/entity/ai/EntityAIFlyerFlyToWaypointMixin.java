@@ -1,6 +1,8 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.entity.ai;
 
 
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.EntityTweaks;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.item.EntityItem;
@@ -29,6 +31,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
@@ -50,8 +53,13 @@ public abstract class EntityAIFlyerFlyToWaypointMixin extends EntityAIBase {
     int courseTimer;
 
 
+    /** Fixes a multitude of problems related to the updateTask function **/
     @Inject(method = "updateTask", remap = true, at = @At("HEAD"), cancellable = true)
     private void fixAiMovement(CallbackInfo ci) {
+
+        if (!EntityTweaks.wingedMonkey_fixAI) {
+            return;
+        }
 
         // If sitting, do nothing
         if (this.flyer.isSitting()) {
@@ -165,7 +173,7 @@ public abstract class EntityAIFlyerFlyToWaypointMixin extends EntityAIBase {
             double ACCELERATION = 0.2;
             this.flyer.motionX += dX / trajectory * ACCELERATION;
             this.flyer.motionZ += dZ / trajectory * ACCELERATION;
-            this.flyer.motionY = this.flyer.motionY + (dY / trajectory * ACCELERATION + (this.flyer.posY < Math.min(waypoint.y + (double)(this.carryRequirement == EntityAIFlyerFlyToWaypoint.CarryRequirement.HELD_ITEM ? 32 : 32), 255.0) ? 0.1 : 0.0));
+            this.flyer.motionY = this.flyer.motionY + (dY / trajectory * ACCELERATION + (this.flyer.posY < Math.min(waypoint.y + 32, 255.0) ? 0.1 : 0.0));
             this.courseTimer = 10;
         }
 
@@ -199,4 +207,13 @@ public abstract class EntityAIFlyerFlyToWaypointMixin extends EntityAIBase {
         return true;
     }
 
+    /** This Mixin Fixes the wrong comparison this.flyer.waypoint != null. Since waypoint is an ItemStack, the isEmpty function must be used **/
+    @Inject(method = "shouldContinueExecuting", remap = true, at = @At("HEAD"), cancellable = true)
+    private void fixShouldContinueExecuting(CallbackInfoReturnable<Boolean> cir) {
+        if (EntityTweaks.wingedMonkey_fixAI) {
+            boolean heldItem = !this.flyer.getHeldItemMainhand().isEmpty();
+            boolean awayFromHome = this.flyer.getDistanceSq(this.flyer.homeX, this.flyer.posY, this.flyer.homeZ) > 1.0 || Math.abs(this.flyer.posY - this.flyer.homeY) > 1.0;
+            cir.setReturnValue(heldItem && this.carryRequirement == EntityAIFlyerFlyToWaypoint.CarryRequirement.HELD_ITEM || !this.flyer.waypoint.isEmpty() || awayFromHome);
+        }
+    }
 }

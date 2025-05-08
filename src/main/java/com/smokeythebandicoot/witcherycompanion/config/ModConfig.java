@@ -1196,6 +1196,24 @@ public class ModConfig {
             @Config.Name("Villager - Tweak Remove Backported AI")
             @Config.RequiresMcRestart
             public static boolean villager_disableBackportedAI = false;
+
+            @Config.Comment("If true, fixes a multitude of bugs when the player interacts with the monkey.\n" +
+                    "Fixes Sitting behavior not working properly\n" +
+                    "Fixes crashing when interacting with some items\n" +
+                    "Fixes Sit status desync")
+            @Config.Name("Winged Monkey - Fix")
+            public static boolean wingedMonkey_fixPlayerInteractions = true;
+
+            @Config.Comment("If true, fixes the mount offset. OG Witchery and W:R use entity height * 0.6, but the Monkey " +
+                    "may visually collide with the Entity. If tweak removes the '* 0.6', so that the Monkey is exactly " +
+                    "above the carried entity")
+            @Config.Name("Winged Monkey - Tweak Improve Mount Offset")
+            public static boolean wingedMonkey_tweakEntityCarryMountOffset = false;
+
+            @Config.Comment("Fixes a multitude of bugs related to the AI of Winged Monkey: Sitting behavior, Crash when " +
+                    "interacted with some items, not carrying entities and players, not defending owners")
+            @Config.Name("Winged Monkey - Fix AI")
+            public static boolean wingedMonkey_fixAI = true;
         }
 
         public static class BookTweaks {

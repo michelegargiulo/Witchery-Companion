@@ -72,6 +72,9 @@ jar in the resource packs folder.
   - **[Spectral Familiar]** Fix familiar not doing anything while interacted with sniffable item while sitting
   - **[Spectral Familiar]** Fix consuming item even when player is in creative
   - **[Winged Monkey]** Fix Fly to Waypoint AI
+  - **[Winged Monkey]** Fix Defend Owner AI
+  - **[Winged Monkey]** Fix Sitting Behavior
+  - **[Winged Monkey]** Fix Crash when interacted with some items
 - **Infusions**
   - **[Soul Brews]** Fix losing Soul brews (so the Mystic Branch knowledge) upon death
 - **Fluids**
@@ -146,6 +149,7 @@ jar in the resource packs folder.
   - **[Spectre]** Tweak to set max lifespan
   - **[Spectre]** Tweak to wait a minimum delay before de-spawning
   - **[Spectre]** Tweak to modify spectre attributes (Follow range, Movement speed, Attack damage)
+  - **[Winged Monkey]** Tweak to modify entity mount offset
 - **Infusion**
   - **[Common]** Tweak Infusion Energy Bar and Creature Charge bar position
 - **Items**
