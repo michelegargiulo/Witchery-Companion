@@ -306,7 +306,6 @@ jar in the resource packs folder.
 
 ### Help Wanted
 - Fix Owl AI for transporting items
-- Fix Winged Monkey AI
 - Brew Bucket item does not exist yet. Needs implementation. Will make possible to move brews between cauldrons
 - Groovyscript Integration
 - Cubic Chunks has multiple incompatibilities

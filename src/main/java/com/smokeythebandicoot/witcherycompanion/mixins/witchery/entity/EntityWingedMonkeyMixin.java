@@ -74,7 +74,7 @@ public abstract class EntityWingedMonkeyMixin extends EntityFlyingTameable {
     /** Cancel the original processInteract function in favor of the new one from Companion **/
     @Inject(method = "processInteract", remap = true, at = @At("HEAD"), cancellable = true)
     private void fixProcessInteract(EntityPlayer player, EnumHand hand, CallbackInfoReturnable<Boolean> cir) {
-        if (EntityTweaks.wingedMonkey_fixPlayerInteractions) {
+        if (EntityTweaks.wingedMonkey_fixAI) {
             cir.setReturnValue(witcherycompanion$fixedProcessInteract(player, hand));
         }
     }
@@ -206,7 +206,7 @@ public abstract class EntityWingedMonkeyMixin extends EntityFlyingTameable {
 
     /** This Mixin solves a crash when we override the createNavigator function, as Witchery performs a class cast
      * on the result of getNavitagor() to PathNavigateGround, while we override with PathNavigateFlying **/
-    @WrapOperation(method = "<init>", remap = false, at = @At(value = "INVOKE", remap = false,
+    @WrapOperation(method = "<init>", remap = false, at = @At(value = "INVOKE", remap = true,
             target = "Lnet/msrandom/witchery/entity/EntityWingedMonkey;getNavigator()Lnet/minecraft/pathfinding/PathNavigate;"))
     private PathNavigate injectIntoInit(EntityWingedMonkey instance, Operation<PathNavigate> original) {
         if (EntityTweaks.wingedMonkey_fixAI) {

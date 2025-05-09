@@ -331,7 +331,7 @@ public class ModConfig {
             @Config.Comment("Custom Recipes in Mods' data folder is fundamentally broken in W:R. If true, this fixes " +
                     "resource loading and allows Mod Authors to define custom .jsons and override custom ones in " +
                     "resources/data/<modid>/brewing|mutations|... folders, creating custom recipes. This does not " +
-                    "touch data folders inside of the World save folder" )
+                    "touch data folders inside of the World save folder")
             @Config.Name("Custom Recipes - Fix Resource Loading")
             public static boolean customRecipes_fixResourceLoading = true;
 
@@ -1196,13 +1196,6 @@ public class ModConfig {
             @Config.Name("Villager - Tweak Remove Backported AI")
             @Config.RequiresMcRestart
             public static boolean villager_disableBackportedAI = false;
-
-            @Config.Comment("If true, fixes a multitude of bugs when the player interacts with the monkey.\n" +
-                    "Fixes Sitting behavior not working properly\n" +
-                    "Fixes crashing when interacting with some items\n" +
-                    "Fixes Sit status desync")
-            @Config.Name("Winged Monkey - Fix")
-            public static boolean wingedMonkey_fixPlayerInteractions = true;
 
             @Config.Comment("If true, fixes the mount offset. OG Witchery and W:R use entity height * 0.6, but the Monkey " +
                     "may visually collide with the Entity. If tweak removes the '* 0.6', so that the Monkey is exactly " +
