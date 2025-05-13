@@ -12,7 +12,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import vazkii.patchouli.api.PatchouliAPI;
 import net.msrandom.witchery.transformation.VampireCreatureTrait;
 import org.lwjgl.input.Keyboard;
 
@@ -34,7 +33,7 @@ public class ClientProxy extends CommonProxy {
         }
 
         if (newProgress && Loader.isModLoaded(Mods.PATCHOULI)) {
-            PatchouliAPI.instance.reloadBookContents();
+            PatchouliApiIntegration.reloadBook();
         }
     }
 
