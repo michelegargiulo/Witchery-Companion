@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.client;
 
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.ScaledResolution;
@@ -8,6 +9,8 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.client.event.MouseEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.msrandom.witchery.WitcheryResurrected;
 import net.msrandom.witchery.client.ClientEvents;
 import org.lwjgl.opengl.GL11;
@@ -21,6 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixins:
  * [Bugfix] Fix Bark Belt charges rendering transparency issues over armor bar
+ * [Tweak] Move Vampire Abilities into keybinds
  * **/
 @Mixin(ClientEvents.class)
 public abstract class ClientEventsMixin {
@@ -75,6 +79,20 @@ public abstract class ClientEventsMixin {
 
     }
 
+    /** Cancel vampire ability un-select when hotbar hotkey are pressed (1-9) **/
+    @Inject(method = "inputEvent", remap = false, at = @At("HEAD"), cancellable = true)
+    private static void cancelVampireAbilitySelectHotkey(InputEvent.KeyInputEvent event, CallbackInfo ci) {
+        if (ModConfig.PatchesConfiguration.TransformationTweaks.vampire_tweakOverhaulAbilitiesKeybind) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(method = "onMoueEvent", remap = false, at = @At("HEAD"), cancellable = true)
+    private static void cancelVampireAbilitySelectMouseWheel(MouseEvent event, CallbackInfo ci) {
+        if (ModConfig.PatchesConfiguration.TransformationTweaks.vampire_tweakOverhaulAbilitiesKeybind) {
+            ci.cancel();
+        }
+    }
 
 
 }

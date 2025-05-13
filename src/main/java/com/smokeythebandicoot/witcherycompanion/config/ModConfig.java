@@ -1392,6 +1392,12 @@ public class ModConfig {
             @Config.Name("Vampire - Tweak Always Night Dimension")
             public static int[] vampire_alwaysNightDimensions = new int[] { };
 
+            @Config.Comment("If true, Vampire Abilities are no longer selected by Mouse Wheel, but by Hotkey.\n" +
+                    "This allows better compat with mods and allows for integrations such as Mine-Menu")
+            @Config.Name("Vampire - Overhaul Ability Selection")
+            @Config.RequiresMcRestart
+            public static boolean vampire_tweakOverhaulAbilitiesKeybind = false;
+
             @Config.Comment("If true, a level 6 or higher werewolf without a Moon Charm will transform into WOLFMAN form instead " +
                     "of WOLF form. Lesser levels will transform into WOLF form regardless")
             @Config.Name("Werewolf - Tweak Transform to Wolfman")

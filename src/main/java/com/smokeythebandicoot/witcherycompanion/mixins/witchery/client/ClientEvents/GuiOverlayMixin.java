@@ -3,6 +3,8 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.client.ClientEv
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.client.ClientEvents;
 import net.msrandom.witchery.client.RenderInfusionEnergyBar;
@@ -10,8 +12,18 @@ import net.msrandom.witchery.infusion.Infusion;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+/**
+ * Mixins:
+ * [Tweak] Move Infusion energy bar
+ * [Tweak] Move Infusion creature power bar
+ * [Tweak] Move Vampire Abilities into keybinds
+ */
 @Mixin(ClientEvents.GUIOverlay.class)
-public abstract class GuiOverlayMixin {
+public abstract class GuiOverlayMixin extends GuiIngame {
+
+    private GuiOverlayMixin(Minecraft mcIn) {
+        super(mcIn);
+    }
 
     @WrapOperation(method = "renderHotbar", remap = false, at = @At(value = "INVOKE", remap = false,
             target = "Lnet/msrandom/witchery/client/RenderInfusionEnergyBar;draw(FFDLnet/msrandom/witchery/infusion/Infusion;I)V"))
