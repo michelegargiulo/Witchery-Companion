@@ -13,15 +13,11 @@ import net.msrandom.witchery.init.WitcheryCreatureTraits;
 import net.msrandom.witchery.transformation.VampireCreatureTrait;
 import net.msrandom.witchery.util.WitcheryUtils;
 
-@Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)
 @SideOnly(Side.CLIENT)
 public class VampireKeybindsHandler {
 
-    public static final VampireKeybindsHandler INSTANCE = new VampireKeybindsHandler();
-
     private VampireKeybindsHandler() { }
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public static void onKeyInput(InputEvent.KeyInputEvent event) {
 
@@ -33,7 +29,6 @@ public class VampireKeybindsHandler {
         for (ClientProxy.EVampireKeybind keybind : ClientProxy.EVampireKeybind.values()) {
             // Select the first valid ability
             if (keybind.trySelectAbility(transformation, level)) {
-                player.sendChatMessage("Ability selected: " + keybind.getPower());
                 break;
             }
         }

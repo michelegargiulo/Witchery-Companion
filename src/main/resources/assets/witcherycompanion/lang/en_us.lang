@@ -55,3 +55,12 @@ witcherycompanion.probe.familiar_power.curse_mastery.name=Curse Mastery (Cat Fam
 
 ## Optional string for optional items in Rites
 witcherycompanion.tooltip.optional=§r (Optional)
+
+# Keybinds
+key.witcherycompanion.category=Witchery Companion
+key.witchery.vampire.power.none.desc=Deactivate Vampire Abilities
+key.witchery.vampire.power.drink.desc=Vampire Ability: Drink Blood
+key.witchery.vampire.power.mesmerize.desc=Vampire Ability: Mesmerize
+key.witchery.vampire.power.run.desc=Vampire Ability: Speed
+key.witchery.vampire.power.bat.desc=Vampire Ability: Bat Transformation
+key.witchery.vampire.power.ultimate.desc=Vampire Ability: Ultimate Power

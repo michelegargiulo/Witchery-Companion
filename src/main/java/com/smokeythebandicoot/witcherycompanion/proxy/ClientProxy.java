@@ -69,13 +69,13 @@ public class ClientProxy extends CommonProxy {
                 keybind.setBinding(binding);
             }
 
-            MinecraftForge.EVENT_BUS.register(VampireKeybindsHandler.INSTANCE);
+            MinecraftForge.EVENT_BUS.register(VampireKeybindsHandler.class);
         }
     }
 
     public enum EVampireKeybind {
         NONE("key.witchery.vampire.power.none.desc", Keyboard.KEY_MINUS, VampireCreatureTrait.Power.NONE),
-        DRINK("key.witchery.vampire.power.drink.desc", Keyboard.KEY_STOP, VampireCreatureTrait.Power.DRINK),
+        DRINK("key.witchery.vampire.power.drink.desc", Keyboard.KEY_PERIOD, VampireCreatureTrait.Power.DRINK),
         MESMERIZE("key.witchery.vampire.power.mesmerize.desc", Keyboard.KEY_COMMA, VampireCreatureTrait.Power.MESMERIZE),
         RUN("key.witchery.vampire.power.run.desc", Keyboard.KEY_M, VampireCreatureTrait.Power.SPEED),
         BAT("key.witchery.vampire.power.bat.desc", Keyboard.KEY_N, VampireCreatureTrait.Power.BAT),
@@ -84,7 +84,7 @@ public class ClientProxy extends CommonProxy {
 
         final String desc;
         final int keycode;
-        VampireCreatureTrait.Power power;
+        final VampireCreatureTrait.Power power;
 
         KeyBinding binding = null;
 
@@ -112,10 +112,10 @@ public class ClientProxy extends CommonProxy {
 
         public boolean trySelectAbility(VampireCreatureTrait transformation, int level) {
             if (
-                    transformation != null &&                                              // Transformation obj must be valid
-                    this.binding.isPressed() &&                                            // Keybinding has to be pressed
-                    transformation.getSelectedPower() != this.power &&                     // This power should not be already selected
-                    VampireCreatureTrait.Power.getMax(level).ordinal() >= this.ordinal()   // This power should be selectable by the current ability level
+                    transformation != null &&                                               // Transformation obj must be valid
+                    this.binding.isPressed() &&                                             // Keybinding has to be pressed
+                    transformation.getSelectedPower() != this.power &&                      // This power should not be already selected
+                    VampireCreatureTrait.Power.getMax(level).ordinal() >= this.ordinal()    // This power should be selectable by the current ability level
             ) {
                 transformation.setSelectedPower(this.power);
                 return true;
