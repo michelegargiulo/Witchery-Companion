@@ -421,6 +421,10 @@ public class ModConfig {
             @Config.Name("Circle Glyph - Fix Out Of Bounds Crash")
             public static boolean circleGlyph_fixOutOfBoundsCrash = true;
 
+            @Config.Comment("If true, prevents the Circle Glyph from being directly replaced by other blocks.")
+            @Config.Name("Circle Glyph - Prevent Being Replaced")
+            public static boolean circleGlyph_preventBeingReplaced = true;
+
             @Config.Comment("Fix an edge case where the coffin would not have a color associated with it, causing a crash.")
             @Config.Name("Coffin - Fix Edge Case Crash")
             public static boolean coffin_fixEdgeCrash = true;
