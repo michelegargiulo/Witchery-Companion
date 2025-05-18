@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.msrandom.witchery.block.BlockCircleGlyph;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -37,6 +38,7 @@ public abstract class BlockCircleGlyphMixin extends Block {
     }
 
     /** Prevent circle glyphs from being accidentally replaced by players. */
+    @Unique
     @Override
     public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
         return !ModConfig.PatchesConfiguration.BlockTweaks.circleGlyph_preventBeingReplaced && super.isReplaceable(worldIn, pos);
