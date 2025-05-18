@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /**
  Mixins:
  [Bugfix] Fix Out of Bounds crash when trying to retrieve state from meta using invalid meta
+ [Bugfix] Prevent circle glyphs from being accidentally replaced by players
  */
 @Mixin(BlockCircleGlyph.class)
 public abstract class BlockCircleGlyphMixin extends Block {
