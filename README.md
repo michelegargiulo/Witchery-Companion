@@ -16,9 +16,11 @@ jar in the resource packs folder.
   - **[Altar]** Fix Placed Items (Arthana, Pentacle, etc.) not dropping anything when breaking Altar blocks below them
   - **[Altar]** Fix client crash when the player joins a world where Placed Items are within view in the first frame
   - **[Altar]** Fix Altar multiblock not being assembled correctly, causing the Altar to provide multiple power sources
+  - **[Circle Glyphs]** Prevent circle glyphs from being accidentally replaced by players
   - **[Coffin]** Fix edge-case crash when placing the Coffin across chunk boundaries
   - **[Coffin]** Fix crash when piston moves the top block of the coffin
   - **[Cursed Blocks]** Fix crash when using trigger dispersal. ~They still don't work, but they should not crash the game~ Now it works, even on supported Tile Entities! Try cursing chests, pressure plates, doors and even Beds and Tripwires! More info on the Wiki
+  - **[Dream Weaver]** Fix their facing upon placement
   - **[Wolf Altar]** Fix fences connecting to the statue and buttons being able to be placed on it
   - **[Fetish]** Fix fetish blocks not having drops (Scarecrows, Trent Effiges, Vines)
   - **[Fetish]** Fix fetishes forgetting data on world reload, including the players they are bound to
@@ -78,7 +80,7 @@ jar in the resource packs folder.
 - **Infusions**
   - **[Soul Brews]** Fix losing Soul brews (so the Mystic Branch knowledge) upon death
 - **Fluids**
-  - **[Soul Brews]** Enable Forge Universal Bucket, otherwise fluids like Flowing Spirit could not be picked up (non configurable)
+  - **[Soul Brews]** Enable Forge Universal Bucket, otherwise fluids like Flowing Spirit could not be picked up (non-configurable)
 - **Items**
   - **[Cane Sword]** Fix regaining full durability upon sheathing/unsheathing
   - **[Icy Needle]** Fix having an effect only when right-clicking on a block

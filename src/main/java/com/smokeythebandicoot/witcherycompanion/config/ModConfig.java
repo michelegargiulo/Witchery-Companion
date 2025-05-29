@@ -378,9 +378,13 @@ public class ModConfig {
 
         public static class BlockTweaks {
 
-            @Config.Comment("Configuration for patches related to Books")
+            @Config.Comment("Configuration for patches related to Kettle")
             @Config.Name("Kettle Tweaks")
             public static KettleTweaks kettleTweaks;
+
+            @Config.Comment("Configuration for patches related to Dream Weavers")
+            @Config.Name("Dream Weaver Tweaks")
+            public static DreamweaverTweaks dreamweaverTweaks;
 
             @Config.Comment("Fix Alder Door rendering when disguised, as the rendering of the door does not reflect its state " +
                     "(for example it renders open while it is closed, etc.)")
@@ -678,6 +682,14 @@ public class ModConfig {
                     "makes the wolf trap impossible to relocate once placed")
             @Config.Name("Wolf Trap - Tweak Drop On Break")
             public static boolean wolfTrap_tweakDropOnBreak = false;
+
+            public static class DreamweaverTweaks {
+
+                @Config.Comment("If true, on placement, Dream weavers will face depending on the clicked block's orientation, " +
+                        "rather than the player's. Also fixes other minor placement issues.")
+                @Config.Name("Fix Placement")
+                public static boolean fixPlacement = true;
+            }
 
             public static class KettleTweaks {
 
