@@ -1,0 +1,7 @@
+{
+  "name": "Altar",
+  "description": "Harness and distribute the power of the nature",
+  "icon": "witchery:altar",
+  "sortnum": 7,
+  "secret": false
+}

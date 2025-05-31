@@ -1,0 +1,7 @@
+{
+  "name": "Distilling",
+  "description": "The practice of distillation",
+  "icon": "witchery:distillery",
+  "sortnum": 2,
+  "secret": false
+}

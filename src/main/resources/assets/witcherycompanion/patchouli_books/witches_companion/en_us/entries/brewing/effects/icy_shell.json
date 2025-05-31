@@ -1,0 +1,14 @@
+{
+  "name": "Icy Shell",
+  "icon": "witchery:frozen_heart",
+  "category": "brew_effects/level_5",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Icy Shell",
+      "item": "witchery:frozen_heart",
+      "text": "Forms a hollow icy sphere at the impact location. More power increases the radius. Can be used underwater to create breathable spaces."
+    }
+  ]
+}

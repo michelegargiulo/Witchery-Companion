@@ -1,0 +1,14 @@
+{
+  "name": "Love",
+  "icon": "minecraft:red_flower",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Love",
+      "item": "minecraft:red_flower",
+      "text": "$(item)Animals$(), $(item)Villagers$() and $(item)Zombies$() will try to mate."
+    }
+  ]
+}

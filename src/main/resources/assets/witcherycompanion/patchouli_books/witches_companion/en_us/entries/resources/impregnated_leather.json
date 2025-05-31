@@ -1,0 +1,13 @@
+{
+  "name": "Impregnated Leather",
+  "icon": "witchery:impregnated_leather",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:impregnated_leather",
+      "text": "Crafting ingredient made by impregnating the leather with magical ingredients."
+    }
+  ]
+}

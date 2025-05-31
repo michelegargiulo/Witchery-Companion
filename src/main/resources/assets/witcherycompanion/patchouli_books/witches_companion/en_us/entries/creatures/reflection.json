@@ -1,0 +1,20 @@
+{
+  "name": "Reflection",
+  "icon": "witchery:mirror",
+  "category": "creatures",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:reflection",
+      "text": "Mirror Demon.",
+      "offset": 0.1,
+      "scale": 1
+    },
+    {
+      "type": "text",
+      "title": "Reflection",
+      "text": "A Reflection is a type of Demon that has been bound to a $(l:artifacts/devices/mirror)Magic Mirror$(/l). The Demon will take on the form of the player who is closest to it, using their armor and weapons (and sometimes other abilities) against them. It is possible to pull such a Demon from their Mirror, by performing a $(l:circle_magic/banishing/summon_reflection)Rite of Summoning$(/l) on the mirror."
+    }
+  ]
+}

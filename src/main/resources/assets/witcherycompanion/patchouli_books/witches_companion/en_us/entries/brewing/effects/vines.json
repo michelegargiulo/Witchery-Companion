@@ -1,0 +1,14 @@
+{
+  "name": "Vines",
+  "icon": "minecraft:vine",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Vines",
+      "item": "minecraft:vine",
+      "text": "Creatues climbable vines on a solid surface, at higher levels will even extend the vines from the ground to through the air. Creatures hit will become more flammable."
+    }
+  ]
+}

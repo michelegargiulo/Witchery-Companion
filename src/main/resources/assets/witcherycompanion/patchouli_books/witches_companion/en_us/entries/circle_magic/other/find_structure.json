@@ -1,0 +1,15 @@
+{
+  "name": "Find Structure",
+  "icon": "minecraft:emerald",
+  "category": "circle_magic/other",
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "circle_magic/other_rites",
+      "circles": "tiny_ritual",
+      "title": "Find Structure",
+      "description": "Summon a spirit that flies towards the closest $(item)Village$() or $(item)Nether Fortress$()",
+      "ingredients": "witchery:attuned_stone,witchery:subdued_spirit"
+    }
+  ]
+}

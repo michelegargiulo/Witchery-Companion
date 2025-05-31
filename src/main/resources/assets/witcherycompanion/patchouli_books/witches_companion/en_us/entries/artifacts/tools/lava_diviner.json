@@ -1,0 +1,13 @@
+{
+  "name": "Lava Diviner",
+  "icon": "witchery:lava_diviner",
+  "category": "artifacts/tools",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:lava_diviner",
+      "text": "A Lava Diviner is a helpful tool that is able to locate underground lava pools. Simply use and hold until a sound is played. Black smoke will appear in case of negative search, white smoke otherwise."
+    }
+  ]
+}

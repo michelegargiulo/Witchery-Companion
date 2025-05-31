@@ -1,0 +1,20 @@
+{
+  "name": "Strength / Weakness",
+  "icon": "minecraft:blaze_powder",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Strength",
+      "item": "minecraft:blaze_powder",
+      "text": "Increases the attack damage of a creature."
+    },
+    {
+      "type": "spotlight",
+      "title": "Weakness",
+      "item": "minecraft:fermented_spider_eye",
+      "text": "$(l:brewing/modifiers)Inverted:$(/l)$(br)Reduces the attack damage of a creature."
+    }
+  ]
+}

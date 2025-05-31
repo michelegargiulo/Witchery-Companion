@@ -1,0 +1,29 @@
+{
+  "components": [
+    {
+      "type": "item",
+      "item": "#input",
+      "x": 16,
+      "y": 4
+    },
+    {
+      "type": "item",
+      "item": "#output",
+      "x": 87,
+      "y": 4
+    },
+    {
+      "type": "image",
+      "image": "witcherycompanion:textures/patchouli/mutation.png",
+      "width": 120,
+      "height": 22,
+      "texture_width": 120,
+      "texture_height": 22,
+      "u": 0,
+      "v": 0,
+      "scale": 1,
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

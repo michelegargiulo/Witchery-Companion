@@ -1,0 +1,14 @@
+{
+  "name": "Overheating",
+  "icon": "witchery:ember_moss",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Overheating",
+      "item": "witchery:ember_moss",
+      "text": "Creatures under this effect tends to catch fire in hot biomes."
+    }
+  ]
+}

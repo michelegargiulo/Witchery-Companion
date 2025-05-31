@@ -1,0 +1,14 @@
+{
+  "name": "Drain Magic",
+  "icon": "witchery:condensed_fear",
+  "category": "brew_effects/level_6",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Drain Magic",
+      "item": "witchery:condensed_fear",
+      "text": "Drains the magical power from the victim."
+    }
+  ]
+}

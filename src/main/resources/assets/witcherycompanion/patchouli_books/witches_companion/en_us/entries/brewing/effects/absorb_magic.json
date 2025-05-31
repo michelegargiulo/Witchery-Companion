@@ -1,0 +1,14 @@
+{
+  "name": "Absorb Magic",
+  "icon": "witchery:magic_whiff",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Absorb Magic",
+      "item": "witchery:magic_whiff",
+      "text": "Convert magical damage into infusion power."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Effects",
+  "icon": "minecraft:blaze_powder",
+  "category": "brewing",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Effects",
+      "text": "Add after any $(l:brewing/power)power$(/l) and $(l:brewing/duration)duration$(/l) boost or $(l:brewing/modifiers)modifiers$(/l). Ensure that the brew has enough $(l:brewing/capacity)capacity$(/l).$(p)Visit the main page of the Brewing section to explore Brew Effects"
+    },
+    {
+      "type": "brewing/cauldron_effect_list",
+      "title": "Effects",
+      "effect_format": "$(8)>$() $(l:brewing/effects/level{level})Level {level} effects$(/l)$(br)",
+      "text": "Add after any $(l:brewing/power)power$(/l) and $(l:brewing/duration)duration$(/l) boost or $(l:brewing/modifiers)modifiers$(/l). Ensure that the brew has enough $(l:brewing/capacity)capacity$(/l).",
+      "flag": "false"
+    }
+  ]
+}

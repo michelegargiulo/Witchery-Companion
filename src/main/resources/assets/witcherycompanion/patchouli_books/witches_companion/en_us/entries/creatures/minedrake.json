@@ -1,0 +1,18 @@
+{
+  "name": "Minedrake",
+  "icon": "witchery:mindrake_bulb",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:mindrake",
+      "text": "Insane Mutants."
+    },
+    {
+      "type": "text",
+      "title": "Minedrake",
+      "text": "The Minedrake plant is the insane result of crossing a $(l:creatures/mandrake)Mandrake$(/l) with a $(item)Creeper$(). Arguably, it's one of the most dangerous of all the plant $(l:mutations/mindrake)mutations$(/l)!.$(p)Minedrakes will tend to awaken about 3 seconds after their seeds are left on the ground, and will target the player who tossed the seed, if any, or the closest player if otherwise."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Toe of Frog",
+  "icon": "witchery:frogs_toe",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:frogs_toe",
+      "text": "A common resource that can be dropped when a $(item)Toad$() is killed."
+    }
+  ]
+}

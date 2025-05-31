@@ -1,0 +1,98 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.ModifierBrewActionProcessor",
+  "include": [
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general8",
+      "using": {
+        "stack": "#stack8",
+        "description": "#description8"
+      },
+      "x": 4,
+      "y": 21
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general9",
+      "using": {
+        "stack": "#stack9",
+        "description": "#description9"
+      },
+      "x": 4,
+      "y": 38
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general10",
+      "using": {
+        "stack": "#stack10",
+        "description": "#description10"
+      },
+      "x": 4,
+      "y": 55
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general11",
+      "using": {
+        "stack": "#stack11",
+        "description": "#description11"
+      },
+      "x": 4,
+      "y": 72
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general12",
+      "using": {
+        "stack": "#stack12",
+        "description": "#description12"
+      },
+      "x": 4,
+      "y": 89
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general13",
+      "using": {
+        "stack": "#stack13",
+        "description": "#description13"
+      },
+      "x": 4,
+      "y": 106
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general14",
+      "using": {
+        "stack": "#stack14",
+        "description": "#description14"
+      },
+      "x": 4,
+      "y": 123
+    },
+    {
+      "template": "brewing/inclusion/brew_action",
+      "as": "modifier_brew_general15",
+      "using": {
+        "stack": "#stack15",
+        "description": "#description15"
+      },
+      "x": 4,
+      "y": 140
+    }
+  ],
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    }
+  ]
+}

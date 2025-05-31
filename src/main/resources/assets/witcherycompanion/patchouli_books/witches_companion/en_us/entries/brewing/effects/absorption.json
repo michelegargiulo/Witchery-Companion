@@ -1,0 +1,14 @@
+{
+  "name": "Absorption",
+  "icon": "minecraft:golden_apple",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Absorption",
+      "item": "minecraft:golden_apple",
+      "text": "Creatures will find they are able to absorb slightly more damage."
+    }
+  ]
+}

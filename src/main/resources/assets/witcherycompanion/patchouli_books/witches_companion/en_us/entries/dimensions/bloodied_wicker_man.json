@@ -1,0 +1,35 @@
+{
+  "name": "Bloodied Wicker Man",
+  "icon": "witchery:bloodied_wicker_bundle",
+  "category": "dimensions",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Bloodied Wicker Man",
+      "text": "The $(item)Bloodied Wicker Man$() is an artificial, human-looking structures built out of $(item)Bloodied Wicker Bundles$(). Lighting the structure on fire will attract powerful hunter creatures."
+    },
+    {
+      "type": "multiblock",
+      "name": "Stone Circle",
+      "multiblock": {
+        "pattern": [
+          [" FF "],
+          [" FF "],
+          ["HHHH"],
+          ["VHHV"],
+          ["FVVF"],
+          [" VV "],
+          [" V0 "]
+        ],
+        "mapping": {
+          "0": "witchery:bloodied_wicker_bundle[axis=z]",
+          "V": "witchery:bloodied_wicker_bundle[axis=z]",
+          "H": "witchery:bloodied_wicker_bundle[axis=y]",
+          "F": "witchery:bloodied_wicker_bundle[axis=x]"
+        },
+        "symmetrical": true
+      }
+    }
+  ]
+}

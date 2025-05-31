@@ -1,0 +1,13 @@
+{
+  "name": "Garlic",
+  "icon": "witchery:garlic",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:garlic",
+      "text": "A flavor for food at day, at night it keeps vampires away. It grows in tilled earth in stages. Tall grass yields seeds."
+    }
+  ]
+}

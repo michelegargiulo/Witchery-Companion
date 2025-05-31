@@ -1,0 +1,26 @@
+{
+  "name": "Spirit",
+  "icon": "witchery:subdued_spirit",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:spirit",
+      "text": "Glowing Ghosts.",
+      "rotate": false,
+      "default_rotation": -80,
+      "offset": -0.5,
+      "scale": 2
+    },
+    {
+      "type": "text",
+      "title": "Spirit",
+      "text": "Spirits are glowing creatures that spawn in and fly around the $(l:dimensions/spirit_world)Spirit World$(/l). When hit enough, the become $(l:artifacts/misc/subdued_spirit)Subdued Spirits$(/l) and may be picked up. Placing a Subdued Spirit wakens it again.$(p)Subdued Spirits can be carried back from the Spirit World to the Overworld."
+    },
+    {
+      "type": "text",
+      "text": "Spirits usually roam around the $(l:dimensions/spirit_world)Spirit World$(/l) and can only spawn there under proper conditions.$(br)Spirits can be attracted, similar to how animals are tempted towards food, to $(l:resources/clay_jars#focused_will)Focused Will$(/l)."
+    }
+  ]
+}

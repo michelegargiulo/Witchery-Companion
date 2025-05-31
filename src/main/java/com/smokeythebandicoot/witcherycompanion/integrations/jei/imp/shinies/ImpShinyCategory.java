@@ -1,7 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.shinies;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.infernalimp.InfernalImpApi;
+import com.smokeythebandicoot.witcherycompanion.api.InfernalImpApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeCategory;
 import mezz.jei.api.IGuiHelper;
@@ -22,7 +22,7 @@ import java.util.List;
 
 public class ImpShinyCategory extends BaseRecipeCategory<ImpShinyWrapper> {
 
-    public static String UID = WitcheryCompanion.MODID + ":imp_shiny";
+    public static String UID = WitcheryCompanion.prefix("imp_shiny");
     public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/imp_shiny.png");
     public static ResourceLocation iconTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/imp_shiny_icon.png");
 

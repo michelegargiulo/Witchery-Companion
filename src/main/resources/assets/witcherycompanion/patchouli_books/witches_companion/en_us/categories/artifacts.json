@@ -1,0 +1,7 @@
+{
+  "name": "Artifacts",
+  "description": "A compendium about the most common mystical devices a Witch must know about",
+  "icon": "witchery:poppet_shelf",
+  "sortnum": 11,
+  "secret": false
+}

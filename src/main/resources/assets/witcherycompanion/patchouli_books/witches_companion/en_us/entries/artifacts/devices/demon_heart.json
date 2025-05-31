@@ -1,0 +1,28 @@
+{
+  "name": "Demon Heart",
+  "icon": "witchery:demon_heart",
+  "category": "artifacts/devices",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:demon_heart",
+      "text": "The heart of a $(l:creatures/demon)Demon$(/l) is a powerful and entirely evil thing; It is the main ingredient when creating an $(l:kettle/infernal_infusion)Infernal Infusion$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Obtaining Demon Hearts",
+      "text": "A Demon Heart can be acquired either by bargaining with a Demon or by killing one.$(br)To maximize the chances of a Demon dropping a heart when it dies, the killing blow should be inflicted with an $(l:artifacts/weapons/arthana)Arthana$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Eating Demon Hearts",
+      "text": "Eating a Demon Heart will grant the powers of a Demon. Beware however that the human form is not designed to hold such power, nor cope with the constant $(item)Hunger$() that demons possess. Be especially cautious when the effects wear off!"
+    },
+    {
+      "type": "text",
+      "title": "Placing the Heart",
+      "text": "A Demon Heart can also be placed in the world by sneak right-clicking on a block. A placed Heart can provide $(l:altar/altar#power)Power$(/l) to an $(l:altar/altar)Altar$(/l) and can also influence $(l:dimensions/spirit_world#worse_nightmares)Dreaming$(/l)"
+    }
+  ]
+}

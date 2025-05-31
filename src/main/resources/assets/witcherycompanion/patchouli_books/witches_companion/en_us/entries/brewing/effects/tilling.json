@@ -1,0 +1,14 @@
+{
+  "name": "Tilling",
+  "icon": "minecraft:dirt",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Tilling",
+      "item": "minecraft:dirt",
+      "text": "Tills any applicable blocks in an area into farmland."
+    }
+  ]
+}

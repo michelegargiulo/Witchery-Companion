@@ -1,0 +1,14 @@
+{
+  "name": "Curse of Hell on Earth",
+  "icon": "minecraft:dye:0",
+  "category": "circle_magic/curses",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:earth_hell_curse",
+      "title": "Curse of Hell on Earth",
+      "description": "Only works in the Overworld at night, requires 200 power/second."
+    }
+  ]
+}

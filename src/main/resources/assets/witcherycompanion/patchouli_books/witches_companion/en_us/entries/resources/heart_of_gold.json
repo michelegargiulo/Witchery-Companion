@@ -1,0 +1,13 @@
+{
+  "name": "Heart of Gold",
+  "icon": "witchery:golden_heart",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:golden_heart",
+      "text": "Only those who enjoy exceptional inner beauty could also have outer beauty. Legend has it that the Demon inside of the $(l:artifacts/devices/mirror)Mirror$(/l) may know a person, the $(l:creatures/fairest)Fairest one of all$(/l), who could possess unprecedented beauty and a $(item)Heart made of Gold$()."
+    }
+  ]
+}

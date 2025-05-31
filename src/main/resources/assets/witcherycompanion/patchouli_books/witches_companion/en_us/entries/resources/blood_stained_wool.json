@@ -1,0 +1,13 @@
+{
+  "name": "Blood-stained Wool",
+  "icon": "witchery:blood_stained_wool",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:blood_stained_wool",
+      "text": "A $(item)Wool$() block that has been splattered with $(l:observations/vampirism)Vampire$(/l) blood. Can be smelted ino $(l:resources/woven_cruor)Woven Cruor$(/l)."
+    }
+  ]
+}

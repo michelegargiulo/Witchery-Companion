@@ -1,0 +1,28 @@
+{
+  "name": "Rite of Protection",
+  "icon": "minecraft:shield",
+  "category": "circle_magic/protection",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:protection",
+      "title": "Rite of Protection",
+      "description": "Conjure a dome, impenetrable to monsters. Lasts indefinitely.",
+      "note": "Requires 24 power/second"
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:large_protection",
+      "title": "Rite of Protection",
+      "description": "Conjure a dome, impenetrable to all. Lasts indefinitely.",
+      "note": "Requires 28 power/second"
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:portable_protection",
+      "title": "Rite of Protection",
+      "description": "Conjure an impenetrable dome for 60 seconds."
+    }
+  ]
+}

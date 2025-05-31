@@ -1,0 +1,135 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.CauldronRecipeProcessor",
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "separator",
+      "y": 12
+    },
+    {
+      "type": "text",
+      "text": "#description",
+      "x": 2,
+      "y": 20
+    },
+    {
+      "type": "custom",
+      "class": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components.IngredientListComponent",
+      "inputs": [
+        "#first_recipe_inputs"
+      ],
+      "output": "#first_recipe_output",
+      "x": 0,
+      "y": 56,
+      "spacing": 2,
+      "output_offset_x": 70,
+      "output_offset_y": 24
+    },
+    {
+      "type": "image",
+      "image": "witchery:textures/gui/cauldron.png",
+      "width": 26,
+      "height": 24,
+      "texture_width": 26,
+      "texture_height": 24,
+      "x": 16,
+      "y": 72
+    },
+    {
+      "type": "text",
+      "text": "$(5)+#first_recipe_power# Power$()",
+      "flag": "witcherycompanion:brewing/show_power",
+      "x": 50,
+      "y": 72
+    },
+    {
+      "type": "colored_image",
+      "image": "witchery:textures/gui/cauldron_water.png",
+      "red": 0.89,
+      "green": 0.134,
+      "blue": 0.777,
+      "alpha": 1.0,
+      "width": 26,
+      "height": 24,
+      "texture_width": 26,
+      "texture_height": 24,
+      "x": 16,
+      "y": 72
+    },
+    {
+      "type": "image",
+      "image": "witchery:textures/gui/arrow.png",
+      "width": 25,
+      "height": 15,
+      "texture_width": 25,
+      "texture_height": 15,
+      "x": 44,
+      "y": 80
+    },
+    {
+      "type": "custom",
+      "class": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components.IngredientListComponent",
+      "inputs": [
+        "#second_recipe_inputs"
+      ],
+      "output": "#second_recipe_output",
+      "group": "second_recipe",
+      "x": 0,
+      "y": 108,
+      "spacing": 2,
+      "output_offset_x": 70,
+      "output_offset_y": 24
+    },
+    {
+      "type": "image",
+      "image": "witchery:textures/gui/cauldron.png",
+      "width": 26,
+      "height": 24,
+      "texture_width": 26,
+      "texture_height": 24,
+      "group": "second_recipe",
+      "x": 16,
+      "y": 124
+    },
+    {
+      "type": "text",
+      "text": "$(5)+#second_recipe_power# Power$()",
+      "group": "second_recipe",
+      "flag": "witcherycompanion:brewing/show_power",
+      "x": 50,
+      "y": 124
+    },
+    {
+      "type": "colored_image",
+      "image": "witchery:textures/gui/cauldron_water.png",
+      "group": "second_recipe",
+      "red": 0.89,
+      "green": 0.134,
+      "blue": 0.777,
+      "alpha": 1.0,
+      "width": 26,
+      "height": 24,
+      "texture_width": 26,
+      "texture_height": 24,
+      "x": 16,
+      "y": 124
+    },
+    {
+      "type": "image",
+      "image": "witchery:textures/gui/arrow.png",
+      "width": 25,
+      "height": 15,
+      "texture_width": 25,
+      "texture_height": 15,
+      "group": "second_recipe",
+      "x": 44,
+      "y": 132
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Void Bramble",
+  "icon": "witchery:void_bramble",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:void_bramble",
+      "text": "This strange bramble keeps creatures at bay; for when they get close it teleports them away. Created and fueled with magic no rituals will function near to it."
+    }
+  ]
+}

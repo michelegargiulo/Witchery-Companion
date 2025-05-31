@@ -1,0 +1,14 @@
+{
+  "name": "Wispy Cotton",
+  "icon": "witchery:wispy_cotton",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:wispy_cotton",
+      "text": "A make-believe plant that only grows, in the deepest of sleep, where one dreams go.",
+      "anchor": "wispy_cotton"
+    }
+  ]
+}

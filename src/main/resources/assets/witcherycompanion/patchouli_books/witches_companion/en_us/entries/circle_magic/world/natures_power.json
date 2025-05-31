@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Nature's Power",
+  "icon": "minecraft:leaves",
+  "category": "circle_magic/world",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:fertility",
+      "title": "Rite of Nature's Power",
+      "description": "release nature on a barren area."
+    }
+  ]
+}

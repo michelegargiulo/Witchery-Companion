@@ -1,0 +1,7 @@
+{
+  "name": "Curses",
+  "description": "Special rites that decays the soul of nearby creatures or the world itself.",
+  "icon": "minecraft:skull:1",
+  "parent": "circle_magic",
+  "secret": false
+}

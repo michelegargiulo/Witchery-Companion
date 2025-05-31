@@ -1,0 +1,61 @@
+{
+  "processor": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.processors.BrazierRecipeProcessor",
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -1,
+      "scale": 0.9
+    },
+    {
+      "type": "separator",
+      "y": 20
+    },
+    {
+      "type": "text",
+      "text": "#description",
+      "x": 0,
+      "y": 28
+    },
+    {
+      "type": "custom",
+      "class": "com.smokeythebandicoot.witcherycompanion.integrations.patchouli.components.IngredientListComponent",
+      "inputs": [
+        "#inputs"
+      ],
+      "input_spacing": 2,
+      "output": "minecraft:air",
+      "output_offset_x": 70,
+      "output_offset_y": 24,
+      "x": 27,
+      "y": 60
+    },
+    {
+      "type": "image",
+      "image": "witcherycompanion:textures/patchouli/brazier_icon.png",
+      "width": 26,
+      "height": 24,
+      "texture_width": 26,
+      "texture_height": 24,
+      "x": 40,
+      "y": 76
+    },
+    {
+      "type": "text",
+      "text": "$(t:#secret_tooltip#)$(4)#secret_text#$()",
+      "guard": "#is_secret",
+      "x": 2,
+      "y": 120
+    },
+    {
+      "type": "text",
+      "text": "Also summons: $(d)#extra_entity#$()",
+      "flag": "witcherycompanion:conjuring/show_extra",
+      "guard": "#has_extra_entity",
+      "x": 2,
+      "y": 130
+    }
+  ]
+}

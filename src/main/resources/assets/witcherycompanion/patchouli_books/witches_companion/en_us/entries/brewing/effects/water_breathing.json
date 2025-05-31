@@ -1,0 +1,14 @@
+{
+  "name": "Water Breathing",
+  "icon": "minecraft:fish:3",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Water Breathing",
+      "item": "minecraft:fish:3",
+      "text": "Allows a creature to breathe underwater without running out of air."
+    }
+  ]
+}

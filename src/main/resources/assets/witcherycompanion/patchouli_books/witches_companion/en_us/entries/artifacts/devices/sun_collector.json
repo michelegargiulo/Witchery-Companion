@@ -1,0 +1,13 @@
+{
+  "name": "Sun Collector",
+  "icon": "witchery:sun_collector",
+  "category": "artifacts/devices",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:sun_collector",
+      "text": "The Sun Collector is a special device that is able to infuse sunlight into mundane objects, like $(l:resources/quartz_sphere)Quartz Spheres$(/l). An adjacent $(item)Daylight Sensor$() is required to start collecting sunlight. The collector will absorb sunlight during the day, slowly converting Quartz Spheres to $(l:artifacts/weapons/sun_grenade)Sun Grenades$(/l)."
+    }
+  ]
+}

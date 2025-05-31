@@ -2,12 +2,17 @@ package com.smokeythebandicoot.witcherycompanion;
 
 import com.smokeybandicoot.witcherycompanion.Tags;
 import com.smokeythebandicoot.witcherycompanion.proxy.CommonProxy;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.Logger;
 import zone.rong.mixinbooter.ILateMixinLoader;
 
@@ -30,7 +35,7 @@ public class WitcheryCompanion implements ILateMixinLoader {
     public static final String MODCREDITS = "Ashley for Witchery: Resurrected and various contributions";
     public static final String MODURL = "";
     public static final String MODLOGO = "assets/witcherycompanion/logo.png";
-    public static final String MODDEPS = "required-before:witchery";
+    public static final String MODDEPS = "required-before:witchery;before:patchouli";
     public static final String MODDESCRIPTION = "A Companion mod for Witchery: Resurrected, patching bugs, adding " +
             "integrations and introducing modpack maker-oriented features";
 
@@ -42,6 +47,7 @@ public class WitcheryCompanion implements ILateMixinLoader {
     @SidedProxy(clientSide = "com.smokeythebandicoot.witcherycompanion.proxy.ClientProxy",
                 serverSide = "com.smokeythebandicoot.witcherycompanion.proxy.CommonProxy")
     public static CommonProxy proxy;
+
 
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event) {
@@ -68,10 +74,35 @@ public class WitcheryCompanion implements ILateMixinLoader {
         proxy.init(event);
     }
 
+    public void onLoad(FMLLoadCompleteEvent event) {
+        proxy.load(event);
+    }
+
+    @EventHandler
+    public void onServerStarting(FMLServerStartingEvent event) {
+        proxy.serverStarting(event);
+    }
+
+
     @Override
     public List<String> getMixinConfigs() {
         List<String> configs = new ArrayList<>();
+
+        // Base
         configs.add("mixins.witcherycompanion.json");
+
+        // Baubles
+        if (Loader.isModLoaded(Mods.BAUBLES))
+            configs.add("mixins.witcherycompanion.baubles.json");
+
         return configs;
+    }
+
+    public static String prefix(String text) {
+        return WitcheryCompanion.MODID + ":" + (text == null ? "<null>" : text);
+    }
+
+    static {
+        FluidRegistry.enableUniversalBucket();
     }
 }

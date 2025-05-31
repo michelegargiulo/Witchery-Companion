@@ -1,0 +1,14 @@
+{
+  "name": "Grow Alder",
+  "icon": "witchery:alder_sapling",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Grow Alder",
+      "item": "witchery:alder_sapling",
+      "text": "Causes an Alder tree to grow. Larger trees can be grown by increasing the power level of the effect."
+    }
+  ]
+}

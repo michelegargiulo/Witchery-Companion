@@ -1,0 +1,29 @@
+{
+  "name": "Parasytic Louse",
+  "icon": "witchery:parasytic_louse",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:parasytic_louse",
+      "text": "Plant-Silverfish hybrid.",
+      "scale": 0.85
+    },
+    {
+      "type": "text",
+      "title": "Parasytic Louse",
+      "text": "Similar to $(item)Silverfish$(), this parasyte will move towards and try to bite whoever is near. Its bite does almost no damage, and are so fragile that a small hit can kill them. They can be picked up by interacting with them, and placed back down by placing them on a block.$(br)The Louse can be obtained with a $(l:mutations/parasytic_louse)Mutation$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Potion Hunger",
+      "text": "The Parasytic Louse can be fed any drinkable $(item)Potion$() by crafting them together. When the Parasytic Louse will bite another creature, it will apply the potion effect to them."
+    },
+    {
+      "type": "text",
+      "title": "Reactive Defence",
+      "text": "A Potion-fed Louse that is in a player's hotbar will defend its owner. When the player is hit, the Louse will bite the player if it has been fed with a beneficial Potion, or the attacker otherwise. If more Parasytic Louses are present in the hotbar, only one will bite per hit."
+    }
+  ]
+}

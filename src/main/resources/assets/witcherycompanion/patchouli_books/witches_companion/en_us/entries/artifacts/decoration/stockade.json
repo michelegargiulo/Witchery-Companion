@@ -1,0 +1,15 @@
+{
+  "name": "Stockade",
+  "icon": "witchery:oak_stockade",
+  "category": "artifacts/decoration",
+  "read_by_default": true,
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "artifacts/extended_decorative_set",
+      "title": "Stockades",
+      "ingredients": "witchery:oak_stockade;witchery:spruce_stockade;witchery:birch_stockade;witchery:jungle_stockade;witchery:acacia_stockade;witchery:dark_oak_stockade;witchery:rowan_stockade;witchery:alder_stockade;witchery:hawthorn_stockade;witchery:ice_stockade",
+      "description": "The Stockade is a barrier with a spike on top. Can be used as robust fencing, as it's rather hard to break. Creatures falling onto the spiked top will take damage. They came in several variants, differing only in their aspect."
+    }
+  ]
+}

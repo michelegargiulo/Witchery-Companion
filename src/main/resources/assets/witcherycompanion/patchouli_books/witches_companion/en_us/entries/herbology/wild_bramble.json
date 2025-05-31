@@ -1,0 +1,13 @@
+{
+  "name": "Wild Bramble",
+  "icon": "witchery:wild_bramble",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:wild_bramble",
+      "text": "This thorny bramble spreads around, when you try to pull it down. Mutate this plant from $(item)Cactus$() and $(l:herbology/spanish_moss)spanish moss$(/l)."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Rite of Broken Earth",
+  "icon": "minecraft:dirt:1",
+  "category": "circle_magic/world",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:broken_earth",
+      "title": "Rite of Broken Earth",
+      "description": "Part the earth, the position of the foci controls the direction."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Poison Weapons",
+  "icon": "minecraft:red_mushroom",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Poison Weapons",
+      "item": "minecraft:red_mushroom",
+      "text": "Attacks from an entity, under the influence of this effect, will cause poison to their target."
+    }
+  ]
+}

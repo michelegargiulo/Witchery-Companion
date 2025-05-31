@@ -1,0 +1,13 @@
+{
+  "name": "Glass Goblet",
+  "icon": "witchery:glass_goblet",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:glass_goblet",
+      "text": "A Glass Goblet is used to collect $(item)Blood$() for various uses. While the Goblet is mundane by itself, when $(l:artifacts/misc/filled_glass_goblet)filled$(/l) it has more interesting uses."
+    }
+  ]
+}

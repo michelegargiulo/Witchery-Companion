@@ -2,14 +2,16 @@ package com.smokeythebandicoot.witcherycompanion.mixins_early.minecraft.entity.p
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.player.IEntityPlayerAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.vanillaaccessors.player.IEntityPlayerAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Loader;
 import net.msrandom.witchery.init.WitcheryPotionEffects;
+import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -58,7 +60,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
         // If Aqua Acrobatics mod is loaded, then do not perform this. AA compat
         // is handled on the AA side
         if (!ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers ||
-                Loader.isModLoaded("aquaacrobatics")) {
+                Loader.isModLoaded(Mods.AQUAACROBATICS)) {
             return;
         }
 
@@ -87,7 +89,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
         } else {
             witchery_Patcher$currentResizingScale = 1.0f;
         }
-        this.stepHeight = witchery_Patcher$currentResizingScale * 0.5f;
+        this.stepHeight = witchery_Patcher$currentResizingScale * 0.6f;
 
         // Account for transformation when computing size
         // Those params are set in ShapeShiftMixin class
@@ -112,63 +114,64 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
     /** This Mixin updates player eye height by cancelling Witchery ASM-injected call to ResizingUtils.getPlayerEyeHeight
      * and replacing it with a version that uses the injected variables. This patch
      *  disables itself if Aqua Acrobatic is loaded, as it is handled on AA side */
+    @Dynamic("Injection point added by Witchery")
     @WrapOperation(method = "getEyeHeight", remap = true, at = @At(value = "INVOKE", remap = false,
             target = "Lnet/msrandom/witchery/util/ResizingUtils;getPlayerEyeHeight(Lnet/minecraft/entity/player/EntityPlayer;F)F"))
     private float updateEyeHeightBeforeWitcheryAsm(EntityPlayer player, float eyeHeight, Operation<Float> original) {
         if (!ModConfig.PatchesConfiguration.PotionTweaks.resizing_fixEffectOnPlayers ||
-                Loader.isModLoaded("aquaacrobatics")) {
+                Loader.isModLoaded(Mods.AQUAACROBATICS)) {
             return original.call(player, eyeHeight);
         }
         return eyeHeight;
     }
 
     @Override
-    public float accessor_getCurrentResizingScale() {
+    public float witcherycompanion$accessor$getCurrentResizingScale() {
         return witchery_Patcher$currentResizingScale;
     }
 
     @Override
-    public void accessor_setCurrentResizingScale(float scale) {
+    public void witcherycompanion$accessor$setCurrentResizingScale(float scale) {
         this.witchery_Patcher$currentResizingScale = scale;
     }
 
     @Override
-    public float accessor_getCurrentFormWidthScale() {
+    public float witcherycompanion$accessor$getCurrentFormWidthScale() {
         return witchery_Patcher$currentFormWidthScale;
     }
 
     @Override
-    public void accessor_setCurrentFormWidthScale(float scale) {
+    public void witcherycompanion$accessor$setCurrentFormWidthScale(float scale) {
         this.witchery_Patcher$currentFormWidthScale = scale;
     }
 
     @Override
-    public float accessor_getCurrentFormHeightScale() {
+    public float witcherycompanion$accessor$getCurrentFormHeightScale() {
         return witchery_Patcher$currentFormHeightScale;
     }
 
     @Override
-    public void accessor_setCurrentFormHeightScale(float scale) {
+    public void witcherycompanion$accessor$setCurrentFormHeightScale(float scale) {
         this.witchery_Patcher$currentFormHeightScale = scale;
     }
 
     @Override
-    public float accessor_getCurrentFormEyeHeightScale() {
+    public float witcherycompanion$accessor$getCurrentFormEyeHeightScale() {
         return witchery_Patcher$currentFormEyeHeightScale;
     }
 
     @Override
-    public void accessor_setCurrentFormEyeHeightScale(float scale) {
+    public void witcherycompanion$accessor$setCurrentFormEyeHeightScale(float scale) {
         this.witchery_Patcher$currentFormEyeHeightScale = scale;
     }
 
     @Override
-    public float accessor_getCurrentFormStepHeightScale() {
+    public float witcherycompanion$accessor$getCurrentFormStepHeightScale() {
         return witchery_Patcher$currentFormStepHeightScale;
     }
 
     @Override
-    public void accessor_setCurrentFormStepHeightScale(float scale) {
+    public void witcherycompanion$accessor$setCurrentFormStepHeightScale(float scale) {
         this.witchery_Patcher$currentFormStepHeightScale = scale;
     }
 

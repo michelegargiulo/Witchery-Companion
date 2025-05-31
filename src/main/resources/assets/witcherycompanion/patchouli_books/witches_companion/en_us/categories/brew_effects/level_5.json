@@ -1,0 +1,8 @@
+{
+  "name": "Level 5 effects",
+  "description": "",
+  "parent": "brewing",
+  "icon": "minecraft:ender_eye",
+  "sortnum": 5,
+  "secret": false
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Grue's Prey",
+  "icon": "minecraft:soul_sand",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Grue's Prey",
+      "item": "minecraft:soul_sand",
+      "text": "Causes creatures under this effect to suffer damage in darkness. The power determines how dark it needs to be. More power causes damage in better-lit environments."
+    }
+  ]
+}

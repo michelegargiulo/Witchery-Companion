@@ -1,0 +1,7 @@
+{
+  "name": "Witches' Brews",
+  "description": "The definitive guide to Witch's Cauldrons and potion brewing",
+  "icon": "witchery:cauldron",
+  "sortnum": 0,
+  "secret": false
+}

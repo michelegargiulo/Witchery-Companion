@@ -1,0 +1,15 @@
+{
+  "name": "Repell Attacker",
+  "icon": "witchery:ender_bramble",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "flag": "witcherycompanion:brew_effects/show_repellattacker",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Repell Attacker",
+      "item": "witchery:ender_bramble",
+      "text": "Creatures that attack a creature affected by this effect will be pushed back at each hit they land."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Curse of Waking Nightmare",
+  "icon": "witchery:nightmares_dream_weaver",
+  "category": "circle_magic/curses",
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:waking_nightmare_curse",
+      "title": "Curse of Waking Nightmare",
+      "description": "Curse the taglocked being with nightmares. Perform during a storm."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:waking_nightmare_curse_removal",
+      "title": "Rite of Remove Curse",
+      "description": "Cleanse the taglocked being of nightmares. Things may get worse."
+    }
+  ]
+}

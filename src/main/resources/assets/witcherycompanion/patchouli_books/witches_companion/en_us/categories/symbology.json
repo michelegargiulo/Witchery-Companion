@@ -1,0 +1,7 @@
+{
+  "name": "Symbology",
+  "description": "Drawing mystic symbols to cast spells",
+  "icon": "witchery:mystic_branch",
+  "sortnum": 5,
+  "secret": false
+}

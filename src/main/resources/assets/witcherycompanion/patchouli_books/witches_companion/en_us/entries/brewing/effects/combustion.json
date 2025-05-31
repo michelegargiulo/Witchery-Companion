@@ -1,0 +1,15 @@
+{
+  "name": "Combustion",
+  "icon": "minecraft:coal:1",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Combustion",
+      "item": "minecraft:coal:1",
+      "text": "Creates a potion that may be used as a fuel source in furnaces. The higher the power the longer the burn.$(p)$(italic)Cannot be combined with other effects.$()"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Modifiers",
+  "icon": "minecraft:fermented_spider_eye",
+  "category": "brewing",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "brewing/cauldron_modifiers_general",
+      "title": "Modifiers: General",
+      "text": "Those modifiers change the following effect. Add modifier before the effect",
+      "modifier_type": "effect",
+      "no_particles_description": "No Particles",
+      "invert_description": "Invert effect",
+      "skip_blocks_description":  "Skip Blocks",
+      "skip_entities_description": "Skip Entities",
+      "disable_limit_description":  "Disable Power Limit",
+      "secret_text": "$(br)$(t:This item is secret. Does not show in this book for a Player who didn't use it in a brew before)$(4)Secret$()$(/t)"
+    },
+    {
+      "type": "brewing/cauldron_modifiers_quaffing",
+      "title": "Modifiers: Quaffing",
+      "text": "Each quaffing bonus can be added once, before all effects, for a cumulative boost.",
+      "modifier_type": "quaffing",
+      "quaffing_description": "Faster quaffing ({level})",
+      "secret_text": "$(br)$(t:This item is secret. Does not show in this book for a Player who didn't use it in a brew before)$(4)Secret$()$(/t)"
+    },
+    {
+      "type": "brewing/cauldron_modifiers_colors1",
+      "title": "Modifiers: Color",
+      "text": "Change brew color.",
+      "modifier_type": "color",
+      "color_description": "{color}",
+      "secret_text": "$(br)$(t:This item is secret. Does not show in this book for a Player who didn't use it in a brew before)$(4)Secret$()$(/t)"
+    },
+    {
+      "type": "brewing/cauldron_modifiers_colors2",
+      "title": "Modifiers: Color",
+      "text": "Change brew color.",
+      "modifier_type": "color",
+      "color_description": "{color}",
+      "secret_text": "$(br)$(t:This item is secret. Does not show in this book for a Player who didn't use it in a brew before)$(4)Secret$()$(/t)"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Blood Poppy",
+  "icon": "witchery:blood_poppy",
+  "category": "mutations",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "multiblock",
+      "multiblock_id": "witchery:blood_poppy",
+      "name": "Blood Poppy",
+      "text": "The $(l:artifacts/traps/leech_chest)Leech Chest$(/l) in the middle must be empty."
+    }
+  ]
+}

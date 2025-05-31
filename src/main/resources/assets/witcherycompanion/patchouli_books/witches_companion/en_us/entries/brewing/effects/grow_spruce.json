@@ -1,0 +1,14 @@
+{
+  "name": "Grow Spruce",
+  "icon": "minecraft:sapling:1",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Grow Spruce",
+      "item": "minecraft:sapling:1",
+      "text": "Causes a Spruce tree to grow. Larger trees can be grown by increasing the power level of the effect."
+    }
+  ]
+}

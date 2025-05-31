@@ -1,0 +1,16 @@
+{
+  "name": "Bind Waystone",
+  "icon": "witchery:waystone",
+  "category": "circle_magic/other",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "circle_magic/other_rites",
+      "circles": "tiny_otherwhere",
+      "title": "Bind Waystone",
+      "description": "Bind up to 8 $(l:artifacts/misc/waystone#bound)Waystones$(/l) to a position or one to a creature in the circle with $(l:altar/altar)Altar$(/l) power.",
+      "ingredients": "witchery:waystone",
+      "note": "Circles will explode"
+    }
+  ]
+}

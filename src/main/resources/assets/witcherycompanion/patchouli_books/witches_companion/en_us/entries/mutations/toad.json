@@ -1,0 +1,19 @@
+{
+  "name": "Toad",
+  "icon": "witchery:frogs_toe",
+  "category": "mutations",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "multiblock",
+      "multiblock_id": "witchery:toad",
+      "name": "Toad",
+      "text": "Entities must be inside the central $(item)Cobweb$()."
+    },
+    {
+      "type": "text",
+      "title": "Mutation Details",
+      "text": "Entities:$(br)$(8)>$() 1 Ocelot$(br)$(p)Notes:$(br)One $(l:herbology/grassper)Grassper$(/l) needs to hold a $(l:artifacts/misc/attuned_stone#charged)Charged Attuned Stone$(/l), and the other three $(l:artifacts/misc/mutandis#extremis)Mutandis Extremis$(/l)$(p)Snares must be $(l:herbology/critter_snare)Slime Critter Snare$(/l)."
+    }
+  ]
+}

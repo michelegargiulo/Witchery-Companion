@@ -1,0 +1,13 @@
+{
+  "name": "Tongue of Dog",
+  "icon": "witchery:dog_tongue",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:dog_tongue",
+      "text": "A common resource that can be dropped when a $(item)Wolf$() or $(item)Dog$() is killed. Using an $(l:artifacts/weapons/arthana)Arthana$(/l) increases its drop rate."
+    }
+  ]
+}

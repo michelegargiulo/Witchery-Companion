@@ -42,6 +42,6 @@ public class GoblinTradeWrapper extends BaseRecipeWrapper {
 
     @Override
     public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-        minecraft.fontRenderer.drawString(professionName, 0, -12, 0x000000);
+        minecraft.fontRenderer.drawString(professionName, 0, -12, 0xffffff);
     }
 }

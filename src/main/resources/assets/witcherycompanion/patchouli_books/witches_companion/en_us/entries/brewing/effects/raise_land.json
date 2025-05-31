@@ -1,0 +1,15 @@
+{
+  "name": "Raise Land",
+  "icon": "minecraft:quartz",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "flag": "witcherycompanion:brew_effects/show_raiseland",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Raise Land",
+      "item": "minecraft:quartz",
+      "text": "Raises a small portion of ground in the air."
+    }
+  ]
+}

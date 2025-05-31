@@ -1,0 +1,13 @@
+{
+  "name": "Anointing Paste",
+  "icon": "witchery:anointing_paste",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:anointing_paste",
+      "text": "A special paste that can be smeared onto a regular $(item)Cauldron$() to turn it into a $(l:brewing/introduction#anointing_paste)Witches' Cauldron$(/l)."
+    }
+  ]
+}

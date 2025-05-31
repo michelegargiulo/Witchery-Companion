@@ -1,0 +1,14 @@
+{
+  "name": "Raising",
+  "icon": "minecraft:bone",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Raising",
+      "item": "minecraft:bone",
+      "text": "Summons undead creatures to assist the summoner."
+    }
+  ]
+}

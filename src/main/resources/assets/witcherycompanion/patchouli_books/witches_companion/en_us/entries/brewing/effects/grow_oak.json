@@ -1,0 +1,14 @@
+{
+  "name": "Grow Oak",
+  "icon": "minecraft:sapling:0",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Grow Oak",
+      "item": "minecraft:sapling:0",
+      "text": "Causes an Oak tree to grow. Larger trees can be grown by increasing the power level of the effect."
+    }
+  ]
+}

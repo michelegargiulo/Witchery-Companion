@@ -1,0 +1,13 @@
+{
+  "name": "Grassper",
+  "icon": "witchery:grassper",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:grassper",
+      "text": "A curious plant that holds whatever it is given. $(l:mutations/grassper)Mutate$(/l) this $()plant from Tall Grass and an $(item)Empty Chest$()."
+    }
+  ]
+}

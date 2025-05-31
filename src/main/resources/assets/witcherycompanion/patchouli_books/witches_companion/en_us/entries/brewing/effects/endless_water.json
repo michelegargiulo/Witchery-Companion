@@ -1,0 +1,14 @@
+{
+  "name": "Endless Water",
+  "icon": "minecraft:snow",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Endless Water",
+      "item": "minecraft:snow",
+      "text": "Provides an almost-endless supply of water. The higher the power of this effect, the more charges it has. One charge can be used to create a water block or fill a cauldron. A $(item)Dispenser$() can be used to fill or create water.$(p)$(italic)Cannot be combined with other effects.$()"
+    }
+  ]
+}

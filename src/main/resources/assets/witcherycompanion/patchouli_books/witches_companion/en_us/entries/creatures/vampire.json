@@ -1,0 +1,24 @@
+{
+  "name": "Vampire",
+  "icon": "witchery:white_coffin",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:vampire",
+      "text": "Blood-drinking Villagers",
+      "offset": 0.2,
+      "scale": 0.95
+    },
+    {
+      "type": "text",
+      "text": "Vampires are humans that have been cursed and converted to blood-drinking, immortal beings, by a transfusion of demon-tainted blood. Not only $(item)Villagers$() and $(l:creatures/village_guard)Village Guards$(/l), but $(item)Players$() can also be cursed with $(l:observations/vampirism)Vampirism$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Killing Vampires",
+      "text": "A vampire is very hard to kill, being immortal an all. $(item)Fire$(), $(item)sunlight$() or the attacks from $(l:creatures/werewolf)Werewolves$(/l) or other Vampires are the only known ways to kill one.$(p)A Vampire will typically stay near its $(l:artifacts/devices/coffin)Coffin$(/l) during the day, and at night will seek out the nearest village, and feed, returning to its Coffin when full."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Curse of Sinking",
+  "icon": "minecraft:anvil",
+  "category": "circle_magic/curses",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:sinking_curse",
+      "title": "Curse of Sinking",
+      "description": "Curse the taglocked being with extra weight. Perform during a storm."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:sinking_curse_removal",
+      "title": "Rite of Remove Curse",
+      "description": "Cleanse the taglocked being of sinking curse. Things may get worse."
+    }
+  ]
+}

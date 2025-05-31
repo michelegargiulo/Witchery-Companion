@@ -1,0 +1,13 @@
+{
+  "name": "Alder Door",
+  "icon": "witchery:alder_door",
+  "category": "artifacts/devices",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:alder_door",
+      "text": "An Alder Door acts like a normal wooden door, except for its disguising capability and $(item)Redstone$() behaviour. The Alder Door can be crafted together with another mundane door to absorb its appearance. When a creature opens the door, it will generate a $(item)Redstone Signal$() instead of reacting to it."
+    }
+  ]
+}

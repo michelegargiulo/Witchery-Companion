@@ -1,0 +1,14 @@
+{
+  "name": "Grow Hawthorn",
+  "icon": "witchery:hawthorn_sapling",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Grow Hawthorn",
+      "item": "witchery:hawthorn_sapling",
+      "text": "Causes a Hawthorn tree to grow. Larger trees can be grown by increasing the power level of the effect."
+    }
+  ]
+}

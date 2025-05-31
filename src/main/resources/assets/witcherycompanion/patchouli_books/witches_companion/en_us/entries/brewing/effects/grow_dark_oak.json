@@ -1,0 +1,14 @@
+{
+  "name": "Grow Dark Oak",
+  "icon": "minecraft:sapling:5",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Grow Dark Oak",
+      "item": "minecraft:sapling:5",
+      "text": "Causes a Dark Oak tree to grow. Larger trees can be grown by increasing the power level of the effect."
+    }
+  ]
+}

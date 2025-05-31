@@ -1,0 +1,14 @@
+{
+  "name": "Reflect Damage",
+  "icon": "witchery:spectral_dust",
+  "category": "brew_effects/level_5",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Reflect Damage",
+      "item": "witchery:spectral_dust",
+      "text": "Redirects some damage back to its source. The higher the level, the more damage reflected."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Rite of Broiling",
+  "icon": "minecraft:porkchop",
+  "category": "circle_magic/world",
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:broiling",
+      "title": "Rite of Broiling",
+      "description": "Cooks any food placed in the circle. May overcook food."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:portable_broiling",
+      "title": "Rite of Broiling",
+      "description": "Cooks any food placed in the circle. May overcook food."
+    }
+  ]
+}

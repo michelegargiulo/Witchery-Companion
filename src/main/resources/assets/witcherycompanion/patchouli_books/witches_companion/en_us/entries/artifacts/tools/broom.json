@@ -1,0 +1,13 @@
+{
+  "name": "Broom",
+  "icon": "witchery:broom",
+  "category": "artifacts/tools",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:broom",
+      "text": "A Broom is a mundane tool. Its main use is for quickly removing $(l:circle_magic/intro)Circle Glyphs$(/l) placed on the ground. It is also used as the main ingredient for the creation of $(l:creatures/enchanted_broom)Enchanted Broom$(/l)"
+    }
+  ]
+}

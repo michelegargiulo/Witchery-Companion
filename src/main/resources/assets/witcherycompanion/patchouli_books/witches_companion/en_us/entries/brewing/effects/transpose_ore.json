@@ -1,0 +1,14 @@
+{
+  "name": "Transpose Ore",
+  "icon": "minecraft:iron_ingot",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Transpose Ore",
+      "item": "minecraft:iron_ingot",
+      "text": "Breaks ore blocks in a sphere based on the power. Higher power levels break rarer ores. You may need a way to pull the ores to you."
+    }
+  ]
+}

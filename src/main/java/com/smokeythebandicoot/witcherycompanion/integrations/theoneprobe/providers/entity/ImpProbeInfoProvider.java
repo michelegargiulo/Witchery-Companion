@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.entity;
 
-import com.smokeythebandicoot.witcherycompanion.api.infernalimp.IEntityImpAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.entities.infernalimp.IEntityImpAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseEntityProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
@@ -55,14 +55,14 @@ public class ImpProbeInfoProvider extends BaseEntityProbeInfoProvider<EntityImp>
 
         // Cooldown
         if (entity.isTamed()) {
-            long cooldown = impAccessor.accessor_getCooldown();
+            long cooldown = impAccessor.witcherycompanion$accessor$getCooldown();
             int seconds = (int)Math.ceil((double)cooldown / 20); // Cooldown in Seconds
             TOPHelper.addText(iProbeInfo, "Cooldown", seconds <= 0 ? "Ready" : seconds + " s", TextFormatting.RED);
 
         }
 
         // Level
-        int level = impAccessor.accessor_getSecretsShared();
+        int level = impAccessor.witcherycompanion$accessor$getSecretsShared();
         TOPHelper.addText(iProbeInfo, "Trade Level", String.valueOf(level), TextFormatting.GOLD);
 
     }

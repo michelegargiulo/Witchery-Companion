@@ -1,0 +1,14 @@
+{
+  "name": "Wither",
+  "icon": "minecraft:skull:1",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Wither",
+      "item": "minecraft:skull:1",
+      "text": "Causes the victim to suffer damage and hunger until they die or the effect ends."
+    }
+  ]
+}

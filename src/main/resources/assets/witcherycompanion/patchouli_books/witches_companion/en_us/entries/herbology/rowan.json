@@ -1,0 +1,14 @@
+{
+  "name": "Rowan",
+  "icon": "witchery:rowan_sapling",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:rowan_sapling",
+      "text": "The rowan, or mountain-ash has an affinity with magic other trees seldom match. Mutate this plant from another with $(l:artifacts/misc/mutandis)Mutandis$(/l).",
+      "anchor": "rowan"
+    }
+  ]
+}

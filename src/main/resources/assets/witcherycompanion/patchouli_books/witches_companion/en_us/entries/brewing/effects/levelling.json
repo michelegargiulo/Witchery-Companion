@@ -1,0 +1,14 @@
+{
+  "name": "Levelling",
+  "icon": "minecraft:netherrack",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Levelling",
+      "item": "minecraft:netherrack",
+      "text": "Causes land to be levelled out to the height of the block hit. Blocks above will be removed and space below will be filled in. The power level influences the area of effect and the number of blocks that may be filled."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Reincarnate",
+  "icon": "witchery:rebirth_hint",
+  "category": "brew_effects/level_6",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Reincarnate",
+      "item": "witchery:rebirth_hint",
+      "text": "When the creature dies, they will be reincarnated as another creature, the power of which is determined by the potion power."
+    }
+  ]
+}

@@ -44,7 +44,7 @@ public abstract class BaseEntityProbeInfoProvider<E extends Entity>  implements 
     // ------ OVERRIDES ------ //
     @Override
     public final String getID() {
-        return WitcheryCompanion.MODID + ":" + getProviderName();
+        return WitcheryCompanion.prefix(getProviderName());
     }
 
     @SuppressWarnings("unchecked")

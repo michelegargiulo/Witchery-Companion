@@ -1,6 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker;
 
-import com.smokeythebandicoot.witcherycompanion.api.goblintrade.GoblinTradeApi;
+import com.smokeythebandicoot.witcherycompanion.api.GoblinTradeApi;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;

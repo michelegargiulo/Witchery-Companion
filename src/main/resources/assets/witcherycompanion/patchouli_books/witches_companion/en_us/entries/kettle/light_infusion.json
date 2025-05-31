@@ -1,0 +1,27 @@
+{
+  "name": "Infusion of Light",
+  "icon": "witchery:light_ghost",
+  "category": "kettle",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "generic/secret_text",
+      "title": "Infusion of Light",
+      "description": "The Infusion of Light gives creatures the power to transform light to create solid barriers and become invisible. The abilities available through the Infusion are utilized with various controls using a $(l:artifacts/tools/witches_hand)Witches Hand$(/l)",
+      "secret_key": "witcherycompanion:infusions/witchery:light"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Invisibility",
+      "description": "A player infused with this Infusion can become invisible at will by simply holding right-click.$(br)Some Witches' clothing and tools become invisible together with the wearer.",
+      "secret_key": "witcherycompanion:infusions/witchery:light"
+    },
+    {
+      "type": "generic/secret_text",
+      "title": "Light Barriers",
+      "description": "The Infused player can create barriers out of thin air. Barriers are solid, but disappear after a short while.$(br)$(8)> $()Sneak-use on top of a block creates a 3x3 barrier.$(br)$(8)> $()Sneak-use on the side of a block to create a bridge.$(br)$(8)> $()Sneak-use on a creature to encase them in a barrier.$(br)$(8)> $()Punch a creature to toss them into the air and create a barrier around them.",
+      "secret_key": "witcherycompanion:infusions/witchery:light"
+    }
+  ]
+}
+

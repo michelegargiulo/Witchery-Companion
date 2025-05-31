@@ -1,0 +1,7 @@
+{
+  "name": "Brews and Infusions",
+  "description": "Operational manual about Kettle potion brewing and Infusions",
+  "icon": "witchery:kettle",
+  "sortnum": 10,
+  "secret": false
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Leech Chest",
+  "icon": "witchery:leech_chest",
+  "category": "mutations",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "multiblock",
+      "multiblock_id": "witchery:leech_chest",
+      "name": "Leech Chest",
+      "text": "The $(item)Chest$() in the middle must be a $(item)Trapped Chest$()."
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Introduction",
+  "icon": "witchery:mystic_unguent",
+  "category": "symbology",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Symbology",
+      "text": "Drawing symbols with a $(l:artifacts/tools/mystic_branch)Mystic Branch$(/l) allows a practitioner to sculpt natural energies.$(p)Only $(l:kettle/infusion_intro)Infused$(/l) practitioners can use this type of magic.$(p)Forbidden curses require the $(l:kettle/infernal_infusion)Infernal Infusion$(/l)"
+    },
+    {
+      "type": "text",
+      "title": "Introduction",
+      "text": "First off, start by performing a $(l:circle_magic/infusion/mysticbranch_infusion)Rite of Infusion$(/l) to combine $(l:kettle/infusion_intro#mystic_unguent)Mystic Unguent$(/l) and an $(l:resources/ent_twig)Ent Twig$(/l) to get a $(l:artifacts/tools/mystic_branch)Mystic Branch$(/l).$(p)To cast a spell, use and hold the Mystic Branch in the air, then wave it in a direction to draw a $(item)Symbol$(). If the symbols drawn represent the pattern of a $(l:symbology/symbols_list)spell$(/l), it will be casted upon release of the Mystic Branch.$(p)Left click with the branch to deflect a spell projectile.",
+      "flag": "witcherycompanion:symbology/extended_intro"
+    },
+    {
+      "type": "text",
+      "title": "Boosting power",
+      "text": "Spell power can be boosted by binding a $(l:artifacts/statues/hobgoblin_patron)Statue of Hobgoblin Patron$(/l) and getting $(l:creatures/hobgoblin)Hobgoblins$(/l) to worship it instead of their $(l:creatures/mog)Mog$(/l) and $(l:creatures/gulg)Gulg$(/l). This worship gives the Witch more power but too many Hobgoblins may cause $(l:creatures/mog)Mog$(/l) and $(l:creatures/gulg)Gulg$(/l) to notice and attack the witch.",
+      "flag": "witcherycompanion:symbology/extended_intro"
+    },
+    {
+      "type": "text",
+      "title": "Secret Spells",
+      "text": "Some spells are still unknown and might appear as blank pages or unreadable text. Once you find and draw the spell, their text will be revealed.$(p)Also, Some spells require a certain knowledge to be used. Dealing with $(l:creatures/imp)Flame Imps$(/l) and $(l:creatures/lord_of_torment)Lord of Torment$(/l) might shed light on the dark secrets of symbology.",
+      "flag": "witcherycompanion:symbology/extended_intro"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Lava Hold",
+  "icon": "minecraft:cobblestone",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "flag": "witcherycompanion:brew_effects/show_lavahold",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Lava Hold",
+      "item": "minecraft:cobblestone",
+      "text": "Temporarily creates a bubble of air that holds back lava."
+    }
+  ]
+}

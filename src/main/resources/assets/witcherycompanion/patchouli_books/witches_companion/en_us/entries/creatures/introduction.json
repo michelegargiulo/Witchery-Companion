@@ -1,0 +1,13 @@
+{
+  "name": "Introduction",
+  "icon": "witchery:beartrap",
+  "category": "creatures",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Creature Compendium",
+      "text": "intro text"
+    }
+  ]
+}

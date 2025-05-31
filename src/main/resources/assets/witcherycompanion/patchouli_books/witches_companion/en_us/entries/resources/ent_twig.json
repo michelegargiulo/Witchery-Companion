@@ -1,0 +1,13 @@
+{
+  "name": "Ent Twig",
+  "icon": "witchery:ent_twig",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:ent_twig",
+      "text": "Ent Twigs are a precious resource usually dropped when killing $(l:creatures/ent)Ents$(/l)."
+    }
+  ]
+}

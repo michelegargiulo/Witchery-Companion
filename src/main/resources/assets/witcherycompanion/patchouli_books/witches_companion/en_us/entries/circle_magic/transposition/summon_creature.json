@@ -1,0 +1,14 @@
+{
+  "name": "Summon Creature",
+  "icon": "minecraft:skull:3",
+  "category": "circle_magic/transposition",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:entity_transposition",
+      "title": "Summon Creature",
+      "description": "Summon the $(l:artifacts/misc/taglock_kit)Bound Taglock Kit$(/l)'s bound creature or player."
+    }
+  ]
+}

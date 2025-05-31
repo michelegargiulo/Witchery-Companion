@@ -1,0 +1,13 @@
+{
+  "name": "Spectral Dust",
+  "icon": "witchery:spectral_dust",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:spectral_dust",
+      "text": "An arcane, etheral dust. Common crafting ingredient."
+    }
+  ]
+}

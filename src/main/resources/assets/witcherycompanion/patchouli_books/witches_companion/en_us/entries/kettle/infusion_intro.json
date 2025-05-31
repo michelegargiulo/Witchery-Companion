@@ -1,0 +1,85 @@
+{
+  "name": "Kettle Infusions",
+  "icon": "witchery:infused_brew_base",
+  "category": "kettle",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Brewing Infusions",
+      "text": "The $(item)Kettle$() really shines when used to prepare $(item)Infusions$(), the highest tier of witchcraft magic."
+    },
+    {
+      "type": "text",
+      "title": "Step-by-Step",
+      "text": "$(8)1.$() Throw the ingredients into a heated, water-filled Kettle. $(l:altar/altar)Altars$(/l) provide power, if needed.$(p)$(8)2.$() Fill the brew into an empty $(item)Glass Bottle$().$(p)$(8)3.$() For infusions, use them in a Rite of Infusion ($(l:circle_magic/infusion/light_infusion)Light$(/l), $(l:circle_magic/infusion/earth_infusion)Earth$(/l), $(l:circle_magic/infusion/infernal_infusion)Infernal$(/l), $(l:circle_magic/infusion/otherwhere_infusion)Otherwhere$(/l)); but remember, death is almost always assured."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/flying_ointment",
+      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Poison III potion effect for one minute."
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/mystic_unguent",
+      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Weakness II potion effect for one minute"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/happenstance_oil",
+      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Night Vision potion effect for one minute"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/infusion_base",
+      "description": "Crafting ingredient. If drunk, causes the creature to be affected by Wither IV potion effect for 10 seconds.",
+      "anchor": "infusion_base"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/ghost_of_the_light",
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute.",
+      "anchor": "light_infusion"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/soul_of_the_world",
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute.",
+      "anchor": "earth_infusion"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/infernal_animus",
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II for one minute and Wither III potion effect for 3 minutes.",
+      "anchor": "infernal_infusion"
+    },
+    {
+      "type": "kettle/kettle_brew",
+      "brew_id": "witchery:kettle/spirit_of_otherwhere",
+      "description": "Infusion ingredient. If drunk, causes the creature to be affected by Poison II potion effect for one minute.",
+      "anchor": "otherwhere_infusion"
+    },
+    {
+      "type": "text",
+      "title": "Infused Brews",
+      "text": "Some special Brews require the further infusion of $(l:kettle/infusion_intro#infusion_base)Infused Brew Base$(/l) using $(l:circle_magic/intro)Circle Magic$(/l) "
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:infused_soaring_brew",
+      "text": "Infused with the proper $(l:circle_magic/infusion/soaring_infusion)Rite of Infusion$(/l). It can be drunk to allow significantly better $(l:creatures/enchanted_broom)Enchanted Broom$(/l) controls, top speed, turning and deceleration for 120 minutes. The benefits stack with those of an $(l:artifacts/familiars/owl)Owl Familiar$(/l). Only a single Infused Brew can be active at a time, with the newer one replacing the old one.",
+      "anchor": "soaring"
+    },
+    {
+      "type": "spotlight",
+      "item": "witchery:infused_grave_brew",
+      "text": "Infused with the proper $(l:circle_magic/infusion/grave_brew_infusion)Rite of Infusion$(/l). It can be drunk to allow a $(l:artifacts/misc/necromantic_stone)Necromantic Stone$(/l) to be used to take control of normal $(item)Undead creatures$(), and not just those raised with a $(l:kettle/kettle_intro#raising)Brew of Raising$(/l). This ability can be used once every 30 seconds.",
+      "anchor": "infused_grave"
+    },
+    {
+      "type": "text",
+      "text": "Additionally, when a Witch under the influence of the Infused Brew of the Grave kills an animal, $(item)Villager$() or another $(item)Player$(), they will regain $(item)Hunger$() and a little life as they feed off their victim.$(p)The brew lasts 120 minutes, and only a single Infused Brew can be active at a time, with the newer one replacing the old one."
+    }
+  ]
+}
+

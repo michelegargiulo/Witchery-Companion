@@ -1,0 +1,31 @@
+{
+  "name": "Lord of Torment",
+  "icon": "witchery:torment_contract",
+  "category": "creatures",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:lord_of_torment",
+      "text": "Lord of the Torment dimension.",
+      "offset": 0.4,
+      "scale": 0.85
+    },
+    {
+      "type": "text",
+      "title": "Lord of Torment",
+      "text": "Undisputed rules of the $(l:dimensions/torment)Torment$(/l) dimension, this mighty demon is able to create prisons to Torment its victims.$(br)Once summoned, the demon will start flying and shooting fireballs that can inflict $(item)Slowness$()$(br)When half of its health is depleted, it will teleport itself and the fighting players to the $(item)Torment$(). There, it will sit in the center waiting for the player to come to it. Once reached, the fight resumes."
+    },
+    {
+      "type": "spotlight",
+      "title": "Summoning the Lord",
+      "item": "witchery:torment_contract",
+      "text": "The $(item)Lord of Torment$() can be summoned by a Ritual outlined in a $(l:resources/torment_contract)Torment Scroll$(/l)."
+    },
+    {
+      "type": "text",
+      "title": "Rewards",
+      "text": "Fighting the $(item)Lord of Torment$() might be the only way to obtain the necessary knowledge to banish other creatures to the prisons created by the demon in the Torment, using $(symbology/introduction)Symbol Magic$(/l)."
+    }
+  ]
+}

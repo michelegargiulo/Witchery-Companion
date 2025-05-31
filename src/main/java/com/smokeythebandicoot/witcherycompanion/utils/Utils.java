@@ -7,16 +7,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import net.msrandom.witchery.block.BlockAltar;
 import net.msrandom.witchery.block.entity.TileEntityAltar;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Utils {
 
@@ -31,21 +30,6 @@ public class Utils {
             WitcheryCompanion.logger.info(msg);
             Utils.logChat(msg);
         }
-    }
-
-    public static List<String> printAltarPattern(World world, BlockAltar.AltarPatternMatch pattern) {
-        if (pattern == null) return Collections.singletonList("-- NULL --");
-        List<String> result = new ArrayList<>();
-        for (BlockAltar.Part part : pattern.getParts().values()) {
-            BlockPos pos = pattern.getParts().inverse().get(part);
-            TileEntity te = world.getTileEntity(pos);
-            TileEntityAltar altar = null;
-            if (te instanceof TileEntityAltar)
-                altar = (TileEntityAltar)te;
-
-            result.add(part.getName() + " -> " + (altar == null ? "NULL" : altar.isValid()));
-        }
-        return result;
     }
 
     public static ItemStack blockstateToStack(IBlockState state) {
@@ -65,6 +49,19 @@ public class Utils {
         return block.getStateFromMeta(meta == null ? stack.getMetadata() : meta);
     }
 
+    public static boolean doItemStacksMatch(ItemStack first, ItemStack second) {
+        return first.getItem() == second.getItem() && first.getMetadata() == second.getMetadata();
+    }
+
+    public static List<Block> getBlocksForOre(String name) {
+        List<Block> blockList = new ArrayList<>();
+        NonNullList<ItemStack> items = OreDictionary.getOres(name);
+        for (ItemStack item : items) {
+            blockList.add(Block.getBlockFromItem(item.getItem()));
+        }
+        return blockList;
+    }
+
     public static void logException(String message, Throwable t) {
         WitcheryCompanion.logger.error(message);
         WitcheryCompanion.logger.error(t.getMessage());
@@ -74,4 +71,11 @@ public class Utils {
         }
         WitcheryCompanion.logger.error(builder.toString());
     }
+
+    public static ResourceLocation generateRandomRecipeId(String pathPrefix) {
+        return new ResourceLocation(WitcheryCompanion.MODID, pathPrefix + UUID.randomUUID().toString().replace("-", ""));
+    }
+
+
+
 }

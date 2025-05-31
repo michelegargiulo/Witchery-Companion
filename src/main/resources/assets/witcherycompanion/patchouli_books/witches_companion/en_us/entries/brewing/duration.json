@@ -1,0 +1,18 @@
+{
+  "name": "Duration",
+  "icon": "minecraft:redstone",
+  "category": "brewing",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "brewing/cauldron_upgrade",
+      "upgrade_type": "duration",
+      "description": " (to x{limit})",
+      "transform_function": "double",
+      "secret_text": "$(t:This ingredient is secret. It appears when a player actually uses it in a brew)$(4)Secret$()$(/t)",
+      "title": "Duration",
+      "text": "$(italic)Duration$() - Add, in order, before an $(l:brewing/effect)effect$(/l) to increase its duration.",
+      "_comment": "{limit} is a placeholder that represents the maximum augmentation that the brew can receive"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+    "variants": {
+      "axis=z": {
+        "model": "witchery:spirit_portal_ew"
+      },
+      "axis=x": {
+        "model": "witchery:spirit_portal_ns"
+      }
+    }
+}

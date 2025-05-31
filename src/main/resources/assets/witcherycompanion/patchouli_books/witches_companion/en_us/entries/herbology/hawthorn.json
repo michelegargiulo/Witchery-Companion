@@ -1,0 +1,14 @@
+{
+  "name": "Hawthorn",
+  "icon": "witchery:hawthorn_sapling",
+  "category": "herbology",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:hawthorn_sapling",
+      "text": "Hawthorn is the tree of purity, it has long history in the field of herbalism. Mutate the sapling from another plant with $(l:artifacts/misc/mutandis)Mutandis$(/l).",
+      "anchor": "hawthorn"
+    }
+  ]
+}

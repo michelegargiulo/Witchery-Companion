@@ -1,0 +1,7 @@
+{
+  "name": "Familiars",
+  "description": "Loyal companions that bond with witches, enhancing and specializing their magic through a unique mystical connection that not even death can sever.",
+  "icon": "witchery:wolf_head",
+  "parent": "artifacts",
+  "secret": false
+}

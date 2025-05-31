@@ -1,0 +1,13 @@
+{
+  "name": "Wolf Head",
+  "icon": "witchery:wolf_head",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:wolf_head",
+      "text": "Wolf Heads can be dropped when a $(item)Wolf$() is killed. It can be used in some crafting recipes or can be placed in the world as decoration, much like $(item)Skulls$()."
+    }
+  ]
+}

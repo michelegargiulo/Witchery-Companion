@@ -1,0 +1,14 @@
+{
+  "name": "Flowers",
+  "icon": "minecraft:yellow_flower",
+  "category": "brew_effects/level_1",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Flowers",
+      "item": "minecraft:yellow_flower",
+      "text": "Causes random flowers to grow on appropriate blocks."
+    }
+  ]
+}

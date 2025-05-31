@@ -1,0 +1,15 @@
+{
+  "name": "Rite of Sanctity",
+  "icon": "witchery:silver_deposits",
+  "category": "circle_magic/protection",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:sanctity",
+      "title": "Rite of Sanctity",
+      "description": "Monsters cannot enter the circle. Lasts indefinitely.",
+      "note": "Requires 16 power/second"
+    }
+  ]
+}

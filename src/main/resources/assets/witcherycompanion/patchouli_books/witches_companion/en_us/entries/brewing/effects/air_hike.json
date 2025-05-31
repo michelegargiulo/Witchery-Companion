@@ -1,0 +1,14 @@
+{
+  "name": "Air Hike",
+  "icon": "witchery:goddess_breath",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Air Hike",
+      "item": "witchery:goddess_breath",
+      "text": "Throws hit creatures into the air."
+    }
+  ]
+}

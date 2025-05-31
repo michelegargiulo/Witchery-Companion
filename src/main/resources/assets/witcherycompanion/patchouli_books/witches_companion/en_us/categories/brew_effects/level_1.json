@@ -1,0 +1,8 @@
+{
+  "name": "Level 1 effects",
+  "description": "",
+  "parent": "brewing",
+  "icon": "minecraft:coal",
+  "sortnum": 1,
+  "secret": false
+}

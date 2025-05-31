@@ -1,0 +1,20 @@
+{
+  "name": "Rite of Total Eclipse",
+  "icon": "witchery:seer_stone",
+  "category": "circle_magic/world",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:total_eclipse",
+      "title": "Rite of Total Eclipse",
+      "description": "Block out the sun."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:portable_total_eclipse",
+      "title": "Rite of Total Eclipse",
+      "description": "Block out the sun."
+    }
+  ]
+}

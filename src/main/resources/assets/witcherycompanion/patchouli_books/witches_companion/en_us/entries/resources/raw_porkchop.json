@@ -1,0 +1,14 @@
+{
+  "name": "Raw Porkchop?",
+  "icon": "witchery:odd_porkchop",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Raw Porkchop?",
+      "ingredients": ";witchery:odd_porkchop;witchery:cooked_odd_porkchop",
+      "description": "This 'meat' is created by crafting $(item)Rotten Flesh$() with $(l:artifacts/misc/mutandis)Mutandis$(/l) in a $(item)Crafting Table$(). It can be cooked and eaten, but is most useful in the creation of $(l:artifacts/misc/demonic_contract)Demonic Contracts$(/l)."
+    }
+  ]
+}

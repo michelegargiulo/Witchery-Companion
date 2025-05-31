@@ -1,0 +1,19 @@
+{
+  "name": "Trapped Plants",
+  "icon": "witchery:dandelion_web_plant_mine",
+  "category": "artifacts/traps",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "artifacts/decorative_set",
+      "title": "Trapped Plants",
+      "ingredients": "witchery:dandelion_web_plant_mine;witchery:dandelion_ink_plant_mine;witchery:dandelion_thorn_plant_mine;witchery:dandelion_sprouting_plant_mine;witchery:rose_web_plant_mine;witchery:rose_ink_plant_mine;witchery:rose_thorn_plant_mine;witchery:rose_sprouting_plant_mine;witchery:dead_bush_web_plant_mine;witchery:dead_bush_ink_plant_mine;witchery:dead_bush_thorn_plant_mine;witchery:dead_bush_sprouting_plant_mine",
+      "description": "$(p) $(p)$(item)Roses$(), $(item)Dandelions$() and $(item)Dead Bushes$() can be combined with certain $(l:kettle/kettle_intro)Kettle Brews$(/l) to create trapped plants."
+    },
+    {
+      "type": "text",
+      "title": "Type of Traps",
+      "text": "Each type of plant can be combined with the following brews:$(p)$(8)> $()$(l:kettle/kettle_intro#ink)Brew of Ink$(/l)$(br)$(8)> $()$(l:kettle/kettle_intro#web)Brew of Webs$(/l)$(br)$(8)> $()$(l:kettle/kettle_intro#thorns)Brew of Thorns$(/l)$(br)$(8)> $()$(l:kettle/kettle_intro#sprouting)Brew of Sprouting$(/l)$(p)Trapped Plants will be destroyed if harvested with anything other than a $(l:artifacts/artifacts/boline)Boline$(/l)."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Witches Hand",
+  "icon": "witchery:witches_hand",
+  "category": "artifacts/tools",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:witches_hand",
+      "text": "A Witches Hand, also known as $(item)the hand of one who went before$() is one of the more gruesome trappings of witchcraft. It is requires to focus the immense power of an $(l:kettle/infusion_intro#light_infusion)Infused$(/l) being.$(br)The Hand becomes invisible when the creature that uses it is invisible."
+    }
+  ]
+}

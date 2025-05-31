@@ -1,0 +1,14 @@
+{
+  "name": "Ice World",
+  "icon": "minecraft:ender_eye",
+  "category": "brew_effects/level_5",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Ice World",
+      "item": "minecraft:ender_eye",
+      "text": "Turns blocks and other structures to snow and ice."
+    }
+  ]
+}

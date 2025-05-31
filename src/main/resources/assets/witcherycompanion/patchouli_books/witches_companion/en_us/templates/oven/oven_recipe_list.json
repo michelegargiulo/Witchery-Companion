@@ -1,0 +1,55 @@
+{
+  "include": [
+    {
+      "template": "oven/oven_recipe",
+      "as": "oven_recipe_0",
+      "using": {
+        "for_input": "#input0"
+      },
+      "x": -2,
+      "y": 12
+    },
+    {
+      "template": "oven/oven_recipe",
+      "as": "oven_recipe_1",
+      "using": {
+        "for_input": "#input1"
+      },
+      "x": -2,
+      "y": 42
+    },
+    {
+      "template": "oven/oven_recipe",
+      "as": "oven_recipe_2",
+      "using": {
+        "for_input": "#input2"
+      },
+      "x": -2,
+      "y": 72
+    },
+    {
+      "template": "oven/oven_recipe",
+      "as": "oven_recipe_3",
+      "using": {
+        "for_input": "#input3"
+      },
+      "x": -2,
+      "y": 102
+    }
+  ],
+  "components": [
+    {
+      "type": "header",
+      "text": "#title",
+      "centered": true,
+      "x": -1,
+      "y": -2
+    },
+    {
+      "type": "text",
+      "text": "#text",
+      "x": 2,
+      "y": 108
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Curse of Misfortune",
+  "icon": "witchery:frogs_toe",
+  "category": "circle_magic/curses",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:misfortune_curse",
+      "title": "Curse of Misfortune",
+      "description": "Curse the taglocked being with misfortune. Perform during a storm."
+    },
+    {
+      "type": "circle_magic/rite",
+      "rite_id": "witchery:misfortune_curse_removal",
+      "title": "Rite of Remove Curse",
+      "description": "Cleanse the taglocked being of misfortune. Things may get worse."
+    }
+  ]
+}

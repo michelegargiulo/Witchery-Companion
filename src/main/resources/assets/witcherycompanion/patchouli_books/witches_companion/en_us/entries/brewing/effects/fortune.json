@@ -1,0 +1,14 @@
+{
+  "name": "Fortune",
+  "icon": "minecraft:clay",
+  "category": "brew_effects/level_6",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Fortune",
+      "item": "minecraft:clay",
+      "text": "Players under this effect become luckier when mining."
+    }
+  ]
+}

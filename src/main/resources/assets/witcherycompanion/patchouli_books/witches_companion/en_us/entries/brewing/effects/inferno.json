@@ -1,0 +1,20 @@
+{
+  "name": "Inferno",
+  "icon": "witchery:refined_evil",
+  "category": "brew_effects/level_5",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Inferno",
+      "item": "witchery:refined_evil",
+      "text": "Creatures under this effect will burn other creatures nearby. As a ritual, this may summon a $(item)demon$() if the correct circles are used."
+    },
+    {
+      "type": "text",
+      "title": "Summon Demon Circles",
+      "text": "The correct circles to summon a Demon are:$(br)$(8)>$() Small Infernal Circle Glyph$(br)$(8)>$() Medium Infernal Circle Glyph.$(p)Circles must be present at the target location, so around the cauldron if the ritual is cast at the cauldron location, or centered to the target block, if ritual is casted to a remote location.",
+      "flag": "witcherycompanion:brew_effects/inferno_details"
+    }
+  ]
+}

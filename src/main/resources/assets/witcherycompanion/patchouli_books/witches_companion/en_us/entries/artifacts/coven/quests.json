@@ -1,0 +1,56 @@
+{
+  "name": "Coven Quests",
+  "icon": "minecraft:rotten_flesh",
+  "category": "artifacts/coven",
+  "sortnum": 1,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "text",
+      "title": "Coven Quests",
+      "text": "Coven Quests are small tasks that $(l:creatures/coven_witch)Coven Witches$(/l) might assign to players that interact with them, to prove their expertise in the art and make them join the player's $(l:coven/coven_intro)Coven$(/l)."
+    },
+    {
+      "type": "generic/secret_spotlight",
+      "item": "witchery:necromantic_stone",
+      "description": "$(italic)Bring me the means to control the dead$()",
+      "secret_key": "witcherycompanion:coven_quest/witchery:make_necromantic_stone"
+    },
+    {
+      "type": "generic/secret_spotlight",
+      "item": "minecraft:bone#30",
+      "description": "$(italic)Kill 30 skeletons and bring me their bones$()",
+      "secret_key": "witcherycompanion:coven_quest/witchery:get_bones"
+    },
+    {
+      "type": "generic/secret_spotlight",
+      "item": "witchery:demon_heart",
+      "description": "$(italic)The beating means to master the infernal dimension$()",
+      "secret_key": "witcherycompanion:coven_quest/witchery:get_demon_heart"
+    },
+    {
+      "type": "generic/secret_spotlight",
+      "item": "minecraft:rotten_flesh",
+      "description": "$(italic)Defeat my pet and bring me its flesh$()",
+      "secret_key": "witcherycompanion:coven_quest/witchery:fight_zombie"
+    },
+    {
+      "type": "generic/secret_spotlight",
+      "item": "minecraft:spider_eye",
+      "description": "$(italic)Defeat my pet and bring me its flesh$()",
+      "secret_key": "witcherycompanion:coven_quest/witchery:fight_spider"
+    },
+    {
+      "type": "generic/secret_spotlight",
+      "item": "witchery:grotesque_brew#5",
+      "description": "$(italic)I must perform many curses, bring me the necessary brew$()",
+      "secret_key": "witcherycompanion:coven_quest/witchery:make_grotesque_brew"
+    },
+    {
+      "type": "generic/secret_spotlight",
+      "item": "witchery:crystal_ball",
+      "description": "$(italic)I desire to predict the future$()",
+      "secret_key": "witcherycompanion:coven_quest/witchery:make_crystal_ball"
+    }
+  ]
+}

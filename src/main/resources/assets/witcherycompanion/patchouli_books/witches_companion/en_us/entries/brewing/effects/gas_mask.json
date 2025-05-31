@@ -1,0 +1,14 @@
+{
+  "name": "Gas Mask",
+  "icon": "minecraft:gravel",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Gas Mask",
+      "item": "minecraft:gravel",
+      "text": "Makes a creature immune to negative effects from brew-based gas clouds."
+    }
+  ]
+}

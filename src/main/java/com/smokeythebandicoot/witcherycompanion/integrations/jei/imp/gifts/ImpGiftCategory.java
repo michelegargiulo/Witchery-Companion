@@ -1,10 +1,11 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.jei.imp.gifts;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
-import com.smokeythebandicoot.witcherycompanion.api.infernalimp.InfernalImpApi;
+import com.smokeythebandicoot.witcherycompanion.api.InfernalImpApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.jei.abstractbase.BaseRecipeCategory;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
+import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import jeresources.api.drop.LootDrop;
 import jeresources.util.LootTableHelper;
 import mezz.jei.api.IGuiHelper;
@@ -28,7 +29,7 @@ import java.util.List;
 
 public class ImpGiftCategory extends BaseRecipeCategory<ImpGiftWrapper> {
 
-    public static String UID = WitcheryCompanion.MODID + ":imp_gift";
+    public static String UID = WitcheryCompanion.prefix("imp_gift");
     public static ResourceLocation backgroundTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/imp_gift.png");
     public static ResourceLocation iconTexture = new ResourceLocation(WitcheryCompanion.MODID, "textures/gui/imp_gift_icon.png");
 
@@ -40,7 +41,7 @@ public class ImpGiftCategory extends BaseRecipeCategory<ImpGiftWrapper> {
     }
 
     public static boolean shouldRegister() {
-        return ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiImpGifts && Loader.isModLoaded("jeresources");
+        return ModConfig.IntegrationConfigurations.JeiIntegration.enableJeiImpGifts && Loader.isModLoaded(Mods.JER);
     }
 
     public static void register(IRecipeCategoryRegistration registry) {

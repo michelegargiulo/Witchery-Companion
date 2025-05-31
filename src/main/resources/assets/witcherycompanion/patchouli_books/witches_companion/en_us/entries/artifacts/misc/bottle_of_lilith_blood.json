@@ -1,0 +1,14 @@
+{
+  "name": "Lilith's Blood",
+  "icon": "witchery:liliths_blood",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "flag": "witcherycompanion:artifacts/misc/enable_bottle_lilith_blood",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:liliths_blood",
+      "text": "The Bottle of Lilith's Blood is a bottle that contains the precious blood of $(l:creatures/lilith)Lilith$(/l).$(br)When drunk by a $(l:observations/vampirism)Vampire$(/l) player it will increase it's Vampire level by one. If the Vampire is already at the maximum Vampire level, it will restore 8 droplets of blood.$(br)When drunk by a non-Vampire player it will turn them into one."
+    }
+  ]
+}

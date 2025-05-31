@@ -1,0 +1,14 @@
+{
+  "name": "Fire Resistance",
+  "icon": "minecraft:magma_cream",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Fire Resistance",
+      "item": "minecraft:magma_cream",
+      "text": "Makes a creature immune to fire damage."
+    }
+  ]
+}

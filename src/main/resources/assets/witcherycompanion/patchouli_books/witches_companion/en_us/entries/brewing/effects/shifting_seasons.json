@@ -1,0 +1,14 @@
+{
+  "name": "Shifting Seasons",
+  "icon": "witchery:biome_note",
+  "category": "brew_effects/level_8",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Shifting Seasons",
+      "item": "witchery:biome_note",
+      "text": "Change the targeted location to a new biome. The biome in the $(item)Biome Note$() determines the target biome."
+    }
+  ]
+}

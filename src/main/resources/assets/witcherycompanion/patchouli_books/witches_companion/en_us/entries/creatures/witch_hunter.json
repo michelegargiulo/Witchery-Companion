@@ -1,0 +1,25 @@
+{
+  "name": "Witch Hunter",
+  "icon": "witchery:nullifying_bolt",
+  "category": "creatures",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "entity",
+      "entity": "witchery:witch_hunter",
+      "text": "Witches' Nightmare.",
+      "offset": 0.18,
+      "scale": 1
+    },
+    {
+      "type": "text",
+      "title": "Witch Hunters",
+      "text": "Since the dawn of witchcraft, there has always been a group interested in the annihilation of those who practiced it. Witch Hunters are creatures specialized in hunting witches, and can perceive when certain types of magic are used.$(br)"
+    },
+    {
+      "type": "text",
+      "title": "Finding Witch Hunters",
+      "text": "When performing black magic, such as $(l:circle_magic/curses/blindness)Curses$(/l), or using $(l:artifacts/poppets/poppets#vampiric)Vampiric$(/l) and $(l:artifacts/poppets/poppets#voodoo)Voodoo$(/l) Poppets, chances are that they will find you instead. They will usually come wielding $(l:artifacts/weapons/crossbow_pistol)Crossbow Pistol$(/l) and wearing $(l:artifacts/clothing/witch_hunter_clothing)Witch Hunter Armor$(/l)"
+    }
+  ]
+}

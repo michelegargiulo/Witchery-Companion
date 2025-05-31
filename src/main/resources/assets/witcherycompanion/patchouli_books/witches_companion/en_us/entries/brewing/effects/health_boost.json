@@ -1,0 +1,14 @@
+{
+  "name": "Health Boost",
+  "icon": "minecraft:golden_apple:1",
+  "category": "brew_effects/level_4",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Health Boost",
+      "item": "minecraft:golden_apple:1",
+      "text": "Creatures affected by this effect will have their health increased."
+    }
+  ]
+}

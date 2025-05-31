@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker;
 
 import com.smokeythebandicoot.witcherycompanion.api.player.FamiliarInfo;
 import com.smokeythebandicoot.witcherycompanion.api.player.PlayerExtendedDataApi;
-import com.smokeythebandicoot.witcherycompanion.api.symboleffect.ISymbolEffectAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.symboleffect.ISymbolEffectAccessor;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenDoc;
 import crafttweaker.annotations.ZenRegister;
@@ -23,8 +23,6 @@ import net.msrandom.witchery.transformation.CreatureForm;
 import net.msrandom.witchery.transformation.CreatureTraitType;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-
-import java.util.*;
 
 @ModOnly(value = "witchery")
 @ZenClass("mods.smokeythebandicoot.witcherycompanion.ExtendedPlayer")
@@ -47,6 +45,12 @@ public class ExtendedPlayerHandler {
     @ZenDoc(value="Returns current player bottling skill")
     public static int getBottlingSkill(IPlayer player) {
         return PlayerExtendedDataApi.getBottlingSkill(CraftTweakerMC.getPlayer(player));
+    }
+
+    @ZenMethod
+    @ZenDoc(value="Returns true if player can make predictions with Crystal Ball")
+    public static boolean isFortuneTeller(IPlayer player) {
+        return PlayerExtendedDataApi.isFortuneTeller(CraftTweakerMC.getPlayer(player));
     }
 
     @ZenMethod
@@ -136,7 +140,7 @@ public class ExtendedPlayerHandler {
 
         @ZenMethod
         public boolean hasKnowledge() {
-            return ((ISymbolEffectAccessor)symbolEffect).accessor_getHasKnowledge();
+            return ((ISymbolEffectAccessor)symbolEffect).hasKnowledge();
         }
 
         @ZenMethod

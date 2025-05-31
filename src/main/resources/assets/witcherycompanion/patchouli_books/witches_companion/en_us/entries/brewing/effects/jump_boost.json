@@ -1,0 +1,14 @@
+{
+  "name": "Jump Boost",
+  "icon": "minecraft:leather",
+  "category": "brew_effects/level_2",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Jump Boost",
+      "item": "minecraft:leather",
+      "text": "The jump height of creatures under this effect will be increased based on the power of the effect."
+    }
+  ]
+}
