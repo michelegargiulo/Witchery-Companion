@@ -4,7 +4,7 @@ A Companion to Witchery: Resurrected fixing bugs, crashes, patching things and a
 configurability. Witchery: Resurrected is a required dependency, and is the original 1.7.10 Witchery
 jar in the resource packs folder.
 
-## Current Features (as of v0.36.0-beta):
+## Current Features (as of v0.36.1-beta):
 ### Bugfixes:
 - **Common**
   - **[Common]** Fix crash when pulling null entity
@@ -109,6 +109,8 @@ jar in the resource packs folder.
 - **Integrations**
   - **[Botania]** Fix crash when a vampire player dies and Baubles is installed but Botania is not
   - **[Thaumcraft]** Fix Thaumcraft Integration registering aspects too early
+  - **[Just Enough Items]** Fix JEI force reloading on world load or dimension change, causing the game to hang and 
+  breaking other mods interacting with JEI (e.g. Calculator & Groovyscript)
 
 ### Tweaks
 - **Brews**

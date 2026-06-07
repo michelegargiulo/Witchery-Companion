@@ -184,6 +184,7 @@
   ],
   "client": [
     "witchery.block.BlockWitchesOvenMixin",
+    "witchery.integration.jei.JeiWitcheryPlugin.CompanionMixin",
     "witchery.client.ClientEvents.GuiOverlayMixin",
     "witchery.client.gui.book.GuiHerbologyBookMixin",
     "witchery.client.model.ModelFamiliarPigMixin",

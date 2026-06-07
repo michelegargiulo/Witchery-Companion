@@ -1518,6 +1518,11 @@ public class ModConfig {
 
         public static class JeiIntegration {
 
+            @Config.Comment("Fixes JEI force reloading on world load or dimension change, causing the game to hang " +
+                    "and breaking other mods interacting with JEI (e.g. Calculator & Groovyscript)")
+            @Config.Name("JEI Integration - Fix JEI Force Reloading")
+            public static boolean fixJeiForceReloading = true;
+
             @Config.Comment("If true, enables Altar JEI Integration")
             @Config.Name("JEI Integration - Altar")
             public static boolean enableJeiAltar = true;
