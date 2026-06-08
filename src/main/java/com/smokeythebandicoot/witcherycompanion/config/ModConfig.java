@@ -1521,6 +1521,7 @@ public class ModConfig {
             @Config.Comment("Fixes JEI force reloading on world load or dimension change, causing the game to hang " +
                     "and breaking other mods interacting with JEI (e.g. Calculator & Groovyscript)")
             @Config.Name("JEI Integration - Fix JEI Force Reloading")
+            @Config.RequiresMcRestart
             public static boolean fixJeiForceReloading = true;
 
             @Config.Comment("If true, enables Altar JEI Integration")
