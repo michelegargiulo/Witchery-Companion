@@ -26,13 +26,12 @@ public abstract class ItemCaneSwordMixin extends ItemSword {
     }
 
     /** This Mixin will return a new ActionResult with a new ItemStack with the correct damage **/
-    @Inject(method = "onItemRightClick", remap = true, cancellable = true, at = @At(value = "RETURN"))
+    @Inject(method = "onItemRightClick", remap = true, at = @At(value = "RETURN"))
     private void preserveDamageOnUnsheating(World world, EntityPlayer player, EnumHand hand, CallbackInfoReturnable<ActionResult<ItemStack>> cir) {
         if (ItemTweaks.caneSword_fixDamageOnSheathe) {
-            int damage = player.getHeldItem(hand).getItemDamage();
-            ItemStack stack = cir.getReturnValue().getResult();
-            stack.setItemDamage(damage);
-            cir.setReturnValue(new ActionResult<>(EnumActionResult.SUCCESS, stack));
+            ItemStack held = player.getHeldItem(hand);
+            ItemStack result = cir.getReturnValue().getResult();
+            if (result != held) result.setItemDamage(held.getItemDamage());
         }
     }
 
