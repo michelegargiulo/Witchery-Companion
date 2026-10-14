@@ -23,3 +23,5 @@ run
 src/main/resources/data_remove_triggered_dispersal
 libs
 /data
+*.zip
+*.jar

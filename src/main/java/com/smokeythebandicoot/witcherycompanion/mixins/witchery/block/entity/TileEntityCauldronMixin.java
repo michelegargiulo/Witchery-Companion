@@ -35,6 +35,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  [Integration] Crafttweaker integration for Cauldron (heat sources)
  [Bugfix] Fix exploit when right-clicking an empty bucket on an empty cauldron, producing a water bucket
  [Bugfix] Cauldron recipes can see ingredients that are not brewing ingredients (needed for custom recipes)
+ [Integration] The One Probe can list every ingredient in the cauldron, not only brewing ones
  */
 @Mixin(TileEntityCauldron.class)
 public abstract class TileEntityCauldronMixin implements ITileEntityCauldronAccessor {
@@ -121,22 +122,51 @@ public abstract class TileEntityCauldronMixin implements ITileEntityCauldronAcce
         }
     }
 
+    /** When a recipe fails Witchery gives the trigger back and removes it from addedStacks (by reference) */
+    @Unique
+    private void witcherycompanion$purgeGivenBackStacks() {
+        for (Iterator<ItemStack> it = this.witcherycompanion$nonBrewStacks.iterator(); it.hasNext(); ) {
+            if (!witcherycompanion$containsInstance(this.addedStacks, it.next())) it.remove();
+        }
+    }
+
+    @Unique
+    private static boolean witcherycompanion$containsInstance(List<ItemStack> list, ItemStack stack) {
+        for (ItemStack other : list) {
+            if (other == stack) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<ItemStack> witcherycompanion$accessor$getAllIngredients() {
+        this.witcherycompanion$syncNonBrewStacks();
+        this.witcherycompanion$purgeGivenBackStacks();
+
+        List<ItemStack> brewStacks = this.brewData.getActions().items;
+        List<ItemStack> ingredients = new ArrayList<>();
+
+        // Brewing ingredients that addedStacks does not know about (it is not saved: the cauldron was loaded from
+        // NBT) were necessarily added before anything that addedStacks knows about
+        for (ItemStack stack : brewStacks) {
+            if (!witcherycompanion$containsInstance(this.addedStacks, stack)) ingredients.add(stack);
+        }
+
+        // addedStacks holds the real order of arrival, but also leftovers of previous contents (it is never
+        // cleared), so only keep what is actually part of the current brew data or tracked as non-brew
+        for (ItemStack added : this.addedStacks) {
+            if (witcherycompanion$containsInstance(brewStacks, added)
+                    || witcherycompanion$containsInstance(this.witcherycompanion$nonBrewStacks, added)) {
+                ingredients.add(added);
+            }
+        }
+        return ingredients;
+    }
+
     @Override
     public List<ItemStack> witcherycompanion$accessor$getCraftingPool() {
         this.witcherycompanion$syncNonBrewStacks();
-
-        // When a recipe fails Witchery gives the trigger back and removes it from addedStacks (by reference)
-        for (Iterator<ItemStack> it = this.witcherycompanion$nonBrewStacks.iterator(); it.hasNext(); ) {
-            ItemStack stack = it.next();
-            boolean stillInside = false;
-            for (ItemStack added : this.addedStacks) {
-                if (added == stack) {
-                    stillInside = true;
-                    break;
-                }
-            }
-            if (!stillInside) it.remove();
-        }
+        this.witcherycompanion$purgeGivenBackStacks();
 
         // The last added stack is the recipe trigger and must not count as one of its inputs
         ItemStack trigger = this.addedStacks.isEmpty() ? null : this.addedStacks.get(this.addedStacks.size() - 1);

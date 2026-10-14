@@ -12,4 +12,8 @@ public interface ITileEntityCauldronAccessor {
      * ingredients, excluding the last added stack (the recipe trigger). The returned list is a fresh copy */
     List<ItemStack> witcherycompanion$accessor$getCraftingPool();
 
+    /** Returns every ingredient currently in the cauldron, brewing or not, in the order they were added
+     * (including the recipe trigger). The returned list is a fresh copy. Used by The One Probe */
+    List<ItemStack> witcherycompanion$accessor$getAllIngredients();
+
 }

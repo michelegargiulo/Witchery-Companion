@@ -7,17 +7,19 @@ import java.util.function.BiPredicate;
 /**
  * Pairs a list of "wanted" ingredients with a pool of available objects, so that every ingredient is assigned to a
  * DIFFERENT pool entry (a pool entry can never satisfy two ingredients, and an ingredient needs exactly one entry).
- * <p>
+ *
  * This is a bipartite matching problem (solved here with augmenting paths), and not a greedy scan: a broad ingredient
  * (OreDict, wildcard metadata...) must not "steal" the only entry that a narrower ingredient can use.
+ *
+ * Kept free of any Minecraft/Witchery type on purpose, so that it can be unit tested in isolation.
  */
 public final class IngredientMatcher {
 
     private IngredientMatcher() {}
 
     /**
-     * @param wanted The ingredients that must all be satisfied
-     * @param pool The available objects. Entries that match no ingredient are simply ignored
+     * @param wanted    The ingredients that must all be satisfied
+     * @param pool      The available objects. Entries that match no ingredient are simply ignored
      * @param predicate Tells if a given pool entry satisfies a given ingredient
      * @return true if every ingredient can be assigned to its own pool entry
      */
