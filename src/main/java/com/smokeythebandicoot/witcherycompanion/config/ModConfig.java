@@ -619,6 +619,14 @@ public class ModConfig {
             @Config.Name("Witch's Cauldron - Fix Bucket Voiding Brew")
             public static boolean witchsCauldron_fixBucketVoidingBrew = true;
 
+            @Config.Comment("If true, fixes Cauldron crafting for custom recipes (Crafttweaker, mods' data folders): " +
+                    "ingredients that are also brewing ingredients are no longer refused by the brewing rules, " +
+                    "ingredients that are not brewing ingredients are no longer swallowed without counting, and " +
+                    "recipes that need the same ingredient more than once work instead of miscounting or crashing. " +
+                    "Witchery's own recipes keep their behaviour, except for the crash")
+            @Config.Name("Witch's Cauldron - Fix Custom Recipe Ingredients")
+            public static boolean witchsCauldron_fixCustomRecipeIngredients = true;
+
             @Config.Comment("If true, fixes a dupe where the same item can be tossed into multiple adjacent cauldrons.")
             @Config.Name("Witch's Cauldron - Fix Multiple Cauldron Dupe")
             public static boolean witchsCauldron_fixMultipleCauldronDupe = true;

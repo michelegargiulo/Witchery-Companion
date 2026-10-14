@@ -8,13 +8,16 @@ import com.smokeythebandicoot.witcherycompanion.api.CauldronApi;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.msrandom.witchery.block.entity.TileEntityCauldron;
 import net.msrandom.witchery.brewing.CauldronBrewData;
+import net.msrandom.witchery.brewing.action.BrewAction;
 import net.msrandom.witchery.init.WitcheryFluids;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -22,12 +25,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  Mixins:
  [Integration] Crafttweaker integration for Cauldron (heat sources)
  [Bugfix] Fix exploit when right-clicking an empty bucket on an empty cauldron, producing a water bucket
+ [Bugfix] Cauldron recipes can see ingredients that are not brewing ingredients (needed for custom recipes)
  */
 @Mixin(TileEntityCauldron.class)
 public abstract class TileEntityCauldronMixin implements ITileEntityCauldronAccessor {
@@ -37,6 +44,23 @@ public abstract class TileEntityCauldronMixin implements ITileEntityCauldronAcce
 
     @Shadow(remap = false)
     public abstract int getLiquidQuantity();
+
+    /** Every stack accepted by the cauldron since its last reset, in order. Not persisted by Witchery, and not
+     * cleared when the cauldron empties, so it is only used to detect which stacks are still "inside" */
+    @Shadow(remap = false) @Final
+    private List<ItemStack> addedStacks;
+
+    /** Stacks accepted as ingredients that have NO brew action. Witchery only stores brewing ingredients in
+     * brewData.actions.items (the only list CauldronRecipe.craft reads), so these would otherwise be invisible
+     * to recipes. Deliberately NOT stored in brewData, whose items/actions lists must stay index-parallel.
+     * Not persisted: after a server restart mid-recipe they are lost and the recipe fails gracefully */
+    @Unique
+    private final List<ItemStack> witcherycompanion$nonBrewStacks = new ArrayList<>();
+
+    /** The brewData instance that witcherycompanion$nonBrewStacks belongs to. Witchery creates a new CauldronBrewData
+     * every time the cauldron empties (drain) or is loaded from NBT, so a different instance means "new content" */
+    @Unique
+    private CauldronBrewData witcherycompanion$nonBrewStacksOwner = null;
 
     @Unique
     private float witchery_Patcher$currentPowerNeeded = -1.0f;
@@ -75,6 +99,56 @@ public abstract class TileEntityCauldronMixin implements ITileEntityCauldronAcce
     private float saveCurrentPowerNeeded(TileEntityCauldron instance, int currentPower, AtomicInteger risk, Operation<Float> original) {
         witchery_Patcher$currentPowerNeeded = original.call(instance, currentPower, risk);
         return witchery_Patcher$currentPowerNeeded;
+    }
+
+    /** Records ingredients that have no brew action. Injected right before addItem stores the stack in addedStacks,
+     * which is the point where the item has already been accepted (canNotAdd passed). */
+    @Inject(method = "addItem", remap = false, at = @At(value = "FIELD", opcode = 180 /* GETFIELD */, remap = false,
+            target = "Lnet/msrandom/witchery/block/entity/TileEntityCauldron;addedStacks:Ljava/util/List;"))
+    private void witcherycompanion$trackNonBrewIngredients(BrewAction action, ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+        this.witcherycompanion$syncNonBrewStacks();
+        if (action == null) {
+            // Same instance that Witchery is about to put in addedStacks, so we can tell later if it was given back
+            this.witcherycompanion$nonBrewStacks.add(stack);
+        }
+    }
+
+    @Unique
+    private void witcherycompanion$syncNonBrewStacks() {
+        if (this.witcherycompanion$nonBrewStacksOwner != this.brewData) {
+            this.witcherycompanion$nonBrewStacks.clear();
+            this.witcherycompanion$nonBrewStacksOwner = this.brewData;
+        }
+    }
+
+    @Override
+    public List<ItemStack> witcherycompanion$accessor$getCraftingPool() {
+        this.witcherycompanion$syncNonBrewStacks();
+
+        // When a recipe fails Witchery gives the trigger back and removes it from addedStacks (by reference)
+        for (Iterator<ItemStack> it = this.witcherycompanion$nonBrewStacks.iterator(); it.hasNext(); ) {
+            ItemStack stack = it.next();
+            boolean stillInside = false;
+            for (ItemStack added : this.addedStacks) {
+                if (added == stack) {
+                    stillInside = true;
+                    break;
+                }
+            }
+            if (!stillInside) it.remove();
+        }
+
+        // The last added stack is the recipe trigger and must not count as one of its inputs
+        ItemStack trigger = this.addedStacks.isEmpty() ? null : this.addedStacks.get(this.addedStacks.size() - 1);
+
+        List<ItemStack> pool = new ArrayList<>();
+        for (ItemStack stack : this.brewData.getActions().items) {
+            if (stack != trigger) pool.add(stack);
+        }
+        for (ItemStack stack : this.witcherycompanion$nonBrewStacks) {
+            if (stack != trigger) pool.add(stack);
+        }
+        return pool;
     }
 
     /** Accessor for 'getNeededPower'. Used by The One Probe */

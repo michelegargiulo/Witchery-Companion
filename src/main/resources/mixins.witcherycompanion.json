@@ -155,6 +155,7 @@
     "witchery.potion.PotionInsanityMixin",
     "witchery.potion.PotionMortalCoilMixin",
     "witchery.potion.PotionResizingMixin",
+    "witchery.recipe.CauldronRecipeMixin",
     "witchery.recipe.KettleRecipeMixin",
     "witchery.recipe.brazier.BrazierSummoningRecipeMixin",
     "witchery.registry.RegistryWrapper.DimensionsMixin",
