@@ -52,6 +52,8 @@ import java.util.List;
 /**
  * Mixins:
  * [Bugfix] Fix Mirror in Mirror not working
+ * [Bugfix] Fix crash when entering/exiting a Mirror, caused by processing the second half of the Mirror with data of
+ *    the dimension that the entity has just left (seen with Fluidlogged API)
  * [Bugfix] Fix Mirrors in Mirror Dimension always teleporting from to Overworld
  * [Tweak] Tweak power requirements for using Mirror in Mirror
  * [Tweak] Disable splash sound in various cases
@@ -93,10 +95,30 @@ public abstract class BlockMirrorMixin extends BlockContainer implements IBlockM
         return this.unbreakable;
     }
 
+    /** True if the (pos, state) pair does not describe the block that is actually at 'pos' in 'world' anymore */
+    @Unique
+    private boolean witcherycompanion$isStaleCollision(World world, BlockPos pos, IBlockState state) {
+        if (state.getBlock() != this) return true;
+        IBlockState actual = world.getBlockState(pos);
+        if (actual.getBlock() != this) return true;
+        // Same block, but a different half or direction (another dimension can have a Mirror at the same position)
+        return isBlockTopOfMirror(actual) != isBlockTopOfMirror(state) || getDirection(actual) != getDirection(state);
+    }
+
     /** Bugfix for world.isAirBlock that was checked against 'pos' instead of the new blockpos 'np'
      * which caused the check to always be false. Could not find a way to avoid rewriting the whole method **/
-    @Inject(method = "onEntityCollision", remap = true, at = @At(value = "HEAD"))
+    @Inject(method = "onEntityCollision", remap = true, cancellable = true, at = @At(value = "HEAD"))
     private void fixMirrorInMirror(World world, BlockPos pos, IBlockState state, Entity entity, CallbackInfo ci) {
+        // A Mirror is 2 blocks tall: the entity collides with both halves in the same tick. The first half teleports it
+        // to another dimension, and the second half is then dispatched with the (pos, state) of the old dimension, but
+        // with the world of the new one. Witchery would read 'facing' from whatever block is there (lava, a wall...)
+        // and crash. Cancelling also stops Witchery's own method body, that would crash on the same stale data
+        if (ModConfig.PatchesConfiguration.BlockTweaks.mirror_fixStaleCollisionCrash
+                && this.witcherycompanion$isStaleCollision(world, pos, state)) {
+            ci.cancel();
+            return;
+        }
+
         if (!world.isRemote && entity.ticksExisted % 5 == 1 && this.isTransportableEntity(entity)) {
             int hitZoneyShift = 0;
             if (!isBlockTopOfMirror(state)) {

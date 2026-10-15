@@ -549,6 +549,13 @@ public class ModConfig {
             @Config.Name("Mirror - Fix Always TP To Overworld")
             public static boolean mirror_fixAlwaysTpToOverworld = true;
 
+            @Config.Comment("Fixes a crash when entering or exiting a Mirror (\"Cannot get property facing\"). A Mirror is " +
+                    "two blocks tall, so an entity collides with both halves in the same tick. The first half teleports " +
+                    "it to another dimension and the second half is then processed with data of the old dimension. " +
+                    "Seen with Fluidlogged API. Disable only to compare behaviour")
+            @Config.Name("Mirror - Fix Crash on Stale Collision")
+            public static boolean mirror_fixStaleCollisionCrash = true;
+
             @Config.Comment("Tweaks to modify the required power to use the Mirror in Mirror (MiM) feature (traverse the rooms " +
                     "inside of the Mirror dimension. Witchery default is 3000")
             @Config.Name("Mirror - Tweak MiM Power Requirement")

@@ -31,6 +31,7 @@ jar in the resource packs folder.
   - **[Mandrake Crop]** Fix spawning mandrakes even when not fully mature
   - **[Mandrake Crop]** Fix harvesting and mandrake spawning when right-clicking with TiC Kama
   - **[Mirror]** Fix Exit Mirrors in Mirror Dimension always teleporting to the Overworld
+  - **[Mirror]** Fix a crash caused by stale data when entering or exiting mirrors when Fluidlogged API mod is installed
   - **[Poppet Shelf]** Fix upside-down poppet rendering
   - **[Stockade]** Fix weird rendering when player head is too close to the stockade
   - **[Spirit Portal Block]** Fix Spirit Portal Block not being completely broken when there are no longer the conditions to stay lit
