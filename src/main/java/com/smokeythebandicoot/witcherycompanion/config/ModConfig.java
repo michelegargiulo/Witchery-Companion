@@ -1105,6 +1105,12 @@ public class ModConfig {
             @Config.Name("Lord of Torment - Tweak Disable Teleportation to Torment")
             public static boolean lordOfTorment_tweakDisableTeleportation = false;
 
+            @Config.Comment("Fix a crash that happens when Ignianima spell is disabled and the player " +
+                    "tries to deflect a EntitySpellEffect fired from the Lord of Torment that contains " +
+                    "the disabled spell effect.")
+            @Config.Name("Lord of Torment - Fix Projectile Deflect")
+            public static boolean lordOfTorment_fixProjectileDeflect = true;
+
             @Config.Comment("If true, when interacting with Lilith with an Enchantable item they will act as if with an " +
                     "empty hand. Hint: it's possible to use a resource pack to change the message that lilith says to " +
                     "the player that right-clicks with an enchantable item, to avoid confusing players.")

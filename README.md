@@ -149,6 +149,7 @@ jar in the resource packs folder.
   - **[Hobgoblin]** Tweak to customize Ore Smelting chance (both with and without Koboldite Pickaxe)
   - **[Lilith]** Tweak to disable enchanting items given to her
   - **[Lord of Torment]** Tweak to disable mid-fight teleportation to Torment dimension
+  - **[Lord of Torment]** Fix a crash when deflecting their projectiles while Ignianima spell effect is disabled
   - **[Owl]** Tweak to disable taking items (since flying AI is bugged and might dupe items)
   - **[Owl]** Tweak to change the model slightly when the owl is sitting
   - **[Owl]** Tweak to render children Owls smaller

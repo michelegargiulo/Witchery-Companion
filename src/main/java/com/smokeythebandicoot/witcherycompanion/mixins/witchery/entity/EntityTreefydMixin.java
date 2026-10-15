@@ -37,7 +37,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * [Tweak] Tweak to require a Creeper Heart to be used before a Demon heart can be applied
  * [Tweak] Give Own Loot Table
  */
-@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(EntityTreefyd.class)
 public abstract class EntityTreefydMixin extends EntityMob implements IEntityOwnable, IEntityTreefydAccessor {
 

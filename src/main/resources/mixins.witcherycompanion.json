@@ -94,6 +94,7 @@
     "witchery.entity.EntityPoltergeistMixin",
     "witchery.entity.EntitySpectralFamiliarMixin",
     "witchery.entity.EntitySpectreMixin",
+    "witchery.entity.EntitySpellEffectMixin",
     "witchery.entity.EntityTreefydMixin",
     "witchery.entity.EntityVampireMixin",
     "witchery.entity.EntityVillageGuardMixin",
@@ -186,8 +187,6 @@
   ],
   "client": [
     "witchery.block.BlockWitchesOvenMixin",
-    "witchery.integration.jei.JeiWitcheryPluginMixin",
-    "witchery.integration.jei.JeiWitcheryPlugin.CompanionMixin",
     "witchery.client.ClientEvents.GuiOverlayMixin",
     "witchery.client.gui.book.GuiHerbologyBookMixin",
     "witchery.client.model.ModelFamiliarPigMixin",
@@ -198,7 +197,9 @@
     "witchery.client.renderer.entity.block.RenderPoppetShelfMixin",
     "witchery.client.renderer.entity.block.RenderWolfAltarMixin",
     "witchery.client.renderer.entity.block.RenderWorshipStatueMixin",
-    "witchery.client.renderer.entity.model.ModelOwlMixin"
+    "witchery.client.renderer.entity.model.ModelOwlMixin",
+    "witchery.integration.jei.JeiWitcheryPluginMixin",
+    "witchery.integration.jei.JeiWitcheryPlugin.CompanionMixin"
   ],
   "minVersion": "0.8"
 }
