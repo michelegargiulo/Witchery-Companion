@@ -1402,6 +1402,14 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static int torment_tweakID = 12;
 
+            @Config.Comment("If true, nothing can send players to the Torment dimension: not the Lord of Torment, " +
+                    "nor the Torment Portal, nor the Tormentum spell symbol. Players that are already in the Torment " +
+                    "dimension can still leave it. 'Lord of Torment - Tweak Disable Teleportation to Torment' only " +
+                    "covers the Lord of Torment\n. NOTE: if this option is enabled, the 'Lord of Torment - " +
+                    "Tweak Disable Teleportation to Torment' option is ignored, and player won't be teleported to Torment")
+            @Config.Name("Torment - Tweak Disable Teleportation to Torment (All Sources)")
+            public static boolean torment_tweakDisableTeleportation = false;
+
             @Config.Comment("Sets the dimension ID for the Mirror dimension")
             @Config.Name("Mirror - Tweak Dimension ID")
             @Config.RequiresMcRestart
