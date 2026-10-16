@@ -4,12 +4,13 @@ A Companion to Witchery: Resurrected fixing bugs, crashes, patching things and a
 configurability. Witchery: Resurrected is a required dependency, and is the original 1.7.10 Witchery
 jar in the resource packs folder.
 
-## Current Features (as of v0.36.1-beta):
+## Current Features (as of v0.36.3-beta):
 ### Bugfixes:
 - **Common**
   - **[Common]** Fix crash when pulling null entity
   - **[Common]** Fix some misspelled language entries (for us_en) and add the few missing ones
   - **[Common]** Fix Spectator players falling into the void after changing dimension or reloading world
+  - **[Common]** Prevent the `/locate` command to be fully replaced by Witchery, and instead modify the Vanilla one
   - **[Loot]** Fix crash with Levelled random enchant
 - **Blocks**
   - **[Altar]** Fix Altar not providing power on world load/reload

@@ -374,6 +374,12 @@ public class ModConfig {
             @Config.Name("Elytra - Disallow When Resized Or Transformed")
             public static boolean tweak_disallowElytraWhenTransformedOrResized = true;
 
+            @Config.Comment("Prevents the `/locate` command to be fully replaced by Witchery, and instead modifies the" +
+                    "Vanilla one for better compatibility with other mods that may interact with it")
+            @Config.Name("Commands - Less Invasive Locate Command")
+            @Config.RequiresMcRestart
+            public static boolean tweak_lessInvasiveLocateCommand = true;
+
         }
 
         public static class BlockTweaks {

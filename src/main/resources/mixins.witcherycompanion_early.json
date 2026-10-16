@@ -17,12 +17,14 @@
     "minecraft.block.BlockTripWireHookMixin",
     "minecraft.block.BlockTripWireMixin",
     "minecraft.block.BlockWorkbenchMixin",
+    "minecraft.command.CommandLocateMixin",
     "minecraft.entity.EntityLivingBaseMixin",
     "minecraft.entity.ai.EntityAIOpenDoorMixin",
     "minecraft.entity.player.EntityPlayerMixin",
     "minecraft.tileentity.TileEntityBedMixin",
     "minecraft.tileentity.TileEntityChestMixin",
     "minecraft.tileentity.TileEntityEnderChestMixin",
+	"witchery.WitcheryResurrectedMixin",
     "witchery.WitcheryResurrected_CompanionMixin"
   ],
   "server": [
