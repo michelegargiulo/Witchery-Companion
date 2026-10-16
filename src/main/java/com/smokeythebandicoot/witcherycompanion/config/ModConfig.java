@@ -541,6 +541,11 @@ public class ModConfig {
             @Config.RangeDouble(min = 0.0, max = 1.0)
             public static double mandrakeCrop_tweakRootDropChance = 0.25;
 
+            @Config.Comment("Tweaks the drop rate of the Snowbell Flower for a Snowbell Crop. By default 1.0 (100%, drops from every crop)")
+            @Config.Name("Snowbell Crop - Tweak Flower Drop Rate")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double snowbellCrop_tweakSnowbellFlowerDropRate = 1.0;
+
             @Config.Comment("Fixes the Mirror in Mirror (MiM) feature.")
             @Config.Name("Mirror - Fix MiM")
             public static boolean mirror_fixMirrorInMirror = true;

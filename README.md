@@ -33,6 +33,7 @@ jar in the resource packs folder.
   - **[Mirror]** Fix Exit Mirrors in Mirror Dimension always teleporting to the Overworld
   - **[Mirror]** Fix a crash caused by stale data when entering or exiting mirrors when Fluidlogged API mod is installed
   - **[Poppet Shelf]** Fix upside-down poppet rendering
+  - **[Snowbell Crop]** Fix Snowbell Flower not dropping (Includes tweak to set drop chance)
   - **[Stockade]** Fix weird rendering when player head is too close to the stockade
   - **[Spirit Portal Block]** Fix Spirit Portal Block not being completely broken when there are no longer the conditions to stay lit
   - **[Spirit Portal Block]** Fix Spirit Portal Block being able to support buttons, levers, etc on its surface

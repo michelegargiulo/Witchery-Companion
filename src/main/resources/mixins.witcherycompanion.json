@@ -31,6 +31,7 @@
     "witchery.block.BlockPlacedItemMixin",
     "witchery.block.BlockRemovedBlockMixin",
     "witchery.block.BlockRowanDoorMixin",
+    "witchery.block.BlockSnowbellCropMixin",
     "witchery.block.BlockSpiritPortalMixin",
     "witchery.block.BlockStatueGoddessMixin",
     "witchery.block.BlockStatueOfWorshipMixin",
