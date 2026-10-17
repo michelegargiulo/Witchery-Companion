@@ -4,7 +4,7 @@
   "icon": "witchery:wolf_head",
   "category": "observations",
   "flag": "witcherycompanion:observations/add_werewolf",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "text",

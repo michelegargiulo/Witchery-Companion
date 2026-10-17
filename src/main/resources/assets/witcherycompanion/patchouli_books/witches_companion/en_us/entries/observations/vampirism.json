@@ -15,6 +15,11 @@
       "text": "Contrary to many popular beliefs, the only way to kill a vampire is with fire, either by burning them or by exposing them to sunlight (which instantly incinerates them). Other than this, there are very few known ways to slay a vampire although attacks from other $(item)Vampires$(), $(l:creatures/werewolf)Werewolves$(/l) and other very powerful creatures, seem to be some of them."
     },
     {
+      "type": "text",
+      "title": "Weaknesses",
+      "text": "Vampire's only source of food is blood. Eating normal food instantly awakes the blood hunger in them, and they will immediately feel much hungrier and their hunger bar is drained completely."
+    },
+    {
       "type": "generic/secret_text",
       "title": "Lvl. 1 - Dying in the Sun",
       "description": "Vampires will die almost instantly in the sun. If out in the open at night, take a clock! Especially if the vampire's respawn point is itself sunlit.",
