@@ -31,6 +31,9 @@ witcherycompanion.message.statue_of_worship.worship_intense=§oFervent prayers g
 witcherycompanion.message.potion.resizing.elytra_disallow=Due to your size the Elytra does not fit well enough to fly
 witcherycompanion.message.transform.elytra_disallow=Your current form prevents you from using your elytra
 witcherycompanion.message.wolftrap.approaching=Your eyes catch fleeting glimpses of movement. Somethings is approaching you. Quickly.
+witcherycompanion.message.divination.target_lost=The vision fades: your target is out of reach
+witcherycompanion.message.divination.body_damaged=Your body is hurt! The vision shatters
+witcherycompanion.message.divination.body_lost=Your body is gone! The vision shatters
 
 # New Torn Page tooltips and messages
 witcherycompanion.tooltip.torn_page.lore=§oSeems like a missing page from some esoteric book§r

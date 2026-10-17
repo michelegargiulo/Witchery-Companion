@@ -12,6 +12,9 @@ import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPPlug
 import com.smokeythebandicoot.witcherycompanion.network.CompanionNetworkChannel;
 import com.smokeythebandicoot.witcherycompanion.patches.block.BlockMandrakeCropPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch;
+import com.smokeythebandicoot.witcherycompanion.patches.crystalball.DivinationEvents;
+import com.smokeythebandicoot.witcherycompanion.patches.crystalball.DivinationManager;
+import com.smokeythebandicoot.witcherycompanion.patches.crystalball.DivinationRegistry;
 import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.FamiliarPatches;
 import com.smokeythebandicoot.witcherycompanion.patches.infusion.symbol.SymbolEffectPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.triggerdispersal.TileEntityCursedTrigger;
@@ -19,9 +22,11 @@ import com.smokeythebandicoot.witcherycompanion.utils.LootConditionKilledInSpiri
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -42,6 +47,10 @@ public class CommonProxy {
         registerNetworkHandlers();
 
         registerLootConditions();
+
+        // Always registered: restores players and removes bodies left by an interrupted divination, even if the
+        // tweak was disabled in the meantime. Every handler is a no-op if no divination exists
+        MinecraftForge.EVENT_BUS.register(DivinationEvents.INSTANCE);
 
 
         if (ModConfig.PatchesConfiguration.InfusionTweaks.soulBrews_fixPersistency)
@@ -96,6 +105,13 @@ public class CommonProxy {
 
     public void serverStarting(FMLServerStartingEvent event) {
         registerCommands(event);
+    }
+
+    /** Fired before the data of the players is saved: divinations are ended, so that nobody is saved as a Spectator */
+    public void serverStopping(FMLServerStoppingEvent event) {
+        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+        if (server != null) DivinationManager.endAll(server);
+        DivinationRegistry.clearAll();
     }
 
 

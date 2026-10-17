@@ -453,6 +453,18 @@ public class ModConfig {
             @Config.RangeInt(min = 1, max = 10000)
             public static int crystalBall_tweakCooldown = 100;
 
+            @Config.Comment("If true, Crystal Ball divination (right-click a Crystal Ball holding a bound Taglock Kit, keep pressed) \n" +
+                    "is reworked: instead of moving the camera on the client (which shows unloaded chunks when the target is far), \n" +
+                    "the player is silently put in Spectator mode and made to spectate the target, so the world around it is always loaded. \n" +
+                    "A body is left where the player was: if it is hurt, divination ends, the player goes back and takes the damage. \n" +
+                    "Divination also ends when the Taglock Kit is released or its max use duration elapses, the target dies or is lost, \n" +
+                    "the player sneaks, disconnects or dies. Divination is never resumed after a relog. \n" +
+                    "The Crystal Ball cooldown (see Crystal Ball - Tweak Cooldown) also applies to divination. \n" +
+                    "The F3 debug screen is hidden while divining. Divining on yourself is not affected. \n" +
+                    "Needs Witchery: Companion on both client and server")
+            @Config.Name("Crystal Ball - Tweak Spectator Divination")
+            public static boolean crystalBall_tweakSpectatorDivination = false;
+
             @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
                     "at least they should not crash the game as often")
             @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")

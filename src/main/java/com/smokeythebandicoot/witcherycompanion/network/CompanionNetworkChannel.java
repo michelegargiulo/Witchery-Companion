@@ -12,10 +12,12 @@ public class CompanionNetworkChannel {
     // Message IDs
     private final static int MESSAGE_WITCHERY_PROGRESS_REQUEST = 0;
     private final static int MESSAGE_WITCHERY_PROGRESS_RESPONSE = 1;
+    private final static int MESSAGE_DIVINATION_STATE = 2;
 
     // Register messages on run
     public static void registerMessages() {
         NETWORK_CHANNEL.registerMessage(PacketWitcheryProgressRequest.Handler.class, PacketWitcheryProgressRequest.Message.class, MESSAGE_WITCHERY_PROGRESS_REQUEST, Side.SERVER);
         NETWORK_CHANNEL.registerMessage(PacketWitcheryProgressResponse.Handler.class, PacketWitcheryProgressResponse.Message.class, MESSAGE_WITCHERY_PROGRESS_RESPONSE, Side.CLIENT);
+        NETWORK_CHANNEL.registerMessage(PacketDivinationState.Handler.class, PacketDivinationState.Message.class, MESSAGE_DIVINATION_STATE, Side.CLIENT);
     }
 }
