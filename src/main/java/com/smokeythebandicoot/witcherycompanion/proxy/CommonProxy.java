@@ -7,6 +7,7 @@ import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.justenoughresources.JERIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.quark.BlockMandrakeCropIntegration;
+import com.smokeythebandicoot.witcherycompanion.integrations.quark.RowanDoorIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.thaumcraft.ThaumcraftIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPPlugin;
 import com.smokeythebandicoot.witcherycompanion.network.CompanionNetworkChannel;
@@ -58,6 +59,10 @@ public class CommonProxy {
         if (ModConfig.IntegrationConfigurations.QuarkIntegration.fixMandrakesRightClickHarvest &&
                 Loader.isModLoaded(Mods.QUARK))
             MinecraftForge.EVENT_BUS.register(BlockMandrakeCropIntegration.INSTANCE);
+
+        if (ModConfig.IntegrationConfigurations.QuarkIntegration.fixRowanDoorsDoubleDoorOpening &&
+                Loader.isModLoaded(Mods.QUARK))
+            MinecraftForge.EVENT_BUS.register(RowanDoorIntegration.INSTANCE);
 
         if (ModConfig.IntegrationConfigurations.ThaumcraftIntegration.enableThaumcraftIntegration &&
                 Loader.isModLoaded(Mods.THAUMCRAFT))

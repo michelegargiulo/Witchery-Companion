@@ -1614,6 +1614,11 @@ public class ModConfig {
             @Config.Comment("If true, fixes Mandrakes not spawning when Quark right-click harvest feature is enabled")
             @Config.Name("Quark Integration - Fix Mandrakes Right-click Harvest")
             public static boolean fixMandrakesRightClickHarvest = true;
+
+            @Config.Comment("If true, fixes Quark opening the other half of Rowan Double Doors when the Player does not have the key. " +
+                    "A Player that has the key of only one of the two doors will still open both")
+            @Config.Name("Quark Integration - Fix Rowan Doors Double Door Opening")
+            public static boolean fixRowanDoorsDoubleDoorOpening = true;
         }
 
         public static class MorphIntegration {

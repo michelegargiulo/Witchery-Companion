@@ -286,6 +286,7 @@ jar in the resource packs folder.
 
 - **Quark**
   - Fix Right-click to harvest not spawning Mandrakes from Mandrake crops
+  - Fix double-door Quark tweak allowing players to open Rowan Doors for which they do not possess the keys
 
 - **Patchouli**
   - Implement configurable, dynamic, in-depth in-game documentation. Implements almost all features and all content of the Witchery books (except book of biomes)
