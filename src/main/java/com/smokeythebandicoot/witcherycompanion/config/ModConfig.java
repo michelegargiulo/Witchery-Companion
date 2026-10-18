@@ -1444,6 +1444,11 @@ public class ModConfig {
             @Config.Name("No Form - Fix Default Step Height")
             public static boolean noForm_fixDefaultStepHeight = true;
 
+            @Config.Comment("If true, Vampires lose all their hunger bar when they eat food, like in the original Witchery. " +
+                    "In W:R this check is broken: it runs before the food is eaten and never sees the hunger increase")
+            @Config.Name("Vampire - Fix Eating Normal Food")
+            public static boolean vampire_fixFoodDrain = true;
+
             @Config.Comment("Specify a list of Dimension IDs that have to be considered always-night")
             @Config.Name("Vampire - Tweak Always Night Dimension")
             public static int[] vampire_alwaysNightDimensions = new int[] { };
