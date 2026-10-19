@@ -20,6 +20,7 @@ jar in the resource packs folder.
   - **[Circle Glyphs]** Prevent circle glyphs from being accidentally replaced by players
   - **[Coffin]** Fix edge-case crash when placing the Coffin across chunk boundaries
   - **[Coffin]** Fix crash when piston moves the top block of the coffin
+  - **[Crystal Ball]** Fix a cooldown desync after using
   - **[Cursed Blocks]** Fix crash when using trigger dispersal. ~They still don't work, but they should not crash the game~ Now it works, even on supported Tile Entities! Try cursing chests, pressure plates, doors and even Beds and Tripwires! More info on the Wiki
   - **[Dream Weaver]** Fix their facing upon placement
   - **[Wolf Altar]** Fix fences connecting to the statue and buttons being able to be placed on it

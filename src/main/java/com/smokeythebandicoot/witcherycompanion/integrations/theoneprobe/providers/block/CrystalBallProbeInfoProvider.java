@@ -5,6 +5,7 @@ import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfigur
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.TopIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
+import com.smokeythebandicoot.witcherycompanion.utils.CooldownUtils;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.ProbeMode;
@@ -45,8 +46,16 @@ public class CrystalBallProbeInfoProvider extends BaseBlockProbeInfoProvider<Blo
     public void addBasicInfo(BlockCrystalBall block, TileEntityCrystalBall tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
         if (tile instanceof ITileEntityCrystalBallAccessor) {
             ITileEntityCrystalBallAccessor accessor = (ITileEntityCrystalBallAccessor) tile;
-            long remainingCooldown = (accessor.witcherycompanion$accessor$getLastUsedTime() + BlockTweaks.crystalBall_tweakCooldown) - tile.getWorld().getTotalWorldTime();
-            TOPHelper.addText(iProbeInfo, "Cooldown", remainingCooldown <= 0 ? "Ready" : String.valueOf(remainingCooldown), TextFormatting.DARK_PURPLE);
+
+            // canBeUsed is the same check W:R does when the Crystal Ball is used, and it does not change any state
+            if (tile.canBeUsed()) {
+                TOPHelper.addText(iProbeInfo, "Cooldown", "Ready", TextFormatting.DARK_PURPLE);
+            } else {
+                long remainingTicks = CooldownUtils.remainingTicks(accessor.witcherycompanion$accessor$getLastUsedTime(),
+                        tile.getWorld().getTotalWorldTime(), BlockTweaks.crystalBall_tweakCooldown);
+                TOPHelper.addText(iProbeInfo, "Cooldown",
+                        "On Cooldown (" + CooldownUtils.ticksToSecondsCeil(remainingTicks) + "s)", TextFormatting.DARK_PURPLE);
+            }
         }
     }
 }

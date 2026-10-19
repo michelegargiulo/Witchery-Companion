@@ -453,6 +453,11 @@ public class ModConfig {
             @Config.RangeInt(min = 1, max = 10000)
             public static int crystalBall_tweakCooldown = 100;
 
+            @Config.Comment("If true, the time of the last Crystal Ball usage is sent to the clients, so that the cooldown is correct on the " +
+                    "client side too (for example, for The One Probe). Witchery never sends it, so clients always see a Crystal Ball that is ready")
+            @Config.Name("Crystal Ball - Fix Cooldown Sync")
+            public static boolean crystalBall_fixCooldownSync = true;
+
             @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
                     "at least they should not crash the game as often")
             @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")
