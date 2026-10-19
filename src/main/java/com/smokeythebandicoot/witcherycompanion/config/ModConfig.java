@@ -1438,6 +1438,21 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static int mirror_tweakID = 13;
 
+            @Config.Comment("Specify a list of Dimension IDs where circle magic (rituals started from Circle Glyphs) is " +
+                    "disabled, like Witchery already does for the Spirit World. Players get the same 'circle magic is being " +
+                    "nullified' message. Rituals that are already active can still be deactivated. An empty list " +
+                    "disables this feature\n. NOTE: Dimensions added by Mystcraft Ages get a different ID every time, so " +
+                    "they can't be listed: use the 'Circle Magic - Tweak Dimension List Is Whitelist' option for them")
+            @Config.Name("Circle Magic - Tweak Dimension List")
+            public static int[] circleMagic_tweakDimensionList = new int[] { };
+
+            @Config.Comment("If true, 'Circle Magic - Tweak Dimension List' becomes a whitelist: circle magic only works " +
+                    "in the listed Dimensions, and is disabled in all the others (Mystcraft Ages included). For example, " +
+                    "set the list to 0 (Overworld) to only allow circle magic in the Overworld. NOTE: if the list is " +
+                    "empty this option does nothing, so circle magic is never disabled everywhere by mistake")
+            @Config.Name("Circle Magic - Tweak Dimension List Is Whitelist")
+            public static boolean circleMagic_tweakDimensionListIsWhitelist = false;
+
 
         }
 

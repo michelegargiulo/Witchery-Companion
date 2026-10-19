@@ -12,6 +12,7 @@
     "witchery.block.BlockBeartrapMixin",
     "witchery.block.BlockBrazierMixin",
     "witchery.block.BlockCircleGlyphMixin",
+    "witchery.block.BlockCircleMixin",
     "witchery.block.BlockCrystalBallMixin",
     "witchery.block.BlockDreamWeaverMixin",
     "witchery.block.BlockEnderBrambleMixin",

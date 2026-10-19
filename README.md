@@ -172,6 +172,7 @@ jar in the resource packs folder.
   - **[Voodoo Protection Poppet]** Tweak amount of damage taken to protect its owner from a curse
   - **[Poppet Protection Poppet]** Tweak amount of damage taken to protect its owner from a poppet
 - **Rites**
+  - **[Common]** Add a blacklist of dimension IDs where the circle magic can not be performed. The Spirit World does not allow circle magic regardless.
   - **[Broken Earth]** Tweak to control what blocks can be destroyed using the same rules as the Brew of Erosion (including its CraftTweaker customization)
   - **[Moving Earth]** Tweak to disable moving TileEntity (for dupes)
   - **[Moving Earth]** Tweak to disable voiding blocks above the ritual. This will make the ritual stop (fail) when
