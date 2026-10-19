@@ -250,6 +250,8 @@ jar in the resource packs folder.
         - Custom sniffs. Can be used to specify a item <--> block relationship. Make it sniff the item, it tries to find the block
     - **[Spinning Wheel]** 
         - Custom recipes
+    - **[Spirit World]** 
+        - Select which item to keep when traveling to and from the Spirit World
     - **[Flame Imps]**
         - Customize gifts for each level with custom criteria
         - Customize items that can be donated to them (shinies) and their affection boost
