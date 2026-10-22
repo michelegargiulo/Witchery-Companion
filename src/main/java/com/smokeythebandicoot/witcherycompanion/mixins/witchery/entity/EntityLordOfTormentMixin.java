@@ -32,7 +32,11 @@ public abstract class EntityLordOfTormentMixin extends EntityFlyingMob {
     @ModifyExpressionValue(method = "attackEntityFrom", remap = false,
             at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/world/dimension/WitcheryDimension;isInDimension(Lnet/minecraft/entity/Entity;)Z", remap = false))
     private boolean WPdisableTormentTP(boolean original) {
-        return original && (ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableTeleportation);
+        // Witchery teleports players (and removes the Lord) only when the Lord is NOT in the Torment Dimension, so
+        // to disable the teleportation the Lord has to look like it is already there: OR, never AND
+        return original
+                || ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_tweakDisableTeleportation
+                || ModConfig.PatchesConfiguration.DimensionTweaks.torment_tweakDisableTeleportation;
     }
 
     @Inject(method = "dropFewItems", at = @At("HEAD"), cancellable = true, remap = true)

@@ -18,9 +18,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- Mixins:
- [Tweak] Tweak to ignore other Banshees
- [Tweak] Tweak own loot table
+ * Mixins:
+ * [Tweak] Tweak to ignore other Banshees
+ * [Tweak] Tweak own loot table
  */
 @Mixin(EntityBanshee.class)
 public abstract class EntityBansheeMixin extends EntitySummonedUndead {

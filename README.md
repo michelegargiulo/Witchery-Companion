@@ -4,20 +4,25 @@ A Companion to Witchery: Resurrected fixing bugs, crashes, patching things and a
 configurability. Witchery: Resurrected is a required dependency, and is the original 1.7.10 Witchery
 jar in the resource packs folder.
 
-## Current Features (as of v0.32.4-beta):
+## Current Features (as of v0.36.3-beta):
 ### Bugfixes:
 - **Common**
   - **[Common]** Fix crash when pulling null entity
-  - **[Common]** Fix some mispelled language entries (for us_en) and add the few missing ones
+  - **[Common]** Fix some misspelled language entries (for us_en) and add the few missing ones
+  - **[Common]** Fix Spectator players falling into the void after changing dimension or reloading world
+  - **[Common]** Prevent the `/locate` command to be fully replaced by Witchery, and instead modify the Vanilla one
   - **[Loot]** Fix crash with Levelled random enchant
 - **Blocks**
   - **[Altar]** Fix Altar not providing power on world load/reload
   - **[Altar]** Fix Placed Items (Arthana, Pentacle, etc.) not dropping anything when breaking Altar blocks below them
   - **[Altar]** Fix client crash when the player joins a world where Placed Items are within view in the first frame
   - **[Altar]** Fix Altar multiblock not being assembled correctly, causing the Altar to provide multiple power sources
+  - **[Circle Glyphs]** Prevent circle glyphs from being accidentally replaced by players
   - **[Coffin]** Fix edge-case crash when placing the Coffin across chunk boundaries
   - **[Coffin]** Fix crash when piston moves the top block of the coffin
+  - **[Crystal Ball]** Fix a cooldown desync after using
   - **[Cursed Blocks]** Fix crash when using trigger dispersal. ~They still don't work, but they should not crash the game~ Now it works, even on supported Tile Entities! Try cursing chests, pressure plates, doors and even Beds and Tripwires! More info on the Wiki
+  - **[Dream Weaver]** Fix their facing upon placement
   - **[Wolf Altar]** Fix fences connecting to the statue and buttons being able to be placed on it
   - **[Fetish]** Fix fetish blocks not having drops (Scarecrows, Trent Effiges, Vines)
   - **[Fetish]** Fix fetishes forgetting data on world reload, including the players they are bound to
@@ -25,7 +30,11 @@ jar in the resource packs folder.
   - **[Garlic Garland]** Fix inconsistent Bounding Box
   - **[Kettle]** Fix throwing splash brews immediately after brewing them
   - **[Mandrake Crop]** Fix spawning mandrakes even when not fully mature
+  - **[Mandrake Crop]** Fix harvesting and mandrake spawning when right-clicking with TiC Kama
+  - **[Mirror]** Fix Exit Mirrors in Mirror Dimension always teleporting to the Overworld
+  - **[Mirror]** Fix a crash caused by stale data when entering or exiting mirrors when Fluidlogged API mod is installed
   - **[Poppet Shelf]** Fix upside-down poppet rendering
+  - **[Snowbell Crop]** Fix Snowbell Flower not dropping (Includes tweak to set drop chance)
   - **[Stockade]** Fix weird rendering when player head is too close to the stockade
   - **[Spirit Portal Block]** Fix Spirit Portal Block not being completely broken when there are no longer the conditions to stay lit
   - **[Spirit Portal Block]** Fix Spirit Portal Block being able to support buttons, levers, etc on its surface
@@ -40,6 +49,8 @@ jar in the resource packs folder.
   - **[Witch's Cauldron]** Fix right-clicking with an empty Bucket voiding the brew inside
   - **[Witch's Cauldron]** Fix right-clicking with an Empty Bucket on an empty Cauldron giving a water bucket
   - **[Witch's Cauldron]** Fix right-clicking with a Forge fluid handler voiding the brew inside
+  - **[Witch's Cauldron]** Fix custom crafting recipes for non-brewing ingredients. Required for CraftTweaker Witch's Cauldron integration to work
+  - **[Witches Oven]** Fix Lava Buckets and other burnable items in containers being voided
   - **[Witches Oven]** Fix particles spawning too low
   - **[Wolf Altar]** Fix being kicked from servers for flying when standing on top of the statue
 - **Books**
@@ -64,10 +75,17 @@ jar in the resource packs folder.
   - **[Poppet Protection Poppet]** Fix crash when trying to protect its owner from a poppet
   - **[Villagers]** Fix rare crash when Villagers try to sleep
   - **[Apothecary Villager]** Fix missing Zombified texture
+  - **[Spectral Familiar]** Fix broken model after un-sitting
+  - **[Spectral Familiar]** Fix familiar not doing anything while interacted with sniffable item while sitting
+  - **[Spectral Familiar]** Fix consuming item even when player is in creative
+  - **[Winged Monkey]** Fix Fly to Waypoint AI
+  - **[Winged Monkey]** Fix Defend Owner AI
+  - **[Winged Monkey]** Fix Sitting Behavior
+  - **[Winged Monkey]** Fix Crash when interacted with some items
 - **Infusions**
   - **[Soul Brews]** Fix losing Soul brews (so the Mystic Branch knowledge) upon death
 - **Fluids**
-  - **[Soul Brews]** Enable Forge Universal Bucket, otherwise fluids like Flowing Spirit could not be picked up (non configurable)
+  - **[Soul Brews]** Enable Forge Universal Bucket, otherwise fluids like Flowing Spirit could not be picked up (non-configurable)
 - **Items**
   - **[Cane Sword]** Fix regaining full durability upon sheathing/unsheathing
   - **[Icy Needle]** Fix having an effect only when right-clicking on a block
@@ -96,6 +114,8 @@ jar in the resource packs folder.
 - **Integrations**
   - **[Botania]** Fix crash when a vampire player dies and Baubles is installed but Botania is not
   - **[Thaumcraft]** Fix Thaumcraft Integration registering aspects too early
+  - **[Just Enough Items]** Fix JEI force reloading on world load or dimension change, causing the game to hang and 
+  breaking other mods interacting with JEI (e.g. Calculator & Groovyscript)
 
 ### Tweaks
 - **Brews**
@@ -105,20 +125,22 @@ jar in the resource packs folder.
     are applied. This is needed for example to make a Brew of Blast, with ignore blocks modifier, to make an explosion when
     hitting a block (but the explosion won't damage terrain). Each brew is then delegated to ignore the effects, depending
     on applied modifiers
+  - **[Common]** Tweak to customize Power Ceiling
 - **Blocks**
   - **[Crystal Ball]** Tweak to customize cooldown 
   - **[Crystal Ball]** Tweak to customize Altar Power consumption for each use
+  - **[Ender Bramble]** Tweak to configure minimum and maximum teleportation distance
   - **[Fetishes]** Tweak to customize cooldown of Sentinel and Twister spirit effects
+  - **[Mandrake Crop]** Tweak to customize Mandrake Root item drop chance and Mandrake entity spawn chance
   - **[Witch's Cauldron]** Tweak to set glass bottle size to 250mB instead of 333/334mB (depending if draining or filling)
   - **[Spirit Portal Block]** Tweak to change texture and transparency to better reflect the original Witchery texture
 - **Entities**
+  - **[Common]** (For almost all entities) Tweak to give them their own loot table instead of hard-coded loot 
   - **[Baba Yaga]** Tweak to modify gifts given to owners frequency, max distance and max items
-  - **[Baba Yaga]** Tweak to give her own loot table instead of hard-coded loot, both on death and for gifted items
+  - **[Baba Yaga]** Tweak to give them their own loot table for gifted items
   - **[Banshee]** Tweak to make them ignore each-other, to easy some rituals that require them nearby
-  - **[Banshee]** Tweak to give her own loot table instead of hard-coded loot
   - **[Cat Familiar]** Separate their loot table from Vanilla ocelots loot table
   - **[Coven Witch]** Separate their loot table from Vanilla witches loot table
-  - **[Demon]** Tweak to give them their own loot table instead of hard-coded loot
   - **[Duplicate]** Tweak to configure custom lifespan (in ticks) of duplicates
   - **[Flame Imp]** Tweak to add CraftTweaker compat to manipulate items that can be given to him (shinies) and gifts that it gives in exchange
   - **[Flame Imp]** Tweak to modify Shiny cooldown  
@@ -126,16 +148,18 @@ jar in the resource packs folder.
   - **[Flame Imp]** Tweak to give random gifts based on a loot table instead of being hardcoded  
   - **[Hobgoblin]** Tweak to control the maximum number of trades per level (Witchery default is 1)
   - **[Hobgoblin]** Tweak to allow the Hobgoblin to generate trades even when there are no villages nearby
-  - **[Hobgoblin]** Tweak to give her own loot table instead of hard-coded loot
+  - **[Hobgoblin]** Tweak to customize Koboldite drop chance (both with and without Koboldite Pickaxe)
+  - **[Hobgoblin]** Tweak to customize Ore Smelting chance (both with and without Koboldite Pickaxe)
   - **[Lilith]** Tweak to disable enchanting items given to her
   - **[Lord of Torment]** Tweak to disable mid-fight teleportation to Torment dimension
-  - **[Lord of Torment]** Tweak to disable hardcoded loot drops (enchanted books)
+  - **[Lord of Torment]** Fix a crash when deflecting their projectiles while Ignianima spell effect is disabled
   - **[Owl]** Tweak to disable taking items (since flying AI is bugged and might dupe items)
   - **[Owl]** Tweak to change the model slightly when the owl is sitting
   - **[Owl]** Tweak to render children Owls smaller
-  - **[Spectre]** Tweak to add its own loot table
+  - **[Spectre]** Tweak to set max lifespan
   - **[Spectre]** Tweak to wait a minimum delay before de-spawning
   - **[Spectre]** Tweak to modify spectre attributes (Follow range, Movement speed, Attack damage)
+  - **[Winged Monkey]** Tweak to modify entity mount offset
 - **Infusion**
   - **[Common]** Tweak Infusion Energy Bar and Creature Charge bar position
 - **Items**
@@ -148,6 +172,7 @@ jar in the resource packs folder.
   - **[Voodoo Protection Poppet]** Tweak amount of damage taken to protect its owner from a curse
   - **[Poppet Protection Poppet]** Tweak amount of damage taken to protect its owner from a poppet
 - **Rites**
+  - **[Common]** Add a blacklist of dimension IDs where the circle magic can not be performed. The Spirit World does not allow circle magic regardless.
   - **[Broken Earth]** Tweak to control what blocks can be destroyed using the same rules as the Brew of Erosion (including its CraftTweaker customization)
   - **[Moving Earth]** Tweak to disable moving TileEntity (for dupes)
   - **[Moving Earth]** Tweak to disable voiding blocks above the ritual. This will make the ritual stop (fail) when
@@ -159,6 +184,7 @@ jar in the resource packs folder.
   - **[Moving Earth]** Tweak to configure a blacklist of blockstates that the ritual should not move
   - **[Moving Earth]** Tweak to configure indicators of failure (smoke particles and sounds) will be generated near the
     unmovable block
+  - **[Prior Incarnation]** Tweak to completely remove this rite from the game (useful if a there's a conflicting mod or one that provides the same or better functionality is installed)
 - **Dimensions**
   - **[Spirit World]** Tweak to modify spawn cap of Nightmare entities around each player
   - **[Spirit World]** Tweak to modify spawn cooldown of Nightmares
@@ -168,34 +194,65 @@ jar in the resource packs folder.
 - **Potions**
   - **[Common]** Elytra cannot be used while resized (enabled by default)
   - **[Common]** Add all missing potion effects Icons and Descriptions
-- **Shape Shifting**
+  - **[Mortal Coil]** Tweak to spare spectators from dying
+  - **[Ill Fitting]** Tweak to configure minimum amplifier to remove armor cursed with Curse of Binding (can be tweaked to prevent removing such armor entirely)
+- **Transformations**
   - **[Common]** Elytra cannot be used while transformed (enabled by default)
   - **[Common]** Tweak to preserve HP percentage on transformation that change players' HP
+  - **[Vampire]** Tweak to configure certain dimension to always be "night" so that vampires are always safe there
+  - **[Werewolf]** Tweak to prevent Werewolf transformation to remove armor with Curse of Binding. They can take configurable amount of damage if they happen to wear any armor. WARN: having this enabled with keepInventory can lead to death loops
+  - **[Werewolf]** Tweak to configure certain dimension to always be "full moon", forcing transformations. Useful with space mods that add the Moon/Luna as a dimension, or for dimension mods like Twilight Forest or The Midnight
+  - **[Werewolf]** Tweak to configure certain dimension to never be "full moon". Useful for space mods that add planets that are far away from the solar system/The Overworld 
 
 ### Integrations
+- **Baubles**
+  - **[Charm of Fanciful Thinking]**
+    - Can be worn as a Bauble (CHARM).
+    - Protects you from Nightmares' attacks
+  - **[Moon Charm]**
+    - Can be worn as a Bauble (CHARM)
+    - Will prevent Werewolf transformations
+    - Must be unequipped in order to force transformations
+  - **[Overworld Infusion]**
+    - Can knockback players that are wearing Baubles made out of metal (for example, Moon Charms)
+
 - **CraftTweaker**
     - **[Altar]** 
         - Register or un-register Blocks nearby the altar that can power the Altar (power sources)
+        - Register or un-register Altar Boosters
     - **[Bark Belt]**
-      - Customize blocks on which the player can stand on to recharge
+        - Customize blocks on which the player can stand on to recharge
     - **[Brazier]**
-      - Custom recipes (Summoning and Potion Effects)
+        - Custom recipes (Summoning, Potion Effects, Graveyard Myst)![img.png](img.png)
+    - **[Brew of Erosion]**
+        - Customize what the brew can mine, destroy or ignore, including a maximum harvest level
+    - **[Brew of Flowers]**
+        - Customize which flowers can spawn in which biome types
     - **[Distillery]**
-      - Custom recipes
+        - Custom recipes
+    - **[Overworld Infusion]**
+        - Customize which items (or Tinkers' Construct materials, coming soon) are considered metallic
     - **[Kettle]**
         - Add / Remove Heat sources
         - Custom recipes
     - **[Witch's Cauldron]** 
         - Register or un-register Blocks underneath the cauldron that can act as a heat source. Supports fluids
         - Custom recipes
-    - **[Brew of Erosion]** 
-        - Customize what the brew can mine, destroy or ignore, including a maximum harvest level
     - **[Hobgoblin trades]** 
         - Customize trades and various aspects related to them
     - **[Mutandis]** 
         - Custom mutations (Grass-type, Clay-type and plants)
+    - **[Overworld Infusion]** 
+        - Metal Items (items that can be pulled from the ground. Entities using them can be disarmed or knockbacked)
+        - Custom throwables (blocks that can be thrown as rocks)
+        - Custom ore transformations (ingots can be extracted from such blocks, leaving stone behind)
+        - Metal entities (entities that are considered made out of metal and can be knockbacked)
+    - **[Spectral Familiar]**
+        - Custom sniffs. Can be used to specify a item <--> block relationship. Make it sniff the item, it tries to find the block
     - **[Spinning Wheel]** 
         - Custom recipes
+    - **[Spirit World]** 
+        - Select which item to keep when traveling to and from the Spirit World
     - **[Flame Imps]**
         - Customize gifts for each level with custom criteria
         - Customize items that can be donated to them (shinies) and their affection boost
@@ -217,7 +274,7 @@ jar in the resource packs folder.
   - **[Entities]** Integration to register many entities and their loot in entity drops category
 
 - **The One Probe**
-  - **[Altar]** Shows Available power, Max power and recharge rate
+  - **[Altar]** Shows Available power, Max power, Recharge rate and Enhancement Level
   - **[Witch's Cauldron]** Shows whether the cauldron is boiling and has enough power for the current ingredients, among with the ingredients themselves
   - **[Crystal Ball]** Shows Owner and Cooldown
   - **[Hobgoblin]** Shows current profession name
@@ -233,6 +290,7 @@ jar in the resource packs folder.
 
 - **Quark**
   - Fix Right-click to harvest not spawning Mandrakes from Mandrake crops
+  - Fix double-door Quark tweak allowing players to open Rowan Doors for which they do not possess the keys
 
 - **Patchouli**
   - Implement configurable, dynamic, in-depth in-game documentation. Implements almost all features and all content of the Witchery books (except book of biomes)
@@ -241,25 +299,27 @@ jar in the resource packs folder.
 
 ### Performance
 - Implement caching for the Altar Power Source map
+- Implement caching for the Mutandis plant transformations
+
+### API
+- Witchery: Companion provides a package that contains extensive APIs for many aspects. Companion API stands in the middle between Witchery: Resurrected (where Mixins inject API functionality) and external API users. Companion itself uses the API for things like CraftTweaker integration. Check wiki for information about how to use Witchery: Companion API
+- Witchery: Companion provides an API for the following aspects:
+  - **Each and All CraftTweaker handlers**
+    - **Altar Boosters** is the only case among the above that has much more power using the API than CraftTweaker
+  - **Witchery Progress**: keep track of player progress within Witchery
+  - **Triggered Dispersal**: add support for your own Blocks and TileEntities for Triggered Dispersal brews
+  - **Brew Builder**: an API that can build Brews by providing a list of required items depending on the desired effects, their power, dispersal and their modifiers, etc. It is dynamic, meaning that it can provide the correct result even when the user/modpack maker changes or removes Witchery Brews data
 
 ### Misc.
-- Implement a Plugin that automatically downloads Witchery 1.7.10 jar and puts it in the resourcepacks folder, 
-  as it is a required dependency for Witchery: Resurrected
-- Implement a Progress System. Tracks what the player does (completes a brew, discovers a new recipe, levels up as werewolf or vampire) and fires an event. Also supports commands and unlocks pages in Patchouli book, if installed
+- Witchery: Companion implements a Plugin that **automatically downloads Witchery 1.7.10 jar** and puts it in the resourcepacks folder, as it is a required dependency for Witchery: Resurrected
+- Witchery: Companion implements a **Progress System**. Tracks what the player does (complete a brew, discover a new recipe, level up as werewolf or vampire) and fires an event. Also supports commands and unlocks pages in Patchouli book, if installed
+- Compatible with [CleanroomMC](https://github.com/CleanroomMC/Cleanroom)
 
-### Future Plans
-- Add CraftTweaker integration for Brew of Sprouting, to specify valid trees to spawn
-- Finish JER Integration
-- Squishing all bugs
-- Tinkers Construct / Construct Armory integration (Armor traits or tools that can be used in place of Witchery ones)
-    for modpacks where Tinkers is the only way to make tools and armors, similar to what Tinkers Evolution does for some mods
-- JEI Handlers for as many things as possible (Altar Power providers, Baba Yaga drops, etc.)
-- More Tweaks
-  - Modify Rite/Curse strength, to fine-tune how much damage poppets take for the given Rite/Curse
-  - Modify entity attributes, such as Max health, Damage, Speed, etc
+### Bugs, Feature Requests and Future Plans
+- Refer to [Github issue page](https://github.com/michelegargiulo/Witchery-Companion/issues) to report bugs, check the current progress on the mod, request features or simply ask questions
 
 ### Help Wanted
 - Fix Owl AI for transporting items
-- Fix Winged Monkey AI
 - Brew Bucket item does not exist yet. Needs implementation. Will make possible to move brews between cauldrons
 - Groovyscript Integration
+- Cubic Chunks has multiple incompatibilities

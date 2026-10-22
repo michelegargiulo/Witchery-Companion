@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.client;
 
 import com.google.common.eventbus.EventBus;
+import com.google.common.io.ByteStreams;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.common.DummyModContainer;
@@ -10,7 +11,6 @@ import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.spongepowered.include.com.google.common.io.ByteStreams;
 import zone.rong.mixinbooter.IEarlyMixinLoader;
 
 import javax.annotation.Nullable;
@@ -63,6 +63,8 @@ public class WitcheryJarDownloader implements IFMLLoadingPlugin, IEarlyMixinLoad
                 OutputStream output = Files.newOutputStream(jarFile)
         ) {
             ByteStreams.copy(download, output);
+        } catch (Exception ex) {
+            LOGGER.error(ex);
         }
 
         LOGGER.info("Witchery Jar successfully downloaded");

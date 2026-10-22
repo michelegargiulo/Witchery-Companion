@@ -1,0 +1,13 @@
+{
+  "name": "Congealed Spirit",
+  "icon": "witchery:congealed_spirit",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:congealed_spirit",
+      "text": "Rare crafting ingredient obtained by brewing in a $(l:kettle/kettle_intro)Kettle$(/l) a handful of $(l:artifacts/misc/subdued_spirit)Subdued Spirits$(/l)."
+    }
+  ]
+}

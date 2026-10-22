@@ -6,38 +6,44 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.msrandom.witchery.block.entity.TileEntityBloodTrap;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Mixins:
+ * [Feature] Compat for Cursed Trigger
+ */
 @Mixin(TileEntityBloodTrap.class)
 public abstract class TileEntityBloodTrapMixin extends TileEntity implements IProxedCursedTrigger {
 
-    protected TileEntityCursedTrigger innerTrigger = null;
+    @Unique
+    protected TileEntityCursedTrigger witcherycompanion$innerTrigger = null;
 
     @Override
     public TileEntityCursedTrigger getInnerTrigger() {
         // Updates world and pos in case the outer TE has been moved or when the
         // world is first loaded, as in this phase world is still null (after readFromNBT)
-        if (innerTrigger != null) {
-            innerTrigger.setWorld(this.world);
-            innerTrigger.setPos(this.pos);
+        if (witcherycompanion$innerTrigger != null) {
+            witcherycompanion$innerTrigger.setWorld(this.world);
+            witcherycompanion$innerTrigger.setPos(this.pos);
         }
-        return innerTrigger;
+        return witcherycompanion$innerTrigger;
     }
 
     @Override
     public TileEntityCursedTrigger createInnerTrigger() {
-        innerTrigger = new TileEntityCursedTrigger();
-        innerTrigger.setWorld(this.world);
-        innerTrigger.setPos(this.pos);
-        return innerTrigger;
+        witcherycompanion$innerTrigger = new TileEntityCursedTrigger();
+        witcherycompanion$innerTrigger.setWorld(this.world);
+        witcherycompanion$innerTrigger.setPos(this.pos);
+        return witcherycompanion$innerTrigger;
     }
 
     @Override
     public void setInnerTrigger(TileEntityCursedTrigger trigger) {
-        innerTrigger = trigger;
+        witcherycompanion$innerTrigger = trigger;
     }
 
     @Inject(method = "readFromNBT", remap = true, at = @At("TAIL"))

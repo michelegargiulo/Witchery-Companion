@@ -25,6 +25,7 @@ import net.msrandom.witchery.extensions.PlayerExtendedData;
 import net.msrandom.witchery.network.PacketSyncEntitySize;
 import net.msrandom.witchery.network.WitcheryNetworkChannel;
 import net.msrandom.witchery.transformation.CreatureForm;
+import net.msrandom.witchery.util.EntitySizeInfo;
 import net.msrandom.witchery.util.WitcheryUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -37,7 +38,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  Mixins:
  [Bugfix] Fix floating entities when traveling through dimensions due to an incorrect usage of 'sendPlayerAbilities'
     that spawns tracked entities from origin dimension to target dimension
+ [Bugfix] Fix spectator player falling in the void after world reload/dimension change
  [Tweak] Current Health after a transformation will be set as the same percentage of HP as before the transformation
+ [Integration] Morph integration
  [Feature] Unlock progress when werewolf infects player with Curse of the Wolf
  */
 @Mixin(ShapeShift.class)
@@ -46,37 +49,61 @@ public abstract class ShapeShiftMixin {
     @Shadow(remap = false)
     public abstract CreatureForm.Stats getFormStats(PlayerExtendedData playerEx);
 
-    @Unique
-    private boolean witchery_Patcher$prevFlightCapability = false;
+    @Shadow(remap = false)
+    public abstract void initCurrentShift(EntityLivingBase entity, EntityPlayer player, boolean applyDamage);
 
     @Unique
-    private Float witchery_Patcher$prevHpPercentOnTransform = null;
+    private Float witcherycompanion$prevHpPercentOnTransform = null;
 
     @Unique
-    private EntityPlayer witchery_Patcher$prevPlayerOnTransform = null;
+    private EntityPlayer witcherycompanion$prevPlayerOnTransform$init2 = null;
 
 
-    /** Wraps around the sendPlayerAbilities() call and cancels it. The shape-shifting only changes the ability to fly,
-     * so instead of calling EntityPlayerMP.sendPlayerAbilities() that causes the bug, just sync the player's capability
-     * to fly. */
-    @WrapOperation(method = "initCurrentShift(Lnet/minecraft/entity/player/EntityPlayer;)V", remap = false, at = @At(
-            value = "INVOKE", remap = false, target = "Lnet/minecraft/entity/player/EntityPlayer;sendPlayerAbilities()V"))
-    public void avoidUpdatingPlayerAbilitiesInit(EntityPlayer instance, Operation<Void> original) {
-        // If config option is true, only sync ability to fly, do not update visibility
-        if (CommonTweaks.shapeShift_fixFloatingEntities) {
-            if (instance instanceof EntityPlayerMP) {
-                EntityPlayerMP playerMP = ((EntityPlayerMP)instance);
-                if (playerMP.connection != null)
-                    playerMP.connection.sendPacket(new SPacketPlayerAbilities(playerMP.capabilities));
+    @Inject(method = "initCurrentShift(Lnet/minecraft/entity/player/EntityPlayer;)V", remap = false, at = @At("HEAD"), cancellable = true)
+    public void initCurrentShift(EntityPlayer player, CallbackInfo ci) {
+        if (!player.world.isRemote) {
+            PlayerExtendedData playerEx = WitcheryUtils.getExtension(player);
+            EntitySizeInfo sizeInfo = new EntitySizeInfo(player);
+            player.eyeHeight = sizeInfo.eyeHeight;
+            this.initCurrentShift(player, player, true);
+
+            /** [Integration] Handle size desync if morph is installed **/
+            if (Loader.isModLoaded(Mods.MORPH) && ModConfig.IntegrationConfigurations.MorphIntegration.fixSizeDesyncOnDimChange) {
+                MorphIntegration.INSTANCE.handleMorphOnShapeShift(player);
             }
-            return;
+
+            CreatureForm.Stats stats = this.getFormStats(playerEx);
+
+            /** [Bugfix] Avoid updating flying capability if player is spectator or creative **/
+            if (!(player.isCreative() || player.isSpectator())) {
+                player.capabilities.allowFlying = stats.canFly();
+                if (!player.capabilities.allowFlying && player.capabilities.isFlying) {
+                    player.capabilities.isFlying = false;
+                } else if (player.capabilities.allowFlying) {
+                    player.capabilities.isFlying = true;
+                }
+
+                /** [Bugfix] Fix floating entities **/
+                if (CommonTweaks.shapeShift_fixFloatingEntities) {
+                    if (player instanceof EntityPlayerMP) {
+                        EntityPlayerMP playerMP = ((EntityPlayerMP)player);
+                        if (playerMP.connection != null)
+                            playerMP.connection.sendPacket(new SPacketPlayerAbilities(playerMP.capabilities));
+                    }
+                } else {
+                    player.sendPlayerAbilities();
+                }
+            }
+
+            WitcheryNetworkChannel.sendToAll(new PacketSyncEntitySize(player));
         }
-        original.call(instance);
+
+        ci.cancel();
     }
 
     @WrapOperation(method = "updatePlayerState", remap = false, at = @At(value = "INVOKE", remap = true,
             target = "Lnet/minecraft/entity/player/EntityPlayer;sendPlayerAbilities()V"))
-    public void avoidUpdatingPlayerAbilitiesUpdate(EntityPlayer instance, Operation<Void> original) {
+    private void avoidUpdatingPlayerAbilitiesUpdate(EntityPlayer instance, Operation<Void> original) {
         if (CommonTweaks.shapeShift_fixFloatingEntities) {
             if (instance instanceof EntityPlayerMP) {
                 EntityPlayerMP playerMP = ((EntityPlayerMP)instance);
@@ -85,15 +112,6 @@ public abstract class ShapeShiftMixin {
             return;
         }
         original.call(instance);
-    }
-
-    /** This mixin will sync the entity size when the player changes dimension, taking morph into account */
-    @Inject(method = "initCurrentShift(Lnet/minecraft/entity/player/EntityPlayer;)V", remap = false, at = @At(value = "INVOKE",
-            remap = false, shift = At.Shift.AFTER, target = "Lnet/msrandom/witchery/common/ShapeShift;initCurrentShift(Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/entity/player/EntityPlayer;Z)V"))
-    public void handleMorphOnDimensionChange(EntityPlayer player, CallbackInfo ci) {
-        if (Loader.isModLoaded(Mods.MORPH) && ModConfig.IntegrationConfigurations.MorphIntegration.fixSizeDesyncOnDimChange) {
-            MorphIntegration.INSTANCE.handleMorphOnShapeShift(player);
-        }
     }
 
     /** This Mixin saves a reference to the Shifting player and its health percentage immediately before the
@@ -139,17 +157,17 @@ public abstract class ShapeShiftMixin {
     /** This Mixin preserves the player and hp percentage the preserve patch */
     @Unique
     private void witchery_Patcher$preserveData(EntityPlayer player) {
-        witchery_Patcher$prevHpPercentOnTransform = player.getHealth() / player.getMaxHealth();
-        witchery_Patcher$prevPlayerOnTransform = player;
+        witcherycompanion$prevHpPercentOnTransform = player.getHealth() / player.getMaxHealth();
+        witcherycompanion$prevPlayerOnTransform$init2 = player;
     }
 
     /** This Mixin restores the player and hp percentage the preserve patch */
     @Unique
     private void witchery_Patcher$restoreData() {
-        if (witchery_Patcher$prevHpPercentOnTransform != null && witchery_Patcher$prevPlayerOnTransform != null) {
-            witchery_Patcher$prevPlayerOnTransform.setHealth(witchery_Patcher$prevPlayerOnTransform.getMaxHealth() * witchery_Patcher$prevHpPercentOnTransform);
-            witchery_Patcher$prevPlayerOnTransform = null;
-            witchery_Patcher$prevHpPercentOnTransform = null;
+        if (witcherycompanion$prevHpPercentOnTransform != null && witcherycompanion$prevPlayerOnTransform$init2 != null) {
+            witcherycompanion$prevPlayerOnTransform$init2.setHealth(witcherycompanion$prevPlayerOnTransform$init2.getMaxHealth() * witcherycompanion$prevHpPercentOnTransform);
+            witcherycompanion$prevPlayerOnTransform$init2 = null;
+            witcherycompanion$prevHpPercentOnTransform = null;
         }
     }
 

@@ -8,7 +8,7 @@ public class ProgressSync {
     // Server can send updated progress to clients. A message containing a full instance of IWitcheryProgress
     // is sent to the client(s) which request(s) updates
     public static void serverRequest(EntityPlayer player) {
-        if (!player.world.isRemote) // Server-only
+        if (!player.getEntityWorld().isRemote) // Server-only
             CompanionNetworkChannel.NETWORK_CHANNEL.sendTo(
                     new PacketWitcheryProgressResponse.Message(player), (EntityPlayerMP) player
             );

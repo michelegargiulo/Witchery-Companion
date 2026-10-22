@@ -1,0 +1,13 @@
+{
+  "name": "Rowan Berries",
+  "icon": "witchery:rowan_berries",
+  "category": "resources",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:rowan_berries",
+      "text": "A light food that is sometimes dropped from $(l:artifacts/decoration/rowan_set)Rowan Leaves$(/l)."
+    }
+  ]
+}

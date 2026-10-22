@@ -39,6 +39,9 @@ public abstract class WitcheryProgressEvent extends Event {
         /** Player has a full coven **/
         COVEN_FULL("full_coven"),
 
+        /** Player has interacted with an entity **/
+        CREATURE_INTERACT("entity_interact"),
+
         /** Player has visited a Witchery Dimension **/
         DIMENSION_VISIT("dimension_visit"),
 
@@ -47,6 +50,9 @@ public abstract class WitcheryProgressEvent extends Event {
 
         /** Player has drawn a secret symbol **/
         MYSTIC_BRANCH("mystic_branch"),
+
+        /** Player has used a brew of revealing on an entity that has been affected by it **/
+        ENTITY_REVEAL("reveal_entity"),
 
         /** Player has summoned Mog and Gulg by having too many worshippers **/
         SUMMON_GOBLIN_GODS("goblin_gods_summoned"),

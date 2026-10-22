@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.api;
 
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -7,19 +8,30 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.msrandom.witchery.block.BlockChalice;
 import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.init.WitcheryWoodTypes;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 public class AltarApi {
 
-    // Main logic for Power Sources
-    public static HashMap<IBlockState, AltarPowerSource> validStates = initStateList();
-    public static HashMap<Block, AltarPowerSource> validBlocks = initBlockList();
+    // Power Sources
+    public static final HashMap<IBlockState, AltarPowerSource> validStates = initStateList();
+    public static final HashMap<Block, AltarPowerSource> validBlocks = initBlockList();
+
+    // Altar Boosters
+    private static final HashMap<IBlockState, AltarBoosterFunc> skullBoosters = new HashMap<>();
+    private static final HashMap<IBlockState, AltarBoosterFunc> candleBoosters = new HashMap<>();
+    private static final HashMap<IBlockState, AltarBoosterFunc> chaliceBoosters = new HashMap<>();
+    private static final HashMap<IBlockState, AltarBoosterFunc> eggBoosters = new HashMap<>();
 
 
+    /** INIT POWER SOURCES **/
     private static HashMap<Block, AltarPowerSource> initBlockList() {
         HashMap<Block, AltarPowerSource> blocks = new HashMap<>();
 
@@ -73,6 +85,100 @@ public class AltarApi {
 
     private static HashMap<IBlockState, AltarPowerSource> initStateList() {
         return new HashMap<>();
+    }
+
+    /** INIT ALTAR BOOSTERS **/
+    private static void initSkullBoosters() {
+        skullBoosters.clear();
+        registerAltarBooster(
+                Blocks.SKULL, EAltarBoosterType.SKULL,
+                new AltarBoosterFunc(100,
+                    (state, tile, info) -> {
+                        if (!(tile instanceof TileEntitySkull)) {
+                            return;
+                        }
+                        TileEntitySkull tileSkull = (TileEntitySkull)tile;
+                        switch (tileSkull.getSkullType()) {
+                            case 0:
+                                info.newRechargeScale++;
+                                info.newPowerScale++;
+                                break;
+                            case 1:
+                                info.newRechargeScale += 2;
+                                info.newPowerScale += 2;
+                                break;
+                            case 3:
+                                info.newRechargeScale += 3;
+                                info.newPowerScale += 3;
+                                break;
+                            case 2:
+                            default:
+                                break;
+                        }
+                    }
+                )
+        );
+    }
+
+    private static void initCandleBoosters() {
+        candleBoosters.clear();
+        registerAltarBooster(
+                WitcheryBlocks.CANDELABRA, EAltarBoosterType.CANDLE,
+                new AltarBoosterFunc(200,
+                        (IBlockState state, TileEntity tile, AltarBoosterInfo info) -> info.newRechargeScale += 2
+                )
+        );
+        registerAltarBooster(
+            Blocks.TORCH, EAltarBoosterType.CANDLE,
+            new AltarBoosterFunc(100,
+                (IBlockState state, TileEntity tile, AltarBoosterInfo info) -> info.newRechargeScale += 1
+            )
+        );
+    }
+
+    private static void initChaliceBoosters() {
+        chaliceBoosters.clear();
+        registerAltarBooster(
+            WitcheryBlocks.CHALICE, EAltarBoosterType.CHALICE,
+            new AltarBoosterFunc(100,
+                (IBlockState state, TileEntity tile, AltarBoosterInfo info) -> {
+                Block block = state.getBlock();
+                    if (block instanceof BlockChalice) {
+                        info.newPowerScale += 1;
+                    }
+                }
+            )
+        );
+        registerAltarBooster(
+            WitcheryBlocks.FULL_CHALICE, EAltarBoosterType.CHALICE,
+            new AltarBoosterFunc(200,
+                (IBlockState state, TileEntity tile, AltarBoosterInfo info) -> {
+                Block block = state.getBlock();
+                    if (block instanceof BlockChalice) {
+                        info.newPowerScale += 2;
+                    }
+                }
+            )
+        );
+    }
+
+    /** Witchery's Infinity Egg: multiplies recharge rate and max power by 10 (multipliers are applied last) */
+    private static void initEggBoosters() {
+        eggBoosters.clear();
+        registerAltarBooster(
+            WitcheryBlocks.INFINITY_EGG, EAltarBoosterType.EGG,
+            new AltarBoosterFunc(100,
+                (IBlockState state, TileEntity tile, AltarBoosterInfo info) -> info.multiply(10, 10, 1, 1)
+            )
+        );
+    }
+
+
+    static {
+        initSkullBoosters();
+        initCandleBoosters();
+        initChaliceBoosters();
+        initEggBoosters();
     }
 
 
@@ -205,6 +311,66 @@ public class AltarApi {
     }
 
 
+    /** ========== ALTAR BOOSTERS ========== **/
+
+    /** Registers a new IBlockState as an Altar Booster of the specified type. Support is limited for now **/
+    public static void registerAltarBooster(IBlockState state, EAltarBoosterType type, AltarBoosterFunc booster) {
+        if (state == null || type == null || booster == null) {
+            WitcheryCompanion.logger.warn("[Altar API] A mod tried to register an Altar Booster with a null State, Type or Booster function");
+            return;
+        }
+        type.supplier.get().put(state, booster);
+    }
+
+    /** Registers all the valid IBlockStates of a block as an Altar Booster of the specified type. Support is limited for now **/
+    public static void registerAltarBooster(Block block, EAltarBoosterType type, AltarBoosterFunc booster) {
+        if (block == null || type == null || booster == null) {
+            WitcheryCompanion.logger.warn("[Altar API] A mod tried to register an Altar Booster with a null State, Type or Booster function");
+            return;
+        }
+        HashMap<IBlockState, AltarBoosterFunc> boosterMap = type.supplier.get();
+        for (IBlockState state : block.getBlockState().getValidStates()) {
+            boosterMap.put(state, booster);
+        }
+    }
+
+    /** Unregisters the specified IBlockState as Altar Booster of the specified type **/
+    public static void unregisterAltarBooster(IBlockState state, EAltarBoosterType type) {
+        if (type != null) {
+            type.supplier.get().remove(state);
+        }
+    }
+
+    /** Unregisters all valid IBlockStates of the Block as Altar Booster of the specified type **/
+    public static void unregisterAltarBooster(Block block, EAltarBoosterType type) {
+        if (type != null) {
+            HashMap<IBlockState, AltarBoosterFunc> boosterMap = type.supplier.get();
+            for (IBlockState state : block.getBlockState().getValidStates()) {
+                boosterMap.remove(state);
+            }
+        }
+    }
+
+    /** Returns true if the BlockState is a booster of the specified type **/
+    public static boolean isAltarBooster(IBlockState state, EAltarBoosterType type) {
+        if (state == null || type == null) {
+            return false;
+        }
+        return type.supplier.get().containsKey(state);
+    }
+
+    /** Returns true if the specified blockstate is an Altar Booster **/
+    public static AltarBoosterFunc getBooster(IBlockState state, EAltarBoosterType type) {
+        if (state == null || type == null) {
+            return null;
+        }
+        try {
+            return type.supplier.get().getOrDefault(state, null);
+        } catch (Exception ex) {
+            WitcheryCompanion.logger.error("[Altar API] Wrong booster return type for BlockState: {}", state);
+            return null;
+        }
+    }
 
 
     public static class AltarPowerSource {
@@ -229,13 +395,87 @@ public class AltarApi {
             return factor;
         }
 
-        public int getLimit() {
-            return limit;
+        public int getLimit(int enhancementLevel) {
+            return (int)(Math.max(1.18 * enhancementLevel, 1) * limit);
         }
 
         public Ingredient getRepresentativeItem() {
             return this.representativeItem;
         }
 
+    }
+
+    /**
+     * The four parameters an Altar booster can change: recharge rate, max power, range and enhancement level.
+     * Boosters add to the "new" values (increments) and/or to the multipliers. All increments are summed up first, then
+     * the multipliers are applied ({@link #applyMultipliers()}), so a multiplier always affects every increment,
+     * whatever the order boosters are found in (this is how Witchery's Kobolite Pentacle and Infinity Egg work)
+     */
+    public static class AltarBoosterInfo {
+        public int newRechargeScale = 1;
+        public int newPowerScale = 1;
+        public int newRangeScale = 1;
+        public int newEnhancementLevel = 0;
+
+        public int rechargeMultiplier = 1;
+        public int powerMultiplier = 1;
+        public int rangeMultiplier = 1;
+        public int enhancementMultiplier = 1;
+
+        /** Adds the increments to the values */
+        public void add(int recharge, int power, int range, int enhancement) {
+            newRechargeScale += recharge;
+            newPowerScale += power;
+            newRangeScale += range;
+            newEnhancementLevel += enhancement;
+        }
+
+        /** Multiplies the multipliers (they are applied to the values only at the end) */
+        public void multiply(int recharge, int power, int range, int enhancement) {
+            rechargeMultiplier *= recharge;
+            powerMultiplier *= power;
+            rangeMultiplier *= range;
+            enhancementMultiplier *= enhancement;
+        }
+
+        /** Applies the multipliers to the values. To be called once, after every booster has been applied */
+        public void applyMultipliers() {
+            newRechargeScale *= rechargeMultiplier;
+            newPowerScale *= powerMultiplier;
+            newRangeScale *= rangeMultiplier;
+            newEnhancementLevel *= enhancementMultiplier;
+        }
+    }
+
+    public static class AltarBoosterFunc {
+        public final AltarBoosterConsumer consumer;
+        public final int priority;
+
+        public AltarBoosterFunc(int priority, AltarBoosterConsumer consumer) {
+            this.priority = priority;
+            this.consumer = consumer;
+        }
+    }
+
+    @FunctionalInterface
+    public interface AltarBoosterConsumer {
+        void apply(IBlockState state, TileEntity tile, AltarBoosterInfo info);
+    }
+
+
+
+
+    public enum EAltarBoosterType {
+        SKULL(() -> AltarApi.skullBoosters),
+        CANDLE(() -> AltarApi.candleBoosters),
+        CHALICE(() -> AltarApi.chaliceBoosters),
+        EGG(() -> AltarApi.eggBoosters),
+        ;
+
+        final Supplier<HashMap<IBlockState, AltarBoosterFunc>> supplier;
+
+        EAltarBoosterType(Supplier<HashMap<IBlockState, AltarBoosterFunc>> supplier) {
+            this.supplier = supplier;
+        }
     }
 }

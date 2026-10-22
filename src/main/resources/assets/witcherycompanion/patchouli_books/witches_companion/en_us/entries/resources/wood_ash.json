@@ -1,0 +1,14 @@
+{
+  "name": "Wood Ash",
+  "icon": "witchery:wood_ash",
+  "category": "resources",
+  "sortnum": 0,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:wood_ash",
+      "text": "Mundane ingredient acquired by burning any sapling in a furnace or $(l:fumes/fumes)Oven$(/l) ."
+    }
+  ]
+}

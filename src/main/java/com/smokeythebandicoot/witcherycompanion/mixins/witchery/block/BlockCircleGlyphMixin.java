@@ -5,8 +5,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.msrandom.witchery.block.BlockCircleGlyph;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -14,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /**
  Mixins:
  [Bugfix] Fix Out of Bounds crash when trying to retrieve state from meta using invalid meta
+ [Bugfix] Prevent circle glyphs from being accidentally replaced by players
  */
 @Mixin(BlockCircleGlyph.class)
 public abstract class BlockCircleGlyphMixin extends Block {
@@ -32,6 +36,13 @@ public abstract class BlockCircleGlyphMixin extends Block {
                 cir.setReturnValue(this.getDefaultState());
             }
         }
+    }
+
+    /** Prevent circle glyphs from being accidentally replaced by players. */
+    @Unique
+    @Override
+    public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
+        return !ModConfig.PatchesConfiguration.BlockTweaks.circleGlyph_preventBeingReplaced && super.isReplaceable(worldIn, pos);
     }
 
 }

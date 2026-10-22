@@ -32,7 +32,8 @@
       "type": "circle_magic/rite",
       "rite_id": "witchery:player_waystone_binding",
       "title": "Bind Creature",
-      "description": "Create a $(l:artifacts/misc/waystone#blooded)Bound Waystone$(/l) bound to the location of a creature."
+      "description": "Create a $(l:artifacts/misc/waystone#blooded)Bound Waystone$(/l) bound to the location of a creature.",
+      "anchor": "bind_creature"
     },
     {
       "type": "circle_magic/rite",

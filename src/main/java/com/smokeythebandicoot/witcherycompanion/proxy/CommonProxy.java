@@ -7,6 +7,7 @@ import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.justenoughresources.JERIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.quark.BlockMandrakeCropIntegration;
+import com.smokeythebandicoot.witcherycompanion.integrations.quark.RowanDoorIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.thaumcraft.ThaumcraftIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPPlugin;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
@@ -28,6 +29,8 @@ import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.msrandom.witchery.init.WitcheryBlocks;
+import net.msrandom.witchery.init.items.WitcheryBrewItems;
+import net.msrandom.witchery.init.items.WitcheryGeneralItems;
 import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 import vazkii.patchouli.api.PatchouliAPI;
 
@@ -44,11 +47,11 @@ public class CommonProxy {
         registerLootConditions();
 
 
-        // Soul bres fix
+        // Soul Brews
         if (ModConfig.PatchesConfiguration.InfusionTweaks.soulBrews_fixPersistency)
             MinecraftForge.EVENT_BUS.register(SymbolEffectPatch.INSTANCE);
 
-        // rite of Prior Incarnation fix
+        // Rite of Prior Incarnation
         if (ModConfig.PatchesConfiguration.RitesTweaks.ritePriorIncarnation_fixNbtNotRemoved)
             MinecraftForge.EVENT_BUS.register(CommonEventsPatch.INSTANCE);
 
@@ -59,9 +62,12 @@ public class CommonProxy {
             MinecraftForge.EVENT_BUS.register(FamiliarPatches.getInstance());
 
         // Quark fix
-        if (ModConfig.IntegrationConfigurations.QuarkIntegration.fixMandrakesRightClickHarvest &&
-                Loader.isModLoaded(Mods.QUARK))
-            MinecraftForge.EVENT_BUS.register(BlockMandrakeCropIntegration.INSTANCE);
+        if (Loader.isModLoaded(Mods.QUARK)) {
+            if (ModConfig.IntegrationConfigurations.QuarkIntegration.fixMandrakesRightClickHarvest)
+                MinecraftForge.EVENT_BUS.register(BlockMandrakeCropIntegration.INSTANCE);
+            if (ModConfig.IntegrationConfigurations.QuarkIntegration.fixRowanDoorsDoubleDoorOpening)
+                MinecraftForge.EVENT_BUS.register(RowanDoorIntegration.INSTANCE);
+        }
 
         // Thaumcraft fix
         if (ModConfig.IntegrationConfigurations.ThaumcraftIntegration.enableThaumcraftIntegration &&

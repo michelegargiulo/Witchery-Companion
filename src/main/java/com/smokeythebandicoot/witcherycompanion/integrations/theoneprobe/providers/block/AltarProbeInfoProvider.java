@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.providers.block;
 
 import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.altar.IBlockAltarAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.altar.ITileEntityAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.BaseBlockProbeInfoProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPHelper;
@@ -57,15 +58,30 @@ public class AltarProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockAlta
         TOPHelper.addText(iProbeInfo, "Power", String.valueOf(tile.getCurrentPower()), TextFormatting.DARK_PURPLE);
         TOPHelper.addText(iProbeInfo, "Max Power", String.valueOf(tile.getMaxPower()), TextFormatting.DARK_PURPLE);
         TOPHelper.addText(iProbeInfo, "Recharge Rate", String.valueOf(tile.getRechargeScale()), TextFormatting.DARK_PURPLE);
+
+        if (tile instanceof ITileEntityAltarAccessor) {
+            ITileEntityAltarAccessor accessor = (ITileEntityAltarAccessor)tile;
+            TOPHelper.addText(iProbeInfo, "Enhancement Level", String.valueOf((accessor.witcherycompanion$accessor$getEnhancementLevel())), TextFormatting.DARK_PURPLE);
+            // Range is a multiplier of 16 blocks, like Witchery computes it (TileEntityAltar.getRange())
+            TOPHelper.addText(iProbeInfo, "Range", "x" + accessor.witcherycompanion$accessor$getRangeScale() + " (" + (int) tile.getRange() + " blocks)", TextFormatting.DARK_PURPLE);
+        }
     }
 
     @Override
     public void addDebugInfo(BlockAltar block, TileEntityAltar tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
         TOPHelper.addText(iProbeInfo, "Is Core", String.valueOf(tile.isValid()), TextFormatting.RED);
+        TileEntityAltar coreAltar = tile;
         if (!tile.isValid()) {
-            TileEntityAltar coreAltar = findCoreAltar(world, iProbeHitData.getPos(), block);
+            coreAltar = findCoreAltar(world, iProbeHitData.getPos(), block);
             if (coreAltar == null) return;
             TOPHelper.addText(iProbeInfo, "Core Pos", String.valueOf(coreAltar.getLocation()), TextFormatting.GOLD);
+        }
+
+        // Raw values of the core Altar: Max Power shown above is "Base Max Power" (power sources) times "Power Scale"
+        if (coreAltar instanceof ITileEntityAltarAccessor) {
+            ITileEntityAltarAccessor accessor = (ITileEntityAltarAccessor) coreAltar;
+            TOPHelper.addText(iProbeInfo, "Base Max Power", String.valueOf(accessor.witcherycompanion$accessor$getBaseMaxPower()), TextFormatting.RED);
+            TOPHelper.addText(iProbeInfo, "Power Scale", String.valueOf(accessor.witcherycompanion$accessor$getPowerScale()), TextFormatting.RED);
         }
     }
 

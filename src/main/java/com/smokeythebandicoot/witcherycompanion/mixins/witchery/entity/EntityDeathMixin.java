@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
- Mixins:
- [Tweak] Introduce own loot table
+ * Mixins:
+ * [Tweak] Introduce own loot table
  */
 @Mixin(EntityDeath.class)
 public abstract class EntityDeathMixin extends EntityMob {

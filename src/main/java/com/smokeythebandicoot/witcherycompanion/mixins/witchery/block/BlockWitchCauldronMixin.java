@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.api.CauldronApi;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
@@ -34,6 +35,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  [Bugfix] Fix Bottling level skill not increasing
  [Bugfix] Fix Right-click with Empty Bucket on cauldron filled with brew, just voiding the brew
  [Bugfix] Fix dupe when tossing an item that gets inserted into multiple adjacent cauldrons
+ [Bugfix] Custom recipe ingredients that are also brewing ingredients are not refused by the brewing rules
  [Integration] Bugfix to ignore forge fluid capability handlers, as Witchery doesn't really interact well with them, voiding the brew
  [Tweak] Tweak to reduce bottle size to 250 (is only applied to water handling, as brews have custom amounts)
  */
@@ -109,6 +111,27 @@ public abstract class BlockWitchCauldronMixin {
         if (entity.isDead) {
             ci.cancel();
         }
+    }
+
+    /**
+     * Witchery sends every item that has a brew action through the brewing rules (TileEntityCauldron.addItem ->
+     * canNotAdd): effect items need enough capacity already in the brew (capacity_required), the same action cannot
+     * be added twice unless allowMultiple, capacity ceilings, etc. That makes sense for brewing, but an item that is
+     * also an ingredient of a custom recipe would be refused depending on the order it is tossed in.
+     * If that happens, and the item is an ingredient of a custom (non-Witchery) recipe, add it again as a plain
+     * (non-brew) ingredient. The retry only happens after a rejection, which does not alter the brew state, so
+     * brewing is unaffected. Witchery's own recipes are not touched.
+     */
+    @WrapOperation(method = "onEntityCollision", remap = true, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/block/entity/TileEntityCauldron;addItem(Lnet/msrandom/witchery/brewing/action/BrewAction;Lnet/minecraft/item/ItemStack;)Z"))
+    public boolean acceptCustomRecipeIngredients(TileEntityCauldron cauldron, BrewAction action, ItemStack stack, Operation<Boolean> original) {
+        boolean accepted = original.call(cauldron, action, stack);
+        if (!accepted && action != null && BlockTweaks.witchsCauldron_fixCustomRecipeIngredients
+                && !cauldron.isRitualTriggered()
+                && CauldronApi.isCustomRecipeIngredient(cauldron.getWorld(), stack)) {
+            return original.call(cauldron, null, stack);
+        }
+        return accepted;
     }
 
     /** This Mixin makes so that all Forge-registered items that have the capability of containing fluids are ignored by

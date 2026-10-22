@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.api.brewing;
 
+import com.smokeythebandicoot.witcherycompanion.api.accessors.brewing.ICapacityBrewActionAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.accessors.brewing.IIncrementBrewActionAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.accessors.brewing.IUpgradeBrewActionAccessor;
 import net.minecraft.item.EnumDyeColor;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 public class BrewRegistry {
 
+    private static CapacityBrewAction ceilingRemover = null;
     private static final List<CapacityBrewAction> capacityBrews = new ArrayList<>();
     private static final List<UpgradeBrewAction> powerBrews = new ArrayList<>();
     private static final List<UpgradeBrewAction> durationBrews = new ArrayList<>();
@@ -29,6 +31,7 @@ public class BrewRegistry {
 
 
     public static void reloadRegistries() {
+        ceilingRemover = null;
         capacityBrews.clear();
         powerBrews.clear();
         durationBrews.clear();
@@ -44,7 +47,17 @@ public class BrewRegistry {
 
             // CapacityBrewAction: simply store them, sort at the end by ceiling
             if (action instanceof CapacityBrewAction) {
-                capacityBrews.add((CapacityBrewAction) action);
+                // Find ceiling remover
+                CapacityBrewAction capacityBrewAction = (CapacityBrewAction) action;
+                ICapacityBrewActionAccessor accessor = (ICapacityBrewActionAccessor) action;
+                if (accessor.witcherycompanion$accessor$getRemoveCeiling()) {
+                    // If ceiling removes has not been found or there is a better one (one with less capacity), update it
+                    if (ceilingRemover == null || ceilingRemover.getIncrement() > capacityBrewAction.getIncrement()) {
+                        ceilingRemover = capacityBrewAction;
+                    }
+                }
+                // Add Capacity brew action to the registry as normal
+                capacityBrews.add(capacityBrewAction);
             }
 
             // DispersalBrewAction: store the class and
@@ -111,6 +124,18 @@ public class BrewRegistry {
         if (index >= 0 && index < capacityBrews.size())
             return capacityBrews.get(index);
         return null;
+    }
+
+    public static CapacityBrewAction getLowestCapacityCeilingRemover() {
+        return ceilingRemover;
+    }
+
+    public static int getMaximumPossibleCapacity() {
+        int max = 0;
+        for (CapacityBrewAction action : capacityBrews) {
+            max += action.getIncrement();
+        }
+        return max;
     }
 
     public static UpgradeBrewAction getPower(int index) {

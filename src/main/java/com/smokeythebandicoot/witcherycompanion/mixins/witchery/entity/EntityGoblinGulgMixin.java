@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- Mixins:
- [Tweak] Introduce own loot table
+ * Mixins:
+ * [Tweak] Introduce own loot table
  */
 @Mixin(value = EntityGoblinGulg.class)
 public abstract class EntityGoblinGulgMixin extends EntityMob {

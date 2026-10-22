@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.api;
 
+import com.smokeythebandicoot.witcherycompanion.utils.IngredientMatcher;
 import com.smokeythebandicoot.witcherycompanion.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -8,7 +9,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.msrandom.witchery.init.data.recipes.WitcheryRecipeTypes;
 import net.msrandom.witchery.recipe.CauldronRecipe;
+import net.msrandom.witchery.util.WitcheryUtils;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -76,6 +80,21 @@ public class CauldronApi {
 
     public static void removeRecipe(ResourceLocation id) {
         recipesToRemove.add(id);
+    }
+
+    /** Returns true if the stack is a valid ingredient (trigger or input) of at least one Cauldron recipe that does
+     * NOT come from Witchery itself (Crafttweaker, other mods' data folders, ...). Internal usage */
+    public static boolean isCustomRecipeIngredient(@Nullable World world, ItemStack stack) {
+        if (stack.isEmpty()) return false;
+        for (CauldronRecipe recipe : WitcheryUtils.getRecipeManager(world).getRecipesForType(WitcheryRecipeTypes.CAULDRON)) {
+            if (!"witchery".equals(recipe.getId().getNamespace()) && recipe.isItemValid(stack)) return true;
+        }
+        return false;
+    }
+
+    /** Returns true if every input can be paired with a different stack of the pool. Internal usage */
+    public static boolean areInputsSatisfied(List<CauldronRecipe.PoweredItem> inputs, List<ItemStack> pool) {
+        return IngredientMatcher.matchesAll(inputs, pool, (input, stack) -> input.getIngredient().apply(stack));
     }
 
     /** Internal usage */

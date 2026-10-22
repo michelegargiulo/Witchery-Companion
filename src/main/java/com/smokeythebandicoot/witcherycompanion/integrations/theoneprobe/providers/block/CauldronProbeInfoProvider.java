@@ -9,10 +9,13 @@ import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.ProbeMode;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.msrandom.witchery.block.BlockWitchCauldron;
 import net.msrandom.witchery.block.entity.TileEntityCauldron;
+
+import java.util.List;
 
 public class CauldronProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockWitchCauldron, TileEntityCauldron> {
 
@@ -45,8 +48,10 @@ public class CauldronProbeInfoProvider extends BaseBlockProbeInfoProvider<BlockW
     public void addBasicInfo(BlockWitchCauldron block, TileEntityCauldron tile, ProbeMode probeMode, IProbeInfo iProbeInfo, EntityPlayer entityPlayer, World world, IBlockState iBlockState, IProbeHitData iProbeHitData) {
         TOPHelper.addText(iProbeInfo, "Boiling", String.valueOf(tile.isBoiling()), TextFormatting.DARK_PURPLE);
         TOPHelper.addText(iProbeInfo, "Powered", String.valueOf(tile.isPowered()), TextFormatting.DARK_PURPLE);
-        if (tile.getActions() != null && tile.getActions().items != null && !tile.getActions().items.isEmpty())
-            TOPHelper.itemStacks(iProbeInfo, tile.getActions().items, 10);
+        // tile.getActions().items only holds brewing ingredients, so ingredients of plain recipes would be missing
+        List<ItemStack> ingredients = ((ITileEntityCauldronAccessor) tile).witcherycompanion$accessor$getAllIngredients();
+        if (!ingredients.isEmpty())
+            TOPHelper.itemStacks(iProbeInfo, ingredients, 10);
     }
 
     @Override

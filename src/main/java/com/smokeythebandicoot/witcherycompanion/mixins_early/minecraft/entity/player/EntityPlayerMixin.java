@@ -11,6 +11,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Loader;
 import net.msrandom.witchery.init.WitcheryPotionEffects;
+import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -113,6 +114,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
     /** This Mixin updates player eye height by cancelling Witchery ASM-injected call to ResizingUtils.getPlayerEyeHeight
      * and replacing it with a version that uses the injected variables. This patch
      *  disables itself if Aqua Acrobatic is loaded, as it is handled on AA side */
+    @Dynamic("Injection point added by Witchery")
     @WrapOperation(method = "getEyeHeight", remap = true, at = @At(value = "INVOKE", remap = false,
             target = "Lnet/msrandom/witchery/util/ResizingUtils;getPlayerEyeHeight(Lnet/minecraft/entity/player/EntityPlayer;F)F"))
     private float updateEyeHeightBeforeWitcheryAsm(EntityPlayer player, float eyeHeight, Operation<Float> original) {

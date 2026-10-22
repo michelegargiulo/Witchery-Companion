@@ -3,7 +3,7 @@
   "icon": "witchery:wolfsbane",
   "category": "observations",
   "flag": "witcherycompanion:observations/show_lycanthropy_intro",
-  "sortnum": 1,
+  "sortnum": 3,
   "pages": [
     {
       "type": "text",

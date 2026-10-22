@@ -17,7 +17,8 @@
     {
       "type": "spotlight",
       "item": "witchery:foul_fume",
-      "text": "A noxious vapor distilled from arcane remnants, likely to linger where curses were cast. Approach with caution. Common crafting ingredient."
+      "text": "A noxious vapor distilled from arcane remnants, likely to linger where curses were cast. Approach with caution. Common crafting ingredient.",
+      "anchor": "foul_fume"
     },
     {
       "type": "spotlight",

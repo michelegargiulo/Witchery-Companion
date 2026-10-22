@@ -88,10 +88,14 @@ public class WitcheryCompanion implements ILateMixinLoader {
     public List<String> getMixinConfigs() {
         List<String> configs = new ArrayList<>();
 
-        // Add Main Patches
+        // Base
         configs.add("mixins.witcherycompanion.json");
 
-        // Add ConArm Patches
+        // Baubles
+        if (Loader.isModLoaded(Mods.BAUBLES))
+            configs.add("mixins.witcherycompanion.baubles.json");
+
+        // Tic / ConArm
         if (Loader.isModLoaded(Mods.TINKERS_CONSTRUCT))
             configs.add("mixins.witcherycompanion.tinkers.json");
 

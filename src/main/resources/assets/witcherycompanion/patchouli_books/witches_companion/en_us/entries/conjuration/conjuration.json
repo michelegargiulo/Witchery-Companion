@@ -2,17 +2,22 @@
   "name": "Conjuration & Fetishes",
   "icon": "witchery:graveyard_dust",
   "category": "conjuration",
-  "sortnum": 0,
+  "sortnum": 1,
   "pages": [
     {
       "type": "text",
       "title": "Conjuration & Fetishes",
-      "text": "A witch may use a $(item)Brazier$() to burn materials with magical purpose, and conjure that which is no longer of this world.$(2br)Place the ingredients into the brazier and ignite with a $(item)Flint and Steel$()."
+      "text": "A Brazier is the tool used to perform conjuration magic, specifically to commune with the spectral dead.$(br)$(br)Once lit, the Brazier will burn for a certain amount of time. For some rites, $(l:altar/altar#altar_power)Altar Power$(/l) is required."
     },
     {
       "type": "text",
       "title": "Using the Brazier",
-      "text": "Once lit, the Brazier will burn for a certain amount of time. For some rites, Altar power is required.$(2br)Using a $(item)Water Bottle$() or a $(item)Water Bucket$() will extinguish the flames, stopping the process.$(2br)Unfortunately, doing so will result in the loss of any ingredient in the Brazier.",
+      "text": "Braziers are typically placed within range of an $(l:altar/altar)Altar$(/l), filled with three ingredients and then lit with a $(item)Flint and Steel$() to produce the desired effect either as the Brazier burns, or when it is burnt.$(p)Using a $(item)Water Bottle$() or a $(item)Water Bucket$() will extinguish the flames, stopping the process.",
+      "flag": "witcherycompanion:conjuring/extended_intro"
+    },
+    {
+      "type": "text",
+      "text": "Unfortunately, doing so will result in the loss of any ingredient in the Brazier.$(p)Lighting it when it requires altar power and has none, will just cause flame until power becomes available.",
       "flag": "witcherycompanion:conjuring/extended_intro"
     },
     {

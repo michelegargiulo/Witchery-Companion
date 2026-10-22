@@ -31,6 +31,8 @@ import net.msrandom.witchery.infusion.symbol.SymbolEffect;
 import net.msrandom.witchery.init.data.recipes.WitcheryRecipeTypes;
 import net.msrandom.witchery.recipe.CauldronRecipe;
 import net.msrandom.witchery.resources.BrewActionManager;
+import net.msrandom.witchery.resources.RiteManager;
+import net.msrandom.witchery.rite.Rite;
 import net.msrandom.witchery.util.WitcheryUtils;
 import vazkii.patchouli.api.BookContentsReloadEvent;
 import vazkii.patchouli.api.PatchouliAPI;
@@ -116,6 +118,12 @@ public class PatchouliApiIntegration {
             SpiritEffectApi::getIterator,
             ResourceLocation::getPath,
             "content/spirit_effect_recipes/"
+    );
+
+    public static final FlagReloader<ResourceLocation, Rite> riteReloader = new FlagReloader<>(
+            RiteManager.INSTANCE.getRiteMap().entrySet()::iterator,
+            ResourceLocation::getPath,
+            "circle_magic/rites/"
     );
 
     /** When book reload is requested, clear caches and reload processors **/
@@ -271,7 +279,7 @@ public class PatchouliApiIntegration {
 
     /** Class that holds information about how to information about a registry and
      * reloads Patchouli flags based on its contents. Used to update flags that enable/disable content
-     * (pages, components, etc) based on what content is enabled */
+     * (pages, components, etc.) based on what content is enabled */
     public static class FlagReloader<K, V> {
 
         private final String prefix;

@@ -98,6 +98,13 @@ public class ModConfig {
             @Config.Name("Common - Disable Strength Ceiling")
             public static boolean common_tweakDisableStrengthCeiling = true;
 
+            @Config.Comment("By default, Witchery puts a hard cap to the total amount of power (number and strength of effects) that can " +
+                    "be put into a brew. After such amount, a Nether Star (by default) is required to disable this ceiling. Witchery Default Ceiling is 7. " +
+                    "Can be set to Integer.MAX_VALUE (" + Integer.MAX_VALUE + ") to disable Power Ceiling altogether")
+            @Config.Name("Common - Tweak Custom Power Ceiling")
+            @Config.RangeInt(min = 1)
+            public static int common_tweakCustomPowerCeiling = 7;
+
             @Config.Comment("If true, completes implementation of the throwing skill, that is used to throw splash brews further. To improve " +
                     "this skill, launch more splash brews. Max distance is controlled by the Tweak Throwing Skill Max Power config")
             @Config.Name("Common - Fix Throwing Skill")
@@ -265,15 +272,34 @@ public class ModConfig {
             public static boolean soulBrews_fixPersistency = true;
 
             @Config.Comment("If true, enables CraftTweaker compat for Earth Infusion")
-            @Config.Name("Earth Infusion - Tweak Enable Crafttweaker Compat")
+            @Config.Name("Overworld Infusion - Tweak Enable Crafttweaker Compat")
             @Config.RequiresMcRestart
-            public static boolean earthInfusion_tweakEnableCrafttweakerCompat = true;
+            public static boolean overworldInfusion_tweakEnableCrafttweakerCompat = true;
 
             @Config.Comment("If true, adds more items that are considered 'metallic' and thus can be stolen from other entities/players " +
                     "using Earth Infusion powers. CraftTweaker compat can remove the added items. Complete list in the Wiki")
-            @Config.Name("Earth Infusion - Tweak Attract Extra Items")
+            @Config.Name("Overworld Infusion - Tweak Attract Extra Items")
             @Config.RequiresMcRestart
-            public static boolean earthInfusion_tweakAttractExtraItems = true;
+            public static boolean overworldInfusion_tweakAttractExtraItems = true;
+
+            @Config.Comment("If true, adds more blocks that are considered 'rocky' and thus can be thrown as rocks")
+            @Config.Name("Overworld Infusion - Tweak Throw Extra Blocks")
+            @Config.RequiresMcRestart
+            public static boolean overworldInfusion_tweakThrowExtraBlocks = true;
+
+            @Config.Comment("If true, the Overworld Infusion can knockback Metal entities (by default only Iron Golems) " +
+                    "even if they are not working any metal armor. More entities can be added using CraftTweaker.")
+            @Config.Name("Overworld Infusion - Tweak Knockback Metal Entities")
+            public static boolean overworldInfusion_tweakKnockbackMetalEntities = true;
+
+            @Config.Comment("Add here any Ore Dictionary prefixes that might be useful in Ore Transformation. " +
+                    "Witchery only uses 'ingot', which means it transforms oreAbc into ingotAbc. Add more to another fallbacks " +
+                    "so that if ingotAbc does not exist, something else can be returned, like dustAbc. " +
+                    "NOTE: Requires 'Earth Infusion - Tweak Enable Crafttweaker Compat' to be enabled. " +
+                    "NOTE: Blocks transformed by fallback transformation will always be replaced by Stone")
+            @Config.Name("Overworld Infusion - Tweak Ore To Ingot Fallbacks")
+            @Config.RequiresMcRestart
+            public static String[] overworldInfusion_tweakOreToIngotFallbacks = new String[] { "ingot" };
 
             @Config.Comment("Sets the amount of ticks between Sentinel effect activations")
             @Config.Name("Sentinel Effect - Tweak Cooldown")
@@ -306,7 +332,7 @@ public class ModConfig {
             @Config.Comment("Custom Recipes in Mods' data folder is fundamentally broken in W:R. If true, this fixes " +
                     "resource loading and allows Mod Authors to define custom .jsons and override custom ones in " +
                     "resources/data/<modid>/brewing|mutations|... folders, creating custom recipes. This does not " +
-                    "touch data folders inside of the World save folder" )
+                    "touch data folders inside of the World save folder")
             @Config.Name("Custom Recipes - Fix Resource Loading")
             public static boolean customRecipes_fixResourceLoading = true;
 
@@ -349,13 +375,23 @@ public class ModConfig {
             @Config.Name("Elytra - Disallow When Resized Or Transformed")
             public static boolean tweak_disallowElytraWhenTransformedOrResized = true;
 
+            @Config.Comment("Prevents the `/locate` command to be fully replaced by Witchery, and instead modifies the" +
+                    "Vanilla one for better compatibility with other mods that may interact with it")
+            @Config.Name("Commands - Less Invasive Locate Command")
+            @Config.RequiresMcRestart
+            public static boolean tweak_lessInvasiveLocateCommand = true;
+
         }
 
         public static class BlockTweaks {
 
-            @Config.Comment("Configuration for patches related to Books")
+            @Config.Comment("Configuration for patches related to Kettle")
             @Config.Name("Kettle Tweaks")
             public static KettleTweaks kettleTweaks;
+
+            @Config.Comment("Configuration for patches related to Dream Weavers")
+            @Config.Name("Dream Weaver Tweaks")
+            public static DreamweaverTweaks dreamweaverTweaks;
 
             @Config.Comment("Fix Alder Door rendering when disguised, as the rendering of the door does not reflect its state " +
                     "(for example it renders open while it is closed, etc.)")
@@ -371,10 +407,10 @@ public class ModConfig {
             @Config.Name("Altar - Fix Power Source Persistence")
             public static boolean altar_fixPowerSourcePersistency = true;
 
-            @Config.Comment("If true, implements caching for Altar Power Source map, improving TPS." +
-                    "NOTE: Required for CraftTweaker integration for Custom Power Sources")
-            @Config.Name("Altar - Tweak Cache Power Source Map")
-            public static boolean altar_tweakCachePowerMap = true;
+            @Config.Comment("If true, enables CraftTweaker integration for Altar." +
+                    "NOTE: Also enables some improvements, such as caching the Power Source Map, improving TPS")
+            @Config.Name("Altar - Tweak Enable Crafttweaker Compat")
+            public static boolean altar_tweakEnableCrafttweakerCompat = true;
 
             @Config.Comment("Fixes fetish blocks not dropping when they are harvested due to TileEntity being null " +
                     "when the getDrops method is called")
@@ -396,6 +432,10 @@ public class ModConfig {
             @Config.Name("Circle Glyph - Fix Out Of Bounds Crash")
             public static boolean circleGlyph_fixOutOfBoundsCrash = true;
 
+            @Config.Comment("If true, prevents the Circle Glyph from being directly replaced by other blocks.")
+            @Config.Name("Circle Glyph - Prevent Being Replaced")
+            public static boolean circleGlyph_preventBeingReplaced = true;
+
             @Config.Comment("Fix an edge case where the coffin would not have a color associated with it, causing a crash.")
             @Config.Name("Coffin - Fix Edge Case Crash")
             public static boolean coffin_fixEdgeCrash = true;
@@ -403,12 +443,6 @@ public class ModConfig {
             @Config.Comment("Tightens bounding boxes around the Statue of Broken Curse and Statue of Occluded Summons.")
             @Config.Name("Creative Statues - Tweak Tighten Bounding Boxes")
             public static boolean creativeStatues_tweakTightenBoundingBoxes = true;
-
-            @Config.Comment("If true, Crystal Ball divination feature camera-based approach will be replaced by a system that uses " +
-                    "the Vanilla Spectator Mode. This will grant the ability to divinate anywhere in the same dimension, loading chunks as needed.\n" +
-                    "More info on the wiki https://github.com/michelegargiulo/Witchery-Companion/wiki/Config-Details#crystal-ball---tweak-rework-with-spectator")
-            @Config.Name("Crystal Ball - Tweak Rework With Spectator")
-            public static boolean crystalBall_tweakSpectatorRework = true;
 
             @Config.Comment("Sets the Altar Power required for a Crystal Ball prediciton. Witchery default is 500.")
             @Config.Name("Crystal Ball - Tweak Required Power")
@@ -420,6 +454,11 @@ public class ModConfig {
             @Config.RangeInt(min = 1, max = 10000)
             public static int crystalBall_tweakCooldown = 100;
 
+            @Config.Comment("If true, the time of the last Crystal Ball usage is sent to the clients, so that the cooldown is correct on the " +
+                    "client side too (for example, for The One Probe). Witchery never sends it, so clients always see a Crystal Ball that is ready")
+            @Config.Name("Crystal Ball - Fix Cooldown Sync")
+            public static boolean crystalBall_fixCooldownSync = true;
+
             @Config.Comment("Cursed Blocks are not fully implemented. If you enable this, they still won't work, but " +
                     "at least they should not crash the game as often")
             @Config.Name("Cursed Blocks - Fix Null Brew Action List Crash")
@@ -428,6 +467,20 @@ public class ModConfig {
             @Config.Comment("Fix crash when one of the coffin pieces is moved by a piston.")
             @Config.Name("Coffin - Fix Crash When Moved By Piston")
             public static boolean coffin_fixPistonMoveCrash = true;
+
+            @Config.Comment("If true, makes the Distillery interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Distillery - Tweak Enable Item Handler Capability")
+            public static boolean distillery_tweakEnableItemHandlerCap = true;
+
+            @Config.Comment("Tweaks the maximum distance an Ender Bramble can teleport an entity")
+            @Config.Name("Ender Bramble - Tweak Min Distance TP")
+            @Config.RangeInt(min = 1, max = 5000)
+            public static int enderBramble_tweakMinDistanceTP = 500;
+
+            @Config.Comment("Tweaks the maximum distance an Ender Bramble can teleport an entity")
+            @Config.Name("Ender Bramble - Tweak Max Distance TP")
+            @Config.RangeInt(min = 2, max = 10000)
+            public static int enderBramble_tweakMaxDistanceTP = 1000;
 
             @Config.Comment("Fix the Garlic Garland having incorrect Bounding Boxes.")
             @Config.Name("Garlic Garland - Fix Bounding Box")
@@ -442,6 +495,10 @@ public class ModConfig {
                     "box height will be reduced to 1.6, the maximum allowed without being kicked")
             @Config.Name("Statue of Goddess - Fix Flying On Servers")
             public static boolean goddessStatue_fixFlyingOnServers = true;
+
+            @Config.Comment("If true, makes the Grassper interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Grassper - Tweak Enable Item Handler Capability")
+            public static boolean grassper_tweakEnableItemHandlerCap = true;
 
             @Config.Comment("If true, when the player holds any block and right-clicks the statue, it won't place the block")
             @Config.Name("Statue of Hobgoblin Patron - Fix Block Placing")
@@ -460,6 +517,10 @@ public class ModConfig {
             @Config.Comment("Fix brews getting thrown immediately upon right-clicking the Kettle with a single empty bottle.")
             @Config.Name("Kettle - Fix Brews Thrown Upon Creation")
             public static boolean kettle_fixThrowBrewsUponCreation = true;
+
+            @Config.Comment("If true, makes the Leech Chest interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Leech Chest - Tweak Enable Item Handler Capability")
+            public static boolean leechChest_tweakEnableItemHandlerCap = true;
 
             @Config.Comment("If true, it will prevent Mandrake entities from spawning when harvesting non-mature mandrake crops.")
             @Config.Name("Mandrake Crop - Fix Drop Even When Not Mature")
@@ -486,15 +547,41 @@ public class ModConfig {
             @Config.RangeDouble(min = 0.0, max = 1.0)
             public static double mandrakeCrop_tweakRootDropChance = 0.25;
 
+            @Config.Comment("Tweaks the drop rate of the Snowbell Flower for a Snowbell Crop. By default 1.0 (100%, drops from every crop)")
+            @Config.Name("Snowbell Crop - Tweak Flower Drop Rate")
+            @Config.RangeDouble(min = 0.0, max = 1.0)
+            public static double snowbellCrop_tweakSnowbellFlowerDropRate = 1.0;
+
             @Config.Comment("Fixes the Mirror in Mirror (MiM) feature.")
             @Config.Name("Mirror - Fix MiM")
             public static boolean mirror_fixMirrorInMirror = true;
+
+            @Config.Comment("Fixes Mirrors in Mirror Dimension always teleporting to Overworld dimension.")
+            @Config.Name("Mirror - Fix Always TP To Overworld")
+            public static boolean mirror_fixAlwaysTpToOverworld = true;
+
+            @Config.Comment("Fixes a crash when entering or exiting a Mirror (\"Cannot get property facing\"). A Mirror is " +
+                    "two blocks tall, so an entity collides with both halves in the same tick. The first half teleports " +
+                    "it to another dimension and the second half is then processed with data of the old dimension. " +
+                    "Seen with Fluidlogged API. Disable only to compare behaviour")
+            @Config.Name("Mirror - Fix Crash on Stale Collision")
+            public static boolean mirror_fixStaleCollisionCrash = true;
 
             @Config.Comment("Tweaks to modify the required power to use the Mirror in Mirror (MiM) feature (traverse the rooms " +
                     "inside of the Mirror dimension. Witchery default is 3000")
             @Config.Name("Mirror - Tweak MiM Power Requirement")
             @Config.RangeDouble(min = 1.0, max = 10000.0)
             public static float mirror_inMirrorPowerConsumption = 3000;
+
+            @Config.Comment("If true, prevents the splash sound from playing when a player uses the 'mirror go home' chant")
+            @Config.Name("Mirror - Tweak Disable Splash Sound Mirror Go Home")
+            @Config.RangeDouble(min = 1.0, max = 10000.0)
+            public static boolean mirror_tweakDisableSplashSoundMirrorGoHome = false;
+
+            @Config.Comment("If true, prevents the splash sound from playing when a player colliders with the mirror and gets teleported")
+            @Config.Name("Mirror - Tweak Disable Splash Sound On Collision")
+            @Config.RangeDouble(min = 1.0, max = 10000.0)
+            public static boolean mirror_tweakDisableSplashSoundOnCollision = false;
 
             @Config.Comment("If true, fixes slipperiness of Perpetual Ice Slabs (and Double Slabs). NOTE: That might not " +
                     "work on lower-half ice slabs due to a bug in Vanilla Minecraft")
@@ -511,6 +598,14 @@ public class ModConfig {
             @Config.Name("Placed Items - Fix Not Initialized Crash")
             public static boolean placedItems_fixNotInitializedCrash = true;
 
+            @Config.Comment("If true, enables CraftTweaker integration for Placed Items, the items that can be placed on " +
+                    "top of the Altar, and for the Altar boosts they give. By default only Arthana, Mystic Branch and Kobolite " +
+                    "Pentacle can be placed (and boost the Altar), as in Witchery, until a script changes the list. If false, " +
+                    "Witchery's hardcoded logic is used and scripts have no effect. The boosts also need the Altar " +
+                    "CraftTweaker integration to be enabled. NOTE: scripts must be loaded on both client and server")
+            @Config.Name("Placed Items - Tweak Enable Crafttweaker Compat")
+            public static boolean placedItems_tweakEnableCrafttweakerCompat = true;
+
             @Config.Comment("If true, fix popper rendering, displaying them the right way up")
             @Config.Name("Poppet Shelf - Fix Upside-down Poppets")
             public static boolean poppetShelf_fixUpsideDownPoppetRendering = true;
@@ -519,6 +614,10 @@ public class ModConfig {
                     "chunkloading to be active when a Player is not nearby")
             @Config.Name("Poppet Shelf - Tweak Disable Chunkloading")
             public static boolean poppetShelf_tweakDisableChunkloading = false;
+
+            @Config.Comment("If true, makes the Silver Vat interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Silver Vat - Tweak Enable Item Handler Capability")
+            public static boolean silverVat_tweakEnableItemHandlerCap = true;
 
             @Config.Comment("Workaround for Stockade blocks. When player head gets too close, the entire" +
                     "screen is rendered as a stockade side texture. This patch enlarges the stockade bounding" +
@@ -540,6 +639,10 @@ public class ModConfig {
             @Config.Name("Spinning Wheel - Fix JEI Plugin")
             public static boolean spinningWheel_fixJeiPlugin = true;
 
+            @Config.Comment("If true, makes the Spinning Wheel interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Spinning Wheel - Tweak Enable Item Handler Capability")
+            public static boolean spinningWheel_tweakEnableItemHandlerCap = true;
+
             @Config.Comment("If true, fix player bottling skill increase, which won't happen otherwise.")
             @Config.Name("Witch's Cauldron - Fix Bottling Skill Increase")
             public static boolean witchsCauldron_fixBottlingSkillIncrease = true;
@@ -547,6 +650,14 @@ public class ModConfig {
             @Config.Comment("If true, fix right-clicking on the cauldron with a bucket voiding its contents.")
             @Config.Name("Witch's Cauldron - Fix Bucket Voiding Brew")
             public static boolean witchsCauldron_fixBucketVoidingBrew = true;
+
+            @Config.Comment("If true, fixes Cauldron crafting for custom recipes (Crafttweaker, mods' data folders): " +
+                    "ingredients that are also brewing ingredients are no longer refused by the brewing rules, " +
+                    "ingredients that are not brewing ingredients are no longer swallowed without counting, and " +
+                    "recipes that need the same ingredient more than once work instead of miscounting or crashing. " +
+                    "Witchery's own recipes keep their behaviour, except for the crash")
+            @Config.Name("Witch's Cauldron - Fix Custom Recipe Ingredients")
+            public static boolean witchsCauldron_fixCustomRecipeIngredients = true;
 
             @Config.Comment("If true, fixes a dupe where the same item can be tossed into multiple adjacent cauldrons.")
             @Config.Name("Witch's Cauldron - Fix Multiple Cauldron Dupe")
@@ -578,6 +689,19 @@ public class ModConfig {
             @Config.Name("Witches Oven - Fix Burning Particles")
             public static boolean witchesOven_fixBurningParticlesHeight = true;
 
+            @Config.Comment("If true, fixes the voiding of Lava Buckets when used as fuel")
+            @Config.Name("Witches Oven - Fix Lava Buckets Voiding")
+            public static boolean witchesOven_fixVoidingLavaBuckets = true;
+
+            @Config.Comment("If true, makes the Oven interact better with things like Pipes, conduits, etc.")
+            @Config.Name("Witches Oven - Tweak Enable Item Handler Capability")
+            public static boolean witchesOven_tweakEnableItemHandlerCap = true;
+
+            @Config.Comment("If true, makes pipes able to extract both outputs from the sides and non-fuel items from the bottom" +
+                    "NOTE: Requires 'Witches Oven - Tweak Enable Item Handler Capability' tweak to be enabled")
+            @Config.Name("Witches Oven - Fix Inventory Sidedness")
+            public static boolean witchesOven_fixInventorySidedness = true;
+
             @Config.Comment("If true, fixes fences connecting to the statue, and buttons and levers cannot be placed " +
                     "anymore on the statue")
             @Config.Name("Wolf Altar - Fix Face Shape")
@@ -598,6 +722,14 @@ public class ModConfig {
                     "makes the wolf trap impossible to relocate once placed")
             @Config.Name("Wolf Trap - Tweak Drop On Break")
             public static boolean wolfTrap_tweakDropOnBreak = false;
+
+            public static class DreamweaverTweaks {
+
+                @Config.Comment("If true, on placement, Dream weavers will face depending on the clicked block's orientation, " +
+                        "rather than the player's. Also fixes other minor placement issues.")
+                @Config.Name("Fix Placement")
+                public static boolean fixPlacement = true;
+            }
 
             public static class KettleTweaks {
 
@@ -787,6 +919,12 @@ public class ModConfig {
             @Config.Name("Rite of Prior Incarnation - Fix NBT Persisting After Pickup")
             @Config.RequiresMcRestart
             public static boolean ritePriorIncarnation_fixNbtNotRemoved = true;
+
+            @Config.Comment("If true, the Rite of Prior Incarnation won't be registered at all. Useful if you have other " +
+                    "mods that provide the same functionality (Open Blocks, Tomb Many Graves, etc)")
+            @Config.Name("Rite of Prior Incarnation - Tweak Disable Rite")
+            @Config.RequiresMcRestart
+            public static boolean priorIncarnation_tweakDisableRite = false;
         }
 
         public static class PotionTweaks {
@@ -794,6 +932,12 @@ public class ModConfig {
             @Config.Comment("If true, fixes entities not moving after they have been spawned")
             @Config.Name("Insanity Potion - Fix Ghost Entities")
             public static boolean insanity_fixGhostEntities = true;
+
+            @Config.Comment("Tweaks the minimum amplifier level required for the Ill Fitting potion to be able to remove " +
+                    "armor cursed with Curse of Binding. Witchery default is 0 (always able to unequip). Set to -1 to prevent " +
+                    "this potion effect from removing cursed armor.")
+            @Config.Name("Ill Fitting - Tweak Min Strength Curse Of Binding Unequip")
+            public static int illFitting_tweakCurseBindingUnequip = 0;
 
             @Config.Comment("Fixes Potion of Fortune not working because of wrong TileEntity check")
             @Config.Name("Fortune Potion - Fix No Effect")
@@ -873,6 +1017,7 @@ public class ModConfig {
             @Config.Comment("Sets the total lifespan (in ticks) of a Duplicate entity (spawned by Duplication Grenades). " +
                     "Default Witchery is 200 ticks (10 seconds)")
             @Config.RangeInt(min = 1, max = 10000000)
+            @Config.Name("Duplicate - Tweak Lifespan")
             public static int duplicate_tweakTickLifespan = 200;
 
             @Config.Comment("If true, fixes a freeze when the Broom breaks due to not dismounting passengers")
@@ -899,33 +1044,38 @@ public class ModConfig {
             @Config.Name("Goblin - Remove Village Requirement")
             public static boolean goblin_tweakRemoveTradingVillageRequirements = false;
 
-            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a mundane Pickaxe")
-            @Config.Name("Goblin - Tweak Koboldite Initial Chance Any Pick. Default 0.01 (1%)")
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining " +
+                    "with a mundane Pickaxe. Default 0.01 (1%)")
+            @Config.Name("Goblin - Tweak Koboldite Initial Chance Any Pick")
             @Config.RangeDouble(min = 0.0, max = 1.0)
             public static double goblin_tweakKobolditeInitialChanceNoPick = 0.01;
 
-            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a Koboldite Pickaxe")
-            @Config.Name("Goblin - Tweak Koboldite Initial Chance Koboldite Pick. Default 0.02 (2%)")
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining " +
+                    "with a Koboldite Pickaxe. Default 0.02 (2%)")
+            @Config.Name("Goblin - Tweak Koboldite Initial Chance Koboldite Pick")
             @Config.RangeDouble(min = 0.0, max = 1.0)
             public static double goblin_tweakKobolditeInitialChancePick = 0.02;
 
-            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a Koboldite Pickaxe and the Goblin smelted ores")
-            @Config.Name("Goblin - Tweak Koboldite Additional Chance Any Pick. Default 0.05 (5%)")
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining " +
+                    "with a Koboldite Pickaxe and the Goblin smelted ores. Default 0.05 (5%)")
+            @Config.Name("Goblin - Tweak Koboldite Additional Chance Any Pick")
             @Config.RangeDouble(min = 0.0, max = 1.0)
             public static double goblin_tweakKobolditeAdditionalChanceNoPick = 0.05;
 
-            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining with a Koboldite Pickaxe and the Goblin smelted ores")
-            @Config.Name("Goblin - Tweak Koboldite Additional Chance Koboldite Pick. Default 0.08 (8%)")
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to find Koboldite Dust when mining " +
+                    "with a Koboldite Pickaxe and the Goblin smelted ores. Default 0.08 (8%)")
+            @Config.Name("Goblin - Tweak Koboldite Additional Chance Koboldite Pick")
             @Config.RangeDouble(min = 0.0, max = 1.0)
             public static double goblin_tweakKobolditeAdditionalChancePick = 0.08;
 
-            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to smelt ores (and double them)")
-            @Config.Name("Goblin - Tweak Smelt Initial Chance. Default 0.5 (50%)")
+            @Config.Comment("Tweak to modify the chance that the Hobgoblin has to smelt ores (and double them). Default 0.5 (50%)")
+            @Config.Name("Goblin - Tweak Smelt Initial Chance")
             @Config.RangeDouble(min = 0.0, max = 1.0)
             public static double goblin_tweakSmeltingInitialChance = 0.5;
 
-            @Config.Comment("Tweak to modify the additional chance that the Hobgoblin has to create an additional drop for a smelted ore")
-            @Config.Name("Goblin - Tweak Smelt Additional Chance. Default 0.25 (25%)")
+            @Config.Comment("Tweak to modify the additional chance that the Hobgoblin has to create an additional " +
+                    "drop for a smelted ore. Default 0.25 (25%)")
+            @Config.Name("Goblin - Tweak Smelt Additional Chance")
             @Config.RangeDouble(min = 0.0, max = 1.0)
             public static double goblin_tweakSmeltingAdditionalChance = 0.25;
 
@@ -981,6 +1131,12 @@ public class ModConfig {
             @Config.Name("Lord of Torment - Tweak Disable Teleportation to Torment")
             public static boolean lordOfTorment_tweakDisableTeleportation = false;
 
+            @Config.Comment("Fix a crash that happens when Ignianima spell is disabled and the player " +
+                    "tries to deflect a EntitySpellEffect fired from the Lord of Torment that contains " +
+                    "the disabled spell effect.")
+            @Config.Name("Lord of Torment - Fix Projectile Deflect")
+            public static boolean lordOfTorment_fixProjectileDeflect = true;
+
             @Config.Comment("If true, when interacting with Lilith with an Enchantable item they will act as if with an " +
                     "empty hand. Hint: it's possible to use a resource pack to change the message that lilith says to " +
                     "the player that right-clicks with an enchantable item, to avoid confusing players.")
@@ -1003,6 +1159,29 @@ public class ModConfig {
             @Config.Name("Owl - Tweak Render Small Children")
             public static boolean owl_tweakRenderChildSmaller = false;
 
+            @Config.Comment("Fixes the Spectral Familiar model after un-sitting the familiar")
+            @Config.Name("Spectral Familiar - Fix Incorrect Model")
+            public static boolean spectralFamiliar_fixIncorrectModel = true;
+
+            @Config.Comment("Fixes the Spectral Familiar model after un-sitting the familiar")
+            @Config.Name("Spectral Familiar - Fix Sniffing While Sitting")
+            public static boolean spectralFamiliar_fixSniffingWhileSitting = true;
+
+            @Config.Comment("Sets the custom scale for the Biggest size of the resizing potion")
+            @Config.Name("Spectral Familiar - Tweak Enable Crafttweaker Compat")
+            public static boolean spectralFamiliar_tweakEnableCrafttweakerCompat = true;
+
+            @Config.Comment("Sets the max amount of times a Spectral Familiar can search before ")
+            @Config.Name("Spectral Familiar - Tweak Max Searches")
+            public static int spectralFamiliar_tweakMaxSearches = 5;
+
+            @Config.Comment("Sets the probability of despawning the familiar when giving it an item " +
+                    "to sniff. The item will still be consumed. Probabilities must be in range 0.0 (0%) " +
+                    "to 1.0 (100%). If the length of this list is less than 'Spectral Familiar - Tweak Max " +
+                    "Searches', the last probability will be used until max searches is reached.")
+            @Config.Name("Spectral Familiar - Tweak Despawn Chances")
+            public static double[] spectralFamiliar_tweakDespawnChances = new double[] { 0.0, 0.6, 0.75, 0.85, 0.95 };
+
             @Config.Comment("If true, Spectre Attributes will be modified according to this config file")
             @Config.Name("Spectre - Tweak Modify Attributes")
             public static boolean spectre_tweakAttributes = false;
@@ -1023,10 +1202,14 @@ public class ModConfig {
             @Config.Name("Spectre - Tweak Delay Before Despawn")
             public static boolean spectre_tweakDelayBeforeDespawn = false;
 
-            @Config.Comment("When the Spectre has no attack target (or it's dead) the Spectre waits this amount " +
+            @Config.Comment("When the Spectre has no attack target (or the target died) the Spectre waits this amount " +
                     "of ticks before despawning")
             @Config.Name("Spectre - Tweak Tick Delay Before Despawn")
             public static int spectre_tweakDelayTicksBeforeDespawn = 60;
+
+            @Config.Comment("Tweak the maximum lifespan (in ticks) of the Spectre")
+            @Config.Name("Spectre - Tweak Max Lifetime")
+            public static int spectre_tweakMaxLifetime = 600;
 
             @Config.Comment("If true, Treefyd will require to be given a Creeper Heart before they can be given a Demon " +
                     "Heart, which further improves their strength and health")
@@ -1075,6 +1258,17 @@ public class ModConfig {
             @Config.Name("Villager - Tweak Remove Backported AI")
             @Config.RequiresMcRestart
             public static boolean villager_disableBackportedAI = false;
+
+            @Config.Comment("If true, fixes the mount offset. OG Witchery and W:R use entity height * 0.6, but the Monkey " +
+                    "may visually collide with the Entity. If tweak removes the '* 0.6', so that the Monkey is exactly " +
+                    "above the carried entity")
+            @Config.Name("Winged Monkey - Tweak Improve Mount Offset")
+            public static boolean wingedMonkey_tweakEntityCarryMountOffset = false;
+
+            @Config.Comment("Fixes a multitude of bugs related to the AI of Winged Monkey: Sitting behavior, Crash when " +
+                    "interacted with some items, not carrying entities and players, not defending owners")
+            @Config.Name("Winged Monkey - Fix AI")
+            public static boolean wingedMonkey_fixAI = true;
         }
 
         public static class BookTweaks {
@@ -1088,67 +1282,67 @@ public class ModConfig {
 
             @Config.Comment("Attack Bat will drop loot according to its Loot Table (witchery:entities/attack_bat)")
             @Config.Name("Attack Bat - Tweak Give Own Loot Table")
-            public static boolean attackBat_tweakOwnLootTable = false;
+            public static boolean attackBat_tweakOwnLootTable = true;
 
             @Config.Comment("Baba Yaga will drop loot according to its Loot Table (witchery:entities/baba_yaga_death)")
             @Config.Name("Baba Yaga - Tweak Drop Loot by Table")
-            public static boolean babaYaga_tweakLootTable = false;
+            public static boolean babaYaga_tweakLootTable = true;
 
             @Config.Comment("Baba Yaga will give loot to its owner based on a Loot Table (witchery:entities/baba_yaga_owner)")
             @Config.Name("Baba Yaga - Tweak Give By Loot Table")
-            public static boolean babaYaga_tweakGiveDropLootTable = false;
+            public static boolean babaYaga_tweakGiveDropLootTable = true;
 
             @Config.Comment("Banshee will give loot to its owner based on a Loot Table (witchery:entities/banshee)")
             @Config.Name("Banshee - Tweak Give Own Loot Table")
-            public static boolean banshee_tweakLootTable = false;
+            public static boolean banshee_tweakLootTable = true;
 
             @Config.Comment("If true, Coven Witch will drop loot according to its own Loot Table, instead of " +
                     "Vanilla Witch loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
                     "mods to vanilla Witch loot table, will not reflect on Coven Witches")
             @Config.Name("Coven Witch - Tweak Give Own Loot Table")
-            public static boolean covenWitch_tweakOwnLootTable = false;
+            public static boolean covenWitch_tweakOwnLootTable = true;
 
             @Config.Comment("If true, Demon will drop loot according to its Loot Table (witchery:entities/demon)")
             @Config.Name("Demon - Tweak Drop Loot by Table")
-            public static boolean demon_tweakLootTable = false;
+            public static boolean demon_tweakLootTable = true;
 
             @Config.Comment("If true, Duplicate will drop loot according to its Loot Table (witchery:entities/demon)")
             @Config.Name("Duplicate - Tweak Give Own Loot Table")
-            public static boolean duplicate_tweakOwnLootTable = false;
+            public static boolean duplicate_tweakOwnLootTable = true;
 
             @Config.Comment("If true, Ent will drop loot according to its Loot Table (witchery:entities/ent)")
             @Config.Name("Ent - Tweak Drop Loot by Table")
-            public static boolean ent_tweakLootTable = false;
+            public static boolean ent_tweakLootTable = true;
 
             @Config.Comment("If true, Elle will drop loot according to its Loot Table (witchery:entities/elle)")
             @Config.Name("Elle - Tweak Drop Loot by Table")
-            public static boolean elle_tweakLootTable = false;
+            public static boolean elle_tweakLootTable = true;
 
             @Config.Comment("If true, Fairest will drop loot according to its Loot Table (witchery:entities/fairest)")
             @Config.Name("Fairest - Tweak Drop Loot by Table")
-            public static boolean fairest_tweakLootTable = false;
+            public static boolean fairest_tweakLootTable = true;
 
             @Config.Comment("If true, Cat Familiar will drop loot according to its own Loot Table, instead of " +
                     "Vanilla Ocelot loot table (witchery:entities/coven_witch). WARN: if true, loot added by other " +
                     "mods to vanilla Ocelot loot table, will not reflect on Cat familiars")
             @Config.Name("Cat Familiar - Tweak Give Own Loot Table")
-            public static boolean familiarCat_tweakOwnLootTable = false;
+            public static boolean familiarCat_tweakOwnLootTable = true;
 
             @Config.Comment("If true, Imp will drop loot according to its Loot Table (witchery:entities/imp_death)")
             @Config.Name("Infernal Imp - Tweak Drop Loot By Table")
-            public static boolean infernalImp_tweakLootTable = false;
+            public static boolean infernalImp_tweakLootTable = true;
 
             @Config.Comment("If true, Hobgoblins will drop loot according to its Loot Table (witchery:entities/hobgoblin)")
             @Config.Name("Hobgoblin - Tweak Own Loot By Table")
-            public static boolean hobgoblin_tweakLootTable = false;
+            public static boolean hobgoblin_tweakLootTable = true;
 
             @Config.Comment("If true, Death will drop loot according to its Loot Table (witchery:entities/death)")
             @Config.Name("Death - Tweak Drop Loot by Table")
-            public static boolean death_tweakLootTable = false;
+            public static boolean death_tweakLootTable = true;
 
             @Config.Comment("If true, Goblin Gulg will drop loot according to its Loot Table (witchery:entities/goblin_gulg)")
             @Config.Name("Gulg - Tweak Drop Loot by Table")
-            public static boolean goblinGulg_tweakLootTable = false;
+            public static boolean goblinGulg_tweakLootTable = true;
 
             @Config.Comment("If true, Goblin Mog will drop loot according to its Loot Table (witchery:entities/goblin_mog)")
             @Config.Name("Mog - Tweak Drop Loot by Table")
@@ -1156,59 +1350,59 @@ public class ModConfig {
 
             @Config.Comment("If true, Shade of Leonard will drop loot according to its Loot Table (witchery:entities/leonard)")
             @Config.Name("Shade of Leonard - Tweak Drop Loot by Table")
-            public static boolean leonard_tweakLootTable = false;
+            public static boolean leonard_tweakLootTable = true;
 
             @Config.Comment("If true, Lord of Torment will drop loot according to its Loot Table (witchery:entities/lord_of_torment)")
             @Config.Name("Lord of Torment - Tweak Drop Loot by Table")
-            public static boolean lordOfTorment_tweakLootTable = false;
+            public static boolean lordOfTorment_tweakLootTable = true;
 
             @Config.Comment("If true, Lost Souls will drop loot according to its Loot Table (witchery:entities/lost_soul)")
             @Config.Name("Lost Soul - Tweak Drop Loot by Table")
-            public static boolean lostSoul_tweakLootTable = false;
+            public static boolean lostSoul_tweakLootTable = true;
 
             @Config.Comment("If true, Mindrakes will drop loot according to its Loot Table (witchery:entities/mindrake)")
             @Config.Name("Mindrake - Tweak Drop Loot by Table")
-            public static boolean mindrake_tweakLootTable = false;
+            public static boolean mindrake_tweakLootTable = true;
 
             @Config.Comment("If true, Nightmare will drop loot according to its Loot Table (witchery:entities/nightmare)")
             @Config.Name("Nightmare - Tweak Drop Loot by Table")
-            public static boolean nightmare_tweakLootTable = false;
+            public static boolean nightmare_tweakLootTable = true;
 
             @Config.Comment("If true, Poltergeist will drop loot according to its Loot Table (witchery:entities/poltergeist)")
             @Config.Name("Poltergeist - Tweak Drop Loot by Table")
-            public static boolean poltergeist_tweakLootTable = false;
+            public static boolean poltergeist_tweakLootTable = true;
 
             @Config.Comment("If true, Spectral Familiar will drop loot according to its Loot Table (witchery:entities/spectral_familiar)")
             @Config.Name("Spectral Familiar - Tweak Drop Loot by Table")
-            public static boolean spectralFamiliar_tweakLootTable = false;
+            public static boolean spectralFamiliar_tweakLootTable = true;
 
             @Config.Comment("If true, Spectre will drop loot according to its Loot Table (witchery:entities/spectre)")
             @Config.Name("Spectre - Tweak Drop Loot by Table")
-            public static boolean spectre_tweakLootTable = false;
+            public static boolean spectre_tweakLootTable = true;
 
             @Config.Comment("If true, Treefyd will drop loot according to its Loot Table (witchery:entities/treefyd)")
             @Config.Name("Treefyd - Tweak Drop Loot by Table")
-            public static boolean treefyd_tweakOwnLootTable = false;
+            public static boolean treefyd_tweakOwnLootTable = true;
 
             @Config.Comment("If true, Vampires will drop loot according to its Loot Table (witchery:entities/vampire)")
             @Config.Name("Vampire - Tweak Drop Loot by Table")
-            public static boolean vampire_tweakLootTable = false;
+            public static boolean vampire_tweakLootTable = true;
 
             @Config.Comment("If true, Village Guards will drop loot according to its Loot Table (witchery:entities/village_guard)")
             @Config.Name("Village Guard - Tweak Drop Loot by Table")
-            public static boolean villageGuard_tweakLootTable = false;
+            public static boolean villageGuard_tweakLootTable = true;
 
             @Config.Comment("If true, Werewolves will drop loot according to its Loot Table (witchery:entities/werewolf)")
             @Config.Name("Werewolf - Tweak Drop Loot by Table")
-            public static boolean werewolf_tweakLootTable = false;
+            public static boolean werewolf_tweakLootTable = true;
 
             @Config.Comment("If true, Winged Monkeys will drop loot according to its Loot Table (witchery:entities/winged_monkey)")
             @Config.Name("Winged Monkey - Tweak Drop Loot by Table")
-            public static boolean wingedMonkey_tweakLootTable = false;
+            public static boolean wingedMonkey_tweakLootTable = true;
 
             @Config.Comment("If true, Witch Hunters will drop loot according to its Loot Table (witchery:entities/witch_hunter)")
             @Config.Name("Witch Hunter - Tweak Drop Loot by Table")
-            public static boolean witchHunter_tweakLootTable = false;
+            public static boolean witchHunter_tweakLootTable = true;
         }
 
         public static class DimensionTweaks {
@@ -1240,10 +1434,33 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static int torment_tweakID = 12;
 
+            @Config.Comment("If true, nothing can send players to the Torment dimension: not the Lord of Torment, " +
+                    "nor the Torment Portal, nor the Tormentum spell symbol. Players that are already in the Torment " +
+                    "dimension can still leave it. 'Lord of Torment - Tweak Disable Teleportation to Torment' only " +
+                    "covers the Lord of Torment\n. NOTE: if this option is enabled, the 'Lord of Torment - " +
+                    "Tweak Disable Teleportation to Torment' option is ignored, and player won't be teleported to Torment")
+            @Config.Name("Torment - Tweak Disable Teleportation to Torment (All Sources)")
+            public static boolean torment_tweakDisableTeleportation = false;
+
             @Config.Comment("Sets the dimension ID for the Mirror dimension")
             @Config.Name("Mirror - Tweak Dimension ID")
             @Config.RequiresMcRestart
             public static int mirror_tweakID = 13;
+
+            @Config.Comment("Specify a list of Dimension IDs where circle magic (rituals started from Circle Glyphs) is " +
+                    "disabled, like Witchery already does for the Spirit World. Players get the same 'circle magic is being " +
+                    "nullified' message. Rituals that are already active can still be deactivated. An empty list " +
+                    "disables this feature\n. NOTE: Dimensions added by Mystcraft Ages get a different ID every time, so " +
+                    "they can't be listed: use the 'Circle Magic - Tweak Dimension List Is Whitelist' option for them")
+            @Config.Name("Circle Magic - Tweak Dimension List")
+            public static int[] circleMagic_tweakDimensionList = new int[] { };
+
+            @Config.Comment("If true, 'Circle Magic - Tweak Dimension List' becomes a whitelist: circle magic only works " +
+                    "in the listed Dimensions, and is disabled in all the others (Mystcraft Ages included). For example, " +
+                    "set the list to 0 (Overworld) to only allow circle magic in the Overworld. NOTE: if the list is " +
+                    "empty this option does nothing, so circle magic is never disabled everywhere by mistake")
+            @Config.Name("Circle Magic - Tweak Dimension List Is Whitelist")
+            public static boolean circleMagic_tweakDimensionListIsWhitelist = false;
 
 
         }
@@ -1256,10 +1473,42 @@ public class ModConfig {
             @Config.Name("No Form - Fix Default Step Height")
             public static boolean noForm_fixDefaultStepHeight = true;
 
+            @Config.Comment("If true, Vampires lose all their hunger bar when they eat food, like in the original Witchery. " +
+                    "In W:R this check is broken: it runs before the food is eaten and never sees the hunger increase")
+            @Config.Name("Vampire - Fix Eating Normal Food")
+            public static boolean vampire_fixFoodDrain = true;
+
+            @Config.Comment("Specify a list of Dimension IDs that have to be considered always-night")
+            @Config.Name("Vampire - Tweak Always Night Dimension")
+            public static int[] vampire_alwaysNightDimensions = new int[] { };
+
+            @Config.Comment("If true, Vampire Abilities are no longer selected by Mouse Wheel, but by Hotkey.\n" +
+                    "This allows better compat with mods and allows for integrations such as Mine-Menu")
+            @Config.Name("Vampire - Overhaul Ability Selection")
+            @Config.RequiresMcRestart
+            public static boolean vampire_tweakOverhaulAbilitiesKeybind = false;
+
             @Config.Comment("If true, a level 6 or higher werewolf without a Moon Charm will transform into WOLFMAN form instead " +
                     "of WOLF form. Lesser levels will transform into WOLF form regardless")
             @Config.Name("Werewolf - Tweak Transform to Wolfman")
             public static boolean werewolf_tweakTransformToWolfman = false;
+
+            @Config.Comment("If greater than zero, Werewolves that happen to be in armor cursed by Curse of Binding will receive " +
+                    "this much amount of (magic) damage every 2 seconds, and they won't be able to drop armor. Use in combination with " +
+                    "'Ill Fitting - Tweak Min Strength Curse Of Binding Unequip' to offer an escape other than death." +
+                    "WARNING: having this and gamerule keepInventory enabled might lead to death loops.")
+            @Config.Name("Werewolf - Tweak Damage In Cursed Armor")
+            public static float werewolf_tweakDamageInBindingCurseArmor = 0.0f;
+
+            @Config.Comment("Specify a list of Dimension IDs that have to be considered always full-moon. " +
+                    "Useful for Space mods that add Moon, or Dimension mods like Twilight Forest and The Midnight")
+            @Config.Name("Werewolf - Tweak Always Transform Dimension")
+            public static int[] werewolf_alwaysFullMoonDimensions = new int[] { };
+
+            @Config.Comment("Specify a list of Dimension IDs where werewolves can never transform." +
+                    "Useful for Space mods that add planets far away from the Overworld / Moon")
+            @Config.Name("Werewolf - Tweak Never Transform Dimension")
+            public static int[] werewolf_neverFullMoonDimensions = new int[] { };
 
         }
 
@@ -1329,7 +1578,6 @@ public class ModConfig {
 
         }
 
-
         public static class CraftTweakerIntegration {
 
             @Config.Comment("If true enables CraftTweaker integration for PolynesiaCharm (Animal trades). Alters default trades")
@@ -1347,6 +1595,12 @@ public class ModConfig {
         }
 
         public static class JeiIntegration {
+
+            @Config.Comment("Fixes JEI force reloading on world load or dimension change, causing the game to hang " +
+                    "and breaking other mods interacting with JEI (e.g. Calculator & Groovyscript)")
+            @Config.Name("JEI Integration - Fix JEI Force Reloading")
+            @Config.RequiresMcRestart
+            public static boolean fixJeiForceReloading = true;
 
             @Config.Comment("If true, enables Altar JEI Integration")
             @Config.Name("JEI Integration - Altar")
@@ -1393,6 +1647,11 @@ public class ModConfig {
             @Config.Comment("If true, fixes Mandrakes not spawning when Quark right-click harvest feature is enabled")
             @Config.Name("Quark Integration - Fix Mandrakes Right-click Harvest")
             public static boolean fixMandrakesRightClickHarvest = true;
+
+            @Config.Comment("If true, fixes Quark opening the other half of Rowan Double Doors when the Player does not have the key. " +
+                    "A Player that has the key of only one of the two doors will still open both")
+            @Config.Name("Quark Integration - Fix Rowan Doors Double Door Opening")
+            public static boolean fixRowanDoorsDoubleDoorOpening = true;
         }
 
         public static class MorphIntegration {
@@ -1448,6 +1707,18 @@ public class ModConfig {
             @Config.Comment("If true, enables TOP integration for Treefyd")
             @Config.Name("TOP Integration - Treefyd")
             public static EProbeElementIntegrationConfig treefyd = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Silver Vat")
+            @Config.Name("TOP Integration - Silver Vat")
+            public static EProbeElementIntegrationConfig silverVat = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Spectral Familiar")
+            @Config.Name("TOP Integration - Spectral Familiar")
+            public static EProbeElementIntegrationConfig spectralFamiliar = EProbeElementIntegrationConfig.DEFAULT;
+
+            @Config.Comment("If true, enables TOP integration for Spectre")
+            @Config.Name("TOP Integration - Spectre")
+            public static EProbeElementIntegrationConfig spectre = EProbeElementIntegrationConfig.DEFAULT;
 
             public enum EProbeElementIntegrationConfig {
                 // Only enable basic information
@@ -1801,6 +2072,7 @@ public class ModConfig {
 
             }
         }
+
     }
 
     @Mod.EventBusSubscriber(modid = WitcheryCompanion.MODID)

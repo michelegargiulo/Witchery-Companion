@@ -1,0 +1,18 @@
+{
+  "name": "Subdued Spirit",
+  "icon": "witchery:subdued_spirit",
+  "category": "artifacts/misc",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "witchery:subdued_spirit",
+      "text": "When a $(l:creatures/spirit)Spirit$(/l) is hit enough times, it will became a Subdued Spirit. In this form, they can be carried from the $(l:dimension/spirit_world)Spirit World$(/l) to the overworld."
+    },
+    {
+      "type": "text",
+      "Title": "Spirit Guide",
+      "text": "A Subdued Spirit can be used in the $(l:circle_magic/other/find_structure)Find Structure Rite$(/l), where it will fly towards the closest $(item)Village$() or $(item)Nether Fortress$()."
+    }
+  ]
+}

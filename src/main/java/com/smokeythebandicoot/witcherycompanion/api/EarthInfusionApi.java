@@ -55,7 +55,7 @@ public class EarthInfusionApi {
         addMetalItem(Items.GOLDEN_CHESTPLATE);
         addMetalItem(Items.GOLDEN_HELMET);
 
-        if (InfusionTweaks.earthInfusion_tweakAttractExtraItems) {
+        if (InfusionTweaks.overworldInfusion_tweakAttractExtraItems) {
 
             // Other items
             addMetalItem(Items.SHEARS);

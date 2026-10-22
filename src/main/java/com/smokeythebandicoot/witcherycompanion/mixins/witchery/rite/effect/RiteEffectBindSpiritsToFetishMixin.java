@@ -92,7 +92,7 @@ public abstract class RiteEffectBindSpiritsToFetishMixin extends RiteEffect {
                 }
                 ResourceLocation id = SpiritEffectApi.getId(recipe);
                 if (id == null) return;
-                ProgressUtils.unlockProgress(player, ProgressUtils.getRiteEffectSecret(id.toString()),
+                ProgressUtils.unlockProgress(player, ProgressUtils.getSpiritEffectRecipeSecret(id.toString()),
                         WitcheryProgressEvent.EProgressTriggerActivity.BIND_TO_FETISH.activityTrigger);
             }
         }

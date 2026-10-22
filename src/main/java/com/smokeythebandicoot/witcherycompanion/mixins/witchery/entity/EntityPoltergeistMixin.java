@@ -4,11 +4,12 @@ import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.msrandom.witchery.entity.EntityBanshee;
+import net.msrandom.witchery.entity.EntityPoltergeist;
 import net.msrandom.witchery.entity.EntitySummonedUndead;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(EntityBanshee.class)
+
+@Mixin(EntityPoltergeist.class)
 public abstract class EntityPoltergeistMixin extends EntitySummonedUndead {
 
     private EntityPoltergeistMixin(World world) {
