@@ -19,6 +19,11 @@ public class ItemMetaSet<T> {
 
     private final Map<T, Set<Integer>> entries = new HashMap<>();
 
+    /** Metadata to use when matching: the real one if the item uses it as a subtype, the wildcard if it does not */
+    public static int effectiveMeta(boolean usesMetadata, int meta) {
+        return usesMetadata ? meta : WILDCARD;
+    }
+
     /** Adds the entry. Returns true if the set was modified */
     public boolean add(T item, int meta) {
         return entries.computeIfAbsent(item, k -> new HashSet<>()).add(meta);

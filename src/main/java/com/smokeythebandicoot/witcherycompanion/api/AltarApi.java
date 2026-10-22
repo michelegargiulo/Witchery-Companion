@@ -28,6 +28,7 @@ public class AltarApi {
     private static final HashMap<IBlockState, AltarBoosterFunc> skullBoosters = new HashMap<>();
     private static final HashMap<IBlockState, AltarBoosterFunc> candleBoosters = new HashMap<>();
     private static final HashMap<IBlockState, AltarBoosterFunc> chaliceBoosters = new HashMap<>();
+    private static final HashMap<IBlockState, AltarBoosterFunc> eggBoosters = new HashMap<>();
 
 
     /** INIT POWER SOURCES **/
@@ -101,15 +102,18 @@ public class AltarApi {
                             case 0:
                                 info.newRechargeScale++;
                                 info.newPowerScale++;
+                                break;
                             case 1:
                                 info.newRechargeScale += 2;
                                 info.newPowerScale += 2;
-                            case 2:
-                            default:
                                 break;
                             case 3:
                                 info.newRechargeScale += 3;
                                 info.newPowerScale += 3;
+                                break;
+                            case 2:
+                            default:
+                                break;
                         }
                     }
                 )
@@ -158,11 +162,23 @@ public class AltarApi {
         );
     }
 
+    /** Witchery's Infinity Egg: multiplies recharge rate and max power by 10 (multipliers are applied last) */
+    private static void initEggBoosters() {
+        eggBoosters.clear();
+        registerAltarBooster(
+            WitcheryBlocks.INFINITY_EGG, EAltarBoosterType.EGG,
+            new AltarBoosterFunc(100,
+                (IBlockState state, TileEntity tile, AltarBoosterInfo info) -> info.multiply(10, 10, 1, 1)
+            )
+        );
+    }
+
 
     static {
         initSkullBoosters();
         initCandleBoosters();
         initChaliceBoosters();
+        initEggBoosters();
     }
 
 
@@ -389,11 +405,46 @@ public class AltarApi {
 
     }
 
+    /**
+     * The four parameters an Altar booster can change: recharge rate, max power, range and enhancement level.
+     * Boosters add to the "new" values (increments) and/or to the multipliers. All increments are summed up first, then
+     * the multipliers are applied ({@link #applyMultipliers()}), so a multiplier always affects every increment,
+     * whatever the order boosters are found in (this is how Witchery's Kobolite Pentacle and Infinity Egg work)
+     */
     public static class AltarBoosterInfo {
         public int newRechargeScale = 1;
         public int newPowerScale = 1;
         public int newRangeScale = 1;
         public int newEnhancementLevel = 0;
+
+        public int rechargeMultiplier = 1;
+        public int powerMultiplier = 1;
+        public int rangeMultiplier = 1;
+        public int enhancementMultiplier = 1;
+
+        /** Adds the increments to the values */
+        public void add(int recharge, int power, int range, int enhancement) {
+            newRechargeScale += recharge;
+            newPowerScale += power;
+            newRangeScale += range;
+            newEnhancementLevel += enhancement;
+        }
+
+        /** Multiplies the multipliers (they are applied to the values only at the end) */
+        public void multiply(int recharge, int power, int range, int enhancement) {
+            rechargeMultiplier *= recharge;
+            powerMultiplier *= power;
+            rangeMultiplier *= range;
+            enhancementMultiplier *= enhancement;
+        }
+
+        /** Applies the multipliers to the values. To be called once, after every booster has been applied */
+        public void applyMultipliers() {
+            newRechargeScale *= rechargeMultiplier;
+            newPowerScale *= powerMultiplier;
+            newRangeScale *= rangeMultiplier;
+            newEnhancementLevel *= enhancementMultiplier;
+        }
     }
 
     public static class AltarBoosterFunc {
@@ -418,6 +469,7 @@ public class AltarApi {
         SKULL(() -> AltarApi.skullBoosters),
         CANDLE(() -> AltarApi.candleBoosters),
         CHALICE(() -> AltarApi.chaliceBoosters),
+        EGG(() -> AltarApi.eggBoosters),
         ;
 
         final Supplier<HashMap<IBlockState, AltarBoosterFunc>> supplier;

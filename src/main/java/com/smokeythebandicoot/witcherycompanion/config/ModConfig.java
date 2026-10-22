@@ -597,6 +597,14 @@ public class ModConfig {
             @Config.Name("Placed Items - Fix Not Initialized Crash")
             public static boolean placedItems_fixNotInitializedCrash = true;
 
+            @Config.Comment("If true, enables CraftTweaker integration for Placed Items, the items that can be placed on " +
+                    "top of the Altar, and for the Altar boosts they give. By default only Arthana, Mystic Branch and Kobolite " +
+                    "Pentacle can be placed (and boost the Altar), as in Witchery, until a script changes the list. If false, " +
+                    "Witchery's hardcoded logic is used and scripts have no effect. The boosts also need the Altar " +
+                    "CraftTweaker integration to be enabled. NOTE: scripts must be loaded on both client and server")
+            @Config.Name("Placed Items - Tweak Enable Crafttweaker Compat")
+            public static boolean placedItems_tweakEnableCrafttweakerCompat = true;
+
             @Config.Comment("If true, fix popper rendering, displaying them the right way up")
             @Config.Name("Poppet Shelf - Fix Upside-down Poppets")
             public static boolean poppetShelf_fixUpsideDownPoppetRendering = true;
