@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.msrandom.witchery.entity.EntityGoblin;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import slimeknights.tconstruct.library.utils.ToolHelper;
 import slimeknights.tconstruct.tools.tools.Pickaxe;
 
 /**
@@ -19,11 +20,11 @@ public abstract class EntityGoblinMixin {
 
     /** This Mixin checks if the item given to the Goblin is a TiC Pickaxe. If it is, it tricks Witchery into
      * thinking it is a Vanilla pickaxe by returning the Vanilla Wooden Pick **/
-    @WrapOperation(method = "processInteract", remap = false, at = @At(value = "INVOKE", remap = true,
+    @WrapOperation(method = "processInteract", remap = true, at = @At(value = "INVOKE", remap = true,
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;", ordinal = 1))
     private Item ticPickaxesCompat(ItemStack instance, Operation<Item> original) {
         Item result = original.call(instance);
-        if (result instanceof Pickaxe) {
+        if (result instanceof Pickaxe && !ToolHelper.isBroken(instance)) {
             return Items.WOODEN_PICKAXE;
         }
         return result;

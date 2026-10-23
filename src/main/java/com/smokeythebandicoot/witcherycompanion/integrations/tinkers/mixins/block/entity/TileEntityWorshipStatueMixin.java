@@ -3,6 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins.blo
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.TinkersUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,6 @@ import net.msrandom.witchery.block.entity.WitcheryTileEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import slimeknights.tconstruct.library.utils.TinkerUtil;
 
 @Mixin(TileEntityWorshipStatue.class)
 public abstract class TileEntityWorshipStatueMixin extends WitcheryTileEntity {
@@ -38,7 +38,7 @@ public abstract class TileEntityWorshipStatueMixin extends WitcheryTileEntity {
                     EntityEquipmentSlot.FEET,
             }) {
                 ItemStack wornStack = player.getItemStackFromSlot(slot);
-                if (TinkerUtil.hasTrait(wornStack.getTagCompound(), Integration.TRAIT_GOBLINS_FAVOR.identifier)) {
+                if (TinkersUtils.hasEffect(wornStack, Integration.TRAIT_GOBLINS_FAVOR)) {
                     additionalCount++;
                 }
             }

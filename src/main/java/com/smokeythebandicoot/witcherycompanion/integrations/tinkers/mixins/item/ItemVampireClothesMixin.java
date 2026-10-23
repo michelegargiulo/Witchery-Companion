@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins.item;
 
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.TinkersUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -9,27 +10,32 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import slimeknights.tconstruct.library.utils.TinkerUtil;
 
+/**
+ * Mixins:
+ * [Feature] TiC armor with the Vampiric trait counts as light Vampire Clothes pieces
+ */
 @Mixin(ItemVampireClothes.class)
 public abstract class ItemVampireClothesMixin {
 
-    /** This Mixins is used to consider TiC armor with the Fireblooded trait as light pieces **/
-    @Inject(method = "numLightPiecesWorn", remap = false, at = @At("RETURN"))
-    private static void checkFirebloodedTrait(EntityLivingBase entity, boolean light, CallbackInfoReturnable<Integer> cir) {
+    /** Witchery only counts light pieces when 'light' is true (it returns 0 otherwise), so TiC pieces with the
+     * Vampiric trait are added only in that case. Vampire Clothes are skipped, as they are already counted **/
+    @Inject(method = "numLightPiecesWorn", remap = false, cancellable = true, at = @At("RETURN"))
+    private static void checkVampiricTrait(EntityLivingBase entity, boolean light, CallbackInfoReturnable<Integer> cir) {
+        if (!light) return;
         int wornPieces = cir.getReturnValue();
         for (EntityEquipmentSlot slot : new EntityEquipmentSlot[]{
-            EntityEquipmentSlot.HEAD,
-            EntityEquipmentSlot.CHEST,
-            EntityEquipmentSlot.LEGS,
-            EntityEquipmentSlot.FEET,
+                EntityEquipmentSlot.HEAD,
+                EntityEquipmentSlot.CHEST,
+                EntityEquipmentSlot.LEGS,
+                EntityEquipmentSlot.FEET,
         }) {
             ItemStack stack = entity.getItemStackFromSlot(slot);
-            if (TinkerUtil.hasTrait(stack.getTagCompound(), Integration.TRAIT_VAMPIRIC.identifier)) {
+            if (stack.getItem() instanceof ItemVampireClothes) continue;
+            if (TinkersUtils.hasEffect(stack, Integration.TRAIT_VAMPIRIC)) {
                 wornPieces++;
             }
         }
         cir.setReturnValue(wornPieces);
     }
-
 }

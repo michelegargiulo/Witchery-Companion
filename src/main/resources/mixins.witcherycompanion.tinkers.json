@@ -10,7 +10,6 @@
     "common.CommonEventsMixin",
     "entity.EntityGoblinMixin",
     "entity.ai.EntityAIDigBlocksMixin",
-    "item.ItemHunterClothesMixin",
     "item.ItemPolynesiaCharmMixin",
     "item.ItemVampireClothesMixin",
     "item.ItemWitchesClothesMixin"

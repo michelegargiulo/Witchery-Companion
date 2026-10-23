@@ -16,13 +16,13 @@ public class ModifierWolfsbane extends ModifierTrait {
     }
 
     @Override
-    public void onHit(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage, boolean isCritical) {
+    public float damage(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage, float newDamage, boolean isCritical) {
         if (CreatureUtil.isWerewolf(target)) {
-            damage *= ModifiersConfig.wolfsbane_werewolfDamageMultiplier;
+            newDamage *= ModifiersConfig.wolfsbane_werewolfDamageMultiplier;
         } else {
-            damage *= ModifiersConfig.wolfsbane_nonWerewolfDamageMultiplier;
+            newDamage *= ModifiersConfig.wolfsbane_nonWerewolfDamageMultiplier;
         }
-        super.onHit(tool, player, target, damage, isCritical);
+        return super.damage(tool, player, target, damage, newDamage, isCritical);
     }
 
     @Override

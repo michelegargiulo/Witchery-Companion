@@ -2050,6 +2050,11 @@ public class ModConfig {
                 @Config.Name("Garliced - Damage Reduction")
                 public static float garliced_damageReduction = 0.5f;
 
+                @Config.Comment("Seconds for which creatures attacking the wearer are set on fire. 0 disables it")
+                @Config.RangeInt(min = 0, max = 30)
+                @Config.Name("Garliced - Attacker Fire Seconds")
+                public static int garliced_attackerFireSeconds = 2;
+
                 @Config.Comment("Multiplier for damage dealt to Werewolves")
                 @Config.RangeDouble(min = 0.1f, max = 8.0f)
                 @Config.Name("Silvered - Damage Boost")
@@ -2059,6 +2064,11 @@ public class ModConfig {
                 @Config.RangeDouble(min = 0.01f, max = 1.0f)
                 @Config.Name("Silvered - Damage Reduction")
                 public static float silvered_damageReduction = 0.5f;
+
+                @Config.Comment("Seconds for which creatures attacking the wearer are set on fire. 0 disables it")
+                @Config.RangeInt(min = 0, max = 30)
+                @Config.Name("Silvered - Attacker Fire Seconds")
+                public static int silvered_attackerFireSeconds = 2;
 
                 @Config.Comment("Multiplier for damage dealt to Werewolves")
                 @Config.RangeDouble(min = 0.1f, max = 8.0f)

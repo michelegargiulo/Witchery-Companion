@@ -3,6 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins.blo
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.TinkersUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -10,7 +11,6 @@ import net.msrandom.witchery.block.BlockWitchCauldron;
 import net.msrandom.witchery.item.ItemWitchesClothes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import slimeknights.tconstruct.library.utils.TinkerUtil;
 
 /**
  * Mixins:
@@ -26,7 +26,7 @@ public abstract class BlockWitchCauldronMixin {
             target = "Lnet/msrandom/witchery/item/ItemWitchesClothes;isHatWorn(Lnet/minecraft/entity/player/EntityPlayer;)Z"))
     private boolean traitBrewAffinityWitchHat(ItemWitchesClothes instance, EntityPlayer player, Operation<Boolean> original) {
         ItemStack stack = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-        if (TinkerUtil.hasTrait(stack.getTagCompound(), Integration.TRAIT_BREW_AFFINITY.identifier)) {
+        if (TinkersUtils.hasEffect(stack, Integration.TRAIT_BREW_AFFINITY)) {
             return true;
         }
         return original.call(instance, player);
@@ -37,7 +37,7 @@ public abstract class BlockWitchCauldronMixin {
             target = "Lnet/msrandom/witchery/item/ItemWitchesClothes;isHatWorn(Lnet/minecraft/entity/player/EntityPlayer;)Z"))
     private boolean traitBabasBlessBabaHat(ItemWitchesClothes instance, EntityPlayer player, Operation<Boolean> original) {
         ItemStack stack = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-        if (TinkerUtil.hasModifier(stack.getTagCompound(), Integration.MODIFIER_BABAS_BLESS.identifier)) {
+        if (TinkersUtils.hasEffect(stack, Integration.MODIFIER_BABAS_BLESS)) {
             return true;
         }
         return original.call(instance, player);
@@ -49,7 +49,7 @@ public abstract class BlockWitchCauldronMixin {
             target = "Lnet/msrandom/witchery/item/ItemWitchesClothes;isRobeWorn(Lnet/minecraft/entity/player/EntityPlayer;)Z"))
     private boolean traitBrewAffinityWitchRobe(ItemWitchesClothes instance, EntityPlayer player, Operation<Boolean> original) {
         ItemStack stack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-        if (TinkerUtil.hasTrait(stack.getTagCompound(), Integration.TRAIT_BREW_AFFINITY.identifier)) {
+        if (TinkersUtils.hasEffect(stack, Integration.TRAIT_BREW_AFFINITY)) {
             return true;
         }
         return original.call(instance, player);

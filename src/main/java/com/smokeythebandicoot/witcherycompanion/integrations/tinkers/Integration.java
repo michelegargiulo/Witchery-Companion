@@ -145,7 +145,7 @@ public class Integration {
             SILVER.setCastable(true);
             SILVER.setRepresentativeItem(WitcheryIngredientItems.SILVER_DUST);
             TinkerRegistry.addMaterialStats(
-                    KOBOLDITE,
+                    SILVER,
                     new HeadMaterialStats(232, 6.4f, 3.9f, 1),
                     new HandleMaterialStats(0.9f, 68),
                     new ExtraMaterialStats(60),
@@ -235,28 +235,32 @@ public class Integration {
                 ));
 
         MODIFIER_SILVERED = new ModifierSilvered();
-        RecipeMatchHolder.addRecipeMatch(MODIFIER_SILVERED,
+        addModifierRecipe(MODIFIER_SILVERED,
                 new RecipeMatch.Item(
-                        new ItemStack(WitcheryIngredientItems.SILVER_DUST), 1
-                ));
+                            new ItemStack(WitcheryIngredientItems.SILVER_DUST), 1
+                    ),
+                true, true);
 
         MODIFIER_GARLICED = new ModifierGarliced();
-        RecipeMatchHolder.addRecipeMatch(MODIFIER_GARLICED,
+        addModifierRecipe(MODIFIER_GARLICED,
                 new RecipeMatch.Item(
-                        new ItemStack(WitcheryBlocks.GARLIC), 1
-                ));
+                            new ItemStack(WitcheryBlocks.GARLIC), 1
+                    ),
+                true, true);
 
         MODIFIER_WOLFSBANE = new ModifierWolfsbane();
-        RecipeMatchHolder.addRecipeMatch(MODIFIER_WOLFSBANE,
+        addModifierRecipe(MODIFIER_WOLFSBANE,
                 new RecipeMatch.Item(
-                        new ItemStack(WitcheryIngredientItems.WOLFSBANE), 16
-                ));
+                            new ItemStack(WitcheryIngredientItems.WOLFSBANE), 16
+                    ),
+                false, true);
 
         MODIFIER_DEMONREND = new ModifierDemonrend();
-        RecipeMatchHolder.addRecipeMatch(MODIFIER_DEMONREND,
+        addModifierRecipe(MODIFIER_DEMONREND,
                 new RecipeMatch.Item(
-                        new ItemStack(WitcheryBlocks.DEMON_HEART), 1
-                ));
+                            new ItemStack(WitcheryBlocks.DEMON_HEART), 1
+                    ),
+                true, true);
 
         MODIFIER_BARKED = new ModifierBarked();
         RecipeMatchHolder.addRecipeMatch(MODIFIER_BARKED,
@@ -275,6 +279,13 @@ public class Integration {
         }
     }
 
+
+    /** Registers a modifier recipe for ConArm's Armor Station (armor) and/or TiC's Tool Station (tools). ConArm keeps
+     * its armor modifier recipes in RecipeMatchHolder, while TiC's Modifier registers recipes on itself **/
+    private static void addModifierRecipe(Modifier modifier, RecipeMatch match, boolean forArmor, boolean forTools) {
+        if (forArmor) RecipeMatchHolder.addRecipeMatch(modifier, match);
+        if (forTools) modifier.addRecipeMatch(match);
+    }
 
     /** Utils **/
 
