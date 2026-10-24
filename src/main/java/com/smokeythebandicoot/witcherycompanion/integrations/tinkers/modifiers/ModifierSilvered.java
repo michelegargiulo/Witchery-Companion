@@ -59,5 +59,5 @@ public class ModifierSilvered extends ModifierSlayer {
                 !(otherModifier instanceof ModifierWolfsbane)
                 ;
     }
-    
+
 }

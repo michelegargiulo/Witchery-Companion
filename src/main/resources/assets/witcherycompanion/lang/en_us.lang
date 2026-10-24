@@ -106,3 +106,5 @@ modifier.witcherycompanion:barkable_armor.name=Barkable
 modifier.witcherycompanion:barkable_armor.desc=Allows Bark from the Bark Belt to grow on the piece
 modifier.witcherycompanion:goblins_favor_armor.name=Goblin's Favor
 modifier.witcherycompanion:goblins_favor_armor.desc=Improves channeling of Hobgoblin's worship, enhancing its effects. When handed to leashed Hobgoblins, they have a chance to find Koboldite when mining
+item.witcherycompanion.arthana.name=Arthana
+item.witcherycompanion.boline.name=Boline

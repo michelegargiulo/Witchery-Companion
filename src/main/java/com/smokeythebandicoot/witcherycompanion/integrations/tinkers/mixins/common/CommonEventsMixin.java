@@ -2,12 +2,14 @@ package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins.com
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Hegemony;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.TinkersUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.msrandom.witchery.common.CommonEvents;
 import net.msrandom.witchery.init.items.WitcheryEquipmentItems;
+import net.msrandom.witchery.init.items.WitcheryGeneralItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -18,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.At;
  * [Feature] Baba's Bless modifier emulates the random teleport of Baba Yaga's Hat
  * [Feature] Seeping modifier emulates Seeping Shoes
  * [Feature] Barked modifier emulates the Bark Belt (charging and absorbing damage)
+ * [Tweak] Hegemony: the Tinkers Arthana counts as the Witchery Arthana when a creature dies (more drops)
  */
 @Mixin(CommonEvents.class)
 public abstract class CommonEventsMixin {
@@ -81,5 +84,19 @@ public abstract class CommonEventsMixin {
             return WitcheryEquipmentItems.BARK_BELT;
         }
         return original.call(instance);
+    }
+
+    /** Arthana in the main hand when a creature dies (onLivingDeath, held item vs Arthana) **/
+    @WrapOperation(method = "onLivingDeath", remap = false, at = @At(value = "INVOKE", ordinal = 0,
+            target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+    private static Item hegemonyArthanaMainHand(ItemStack instance, Operation<Item> original) {
+        return Hegemony.resolveAs(instance, original.call(instance), WitcheryGeneralItems.getArthana());
+    }
+
+    /** Arthana in the off hand when a creature dies (onLivingDeath, held item vs Arthana) **/
+    @WrapOperation(method = "onLivingDeath", remap = false, at = @At(value = "INVOKE", ordinal = 1,
+            target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+    private static Item hegemonyArthanaOffHand(ItemStack instance, Operation<Item> original) {
+        return Hegemony.resolveAs(instance, original.call(instance), WitcheryGeneralItems.getArthana());
     }
 }

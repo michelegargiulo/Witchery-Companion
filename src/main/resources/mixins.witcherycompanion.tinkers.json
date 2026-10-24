@@ -4,15 +4,21 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "${mixin_refmap}",
   "mixins": [
+    "block.BlockFetishMixin",
     "block.BlockKettleMixin",
     "block.BlockWitchCauldronMixin",
+    "block.entity.TileEntityAltarMixin",
     "block.entity.TileEntityWorshipStatueMixin",
     "common.CommonEventsMixin",
     "entity.EntityGoblinMixin",
+    "entity.EntityTreefydMixin",
     "entity.ai.EntityAIDigBlocksMixin",
+    "item.ItemGlassGobletMixin",
     "item.ItemPolynesiaCharmMixin",
     "item.ItemVampireClothesMixin",
-    "item.ItemWitchesClothesMixin"
+    "item.ItemWitchesClothesMixin",
+    "rite.sacrifice.ItemRiteSacrificeMixin",
+    "world.loot.conditions.MatchToolConditionMixin"
   ],
   "client": [
   ],

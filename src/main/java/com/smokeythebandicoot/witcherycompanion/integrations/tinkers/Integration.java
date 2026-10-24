@@ -9,7 +9,12 @@ import c4.conarm.lib.utils.RecipeMatchHolder;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers.*;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.traits.*;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.tools.TinkersTools;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.tools.TinkersToolsClient;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.tools.TinkersToolsHandler;
 import net.minecraft.init.Items;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraft.item.ItemStack;
 import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.init.items.*;
@@ -68,6 +73,12 @@ public class Integration {
 
 
     public static void ticPreInit() {
+
+        // Tinkers tools that are the equivalent of Witchery items (Arthana, Boline)
+        MinecraftForge.EVENT_BUS.register(new TinkersToolsHandler());
+        if (FMLCommonHandler.instance().getSide().isClient()) {
+            MinecraftForge.EVENT_BUS.register(new TinkersToolsClient());
+        }
 
         // Similar to IRON, but more durable
         KOBOLDITE = new Material("koboldite", 0x61aadf);
@@ -161,6 +172,14 @@ public class Integration {
 
     public static void ticInit() {
 
+        // Tools can only be added to the Tool Station once they have been registered
+        TinkersTools.registerCrafting();
+        if (FMLCommonHandler.instance().getSide().isClient()) {
+            TinkersToolsClient.registerToolBuildingInfo();
+        }
+
+        // Tinkers items that can be used in place of Witchery items
+        Hegemony.registerDefaults();
     }
 
     public static void conarmPreInit() {

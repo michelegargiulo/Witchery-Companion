@@ -2012,6 +2012,14 @@ public class ModConfig {
             @Config.Name("Tinkers Construct Integration - Enabled")
             public static boolean enableTinkersIntegration = true;
 
+            @Config.Comment("If true, Tinkers Construct items that are the equivalent of a Witchery: Resurrected item can be used " +
+                    "in place of it everywhere Witchery checks for it: rites (including custom ones that use the Witchery item as ingredient), " +
+                    "loot drops, altar artifacts, Fetish/Goblet/Treefyd interactions, Goblins mining, etc. " +
+                    "Examples: the Tinkers Arthana and Boline, any Tinkers tool with a Silver head (in place of the Silver Sword), " +
+                    "Tinkers pickaxes with Goblin's Favor (in place of the Koboldite Pickaxe). Broken Tinkers items never count")
+            @Config.Name("Tinkers Construct Integration - Allow Hegemony")
+            public static boolean common_tweakAllowHegemony = true;
+
             public static class EarthInfusionConfig {
 
                 @Config.Comment("If true, Earth Infusion can disarm TiC tools, weapons and armors in which one component is made of a castable (metallic) material")
