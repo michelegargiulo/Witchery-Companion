@@ -1,26 +1,28 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.tinkers;
 
-
-import c4.conarm.lib.materials.CoreMaterialStats;
-import c4.conarm.lib.materials.PlatesMaterialStats;
-import c4.conarm.lib.materials.TrimMaterialStats;
-import c4.conarm.lib.modifiers.ArmorModifierTrait;
-import c4.conarm.lib.utils.RecipeMatchHolder;
+import com.smokeythebandicoot.witcherycompanion.api.HegemonyApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
-import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers.*;
-import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.traits.*;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers.ModifierSlayer;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers.ModifierWolfsbane;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers.SlayerType;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.tools.TinkersTools;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.tools.TinkersToolsClient;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.tools.TinkersToolsHandler;
-import net.minecraft.init.Items;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.traits.TraitGoblinsFavor;
+import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraft.item.ItemStack;
 import net.msrandom.witchery.init.WitcheryBlocks;
-import net.msrandom.witchery.init.items.*;
+import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 import slimeknights.mantle.util.RecipeMatch;
 import slimeknights.tconstruct.library.TinkerRegistry;
-import slimeknights.tconstruct.library.materials.*;
+import slimeknights.tconstruct.library.materials.BowMaterialStats;
+import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
+import slimeknights.tconstruct.library.materials.HandleMaterialStats;
+import slimeknights.tconstruct.library.materials.HeadMaterialStats;
+import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
@@ -29,10 +31,15 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-
+/**
+ * Tinkers Construct integration. This class (and everything in this package) must NOT reference Construct Armory in
+ * any way, as Tinkers Construct can be installed without it. The armor part is in the conarm integration package.
+ * Nothing is instantiated in static initializers, so just loading this class has no side effects
+ **/
 public class Integration {
 
     /** ========== CONFIG ========== **/
+
     private static final HashSet<String> earthInfusionMaterialBlacklist = new HashSet<>();
 
     public static void reloadEarthInfusionDisarmableMaterials() {
@@ -43,34 +50,19 @@ public class Integration {
     }
 
     /** ========== TINKERS CONSTUCT ========== **/
+
     // Materials
     public static Material KOBOLDITE;
-    public static Material IMPREGNATED_LEATHER;
-    public static Material NULLIFIED_LEATHER;
-    public static Material WOVEN_CRUOR;
     public static Material SILVER;
 
     // Traits
-    public static final TraitWitchVeil TRAIT_WITCH_VEIL = new TraitWitchVeil();
-    public static final TraitBrewAffinity TRAIT_BREW_AFFINITY = new TraitBrewAffinity();
-    public static final TraitNullifying TRAIT_NULLIFYING = new TraitNullifying();
-    public static final TraitBarkable TRAIT_BARKABLE = new TraitBarkable();
-    public static final TraitGoblinsFavor TRAIT_GOBLINS_FAVOR = new TraitGoblinsFavor();
-    public static final TraitVampiric TRAIT_VAMPIRIC = new TraitVampiric();
+    public static TraitGoblinsFavor TRAIT_GOBLINS_FAVOR;
 
-
-    // Modifiers
-    public static Modifier MODIFIER_SEEPING;
-    public static Modifier MODIFIER_HOMING;
-    public static Modifier MODIFIER_BABAS_BLESS;
-    public static Modifier MODIFIER_CREEPER_REPELLENT;
-    public static Modifier MODIFIER_UNDEAD_REPELLENT;
+    // Modifiers (weapons). The armor ones are in the ConArm integration
     public static Modifier MODIFIER_SILVERED;
     public static Modifier MODIFIER_GARLICED;
     public static Modifier MODIFIER_WOLFSBANE;
     public static Modifier MODIFIER_DEMONREND;
-    public static Modifier MODIFIER_BARKED;
-
 
     public static void ticPreInit() {
 
@@ -80,6 +72,8 @@ public class Integration {
             MinecraftForge.EVENT_BUS.register(new TinkersToolsClient());
         }
 
+        TRAIT_GOBLINS_FAVOR = new TraitGoblinsFavor();
+
         // Similar to IRON, but more durable
         KOBOLDITE = new Material("koboldite", 0x61aadf);
         KOBOLDITE.addItem(WitcheryIngredientItems.KOBOLDITE_INGOT, 1, Material.VALUE_Ingot);
@@ -87,7 +81,8 @@ public class Integration {
         KOBOLDITE.setCraftable(false);
         KOBOLDITE.setCastable(true);
         KOBOLDITE.setRepresentativeItem(WitcheryIngredientItems.KOBOLDITE_INGOT);
-        KOBOLDITE.addTrait(TRAIT_GOBLINS_FAVOR);
+        // Goblin's Favor is granted by the head only: a Koboldite Pickaxe is a pickaxe with a Koboldite head
+        KOBOLDITE.addTrait(TRAIT_GOBLINS_FAVOR, MaterialTypes.HEAD);
         TinkerRegistry.addMaterialStats(
                 KOBOLDITE,
                 new HeadMaterialStats(260, 6.2f, 3.7f, 2),
@@ -96,57 +91,6 @@ public class Integration {
                 new BowMaterialStats(2.2f, 1.6f, 7)
         );
         TinkerRegistry.integrate(KOBOLDITE).preInit();
-
-        // Very weak, but has some traits imbued
-        IMPREGNATED_LEATHER = new Material("impregnated_leather", 0x49271a);
-        IMPREGNATED_LEATHER.addItem(WitcheryIngredientItems.IMPREGNATED_LEATHER, 1, Material.VALUE_Ingot);
-        IMPREGNATED_LEATHER.setCraftable(true);
-        IMPREGNATED_LEATHER.setCastable(false);
-        IMPREGNATED_LEATHER.setRepresentativeItem(WitcheryIngredientItems.IMPREGNATED_LEATHER);
-        /*TinkerRegistry.addMaterialStats(
-                IMPREGNATED_LEATHER,
-                new HeadMaterialStats(260, 6.2f, 3.7f, 0),
-                new HandleMaterialStats(0.86f, 65),
-                new ExtraMaterialStats(55),
-                new BowMaterialStats(2.2f, 1.6f, 7)
-        );*/
-        IMPREGNATED_LEATHER.addTrait(TRAIT_WITCH_VEIL);
-        IMPREGNATED_LEATHER.addTrait(TRAIT_BREW_AFFINITY);
-        IMPREGNATED_LEATHER.addTrait(TRAIT_BARKABLE);
-        TinkerRegistry.integrate(IMPREGNATED_LEATHER).preInit();
-
-        // Very durable, but all other stats are very low
-        NULLIFIED_LEATHER = new Material("nullified_leather", 0x49271a);
-        NULLIFIED_LEATHER.addItem(WitcheryIngredientItems.NULLIFIED_LEATHER, 1, Material.VALUE_Ingot);
-        NULLIFIED_LEATHER.setCraftable(true);
-        NULLIFIED_LEATHER.setCastable(false);
-        NULLIFIED_LEATHER.setRepresentativeItem(WitcheryIngredientItems.NULLIFIED_LEATHER);
-        NULLIFIED_LEATHER.addTrait(TRAIT_WITCH_VEIL);
-        NULLIFIED_LEATHER.addTrait(TRAIT_BARKABLE);
-        /*TinkerRegistry.addMaterialStats(
-                NULLIFIED_LEATHER,
-                new HeadMaterialStats(340, 5.5f, 2.9f, 0),
-                new HandleMaterialStats(0.87f, 75),
-                new ExtraMaterialStats(62),
-                new BowMaterialStats(2.6f, 1.3f, 4)
-        );*/
-        TinkerRegistry.integrate(NULLIFIED_LEATHER).preInit();
-
-        // Very durable, but all other stats are very low
-        WOVEN_CRUOR = new Material("woven_cruor", 0x393737);
-        WOVEN_CRUOR.addItem(WitcheryIngredientItems.DARK_CLOTH, 1, Material.VALUE_Ingot);
-        WOVEN_CRUOR.setCraftable(true);
-        WOVEN_CRUOR.setCastable(false);
-        WOVEN_CRUOR.setRepresentativeItem(WitcheryIngredientItems.DARK_CLOTH);
-        WOVEN_CRUOR.addTrait(TRAIT_BARKABLE);
-        /*TinkerRegistry.addMaterialStats(
-                WOVEN_CRUOR,
-                new HeadMaterialStats(360, 5.8f, 3.1f, 0),
-                new HandleMaterialStats(0.87f, 76),
-                new ExtraMaterialStats(64),
-                new BowMaterialStats(2.3f, 1.45f, 5)
-        );*/
-        TinkerRegistry.integrate(WOVEN_CRUOR).preInit();
 
         if (TinkerRegistry.getMaterial("silver") == null) {
             SILVER = new Material("silver", 0xdbdadf);
@@ -167,7 +111,6 @@ public class Integration {
         else {
             SILVER = TinkerRegistry.getMaterial("silver");
         }
-
     }
 
     public static void ticInit() {
@@ -178,132 +121,26 @@ public class Integration {
             TinkersToolsClient.registerToolBuildingInfo();
         }
 
-        // Tinkers items that can be used in place of Witchery items
-        Hegemony.registerDefaults();
-    }
+        // Weapon modifiers
+        MODIFIER_SILVERED = new ModifierSlayer(WitcheryCompanion.prefix("silvered"), 0xe1e1e1, 1, 0, SlayerType.SILVERED);
+        MODIFIER_SILVERED.addRecipeMatch(new RecipeMatch.Item(new ItemStack(WitcheryIngredientItems.SILVER_DUST), 1));
 
-    public static void conarmPreInit() {
+        MODIFIER_GARLICED = new ModifierSlayer(WitcheryCompanion.prefix("garliced"), 0xf0efd5, 1, 0, SlayerType.GARLICED);
+        MODIFIER_GARLICED.addRecipeMatch(new RecipeMatch.Item(new ItemStack(WitcheryBlocks.GARLIC), 1));
 
-        TinkerRegistry.addMaterialStats(
-                KOBOLDITE,
-                new CoreMaterialStats(16, 12), //TODO: check if ConArm is not installed
-                new TrimMaterialStats(7.0f),
-                new PlatesMaterialStats(1.2f, 6.0f, 1.4f)
-        );
-
-        TinkerRegistry.addMaterialStats(
-                IMPREGNATED_LEATHER,
-                new CoreMaterialStats(16, 12),
-                new TrimMaterialStats(7.0f),
-                new PlatesMaterialStats(1.2f, 6.0f, 1.4f)
-        );
-
-        TinkerRegistry.addMaterialStats(
-                NULLIFIED_LEATHER,
-                new CoreMaterialStats(18, 13),
-                new TrimMaterialStats(7.2f),
-                new PlatesMaterialStats(1.3f, 6.4f, 1.4f)
-        );
-
-        TinkerRegistry.addMaterialStats(
-                WOVEN_CRUOR,
-                new CoreMaterialStats(20, 10),
-                new TrimMaterialStats(8.0f),
-                new PlatesMaterialStats(1.3f, 6.5f, 1.0f)
-        );
-
-    }
-
-    public static void conarmInit() {
-        MODIFIER_SEEPING  = new ModifierSeeping();
-        RecipeMatchHolder.addRecipeMatch(MODIFIER_SEEPING,
-                new RecipeMatch.ItemCombination(1,
-                        new ItemStack(WitcheryIngredientItems.GOLDEN_THREAD),
-                        new ItemStack(WitcheryGeneralItems.WITCH_HAND),
-                        new ItemStack(WitcheryBrewItems.REDSTONE_SOUP),
-                        new ItemStack(Items.MILK_BUCKET)
-        ));
-
-        MODIFIER_HOMING = new ModifierHoming();
-        RecipeMatchHolder.addRecipeMatch(MODIFIER_HOMING,
-                new RecipeMatch.ItemCombination(1,
-                        new ItemStack(WitcheryIngredientItems.ATTUNED_STONE),
-                        new ItemStack(WitcheryIngredientItems.ATTUNED_STONE),
-                        new ItemStack(WitcheryIngredientItems.GOLDEN_THREAD),
-                        new ItemStack(WitcheryFumeItems.DEMONIC_BLOOD),
-                        new ItemStack(WitcheryFumeItems.DEMONIC_BLOOD)
-                )
-        );
-
-        MODIFIER_BABAS_BLESS = new ModifierBabasBless();
-        RecipeMatchHolder.addRecipeMatch(MODIFIER_BABAS_BLESS,
-                new RecipeMatch.Item(
-                        new ItemStack(WitcheryEquipmentItems.BABAS_HAT), 1
-                ));
-
-        MODIFIER_CREEPER_REPELLENT = new ModifierCreeperRepellent();
-        RecipeMatchHolder.addRecipeMatch(MODIFIER_CREEPER_REPELLENT,
-                new RecipeMatch.Item(
-                        new ItemStack(WitcheryIngredientItems.CREEPER_HEART), 1
-                ));
-
-        MODIFIER_UNDEAD_REPELLENT = new ModifierUndeadRepellent();
-        RecipeMatchHolder.addRecipeMatch(MODIFIER_UNDEAD_REPELLENT,
-                new RecipeMatch.Item(
-                        new ItemStack(WitcheryIngredientItems.NECRO_STONE), 1
-                ));
-
-        MODIFIER_SILVERED = new ModifierSilvered();
-        addModifierRecipe(MODIFIER_SILVERED,
-                new RecipeMatch.Item(
-                            new ItemStack(WitcheryIngredientItems.SILVER_DUST), 1
-                    ),
-                true, true);
-
-        MODIFIER_GARLICED = new ModifierGarliced();
-        addModifierRecipe(MODIFIER_GARLICED,
-                new RecipeMatch.Item(
-                            new ItemStack(WitcheryBlocks.GARLIC), 1
-                    ),
-                true, true);
+        MODIFIER_DEMONREND = new ModifierSlayer(WitcheryCompanion.prefix("demonrend"), 0xdb2100, 1, 1, SlayerType.DEMONREND);
+        MODIFIER_DEMONREND.addRecipeMatch(new RecipeMatch.Item(new ItemStack(WitcheryBlocks.DEMON_HEART), 1));
 
         MODIFIER_WOLFSBANE = new ModifierWolfsbane();
-        addModifierRecipe(MODIFIER_WOLFSBANE,
-                new RecipeMatch.Item(
-                            new ItemStack(WitcheryIngredientItems.WOLFSBANE), 16
-                    ),
-                false, true);
+        MODIFIER_WOLFSBANE.addRecipeMatch(new RecipeMatch.Item(new ItemStack(WitcheryIngredientItems.WOLFSBANE), 16));
 
-        MODIFIER_DEMONREND = new ModifierDemonrend();
-        addModifierRecipe(MODIFIER_DEMONREND,
-                new RecipeMatch.Item(
-                            new ItemStack(WitcheryBlocks.DEMON_HEART), 1
-                    ),
-                true, true);
-
-        MODIFIER_BARKED = new ModifierBarked();
-        RecipeMatchHolder.addRecipeMatch(MODIFIER_BARKED,
-                new RecipeMatch.ItemCombination(1,
-                        new ItemStack(Items.EMERALD),
-                        new ItemStack(WitcheryBrewItems.FLOWING_SPIRIT_BREW),
-                        new ItemStack(WitcheryBrewItems.FLOWING_SPIRIT_BREW),
-                        new ItemStack(WitcheryIngredientItems.ENT_TWIG),
-                        new ItemStack(WitcheryIngredientItems.CREEPER_HEART)
-                ));
-
-        // Add Silvered Modifier
-        Material silver = TinkerRegistry.getMaterial("silver");
-        if (silver != null) {
-            silver.addTrait((ArmorModifierTrait)MODIFIER_SILVERED);
+        // Silver weapons are silvered: the head grants the modifier as a trait
+        if (SILVER != null) {
+            SILVER.addTrait((ModifierSlayer) MODIFIER_SILVERED, MaterialTypes.HEAD);
         }
-    }
 
-
-    /** Registers a modifier recipe for ConArm's Armor Station (armor) and/or TiC's Tool Station (tools). ConArm keeps
-     * its armor modifier recipes in RecipeMatchHolder, while TiC's Modifier registers recipes on itself **/
-    private static void addModifierRecipe(Modifier modifier, RecipeMatch match, boolean forArmor, boolean forTools) {
-        if (forArmor) RecipeMatchHolder.addRecipeMatch(modifier, match);
-        if (forTools) modifier.addRecipeMatch(match);
+        // Tinkers items that can be used in place of Witchery items
+        TinkersEquivalents.registerDefaults();
     }
 
     /** Utils **/
@@ -323,5 +160,4 @@ public class Integration {
         // Either is whitelist and contains, or is blacklist and does not contain in
         return ModConfig.IntegrationConfigurations.TinkersIntegration.EarthInfusionConfig.earthInfusion_earthInfusionIsWhitelist == earthInfusionMaterialBlacklist.contains(materialId);
     }
-
 }

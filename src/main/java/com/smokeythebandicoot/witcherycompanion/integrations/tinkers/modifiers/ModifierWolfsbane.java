@@ -28,10 +28,7 @@ public class ModifierWolfsbane extends ModifierTrait {
     @Override
     public boolean canApplyTogether(IToolMod otherModifier) {
         return super.canApplyTogether(otherModifier) &&
-                !(otherModifier instanceof ModifierSilvered) &&
-                !(otherModifier instanceof ModifierDemonrend) &&
-                !(otherModifier instanceof ModifierGarliced)
-                ;
+                !(otherModifier instanceof ModifierSlayer);
     }
 
     @Override

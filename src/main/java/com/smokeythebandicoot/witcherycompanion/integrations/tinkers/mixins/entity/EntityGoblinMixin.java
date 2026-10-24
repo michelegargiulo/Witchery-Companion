@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins.ent
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Hegemony;
+import com.smokeythebandicoot.witcherycompanion.api.HegemonyApi;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,7 +25,7 @@ public abstract class EntityGoblinMixin {
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;", ordinal = 1))
     private Item ticPickaxesCompat(ItemStack instance, Operation<Item> original) {
         Item result = original.call(instance);
-        if (Hegemony.isEnabled() && result instanceof Pickaxe && !ToolHelper.isBroken(instance)) {
+        if (HegemonyApi.isEnabled() && result instanceof Pickaxe && !ToolHelper.isBroken(instance)) {
             return Items.WOODEN_PICKAXE;
         }
         return result;

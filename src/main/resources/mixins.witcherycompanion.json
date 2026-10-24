@@ -6,6 +6,7 @@
   "mixins": [
     "minecraft.resources.RecipeManagerMixin",
     "minecraft.resources.ResourceManagerMixin",
+    "minecraft.world.loot.conditions.MatchToolConditionMixin",
     "witchery.block.BlockAlderDoorMixin",
     "witchery.block.BlockAltarMixin",
     "witchery.block.BlockAreaMarkerMixin",

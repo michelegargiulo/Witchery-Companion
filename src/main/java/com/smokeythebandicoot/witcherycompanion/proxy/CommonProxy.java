@@ -10,6 +10,7 @@ import com.smokeythebandicoot.witcherycompanion.integrations.quark.BlockMandrake
 import com.smokeythebandicoot.witcherycompanion.integrations.quark.RowanDoorIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.thaumcraft.ThaumcraftIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPPlugin;
+import com.smokeythebandicoot.witcherycompanion.integrations.conarm.ConArmIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Integration;
 import com.smokeythebandicoot.witcherycompanion.network.CompanionNetworkChannel;
 import com.smokeythebandicoot.witcherycompanion.patches.block.BlockMandrakeCropPatch;
@@ -91,7 +92,7 @@ public class CommonProxy {
 
             // If ConArm enabled and installed, also integrate it
             if (Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
-                Integration.conarmPreInit();
+                ConArmIntegration.preInit();
         }
 
     }
@@ -125,7 +126,7 @@ public class CommonProxy {
 
             // If ConArm installed, also integrate it
             if (Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
-                Integration.conarmInit();
+                ConArmIntegration.init();
 
         }
     }

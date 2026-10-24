@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins.rit
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Hegemony;
+import com.smokeythebandicoot.witcherycompanion.api.HegemonyApi;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -27,7 +27,7 @@ public abstract class ItemRiteSacrificeMixin {
         boolean matches = original.call(instance, stack);
         if (!matches && stack instanceof ItemStack) {
             ItemStack itemStack = (ItemStack) stack;
-            for (Item equivalent : Hegemony.getEquivalents(itemStack)) {
+            for (Item equivalent : HegemonyApi.getEquivalents(itemStack)) {
                 if (original.call(instance, new ItemStack(equivalent))) {
                     return true;
                 }

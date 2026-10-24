@@ -95,9 +95,13 @@ public class WitcheryCompanion implements ILateMixinLoader {
         if (Loader.isModLoaded(Mods.BAUBLES))
             configs.add("mixins.witcherycompanion.baubles.json");
 
-        // Tic / ConArm
+        // Tinkers Construct. Nothing in here may reference Construct Armory, which is not required
         if (Loader.isModLoaded(Mods.TINKERS_CONSTRUCT))
             configs.add("mixins.witcherycompanion.tinkers.json");
+
+        // Construct Armory (requires Tinkers Construct)
+        if (Loader.isModLoaded(Mods.TINKERS_CONSTRUCT) && Loader.isModLoaded(Mods.CONSTRUCT_ARMORY))
+            configs.add("mixins.witcherycompanion.conarm.json");
 
         return configs;
     }

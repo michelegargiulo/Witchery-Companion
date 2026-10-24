@@ -2,7 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.tinkers.mixins.ent
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.Hegemony;
+import com.smokeythebandicoot.witcherycompanion.api.HegemonyApi;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -20,14 +20,14 @@ public abstract class EntityAIDigBlocksMixin extends EntityAIBase {
     @WrapOperation(method = "isHoldingKobolditePick", remap = false, at = @At(value = "INVOKE",
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
     private static Item compatTicKoboldite(ItemStack instance, Operation<Item> original) {
-        return Hegemony.resolveAs(instance, original.call(instance), WitcheryGeneralItems.KOBOLDITE_PICKAXE);
+        return HegemonyApi.resolveAs(instance, original.call(instance), WitcheryGeneralItems.KOBOLDITE_PICKAXE);
     }
 
     @WrapOperation(method = "shouldExecute", remap = true, at = @At(value = "INVOKE",
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;", ordinal = 0))
     private Item shouldExecuteWithTicPick(ItemStack instance, Operation<Item> original) {
         Item result = original.call(instance);
-        if (Hegemony.isEnabled() && result instanceof Pickaxe && !ToolHelper.isBroken(instance)) {
+        if (HegemonyApi.isEnabled() && result instanceof Pickaxe && !ToolHelper.isBroken(instance)) {
             return Items.WOODEN_PICKAXE;
         }
         return result;
@@ -37,7 +37,7 @@ public abstract class EntityAIDigBlocksMixin extends EntityAIBase {
             target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
     private Item shouldContinueExecutingWithTicPick(ItemStack instance, Operation<Item> original) {
         Item result = original.call(instance);
-        if (Hegemony.isEnabled() && result instanceof Pickaxe && !ToolHelper.isBroken(instance)) {
+        if (HegemonyApi.isEnabled() && result instanceof Pickaxe && !ToolHelper.isBroken(instance)) {
             return Items.WOODEN_PICKAXE;
         }
         return result;
