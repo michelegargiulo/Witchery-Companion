@@ -8,6 +8,7 @@
     "block.entity.TileEntityAltarMixin",
     "common.CommonEventsMixin",
     "entity.EntityGoblinMixin",
+    "entity.EntityNightmareMixin",
     "entity.EntityTreefydMixin",
     "entity.ai.EntityAIDigBlocksMixin",
     "item.ItemGlassGobletMixin",

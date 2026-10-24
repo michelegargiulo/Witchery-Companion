@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.integrations.tinkers;
 
 import com.smokeythebandicoot.witcherycompanion.api.HegemonyApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers.ModifierHuntsman;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers.ModifierSlayer;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers.ModifierWolfsbane;
 import com.smokeythebandicoot.witcherycompanion.integrations.tinkers.modifiers.SlayerType;
@@ -14,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.msrandom.witchery.init.WitcheryBlocks;
+import net.msrandom.witchery.init.items.WitcheryGeneralItems;
 import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 import slimeknights.mantle.util.RecipeMatch;
 import slimeknights.tconstruct.library.TinkerRegistry;
@@ -63,6 +65,7 @@ public class Integration {
     public static Modifier MODIFIER_GARLICED;
     public static Modifier MODIFIER_WOLFSBANE;
     public static Modifier MODIFIER_DEMONREND;
+    public static Modifier MODIFIER_HUNTSMAN;
 
     public static void ticPreInit() {
 
@@ -130,6 +133,10 @@ public class Integration {
 
         MODIFIER_DEMONREND = new ModifierSlayer(WitcheryCompanion.prefix("demonrend"), 0xdb2100, 1, 1, SlayerType.DEMONREND);
         MODIFIER_DEMONREND.addRecipeMatch(new RecipeMatch.Item(new ItemStack(WitcheryBlocks.DEMON_HEART), 1));
+
+        // The Spear of the Huntsman can only be obtained from the Horned Huntsman, so the modifier consumes it
+        MODIFIER_HUNTSMAN = new ModifierHuntsman();
+        MODIFIER_HUNTSMAN.addRecipeMatch(new RecipeMatch.Item(new ItemStack(WitcheryGeneralItems.HUNTSMANS_SPEAR), 1));
 
         MODIFIER_WOLFSBANE = new ModifierWolfsbane();
         MODIFIER_WOLFSBANE.addRecipeMatch(new RecipeMatch.Item(new ItemStack(WitcheryIngredientItems.WOLFSBANE), 16));

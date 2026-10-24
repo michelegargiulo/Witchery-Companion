@@ -50,6 +50,7 @@ public class ConArmIntegration {
     public static Modifier MODIFIER_GARLICED;
     public static Modifier MODIFIER_DEMONREND;
     public static Modifier MODIFIER_BARKED;
+    public static Modifier MODIFIER_MOGS_QUIVER;
 
     /** Must be called after the Tinkers integration pre-init, as it adds armor stats to its materials **/
     public static void preInit() {
@@ -187,6 +188,13 @@ public class ConArmIntegration {
                         new ItemStack(WitcheryBrewItems.FLOWING_SPIRIT_BREW),
                         new ItemStack(WitcheryIngredientItems.ENT_TWIG),
                         new ItemStack(WitcheryIngredientItems.CREEPER_HEART)
+                ));
+
+        // Mog's Quiver can only be obtained from Mog, so the modifier consumes it
+        MODIFIER_MOGS_QUIVER = new ModifierMogsQuiver();
+        RecipeMatchHolder.addRecipeMatch(MODIFIER_MOGS_QUIVER,
+                new RecipeMatch.Item(
+                        new ItemStack(WitcheryEquipmentItems.MOGS_QUIVER), 1
                 ));
 
         // Silver armor is silvered: the material grants the modifier as a trait

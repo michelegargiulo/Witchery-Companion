@@ -12,6 +12,7 @@ import slimeknights.tconstruct.library.tinkering.TinkersItem;
 import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
 import slimeknights.tconstruct.library.utils.ToolHelper;
+import slimeknights.tconstruct.tools.melee.item.BattleSign;
 import slimeknights.tconstruct.tools.tools.Pickaxe;
 
 import java.util.List;
@@ -29,6 +30,11 @@ public class TinkersEquivalents {
         // Any Tinkers tool with a Silver head, as a sword is a wooden stick with two silver ingots
         HegemonyApi.register(WitcheryGeneralItems.SILVER_SWORD, stack ->
                 isHeadMadeOf(stack, "silver") && !ToolHelper.isBroken(stack));
+
+        // Battlesigns with the Huntsman modifier
+        HegemonyApi.register(WitcheryGeneralItems.HUNTSMANS_SPEAR, stack ->
+                stack.getItem() instanceof BattleSign &&
+                        TinkersUtils.hasEffect(stack, Integration.MODIFIER_HUNTSMAN));
 
         // Pickaxes with the Goblin's Favor trait (the Koboldite material grants it)
         HegemonyApi.register(WitcheryGeneralItems.KOBOLDITE_PICKAXE, stack ->

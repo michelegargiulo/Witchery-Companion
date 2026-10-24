@@ -118,3 +118,7 @@ modifier.witcherycompanion:wolfsbane.name=Wolfsbane
 modifier.witcherycompanion:wolfsbane.desc=Excels against Werewolves
 modifier.witcherycompanion:goblins_favor.name=Goblin's Favor
 modifier.witcherycompanion:goblins_favor.desc=Witchery treats the pickaxe as a Koboldite Pickaxe. When handed to leashed Hobgoblins, they have a chance to find Koboldite when mining
+modifier.witcherycompanion:huntsman.name=Huntsman
+modifier.witcherycompanion:huntsman.desc=Grants the powers of the Spear of the Huntsman: full knockback resistance in the main hand, and while blocking, a chance to summon an angry wolf against attackers
+modifier.witcherycompanion:mogs_quiver_armor.name=Mog's Quiver
+modifier.witcherycompanion:mogs_quiver_armor.desc=Bows do not consume arrows while wearing it
