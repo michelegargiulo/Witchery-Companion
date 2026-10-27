@@ -13,6 +13,8 @@ import com.smokeythebandicoot.witcherycompanion.patches.rite.RiteEffectCustomRit
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.msrandom.witchery.rite.Rite;
 import net.msrandom.witchery.rite.effect.RiteEffect;
 
 import javax.annotation.Nullable;
@@ -47,6 +49,8 @@ public class CustomRiteApi {
     }
 
     private static final Map<String, Registered> RITES = new LinkedHashMap<>();
+    /** The custom rites as parsed by RiteManager.apply(). See restoreParsedRites */
+    private static final Map<ResourceLocation, Rite> PARSED = new LinkedHashMap<>();
     private static boolean gluesRegistered = false;
 
     private CustomRiteApi() { }
@@ -127,6 +131,50 @@ public class CustomRiteApi {
     }
 
     /** Registers, once, the effect type and the ingredient type that the JSON of custom rites refers to */
+    /**
+     * Remembers the Rite objects that W:R built from the custom rites. Called when RiteManager.apply() has finished.
+     * @param riteMap the rites of the RiteManager (rite id -> rite)
+     */
+    public static void rememberParsedRites(Map<ResourceLocation, Rite> riteMap) {
+        PARSED.clear();
+        for (Registered registered : RITES.values()) {
+            ResourceLocation id = new ResourceLocation(registered.definition.getId());
+            Rite rite = riteMap.get(id);
+            if (rite != null) PARSED.put(id, rite);
+        }
+        if (isDebugEnabled()) {
+            WitcheryCompanion.logger.info("[Custom Rites debug] {} custom rite(s) parsed by W:R: {}", PARSED.size(), PARSED.keySet());
+        }
+    }
+
+    /**
+     * W:R sends the rites to the clients, which replace their rites with the ones read from the packet. In the
+     * singleplayer (and when hosting to LAN) client and server share the RiteManager, so the packet would replace the
+     * rites parsed by the server with copies in which the ingredients are plain item lists: the NBT, metadata and script
+     * conditions of the ingredients of custom rites would be lost. When a server runs in this JVM, the custom rites in
+     * the packet are replaced with the ones that W:R parsed from the data, so the server keeps matching with the
+     * ingredients defined by the scripts. A client of a remote server has no such rites and gets them from the packet.
+     */
+    public static Map<ResourceLocation, List<Rite>> restoreParsedRites(Map<ResourceLocation, List<Rite>> incoming) {
+        if (PARSED.isEmpty() || FMLCommonHandler.instance().getMinecraftServerInstance() == null) return incoming;
+
+        Map<ResourceLocation, List<Rite>> result = new LinkedHashMap<>();
+        for (Map.Entry<ResourceLocation, List<Rite>> group : incoming.entrySet()) {
+            List<Rite> rites = new ArrayList<>();
+            for (Rite rite : group.getValue()) {
+                Rite parsed = PARSED.get(rite.getId());
+                rites.add(parsed != null ? parsed : rite);
+            }
+            result.put(group.getKey(), rites);
+        }
+        return result;
+    }
+
+    /** True if the diagnostic logging of custom rites is enabled in the config */
+    public static boolean isDebugEnabled() {
+        return com.smokeythebandicoot.witcherycompanion.config.ModConfig.IntegrationConfigurations.CraftTweakerIntegration.debugCustomRites;
+    }
+
     private static void ensureGluesRegistered() {
         if (gluesRegistered) return;
         ResourceLocation effectType = new ResourceLocation(CustomRiteDefinition.EFFECT_TYPE);

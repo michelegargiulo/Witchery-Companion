@@ -7,6 +7,7 @@ import com.smokeythebandicoot.witcherycompanion.api.customrite.CustomRiteContext
 import com.smokeythebandicoot.witcherycompanion.api.customrite.CustomRiteDefinition;
 import com.smokeythebandicoot.witcherycompanion.api.customrite.CustomRiteEffectHandler;
 import kotlin.jvm.functions.Function1;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.rite.IItemRiteSacrificeAccessor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
@@ -17,6 +18,8 @@ import net.minecraft.world.World;
 import net.msrandom.witchery.block.entity.TileEntityCircle;
 import net.msrandom.witchery.rite.RiteHandler;
 import net.msrandom.witchery.rite.effect.RiteEffect;
+import net.msrandom.witchery.rite.sacrifice.ItemRiteSacrifice;
+import net.msrandom.witchery.rite.sacrifice.RiteSacrifice;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -40,6 +43,25 @@ public class RiteEffectCustomRite extends RiteEffect {
         this.riteId = riteId;
     }
 
+    /** Writes what the ritual holds when the effect starts: used to investigate problems with sacrifices */
+    private void logDiagnostics(TileEntityCircle.ActivatedRitual ritual) {
+        StringBuilder sacrifices = new StringBuilder();
+        for (RiteSacrifice sacrifice : ritual.rite.getSacrifices()) {
+            sacrifices.append("\n    ").append(sacrifice.getClass().getSimpleName());
+            if (sacrifice instanceof ItemRiteSacrifice) {
+                for (ItemRiteSacrifice.ItemRequirement requirement : ((IItemRiteSacrificeAccessor) sacrifice).witcherycompanion$accessor$getRequirements()) {
+                    sacrifices.append("\n      item requirement: ingredient=").append(requirement.getIngredient().getClass().getName())
+                            .append(" optional=").append(requirement.getOptional())
+                            .append(" identifier=").append(requirement.getIdentifier())
+                            .append(" action=").append(requirement.getAction())
+                            .append(" replacement=").append(requirement.getReplacement());
+                }
+            }
+        }
+        WitcheryCompanion.logger.info("[Custom Rites debug] rite {} starts its effect. covenSize={} location={} sacrificed keys={} sacrifices:{}",
+                riteId, ritual.covenSize, ritual.getLocation(), ritual.sacrificedItems.keySet(), sacrifices);
+    }
+
     @Override
     public RiteHandler.Result process(World world, BlockPos pos, int ticks, AtomicInteger stage, TileEntityCircle.ActivatedRitual ritual) {
         if (world.isRemote) return RiteHandler.Result.COMPLETED;
@@ -51,6 +73,8 @@ public class RiteEffectCustomRite extends RiteEffect {
             WitcheryCompanion.logger.error("Custom Rite {} has no registered effect (was its script removed?). Aborting", riteId);
             return RiteHandler.Result.ABORTED_REFUND;
         }
+
+        if (CustomRiteApi.isDebugEnabled()) logDiagnostics(ritual);
 
         // Same check and message of W:R's RiteEffectSummonCreature
         if (ritual.covenSize < definition.getCovenSize()) {

@@ -871,6 +871,19 @@ public class ModConfig {
             @Config.Name("Rite of Broken Earth - Fix NPE on Null Foci Location")
             public static boolean brokenEarth_fixNPEOnNullFociLocation = true;
 
+            @Config.Comment("If true, fixes rite conditions that are negated (\"negate\": true) always passing, because the " +
+                    "negation was never applied. With this fix, Rite of Total Eclipse and its portable version can only be " +
+                    "performed during the day, as their data intends. Setting this to false restores the previous behaviour")
+            @Config.Name("Rite Conditions - Fix Negated Conditions")
+            public static boolean riteConditions_fixNegatedConditions = true;
+
+            @Config.Comment("If true, fixes the 'witchery:copy_data' item return of rites not copying the NBT of the " +
+                    "sacrificed item (the NBT was passed as capability data). The returned item now keeps the NBT of the " +
+                    "sacrificed item. This also affects the rites of W:R that use it (for example, the portable rites that " +
+                    "return an Attuned Stone for a Charged Attuned Stone)")
+            @Config.Name("Rite Item Returns - Fix Copy Data NBT")
+            public static boolean copyDataReturn_fixCopyNbt = true;
+
             @Config.Comment("If true, Rite of Broken Earth will only break things that can be broken with a Brew of " +
                     "Erosion, including (if enabled) CraftTweaker-defined blockstates")
             @Config.Name("Rite of Broken Earth - Tweak Align Breakables With Erosion")
@@ -1585,6 +1598,12 @@ public class ModConfig {
             @Config.Name("CraftTweaker Integration - Enable Custom Rites")
             @Config.RequiresMcRestart
             public static boolean enableCustomRites = true;
+
+            @Config.Comment("If true, Custom Rites write diagnostic lines in the log: which ingredient every sacrifice " +
+                    "uses when a custom rite starts, and the result of every item test. Very verbose: use it only to " +
+                    "investigate a problem")
+            @Config.Name("CraftTweaker Integration - Debug Custom Rites")
+            public static boolean debugCustomRites = false;
 
         }
 

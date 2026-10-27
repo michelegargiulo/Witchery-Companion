@@ -292,7 +292,7 @@ public class CustomRiteBuilder {
         }
     }
 
-    /** Bridges the Java handler of the API to the ZenScript function. Not a mixin: lambdas are fine */
+    /** Bridges the Java handler of the API to the ZenScript function */
     private static class ScriptHandler implements CustomRiteEffectHandler {
         private final IEventHandler<RiteContext> function;
 

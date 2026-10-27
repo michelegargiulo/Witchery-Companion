@@ -26,7 +26,8 @@ import java.util.Map;
  * Mixin:
  * [Integration] Patchouli flag reloading for disabled rites
  * [Tweak] Disable Rite of Prior Incarnation
- * [Integration] CraftTweaker Custom Rites: custom rites are appended to the rite data that is about to be loaded
+ * [Integration] CraftTweaker Custom Rites: custom rites are appended to the rite data that is about to be loaded, and are
+ *      not replaced by the copy received from the server when client and server share the RiteManager (singleplayer)
  */
 @Mixin(RiteManager.class)
 public abstract class RiteManagerMixin {
@@ -58,6 +59,22 @@ public abstract class RiteManagerMixin {
             return value;
         }
         return CustomRiteApi.appendCustomRites(value);
+    }
+
+    /** When apply() finished, remembers the custom rites that W:R parsed (see CustomRiteApi.restoreParsedRites) **/
+    @Inject(method = "apply(Ljava/util/Map;Lnet/minecraft/resources/ResourceManager;)V", remap = false, at = @At("RETURN"))
+    private void witcherycompanion$rememberCustomRites(Map<ResourceLocation, ? extends JsonElement> value, ResourceManager resourceManager, CallbackInfo ci) {
+        if (ModConfig.IntegrationConfigurations.CraftTweakerIntegration.enableCustomRites && !CustomRiteApi.isEmpty()) {
+            CustomRiteApi.rememberParsedRites(RiteManager.INSTANCE.getRiteMap());
+        }
+    }
+
+    /** In the singleplayer the client shares the RiteManager with the server: the rites received from the server must not
+     * replace the custom rites that the server parsed, or their ingredients would lose NBT, metadata and conditions **/
+    @ModifyVariable(method = "updateRites$WitcheryResurrected", remap = false, at = @At("HEAD"), argsOnly = true)
+    private Map<ResourceLocation, List<Rite>> witcherycompanion$keepServerCustomRites(Map<ResourceLocation, List<Rite>> incoming) {
+        if (!ModConfig.IntegrationConfigurations.CraftTweakerIntegration.enableCustomRites) return incoming;
+        return CustomRiteApi.restoreParsedRites(incoming);
     }
 
     /** Injects at the end of apply() in RiteManager when it finished reloading all the rites to update Patchouli Flags **/

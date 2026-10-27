@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.integrations.crafttweaker;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import com.smokeythebandicoot.witcherycompanion.api.CustomRiteApi;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
@@ -66,8 +67,12 @@ public class CraftTweakerIngredient extends Ingredient {
         try {
             ItemStack single = stack.copy();
             single.setCount(1);
-            if (requiredTag != null && !containsTag(requiredTag, single)) return false;
-            return ingredient.matches(CraftTweakerMC.getIItemStack(single));
+            boolean result = (requiredTag == null || containsTag(requiredTag, single))
+                    && ingredient.matches(CraftTweakerMC.getIItemStack(single));
+            if (CustomRiteApi.isDebugEnabled()) {
+                WitcheryCompanion.logger.info("[Custom Rites debug] item test: {} tag={} -> {}", single, single.getTagCompound(), result);
+            }
+            return result;
         } catch (Throwable t) {
             // A script condition failed. Do not crash the circle: the item simply does not match
             if (!errorLogged) {
