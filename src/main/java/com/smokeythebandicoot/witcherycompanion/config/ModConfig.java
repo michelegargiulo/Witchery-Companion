@@ -1580,6 +1580,12 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean enablePolynesiaCharm = true;
 
+            @Config.Comment("If true enables CraftTweaker integration for Custom Rites: rites defined in scripts with " +
+                    "mods.smokeythebandicoot.witcherycompanion.CustomRite, with their effect written in ZenScript")
+            @Config.Name("CraftTweaker Integration - Enable Custom Rites")
+            @Config.RequiresMcRestart
+            public static boolean enableCustomRites = true;
+
         }
 
         public static class JerIntegration {
