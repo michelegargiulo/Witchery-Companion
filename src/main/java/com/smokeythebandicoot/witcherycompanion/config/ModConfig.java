@@ -884,6 +884,18 @@ public class ModConfig {
             @Config.Name("Rite Item Returns - Fix Copy Data NBT")
             public static boolean copyDataReturn_fixCopyNbt = true;
 
+            @Config.Comment("If true, fixes the crash that happens when a rite is started with a Seer Stone by a player that " +
+                    "has no coven members (IndexOutOfBoundsException in processCovenSummon). Without coven members the rite " +
+                    "simply starts without the coven summoning stage")
+            @Config.Name("Circle - Fix Seer Stone Crash Without Coven")
+            public static boolean circle_fixCovenSummonWithoutCoven = true;
+
+            @Config.Comment("If true, fixes circles being recognized as complete when most of the chalk is missing: a single " +
+                    "chalk in the right place was enough for the rite to start. With this fix every piece of the circle " +
+                    "must be drawn, or the rite does not start. Setting this to false restores the previous behaviour")
+            @Config.Name("Circle - Fix Incomplete Circles Recognized")
+            public static boolean circle_fixIncompleteCirclesRecognized = true;
+
             @Config.Comment("If true, Rite of Broken Earth will only break things that can be broken with a Brew of " +
                     "Erosion, including (if enabled) CraftTweaker-defined blockstates")
             @Config.Name("Rite of Broken Earth - Tweak Align Breakables With Erosion")
