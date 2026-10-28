@@ -97,6 +97,7 @@ jar in the resource packs folder.
 - **Potions**
   - **[Fortune]** Fix Brew of Fortune having no effect
 - **Rites**
+  - **[Common]** Fix crash when golden glyph is right-clicked with a seer stone on a valid ritual when the player has no Coven
   - **[Rite of Broken Earth]** Fix NPE when foci location could not be determined
   - **[Rite of Prior Incarnation]** Fix "WitcheryPriIncUsr" NBT data persisting after item pickup
   - **[Rite of Binding]** (Copy Waystone version) Fix result always being an empty bound waystone
