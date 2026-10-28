@@ -67,6 +67,8 @@ public class CustomRiteDefinition {
     private float power = 0f;
     private int covenSize = 0;
     private boolean hidden = false;
+    private String insertAfter = null;
+    private String section = null;
     private final List<ItemSpec> items = new ArrayList<>();
     private final List<String> entities = new ArrayList<>();
     private final List<CircleSpec> circles = new ArrayList<>();
@@ -108,6 +110,19 @@ public class CustomRiteDefinition {
         if (!path.matches("[a-z0-9_.-]+"))
             throw new IllegalArgumentException("Invalid path in rite id '" + rawId + "' (allowed: a-z 0-9 _ . - and no '/')");
         return namespace + ":" + path;
+    }
+
+    /** Id of an existing rite: lower case, with "witchery" as the default namespace */
+    public static String normalizeReference(String rawId) {
+        if (rawId == null) throw new IllegalArgumentException("Rite id is null");
+        String trimmed = rawId.trim().toLowerCase(Locale.ROOT);
+        if (trimmed.isEmpty()) throw new IllegalArgumentException("Rite id is empty");
+        return trimmed.indexOf(':') >= 0 ? trimmed : "witchery:" + trimmed;
+    }
+
+    /** Group of the books ("infusion" or "witchery:infusion"): lower case, with "witchery" as the default namespace */
+    public static String normalizeSection(String rawSection) {
+        return normalizeReference(rawSection);
     }
 
     /** Expands the short names of the glyphs (ritual, infernal, otherwhere). Other values are returned untouched */
@@ -156,6 +171,13 @@ public class CustomRiteDefinition {
     /** Key under which the rite is fed to W:R's RiteManager: "<namespace>:custom/<path>" */
     public String getDataKey() { return getNamespace() + ":" + GROUP + "/" + getPath(); }
 
+    /** Id of the rite after which this rite is placed in the books, or null */
+    public String getInsertAfter() { return insertAfter; }
+    /** Section (group) of the books where this rite is listed, or null */
+    public String getSection() { return section; }
+    public void setInsertAfter(String riteId) { this.insertAfter = riteId == null ? null : normalizeReference(riteId); }
+    public void setSection(String section) { this.section = section == null ? null : normalizeSection(section); }
+
     public void setName(String name) { this.name = name == null ? "" : name; }
     public void setDescription(String description) { this.description = description == null ? "" : description; }
     public void setPower(float power) { this.power = power; }
@@ -198,8 +220,17 @@ public class CustomRiteDefinition {
 
     // ------------------------------------------------------------------------------------------ JSON
 
-    /** Converts the definition into the JSON tree that W:R's RiteManager reads for a rite */
+    /** Converts the definition into the JSON tree that W:R's RiteManager reads for a rite, without neighbours */
     public Map<String, Object> toRiteJson() {
+        return toRiteJson(null, null);
+    }
+
+    /**
+     * Converts the definition into the JSON tree that W:R's RiteManager reads for a rite
+     * @param left id of the rite that comes before this one in the books, or null
+     * @param right id of the rite that comes after this one in the books, or null
+     */
+    public Map<String, Object> toRiteJson(String left, String right) {
         Map<String, Object> root = new LinkedHashMap<>();
 
         Map<String, Object> sacrifices = new LinkedHashMap<>();
@@ -238,6 +269,13 @@ public class CustomRiteDefinition {
                 conditionList.add(entry);
             }
             root.put("conditions", conditionList);
+        }
+
+        if (left != null || right != null) {
+            Map<String, Object> sorting = new LinkedHashMap<>();
+            if (left != null) sorting.put("left", left);
+            if (right != null) sorting.put("right", right);
+            root.put("sorting", sorting);
         }
 
         root.put("name_type", "custom");

@@ -41,6 +41,7 @@ public class CustomRiteBuilder {
         final CustomRiteDefinition.ItemSpec spec = new CustomRiteDefinition.ItemSpec(null);
         final IIngredient ingredient;
         NBTTagCompound requiredTag = null;
+        boolean exactTag = false;
 
         PendingItem(IIngredient ingredient) {
             this.ingredient = ingredient;
@@ -85,12 +86,13 @@ public class CustomRiteBuilder {
 
     @ZenMethod
     @ZenDoc(value = "Adds an item that must be thrown into the circle. Each call requires one item. Matching is the one of " +
-            "CraftTweaker ingredients: items, ore dictionary entries, anyDamage(), withTag(tag, true) for an exact NBT match, " +
-            "only(function) for any condition. Note that withTag(tag) alone does NOT filter by NBT in CraftTweaker: " +
-            "use requireTag() for a partial NBT match. Amounts and transformers are ignored (one unit is consumed)")
+            "CraftTweaker ingredients: items, ore dictionary entries, anyDamage(), only(function) for any condition. " +
+            "Note that in CraftTweaker withTag(tag) alone does not filter by NBT, and withTag(tag, true) requires the item " +
+            "to CONTAIN the tag (it may have more NBT). Use requireTag() or requireExactTag() on the item for an explicit " +
+            "NBT match. Amounts and transformers are ignored (one unit is consumed)")
     public CustomRiteBuilder addItem(IIngredient ingredient) {
         if (!ok()) return this;
-        if (ingredient == null || CraftTweakerIngredient.create(ingredient, null) == null) {
+        if (ingredient == null || CraftTweakerIngredient.create(ingredient, null, false) == null) {
             error("addItem: the ingredient has no concrete item (wildcards like <*> are not supported, the books need an item to show)");
             lastItem = null;
             return this;
@@ -107,20 +109,32 @@ public class CustomRiteBuilder {
 
     @ZenMethod
     @ZenDoc(value = "The last added item must contain at least these NBT entries (partial match: it may have more). " +
-            "Lists match if each element of the required list is found in the item's list. Example: " +
-            "addItem(<minecraft:potion>).requireTag({Potion: \"minecraft:healing\"})")
+            "Lists match if each element of the required list is found in the item's list. Types matter: {a: 1 as byte} " +
+            "does not match an int. Example: addItem(<minecraft:potion>).requireTag({Potion: \"minecraft:healing\"})")
     public CustomRiteBuilder requireTag(IData tag) {
+        return setRequiredTag("requireTag", tag, false);
+    }
+
+    @ZenMethod
+    @ZenDoc(value = "The last added item must have exactly this NBT: any other entry makes it not match. An item without " +
+            "NBT matches only an empty tag. Example: addItem(<minecraft:stick>).requireExactTag({Magic: 1 as byte})")
+    public CustomRiteBuilder requireExactTag(IData tag) {
+        return setRequiredTag("requireExactTag", tag, true);
+    }
+
+    private CustomRiteBuilder setRequiredTag(String method, IData tag, boolean exact) {
         if (!ok()) return this;
         if (lastItem == null) {
-            error("requireTag: add an item first");
+            error(method + ": add an item first");
             return this;
         }
         NBTTagCompound nbt = tag == null ? null : CraftTweakerMC.getNBTCompound(tag);
         if (nbt == null) {
-            error("requireTag: the tag must be a map, like {key: value}");
+            error(method + ": the tag must be a map, like {key: value}");
             return this;
         }
         lastItem.requiredTag = nbt;
+        lastItem.exactTag = exact;
         return this;
     }
 
@@ -234,6 +248,36 @@ public class CustomRiteBuilder {
         return this;
     }
 
+    // ------------------------------------------------------------------------------------------ Place in the books
+
+    @ZenMethod
+    @ZenDoc(value = "Places the rite right after another rite in the books of W:R, in the same section. The rite is a W:R " +
+            "or a custom rite, for example \"witchery:light_infusion\" (\"witchery:\" can be omitted). Without insertAfter " +
+            "and setSection, the rite is added at the end of all the rites, in its own section")
+    public CustomRiteBuilder insertAfter(String riteId) {
+        if (!ok()) return this;
+        try {
+            definition.setInsertAfter(riteId);
+        } catch (IllegalArgumentException e) {
+            error("insertAfter: " + e.getMessage());
+        }
+        return this;
+    }
+
+    @ZenMethod
+    @ZenDoc(value = "Lists the rite in a section of the books of W:R, after the last rite of that section: curse, infusion, " +
+            "nature, protection, setup, summons or transposition (\"witchery:\" can be omitted). With insertAfter, " +
+            "the rite is placed after that rite and this section replaces the one of that rite")
+    public CustomRiteBuilder setSection(String section) {
+        if (!ok()) return this;
+        try {
+            definition.setSection(section);
+        } catch (IllegalArgumentException e) {
+            error("setSection: " + e.getMessage());
+        }
+        return this;
+    }
+
     // ------------------------------------------------------------------------------------------ Effect
 
     @ZenMethod
@@ -258,7 +302,7 @@ public class CustomRiteBuilder {
         for (int i = 0; i < pendingItems.size(); i++) {
             PendingItem item = pendingItems.get(i);
             String key = CustomRiteDefinition.ingredientKey(definition.getId(), i);
-            ingredients.put(key, CraftTweakerIngredient.create(item.ingredient, item.requiredTag));
+            ingredients.put(key, CraftTweakerIngredient.create(item.ingredient, item.requiredTag, item.exactTag));
             item.spec.ingredientJson = CustomRiteDefinition.ingredientRef(key);
         }
         CraftTweakerAPI.apply(new AddCustomRite(definition, effect, ingredients));
@@ -292,7 +336,7 @@ public class CustomRiteBuilder {
         }
     }
 
-    /** Bridges the Java handler of the API to the ZenScript function */
+    /** Bridges the Java handler of the API to the ZenScript function. Not a mixin: lambdas are fine */
     private static class ScriptHandler implements CustomRiteEffectHandler {
         private final IEventHandler<RiteContext> function;
 

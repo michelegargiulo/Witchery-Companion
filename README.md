@@ -228,6 +228,8 @@ jar in the resource packs folder.
         - Customize what the brew can mine, destroy or ignore, including a maximum harvest level
     - **[Brew of Flowers]**
         - Customize which flowers can spawn in which biome types
+    - **[Custom Rites]**
+        - Create brand-new Circle Magic rites using CraftTweaker code 
     - **[Distillery]**
         - Custom recipes
     - **[Overworld Infusion]**

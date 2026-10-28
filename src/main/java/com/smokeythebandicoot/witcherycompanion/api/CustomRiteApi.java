@@ -4,10 +4,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.customrite.CustomRiteDefinition;
 import com.smokeythebandicoot.witcherycompanion.api.customrite.CustomRiteEffectHandler;
+import com.smokeythebandicoot.witcherycompanion.api.customrite.RiteChain;
 import com.smokeythebandicoot.witcherycompanion.patches.rite.CustomRiteIngredientFactory;
 import com.smokeythebandicoot.witcherycompanion.patches.rite.RiteEffectCustomRite;
 import net.minecraft.item.crafting.Ingredient;
@@ -21,9 +23,12 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Registry of the custom Rites. Definitions are registered (by CraftTweaker, or by any other mod) before the world
@@ -49,9 +54,12 @@ public class CustomRiteApi {
     }
 
     private static final Map<String, Registered> RITES = new LinkedHashMap<>();
+    /** The most custom rites that were registered at any time: used to notice if the registry gets emptied */
+    private static int highestCount = 0;
     /** The custom rites as parsed by RiteManager.apply(). See restoreParsedRites */
     private static final Map<ResourceLocation, Rite> PARSED = new LinkedHashMap<>();
-    private static boolean gluesRegistered = false;
+    /** Custom rite id -> section where its data must be listed. Filled when the rite data is built */
+    private static final Map<String, ResourceLocation> GROUP_OVERRIDES = new HashMap<>();
 
     private CustomRiteApi() { }
 
@@ -111,26 +119,134 @@ public class CustomRiteApi {
     // ------------------------------------------------------------------------------------------ W:R glue
 
     /**
-     * Returns a copy of the rite data that W:R is about to load, with the custom rites added at the end.
-     * The effect type used by custom rites is registered in W:R's registry the first time this is called.
+     * Returns a copy of the rite data that W:R is about to load, with the custom rites added.
+     * The order of the rites in the books comes from the "sorting" links of the data (see RiteChain), so every custom
+     * rite is linked into the chain: after the rite given with insertAfter, at the end of the section given with
+     * setSection, or at the end of all the rites. The links of the neighbours are updated too (on copies of their data).
+     * The effect and ingredient types used by custom rites are registered in W:R's registries the first time this is called.
      */
     public static Map<ResourceLocation, JsonElement> appendCustomRites(Map<ResourceLocation, ? extends JsonElement> original) {
         Map<ResourceLocation, JsonElement> result = new LinkedHashMap<>(original);
-        if (RITES.isEmpty()) return result;
+        GROUP_OVERRIDES.clear();
+        if (RITES.isEmpty()) {
+            if (highestCount > 0) {
+                WitcheryCompanion.logger.warn("Custom Rites: the registry of custom rites is empty, but it had {} rite(s) before. " +
+                        "Something removed them: the rites will not be loaded", highestCount);
+            }
+            return result;
+        }
+        highestCount = Math.max(highestCount, RITES.size());
 
         ensureGluesRegistered();
+
+        // The chain of the existing rites, from their data
+        RiteChain chain = new RiteChain();
+        Map<String, ResourceLocation> keysById = new HashMap<>();
+        for (Map.Entry<ResourceLocation, JsonElement> entry : result.entrySet()) {
+            ResourceLocation key = entry.getKey();
+            int slash = key.getPath().indexOf('/');
+            if (slash < 0 || !entry.getValue().isJsonObject()) continue;
+            String id = key.getNamespace() + ":" + key.getPath().substring(slash + 1);
+            String group = key.getNamespace() + ":" + key.getPath().substring(0, slash);
+            JsonElement sorting = entry.getValue().getAsJsonObject().get("sorting");
+            String left = null;
+            String right = null;
+            if (sorting != null && sorting.isJsonObject()) {
+                left = asStringOrNull(sorting.getAsJsonObject().get("left"));
+                right = asStringOrNull(sorting.getAsJsonObject().get("right"));
+            }
+            chain.add(id, group, left, right);
+            keysById.put(id, key);
+        }
+
+        // Link every custom rite into the chain, in registration order
+        Set<String> touchedExisting = new LinkedHashSet<>();
+        for (Registered registered : RITES.values()) {
+            CustomRiteDefinition definition = registered.definition;
+            String id = definition.getId();
+            String section = definition.getSection();
+            String anchor = null;
+
+            if (definition.getInsertAfter() != null) {
+                if (chain.contains(definition.getInsertAfter())) {
+                    anchor = definition.getInsertAfter();
+                    if (section == null) section = chain.get(anchor).group;
+                } else {
+                    WitcheryCompanion.logger.error("Custom Rite {}: insertAfter({}) does not match any rite: the rite is added at the end of the books",
+                            id, definition.getInsertAfter());
+                }
+            }
+            if (anchor == null && section != null) {
+                RiteChain.Node last = chain.lastOfGroup(section);
+                if (last != null) {
+                    anchor = last.id;
+                } else {
+                    WitcheryCompanion.logger.error("Custom Rite {}: the section {} has no rites: the rite is added at the end of the books", id, section);
+                    section = null;
+                }
+            }
+            if (anchor == null && chain.tail() != null) anchor = chain.tail().id;
+
+            String group = section != null ? section : definition.getNamespace() + ":" + CustomRiteDefinition.GROUP;
+            if (section != null) GROUP_OVERRIDES.put(id, new ResourceLocation(section));
+
+            if (anchor != null) {
+                for (String changed : chain.insertAfter(anchor, id, group)) {
+                    if (!RITES.containsKey(changed)) touchedExisting.add(changed);
+                }
+            } else {
+                chain.add(id, group, null, null);
+            }
+        }
+
+        // Write the new links in the data: neighbours (copies) first, then the custom rites
+        for (String id : touchedExisting) {
+            ResourceLocation key = keysById.get(id);
+            if (key == null) continue;
+            JsonObject copy = copyOf(result.get(key).getAsJsonObject());
+            writeLinks(copy, chain.get(id));
+            result.put(key, copy);
+        }
         for (Registered registered : RITES.values()) {
             CustomRiteDefinition definition = registered.definition;
             ResourceLocation key = new ResourceLocation(definition.getDataKey());
             if (result.containsKey(key)) {
                 WitcheryCompanion.logger.warn("Custom Rite {} overrides the existing data entry {}", definition.getId(), key);
             }
-            result.put(key, toGson(definition.toRiteJson()));
+            RiteChain.Node node = chain.get(definition.getId());
+            result.put(key, toGson(definition.toRiteJson(node == null ? null : node.left, node == null ? null : node.right)));
         }
+
+        WitcheryCompanion.logger.info("Custom Rites: appending {} custom rite(s) to the rite data: {}", RITES.size(), RITES.keySet());
         return result;
     }
 
-    /** Registers, once, the effect type and the ingredient type that the JSON of custom rites refers to */
+    /** Section ("witchery:infusion") in which W:R must list a custom rite, instead of the one of its data folder. Null if none */
+    @Nullable
+    public static ResourceLocation getGroupOverride(ResourceLocation riteId) {
+        return GROUP_OVERRIDES.get(riteId.toString());
+    }
+
+    @Nullable
+    private static String asStringOrNull(@Nullable JsonElement element) {
+        return element == null || element.isJsonNull() ? null : element.getAsString();
+    }
+
+    private static JsonObject copyOf(JsonObject original) {
+        return new JsonParser().parse(original.toString()).getAsJsonObject();
+    }
+
+    /** Writes the neighbours of the node in the "sorting" object of the rite data */
+    private static void writeLinks(JsonObject riteJson, RiteChain.Node node) {
+        JsonElement existing = riteJson.get("sorting");
+        JsonObject sorting = existing != null && existing.isJsonObject() ? existing.getAsJsonObject() : new JsonObject();
+        sorting.remove("left");
+        sorting.remove("right");
+        if (node.left != null) sorting.addProperty("left", node.left);
+        if (node.right != null) sorting.addProperty("right", node.right);
+        riteJson.add("sorting", sorting);
+    }
+
     /**
      * Remembers the Rite objects that W:R built from the custom rites. Called when RiteManager.apply() has finished.
      * @param riteMap the rites of the RiteManager (rite id -> rite)
@@ -142,8 +258,13 @@ public class CustomRiteApi {
             Rite rite = riteMap.get(id);
             if (rite != null) PARSED.put(id, rite);
         }
-        if (isDebugEnabled()) {
-            WitcheryCompanion.logger.info("[Custom Rites debug] {} custom rite(s) parsed by W:R: {}", PARSED.size(), PARSED.keySet());
+        if (PARSED.size() == RITES.size()) {
+            WitcheryCompanion.logger.info("Custom Rites: W:R loaded all {} custom rite(s)", PARSED.size());
+        } else {
+            List<String> missing = new ArrayList<>(RITES.keySet());
+            for (ResourceLocation parsed : PARSED.keySet()) missing.remove(parsed.toString());
+            WitcheryCompanion.logger.warn("Custom Rites: W:R loaded only {} of {} custom rite(s). Not loaded: {}. " +
+                    "Look for 'Parsing error loading rite' in the log", PARSED.size(), RITES.size(), missing);
         }
     }
 
@@ -176,17 +297,18 @@ public class CustomRiteApi {
     }
 
     private static void ensureGluesRegistered() {
-        if (gluesRegistered) return;
+        // Checked every time (cheap) instead of once: nothing here may depend on what happened in a previous world
         ResourceLocation effectType = new ResourceLocation(CustomRiteDefinition.EFFECT_TYPE);
         if (!RiteEffect.DESERIALIZER_REGISTRY.contains(effectType)) {
+            WitcheryCompanion.logger.info("Custom Rites: registering the rite effect type {}", effectType);
             RiteEffect.DESERIALIZER_REGISTRY.set(effectType, RiteEffectCustomRite.DESERIALIZER);
         }
         try {
             CraftingHelper.register(new ResourceLocation(CustomRiteDefinition.INGREDIENT_TYPE), new CustomRiteIngredientFactory());
+            WitcheryCompanion.logger.info("Custom Rites: registering the ingredient type {}", CustomRiteDefinition.INGREDIENT_TYPE);
         } catch (IllegalStateException e) {
             // Already registered (Forge does not allow to query its table): nothing to do
         }
-        gluesRegistered = true;
     }
 
     /** Converts the Map/List/String/Number/Boolean tree built by CustomRiteDefinition into Gson */

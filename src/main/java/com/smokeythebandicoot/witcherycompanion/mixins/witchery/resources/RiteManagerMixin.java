@@ -55,7 +55,7 @@ public abstract class RiteManagerMixin {
     @ModifyVariable(method = "apply(Ljava/util/Map;Lnet/minecraft/resources/ResourceManager;)V", remap = false,
             at = @At("HEAD"), argsOnly = true)
     private Map<ResourceLocation, ? extends JsonElement> witcherycompanion$appendCustomRites(Map<ResourceLocation, ? extends JsonElement> value) {
-        if (!ModConfig.IntegrationConfigurations.CraftTweakerIntegration.enableCustomRites || CustomRiteApi.isEmpty()) {
+        if (!ModConfig.IntegrationConfigurations.CraftTweakerIntegration.enableCustomRites) {
             return value;
         }
         return CustomRiteApi.appendCustomRites(value);

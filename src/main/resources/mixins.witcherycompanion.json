@@ -177,6 +177,7 @@
     "witchery.rite.effect.RiteEffectPartEarthMixin",
     "witchery.rite.effect.RiteEffectPartEarth.DirectionMixin",
     "witchery.rite.RiteConditions.RiteConditionMixin",
+    "witchery.rite.RiteMixin",
     "witchery.rite.sacrifice.CopyDataSacrificedItemReturnMixin",
     "witchery.rite.sacrifice.ItemRiteSacrificeMixin",
     "witchery.transformation.CreatureTraitMixin",

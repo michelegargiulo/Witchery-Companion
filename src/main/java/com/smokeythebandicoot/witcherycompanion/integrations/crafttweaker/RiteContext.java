@@ -100,7 +100,8 @@ public class RiteContext {
         RiteCircle[] result = new RiteCircle[circles.size()];
         for (int i = 0; i < result.length; i++) {
             RitualCircle circle = circles.get(i);
-            result[i] = new RiteCircle(String.valueOf(circle.getGlyph().getRegistryName()), circle.getSize());
+            // W:R stores the size of a circle as twice the size written in the rite data (1, 2, 3 -> 2, 4, 6)
+            result[i] = new RiteCircle(String.valueOf(circle.getGlyph().getRegistryName()), circle.getSize() / 2);
         }
         return result;
     }
