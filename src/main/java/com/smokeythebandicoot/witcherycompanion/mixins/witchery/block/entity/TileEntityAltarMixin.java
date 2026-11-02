@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
 import com.smokeythebandicoot.witcherycompanion.api.AltarApi;
+import com.smokeythebandicoot.witcherycompanion.api.PlacedItemApi;
 import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.altar.ITileEntityAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.Block;
@@ -17,8 +18,6 @@ import net.msrandom.witchery.common.IPowerSource;
 import net.msrandom.witchery.common.PowerSources;
 import net.msrandom.witchery.init.WitcheryBlocks;
 import net.msrandom.witchery.init.WitcheryTileEntities;
-import net.msrandom.witchery.init.items.WitcheryGeneralItems;
-import net.msrandom.witchery.init.items.WitcheryIngredientItems;
 import net.msrandom.witchery.util.BlockUtil;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -37,6 +36,7 @@ import java.util.*;
     broken and re-placed to be registered correctly again
  [Tweak] Great performance gain by caching Altar PowerSourceTable
  [Integration] Thaumcraft candles are better than Witchery Candelabra
+ [Integration] CraftTweaker control over every Altar booster: skull, candle, chalice, egg (blocks) and placed items
  */
 @Mixin(value = TileEntityAltar.class)
 public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements IPowerSource, ITileEntityAltarAccessor {
@@ -132,6 +132,21 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
         return this.enhancementLevel;
     }
 
+    @Override
+    public int witcherycompanion$accessor$getRangeScale() {
+        return this.rangeScale;
+    }
+
+    @Override
+    public int witcherycompanion$accessor$getPowerScale() {
+        return this.powerScale;
+    }
+
+    @Override
+    public float witcherycompanion$accessor$getBaseMaxPower() {
+        return this.maxPower;
+    }
+
 
     /** ========== ALTAR POWER SOURCES ========== **/
 
@@ -203,7 +218,6 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
 
     /** ========== ALTAR BOOSTERS ========== **/
 
-    //TODO: Migrate entirely towards API, including Placed Items
     /** This Mixin injects the Altar Boosters Api inside Artifacts logic **/
     @Inject(method = "updateArtifacts", remap = false, at = @At("HEAD"), cancellable = true)
     private void injectNewArtifacts(CallbackInfo ci) {
@@ -219,15 +233,15 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
         AltarApi.AltarBoosterFunc skullBooster = null;
         AltarApi.AltarBoosterFunc candleBooster = null;
         AltarApi.AltarBoosterFunc chaliceBooster = null;
+        AltarApi.AltarBoosterFunc eggBooster = null;
 
         BlockPos bestSkullPos = null;
         BlockPos bestCandlePos = null;
         BlockPos bestChalicePos = null;
+        BlockPos bestEggPos = null;
 
-        boolean knifeFound = false;
-        boolean wandFound = false;
-        boolean pentacleFound = false;
-        boolean infinityFound = false;
+        // Placed item boosters count only once per Altar, no matter how many items trigger them
+        Set<PlacedItemApi.PlacedItemBooster> appliedPlacedItemBoosters = new HashSet<>();
 
         AltarApi.AltarBoosterInfo info = new AltarApi.AltarBoosterInfo();
 
@@ -271,17 +285,10 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
                 TileEntityPlacedItem item = WitcheryTileEntities.PLACED_ITEM.getAt(world, offset);
                 if (item != null) {
                     ItemStack placedStack = item.getStack();
-                    if (!knifeFound && placedStack.getItem() == WitcheryGeneralItems.getArthana()) {
-                        knifeFound = true;
-                        ++info.newRangeScale;
-                    } else if (!wandFound && placedStack.getItem() == WitcheryGeneralItems.MYSTIC_BRANCH) {
-                        wandFound = true;
-                        ++info.newEnhancementLevel;
-                    } else {
-                        if (pentacleFound || placedStack.getItem() != WitcheryIngredientItems.KOBOLDITE_PENTACLE) {
-                            continue;
-                        }
-                        pentacleFound = true;
+                    PlacedItemApi.PlacedItemBooster booster = BlockTweaks.placedItems_tweakEnableCrafttweakerCompat ?
+                            PlacedItemApi.getBooster(placedStack) : PlacedItemApi.getDefaultBooster(placedStack);
+                    if (booster != null && appliedPlacedItemBoosters.add(booster)) {
+                        booster.apply(placedStack, info);
                     }
                 }
             }
@@ -295,9 +302,13 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
                 }
             }
 
-            // INFINITY EGG
-            else if (!infinityFound && block == WitcheryBlocks.INFINITY_EGG) {
-                infinityFound = true;
+            // EGG (Infinity Egg by default)
+            else if (AltarApi.isAltarBooster(state, AltarApi.EAltarBoosterType.EGG)) {
+                AltarApi.AltarBoosterFunc booster = AltarApi.getBooster(state, AltarApi.EAltarBoosterType.EGG);
+                if (eggBooster == null || booster.priority > eggBooster.priority) {
+                    eggBooster = booster;
+                    bestEggPos = offset;
+                }
             }
         }
 
@@ -305,18 +316,10 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
         witcherycompanion$applyBooster(skullBooster, bestSkullPos, info);
         witcherycompanion$applyBooster(candleBooster, bestCandlePos, info);
         witcherycompanion$applyBooster(chaliceBooster, bestChalicePos, info);
+        witcherycompanion$applyBooster(eggBooster, bestEggPos, info);
 
-
-        // Pentacle (applied after everything except Infinity)
-        if (pentacleFound) {
-            info.newRechargeScale *= 2;
-        }
-
-        // Infinity Egg (applied after everything)
-        if (infinityFound) {
-            info.newRechargeScale *= 10;
-            info.newPowerScale *= 10;
-        }
+        // Multipliers (Kobolite Pentacle, Infinity Egg by default) are applied after all increments
+        info.applyMultipliers();
 
         if ( // Only send Block Update if something has changed
                 info.newRechargeScale != this.rechargeScale ||

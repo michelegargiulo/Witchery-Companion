@@ -6,6 +6,7 @@ import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -23,6 +24,7 @@ import static com.smokeythebandicoot.witcherycompanion.api.progress.CapabilityWi
 /**
  * Mixins:
  * [Feature] Unlock secret recipes
+ * [Bugfix] Crash (IndexOutOfBoundsException) when a rite is started with a Seer Stone by a player that has no coven
  */
 @Mixin(TileEntityCircle.class)
 public abstract class TileEntityCircleMixin extends WitcheryTileEntity {
@@ -46,5 +48,19 @@ public abstract class TileEntityCircleMixin extends WitcheryTileEntity {
         return result;
     }
 
+    /**
+     * Starting a rite with a Seer Stone makes the circle summon the coven of the player before the rite. W:R enables this
+     * stage even when the coven is empty, and then reads the first witch of an empty coven, which crashes the game.
+     * The summoning stage is enabled only when there is at least one coven member to summon
+     */
+    @WrapOperation(method = "queueRitual", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/block/entity/TileEntityCircle$ActivatedRitual;access$202(Lnet/msrandom/witchery/block/entity/TileEntityCircle$ActivatedRitual;Z)Z"))
+    private boolean witcherycompanion$skipCovenSummonWithoutCoven(TileEntityCircle.ActivatedRitual ritual, boolean summoningCoven, Operation<Boolean> original) {
+        boolean value = summoningCoven;
+        if (ModConfig.PatchesConfiguration.RitesTweaks.circle_fixCovenSummonWithoutCoven && ritual.covenSize <= 0) {
+            value = false;
+        }
+        return original.call(ritual, value);
+    }
 
 }

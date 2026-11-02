@@ -22,13 +22,8 @@ public abstract class EntitySpellEffectMixin extends Entity {
         super(worldIn);
     }
 
-    @Redirect(
-            method = "attackEntityFrom(Lnet/minecraft/util/DamageSource;F)Z",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/msrandom/witchery/infusion/symbol/SymbolEffect;getCanDeflect()Z"
-            )
-    )
+    @Redirect(method = "attackEntityFrom(Lnet/minecraft/util/DamageSource;F)Z", remap = false,
+        at = @At(value = "INVOKE", target = "Lnet/msrandom/witchery/infusion/symbol/SymbolEffect;getCanDeflect()Z"))
     private boolean safeGetCanDeflect(SymbolEffect effect) {
         return ModConfig.PatchesConfiguration.EntityTweaks.lordOfTorment_fixProjectileDeflect && effect == null || effect.getCanDeflect();
     }

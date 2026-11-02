@@ -3,6 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.resources;
 import com.google.gson.JsonElement;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.api.CustomRiteApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
 import com.smokeythebandicoot.witcherycompanion.utils.Mods;
@@ -14,6 +15,7 @@ import net.msrandom.witchery.rite.Rite;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Iterator;
@@ -24,6 +26,8 @@ import java.util.Map;
  * Mixin:
  * [Integration] Patchouli flag reloading for disabled rites
  * [Tweak] Disable Rite of Prior Incarnation
+ * [Integration] CraftTweaker Custom Rites: custom rites are appended to the rite data that is about to be loaded, and are
+ *      not replaced by the copy received from the server when client and server share the RiteManager (singleplayer)
  */
 @Mixin(RiteManager.class)
 public abstract class RiteManagerMixin {
@@ -44,6 +48,33 @@ public abstract class RiteManagerMixin {
             }
         }
         return result;
+    }
+
+    /** Appends the custom rites (see CustomRiteApi) to the rite data that RiteManager.apply() is about to parse. This way
+     * W:R parses sacrifices, circles, conditions and names exactly as it does for its own rites **/
+    @ModifyVariable(method = "apply(Ljava/util/Map;Lnet/minecraft/resources/ResourceManager;)V", remap = false,
+            at = @At("HEAD"), argsOnly = true)
+    private Map<ResourceLocation, ? extends JsonElement> witcherycompanion$appendCustomRites(Map<ResourceLocation, ? extends JsonElement> value) {
+        if (!ModConfig.IntegrationConfigurations.CraftTweakerIntegration.enableCustomRites) {
+            return value;
+        }
+        return CustomRiteApi.appendCustomRites(value);
+    }
+
+    /** When apply() finished, remembers the custom rites that W:R parsed (see CustomRiteApi.restoreParsedRites) **/
+    @Inject(method = "apply(Ljava/util/Map;Lnet/minecraft/resources/ResourceManager;)V", remap = false, at = @At("RETURN"))
+    private void witcherycompanion$rememberCustomRites(Map<ResourceLocation, ? extends JsonElement> value, ResourceManager resourceManager, CallbackInfo ci) {
+        if (ModConfig.IntegrationConfigurations.CraftTweakerIntegration.enableCustomRites && !CustomRiteApi.isEmpty()) {
+            CustomRiteApi.rememberParsedRites(RiteManager.INSTANCE.getRiteMap());
+        }
+    }
+
+    /** In the singleplayer the client shares the RiteManager with the server: the rites received from the server must not
+     * replace the custom rites that the server parsed, or their ingredients would lose NBT, metadata and conditions **/
+    @ModifyVariable(method = "updateRites$WitcheryResurrected", remap = false, at = @At("HEAD"), argsOnly = true)
+    private Map<ResourceLocation, List<Rite>> witcherycompanion$keepServerCustomRites(Map<ResourceLocation, List<Rite>> incoming) {
+        if (!ModConfig.IntegrationConfigurations.CraftTweakerIntegration.enableCustomRites) return incoming;
+        return CustomRiteApi.restoreParsedRites(incoming);
     }
 
     /** Injects at the end of apply() in RiteManager when it finished reloading all the rites to update Patchouli Flags **/

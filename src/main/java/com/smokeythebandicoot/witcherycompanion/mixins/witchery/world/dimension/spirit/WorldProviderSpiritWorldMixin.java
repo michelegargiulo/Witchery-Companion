@@ -2,11 +2,16 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.world.dimension
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.smokeythebandicoot.witcherycompanion.api.SpiritWorldTransferApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.DimensionTweaks;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.msrandom.witchery.entity.EntityNightmare;
+import net.msrandom.witchery.init.WitcheryDimensions;
 import net.msrandom.witchery.world.dimension.spirit.WorldProviderSpiritWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -23,6 +28,7 @@ import java.util.UUID;
  [Bugfix] Fix endless Nightmare spawning
  [Tweak] Tweak Nightmare spawn cap
  [Tweak] Tweak Nightmare spawning cooldown after last kill
+ [Integration] CraftTweaker control over the items that cross the Spirit World barrier (entering/exiting)
  */
 @Mixin(WorldProviderSpiritWorld.class)
 public class WorldProviderSpiritWorldMixin {
@@ -122,5 +128,62 @@ public class WorldProviderSpiritWorldMixin {
     @ModifyConstant(method = "updatePlayerEffects", remap = false, constant = @Constant(longValue = 600L))
     private static long modifyCooldown(long constant) {
         return DimensionTweaks.spiritWorld_tweakNightmareSpawnCooldown;
+    }
+
+    /** Witchery carries some items across the barrier with hardcoded logic: it takes them out of the inventory with
+     * clearMatchingItems(item, 0, -1, null), swaps the inventory and gives them back. The calls with a null item are the
+     * ones that empty the inventory, and are left untouched. This Mixin makes the other calls remove nothing if the
+     * API says that the item is not carried into the Spirit World. Witchery then gives back 0 items **/
+    @WrapOperation(method = "sendPlayerToSpiritWorld", remap = false, at = @At(value = "INVOKE", remap = true,
+            target = "Lnet/minecraft/entity/player/InventoryPlayer;clearMatchingItems(Lnet/minecraft/item/Item;IILnet/minecraft/nbt/NBTTagCompound;)I"))
+    private static int filterNativeEnteringItems(InventoryPlayer inventory, Item item, int meta, int count, NBTTagCompound tag, Operation<Integer> original) {
+        if (item != null && !SpiritWorldTransferApi.canEnter(item, meta)) {
+            return 0;
+        }
+        return original.call(inventory, item, meta, count, tag);
+    }
+
+    /** Takes out of the inventory the items that the API says are carried into the Spirit World and that Witchery
+     * does not carry by itself. This happens right before the inventory is stored, as Witchery does for its own items **/
+    @Inject(method = "sendPlayerToSpiritWorld", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/integration/IntegrationManager;dropPlayerBackpack(Lnet/minecraft/entity/player/EntityPlayer;)V"))
+    private static void extractEnteringItems(EntityPlayer player, double nightmareChance, CallbackInfo ci) {
+        SpiritWorldTransferApi.extractEnteringItems(player);
+    }
+
+    /** Gives back the items taken out by extractEnteringItems, once the inventory has been swapped **/
+    @Inject(method = "sendPlayerToSpiritWorld", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/world/dimension/spirit/WorldProviderSpiritWorld;changeDimension(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/DimensionType;)V"))
+    private static void restoreEnteringItems(EntityPlayer player, double nightmareChance, CallbackInfo ci) {
+        SpiritWorldTransferApi.restoreEnteringItems(player);
+    }
+
+    /** Same as filterNativeEnteringItems, for the items carried out of the Spirit World. Witchery only runs some of
+     * these calls when the player is in the Spirit World, so those are not even reached otherwise **/
+    @WrapOperation(method = "returnPlayerToOverworld", remap = false, at = @At(value = "INVOKE", remap = true,
+            target = "Lnet/minecraft/entity/player/InventoryPlayer;clearMatchingItems(Lnet/minecraft/item/Item;IILnet/minecraft/nbt/NBTTagCompound;)I"))
+    private static int filterNativeExitingItems(InventoryPlayer inventory, Item item, int meta, int count, NBTTagCompound tag, Operation<Integer> original) {
+        if (item != null && !SpiritWorldTransferApi.canExit(item, meta)) {
+            return 0;
+        }
+        return original.call(inventory, item, meta, count, tag);
+    }
+
+    /** Takes out of the inventory the items that the API says are carried out of the Spirit World and that Witchery
+     * does not carry by itself, right before the Spirit World inventory is stored. Like the items that Witchery
+     * carries conditionally, they are only taken if the player is actually in the Spirit World **/
+    @Inject(method = "returnPlayerToOverworld", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/integration/IntegrationManager;dropPlayerBackpack(Lnet/minecraft/entity/player/EntityPlayer;)V"))
+    private static void extractExitingItems(EntityPlayer player, CallbackInfo ci) {
+        if (WitcheryDimensions.SPIRIT_WORLD.isInDimension(player)) {
+            SpiritWorldTransferApi.extractExitingItems(player);
+        }
+    }
+
+    /** Gives back the items taken out by extractExitingItems, once the Overworld inventory has been restored **/
+    @Inject(method = "returnPlayerToOverworld", remap = false, at = @At(value = "INVOKE", remap = false,
+            target = "Lnet/msrandom/witchery/world/dimension/spirit/SpiritWorldData;setNightmareLevel(Lnet/msrandom/witchery/world/dimension/spirit/SpiritWorldData$NightmareLevel;)V"))
+    private static void restoreExitingItems(EntityPlayer player, CallbackInfo ci) {
+        SpiritWorldTransferApi.restoreExitingItems(player);
     }
 }

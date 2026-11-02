@@ -20,6 +20,7 @@ jar in the resource packs folder.
   - **[Circle Glyphs]** Prevent circle glyphs from being accidentally replaced by players
   - **[Coffin]** Fix edge-case crash when placing the Coffin across chunk boundaries
   - **[Coffin]** Fix crash when piston moves the top block of the coffin
+  - **[Crystal Ball]** Fix a cooldown desync after using
   - **[Cursed Blocks]** Fix crash when using trigger dispersal. ~They still don't work, but they should not crash the game~ Now it works, even on supported Tile Entities! Try cursing chests, pressure plates, doors and even Beds and Tripwires! More info on the Wiki
   - **[Dream Weaver]** Fix their facing upon placement
   - **[Wolf Altar]** Fix fences connecting to the statue and buttons being able to be placed on it
@@ -96,6 +97,8 @@ jar in the resource packs folder.
 - **Potions**
   - **[Fortune]** Fix Brew of Fortune having no effect
 - **Rites**
+  - **[Common]** Fix crash when golden glyph is right-clicked with a seer stone on a valid ritual when the player has no Coven
+  - **[Common]** Fix incomplete circles being recognized as valid
   - **[Rite of Broken Earth]** Fix NPE when foci location could not be determined
   - **[Rite of Prior Incarnation]** Fix "WitcheryPriIncUsr" NBT data persisting after item pickup
   - **[Rite of Binding]** (Copy Waystone version) Fix result always being an empty bound waystone
@@ -171,6 +174,7 @@ jar in the resource packs folder.
   - **[Voodoo Protection Poppet]** Tweak amount of damage taken to protect its owner from a curse
   - **[Poppet Protection Poppet]** Tweak amount of damage taken to protect its owner from a poppet
 - **Rites**
+  - **[Common]** Add a blacklist of dimension IDs where the circle magic can not be performed. The Spirit World does not allow circle magic regardless.
   - **[Broken Earth]** Tweak to control what blocks can be destroyed using the same rules as the Brew of Erosion (including its CraftTweaker customization)
   - **[Moving Earth]** Tweak to disable moving TileEntity (for dupes)
   - **[Moving Earth]** Tweak to disable voiding blocks above the ritual. This will make the ritual stop (fail) when
@@ -226,6 +230,8 @@ jar in the resource packs folder.
         - Customize what the brew can mine, destroy or ignore, including a maximum harvest level
     - **[Brew of Flowers]**
         - Customize which flowers can spawn in which biome types
+    - **[Custom Rites]**
+        - Create brand-new Circle Magic rites using CraftTweaker code 
     - **[Distillery]**
         - Custom recipes
     - **[Overworld Infusion]**
@@ -249,6 +255,8 @@ jar in the resource packs folder.
         - Custom sniffs. Can be used to specify a item <--> block relationship. Make it sniff the item, it tries to find the block
     - **[Spinning Wheel]** 
         - Custom recipes
+    - **[Spirit World]** 
+        - Select which item to keep when traveling to and from the Spirit World
     - **[Flame Imps]**
         - Customize gifts for each level with custom criteria
         - Customize items that can be donated to them (shinies) and their affection boost
@@ -286,6 +294,7 @@ jar in the resource packs folder.
 
 - **Quark**
   - Fix Right-click to harvest not spawning Mandrakes from Mandrake crops
+  - Fix double-door Quark tweak allowing players to open Rowan Doors for which they do not possess the keys
 
 - **Patchouli**
   - Implement configurable, dynamic, in-depth in-game documentation. Implements almost all features and all content of the Witchery books (except book of biomes)

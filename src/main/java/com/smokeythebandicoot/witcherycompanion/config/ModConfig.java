@@ -453,6 +453,11 @@ public class ModConfig {
             @Config.RangeInt(min = 1, max = 10000)
             public static int crystalBall_tweakCooldown = 100;
 
+            @Config.Comment("If true, the time of the last Crystal Ball usage is sent to the clients, so that the cooldown is correct on the " +
+                    "client side too (for example, for The One Probe). Witchery never sends it, so clients always see a Crystal Ball that is ready")
+            @Config.Name("Crystal Ball - Fix Cooldown Sync")
+            public static boolean crystalBall_fixCooldownSync = true;
+
             @Config.Comment("If true, Crystal Ball divination (right-click a Crystal Ball holding a bound Taglock Kit, keep pressed) \n" +
                     "is reworked: instead of moving the camera on the client (which shows unloaded chunks when the target is far), \n" +
                     "the player is silently put in Spectator mode and made to spectate the target, so the world around it is always loaded. \n" +
@@ -604,6 +609,14 @@ public class ModConfig {
             @Config.Name("Placed Items - Fix Not Initialized Crash")
             public static boolean placedItems_fixNotInitializedCrash = true;
 
+            @Config.Comment("If true, enables CraftTweaker integration for Placed Items, the items that can be placed on " +
+                    "top of the Altar, and for the Altar boosts they give. By default only Arthana, Mystic Branch and Kobolite " +
+                    "Pentacle can be placed (and boost the Altar), as in Witchery, until a script changes the list. If false, " +
+                    "Witchery's hardcoded logic is used and scripts have no effect. The boosts also need the Altar " +
+                    "CraftTweaker integration to be enabled. NOTE: scripts must be loaded on both client and server")
+            @Config.Name("Placed Items - Tweak Enable Crafttweaker Compat")
+            public static boolean placedItems_tweakEnableCrafttweakerCompat = true;
+
             @Config.Comment("If true, fix popper rendering, displaying them the right way up")
             @Config.Name("Poppet Shelf - Fix Upside-down Poppets")
             public static boolean poppetShelf_fixUpsideDownPoppetRendering = true;
@@ -699,6 +712,12 @@ public class ModConfig {
                     "NOTE: Requires 'Witches Oven - Tweak Enable Item Handler Capability' tweak to be enabled")
             @Config.Name("Witches Oven - Fix Inventory Sidedness")
             public static boolean witchesOven_fixInventorySidedness = true;
+
+            @Config.Comment("If true, the Oven remembers the result of the last Furnace recipe lookup instead of scanning the whole " +
+                    "smelting recipe list on every tick. Improves performance in big modpacks with a lot of smelting recipes. " +
+                    "It does not change the behaviour of the Oven")
+            @Config.Name("Witches Oven - Tweak Cache Smelting Result")
+            public static boolean witchesOven_tweakCacheSmeltingResult = true;
 
             @Config.Comment("If true, fixes fences connecting to the statue, and buttons and levers cannot be placed " +
                     "anymore on the statue")
@@ -869,6 +888,31 @@ public class ModConfig {
             @Config.Comment("If true, fixes an edge case when it was not possible to determine the rite's foci's block location")
             @Config.Name("Rite of Broken Earth - Fix NPE on Null Foci Location")
             public static boolean brokenEarth_fixNPEOnNullFociLocation = true;
+
+            @Config.Comment("If true, fixes rite conditions that are negated (\"negate\": true) always passing, because the " +
+                    "negation was never applied. With this fix, Rite of Total Eclipse and its portable version can only be " +
+                    "performed during the day, as their data intends. Setting this to false restores the previous behaviour")
+            @Config.Name("Rite Conditions - Fix Negated Conditions")
+            public static boolean riteConditions_fixNegatedConditions = true;
+
+            @Config.Comment("If true, fixes the 'witchery:copy_data' item return of rites not copying the NBT of the " +
+                    "sacrificed item (the NBT was passed as capability data). The returned item now keeps the NBT of the " +
+                    "sacrificed item. This also affects the rites of W:R that use it (for example, the portable rites that " +
+                    "return an Attuned Stone for a Charged Attuned Stone)")
+            @Config.Name("Rite Item Returns - Fix Copy Data NBT")
+            public static boolean copyDataReturn_fixCopyNbt = true;
+
+            @Config.Comment("If true, fixes the crash that happens when a rite is started with a Seer Stone by a player that " +
+                    "has no coven members (IndexOutOfBoundsException in processCovenSummon). Without coven members the rite " +
+                    "simply starts without the coven summoning stage")
+            @Config.Name("Circle - Fix Seer Stone Crash Without Coven")
+            public static boolean circle_fixCovenSummonWithoutCoven = true;
+
+            @Config.Comment("If true, fixes circles being recognized as complete when most of the chalk is missing: a single " +
+                    "chalk in the right place was enough for the rite to start. With this fix every piece of the circle " +
+                    "must be drawn, or the rite does not start. Setting this to false restores the previous behaviour")
+            @Config.Name("Circle - Fix Incomplete Circles Recognized")
+            public static boolean circle_fixIncompleteCirclesRecognized = true;
 
             @Config.Comment("If true, Rite of Broken Earth will only break things that can be broken with a Brew of " +
                     "Erosion, including (if enabled) CraftTweaker-defined blockstates")
@@ -1445,6 +1489,21 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static int mirror_tweakID = 13;
 
+            @Config.Comment("Specify a list of Dimension IDs where circle magic (rituals started from Circle Glyphs) is " +
+                    "disabled, like Witchery already does for the Spirit World. Players get the same 'circle magic is being " +
+                    "nullified' message. Rituals that are already active can still be deactivated. An empty list " +
+                    "disables this feature\n. NOTE: Dimensions added by Mystcraft Ages get a different ID every time, so " +
+                    "they can't be listed: use the 'Circle Magic - Tweak Dimension List Is Whitelist' option for them")
+            @Config.Name("Circle Magic - Tweak Dimension List")
+            public static int[] circleMagic_tweakDimensionList = new int[] { };
+
+            @Config.Comment("If true, 'Circle Magic - Tweak Dimension List' becomes a whitelist: circle magic only works " +
+                    "in the listed Dimensions, and is disabled in all the others (Mystcraft Ages included). For example, " +
+                    "set the list to 0 (Overworld) to only allow circle magic in the Overworld. NOTE: if the list is " +
+                    "empty this option does nothing, so circle magic is never disabled everywhere by mistake")
+            @Config.Name("Circle Magic - Tweak Dimension List Is Whitelist")
+            public static boolean circleMagic_tweakDimensionListIsWhitelist = false;
+
 
         }
 
@@ -1455,6 +1514,11 @@ public class ModConfig {
                     "it back to 0.6.")
             @Config.Name("No Form - Fix Default Step Height")
             public static boolean noForm_fixDefaultStepHeight = true;
+
+            @Config.Comment("If true, Vampires lose all their hunger bar when they eat food, like in the original Witchery. " +
+                    "In W:R this check is broken: it runs before the food is eaten and never sees the hunger increase")
+            @Config.Name("Vampire - Fix Eating Normal Food")
+            public static boolean vampire_fixFoodDrain = true;
 
             @Config.Comment("Specify a list of Dimension IDs that have to be considered always-night")
             @Config.Name("Vampire - Tweak Always Night Dimension")
@@ -1559,6 +1623,18 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean enablePolynesiaCharm = true;
 
+            @Config.Comment("If true enables CraftTweaker integration for Custom Rites: rites defined in scripts with " +
+                    "mods.smokeythebandicoot.witcherycompanion.CustomRite, with their effect written in ZenScript")
+            @Config.Name("CraftTweaker Integration - Enable Custom Rites")
+            @Config.RequiresMcRestart
+            public static boolean enableCustomRites = true;
+
+            @Config.Comment("If true, Custom Rites write diagnostic lines in the log: which ingredient every sacrifice " +
+                    "uses when a custom rite starts, and the result of every item test. Very verbose: use it only to " +
+                    "investigate a problem")
+            @Config.Name("CraftTweaker Integration - Debug Custom Rites")
+            public static boolean debugCustomRites = false;
+
         }
 
         public static class JerIntegration {
@@ -1621,6 +1697,11 @@ public class ModConfig {
             @Config.Comment("If true, fixes Mandrakes not spawning when Quark right-click harvest feature is enabled")
             @Config.Name("Quark Integration - Fix Mandrakes Right-click Harvest")
             public static boolean fixMandrakesRightClickHarvest = true;
+
+            @Config.Comment("If true, fixes Quark opening the other half of Rowan Double Doors when the Player does not have the key. " +
+                    "A Player that has the key of only one of the two doors will still open both")
+            @Config.Name("Quark Integration - Fix Rowan Doors Double Door Opening")
+            public static boolean fixRowanDoorsDoubleDoorOpening = true;
         }
 
         public static class MorphIntegration {
