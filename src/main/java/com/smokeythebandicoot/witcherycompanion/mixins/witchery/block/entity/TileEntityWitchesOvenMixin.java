@@ -3,7 +3,10 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
+import com.smokeythebandicoot.witcherycompanion.utils.SingleEntryLookupCache;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
@@ -28,6 +31,7 @@ import javax.annotation.Nullable;
  * Mixins:
  * [Feature] Implement IItemHandler capability
  * [Bugfix] Fix burnable container items (for example, lava buckets) being voided
+ * [Tweak] Cache the Furnace recipe lookup (performance)
  */
 @Mixin(TileEntityWitchesOven.class)
 public abstract class TileEntityWitchesOvenMixin extends TileEntity implements ICapabilityProvider {
@@ -52,6 +56,15 @@ public abstract class TileEntityWitchesOvenMixin extends TileEntity implements I
 
     @Unique
     private final IItemHandler witcherycompanion$itemHandlerSides = new SidedInvWrapper((TileEntityWitchesOven)(Object)this, EnumFacing.NORTH);
+
+    /** Time-to-live (in ticks) of a cached smelting lookup. After that it is thrown away and looked up again, so that
+     * a stale entry is always bounded in time even if the recipe list was modified without changing its size **/
+    @Unique
+    private static final long witcherycompanion$SMELTING_CACHE_TTL = 100L;
+
+    /** Memo of the last Furnace recipe lookup done by this oven. Value is ItemStack.EMPTY when the input has no recipe **/
+    @Unique
+    private final SingleEntryLookupCache<Item, ItemStack> witcherycompanion$smeltingCache = new SingleEntryLookupCache<>();
 
 
     @Override
@@ -114,6 +127,32 @@ public abstract class TileEntityWitchesOvenMixin extends TileEntity implements I
                 cir.setReturnValue(slot == 3 || slot == 4);
             }
         }
+    }
+
+    /** W:R does not cache anything: canSmelt() (called every tick while the oven has fuel and an input, twice on the
+     * tick in which fuel is consumed) and smeltItem() ask FurnaceRecipes.getSmeltingResult every time. In Forge 1.12.2
+     * that is a linear scan over the whole smelting map (thousands of entries in big modpacks), and when the input has
+     * no recipe the whole map is scanned for nothing, on every tick. The result of getSmeltingResult only depends on
+     * the Item and the metadata of the stack, so we remember the last lookup of this oven (including 'no recipe').
+     * Stacks with NBT are never cached, to stay safe with anything that may make the lookup NBT-sensitive. **/
+    @WrapOperation(method = {"canSmelt", "smeltItem"}, remap = false, at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/item/crafting/FurnaceRecipes;getSmeltingResult(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;", remap = true))
+    private ItemStack tweakCacheSmeltingResult(FurnaceRecipes instance, ItemStack input, Operation<ItemStack> original) {
+        if (!BlockTweaks.witchesOven_tweakCacheSmeltingResult || this.world == null || input.isEmpty() || input.hasTagCompound()) {
+            return original.call(instance, input);
+        }
+
+        Item item = input.getItem();
+        int meta = input.getMetadata();
+        int fingerprint = instance.getSmeltingList().size();
+        long now = this.world.getTotalWorldTime();
+        if (this.witcherycompanion$smeltingCache.isHit(item, meta, fingerprint, now, witcherycompanion$SMELTING_CACHE_TTL)) {
+            return this.witcherycompanion$smeltingCache.get();
+        }
+
+        ItemStack result = original.call(instance, input);
+        this.witcherycompanion$smeltingCache.store(item, meta, fingerprint, now, result);
+        return result;
     }
 
 }

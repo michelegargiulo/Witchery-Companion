@@ -701,6 +701,12 @@ public class ModConfig {
             @Config.Name("Witches Oven - Fix Inventory Sidedness")
             public static boolean witchesOven_fixInventorySidedness = true;
 
+            @Config.Comment("If true, the Oven remembers the result of the last Furnace recipe lookup instead of scanning the whole " +
+                    "smelting recipe list on every tick. Improves performance in big modpacks with a lot of smelting recipes. " +
+                    "It does not change the behaviour of the Oven")
+            @Config.Name("Witches Oven - Tweak Cache Smelting Result")
+            public static boolean witchesOven_tweakCacheSmeltingResult = true;
+
             @Config.Comment("If true, fixes fences connecting to the statue, and buttons and levers cannot be placed " +
                     "anymore on the statue")
             @Config.Name("Wolf Altar - Fix Face Shape")
