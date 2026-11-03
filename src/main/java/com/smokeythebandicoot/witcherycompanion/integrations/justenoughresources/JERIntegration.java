@@ -132,6 +132,8 @@ public class JERIntegration {
 
         jerMobRegistry.register(new EntityPoltergeist(jerWorld), LootTables.POLTERGEIST);
 
+        jerMobRegistry.register(new EntityReflection(jerWorld), LootTables.REFLECTION);
+
         jerMobRegistry.register(new EntitySpectralFamiliar(jerWorld), LootTables.SPECTRAL_FAMILIAR);
 
         jerMobRegistry.register(new EntitySpectre(jerWorld), LootTables.SPECTRE);

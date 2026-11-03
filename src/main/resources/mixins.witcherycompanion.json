@@ -94,6 +94,7 @@
     "witchery.entity.EntityMindrakeMixin",
     "witchery.entity.EntityNightmareMixin",
     "witchery.entity.EntityPoltergeistMixin",
+    "witchery.entity.EntityReflectionMixin",
     "witchery.entity.EntitySpectralFamiliarMixin",
     "witchery.entity.EntitySpectreMixin",
     "witchery.entity.EntitySpellEffectMixin",

@@ -1402,6 +1402,10 @@ public class ModConfig {
             @Config.Name("Poltergeist - Tweak Drop Loot by Table")
             public static boolean poltergeist_tweakLootTable = true;
 
+            @Config.Comment("If true, Reflection will drop loot according to its Loot Table (witchery:entities/reflection)")
+            @Config.Name("Reflection - Tweak Drop Loot by Table")
+            public static boolean reflection_tweakLootTable = true;
+
             @Config.Comment("If true, Spectral Familiar will drop loot according to its Loot Table (witchery:entities/spectral_familiar)")
             @Config.Name("Spectral Familiar - Tweak Drop Loot by Table")
             public static boolean spectralFamiliar_tweakLootTable = true;
