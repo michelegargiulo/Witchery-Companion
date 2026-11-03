@@ -19,7 +19,7 @@ public abstract class EntityPoltergeistMixin extends EntitySummonedUndead {
     /** This mixin overrides superclass' dropFewItems, that is hardcoded to drop spectral dust **/
     @Override
     protected void dropFewItems(boolean recentlyHit, int lootingModifier) {
-        if (!ModConfig.PatchesConfiguration.LootTweaks.banshee_tweakLootTable) {
+        if (!ModConfig.PatchesConfiguration.LootTweaks.poltergeist_tweakLootTable) {
             super.dropFewItems(recentlyHit, lootingModifier);
         }
     }
