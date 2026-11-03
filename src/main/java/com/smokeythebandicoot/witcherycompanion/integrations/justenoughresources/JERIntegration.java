@@ -66,6 +66,8 @@ public class JERIntegration {
 
 
         /** --- Custom Registers --- **/
+        jerMobRegistry.register(new EntityAttackBat(jerWorld), LootTables.ATTACK_BAT);
+
         jerMobRegistry.register(new EntityBanshee(jerWorld), LootTables.BANSHEE);
 
         jerMobRegistry.register(new EntityBabaYaga(jerWorld), LootTables.BABA_YAGA_DEATH);
@@ -122,6 +124,8 @@ public class JERIntegration {
 
         jerMobRegistry.register(new EntityLostSoul(jerWorld), LootTables.LOST_SOUL);
 
+        jerMobRegistry.register(new EntityLordOfTorment(jerWorld), LootTables.LORD_OF_TORMENT);
+
         jerMobRegistry.register(new EntityMindrake(jerWorld), LootTables.MINDRAKE);
 
         jerMobRegistry.register(new EntityNightmare(jerWorld), LootTables.NIGHTMARE);
@@ -140,6 +144,9 @@ public class JERIntegration {
 
         // Only the natural Spirit (type 0) is registered, as the other types would show up as an identical duplicate row
         jerMobRegistry.register(new EntitySpirit(jerWorld), LootTables.SPIRIT_DEFAULT);
+
+        jerMobRegistry.register(new EntityVampire(jerWorld), LootTables.VAMPIRE);
+
         jerMobRegistry.register(new EntityWingedMonkey(jerWorld), LootTables.WINGED_MONKEY);
 
     }
