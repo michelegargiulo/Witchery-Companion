@@ -103,6 +103,10 @@ public class JERIntegration {
         jerMobRegistry.register(new EntityElle(jerWorld), LootTables.ELLE);
 
         jerMobRegistry.register(new EntityFairest(jerWorld), LootTables.FAIREST);
+        jerMobRegistry.registerRenderHook(EntityFairest.class, (renderInfo, entityLivingBase) -> {
+            GlStateManager.translate(0.0f, -0.3f, 0.0f);
+            return renderInfo;
+        });
 
         jerMobRegistry.register(new EntityGoblin(jerWorld), LootTables.HOBGOBLIN);
 
@@ -125,6 +129,11 @@ public class JERIntegration {
         jerMobRegistry.register(new EntityLostSoul(jerWorld), LootTables.LOST_SOUL);
 
         jerMobRegistry.register(new EntityLordOfTorment(jerWorld), LootTables.LORD_OF_TORMENT);
+        jerMobRegistry.registerRenderHook(EntityLordOfTorment.class, (renderInfo, entityLivingBase) -> {
+            GlStateManager.translate(0.0f, -0.35f, 0.0f);
+            GlStateManager.scale(0.75f, 0.75f, 0.75f);
+            return renderInfo;
+        });
 
         jerMobRegistry.register(new EntityMindrake(jerWorld), LootTables.MINDRAKE);
 
