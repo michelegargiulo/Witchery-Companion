@@ -42,6 +42,9 @@ public class LootTables {
     public static ResourceLocation REFLECTION = new ResourceLocation("witchery", "entities/reflection");
     public static ResourceLocation SPECTRAL_FAMILIAR = new ResourceLocation("witchery", "entities/spectral_familiar");
     public static ResourceLocation SPECTRE = new ResourceLocation("witchery", "entities/spectre");
+    public static ResourceLocation SPIRIT_DEFAULT = new ResourceLocation("witchery", "entities/spirit_default");
+    public static ResourceLocation SPIRIT_GUIDE = new ResourceLocation("witchery", "entities/spirit_guide");
+    public static ResourceLocation SPIRIT_VILLAGE = new ResourceLocation("witchery", "entities/spirit_village");
     public static ResourceLocation VAMPIRE = new ResourceLocation("witchery", "entities/vampire");
     public static ResourceLocation WINGED_MONKEY = new ResourceLocation("witchery", "entities/winged_monkey");
 

@@ -1414,6 +1414,10 @@ public class ModConfig {
             @Config.Name("Spectre - Tweak Drop Loot by Table")
             public static boolean spectre_tweakLootTable = true;
 
+            @Config.Comment("If true, Spirit will drop loot according to its Loot Table (witchery:entities/spirit_default, spirit_village or spirit_guide depending on the Spirit type)")
+            @Config.Name("Spirit - Tweak Drop Loot by Table")
+            public static boolean spirit_tweakLootTable = true;
+
             @Config.Comment("If true, Treefyd will drop loot according to its Loot Table (witchery:entities/treefyd)")
             @Config.Name("Treefyd - Tweak Drop Loot by Table")
             public static boolean treefyd_tweakOwnLootTable = true;

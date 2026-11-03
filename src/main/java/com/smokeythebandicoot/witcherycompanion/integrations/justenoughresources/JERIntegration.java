@@ -138,6 +138,8 @@ public class JERIntegration {
 
         jerMobRegistry.register(new EntitySpectre(jerWorld), LootTables.SPECTRE);
 
+        // Only the natural Spirit (type 0) is registered, as the other types would show up as an identical duplicate row
+        jerMobRegistry.register(new EntitySpirit(jerWorld), LootTables.SPIRIT_DEFAULT);
         jerMobRegistry.register(new EntityWingedMonkey(jerWorld), LootTables.WINGED_MONKEY);
 
     }
