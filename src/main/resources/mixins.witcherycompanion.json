@@ -187,6 +187,7 @@
     "witchery.rite.sacrifice.ItemRiteSacrificeMixin",
     "witchery.transformation.CreatureTraitMixin",
     "witchery.transformation.CreatureForm.StatsMixin",
+    "witchery.transformation.VampireCreatureTraitMixin",
     "witchery.util.CreatureUtilMixin",
     "witchery.util.EarthItemsMixin",
     "witchery.util.EntityUtilMixin",

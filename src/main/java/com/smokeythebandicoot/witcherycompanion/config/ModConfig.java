@@ -1516,6 +1516,31 @@ public class ModConfig {
             @Config.Name("Vampire - Fix Eating Normal Food")
             public static boolean vampire_fixFoodDrain = true;
 
+            @Config.Comment("If true, the creatures that a Vampire can drink blood from are decided by the Vampire Blood API, \n" +
+                    "instead of W:R hardcoded check (any animal). Creatures can be added or removed with the option \n" +
+                    "'Vampire - Tweak Blood Sources' or with CraftTweaker. With default settings, the behaviour is the same as W:R. \n" +
+                    "NOTE: Villagers, Village Guards and Players are not affected, their blood is handled by W:R")
+            @Config.Name("Vampire - Tweak Custom Blood Sources")
+            public static boolean vampire_tweakCustomBloodSources = true;
+
+            @Config.Comment("If true (W:R behaviour), every animal is a blood source for a Vampire, together with the creatures \n" +
+                    "listed in 'Vampire - Tweak Blood Sources' or added with CraftTweaker. If false, only the creatures that are \n" +
+                    "explicitly added (by name, by mod or with CraftTweaker) can be drunk from. Requires 'Vampire - Tweak Custom Blood Sources'")
+            @Config.Name("Vampire - Tweak All Animals Are Blood Sources")
+            public static boolean vampire_tweakAnimalsAreBloodSources = true;
+
+            @Config.Comment("List of creatures that a Vampire can drink blood from, on top of W:R animals (unless disabled with 'Vampire - Tweak All Animals Are Blood Sources'). One per line, as: \n" +
+                    "modid:entity;amount;maxFillPercent;damage \n" +
+                    "- 'modid:entity' is the registry name of the creature (use 'modid:*' for all the creatures of a mod). \n" +
+                    "- 'amount' (default 2) is the blood restored by each drink. 0 or less means the creature can NOT be drunk from, \n" +
+                    "even if it is an animal (for example 'minecraft:wolf;0'). \n" +
+                    "- 'maxFillPercent' (default 25) is the percentage (1-100) of max blood that drinking this creature can fill up to. \n" +
+                    "- 'damage' (default 1.0) is the magic damage dealt to the creature by each drink. \n" +
+                    "Only the first field is required. Examples: 'minecraft:zombie', 'twilightforest:*;4;50', 'minecraft:cow;6;25;0'. \n" +
+                    "Entries from CraftTweaker scripts have priority over these. Requires 'Vampire - Tweak Custom Blood Sources'")
+            @Config.Name("Vampire - Tweak Blood Sources")
+            public static String[] vampire_tweakBloodSources = new String[] { };
+
             @Config.Comment("Specify a list of Dimension IDs that have to be considered always-night")
             @Config.Name("Vampire - Tweak Always Night Dimension")
             public static int[] vampire_alwaysNightDimensions = new int[] { };
