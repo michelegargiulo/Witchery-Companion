@@ -17,7 +17,12 @@
     {
       "type": "text",
       "title": "Weaknesses",
-      "text": "Vampire's only source of food is blood. Eating normal food instantly awakes the blood hunger in them, and they will immediately feel much hungrier and their hunger bar is drained completely."
+      "text": "Vampire's only source of food is blood. Eating normal food instantly awakes the blood thirst in them, and they will immediately feel much hungrier as their hunger bar is drained completely.$(p)Animals are a weak source, and they can fill up only a portion of the blood reserve."
+    },
+    {
+      "type": "text",
+      "title": "Weaknesses",
+      "text": "To completely fullfil their desire for blood, Vampires should get it from humans, such as $(item)Villagers$() or $(l:creatures/village_guard)Village Guards$(/l). $(item)Other Players$() are another valid target, but beware, as one that possesses the $(l:circle_magic/curses/wolf)Curse of the Wolf$(/l) will only raise problems."
     },
     {
       "type": "generic/secret_text",
