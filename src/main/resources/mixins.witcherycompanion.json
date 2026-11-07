@@ -193,6 +193,7 @@
     "witchery.util.EntityUtilMixin",
     "witchery.util.ResizingUtilsMixin",
     "witchery.util.WitcheryUtilsMixin",
+    "witchery.world.dimension.spirit.SpiritWorldData.PlayerDataMixin",
     "witchery.world.dimension.spirit.WorldProviderSpiritWorldMixin",
     "witchery.world.dimension.torment.WorldProviderTormentMixin",
     "witchery.world.gen.structure.ChunkPointsOfInterestMixin",

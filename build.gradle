@@ -123,6 +123,9 @@ dependencies {
     // Code Chicken Lib
     compileOnly rfg.deobf('curse.maven:codechickenlib-242818:2779848')
 
+    // Cosmetic Armor Reworked
+    compileOnly rfg.deobf('curse.maven:cosmeticarmorreworked-237307:2937869')
+
     // Had Enough Items
     compileOnly rfg.deobf('curse.maven:hei-557549:5229422')
 

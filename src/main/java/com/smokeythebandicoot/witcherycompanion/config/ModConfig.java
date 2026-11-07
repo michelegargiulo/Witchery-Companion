@@ -1462,6 +1462,19 @@ public class ModConfig {
             @Config.RangeInt(min = 0, max = 6000)
             public static int spiritWorld_tweakNightmareSpawnCooldown = 600;
 
+            @Config.Comment("If true, the items in the extra inventory slots that other mods add to the player (Baubles, Bring Me The Rings " +
+                    "through it, and Cosmetic Armor Reworked) are treated like the rest of the inventory when crossing the Spirit World barrier: the ones that are not allowed " +
+                    "to cross (see the CraftTweaker lists mods.smokeythebandicoot.witcherycompanion.SpiritWorld) are stored and given back when " +
+                    "the player comes back. If false, items in those slots always cross, as in Witchery")
+            @Config.Name("Spirit World - Tweak Extra Slots Follow Transfer Lists")
+            public static boolean spiritWorld_tweakExtraSlotsFollowTransferLists = false;
+
+            @Config.Comment("If true, every Spirit World crossing writes in the log whether the extra slots tweak is enabled, which extra slot " +
+                    "providers (Baubles, Cosmetic Armor...) are registered and which items are stored and given back. Very verbose: use it " +
+                    "only to investigate a problem")
+            @Config.Name("Spirit World - Debug Transfer")
+            public static boolean spiritWorld_debugTransfer = false;
+
             @Config.Comment("Sets the dimension ID for the Spirit World dimension")
             @Config.Name("Spirit World - Tweak Dimension ID")
             @Config.RequiresMcRestart
@@ -1634,6 +1647,11 @@ public class ModConfig {
             @Config.Name("Botania Integration - Fix Crash On Vampire Death")
             @Config.RequiresMcRestart
             public static boolean fixCrashOnVampireDeath = true;
+
+            @Config.Comment("If true, the button that opens the Baubles inventory is always shown in the player inventory, also in the Spirit World, " +
+                    "where Witchery removes it together with the other buttons of the screen (like the recipe book one)")
+            @Config.Name("Baubles Integration - Tweak Show Baubles Button In Spirit World")
+            public static boolean tweakShowBaublesButtonInSpiritWorld = false;
 
         }
 

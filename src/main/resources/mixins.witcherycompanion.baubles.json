@@ -11,6 +11,7 @@
     "item.ItemMoonCharmMixin"
   ],
   "client": [
+    "client.ClientEventsMixin"
   ],
   "minVersion": "0.8"
 }
