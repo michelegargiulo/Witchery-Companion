@@ -29,6 +29,7 @@ import java.util.UUID;
  [Tweak] Tweak Nightmare spawn cap
  [Tweak] Tweak Nightmare spawning cooldown after last kill
  [Integration] CraftTweaker control over the items that cross the Spirit World barrier (entering/exiting)
+ [Tweak] Extra inventory slots (Baubles...) follow the lists of items that cross the Spirit World barrier
  */
 @Mixin(WorldProviderSpiritWorld.class)
 public class WorldProviderSpiritWorldMixin {
@@ -149,6 +150,7 @@ public class WorldProviderSpiritWorldMixin {
             target = "Lnet/msrandom/witchery/integration/IntegrationManager;dropPlayerBackpack(Lnet/minecraft/entity/player/EntityPlayer;)V"))
     private static void extractEnteringItems(EntityPlayer player, double nightmareChance, CallbackInfo ci) {
         SpiritWorldTransferApi.extractEnteringItems(player);
+        SpiritWorldTransferApi.stashExtraSlots(player, true);
     }
 
     /** Gives back the items taken out by extractEnteringItems, once the inventory has been swapped **/
@@ -156,6 +158,8 @@ public class WorldProviderSpiritWorldMixin {
             target = "Lnet/msrandom/witchery/world/dimension/spirit/WorldProviderSpiritWorld;changeDimension(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/DimensionType;)V"))
     private static void restoreEnteringItems(EntityPlayer player, double nightmareChance, CallbackInfo ci) {
         SpiritWorldTransferApi.restoreEnteringItems(player);
+        // Not gated by the config: whatever was stored is given back even if the tweak has been disabled since
+        SpiritWorldTransferApi.restoreExtraSlots(player, true);
     }
 
     /** Same as filterNativeEnteringItems, for the items carried out of the Spirit World. Witchery only runs some of
@@ -177,6 +181,7 @@ public class WorldProviderSpiritWorldMixin {
     private static void extractExitingItems(EntityPlayer player, CallbackInfo ci) {
         if (WitcheryDimensions.SPIRIT_WORLD.isInDimension(player)) {
             SpiritWorldTransferApi.extractExitingItems(player);
+            SpiritWorldTransferApi.stashExtraSlots(player, false);
         }
     }
 
@@ -185,5 +190,7 @@ public class WorldProviderSpiritWorldMixin {
             target = "Lnet/msrandom/witchery/world/dimension/spirit/SpiritWorldData;setNightmareLevel(Lnet/msrandom/witchery/world/dimension/spirit/SpiritWorldData$NightmareLevel;)V"))
     private static void restoreExitingItems(EntityPlayer player, CallbackInfo ci) {
         SpiritWorldTransferApi.restoreExitingItems(player);
+        // Not gated by the config: whatever was stored is given back even if the tweak has been disabled since
+        SpiritWorldTransferApi.restoreExtraSlots(player, false);
     }
 }

@@ -4,7 +4,10 @@ import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.CapabilityWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.commands.WitcheryBloodCommand;
 import com.smokeythebandicoot.witcherycompanion.commands.WitcheryProgressCommand;
+import com.smokeythebandicoot.witcherycompanion.api.SpiritWorldTransferApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.integrations.baubles.spiritworld.BaublesExtraSlotsProvider;
+import com.smokeythebandicoot.witcherycompanion.integrations.cosmeticarmor.spiritworld.CosmeticArmorExtraSlotsProvider;
 import com.smokeythebandicoot.witcherycompanion.integrations.justenoughresources.JERIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.quark.BlockMandrakeCropIntegration;
@@ -88,6 +91,14 @@ public class CommonProxy {
         if (Loader.isModLoaded(Mods.JER) &&
                 ModConfig.IntegrationConfigurations.JerIntegration.enableJerIntegration) {
             JERIntegration.init();
+        }
+
+        // Extra inventory slots that follow the Spirit World transfer lists. Bring Me The Rings is covered by Baubles
+        if (Loader.isModLoaded(Mods.BAUBLES)) {
+            SpiritWorldTransferApi.registerExtraSlotsProvider(new BaublesExtraSlotsProvider());
+        }
+        if (Loader.isModLoaded(Mods.COSMETIC_ARMOR)) {
+            SpiritWorldTransferApi.registerExtraSlotsProvider(new CosmeticArmorExtraSlotsProvider());
         }
 
         // Does not have a config to disable, as it just registers the flags
