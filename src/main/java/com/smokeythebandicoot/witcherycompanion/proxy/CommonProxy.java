@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.proxy;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.CapabilityWitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.commands.WitcheryBloodCommand;
 import com.smokeythebandicoot.witcherycompanion.commands.WitcheryProgressCommand;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.justenoughresources.JERIntegration;
@@ -118,6 +119,7 @@ public class CommonProxy {
 
     protected void registerCommands(FMLServerStartingEvent event) {
         event.registerServerCommand(new WitcheryProgressCommand());
+        event.registerServerCommand(new WitcheryBloodCommand());
     }
 
     protected void registerLootConditions() {
