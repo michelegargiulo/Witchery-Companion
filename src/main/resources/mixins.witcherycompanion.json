@@ -67,6 +67,7 @@
     "witchery.brewing.LiquidDispersalMixin",
     "witchery.brewing.TriggeredDispersalMixin",
     "witchery.brewing.UpgradeableModifierMixin",
+    "witchery.brewing.action.BrewActionRitualMixin",
     "witchery.brewing.action.CapacityBrewActionMixin",
     "witchery.brewing.action.IncrementBrewActionMixin",
     "witchery.brewing.action.UpgradeBrewActionMixin",

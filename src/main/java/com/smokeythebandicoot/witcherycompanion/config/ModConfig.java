@@ -87,6 +87,14 @@ public class ModConfig {
             @Config.Name("Triggered Dispersal Tweaks")
             public static TriggeredDispersalTweaks triggeredDispersal;
 
+            @Config.Comment("Factor of the range at which a Brew Ritual can be cast from the circle. With a coven of N witches (less " +
+                    "than 6) the maximum distance is 2 * ((N + 1) * factor)^2 blocks, in the same dimension. Default: 4, as in " +
+                    "Witchery. Lower values mean that more witches are needed to reach the same range. A coven of 6 or more witches " +
+                    "has no distance limit (and no dimension limit, with a Leonard's potion), whatever this value")
+            @Config.Name("Brew Ritual - Tweak Range Factor Per Witch")
+            @Config.RangeInt(min = 1, max = 1000)
+            public static int brewRitual_tweakRangeFactorPerWitch = 4;
+
             @Config.Comment("Needs to be enabled for some Brew Patches to work. Enabled for extended flexibility on when certain" +
                     "brews should be applied")
             @Config.Name("Common - Extend Flexibility")
