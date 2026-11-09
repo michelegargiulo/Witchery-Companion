@@ -896,6 +896,13 @@ public class ModConfig {
             @Config.Name("Circle - Fix Seer Stone Crash Without Coven")
             public static boolean circle_fixCovenSummonWithoutCoven = true;
 
+            @Config.Comment("If true, a circle can summon more than 6 Coven Witches before a rite (only possible when the " +
+                    "maximum coven size is raised): Witchery only has a position and facing for six witches, and with a " +
+                    "bigger coven the summoning stage crashes the game (ArrayIndexOutOfBoundsException). The additional " +
+                    "witches stand on concentric rings around the circle, looking at its center")
+            @Config.Name("Circle - Fix Summon More Than Six Coven Witches")
+            public static boolean circle_fixCovenSummonPositions = true;
+
             @Config.Comment("Blocks of range that each witch of the coven adds to the maximum range at which a rite can be " +
                     "performed from the circle: the range is (coven size + 1) times this value. Default: 50, as in " +
                     "Witchery. Lower values mean that more witches are needed to reach the same range. Does not affect " +
@@ -926,6 +933,13 @@ public class ModConfig {
             @Config.Name("Rite Curse Creature - Tweak Strength")
             @Config.RangeInt(min = 1, max = 16)
             public static int curseCreature_tweakStrength = 1;
+
+            @Config.Comment("If true, fixes the full coven bonus of the Rite Curse Creature being granted only when the coven " +
+                    "has exactly 6 witches: with a bigger coven (maximum coven size raised) the rite got the smaller " +
+                    "bonus of a coven of 3 or more, so more witches meant a weaker curse. With this fix a coven of 6 or " +
+                    "more gets the full coven bonus. No effect with the default maximum coven size")
+            @Config.Name("Rite Curse Creature - Fix Bonus With Large Coven")
+            public static boolean curseCreature_fixLargeCovenBonus = true;
 
             @Config.Comment("Multiplies the damage taken by a Voodoo Protection Poppet when the owner is protected by " +
                     "this ritual. Default: 3")
@@ -1044,6 +1058,16 @@ public class ModConfig {
                     "the player holds more items than needed, the quest goes into negative item amount requirement")
             @Config.Name("Coven Witch - Fix Negative Request Amount")
             public static boolean covenWitch_fixNegativeRequestAmount = true;
+
+            @Config.Comment("Maximum number of Coven Witches that a player can have in the coven. Default: 6, as in Witchery. " +
+                    "Witches beyond the sixth are placed on outer rings when a circle summons the coven. WARN: the rites that " +
+                    "require a full coven (Curse of the Wolf, Remove Vampirism) keep requiring 6 additional witches, so a " +
+                    "value below 6 makes them impossible to perform. Checking that the value is correct for the modpack is " +
+                    "up to the pack maker. Also, the range of a rite grows with the coven size, see 'Circle - Tweak Rite " +
+                    "Range Per Witch'. Existing witches are never removed if the value is lowered")
+            @Config.Name("Coven Witch - Tweak Max Coven Size")
+            @Config.RangeInt(min = 1, max = 127)
+            public static int covenWitch_tweakMaxCovenSize = 6;
 
             @Config.Comment("When the game mode is set to Peaceful, some quests cannot be completed. To avoid this, set this number to " +
                     "a value greater than zero, as it represents the number of times the quest can be re-rolled. More attempts means less performance, " +

@@ -124,6 +124,7 @@
     "witchery.entity.passive.EntityOwlMixin",
     "witchery.entity.passive.EntityToadMixin",
     "witchery.entity.passive.coven.EntityCovenWitchMixin",
+    "witchery.entity.passive.coven.EntityCovenWitch.CompanionMixin",
     "witchery.extensions.PlayerExtendedDataMixin",
     "witchery.extensions.VillagerExtendedDataMixin",
     "witchery.infusion.InfusionMixin",

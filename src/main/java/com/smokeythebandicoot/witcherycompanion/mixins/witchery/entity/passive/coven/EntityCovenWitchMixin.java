@@ -27,7 +27,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -40,6 +42,8 @@ import java.util.Random;
  * [Bugfix] Fix quest number of items needed going into negatives
  * [Tweak] Introduce own loot table
  * [Feature] Unlock quest secrets
+ * [Tweak] Configurable maximum coven size
+ * [Feature] Unlock coven size secrets
  */
 @ParametersAreNonnullByDefault
 @Mixin(value = EntityCovenWitch.class)
@@ -114,11 +118,22 @@ public abstract class EntityCovenWitchMixin extends EntityTameable {
         }
     }
 
+    /** Witchery considers the coven full with 6 witches (the only 6 in isCovenFull). The maximum is configurable, and
+     * the "coven full" progress and quest rerolls follow it, as they use the same method */
+    @ModifyConstant(method = "isCovenFull", remap = false, constant = @Constant(intValue = 6))
+    private int witcherycompanion$maxCovenSize(int original) {
+        return ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_tweakMaxCovenSize;
+    }
+
     /** This Mixin unlocks the corresponding quest's secret when the player completes a quest, and ALL of them when
-     * the player has a full coven **/
+     * the player has a full coven. It also unlocks the secrets of the coven size reached (the unlock ignores the ones
+     * the player already has, so it is fine that this also runs if the witch could not be added) **/
     @Inject(method = "processInteract", remap = false, cancellable = false, at = @At(value = "INVOKE", remap = false, shift = At.Shift.AFTER,
             target = "Lnet/msrandom/witchery/entity/passive/coven/EntityCovenWitch;addToPlayerCoven(Lnet/minecraft/entity/player/EntityPlayer;)Z"))
     private void unlockSecretQuestCompleted(EntityPlayer player, EnumHand hand, CallbackInfoReturnable<Boolean> cir) {
+        ProgressUtils.unlockCovenSizeProgress(player,
+                WitcheryProgressEvent.EProgressTriggerActivity.COVEN_SIZE.activityTrigger);
+
         ResourceLocation questId = CovenQuestManager.INSTANCE.getRegistry().getKey(this.quest);
         if (questId != null) {
             ProgressUtils.unlockProgress(player, ProgressUtils.getCovenQuestSecret(questId),

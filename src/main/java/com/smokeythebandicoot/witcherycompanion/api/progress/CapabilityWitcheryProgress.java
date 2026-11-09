@@ -138,6 +138,11 @@ public class CapabilityWitcheryProgress {
         public static void onPlayerLogsIn(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent event) {
 
             EntityPlayerMP player = (EntityPlayerMP) event.player;
+
+            // Players that already had a coven before coven size progress existed unlock it retroactively
+            ProgressUtils.unlockCovenSizeProgress(player,
+                    WitcheryProgressEvent.EProgressTriggerActivity.COVEN_SIZE.activityTrigger);
+
             ProgressSync.serverRequest(player);
 
         }

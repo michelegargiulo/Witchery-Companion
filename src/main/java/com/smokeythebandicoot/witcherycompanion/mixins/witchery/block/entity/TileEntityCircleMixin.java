@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
@@ -7,6 +8,7 @@ import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.utils.CovenSummonPositions;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -25,6 +27,7 @@ import static com.smokeythebandicoot.witcherycompanion.api.progress.CapabilityWi
  * Mixins:
  * [Feature] Unlock secret recipes
  * [Bugfix] Crash (IndexOutOfBoundsException) when a rite is started with a Seer Stone by a player that has no coven
+ * [Bugfix] Crash (ArrayIndexOutOfBoundsException) when a circle summons more than 6 Coven Witches
  */
 @Mixin(TileEntityCircle.class)
 public abstract class TileEntityCircleMixin extends WitcheryTileEntity {
@@ -46,6 +49,21 @@ public abstract class TileEntityCircleMixin extends WitcheryTileEntity {
 
         // Return original result
         return result;
+    }
+
+    /**
+     * Witchery has a position for each of the 6 witches of a coven, and reads it with the index of the witch being
+     * summoned. With a bigger coven (maximum coven size raised) the index is out of the array. The array is replaced by
+     * one with the same first entries and more positions on outer rings. Each witch is read once, so replacing the
+     * array does not change when the index is advanced
+     */
+    @ModifyExpressionValue(method = "update", at = @At(value = "FIELD", remap = false,
+            target = "Lnet/msrandom/witchery/block/entity/TileEntityCircle;COVEN_WITCH_POSITIONS:[Lnet/minecraft/util/math/BlockPos;"))
+    private BlockPos[] witcherycompanion$extendCovenWitchPositions(BlockPos[] original) {
+        if (ModConfig.PatchesConfiguration.RitesTweaks.circle_fixCovenSummonPositions) {
+            return CovenSummonPositions.extendPositions(original);
+        }
+        return original;
     }
 
     /**
