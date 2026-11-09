@@ -796,6 +796,13 @@ public class ModConfig {
             @Config.Name("Creative Medallion - Tweak Disable Creative Requirement")
             public static boolean creativeMedallion_tweakDisableCreativeRequirement = false;
 
+            @Config.Comment("If true, the Creative Medallion has a Coven tab to set the number of witches in the player's coven (also " +
+                    "through the server, so it must be enabled there too). The size is set directly, ignoring the requirements " +
+                    "of the quests and without a Familiar. Meant for testing. The size goes from 0 to the maximum coven size, see " +
+                    "'Coven Witch - Tweak Max Coven Size'")
+            @Config.Name("Creative Medallion - Tweak Coven Size Tab")
+            public static boolean creativeMedallion_tweakCovenSizeTab = true;
+
             @Config.Comment("If true, Spectral Stones won't dupe the entity they contain")
             @Config.Name("Spectral Stone - Fix Entity Dupe Exploit")
             public static boolean spectralStone_fixEntityReleaseExploit = true;

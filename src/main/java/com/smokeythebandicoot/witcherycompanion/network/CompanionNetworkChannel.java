@@ -12,10 +12,14 @@ public class CompanionNetworkChannel {
     // Message IDs
     private final static int MESSAGE_WITCHERY_PROGRESS_REQUEST = 0;
     private final static int MESSAGE_WITCHERY_PROGRESS_RESPONSE = 1;
+    private final static int MESSAGE_COVEN_SIZE_REQUEST = 2;
+    private final static int MESSAGE_COVEN_SIZE_RESPONSE = 3;
 
     // Register messages on run
     public static void registerMessages() {
         NETWORK_CHANNEL.registerMessage(PacketWitcheryProgressRequest.Handler.class, PacketWitcheryProgressRequest.Message.class, MESSAGE_WITCHERY_PROGRESS_REQUEST, Side.SERVER);
         NETWORK_CHANNEL.registerMessage(PacketWitcheryProgressResponse.Handler.class, PacketWitcheryProgressResponse.Message.class, MESSAGE_WITCHERY_PROGRESS_RESPONSE, Side.CLIENT);
+        NETWORK_CHANNEL.registerMessage(PacketCovenSizeRequest.Handler.class, PacketCovenSizeRequest.Message.class, MESSAGE_COVEN_SIZE_REQUEST, Side.SERVER);
+        NETWORK_CHANNEL.registerMessage(PacketCovenSizeResponse.Handler.class, PacketCovenSizeResponse.Message.class, MESSAGE_COVEN_SIZE_RESPONSE, Side.CLIENT);
     }
 }

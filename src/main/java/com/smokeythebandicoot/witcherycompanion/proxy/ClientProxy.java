@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.proxy;
 
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.client.CreativeMedallionTabHandler;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
 import com.smokeythebandicoot.witcherycompanion.patches.transformation.VampireKeybindsHandler;
@@ -60,6 +61,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
+
+        // Coven tab of the Creative Medallion. Does nothing if the config disables it
+        MinecraftForge.EVENT_BUS.register(CreativeMedallionTabHandler.class);
 
         if (ModConfig.PatchesConfiguration.TransformationTweaks.vampire_tweakOverhaulAbilitiesKeybind) {
 
