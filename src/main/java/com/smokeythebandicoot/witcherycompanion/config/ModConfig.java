@@ -896,6 +896,14 @@ public class ModConfig {
             @Config.Name("Circle - Fix Seer Stone Crash Without Coven")
             public static boolean circle_fixCovenSummonWithoutCoven = true;
 
+            @Config.Comment("Blocks of range that each witch of the coven adds to the maximum range at which a rite can be " +
+                    "performed from the circle: the range is (coven size + 1) times this value. Default: 50, as in " +
+                    "Witchery. Lower values mean that more witches are needed to reach the same range. Does not affect " +
+                    "the range of rituals performed with brews")
+            @Config.Name("Circle - Tweak Rite Range Per Witch")
+            @Config.RangeInt(min = 1, max = 100000)
+            public static int circle_tweakRiteRangePerWitch = 50;
+
             @Config.Comment("If true, fixes circles being recognized as complete when most of the chalk is missing: a single " +
                     "chalk in the right place was enough for the rite to start. With this fix every piece of the circle " +
                     "must be drawn, or the rite does not start. Setting this to false restores the previous behaviour")

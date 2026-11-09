@@ -182,6 +182,7 @@
     "witchery.rite.effect.RiteEffectPartEarth.DirectionMixin",
     "witchery.rite.RiteConditions.RiteConditionMixin",
     "witchery.rite.Rite.RiteIsMatchCircleGlyphMixin",
+    "witchery.rite.RiteHandlerMixin",
     "witchery.rite.RiteMixin",
     "witchery.rite.sacrifice.CopyDataSacrificedItemReturnMixin",
     "witchery.rite.sacrifice.ItemRiteSacrificeMixin",
