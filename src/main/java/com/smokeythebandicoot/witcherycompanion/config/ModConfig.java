@@ -1077,6 +1077,21 @@ public class ModConfig {
             @Config.RangeInt(min = 1, max = 127)
             public static int covenWitch_tweakMaxCovenSize = 6;
 
+            @Config.Comment("If true, W:C handles the quests of the Coven Witches: a witch chooses the quest among the ones that " +
+                    "are offered at the size of the player's coven (level), with a weighted random choice, and only if the player " +
+                    "meets the requirements of the quest. It also enables the quest events and the custom quests of the API. " +
+                    "Without any script or addon, the quests are chosen as in Witchery (every quest, same chance, only if the " +
+                    "player has an active familiar). If false, W:R handles the quests, and custom quests are not added")
+            @Config.Name("Coven Witch - Tweak Dynamic Quests")
+            public static boolean covenWitch_tweakQuestSystem = true;
+
+            @Config.Comment("If true, when a witch joins the coven of a player, the other witches that offered a quest to that player " +
+                    "(accepted or not) forget it, and the items they still needed: their next quest is chosen with the new size of " +
+                    "the coven, as if the player had never talked to them. A player completes one quest at a time. Only the " +
+                    "witches that are loaded are reset. Needs 'Coven Witch - Tweak Dynamic Quests'")
+            @Config.Name("Coven Witch - Tweak Reset Quests When A Witch Joins")
+            public static boolean covenWitch_tweakResetQuestsOnJoin = true;
+
             @Config.Comment("When the game mode is set to Peaceful, some quests cannot be completed. To avoid this, set this number to " +
                     "a value greater than zero, as it represents the number of times the quest can be re-rolled. More attempts means less performance, " +
                     "less attempts means that from time to time a Fight quest can happen in peaceful")
