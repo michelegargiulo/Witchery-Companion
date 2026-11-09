@@ -242,7 +242,6 @@ public class SpiritWorldTransferApi {
      * allowed to cross stay in their slot. Call it right before Witchery stores the inventory
      */
     public static void stashExtraSlots(EntityPlayer player, boolean entering) {
-        String direction = entering ? "entering" : "exiting";
         if (!DimensionTweaks.spiritWorld_tweakExtraSlotsFollowTransferLists) {
             return;
         }
