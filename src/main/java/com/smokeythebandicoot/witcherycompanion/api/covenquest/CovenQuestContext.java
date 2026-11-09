@@ -14,7 +14,7 @@ import java.util.UUID;
  * When a quest is checked, the handler (or the event listeners) fill the answer with {@link #setComplete()},
  * {@link #setProgress(int)} or {@link #setNotFinished()}, optionally with {@link #setMessage(String)}.
  * If nobody answers, a quest that works with items behaves like the quests of W:R (the needed items are taken from the
- * stack, one by one, until the witch has all of them) and any other quest is not finished.
+ * stack until the witch has all of them) and a PROGRESS quest is not finished.
  */
 public class CovenQuestContext {
 

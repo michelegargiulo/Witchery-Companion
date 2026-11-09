@@ -1723,6 +1723,13 @@ public class ModConfig {
             @Config.RequiresMcRestart
             public static boolean enableCustomRites = true;
 
+            @Config.Comment("If true enables CraftTweaker integration for the quests of the Coven Witches: custom quests with " +
+                    "their logic written in ZenScript, and the levels, weights and requirements of every quest, with " +
+                    "mods.smokeythebandicoot.witcherycompanion.CovenQuests. Needs 'Coven Witch - Tweak Dynamic Quests'")
+            @Config.Name("CraftTweaker Integration - Enable Coven Quests")
+            @Config.RequiresMcRestart
+            public static boolean enableCovenQuests = true;
+
             @Config.Comment("If true, Custom Rites write diagnostic lines in the log: which ingredient every sacrifice " +
                     "uses when a custom rite starts, and the result of every item test. Very verbose: use it only to " +
                     "investigate a problem")

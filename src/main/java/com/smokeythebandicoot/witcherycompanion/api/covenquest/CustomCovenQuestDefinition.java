@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.api.covenquest;
 
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -19,7 +20,8 @@ import java.util.function.Predicate;
  * </ul>
  * The texts are optional: the witch says them instead of the ones in the lang files. Placeholders: {remaining} (items
  * still needed) and {player}.
- * The level range, weight and requirements (see CovenQuestEntry) default to the ones of Witchery.
+ * The level range, weight and requirements (see CovenQuestEntry) default to the ones of Witchery: levels from 0 to the
+ * maximum coven size - 1 (so every level), weight 1, the player must have an active familiar.
  */
 public class CustomCovenQuestDefinition {
 
@@ -38,7 +40,7 @@ public class CustomCovenQuestDefinition {
     @Nullable private String completeText;
 
     private int minLevel = 0;
-    private int maxLevel = -1;
+    private int maxLevel = ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_tweakMaxCovenSize - 1;
     private int weight = 1;
     private List<CovenQuestRequirement> requirements = CovenQuestRequirement.witcheryDefault();
 

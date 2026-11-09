@@ -9,9 +9,7 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.msrandom.witchery.common.CovenWitchData;
-import net.msrandom.witchery.common.IPowerSource;
 import net.msrandom.witchery.common.InfusionPower;
-import net.msrandom.witchery.common.PowerSources;
 import net.msrandom.witchery.entity.familiar.FamiliarType;
 import net.msrandom.witchery.entity.familiar.Familiars;
 import net.msrandom.witchery.entity.passive.coven.CovenQuest;
@@ -51,9 +49,7 @@ public final class CovenQuestRequirement {
         /** The player has already completed a certain quest (a witch of their coven completed it) */
         PREVIOUS_QUEST,
         /** The player has visited a certain dimension: spirit_world, torment or mirror */
-        DIMENSION_VISITED,
-        /** The altar closest to the player holds at least a certain amount of power */
-        ALTAR_POWER
+        DIMENSION_VISITED
     }
 
     /** Dimensions that W:C keeps track of (see ProgressUtils.getDimensionSecret) */
@@ -111,10 +107,6 @@ public final class CovenQuestRequirement {
         return new CovenQuestRequirement(Type.DIMENSION_VISITED, null, dimension, 0);
     }
 
-    public static CovenQuestRequirement altarPower(int minPower) {
-        return new CovenQuestRequirement(Type.ALTAR_POWER, null, null, minPower);
-    }
-
     /** The requirement of Witchery: the player has an active familiar, of any kind */
     public static List<CovenQuestRequirement> witcheryDefault() {
         List<CovenQuestRequirement> list = new ArrayList<>();
@@ -146,7 +138,6 @@ public final class CovenQuestRequirement {
             case BOTTLING_SKILL:
             case WEREWOLF:
             case VAMPIRE:
-            case ALTAR_POWER:
                 if (amount < 0) problems.add(type + " requirement with a negative amount");
                 break;
             default:
@@ -172,9 +163,6 @@ public final class CovenQuestRequirement {
                 return isPreviousQuestMet(player);
             case DIMENSION_VISITED:
                 return hasProgress(player, ProgressUtils.getDimensionSecret(name));
-            case ALTAR_POWER:
-                IPowerSource source = PowerSources.findClosestPowerSource(player.world, player.getPosition());
-                return source != null && source.getCurrentPower() >= amount;
             default:
                 return true;
         }

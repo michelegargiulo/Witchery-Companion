@@ -16,6 +16,7 @@ import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
@@ -44,14 +45,23 @@ import java.util.UUID;
  * <ul>
  *     <li>offering a quest (first right-click): the quest is chosen by CovenQuestApi (levels, weights, requirements)</li>
  *     <li>accepting it (second right-click): same as W:R, and the CovenQuestAcceptedEvent is posted</li>
- *     <li>checking it (next right-clicks): only for custom quests, which are checked by their handler and the
- *     CovenQuestCheckEvent. Quests of W:R keep being checked by W:R</li>
+ *     <li>checking it (next right-clicks): for every quest (the ones of W:R too). The quest is checked like W:R does, and
+ *     the CovenQuestCheckEvent is posted (and the handler is run, for custom quests), so that listeners can change what
+ *     happens</li>
  * </ul>
  * The messages and the order of the operations are the ones of W:R's EntityCovenWitch.processInteract.
+ * The witch also remembers the level (coven size) at which she chose the quest, in her Forge entity data: if the coven of the
+ * player has a different size when they talk again (a witch joined while she was not loaded), she forgets the quest.
  */
 public final class CovenQuestInteraction {
 
+    /** Key of the NBT of W:R's fight quest drops with the UUID of the witch that sent the pet */
+    private static final String QUEST_OWNER_KEY = "WitcheryQuestOwnerID";
+
     private CovenQuestInteraction() { }
+
+    /** Key, in the Forge data of the witch, of the coven size at which she chose the quest she is offering */
+    private static final String LEVEL_KEY = WitcheryCompanion.prefix("coven_quest_level");
 
     /**
      * @return true if the interaction was handled here (nothing else must happen), false if W:R has to handle it
@@ -59,6 +69,13 @@ public final class CovenQuestInteraction {
     public static boolean handle(EntityCovenWitch witch, ICovenWitchAccessor accessor, EntityPlayer player, EnumHand hand) {
         boolean accepted = accessor.witcherycompanion$accessor$isQuestAccepted();
         boolean offeredToPlayer = player.getUniqueID().equals(accessor.witcherycompanion$accessor$getQuestOfferedTo());
+
+        if (offeredToPlayer && isStale(witch, player)) {
+            // The coven has changed size since the quest was chosen: it is as if the player met the witch for the first time
+            resetQuest(witch, accessor);
+            accepted = false;
+            offeredToPlayer = false;
+        }
 
         if (!accepted) {
             if (!offeredToPlayer) {
@@ -69,12 +86,19 @@ public final class CovenQuestInteraction {
             return true;
         }
 
-        CovenQuest quest = accessor.witcherycompanion$accessor$getQuest();
-        if (offeredToPlayer && quest instanceof CustomCovenQuest) {
-            checkCustomQuest(witch, accessor, player, hand, (CustomCovenQuest) quest);
+        if (offeredToPlayer) {
+            checkQuest(witch, accessor, player, hand);
             return true;
         }
         return false;
+    }
+
+    /** True if the witch chose her quest when the coven of the player had a different size. Quests that were offered before
+     * the witch started to remember the level are never stale */
+    private static boolean isStale(EntityCovenWitch witch, EntityPlayer player) {
+        if (!ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_tweakResetQuestsOnJoin) return false;
+        NBTTagCompound data = witch.getEntityData();
+        return data.hasKey(LEVEL_KEY) && data.getInteger(LEVEL_KEY) != PlayerExtendedDataApi.getCovenSize(player);
     }
 
     // ---- First right-click: the witch offers a quest
@@ -96,6 +120,7 @@ public final class CovenQuestInteraction {
         CovenQuest quest = CovenQuestManager.INSTANCE.getRegistry().get(questId);
         accessor.witcherycompanion$accessor$setQuestOfferedTo(player.getUniqueID());
         accessor.witcherycompanion$accessor$setQuest(quest);
+        witch.getEntityData().setInteger(LEVEL_KEY, PlayerExtendedDataApi.getCovenSize(player));
         if (quest == null) return;
 
         accessor.witcherycompanion$accessor$setQuestItemsNeeded(quest.getItemsNeeded());
@@ -157,29 +182,36 @@ public final class CovenQuestInteraction {
         accessor.witcherycompanion$accessor$playWitchTalk();
     }
 
-    // ---- Next right-clicks: the player tries to complete a custom quest
+    // ---- Next right-clicks: the player tries to complete the quest
 
-    private static void checkCustomQuest(EntityCovenWitch witch, ICovenWitchAccessor accessor, EntityPlayer player,
-                                         EnumHand hand, CustomCovenQuest quest) {
+    private static void checkQuest(EntityCovenWitch witch, ICovenWitchAccessor accessor, EntityPlayer player, EnumHand hand) {
         if (accessor.witcherycompanion$accessor$isCovenFull(player)) {
-            resetQuest(accessor);
+            resetQuest(witch, accessor);
             accessor.witcherycompanion$accessor$say("full_coven", player);
             return;
         }
 
-        CustomCovenQuestDefinition definition = quest.getDefinition();
-        ItemStack stack = player.getHeldItem(hand);
-        boolean progressQuest = definition.getMode() == CustomCovenQuestDefinition.Mode.PROGRESS;
-        if (!progressQuest && !quest.matches(stack)) {
-            notFinished(witch, accessor, player, definition.getNotFinishedText(), accessor.witcherycompanion$accessor$getQuestItemsNeeded());
+        CovenQuest quest = accessor.witcherycompanion$accessor$getQuest();
+        CustomCovenQuestDefinition definition = quest instanceof CustomCovenQuest ? ((CustomCovenQuest) quest).getDefinition() : null;
+        ResourceLocation questId = quest == null ? null : CovenQuestManager.INSTANCE.getRegistry().getKey(quest);
+        int remaining = accessor.witcherycompanion$accessor$getQuestItemsNeeded();
+        if (questId == null) {
+            // W:R would crash here, a witch cannot check a quest she does not have
+            accessor.witcherycompanion$accessor$say("task_not_finished", player);
             return;
         }
 
-        ResourceLocation questId = CovenQuestManager.INSTANCE.getRegistry().getKey(quest);
-        int remaining = accessor.witcherycompanion$accessor$getQuestItemsNeeded();
+        ItemStack stack = player.getHeldItem(hand);
+        boolean progressQuest = definition != null && definition.getMode() == CustomCovenQuestDefinition.Mode.PROGRESS;
+        boolean relevant = progressQuest || (definition != null ? ((CustomCovenQuest) quest).matches(stack) : isQuestItemForWitch(stack, witch, quest));
+        if (!relevant) {
+            notFinished(witch, accessor, player, definition == null ? null : definition.getNotFinishedText(), remaining);
+            return;
+        }
+
         CovenQuestContext context = new CovenQuestContext(player, witch, questId, stack, hand,
                 PlayerExtendedDataApi.getCovenSize(player), remaining);
-        runHandler(definition.getHandler(), context, false);
+        if (definition != null) runHandler(definition.getHandler(), context, false);
         MinecraftForge.EVENT_BUS.post(new CovenQuestCheckEvent(context));
 
         boolean creative = player.capabilities.isCreativeMode;
@@ -204,6 +236,7 @@ public final class CovenQuestInteraction {
             accessor.witcherycompanion$accessor$setQuestItemsNeeded(remaining);
         }
 
+        String progressText = definition == null ? null : definition.getProgressText();
         switch (outcome) {
             case COMPLETE:
                 completeQuest(witch, accessor, player, definition, context, questId);
@@ -211,8 +244,8 @@ public final class CovenQuestInteraction {
             case PROGRESS:
                 if (context.getMessage() != null) {
                     sayRaw(witch, accessor, player, context.getMessage(), remaining);
-                } else if (definition.getProgressText() != null) {
-                    sayRaw(witch, accessor, player, definition.getProgressText(), remaining);
+                } else if (progressText != null) {
+                    sayRaw(witch, accessor, player, progressText, remaining);
                 } else {
                     ITextComponent message = new TextComponentTranslation("entity.witchery.coven_witch.say.items_needed",
                             witch.getCustomNameTag(), remaining);
@@ -222,15 +255,25 @@ public final class CovenQuestInteraction {
                 }
                 break;
             default:
-                notFinished(witch, accessor, player, context.getMessage() != null ? context.getMessage() : definition.getNotFinishedText(), remaining);
+                notFinished(witch, accessor, player, context.getMessage() != null ? context.getMessage()
+                        : (definition == null ? null : definition.getNotFinishedText()), remaining);
                 break;
         }
     }
 
+    /** Same check as W:R's EntityCovenWitch.isQuestItemForEntity: the quest accepts the item, or the item is a drop of the pet
+     * that the witch sent (fight quests) */
+    private static boolean isQuestItemForWitch(ItemStack stack, EntityCovenWitch witch, CovenQuest quest) {
+        if (stack.isEmpty()) return false;
+        if (quest.isQuestItem(stack)) return true;
+        NBTTagCompound tag = stack.getTagCompound();
+        return tag != null && tag.hasUniqueId(QUEST_OWNER_KEY) && witch.getPersistentID().equals(tag.getUniqueId(QUEST_OWNER_KEY));
+    }
+
     private static void completeQuest(EntityCovenWitch witch, ICovenWitchAccessor accessor, EntityPlayer player,
-                                      CustomCovenQuestDefinition definition, CovenQuestContext context, @Nullable ResourceLocation questId) {
+                                      @Nullable CustomCovenQuestDefinition definition, CovenQuestContext context, @Nullable ResourceLocation questId) {
         if (accessor.witcherycompanion$accessor$addToPlayerCoven(player)) {
-            String text = context.getMessage() != null ? context.getMessage() : definition.getCompleteText();
+            String text = context.getMessage() != null ? context.getMessage() : (definition == null ? null : definition.getCompleteText());
             if (text != null) {
                 sayRaw(witch, accessor, player, text, 0);
             } else {
@@ -243,7 +286,7 @@ public final class CovenQuestInteraction {
             witch.setRevengeTarget(player);
             witch.setAttackTarget(player);
             witch.setDrinkingPotion(true);
-            resetQuest(accessor);
+            resetQuest(witch, accessor);
         }
     }
 
@@ -259,10 +302,11 @@ public final class CovenQuestInteraction {
     // ---- Helpers
 
     /** The witch forgets the quest, as if the player had never talked to her */
-    public static void resetQuest(ICovenWitchAccessor accessor) {
+    public static void resetQuest(EntityCovenWitch witch, ICovenWitchAccessor accessor) {
         accessor.witcherycompanion$accessor$setQuestAccepted(false);
         accessor.witcherycompanion$accessor$setQuestOfferedTo(null);
         accessor.witcherycompanion$accessor$setQuest(null);
+        witch.getEntityData().removeTag(LEVEL_KEY);
     }
 
     /** Says a text that is not in the lang files, in the same way as W:R's witch: "&lt;name&gt; text" in blue */
@@ -325,7 +369,7 @@ public final class CovenQuestInteraction {
                 if (entity == joined || !(entity instanceof EntityCovenWitch)) continue;
                 ICovenWitchAccessor other = (ICovenWitchAccessor) (Object) entity;
                 if (playerId.equals(other.witcherycompanion$accessor$getQuestOfferedTo())) {
-                    resetQuest(other);
+                    resetQuest((EntityCovenWitch) entity, other);
                 }
             }
         }

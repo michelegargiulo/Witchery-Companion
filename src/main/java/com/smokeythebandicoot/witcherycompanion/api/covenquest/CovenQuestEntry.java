@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.api.covenquest;
 
+import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ import java.util.List;
  *     likely as one with weight 1</li>
  *     <li>requirements: what the player must meet for the quest to be offered (empty list = nothing)</li>
  * </ul>
- * The entry of Witchery is: every level, weight 1, the player must have an active familiar.
+ * The entry of Witchery is: every level (from 0 to the maximum coven size - 1: a witch does not offer quests to a player with a
+ * full coven), weight 1, the player must have an active familiar.
  */
 public final class CovenQuestEntry {
 
@@ -33,9 +35,11 @@ public final class CovenQuestEntry {
         this.requirements = Collections.unmodifiableList(new ArrayList<>(requirements));
     }
 
-    /** The entry that a quest has when nothing says otherwise: it behaves like in Witchery */
+    /** The entry that a quest has when nothing says otherwise: it behaves like in Witchery. Levels go from 0 to the maximum
+     * coven size (see the config) - 1 */
     public static CovenQuestEntry witcheryDefault(ResourceLocation id) {
-        return new CovenQuestEntry(id, 0, -1, 1, CovenQuestRequirement.witcheryDefault());
+        int maxLevel = ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_tweakMaxCovenSize - 1;
+        return new CovenQuestEntry(id, 0, maxLevel, 1, CovenQuestRequirement.witcheryDefault());
     }
 
     public ResourceLocation getId() { return id; }
