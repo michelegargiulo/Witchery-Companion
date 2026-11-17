@@ -801,6 +801,7 @@ public class ModConfig {
                     "of the quests and without a Familiar. Meant for testing. The size goes from 0 to the maximum coven size, see " +
                     "'Coven Witch - Tweak Max Coven Size'")
             @Config.Name("Creative Medallion - Tweak Coven Size Tab")
+            @Config.RequiresMcRestart
             public static boolean creativeMedallion_tweakCovenSizeTab = true;
 
             @Config.Comment("If true, Spectral Stones won't dupe the entity they contain")
