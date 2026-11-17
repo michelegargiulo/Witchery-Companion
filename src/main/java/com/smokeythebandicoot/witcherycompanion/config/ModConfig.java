@@ -605,6 +605,12 @@ public class ModConfig {
             @Config.Name("Placed Items - Fix Not Initialized Crash")
             public static boolean placedItems_fixNotInitializedCrash = true;
 
+            @Config.Comment("If true, fixes the Altar GUI opening when placing the Arthana or the Mystic Branch on top of " +
+                    "the Altar. On the client, Witchery lets the right click go on with the other (empty) hand, which " +
+                    "opens the Altar GUI right after the item has been placed.")
+            @Config.Name("Placed Items - Fix Opens Altar GUI")
+            public static boolean placedItems_fixOpensAltarGui = true;
+
             @Config.Comment("If true, enables CraftTweaker integration for Placed Items, the items that can be placed on " +
                     "top of the Altar, and for the Altar boosts they give. By default only Arthana, Mystic Branch and Kobolite " +
                     "Pentacle can be placed (and boost the Altar), as in Witchery, until a script changes the list. If false, " +
