@@ -27,6 +27,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /**
  Mixins:
  [Bugfix] Fix Altar having multiple Cores (has same config as altar_fixPowerSourcePersistency)
+ [Tweak] Dyeable Altar cloth: accessor to find all the blocks of an Altar (see TileEntityAltarMixin)
  */
 @Mixin(BlockAltar.class)
 public abstract class BlockAltarMixin extends BlockContainer implements IBlockAltarAccessor {
@@ -114,6 +115,12 @@ public abstract class BlockAltarMixin extends BlockContainer implements IBlockAl
                 altar.setInvalid();
             }
         }
+    }
+
+    /** Accessor Mixin for the findParts function. Used to dye all the blocks of an Altar at once */
+    @Override
+    public BlockAltar.AltarPatternMatch witcherycompanion$accessor$findParts(IBlockAccess world, BlockPos pos) {
+        return findParts(world, pos);
     }
 
     /** Accessor Mixin for the getCore function. Used by The One Probe */

@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.proxy;
 
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.client.AltarColorHandler;
 import com.smokeythebandicoot.witcherycompanion.client.CreativeMedallionTabHandler;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
@@ -50,6 +51,10 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
+
+        // Dyeable Altar cloth. Must be registered before the block colors are created (after pre-init). It also keeps
+        // the original colors of the Altar when the feature is disabled, as the cloth of the models is tinted
+        MinecraftForge.EVENT_BUS.register(AltarColorHandler.class);
 
         // Non-configurable, as it is required for Patchouli integration and does nothing if Patchouli is not used
         if (Loader.isModLoaded(Mods.PATCHOULI)) {

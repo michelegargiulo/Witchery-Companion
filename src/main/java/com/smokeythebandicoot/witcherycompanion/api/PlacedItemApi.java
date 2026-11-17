@@ -211,6 +211,25 @@ public class PlacedItemApi {
     }
 
     /**
+     * Used by the mixins on the native items that return PASS on the client after placing themselves (Arthana and
+     * Mystic Branch), at the head of their {@code onItemUse}. Returns SUCCESS (after doing what Witchery does) if the
+     * player is aiming at the top of an Altar with air above, so the client stops the right click there. Returns null
+     * if there is nothing to do (server side, or not aiming at the top of an Altar), so that Witchery's code carries on.
+     * <p>
+     * Why: with PASS, the client keeps going and repeats the right click with the other hand. When that hand is
+     * empty, the Altar sees an empty-handed right click and opens its GUI, just after the item has been placed.
+     * Witchery's server side already returns SUCCESS, so only the client needs this
+     */
+    public static EnumActionResult placeNativeOnClient(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing) {
+        if (!world.isRemote || !isAltarTop(world, pos, facing)) {
+            return null;
+        }
+        // Same as Witchery's native code (client side)
+        BlockPlacedItem.placeInWorld(hand, player, world, pos.up());
+        return EnumActionResult.SUCCESS;
+    }
+
+    /**
      * Used by the hook on {@code ItemStack.onItemUse}: places the held item on the Altar if it is in the list and is
      * not one of the native items (those place themselves). Returns null if the use was not handled, so that the
      * normal item logic carries on.

@@ -15,6 +15,7 @@ import com.smokeythebandicoot.witcherycompanion.integrations.quark.RowanDoorInte
 import com.smokeythebandicoot.witcherycompanion.integrations.thaumcraft.ThaumcraftIntegration;
 import com.smokeythebandicoot.witcherycompanion.integrations.theoneprobe.TOPPlugin;
 import com.smokeythebandicoot.witcherycompanion.network.CompanionNetworkChannel;
+import com.smokeythebandicoot.witcherycompanion.patches.block.AltarDyePatch;
 import com.smokeythebandicoot.witcherycompanion.patches.block.BlockMandrakeCropPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.common.CommonEventsPatch;
 import com.smokeythebandicoot.witcherycompanion.patches.entity.familiar.FamiliarPatches;
@@ -47,6 +48,9 @@ public class CommonProxy {
         registerNetworkHandlers();
 
         registerLootConditions();
+
+        // Dyeable Altar cloth (the handler checks the config itself)
+        MinecraftForge.EVENT_BUS.register(AltarDyePatch.class);
 
 
         if (ModConfig.PatchesConfiguration.InfusionTweaks.soulBrews_fixPersistency)

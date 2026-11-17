@@ -2,6 +2,7 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.block.entity;
 
 import com.smokeythebandicoot.witcherycompanion.api.AltarApi;
 import com.smokeythebandicoot.witcherycompanion.api.PlacedItemApi;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.altar.IAltarDyeAccessor;
 import com.smokeythebandicoot.witcherycompanion.api.accessors.blocks.altar.ITileEntityAltarAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig.PatchesConfiguration.BlockTweaks;
 import net.minecraft.block.Block;
@@ -37,9 +38,11 @@ import java.util.*;
  [Tweak] Great performance gain by caching Altar PowerSourceTable
  [Integration] Thaumcraft candles are better than Witchery Candelabra
  [Integration] CraftTweaker control over every Altar booster: skull, candle, chalice, egg (blocks) and placed items
+ [Tweak] Dyeable Altar cloth: stores the dye of each Altar block (NBT key "WitcheryCompanionDye", only written when
+    the Altar is dyed) and sends it to the clients with the rest of the Altar data
  */
 @Mixin(value = TileEntityAltar.class)
-public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements IPowerSource, ITileEntityAltarAccessor {
+public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements IPowerSource, ITileEntityAltarAccessor, IAltarDyeAccessor {
 
     @Shadow(remap = false)
     private long lastPowerUpdate;
@@ -125,6 +128,48 @@ public abstract class TileEntityAltarMixin extends WitcheryTileEntity implements
     @Override
     public void witcherycompanion$accessor$setCore(boolean isCore) {
         this.core = isCore;
+    }
+
+
+    /** ========== DYEABLE CLOTH ========== **/
+
+    /** Dye of the cloth as EnumDyeColor metadata, -1 if not dyed. Not tied to any config: data is kept even if the feature is disabled */
+    @Unique
+    private int witcherycompanion$dyeColor = -1;
+
+    @Override
+    public int witcherycompanion$accessor$getDyeColor() {
+        return this.witcherycompanion$dyeColor;
+    }
+
+    @Override
+    public boolean witcherycompanion$accessor$setDyeColor(int dyeMeta) {
+        int newColor = dyeMeta >= 0 && dyeMeta <= 15 ? dyeMeta : -1;
+        if (newColor == this.witcherycompanion$dyeColor) return false;
+        this.witcherycompanion$dyeColor = newColor;
+        this.markDirty();
+        if (this.world != null) {
+            // Server: sends the update packet (the Altar update tag is its NBT). Client: redraws the block
+            BlockUtil.notifyBlockUpdate(this.world, this.getPos());
+        }
+        return true;
+    }
+
+    @Inject(method = "writeToNBT", remap = true, at = @At("RETURN"))
+    private void witcherycompanion$writeDye(NBTTagCompound compound, CallbackInfoReturnable<NBTTagCompound> cir) {
+        if (this.witcherycompanion$dyeColor >= 0) {
+            cir.getReturnValue().setInteger("WitcheryCompanionDye", this.witcherycompanion$dyeColor);
+        }
+    }
+
+    /** Reads the dye. No key means not dyed, so that an update packet of an undyed Altar also clears the dye on the client */
+    @Inject(method = "readFromNBT", remap = true, at = @At("TAIL"))
+    private void witcherycompanion$readDye(NBTTagCompound compound, CallbackInfo ci) {
+        int oldColor = this.witcherycompanion$dyeColor;
+        this.witcherycompanion$dyeColor = compound.hasKey("WitcheryCompanionDye") ? compound.getInteger("WitcheryCompanionDye") : -1;
+        if (oldColor != this.witcherycompanion$dyeColor && this.world != null && this.world.isRemote) {
+            this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
+        }
     }
 
     @Override

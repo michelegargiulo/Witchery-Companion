@@ -419,6 +419,12 @@ public class ModConfig {
             @Config.Name("Altar - Tweak Enable Crafttweaker Compat")
             public static boolean altar_tweakEnableCrafttweakerCompat = true;
 
+            @Config.Comment("If true, the cloth of the Altar can be dyed: shift + right click on the Altar with a dye in hand. " +
+                    "All the blocks of the Altar are dyed together, one dye is used (not in creative). The Altar looks the same " +
+                    "as in Witchery until it is dyed. If false, Altars can not be dyed (already dyed Altars keep their color)")
+            @Config.Name("Altar - Tweak Dyeable Cloth")
+            public static boolean altar_tweakDyeableCloth = true;
+
             @Config.Comment("Fixes fetish blocks not dropping when they are harvested due to TileEntity being null " +
                     "when the getDrops method is called")
             @Config.Name("Block Fetish - Fix No Drops on Harvest")
