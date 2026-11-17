@@ -1370,6 +1370,12 @@ public class ModConfig {
             @Config.Name("Winged Monkey - Tweak Improve Mount Offset")
             public static boolean wingedMonkey_tweakEntityCarryMountOffset = false;
 
+            @Config.Comment("If true, fixes the Vampire mobs never attacking villagers (and never feeding on them): they " +
+                    "pick them as targets but have no melee attack AI, so they just wander around. This restores the melee " +
+                    "attack of the original Witchery and removes a stray target AI that was in its place")
+            @Config.Name("Vampire Mob - Fix AI")
+            public static boolean vampireMob_fixAI = true;
+
             @Config.Comment("Fixes a multitude of bugs related to the AI of Winged Monkey: Sitting behavior, Crash when " +
                     "interacted with some items, not carrying entities and players, not defending owners")
             @Config.Name("Winged Monkey - Fix AI")
