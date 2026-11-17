@@ -87,6 +87,14 @@ public class ModConfig {
             @Config.Name("Triggered Dispersal Tweaks")
             public static TriggeredDispersalTweaks triggeredDispersal;
 
+            @Config.Comment("Factor of the range at which a Brew Ritual can be cast from the circle. With a coven of N witches (less " +
+                    "than 6) the maximum distance is 2 * ((N + 1) * factor)^2 blocks, in the same dimension. Default: 4, as in " +
+                    "Witchery. Lower values mean that more witches are needed to reach the same range. A coven of 6 or more witches " +
+                    "has no distance limit (and no dimension limit, with a Leonard's potion), whatever this value")
+            @Config.Name("Brew Ritual - Tweak Range Factor Per Witch")
+            @Config.RangeInt(min = 1, max = 1000)
+            public static int brewRitual_tweakRangeFactorPerWitch = 4;
+
             @Config.Comment("Needs to be enabled for some Brew Patches to work. Enabled for extended flexibility on when certain" +
                     "brews should be applied")
             @Config.Name("Common - Extend Flexibility")
@@ -411,6 +419,12 @@ public class ModConfig {
             @Config.Name("Altar - Tweak Enable Crafttweaker Compat")
             public static boolean altar_tweakEnableCrafttweakerCompat = true;
 
+            @Config.Comment("If true, the cloth of the Altar can be dyed: shift + right click on the Altar with a dye in hand. " +
+                    "All the blocks of the Altar are dyed together, one dye is used (not in creative). The Altar looks the same " +
+                    "as in Witchery until it is dyed. If false, Altars can not be dyed (already dyed Altars keep their color)")
+            @Config.Name("Altar - Tweak Dyeable Cloth")
+            public static boolean altar_tweakDyeableCloth = true;
+
             @Config.Comment("Fixes fetish blocks not dropping when they are harvested due to TileEntity being null " +
                     "when the getDrops method is called")
             @Config.Name("Block Fetish - Fix No Drops on Harvest")
@@ -529,17 +543,17 @@ public class ModConfig {
             @Config.Name("Mandrake Crop - Fix On TiC Harvest")
             public static boolean mandrakeCrop_fixMandrakeSpawningTicKama = true;
 
-            @Config.Comment("Tweaks the chance for Mandrakes to spawn at night. Witchery default is 0.9 (90%). " +
+            @Config.Comment("Tweaks the chance for Mandrakes to spawn during the day. Witchery default is 0.9 (90%). " +
                     "Requires 'Mandrake Crop - Fix Drop Even When Not Mature' to be enabled")
             @Config.Name("Mandrake Crop - Tweak Daytime Spawn Chance")
             @Config.RangeDouble(min = 0.0, max = 1.0)
             public static double mandrakeCrop_tweakDaytimeSpawnChance = 0.9;
 
-            @Config.Comment("Tweaks the chance for Mandrakes to spawn at night. Witchery default is 0.09 (9%). " +
+            @Config.Comment("Tweaks the chance for Mandrakes to spawn at night. Witchery default is 0.1 (10%). " +
                     "Requires 'Mandrake Crop - Fix Drop Even When Not Mature' to be enabled")
             @Config.Name("Mandrake Crop - Tweak Nighttime Spawn Chance")
             @Config.RangeDouble(min = 0.0, max = 1.0)
-            public static double mandrakeCrop_tweakNighttimeSpawnChance = 0.09;
+            public static double mandrakeCrop_tweakNighttimeSpawnChance = 0.1;
 
             @Config.Comment("Tweaks the chance for fully-grown Mandrake crops to drop a Mandrake root. Default Witchery chance is 0.25 (25%)")
             @Config.Name("Mandrake Crop - Tweak Root Drop Chance")
@@ -596,6 +610,12 @@ public class ModConfig {
                     "in its view in the first rendered frame.")
             @Config.Name("Placed Items - Fix Not Initialized Crash")
             public static boolean placedItems_fixNotInitializedCrash = true;
+
+            @Config.Comment("If true, fixes the Altar GUI opening when placing the Arthana or the Mystic Branch on top of " +
+                    "the Altar. On the client, Witchery lets the right click go on with the other (empty) hand, which " +
+                    "opens the Altar GUI right after the item has been placed.")
+            @Config.Name("Placed Items - Fix Opens Altar GUI")
+            public static boolean placedItems_fixOpensAltarGui = true;
 
             @Config.Comment("If true, enables CraftTweaker integration for Placed Items, the items that can be placed on " +
                     "top of the Altar, and for the Altar boosts they give. By default only Arthana, Mystic Branch and Kobolite " +
@@ -788,6 +808,14 @@ public class ModConfig {
             @Config.Name("Creative Medallion - Tweak Disable Creative Requirement")
             public static boolean creativeMedallion_tweakDisableCreativeRequirement = false;
 
+            @Config.Comment("If true, the Creative Medallion has a Coven tab to set the number of witches in the player's coven (also " +
+                    "through the server, so it must be enabled there too). The size is set directly, ignoring the requirements " +
+                    "of the quests and without a Familiar. Meant for testing. The size goes from 0 to the maximum coven size, see " +
+                    "'Coven Witch - Tweak Max Coven Size'")
+            @Config.Name("Creative Medallion - Tweak Coven Size Tab")
+            @Config.RequiresMcRestart
+            public static boolean creativeMedallion_tweakCovenSizeTab = true;
+
             @Config.Comment("If true, Spectral Stones won't dupe the entity they contain")
             @Config.Name("Spectral Stone - Fix Entity Dupe Exploit")
             public static boolean spectralStone_fixEntityReleaseExploit = true;
@@ -896,6 +924,21 @@ public class ModConfig {
             @Config.Name("Circle - Fix Seer Stone Crash Without Coven")
             public static boolean circle_fixCovenSummonWithoutCoven = true;
 
+            @Config.Comment("If true, a circle can summon more than 6 Coven Witches before a rite (only possible when the " +
+                    "maximum coven size is raised): Witchery only has a position and facing for six witches, and with a " +
+                    "bigger coven the summoning stage crashes the game (ArrayIndexOutOfBoundsException). The additional " +
+                    "witches stand on concentric rings around the circle, looking at its center")
+            @Config.Name("Circle - Fix Summon More Than Six Coven Witches")
+            public static boolean circle_fixCovenSummonPositions = true;
+
+            @Config.Comment("Blocks of range that each witch of the coven adds to the maximum range at which a rite can be " +
+                    "performed from the circle: the range is (coven size + 1) times this value. Default: 50, as in " +
+                    "Witchery. Lower values mean that more witches are needed to reach the same range. Does not affect " +
+                    "the range of rituals performed with brews")
+            @Config.Name("Circle - Tweak Rite Range Per Witch")
+            @Config.RangeInt(min = 1, max = 100000)
+            public static int circle_tweakRiteRangePerWitch = 50;
+
             @Config.Comment("If true, fixes circles being recognized as complete when most of the chalk is missing: a single " +
                     "chalk in the right place was enough for the rite to start. With this fix every piece of the circle " +
                     "must be drawn, or the rite does not start. Setting this to false restores the previous behaviour")
@@ -918,6 +961,13 @@ public class ModConfig {
             @Config.Name("Rite Curse Creature - Tweak Strength")
             @Config.RangeInt(min = 1, max = 16)
             public static int curseCreature_tweakStrength = 1;
+
+            @Config.Comment("If true, fixes the full coven bonus of the Rite Curse Creature being granted only when the coven " +
+                    "has exactly 6 witches: with a bigger coven (maximum coven size raised) the rite got the smaller " +
+                    "bonus of a coven of 3 or more, so more witches meant a weaker curse. With this fix a coven of 6 or " +
+                    "more gets the full coven bonus. No effect with the default maximum coven size")
+            @Config.Name("Rite Curse Creature - Fix Bonus With Large Coven")
+            public static boolean curseCreature_fixLargeCovenBonus = true;
 
             @Config.Comment("Multiplies the damage taken by a Voodoo Protection Poppet when the owner is protected by " +
                     "this ritual. Default: 3")
@@ -1036,6 +1086,31 @@ public class ModConfig {
                     "the player holds more items than needed, the quest goes into negative item amount requirement")
             @Config.Name("Coven Witch - Fix Negative Request Amount")
             public static boolean covenWitch_fixNegativeRequestAmount = true;
+
+            @Config.Comment("Maximum number of Coven Witches that a player can have in the coven. Default: 6, as in Witchery. " +
+                    "Witches beyond the sixth are placed on outer rings when a circle summons the coven. WARN: the rites that " +
+                    "require a full coven (Curse of the Wolf, Remove Vampirism) keep requiring 6 additional witches, so a " +
+                    "value below 6 makes them impossible to perform. Checking that the value is correct for the modpack is " +
+                    "up to the pack maker. Also, the range of a rite grows with the coven size, see 'Circle - Tweak Rite " +
+                    "Range Per Witch'. Existing witches are never removed if the value is lowered")
+            @Config.Name("Coven Witch - Tweak Max Coven Size")
+            @Config.RangeInt(min = 1, max = 127)
+            public static int covenWitch_tweakMaxCovenSize = 6;
+
+            @Config.Comment("If true, W:C handles the quests of the Coven Witches: a witch chooses the quest among the ones that " +
+                    "are offered at the size of the player's coven (level), with a weighted random choice, and only if the player " +
+                    "meets the requirements of the quest. It also enables the quest events and the custom quests of the API. " +
+                    "Without any script or addon, the quests are chosen as in Witchery (every quest, same chance, only if the " +
+                    "player has an active familiar). If false, W:R handles the quests, and custom quests are not added")
+            @Config.Name("Coven Witch - Tweak Dynamic Quests")
+            public static boolean covenWitch_tweakQuestSystem = true;
+
+            @Config.Comment("If true, when a witch joins the coven of a player, the other witches that offered a quest to that player " +
+                    "(accepted or not) forget it, and the items they still needed: their next quest is chosen with the new size of " +
+                    "the coven, as if the player had never talked to them. A player completes one quest at a time. Only the " +
+                    "witches that are loaded are reset. Needs 'Coven Witch - Tweak Dynamic Quests'")
+            @Config.Name("Coven Witch - Tweak Reset Quests When A Witch Joins")
+            public static boolean covenWitch_tweakResetQuestsOnJoin = true;
 
             @Config.Comment("When the game mode is set to Peaceful, some quests cannot be completed. To avoid this, set this number to " +
                     "a value greater than zero, as it represents the number of times the quest can be re-rolled. More attempts means less performance, " +
@@ -1667,6 +1742,13 @@ public class ModConfig {
             @Config.Name("CraftTweaker Integration - Enable Custom Rites")
             @Config.RequiresMcRestart
             public static boolean enableCustomRites = true;
+
+            @Config.Comment("If true enables CraftTweaker integration for the quests of the Coven Witches: custom quests with " +
+                    "their logic written in ZenScript, and the levels, weights and requirements of every quest, with " +
+                    "mods.smokeythebandicoot.witcherycompanion.CovenQuests. Needs 'Coven Witch - Tweak Dynamic Quests'")
+            @Config.Name("CraftTweaker Integration - Enable Coven Quests")
+            @Config.RequiresMcRestart
+            public static boolean enableCovenQuests = true;
 
             @Config.Comment("If true, Custom Rites write diagnostic lines in the log: which ingredient every sacrifice " +
                     "uses when a custom rite starts, and the result of every item test. Very verbose: use it only to " +

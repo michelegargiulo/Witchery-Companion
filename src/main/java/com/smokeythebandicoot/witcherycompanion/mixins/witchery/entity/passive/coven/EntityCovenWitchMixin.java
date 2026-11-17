@@ -2,9 +2,10 @@ package com.smokeythebandicoot.witcherycompanion.mixins.witchery.entity.passive.
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.smokeythebandicoot.witcherycompanion.api.progress.ProgressUtils;
-import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgressEvent;
+import com.smokeythebandicoot.witcherycompanion.api.accessors.entities.covenwitch.ICovenWitchAccessor;
+import com.smokeythebandicoot.witcherycompanion.api.player.PlayerExtendedDataApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
+import com.smokeythebandicoot.witcherycompanion.patches.coven.CovenQuestInteraction;
 import com.smokeythebandicoot.witcherycompanion.utils.LootTables;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityTameable;
@@ -20,6 +21,7 @@ import net.minecraft.world.World;
 import net.msrandom.witchery.entity.passive.coven.CovenQuest;
 import net.msrandom.witchery.entity.passive.coven.EntityCovenWitch;
 import net.msrandom.witchery.entity.passive.coven.FightPetCovenQuest;
+import net.msrandom.witchery.init.WitcheryDimensions;
 import net.msrandom.witchery.registry.WitcheryRegistry;
 import net.msrandom.witchery.resources.CovenQuestManager;
 import org.spongepowered.asm.mixin.Final;
@@ -27,23 +29,29 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * Mixins:
  * [Bugfix] Fix quest number of items needed going into negatives
  * [Tweak] Introduce own loot table
  * [Feature] Unlock quest secrets
+ * [Tweak] Configurable maximum coven size
+ * [Feature] Unlock coven size secrets
+ * [Feature] Dynamic quests: levels, weights and requirements, custom quests, events (see CovenQuestInteraction)
+ * [Tweak] The other witches forget their quest when a witch joins the coven
+ * [Bugfix] Peaceful rerolls of fight quests looped forever when only fight quests were left
  */
 @ParametersAreNonnullByDefault
 @Mixin(value = EntityCovenWitch.class)
-public abstract class EntityCovenWitchMixin extends EntityTameable {
+public abstract class EntityCovenWitchMixin extends EntityTameable implements ICovenWitchAccessor {
 
     @Shadow(remap = false)
     private CovenQuest quest;
@@ -57,8 +65,39 @@ public abstract class EntityCovenWitchMixin extends EntityTameable {
     @Shadow(remap = false)
     protected abstract boolean isCovenFull(EntityPlayer player);
 
+    @Shadow(remap = false)
+    protected abstract UUID getQuestOfferedTo();
+
+    @Shadow(remap = false)
+    protected abstract void setQuestOfferedTo(UUID player);
+
+    @Shadow(remap = false)
+    protected abstract Boolean isQuestAccepted();
+
+    @Shadow(remap = false)
+    protected abstract void setQuestAccepted(Boolean accepted);
+
+    @Shadow(remap = false)
+    protected abstract void say(String key, EntityPlayer player, Object... args);
+
+    @Shadow(remap = false)
+    protected abstract void talkQuest(String namespace, String path, EntityPlayer player);
+
+    @Shadow(remap = false)
+    protected abstract void playWitchTalk();
+
+    @Shadow(remap = false)
+    protected abstract boolean addToPlayerCoven(EntityPlayer player);
+
+    @Shadow(remap = false)
+    public abstract boolean isDrinkingPotion();
+
     @Unique
     private EntityPlayer currentInteractingPlayer;
+
+    /** Coven size of the interacting player before the interaction: tells if a witch joined during it */
+    @Unique
+    private int witcherycompanion$covenSizeBefore;
 
 
     private EntityCovenWitchMixin(World worldIn) {
@@ -69,6 +108,7 @@ public abstract class EntityCovenWitchMixin extends EntityTameable {
     @Inject(method = "processInteract", remap = true, cancellable = false, at = @At(value = "HEAD"))
     public void WPshrinkCorrectly(EntityPlayer player, EnumHand hand, CallbackInfoReturnable<Boolean> cir) {
         this.currentInteractingPlayer = player;
+        this.witcherycompanion$covenSizeBefore = PlayerExtendedDataApi.getCovenSize(player);
     }
 
 
@@ -106,6 +146,63 @@ public abstract class EntityCovenWitchMixin extends EntityTameable {
         return null;
     }
 
+    // ---- ICovenWitchAccessor
+
+    @Override
+    public CovenQuest witcherycompanion$accessor$getQuest() { return this.quest; }
+
+    @Override
+    public void witcherycompanion$accessor$setQuest(CovenQuest quest) { this.quest = quest; }
+
+    @Override
+    public UUID witcherycompanion$accessor$getQuestOfferedTo() { return this.getQuestOfferedTo(); }
+
+    @Override
+    public void witcherycompanion$accessor$setQuestOfferedTo(UUID player) { this.setQuestOfferedTo(player); }
+
+    @Override
+    public boolean witcherycompanion$accessor$isQuestAccepted() { return Boolean.TRUE.equals(this.isQuestAccepted()); }
+
+    @Override
+    public void witcherycompanion$accessor$setQuestAccepted(boolean accepted) { this.setQuestAccepted(accepted); }
+
+    @Override
+    public int witcherycompanion$accessor$getQuestItemsNeeded() {
+        Integer items = this.getQuestItemsNeeded();
+        return items == null ? 0 : items;
+    }
+
+    @Override
+    public void witcherycompanion$accessor$setQuestItemsNeeded(int items) { this.setQuestItemsNeeded(items); }
+
+    @Override
+    public void witcherycompanion$accessor$say(String key, EntityPlayer player) { this.say(key, player); }
+
+    @Override
+    public void witcherycompanion$accessor$talkQuest(String namespace, String path, EntityPlayer player) { this.talkQuest(namespace, path, player); }
+
+    @Override
+    public void witcherycompanion$accessor$playWitchTalk() { this.playWitchTalk(); }
+
+    @Override
+    public boolean witcherycompanion$accessor$isCovenFull(EntityPlayer player) { return this.isCovenFull(player); }
+
+    @Override
+    public boolean witcherycompanion$accessor$addToPlayerCoven(EntityPlayer player) { return this.addToPlayerCoven(player); }
+
+    /** Takes over the offer and the accept of every quest, and the check of custom quests, so that quests are chosen by level,
+     * weight and requirements, and the events are posted. The conditions are the ones with which W:R handles the interaction
+     * (nothing on the client, nothing if the witch is tamed or drinking, nothing in the Spirit World). See CovenQuestInteraction */
+    @Inject(method = "processInteract", remap = true, cancellable = true, at = @At(value = "HEAD"))
+    private void witcherycompanion$handleQuestInteraction(EntityPlayer player, EnumHand hand, CallbackInfoReturnable<Boolean> cir) {
+        if (!ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_tweakQuestSystem) return;
+        if (this.world.isRemote || this.isTamed() || this.isDrinkingPotion() || WitcheryDimensions.SPIRIT_WORLD.isInDimension(player)) return;
+
+        if (CovenQuestInteraction.handle((EntityCovenWitch) (Object) this, this, player, hand)) {
+            cir.setReturnValue(true);
+        }
+    }
+
     /** This Mixin makes so that Coven Witches have their own loot table **/
     @Inject(method = "getLootTable", at = @At("HEAD"), remap = false, cancellable = true)
     public void getLootTable(CallbackInfoReturnable<ResourceLocation> cir) {
@@ -114,28 +211,26 @@ public abstract class EntityCovenWitchMixin extends EntityTameable {
         }
     }
 
-    /** This Mixin unlocks the corresponding quest's secret when the player completes a quest, and ALL of them when
-     * the player has a full coven **/
+    /** Witchery considers the coven full with 6 witches (the only 6 in isCovenFull). The maximum is configurable, and
+     * the "coven full" progress and quest rerolls follow it, as they use the same method */
+    @ModifyConstant(method = "isCovenFull", remap = false, constant = @Constant(intValue = 6))
+    private int witcherycompanion$maxCovenSize(int original) {
+        return ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_tweakMaxCovenSize;
+    }
+
+    /** This Mixin unlocks the corresponding quest's secret when the player completes a quest (a quest of W:R, the custom ones
+     * are completed by CovenQuestInteraction), the secrets of the coven size reached, and ALL the quests when the player has a
+     * full coven. The unlock ignores what the player already has, so it is fine that this also runs if the witch could not be
+     * added. If the witch joined, the other witches forget their quest **/
     @Inject(method = "processInteract", remap = false, cancellable = false, at = @At(value = "INVOKE", remap = false, shift = At.Shift.AFTER,
             target = "Lnet/msrandom/witchery/entity/passive/coven/EntityCovenWitch;addToPlayerCoven(Lnet/minecraft/entity/player/EntityPlayer;)Z"))
     private void unlockSecretQuestCompleted(EntityPlayer player, EnumHand hand, CallbackInfoReturnable<Boolean> cir) {
         ResourceLocation questId = CovenQuestManager.INSTANCE.getRegistry().getKey(this.quest);
-        if (questId != null) {
-            ProgressUtils.unlockProgress(player, ProgressUtils.getCovenQuestSecret(questId),
-                    WitcheryProgressEvent.EProgressTriggerActivity.COVEN_QUEST_FULFILLED.activityTrigger);
-        }
+        CovenQuestInteraction.unlockJoinProgress(player, questId, this.isCovenFull(player));
 
-        // To avoid player having some pages impossible to read (they're unlocked by completing quests, but quests are no
-        // longer generated due to coven being full)
-        if (this.isCovenFull(player)) {
-            Iterator<Map.Entry<ResourceLocation, CovenQuest>> it = CovenQuestManager.INSTANCE.getRegistry().iterator();
-            while (it.hasNext()) {
-                ResourceLocation id = it.next().getKey();
-                ProgressUtils.unlockProgress(player, ProgressUtils.getCovenQuestSecret(id),
-                        WitcheryProgressEvent.EProgressTriggerActivity.COVEN_FULL.activityTrigger);
-            }
+        if (PlayerExtendedDataApi.getCovenSize(player) > this.witcherycompanion$covenSizeBefore) {
+            CovenQuestInteraction.resetOtherQuests(player, (EntityCovenWitch) (Object) this);
         }
-
     }
 
     /** This Mixin forces Quest re-roll if it cannot be completed in peaceful mode. Has failsafe if it takes more than 5 attempts **/
@@ -150,7 +245,7 @@ public abstract class EntityCovenWitchMixin extends EntityTameable {
             int attempts = ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_tweakFightQuestsPeacefulRerolls;
             CovenQuest quest = CovenQuestManager.INSTANCE.getRegistry().get(result);
             while (attempts > 0 && (quest instanceof FightPetCovenQuest)) {
-                attempts++;
+                attempts--;
                 result = CovenQuestManager.INSTANCE.getRegistry().getRandom(random);
                 quest = CovenQuestManager.INSTANCE.getRegistry().get(result);
             }

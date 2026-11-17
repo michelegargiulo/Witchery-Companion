@@ -1,6 +1,7 @@
 package com.smokeythebandicoot.witcherycompanion.api.progress;
 
 import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
+import com.smokeythebandicoot.witcherycompanion.api.player.PlayerExtendedDataApi;
 import com.smokeythebandicoot.witcherycompanion.network.ProgressSync;
 import com.smokeythebandicoot.witcherycompanion.utils.ContentUtils;
 import net.minecraft.entity.EntityList;
@@ -73,6 +74,12 @@ public class ProgressUtils {
         return WitcheryCompanion.prefix("coven_quest/" + questId);
     }
 
+    // Defined format for Coven sizes: MODID:coven_size/<size>. Unlocked for every size from 1 up to the coven size
+    // the player has reached (a coven of 3 witches has unlocked coven_size/1, coven_size/2 and coven_size/3)
+    public static String getCovenSizeSecret(int size) {
+        return WitcheryCompanion.prefix("coven_size/" + size);
+    }
+
     // Defined format for Dimensions: MODID:dimensions/<dimension_name>
     public static String getDimensionSecret(@Nonnull String dimension_name) {
         return WitcheryCompanion.prefix("dimensions/" + dimension_name);
@@ -98,6 +105,16 @@ public class ProgressUtils {
     }
 
 
+
+    /** Unlocks the coven size secrets (coven_size/1 ... coven_size/N) for a player whose coven has N witches. Secrets
+     * that are already unlocked are ignored, so this can be called any time the coven may have changed, and also to
+     * unlock retroactively the progress of players that already had a coven. Should only be called server-side **/
+    public static void unlockCovenSizeProgress(@Nonnull EntityPlayer player, String activity) {
+        int size = PlayerExtendedDataApi.getCovenSize(player);
+        for (int i = 1; i <= size; i++) {
+            unlockProgress(player, getCovenSizeSecret(i), activity);
+        }
+    }
 
     /** Helper method that takes a player, a secret key and an activity type and retrieves player capability.
      * The function unlocks a secret for the player holding such capability. Should only be called server-side **/

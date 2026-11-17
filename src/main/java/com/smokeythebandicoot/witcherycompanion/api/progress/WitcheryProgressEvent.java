@@ -39,6 +39,9 @@ public abstract class WitcheryProgressEvent extends Event {
         /** Player has a full coven **/
         COVEN_FULL("full_coven"),
 
+        /** Player has reached a certain coven size (one trigger for every size up to the current one) **/
+        COVEN_SIZE("coven_size"),
+
         /** Player has interacted with an entity **/
         CREATURE_INTERACT("entity_interact"),
 

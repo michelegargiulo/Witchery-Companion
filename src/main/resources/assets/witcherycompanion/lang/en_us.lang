@@ -64,3 +64,7 @@ key.witchery.vampire.power.mesmerize.desc=Vampire Ability: Mesmerize
 key.witchery.vampire.power.run.desc=Vampire Ability: Speed
 key.witchery.vampire.power.bat.desc=Vampire Ability: Bat Transformation
 key.witchery.vampire.power.ultimate.desc=Vampire Ability: Ultimate Power
+
+# Creative Medallion, Coven tab
+gui.witcherycompanion.medallion.coven.title=Coven Size
+gui.witcherycompanion.medallion.coven.hint=Sets the number of witches in your coven. Quest requirements (like a familiar) are ignored. The sizes you go over unlock their progress, the ones above are locked again.

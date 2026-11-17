@@ -71,8 +71,12 @@ public class BlockMandrakeCropIntegration {
         if (world.getDifficulty() == EnumDifficulty.PEACEFUL)
             return false;
 
-        // Depending on daytime and chance, spawn the mandrake
-        if (world.rand.nextDouble() < (world.provider.isDaytime() ? 0.1 : 0.9)) {
+        // Depending on daytime and chance, spawn the mandrake (same chances as the Mandrake Crop mixin: Witchery's
+        // defaults are 90% during the day and 10% at night, the values here were swapped and ignored the config)
+        double chance = world.provider.isDaytime() ?
+                ModConfig.PatchesConfiguration.BlockTweaks.mandrakeCrop_tweakDaytimeSpawnChance :
+                ModConfig.PatchesConfiguration.BlockTweaks.mandrakeCrop_tweakNighttimeSpawnChance;
+        if (world.rand.nextDouble() < chance) {
             return spawnMandrake(world, pos, cropBlock, player);
         }
 

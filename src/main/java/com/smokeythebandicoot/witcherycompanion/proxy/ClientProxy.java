@@ -2,6 +2,8 @@ package com.smokeythebandicoot.witcherycompanion.proxy;
 
 import com.smokeythebandicoot.witcherycompanion.api.progress.IWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.api.progress.WitcheryProgress;
+import com.smokeythebandicoot.witcherycompanion.client.AltarColorHandler;
+import com.smokeythebandicoot.witcherycompanion.client.CreativeMedallionTabHandler;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.patchouli.PatchouliApiIntegration;
 import com.smokeythebandicoot.witcherycompanion.patches.transformation.VampireKeybindsHandler;
@@ -50,6 +52,10 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
 
+        // Dyeable Altar cloth. Must be registered before the block colors are created (after pre-init). It also keeps
+        // the original colors of the Altar when the feature is disabled, as the cloth of the models is tinted
+        MinecraftForge.EVENT_BUS.register(AltarColorHandler.class);
+
         // Non-configurable, as it is required for Patchouli integration and does nothing if Patchouli is not used
         if (Loader.isModLoaded(Mods.PATCHOULI)) {
             PatchouliApiIntegration.registerCustomComponents();
@@ -60,6 +66,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
+
+        // Coven tab of the Creative Medallion. Does nothing if the config disables it
+        MinecraftForge.EVENT_BUS.register(CreativeMedallionTabHandler.class);
 
         if (ModConfig.PatchesConfiguration.TransformationTweaks.vampire_tweakOverhaulAbilitiesKeybind) {
 
