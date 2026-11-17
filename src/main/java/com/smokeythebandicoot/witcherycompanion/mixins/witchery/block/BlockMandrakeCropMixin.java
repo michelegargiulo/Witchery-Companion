@@ -43,11 +43,13 @@ public abstract class BlockMandrakeCropMixin extends BlockCrops implements IBloc
             at = @At(value = "HEAD"))
     private void fixMandrakeSpawnConditions(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack, CallbackInfo ci) {
         if (BlockTweaks.mandrakeCrop_fixMandrakeSpawningNotMature) {
+            // shouldSpawnMandrake has side effects (it rolls the random chance), so it must be called exactly once.
+            // It is false for non-mature crops, peaceful difficulty and on the client: those always harvest normally
             if (witcherycompanion$accessor$shouldSpawnMandrake(world, player, pos, state, stack)) {
-                super.harvestBlock(world, player, pos, state, te, stack);
+                witcherycompanion$accessor$spawnMandrake(world, player, pos, state, stack);
             }
             else {
-                witcherycompanion$accessor$spawnMandrake(world, player, pos, state, stack);
+                super.harvestBlock(world, player, pos, state, te, stack);
             }
             ci.cancel();
         }

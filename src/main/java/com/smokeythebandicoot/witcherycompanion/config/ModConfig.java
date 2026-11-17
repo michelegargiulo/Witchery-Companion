@@ -537,17 +537,17 @@ public class ModConfig {
             @Config.Name("Mandrake Crop - Fix On TiC Harvest")
             public static boolean mandrakeCrop_fixMandrakeSpawningTicKama = true;
 
-            @Config.Comment("Tweaks the chance for Mandrakes to spawn at night. Witchery default is 0.9 (90%). " +
+            @Config.Comment("Tweaks the chance for Mandrakes to spawn during the day. Witchery default is 0.9 (90%). " +
                     "Requires 'Mandrake Crop - Fix Drop Even When Not Mature' to be enabled")
             @Config.Name("Mandrake Crop - Tweak Daytime Spawn Chance")
             @Config.RangeDouble(min = 0.0, max = 1.0)
             public static double mandrakeCrop_tweakDaytimeSpawnChance = 0.9;
 
-            @Config.Comment("Tweaks the chance for Mandrakes to spawn at night. Witchery default is 0.09 (9%). " +
+            @Config.Comment("Tweaks the chance for Mandrakes to spawn at night. Witchery default is 0.1 (10%). " +
                     "Requires 'Mandrake Crop - Fix Drop Even When Not Mature' to be enabled")
             @Config.Name("Mandrake Crop - Tweak Nighttime Spawn Chance")
             @Config.RangeDouble(min = 0.0, max = 1.0)
-            public static double mandrakeCrop_tweakNighttimeSpawnChance = 0.09;
+            public static double mandrakeCrop_tweakNighttimeSpawnChance = 0.1;
 
             @Config.Comment("Tweaks the chance for fully-grown Mandrake crops to drop a Mandrake root. Default Witchery chance is 0.25 (25%)")
             @Config.Name("Mandrake Crop - Tweak Root Drop Chance")
