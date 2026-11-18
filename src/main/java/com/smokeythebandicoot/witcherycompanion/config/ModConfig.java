@@ -513,6 +513,11 @@ public class ModConfig {
             @Config.Name("Grassper - Tweak Enable Item Handler Capability")
             public static boolean grassper_tweakEnableItemHandlerCap = true;
 
+            @Config.Comment("If true, makes the Grassper Axis-aligned bounding box tighter.")
+            @Config.Name("Grassper - Tweak Reduce AABB")
+            @Config.RequiresMcRestart
+            public static boolean grassper_tweakReduceAABB = false;
+
             @Config.Comment("If true, when the player holds any block and right-clicks the statue, it won't place the block")
             @Config.Name("Statue of Hobgoblin Patron - Fix Block Placing")
             public static boolean hobgoblinPatronStatue_fixBlockPlacing = true;
