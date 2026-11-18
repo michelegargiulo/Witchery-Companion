@@ -1248,6 +1248,12 @@ public class ModConfig {
             @Config.Name("Lilith - Tweak Disable Enchanting")
             public static boolean lilith_tweakDisableEnchanting = false;
 
+            @Config.Comment("If true, Mandrakes (and the hurt sound of Mindrakes) use the sound of the original Witchery, which is " +
+                    "the sound of a Ghast being hurt. W:R uses a different Ghast sound event, that no vanilla mob uses. " +
+                    "Fixes the scream of the Mandrake")
+            @Config.Name("Mandrake - Fix Scream Sound")
+            public static boolean mandrake_fixScreamSound = true;
+
             @Config.Comment("If true, allows Owls to sit. (No visual change, but the owl won't follow the owner)")
             @Config.Name("Owl - Fix Sitting Behaviour")
             public static boolean owl_fixSitting = true;
