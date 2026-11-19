@@ -4,6 +4,7 @@ import com.smokeythebandicoot.witcherycompanion.WitcheryCompanion;
 import com.smokeythebandicoot.witcherycompanion.api.progress.CapabilityWitcheryProgress;
 import com.smokeythebandicoot.witcherycompanion.commands.WitcheryBloodCommand;
 import com.smokeythebandicoot.witcherycompanion.commands.WitcheryProgressCommand;
+import com.smokeythebandicoot.witcherycompanion.commands.WitcherySkillCommand;
 import com.smokeythebandicoot.witcherycompanion.api.SpiritWorldTransferApi;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import com.smokeythebandicoot.witcherycompanion.integrations.baubles.spiritworld.BaublesExtraSlotsProvider;
@@ -135,6 +136,7 @@ public class CommonProxy {
     protected void registerCommands(FMLServerStartingEvent event) {
         event.registerServerCommand(new WitcheryProgressCommand());
         event.registerServerCommand(new WitcheryBloodCommand());
+        event.registerServerCommand(new WitcherySkillCommand());
     }
 
     protected void registerLootConditions() {

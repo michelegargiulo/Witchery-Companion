@@ -1,5 +1,6 @@
 package com.smokeythebandicoot.witcherycompanion.mixins.witchery.extensions;
 
+import com.smokeythebandicoot.witcherycompanion.api.accessors.extensions.IPlayerSkillsAccessor;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,12 +16,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /**
  * Mixins:
  * [Feature] Implement Throwing Skill
+ * [Feature] Accessor to set the skills (used by the /witcheryskill command)
  */
 @Mixin(PlayerExtendedData.class)
-public abstract class PlayerExtendedDataMixin extends WitcheryExtendedData<EntityPlayer> {
+public abstract class PlayerExtendedDataMixin extends WitcheryExtendedData<EntityPlayer> implements IPlayerSkillsAccessor {
 
     @Shadow(remap = false)
     private int throwingSkill;
+
+    @Shadow(remap = false)
+    private int bottlingSkill;
+
+    @Override
+    public int witcherycompanion$accessor$getBottlingSkillRaw() { return this.bottlingSkill; }
+
+    @Override
+    public void witcherycompanion$accessor$setBottlingSkill(int skill) { this.bottlingSkill = skill; }
+
+    @Override
+    public int witcherycompanion$accessor$getThrowingSkillRaw() { return this.throwingSkill; }
+
+    @Override
+    public void witcherycompanion$accessor$setThrowingSkill(int skill) { this.throwingSkill = skill; }
 
     /** This Mixin actually implements reading the Throwing Skill from player NBT **/
     @Inject(method = "read", remap = false, at = @At("HEAD"))
