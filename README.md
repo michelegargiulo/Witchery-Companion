@@ -69,10 +69,12 @@ jar in the resource packs folder.
   - **[Coven Witch]** Fix Brew of the Grotesque quest requiring a negative amount of items
   - **[Enchanted Broom]** Fix server freeze when the player is on the broom that breaks while flying
   - **[Fairest]** Fix randomly spawning with missing texture
+  - **[Mandrakes]** Fix Mandrakes using wrong Ghast sound on spawning
   - **[Rowan Boat]** Fix missing Rowan Boat entity model texture (not configurable)
   - **[Owl]** Fix Owls being unable to sit
   - **[Voodoo Protection Poppet]** Fix crash when trying to protect its owner from a curse
   - **[Poppet Protection Poppet]** Fix crash when trying to protect its owner from a poppet
+  - **[Vampires]** Fix Vampire entities not attacking villagers
   - **[Villagers]** Fix rare crash when Villagers try to sleep
   - **[Apothecary Villager]** Fix missing Zombified texture
   - **[Spectral Familiar]** Fix broken model after un-sitting
@@ -87,8 +89,10 @@ jar in the resource packs folder.
 - **Fluids**
   - **[Soul Brews]** Enable Forge Universal Bucket, otherwise fluids like Flowing Spirit could not be picked up (non-configurable)
 - **Items**
+  - **[Arthana]** Fix opening Altar GUI when right-clicking on the altar to place it
   - **[Cane Sword]** Fix regaining full durability upon sheathing/unsheathing
   - **[Icy Needle]** Fix having an effect only when right-clicking on a block
+  - **[Mystic Branch]** Fix opening Altar GUI when right-clicking on the altar to place it
   - **[Rowan Boat]** Fix Rowan Boat not having texture (not configurable)
   - **[Spectral Stone]** Fix NBT being retained after entity is released, effectively duping it
   - **[Lingering Potion]** Fix unlocalized name (not configurable)
@@ -121,6 +125,7 @@ jar in the resource packs folder.
 
 ### Tweaks
 - **Brews**
+  - **[Common]** Tweak to modify Cauldron Ritual range multiplier per member of the Witch Coven
   - **[Common]** Tweak to disable power ceiling. Fixes some 'non bugs' related to the impossibility of applying certain
     brews with power greater than one (healing, damage, etc)
   - **[Common]** Tweak to force all brews to still apply effect to blocks/entities even if the 'ignore' modifiers
@@ -129,12 +134,15 @@ jar in the resource packs folder.
     on applied modifiers
   - **[Common]** Tweak to customize Power Ceiling
 - **Blocks**
+  - **[Altar]** Dyeable Altars 
   - **[Crystal Ball]** Tweak to customize cooldown 
   - **[Crystal Ball]** Tweak to customize Altar Power consumption for each use
   - **[Ender Bramble]** Tweak to configure minimum and maximum teleportation distance
   - **[Fetishes]** Tweak to customize cooldown of Sentinel and Twister spirit effects
+  - **[Grassper]** Tweak to tighten Grasspers' AABB around their visual model
   - **[Mandrake Crop]** Tweak to customize Mandrake Root item drop chance and Mandrake entity spawn chance
-  - **[Witch's Cauldron]** Tweak to set glass bottle size to 250mB instead of 333/334mB (depending if draining or filling)
+  - **[Witch's Cauldron]** Tweak to set glass bottle size to 250mB instead of 333/334mB (depending on whether draining or filling)
+  - **[Witches Oven]** Implement recipe caching to improve performance. In large modpacks
   - **[Spirit Portal Block]** Tweak to change texture and transparency to better reflect the original Witchery texture
 - **Entities**
   - **[Common]** (For almost all entities) Tweak to give them their own loot table instead of hard-coded loot 
@@ -166,6 +174,7 @@ jar in the resource packs folder.
   - **[Common]** Tweak Infusion Energy Bar and Creature Charge bar position
 - **Items**
   - **[Chalk]** Tweak Chalk max stack size to 1, to avoid weird item loss due to stacking problems
+  - **[Creative Medallion]** Tweak to modify player coven with the Creative Medallion
   - **[Creative Medallion]** Tweak to enable non-creative mode players to use the medallion
   - **[Brew of Erosion]** Tweak behaviour to align with the Erosion Brew
   - **[Seer Stone]** Tweak to not print throwing skill (unimplemented feature by W:R)
@@ -174,6 +183,8 @@ jar in the resource packs folder.
   - **[Voodoo Protection Poppet]** Tweak amount of damage taken to protect its owner from a curse
   - **[Poppet Protection Poppet]** Tweak amount of damage taken to protect its owner from a poppet
 - **Rites**
+  - **[Common]** Tweak to modify the maximum amount of members of a Witch Coven
+  - **[Common]** Tweak to modify Rite range multiplier per member of the Witch Coven
   - **[Common]** Add a blacklist of dimension IDs where the circle magic can not be performed. The Spirit World does not allow circle magic regardless.
   - **[Broken Earth]** Tweak to control what blocks can be destroyed using the same rules as the Brew of Erosion (including its CraftTweaker customization)
   - **[Moving Earth]** Tweak to disable moving TileEntity (for dupes)
@@ -217,11 +228,18 @@ jar in the resource packs folder.
     - Must be unequipped in order to force transformations
   - **[Overworld Infusion]**
     - Can knockback players that are wearing Baubles made out of metal (for example, Moon Charms)
+  - **[Spirit World]**
+    - Ability to decide which items can go to and from the spirit world. Included support for 'Bring me the Rings' addon
+
+- **Cosmetic Armor Reworked**
+  - **[Spirit World]**
+    - Ability to decide which items can go to and from the spirit world. Included support for 'Bring me the Rings' addon
 
 - **CraftTweaker**
     - **[Altar]** 
         - Register or un-register Blocks nearby the altar that can power the Altar (power sources)
         - Register or un-register Altar Boosters
+        - Register or un-register Altar Placed Items
     - **[Bark Belt]**
         - Customize blocks on which the player can stand on to recharge
     - **[Brazier]**
@@ -234,29 +252,49 @@ jar in the resource packs folder.
         - Create brand-new Circle Magic rites using CraftTweaker code 
     - **[Distillery]**
         - Custom recipes
-    - **[Overworld Infusion]**
-        - Customize which items (or Tinkers' Construct materials, coming soon) are considered metallic
     - **[Kettle]**
-        - Add / Remove Heat sources
+        - Add / Remove Heat sources (blocks that placed underneath it provide heat)
         - Custom recipes
     - **[Witch's Cauldron]** 
-        - Register or un-register Blocks underneath the cauldron that can act as a heat source. Supports fluids
+        - Add / Remove Heat sources (blocks that placed underneath it provide heat)
         - Custom recipes
     - **[Hobgoblin trades]** 
         - Customize trades and various aspects related to them
     - **[Mutandis]** 
         - Custom mutations (Grass-type, Clay-type and plants)
-    - **[Overworld Infusion]** 
+    - **[Overworld Infusion]**
         - Metal Items (items that can be pulled from the ground. Entities using them can be disarmed or knockbacked)
         - Custom throwables (blocks that can be thrown as rocks)
         - Custom ore transformations (ingots can be extracted from such blocks, leaving stone behind)
         - Metal entities (entities that are considered made out of metal and can be knockbacked)
     - **[Spectral Familiar]**
         - Custom sniffs. Can be used to specify a item <--> block relationship. Make it sniff the item, it tries to find the block
+    - **[Rites]**
+        - Custom Rites, including:
+          - Sacrifices
+          - Altar Power
+          - Effects
+          - Position in the book
+          - Required Coven
+          - More, see Wiki for more info
+    - **[Coven Quests]** 
+        - Custom Coven Quests, including:
+          - Goal
+          - Requirements
+            - Familiar (generic or specific type)
+            - Infusion (generic or specific type)
+            - Bottling Skill
+            - Progress unlocked through the Progress API
+            - Custom, see Wiki for more info
+          - Chance of being selected
+          - Custom 'not interested', 'quest accepted' and 'quest completed' messages (localizable)
+          - More, see Wiki for more info
     - **[Spinning Wheel]** 
         - Custom recipes
     - **[Spirit World]** 
-        - Select which item to keep when traveling to and from the Spirit World
+        - Select which item to keep when traveling to and from the Spirit World. Includes compat for Baubles, Bring me the Rings and Cosmetic Armor Reworked
+    - **[Vampire Transformation]** 
+        - Decide which entities can provide blood to Vampire players, how much and up to which level
     - **[Flame Imps]**
         - Customize gifts for each level with custom criteria
         - Customize items that can be donated to them (shinies) and their affection boost
@@ -304,12 +342,38 @@ jar in the resource packs folder.
 ### Performance
 - Implement caching for the Altar Power Source map
 - Implement caching for the Mutandis plant transformations
+- Implement recipe caching for the Witches' Oven smelting recipes
+
+### Commands
+- '/witcheryprogress' command: control the progress the player has made into the mod. Currently only used to hide secret Patchouli pages until the player discovers the mechanic themselves.
+- '/witcheryblood' command: control the blood reserve of a Vampire player
+- 'witcheryskill' command: get and set the bottling skill and throwing skill of a player
 
 ### API
-- Witchery: Companion provides a package that contains extensive APIs for many aspects. Companion API stands in the middle between Witchery: Resurrected (where Mixins inject API functionality) and external API users. Companion itself uses the API for things like CraftTweaker integration. Check wiki for information about how to use Witchery: Companion API
+- Witchery: Companion provides accessors tens of variables and methods scattered across blocks, items, entities and more. See 'com.smokeythebandicoot.witcherycompanion.api' package for more info
+- Witchery: Companion provides a package that contains extensive APIs for many aspects. Companion API stands in the middle between Witchery: Resurrected (where Mixins inject API functionality) and external API users. Companion itself uses the API for things like CraftTweaker integration or Progress. Check wiki for information about how to use Witchery: Companion API
 - Witchery: Companion provides an API for the following aspects:
-  - **Each and All CraftTweaker handlers**
-    - **Altar Boosters** is the only case among the above that has much more power using the API than CraftTweaker
+  - **Altar** - Manage power sources, altar boosters, placed items, altar dyeing
+  - **Bark Belt** - Manage which blocks can recharge Bark Belt
+  - **Brazier** - Custom Recipes
+  - **Witch's Cauldron** - Custom Recipes (does not support Custom Rituals yet)
+  - **Coven Quests** - Manage custom quests (requirements, goals, messages and more)
+  - **Rites** - Custom rites (item sacrifices, altar power, effect, coven requirement, custom requirements)
+  - **Distillery** - Custom recipes
+  - **Erosion Brew** - Manage which blocks are transformed (eroded) or deleted on impact
+  - **Flowers Brew** - Manage spawned flowers
+  - **Goblin Trading** - Custom trades
+  - **Infernal Imp** - Manage shinies and trades
+  - **Kettle** - Custom recipes
+  - **Mutandis** - Custom transformations, including dimension requirements
+  - **Overworld Infusion** - Manage 'metal' items, throwable blocks, ore transformations, 'metal entities'
+  - **Polynesia Charm** - Manage animal trades
+  - **Rite of Moving Earth** - Manage unmovable blocks
+  - **Spectral Familiar** - Manage ores
+  - **Spinning Wheel** - Custom recipes
+  - **Spirit World Transfer** - Manage items that can cross to and from the spirit world. Has support for Baubles, Bring me the Rings and Cosmetic Armor Reworked
+  - **Treefyd** - Manage boost items
+  - **Vampire Blood** - Manage which entities can provide blood to Player Vampires, how much they have and up to which level they can fill the reserve
   - **Witchery Progress**: keep track of player progress within Witchery
   - **Triggered Dispersal**: add support for your own Blocks and TileEntities for Triggered Dispersal brews
   - **Brew Builder**: an API that can build Brews by providing a list of required items depending on the desired effects, their power, dispersal and their modifiers, etc. It is dynamic, meaning that it can provide the correct result even when the user/modpack maker changes or removes Witchery Brews data
