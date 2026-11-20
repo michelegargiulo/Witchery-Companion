@@ -3,6 +3,7 @@ package com.smokeythebandicoot.witcherycompanion.api.covenquest;
 import com.smokeythebandicoot.witcherycompanion.config.ModConfig;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +16,9 @@ import java.util.List;
  *     <li>weight: relative chance of the quest among the ones that can be offered. A quest with weight 2 is twice as
  *     likely as one with weight 1</li>
  *     <li>requirements: what the player must meet for the quest to be offered (empty list = nothing)</li>
+ *     <li>not interested message: what a witch says when she would offer this quest at the player's level, but nothing can
+ *     be offered because of the requirements. A lang key (translated by the client, the witch name is the first argument,
+ *     "%s") or a text. It tells the player what is needed. If it is null or empty, the witch says the lines of W:R</li>
  * </ul>
  * The entry of Witchery is: every level (from 0 to the maximum coven size - 1: a witch does not offer quests to a player with a
  * full coven), weight 1, the player must have an active familiar.
@@ -26,13 +30,20 @@ public final class CovenQuestEntry {
     private final int maxLevel;
     private final int weight;
     private final List<CovenQuestRequirement> requirements;
+    @Nullable private final String notInterestedMessage;
 
     public CovenQuestEntry(ResourceLocation id, int minLevel, int maxLevel, int weight, List<CovenQuestRequirement> requirements) {
+        this(id, minLevel, maxLevel, weight, requirements, null);
+    }
+
+    public CovenQuestEntry(ResourceLocation id, int minLevel, int maxLevel, int weight, List<CovenQuestRequirement> requirements,
+                           @Nullable String notInterestedMessage) {
         this.id = id;
         this.minLevel = minLevel;
         this.maxLevel = maxLevel;
         this.weight = weight;
         this.requirements = Collections.unmodifiableList(new ArrayList<>(requirements));
+        this.notInterestedMessage = notInterestedMessage;
     }
 
     /** The entry that a quest has when nothing says otherwise: it behaves like in Witchery. Levels go from 0 to the maximum
@@ -47,6 +58,13 @@ public final class CovenQuestEntry {
     public int getMaxLevel() { return maxLevel; }
     public int getWeight() { return weight; }
     public List<CovenQuestRequirement> getRequirements() { return requirements; }
+
+    /** Message of the witch when the requirements of this quest are not met. Null or empty: the lines of W:R */
+    @Nullable public String getNotInterestedMessage() { return notInterestedMessage; }
+
+    public boolean hasNotInterestedMessage() {
+        return notInterestedMessage != null && !notInterestedMessage.trim().isEmpty();
+    }
 
     public boolean isAvailableAtLevel(int level) {
         return CovenQuestPicker.inLevelRange(level, minLevel, maxLevel);

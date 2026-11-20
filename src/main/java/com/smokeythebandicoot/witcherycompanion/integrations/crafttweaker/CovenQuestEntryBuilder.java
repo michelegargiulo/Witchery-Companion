@@ -31,6 +31,7 @@ public class CovenQuestEntryBuilder {
     private int minLevel = 0;
     private int maxLevel = ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_tweakMaxCovenSize - 1;
     private int weight = 1;
+    private String notInterestedMessage = null;
     private boolean registered = false;
 
     public CovenQuestEntryBuilder(ResourceLocation id) {
@@ -48,6 +49,16 @@ public class CovenQuestEntryBuilder {
     public CovenQuestEntryBuilder setLevels(int minLevel, int maxLevel) {
         this.minLevel = minLevel;
         this.maxLevel = maxLevel;
+        return this;
+    }
+
+    @ZenMethod
+    @ZenDoc(value = "What a witch says when she would offer this quest at the player's level, but nothing can be offered because " +
+            "of the requirements: it tells the player what is needed. A lang key (the client translates it; the witch name is " +
+            "the first argument, written %s) or a text. Null or empty: the lines of W:R. When several quests are possible at " +
+            "the level, one of them is chosen with the weights and its message is used")
+    public CovenQuestEntryBuilder setNotInterestedMessage(String message) {
+        this.notInterestedMessage = message;
         return this;
     }
 
@@ -149,7 +160,7 @@ public class CovenQuestEntryBuilder {
         registered = true;
 
         List<CovenQuestRequirement> list = requirements.isSet() ? requirements.get() : CovenQuestRequirement.witcheryDefault();
-        CraftTweakerAPI.apply(new SetEntry(new CovenQuestEntry(id, minLevel, maxLevel, weight, list)));
+        CraftTweakerAPI.apply(new SetEntry(new CovenQuestEntry(id, minLevel, maxLevel, weight, list, notInterestedMessage)));
     }
 
     private static class SetEntry implements IAction {

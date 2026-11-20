@@ -146,45 +146,83 @@ public final class CovenQuestRequirement {
         return problems;
     }
 
+    /** Result of checking a requirement: if it is met, and a short description of what the player has (for the diagnostic
+     * command and the logs) */
+    public static final class Result {
+        private final boolean met;
+        private final String detail;
+
+        Result(boolean met, String detail) {
+            this.met = met;
+            this.detail = detail;
+        }
+
+        public boolean isMet() { return met; }
+        public String getDetail() { return detail; }
+    }
+
     /** Checks the requirement. Server side only (the data of the player are not available on the client) */
     public boolean isMet(EntityPlayer player) {
+        return evaluate(player).isMet();
+    }
+
+    /** Checks the requirement and says what the player has. Server side only */
+    public Result evaluate(EntityPlayer player) {
         switch (type) {
             case FAMILIAR:
-                return isFamiliarMet(player);
+                return evaluateFamiliar(player);
             case INFUSION:
-                return isInfusionMet(player);
-            case BOTTLING_SKILL:
-                return PlayerExtendedDataApi.getBottlingSkill(player) >= amount;
-            case WEREWOLF:
-                return getTraitLevel(player, WitcheryCreatureTraits.WEREWOLF) >= amount;
-            case VAMPIRE:
-                return getTraitLevel(player, WitcheryCreatureTraits.VAMPIRE) >= amount;
-            case PREVIOUS_QUEST:
-                return isPreviousQuestMet(player);
-            case DIMENSION_VISITED:
-                return hasProgress(player, ProgressUtils.getDimensionSecret(name));
+                return evaluateInfusion(player);
+            case BOTTLING_SKILL: {
+                int skill = PlayerExtendedDataApi.getBottlingSkill(player);
+                return new Result(skill >= amount, "bottling skill " + skill);
+            }
+            case WEREWOLF: {
+                int level = getTraitLevel(player, WitcheryCreatureTraits.WEREWOLF);
+                return new Result(level >= amount, "werewolf level " + level);
+            }
+            case VAMPIRE: {
+                int level = getTraitLevel(player, WitcheryCreatureTraits.VAMPIRE);
+                return new Result(level >= amount, "vampire level " + level);
+            }
+            case PREVIOUS_QUEST: {
+                boolean done = isPreviousQuestMet(player);
+                return new Result(done, done ? "quest completed" : "quest not completed");
+            }
+            case DIMENSION_VISITED: {
+                boolean visited = hasProgress(player, ProgressUtils.getDimensionSecret(name));
+                return new Result(visited, visited ? "dimension visited" : "dimension not visited");
+            }
             default:
-                return true;
+                return new Result(true, "nothing to check");
         }
     }
 
+    /** The kind of familiar is the registry key of its FamiliarType (the entity class: ocelot for the cat, toad, owl),
+     * as the data files of W:R do (familiar_powers/<namespace>/<entity>.json) */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    private boolean isFamiliarMet(EntityPlayer player) {
+    private Result evaluateFamiliar(EntityPlayer player) {
         FamiliarType<?, ?> familiarType = Familiars.getActiveFamiliarType(player);
-        if (familiarType == null) return false;
-        if (id == null) return true;
+        if (familiarType == null) return new Result(false, "no active familiar");
 
         Object entityClass = ((net.msrandom.witchery.registry.WitcheryRegistry) FamiliarType.REGISTRY).getKey(familiarType);
-        if (!(entityClass instanceof Class)) return false;
-        ResourceLocation entityId = EntityList.getKey((Class<? extends Entity>) entityClass);
-        return id.equals(entityId);
+        ResourceLocation entityId = entityClass instanceof Class ? EntityList.getKey((Class<? extends Entity>) entityClass) : null;
+        String kind = entityId != null ? entityId.toString()
+                : (entityClass instanceof Class ? ((Class<?>) entityClass).getName() : "unknown kind");
+
+        if (id == null) return new Result(true, "active familiar: " + kind);
+        return new Result(id.equals(entityId), "active familiar: " + kind);
     }
 
-    private boolean isInfusionMet(EntityPlayer player) {
+    /** The infusion is identified by its registry key (witchery:light, witchery:overworld, witchery:otherwhere or
+     * witchery:infernal) and the power is the current amount of infusion energy (what the medallion sets to 200) */
+    private Result evaluateInfusion(EntityPlayer player) {
         InfusionPower power = PlayerExtendedDataApi.getCurrentInfusion(player);
-        if (power == null || power.getInfusionType() == null) return false;
+        if (power == null || power.getInfusionType() == null) return new Result(false, "no infusion");
+
         ResourceLocation current = Infusion.REGISTRY.getKey(power.getInfusionType());
-        return id != null && id.equals(current) && power.getCurrentPower() >= amount;
+        String detail = "infusion " + (current != null ? current : "none") + ", power " + power.getCurrentPower();
+        return new Result(id != null && id.equals(current) && power.getCurrentPower() >= amount, detail);
     }
 
     private static int getTraitLevel(EntityPlayer player, CreatureTraitType<?> traitType) {

@@ -113,7 +113,13 @@ public final class CovenQuestInteraction {
         Random random = witch.getRNG();
         ResourceLocation questId = chooseQuest(witch, player, random);
         if (questId == null) {
-            accessor.witcherycompanion$accessor$say("not_interested_" + (random.nextInt(3) + 1), player);
+            // Nothing can be offered. If the quest that the witch would have offered says what it needs, she says it
+            String hint = CovenQuestApi.findNotInterestedMessage(PlayerExtendedDataApi.getCovenSize(player), random);
+            if (hint != null && !hint.trim().isEmpty()) {
+                sayTranslated(witch, accessor, player, hint);
+            } else {
+                accessor.witcherycompanion$accessor$say("not_interested_" + (random.nextInt(3) + 1), player);
+            }
             return;
         }
 
@@ -184,7 +190,7 @@ public final class CovenQuestInteraction {
 
     // ---- Next right-clicks: the player tries to complete the quest
 
-    private static void checkQuest(EntityCovenWitch witch, ICovenWitchAccessor accessor, EntityPlayer player, EnumHand hand) {
+    private static void checkQuest(EntityCovenWitch witch, ICovenWitchAccessor accessor, EntityPlayer player, EnumHand clickedHand) {
         if (accessor.witcherycompanion$accessor$isCovenFull(player)) {
             resetQuest(witch, accessor);
             accessor.witcherycompanion$accessor$say("full_coven", player);
@@ -201,9 +207,19 @@ public final class CovenQuestInteraction {
             return;
         }
 
+        EnumHand hand = clickedHand;
         ItemStack stack = player.getHeldItem(hand);
         boolean progressQuest = definition != null && definition.getMode() == CustomCovenQuestDefinition.Mode.PROGRESS;
-        boolean relevant = progressQuest || (definition != null ? ((CustomCovenQuest) quest).matches(stack) : isQuestItemForWitch(stack, witch, quest));
+        boolean relevant = progressQuest || isRelevantItem(stack, witch, quest);
+
+        // The client stops at the main hand (W:R's processInteract says "handled" there), so a click with the main hand is the
+        // only one that reaches the witch. If the main hand holds nothing that counts but the off hand does, the quest is
+        // checked with the off hand instead (the context says hand=off_hand, and the items are taken from the off hand)
+        if (!relevant && clickedHand == EnumHand.MAIN_HAND && isRelevantItem(player.getHeldItemOffhand(), witch, quest)) {
+            hand = EnumHand.OFF_HAND;
+            stack = player.getHeldItemOffhand();
+            relevant = true;
+        }
         if (!relevant) {
             notFinished(witch, accessor, player, definition == null ? null : definition.getNotFinishedText(), remaining);
             return;
@@ -261,6 +277,13 @@ public final class CovenQuestInteraction {
         }
     }
 
+    /** True if the stack counts for an item quest: the quest accepts it (a custom quest: its matcher), or it is a drop of the
+     * pet that the witch sent */
+    private static boolean isRelevantItem(ItemStack stack, EntityCovenWitch witch, CovenQuest quest) {
+        if (quest instanceof CustomCovenQuest) return ((CustomCovenQuest) quest).matches(stack);
+        return isQuestItemForWitch(stack, witch, quest);
+    }
+
     /** Same check as W:R's EntityCovenWitch.isQuestItemForEntity: the quest accepts the item, or the item is a drop of the pet
      * that the witch sent (fight quests) */
     private static boolean isQuestItemForWitch(ItemStack stack, EntityCovenWitch witch, CovenQuest quest) {
@@ -315,6 +338,15 @@ public final class CovenQuestInteraction {
         ITextComponent message = new TextComponentString("<" + witch.getCustomNameTag() + "> " + formatted);
         message.setStyle(new Style().setColor(TextFormatting.BLUE));
         player.sendMessage(message);
+        accessor.witcherycompanion$accessor$playWitchTalk();
+    }
+
+    /** Says a message that is a lang key (translated by the client, with the witch name as first argument) or a text, in the
+     * same way as W:R's witch: blue. A text that is not a key is shown as it is */
+    private static void sayTranslated(EntityCovenWitch witch, ICovenWitchAccessor accessor, EntityPlayer player, String message) {
+        ITextComponent component = new TextComponentTranslation(message, witch.getCustomNameTag());
+        component.setStyle(new Style().setColor(TextFormatting.BLUE));
+        player.sendMessage(component);
         accessor.witcherycompanion$accessor$playWitchTalk();
     }
 

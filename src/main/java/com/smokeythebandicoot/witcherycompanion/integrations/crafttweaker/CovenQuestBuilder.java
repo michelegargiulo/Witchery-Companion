@@ -88,6 +88,16 @@ public class CovenQuestBuilder {
         return this;
     }
 
+    @ZenMethod
+    @ZenDoc(value = "What a witch says when she would offer this quest at the player's level, but nothing can be offered because " +
+            "of the requirements: it tells the player what is needed. A lang key (the client translates it; the witch name is " +
+            "the first argument, written %s) or a text. Null or empty: the lines of W:R. When several quests are possible at " +
+            "the level, one of them is chosen with the weights and its message is used")
+    public CovenQuestBuilder setNotInterestedMessage(String message) {
+        if (ok()) definition.setNotInterestedMessage(message);
+        return this;
+    }
+
     // ------------------------------------------------------------------------------------------ Task
 
     @ZenMethod
@@ -102,7 +112,9 @@ public class CovenQuestBuilder {
             return this;
         }
         definition.setMode(CustomCovenQuestDefinition.Mode.ITEM);
-        definition.setMatcher(new IngredientMatcher(ingredient));
+        // The amount is how many items the witch needs: CraftTweaker only matches a stack with at least that many items, but
+        // the player can hand them in several times, so the matcher looks at the kind of item only
+        definition.setMatcher(new IngredientMatcher(ingredient.amount(1)));
         definition.setItemsNeeded(Math.max(1, ingredient.getAmount()));
         return this;
     }

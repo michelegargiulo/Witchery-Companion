@@ -61,6 +61,8 @@ public class CovenQuestApi {
         }
         REMOVED.remove(definition.getId());
         ENTRIES.put(definition.getId(), definition.toEntry());
+        WitcheryCompanion.logger.info("Registered custom coven quest {} ({}, mode {}, requirements {})", definition.getId(),
+                describeLevels(definition.getMinLevel(), definition.getMaxLevel()), definition.getMode(), definition.getRequirements());
         return problems;
     }
 
@@ -142,11 +144,52 @@ public class CovenQuestApi {
         return index < 0 ? null : candidates.get(index);
     }
 
+    /** For the logs and the diagnostic command: "levels 2 to 4", "levels 0 and above" */
+    public static String describeLevels(int minLevel, int maxLevel) {
+        return maxLevel < 0 ? "levels " + minLevel + " and above" : "levels " + minLevel + " to " + maxLevel;
+    }
+
     private static boolean meetsRequirements(CovenQuestEntry entry, EntityPlayer player) {
         for (CovenQuestRequirement requirement : entry.getRequirements()) {
             if (!requirement.isMet(player)) return false;
         }
         return true;
+    }
+
+    /** True if the quest has an entry set by a script or an addon (and not the default one of Witchery) */
+    public static boolean hasExplicitEntry(ResourceLocation id) {
+        return ENTRIES.containsKey(id);
+    }
+
+    /** True if the quest was removed (removeEntry) and did not get a new entry */
+    public static boolean isRemoved(ResourceLocation id) {
+        return REMOVED.contains(id);
+    }
+
+    /**
+     * What a witch says when she has nothing to offer to a player. Among the quests that she would offer at the level of the
+     * player (they are all rejected because of their requirements), one is chosen with the same weighted choice that picks the
+     * quests, and its message is returned: it tells the player what that quest needs.
+     * @return the message, or null if the chosen quest has none (or there is no such quest): the witch then says the lines of W:R
+     */
+    @Nullable
+    public static String findNotInterestedMessage(int level, Random random) {
+        WitcheryRegistry<ResourceLocation, CovenQuest> registry = CovenQuestManager.INSTANCE.getRegistry();
+
+        List<CovenQuestEntry> candidates = new ArrayList<>();
+        Iterator<Map.Entry<ResourceLocation, CovenQuest>> it = registry.iterator();
+        while (it.hasNext()) {
+            CovenQuestEntry entry = resolveEntry(it.next().getKey());
+            if (entry != null && entry.isAvailableAtLevel(level)) candidates.add(entry);
+        }
+
+        int[] weights = new int[candidates.size()];
+        for (int i = 0; i < weights.length; i++) weights[i] = candidates.get(i).getWeight();
+        int index = CovenQuestPicker.pick(weights, weights.length, random);
+        if (index < 0) return null;
+
+        CovenQuestEntry chosen = candidates.get(index);
+        return chosen.hasNotInterestedMessage() ? chosen.getNotInterestedMessage() : null;
     }
 
     /**

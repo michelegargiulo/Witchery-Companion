@@ -38,6 +38,7 @@ public class CustomCovenQuestDefinition {
     @Nullable private String notFinishedText;
     @Nullable private String progressText;
     @Nullable private String completeText;
+    @Nullable private String notInterestedMessage;
 
     private int minLevel = 0;
     private int maxLevel = ModConfig.PatchesConfiguration.EntityTweaks.covenWitch_tweakMaxCovenSize - 1;
@@ -58,6 +59,7 @@ public class CustomCovenQuestDefinition {
     @Nullable public String getNotFinishedText() { return notFinishedText; }
     @Nullable public String getProgressText() { return progressText; }
     @Nullable public String getCompleteText() { return completeText; }
+    @Nullable public String getNotInterestedMessage() { return notInterestedMessage; }
     public int getMinLevel() { return minLevel; }
     public int getMaxLevel() { return maxLevel; }
     public int getWeight() { return weight; }
@@ -72,6 +74,10 @@ public class CustomCovenQuestDefinition {
     public CustomCovenQuestDefinition setNotFinishedText(@Nullable String text) { this.notFinishedText = text; return this; }
     public CustomCovenQuestDefinition setProgressText(@Nullable String text) { this.progressText = text; return this; }
     public CustomCovenQuestDefinition setCompleteText(@Nullable String text) { this.completeText = text; return this; }
+
+    /** What a witch says when she would offer this quest, but the requirements are not met: a lang key (the witch name is the
+     * first argument) or a text. Null or empty: the lines of W:R */
+    public CustomCovenQuestDefinition setNotInterestedMessage(@Nullable String message) { this.notInterestedMessage = message; return this; }
 
     /** Levels at which the quest is offered. maxLevel below 0 = no upper bound */
     public CustomCovenQuestDefinition setLevels(int minLevel, int maxLevel) {
@@ -90,7 +96,7 @@ public class CustomCovenQuestDefinition {
 
     /** The entry (levels, weight, requirements) of this quest */
     public CovenQuestEntry toEntry() {
-        return new CovenQuestEntry(id, minLevel, maxLevel, weight, requirements);
+        return new CovenQuestEntry(id, minLevel, maxLevel, weight, requirements, notInterestedMessage);
     }
 
     /** Problems of this definition (empty if it is valid) */
